@@ -57081,12 +57081,13 @@ components:
     BoundFlavorsForProjectsList:
       example:
         data:
-        - isGoogle: true
-          hasLinuxSpotPrice: true
+        - hasLinuxSpotPrice2: true
+          isGoogle: true
           cpu: 6
           windowsPrice: windowsPrice
           isAws: true
           maxDataDiskCount: 5
+          hasWindowsSpotPrice2: true
           windowsSpotPrice: windowsSpotPrice
           isOpenstack: true
           name: name
@@ -57095,15 +57096,15 @@ components:
           linuxPrice: linuxPrice
           projectId: 5
           isAzure: true
-          hasWindowsSpotPrice: true
           ram: 1
           linuxSpotPrice: linuxSpotPrice
-        - isGoogle: true
-          hasLinuxSpotPrice: true
+        - hasLinuxSpotPrice2: true
+          isGoogle: true
           cpu: 6
           windowsPrice: windowsPrice
           isAws: true
           maxDataDiskCount: 5
+          hasWindowsSpotPrice2: true
           windowsSpotPrice: windowsSpotPrice
           isOpenstack: true
           name: name
@@ -57112,7 +57113,6 @@ components:
           linuxPrice: linuxPrice
           projectId: 5
           isAzure: true
-          hasWindowsSpotPrice: true
           ram: 1
           linuxSpotPrice: linuxSpotPrice
         totalCount: 2
@@ -57127,12 +57127,13 @@ components:
       type: object
     BoundFlavorsForProjectsListDto:
       example:
+        hasLinuxSpotPrice2: true
         isGoogle: true
-        hasLinuxSpotPrice: true
         cpu: 6
         windowsPrice: windowsPrice
         isAws: true
         maxDataDiskCount: 5
+        hasWindowsSpotPrice2: true
         windowsSpotPrice: windowsSpotPrice
         isOpenstack: true
         name: name
@@ -57141,7 +57142,6 @@ components:
         linuxPrice: linuxPrice
         projectId: 5
         isAzure: true
-        hasWindowsSpotPrice: true
         ram: 1
         linuxSpotPrice: linuxSpotPrice
       properties:
@@ -57172,9 +57172,9 @@ components:
         maxDataDiskCount:
           format: int32
           type: integer
-        hasLinuxSpotPrice:
+        hasLinuxSpotPrice2:
           type: boolean
-        hasWindowsSpotPrice:
+        hasWindowsSpotPrice2:
           type: boolean
         linuxSpotPrice:
           type: string
