@@ -120,32 +120,33 @@ func (c *CustomTransport) RoundTrip(req *http.Request) (*http.Response, error) {
 			// autoscaling
 			if c.Client.authMode != "" || c.Client.authMode == "default" {
 				loginCmd = &taikuncore.LoginCommand{
-					SecretKey: *taikuncore.NewNullableString(&c.Client.secretKey),
-					AccessKey: *taikuncore.NewNullableString(&c.Client.accessKey),
-					Mode:      *taikuncore.NewNullableString(&c.Client.authMode),
+					SecretKey: &c.Client.secretKey,
+					AccessKey: &c.Client.accessKey,
+					Mode:      &c.Client.authMode,
 				}
 			} else {
 				loginCmd = &taikuncore.LoginCommand{
-					Email:    *taikuncore.NewNullableString(&c.Client.email),
-					Password: *taikuncore.NewNullableString(&c.Client.password),
+					Email:    &c.Client.email,
+					Password: &c.Client.password,
 				}
 			}
-			result, _, err := c.Client.Client.AuthManagementApi.AuthLogin(req.Context()).LoginCommand(*loginCmd).Execute()
+
+			result, _, err := c.Client.Client.AuthApi.AuthLogin(req.Context(), "1").Body(*loginCmd).Execute()
 			if err != nil {
 				return nil, err
 			}
-			c.Client.token = *result.Token.Get()
-			c.Client.refreshToken = *result.RefreshToken.Get()
+			c.Client.token = *result.Token
+			c.Client.refreshToken = *result.RefreshToken
 		} else if c.Client.token != "" && c.hasTokenExpired() {
-			result, _, err := c.Client.Client.AuthManagementApi.AuthRefresh(req.Context()).RefreshTokenCommand(taikuncore.RefreshTokenCommand{
-				RefreshToken: *taikuncore.NewNullableString(&c.Client.refreshToken),
-				Token:        *taikuncore.NewNullableString(&c.Client.token),
+			result, _, err := c.Client.Client.AuthApi.AuthRefreshToken(req.Context(), "1").Body(taikuncore.RefreshTokenCommand{
+				RefreshToken: &c.Client.refreshToken,
+				Token:        &c.Client.token,
 			}).Execute()
 			if err != nil {
 				return nil, err
 			}
-			c.Client.token = *result.Token.Get()
-			c.Client.refreshToken = *result.RefreshToken.Get()
+			c.Client.token = *result.Token
+			c.Client.refreshToken = *result.RefreshToken
 		}
 		req.Header.Set("Authorization", "Bearer "+c.Client.token)
 	}
