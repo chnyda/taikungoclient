@@ -21,7 +21,7 @@ var _ MappedNullable = &ImportRepoCommand{}
 // ImportRepoCommand struct for ImportRepoCommand
 type ImportRepoCommand struct {
 	Name string `json:"name"`
-	Url NullableString `json:"url,omitempty"`
+	Url *string `json:"url,omitempty"`
 	DisplayName string `json:"displayName"`
 }
 
@@ -68,46 +68,36 @@ func (o *ImportRepoCommand) SetName(v string) {
 	o.Name = v
 }
 
-// GetUrl returns the Url field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetUrl returns the Url field value if set, zero value otherwise.
 func (o *ImportRepoCommand) GetUrl() string {
-	if o == nil || IsNil(o.Url.Get()) {
+	if o == nil || IsNil(o.Url) {
 		var ret string
 		return ret
 	}
-	return *o.Url.Get()
+	return *o.Url
 }
 
 // GetUrlOk returns a tuple with the Url field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ImportRepoCommand) GetUrlOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Url) {
 		return nil, false
 	}
-	return o.Url.Get(), o.Url.IsSet()
+	return o.Url, true
 }
 
 // HasUrl returns a boolean if a field has been set.
 func (o *ImportRepoCommand) HasUrl() bool {
-	if o != nil && o.Url.IsSet() {
+	if o != nil && !IsNil(o.Url) {
 		return true
 	}
 
 	return false
 }
 
-// SetUrl gets a reference to the given NullableString and assigns it to the Url field.
+// SetUrl gets a reference to the given string and assigns it to the Url field.
 func (o *ImportRepoCommand) SetUrl(v string) {
-	o.Url.Set(&v)
-}
-// SetUrlNil sets the value for Url to be an explicit nil
-func (o *ImportRepoCommand) SetUrlNil() {
-	o.Url.Set(nil)
-}
-
-// UnsetUrl ensures that no value is present for Url, not even an explicit nil
-func (o *ImportRepoCommand) UnsetUrl() {
-	o.Url.Unset()
+	o.Url = &v
 }
 
 // GetDisplayName returns the DisplayName field value
@@ -145,8 +135,8 @@ func (o ImportRepoCommand) MarshalJSON() ([]byte, error) {
 func (o ImportRepoCommand) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["name"] = o.Name
-	if o.Url.IsSet() {
-		toSerialize["url"] = o.Url.Get()
+	if !IsNil(o.Url) {
+		toSerialize["url"] = o.Url
 	}
 	toSerialize["displayName"] = o.DisplayName
 	return toSerialize, nil

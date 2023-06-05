@@ -24,59 +24,63 @@ import (
 // ProjectRevisionsApiService ProjectRevisionsApi service
 type ProjectRevisionsApiService service
 
-type ApiProjectrevisionsEditRequest struct {
+type ApiProjectRevisionsEditRequest struct {
 	ctx context.Context
 	ApiService *ProjectRevisionsApiService
 	projectId int32
-	projectRevisionUpdateDto *ProjectRevisionUpdateDto
+	v string
+	body *ProjectRevisionUpdateDto
 }
 
-func (r ApiProjectrevisionsEditRequest) ProjectRevisionUpdateDto(projectRevisionUpdateDto ProjectRevisionUpdateDto) ApiProjectrevisionsEditRequest {
-	r.projectRevisionUpdateDto = &projectRevisionUpdateDto
+func (r ApiProjectRevisionsEditRequest) Body(body ProjectRevisionUpdateDto) ApiProjectRevisionsEditRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiProjectrevisionsEditRequest) Execute() (*http.Response, error) {
-	return r.ApiService.ProjectrevisionsEditExecute(r)
+func (r ApiProjectRevisionsEditRequest) Execute() (*http.Response, error) {
+	return r.ApiService.ProjectRevisionsEditExecute(r)
 }
 
 /*
-ProjectrevisionsEdit Update project revision by ProjectId for poller
+ProjectRevisionsEdit Update project revision by ProjectId for poller
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param projectId
- @return ApiProjectrevisionsEditRequest
+ @param v
+ @return ApiProjectRevisionsEditRequest
 */
-func (a *ProjectRevisionsApiService) ProjectrevisionsEdit(ctx context.Context, projectId int32) ApiProjectrevisionsEditRequest {
-	return ApiProjectrevisionsEditRequest{
+func (a *ProjectRevisionsApiService) ProjectRevisionsEdit(ctx context.Context, projectId int32, v string) ApiProjectRevisionsEditRequest {
+	return ApiProjectRevisionsEditRequest{
 		ApiService: a,
 		ctx: ctx,
 		projectId: projectId,
+		v: v,
 	}
 }
 
 // Execute executes the request
-func (a *ProjectRevisionsApiService) ProjectrevisionsEditExecute(r ApiProjectrevisionsEditRequest) (*http.Response, error) {
+func (a *ProjectRevisionsApiService) ProjectRevisionsEditExecute(r ApiProjectRevisionsEditRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPut
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectRevisionsApiService.ProjectrevisionsEdit")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectRevisionsApiService.ProjectRevisionsEdit")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/projectrevisions/edit/{projectId}"
+	localVarPath := localBasePath + "/api/v{v}/ProjectRevisions/update/{projectId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -85,7 +89,7 @@ func (a *ProjectRevisionsApiService) ProjectrevisionsEditExecute(r ApiProjectrev
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -93,7 +97,7 @@ func (a *ProjectRevisionsApiService) ProjectrevisionsEditExecute(r ApiProjectrev
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.projectRevisionUpdateDto
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -130,17 +134,6 @@ func (a *ProjectRevisionsApiService) ProjectrevisionsEditExecute(r ApiProjectrev
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -174,7 +167,7 @@ func (a *ProjectRevisionsApiService) ProjectrevisionsEditExecute(r ApiProjectrev
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** |  | 
-**Password** | **interface{}** |  | 
+**Password** | [**AdminUserCreateCommandPassword**](AdminUserCreateCommandPassword.md) |  | 
 
 ## Methods
 
 ### NewAdminUsersUpdatePasswordCommand
 
-`func NewAdminUsersUpdatePasswordCommand(id string, password interface{}, ) *AdminUsersUpdatePasswordCommand`
+`func NewAdminUsersUpdatePasswordCommand(id string, password AdminUserCreateCommandPassword, ) *AdminUsersUpdatePasswordCommand`
 
 NewAdminUsersUpdatePasswordCommand instantiates a new AdminUsersUpdatePasswordCommand object
 This constructor will assign default values to properties that have it defined,
@@ -48,20 +48,20 @@ SetId sets Id field to given value.
 
 ### GetPassword
 
-`func (o *AdminUsersUpdatePasswordCommand) GetPassword() interface{}`
+`func (o *AdminUsersUpdatePasswordCommand) GetPassword() AdminUserCreateCommandPassword`
 
 GetPassword returns the Password field if non-nil, zero value otherwise.
 
 ### GetPasswordOk
 
-`func (o *AdminUsersUpdatePasswordCommand) GetPasswordOk() (*interface{}, bool)`
+`func (o *AdminUsersUpdatePasswordCommand) GetPasswordOk() (*AdminUserCreateCommandPassword, bool)`
 
 GetPasswordOk returns a tuple with the Password field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPassword
 
-`func (o *AdminUsersUpdatePasswordCommand) SetPassword(v interface{})`
+`func (o *AdminUsersUpdatePasswordCommand) SetPassword(v AdminUserCreateCommandPassword)`
 
 SetPassword sets Password field to given value.
 

@@ -6,12 +6,12 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Price** | Pointer to **float64** |  | [optional] 
 **StartDate** | Pointer to **time.Time** |  | [optional] 
-**EndDate** | Pointer to **NullableTime** |  | [optional] 
+**EndDate** | Pointer to **time.Time** |  | [optional] 
 **PrometheusRuleId** | Pointer to **int32** |  | [optional] 
-**RuleName** | Pointer to **NullableString** |  | [optional] 
-**CreatedBy** | Pointer to **NullableString** |  | [optional] 
-**LastModified** | Pointer to **NullableString** |  | [optional] 
-**LastModifiedBy** | Pointer to **NullableString** |  | [optional] 
+**RuleName** | Pointer to **string** |  | [optional] 
+**CreatedBy** | Pointer to **string** |  | [optional] 
+**LastModified** | Pointer to **string** |  | [optional] 
+**LastModifiedBy** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -107,16 +107,6 @@ SetEndDate sets EndDate field to given value.
 
 HasEndDate returns a boolean if a field has been set.
 
-### SetEndDateNil
-
-`func (o *PrometheusBillingSummaryDto) SetEndDateNil(b bool)`
-
- SetEndDateNil sets the value for EndDate to be an explicit nil
-
-### UnsetEndDate
-`func (o *PrometheusBillingSummaryDto) UnsetEndDate()`
-
-UnsetEndDate ensures that no value is present for EndDate, not even an explicit nil
 ### GetPrometheusRuleId
 
 `func (o *PrometheusBillingSummaryDto) GetPrometheusRuleId() int32`
@@ -167,16 +157,6 @@ SetRuleName sets RuleName field to given value.
 
 HasRuleName returns a boolean if a field has been set.
 
-### SetRuleNameNil
-
-`func (o *PrometheusBillingSummaryDto) SetRuleNameNil(b bool)`
-
- SetRuleNameNil sets the value for RuleName to be an explicit nil
-
-### UnsetRuleName
-`func (o *PrometheusBillingSummaryDto) UnsetRuleName()`
-
-UnsetRuleName ensures that no value is present for RuleName, not even an explicit nil
 ### GetCreatedBy
 
 `func (o *PrometheusBillingSummaryDto) GetCreatedBy() string`
@@ -202,16 +182,6 @@ SetCreatedBy sets CreatedBy field to given value.
 
 HasCreatedBy returns a boolean if a field has been set.
 
-### SetCreatedByNil
-
-`func (o *PrometheusBillingSummaryDto) SetCreatedByNil(b bool)`
-
- SetCreatedByNil sets the value for CreatedBy to be an explicit nil
-
-### UnsetCreatedBy
-`func (o *PrometheusBillingSummaryDto) UnsetCreatedBy()`
-
-UnsetCreatedBy ensures that no value is present for CreatedBy, not even an explicit nil
 ### GetLastModified
 
 `func (o *PrometheusBillingSummaryDto) GetLastModified() string`
@@ -237,16 +207,6 @@ SetLastModified sets LastModified field to given value.
 
 HasLastModified returns a boolean if a field has been set.
 
-### SetLastModifiedNil
-
-`func (o *PrometheusBillingSummaryDto) SetLastModifiedNil(b bool)`
-
- SetLastModifiedNil sets the value for LastModified to be an explicit nil
-
-### UnsetLastModified
-`func (o *PrometheusBillingSummaryDto) UnsetLastModified()`
-
-UnsetLastModified ensures that no value is present for LastModified, not even an explicit nil
 ### GetLastModifiedBy
 
 `func (o *PrometheusBillingSummaryDto) GetLastModifiedBy() string`
@@ -272,16 +232,6 @@ SetLastModifiedBy sets LastModifiedBy field to given value.
 
 HasLastModifiedBy returns a boolean if a field has been set.
 
-### SetLastModifiedByNil
-
-`func (o *PrometheusBillingSummaryDto) SetLastModifiedByNil(b bool)`
-
- SetLastModifiedByNil sets the value for LastModifiedBy to be an explicit nil
-
-### UnsetLastModifiedBy
-`func (o *PrometheusBillingSummaryDto) UnsetLastModifiedBy()`
-
-UnsetLastModifiedBy ensures that no value is present for LastModifiedBy, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

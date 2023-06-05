@@ -51,16 +51,6 @@ SetOrganizations sets Organizations field to given value.
 
 HasOrganizations returns a boolean if a field has been set.
 
-### SetOrganizationsNil
-
-`func (o *BindPrometheusOrganizationsCommand) SetOrganizationsNil(b bool)`
-
- SetOrganizationsNil sets the value for Organizations to be an explicit nil
-
-### UnsetOrganizations
-`func (o *BindPrometheusOrganizationsCommand) UnsetOrganizations()`
-
-UnsetOrganizations ensures that no value is present for Organizations, not even an explicit nil
 ### GetPrometheusRuleId
 
 `func (o *BindPrometheusOrganizationsCommand) GetPrometheusRuleId() int32`

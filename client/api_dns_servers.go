@@ -24,37 +24,40 @@ import (
 // DnsServersApiService DnsServersApi service
 type DnsServersApiService service
 
-type ApiDnsserversCreateRequest struct {
+type ApiDnsServersCreateRequest struct {
 	ctx context.Context
 	ApiService *DnsServersApiService
-	createDnsServerCommand *CreateDnsServerCommand
+	v string
+	body *CreateDnsServerCommand
 }
 
-func (r ApiDnsserversCreateRequest) CreateDnsServerCommand(createDnsServerCommand CreateDnsServerCommand) ApiDnsserversCreateRequest {
-	r.createDnsServerCommand = &createDnsServerCommand
+func (r ApiDnsServersCreateRequest) Body(body CreateDnsServerCommand) ApiDnsServersCreateRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiDnsserversCreateRequest) Execute() (*ApiResponse, *http.Response, error) {
-	return r.ApiService.DnsserversCreateExecute(r)
+func (r ApiDnsServersCreateRequest) Execute() (*ApiResponse, *http.Response, error) {
+	return r.ApiService.DnsServersCreateExecute(r)
 }
 
 /*
-DnsserversCreate Create dns servers for access profile
+DnsServersCreate Create access profile dns server
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiDnsserversCreateRequest
+ @param v
+ @return ApiDnsServersCreateRequest
 */
-func (a *DnsServersApiService) DnsserversCreate(ctx context.Context) ApiDnsserversCreateRequest {
-	return ApiDnsserversCreateRequest{
+func (a *DnsServersApiService) DnsServersCreate(ctx context.Context, v string) ApiDnsServersCreateRequest {
+	return ApiDnsServersCreateRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
 //  @return ApiResponse
-func (a *DnsServersApiService) DnsserversCreateExecute(r ApiDnsserversCreateRequest) (*ApiResponse, *http.Response, error) {
+func (a *DnsServersApiService) DnsServersCreateExecute(r ApiDnsServersCreateRequest) (*ApiResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -62,22 +65,20 @@ func (a *DnsServersApiService) DnsserversCreateExecute(r ApiDnsserversCreateRequ
 		localVarReturnValue  *ApiResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DnsServersApiService.DnsserversCreate")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DnsServersApiService.DnsServersCreate")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/dnsservers/create"
+	localVarPath := localBasePath + "/api/v{v}/DnsServers/create"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createDnsServerCommand == nil {
-		return localVarReturnValue, nil, reportError("createDnsServerCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -86,7 +87,7 @@ func (a *DnsServersApiService) DnsserversCreateExecute(r ApiDnsserversCreateRequ
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -94,7 +95,7 @@ func (a *DnsServersApiService) DnsserversCreateExecute(r ApiDnsserversCreateRequ
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createDnsServerCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -131,17 +132,6 @@ func (a *DnsServersApiService) DnsserversCreateExecute(r ApiDnsserversCreateRequ
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -175,7 +165,7 @@ func (a *DnsServersApiService) DnsserversCreateExecute(r ApiDnsserversCreateRequ
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -200,46 +190,50 @@ func (a *DnsServersApiService) DnsserversCreateExecute(r ApiDnsserversCreateRequ
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiDnsserversDeleteRequest struct {
+type ApiDnsServersDeleteRequest struct {
 	ctx context.Context
 	ApiService *DnsServersApiService
 	id int32
+	v string
 }
 
-func (r ApiDnsserversDeleteRequest) Execute() (*http.Response, error) {
-	return r.ApiService.DnsserversDeleteExecute(r)
+func (r ApiDnsServersDeleteRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DnsServersDeleteExecute(r)
 }
 
 /*
-DnsserversDelete Delete dns server
+DnsServersDelete Delete access profile dns server
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
- @return ApiDnsserversDeleteRequest
+ @param v
+ @return ApiDnsServersDeleteRequest
 */
-func (a *DnsServersApiService) DnsserversDelete(ctx context.Context, id int32) ApiDnsserversDeleteRequest {
-	return ApiDnsserversDeleteRequest{
+func (a *DnsServersApiService) DnsServersDelete(ctx context.Context, id int32, v string) ApiDnsServersDeleteRequest {
+	return ApiDnsServersDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
+		v: v,
 	}
 }
 
 // Execute executes the request
-func (a *DnsServersApiService) DnsserversDeleteExecute(r ApiDnsserversDeleteRequest) (*http.Response, error) {
+func (a *DnsServersApiService) DnsServersDeleteExecute(r ApiDnsServersDeleteRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DnsServersApiService.DnsserversDelete")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DnsServersApiService.DnsServersDelete")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/dnsservers/{id}"
+	localVarPath := localBasePath + "/api/v{v}/DnsServers/{id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -255,7 +249,7 @@ func (a *DnsServersApiService) DnsserversDeleteExecute(r ApiDnsserversDeleteRequ
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -298,17 +292,6 @@ func (a *DnsServersApiService) DnsserversDeleteExecute(r ApiDnsserversDeleteRequ
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -342,7 +325,7 @@ func (a *DnsServersApiService) DnsserversDeleteExecute(r ApiDnsserversDeleteRequ
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -351,6 +334,7 @@ func (a *DnsServersApiService) DnsserversDeleteExecute(r ApiDnsserversDeleteRequ
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
+			return localVarHTTPResponse, newErr
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -358,62 +342,63 @@ func (a *DnsServersApiService) DnsserversDeleteExecute(r ApiDnsserversDeleteRequ
 	return localVarHTTPResponse, nil
 }
 
-type ApiDnsserversEditRequest struct {
+type ApiDnsServersEditRequest struct {
 	ctx context.Context
 	ApiService *DnsServersApiService
 	id int32
-	dnsNtpAddressEditDto *DnsNtpAddressEditDto
+	v string
+	body *DnsNtpAddressEditDto
 }
 
-func (r ApiDnsserversEditRequest) DnsNtpAddressEditDto(dnsNtpAddressEditDto DnsNtpAddressEditDto) ApiDnsserversEditRequest {
-	r.dnsNtpAddressEditDto = &dnsNtpAddressEditDto
+func (r ApiDnsServersEditRequest) Body(body DnsNtpAddressEditDto) ApiDnsServersEditRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiDnsserversEditRequest) Execute() (*http.Response, error) {
-	return r.ApiService.DnsserversEditExecute(r)
+func (r ApiDnsServersEditRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DnsServersEditExecute(r)
 }
 
 /*
-DnsserversEdit Edit dns server
+DnsServersEdit Edit access profile dns server
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
- @return ApiDnsserversEditRequest
+ @param v
+ @return ApiDnsServersEditRequest
 */
-func (a *DnsServersApiService) DnsserversEdit(ctx context.Context, id int32) ApiDnsserversEditRequest {
-	return ApiDnsserversEditRequest{
+func (a *DnsServersApiService) DnsServersEdit(ctx context.Context, id int32, v string) ApiDnsServersEditRequest {
+	return ApiDnsServersEditRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
+		v: v,
 	}
 }
 
 // Execute executes the request
-func (a *DnsServersApiService) DnsserversEditExecute(r ApiDnsserversEditRequest) (*http.Response, error) {
+func (a *DnsServersApiService) DnsServersEditExecute(r ApiDnsServersEditRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DnsServersApiService.DnsserversEdit")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DnsServersApiService.DnsServersEdit")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/dnsservers/edit/{id}"
+	localVarPath := localBasePath + "/api/v{v}/DnsServers/edit/{id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.dnsNtpAddressEditDto == nil {
-		return nil, reportError("dnsNtpAddressEditDto is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -422,7 +407,7 @@ func (a *DnsServersApiService) DnsserversEditExecute(r ApiDnsserversEditRequest)
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -430,7 +415,7 @@ func (a *DnsServersApiService) DnsserversEditExecute(r ApiDnsserversEditRequest)
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.dnsNtpAddressEditDto
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -467,17 +452,6 @@ func (a *DnsServersApiService) DnsserversEditExecute(r ApiDnsserversEditRequest)
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -511,7 +485,7 @@ func (a *DnsServersApiService) DnsserversEditExecute(r ApiDnsserversEditRequest)
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -527,40 +501,43 @@ func (a *DnsServersApiService) DnsserversEditExecute(r ApiDnsserversEditRequest)
 	return localVarHTTPResponse, nil
 }
 
-type ApiDnsserversListRequest struct {
+type ApiDnsServersListRequest struct {
 	ctx context.Context
 	ApiService *DnsServersApiService
 	accessProfileId int32
+	v string
 	search *string
 }
 
-func (r ApiDnsserversListRequest) Search(search string) ApiDnsserversListRequest {
+func (r ApiDnsServersListRequest) Search(search string) ApiDnsServersListRequest {
 	r.search = &search
 	return r
 }
 
-func (r ApiDnsserversListRequest) Execute() ([]DnsServersListDto, *http.Response, error) {
-	return r.ApiService.DnsserversListExecute(r)
+func (r ApiDnsServersListRequest) Execute() ([]DnsServersListDto, *http.Response, error) {
+	return r.ApiService.DnsServersListExecute(r)
 }
 
 /*
-DnsserversList Method for DnsserversList
+DnsServersList List dns servers by profile id
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param accessProfileId
- @return ApiDnsserversListRequest
+ @param v
+ @return ApiDnsServersListRequest
 */
-func (a *DnsServersApiService) DnsserversList(ctx context.Context, accessProfileId int32) ApiDnsserversListRequest {
-	return ApiDnsserversListRequest{
+func (a *DnsServersApiService) DnsServersList(ctx context.Context, accessProfileId int32, v string) ApiDnsServersListRequest {
+	return ApiDnsServersListRequest{
 		ApiService: a,
 		ctx: ctx,
 		accessProfileId: accessProfileId,
+		v: v,
 	}
 }
 
 // Execute executes the request
 //  @return []DnsServersListDto
-func (a *DnsServersApiService) DnsserversListExecute(r ApiDnsserversListRequest) ([]DnsServersListDto, *http.Response, error) {
+func (a *DnsServersApiService) DnsServersListExecute(r ApiDnsServersListRequest) ([]DnsServersListDto, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -568,20 +545,21 @@ func (a *DnsServersApiService) DnsserversListExecute(r ApiDnsserversListRequest)
 		localVarReturnValue  []DnsServersListDto
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DnsServersApiService.DnsserversList")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DnsServersApiService.DnsServersList")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/dnsservers/{accessProfileId}"
+	localVarPath := localBasePath + "/api/v{v}/DnsServers/list/{accessProfileId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"accessProfileId"+"}", url.PathEscape(parameterValueToString(r.accessProfileId, "accessProfileId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.search != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Search", r.search, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -593,7 +571,7 @@ func (a *DnsServersApiService) DnsserversListExecute(r ApiDnsserversListRequest)
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -636,17 +614,6 @@ func (a *DnsServersApiService) DnsserversListExecute(r ApiDnsserversListRequest)
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -680,7 +647,7 @@ func (a *DnsServersApiService) DnsserversListExecute(r ApiDnsserversListRequest)
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

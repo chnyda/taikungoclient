@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **NullableString** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
-**Description** | Pointer to **NullableString** |  | [optional] 
-**PlatformDetails** | Pointer to **NullableString** |  | [optional] 
-**OwnerId** | Pointer to **NullableString** |  | [optional] 
-**OwnerAlias** | Pointer to **NullableString** |  | [optional] 
-**Logo** | Pointer to **NullableString** |  | [optional] 
+**Id** | Pointer to **string** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**Description** | Pointer to **string** |  | [optional] 
+**PlatformDetails** | Pointer to **string** |  | [optional] 
+**OwnerId** | Pointer to **string** |  | [optional] 
+**OwnerAlias** | Pointer to **string** |  | [optional] 
+**Logo** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -56,16 +56,6 @@ SetId sets Id field to given value.
 
 HasId returns a boolean if a field has been set.
 
-### SetIdNil
-
-`func (o *AwsExtendedImagesListDto) SetIdNil(b bool)`
-
- SetIdNil sets the value for Id to be an explicit nil
-
-### UnsetId
-`func (o *AwsExtendedImagesListDto) UnsetId()`
-
-UnsetId ensures that no value is present for Id, not even an explicit nil
 ### GetName
 
 `func (o *AwsExtendedImagesListDto) GetName() string`
@@ -91,16 +81,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *AwsExtendedImagesListDto) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *AwsExtendedImagesListDto) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetDescription
 
 `func (o *AwsExtendedImagesListDto) GetDescription() string`
@@ -126,16 +106,6 @@ SetDescription sets Description field to given value.
 
 HasDescription returns a boolean if a field has been set.
 
-### SetDescriptionNil
-
-`func (o *AwsExtendedImagesListDto) SetDescriptionNil(b bool)`
-
- SetDescriptionNil sets the value for Description to be an explicit nil
-
-### UnsetDescription
-`func (o *AwsExtendedImagesListDto) UnsetDescription()`
-
-UnsetDescription ensures that no value is present for Description, not even an explicit nil
 ### GetPlatformDetails
 
 `func (o *AwsExtendedImagesListDto) GetPlatformDetails() string`
@@ -161,16 +131,6 @@ SetPlatformDetails sets PlatformDetails field to given value.
 
 HasPlatformDetails returns a boolean if a field has been set.
 
-### SetPlatformDetailsNil
-
-`func (o *AwsExtendedImagesListDto) SetPlatformDetailsNil(b bool)`
-
- SetPlatformDetailsNil sets the value for PlatformDetails to be an explicit nil
-
-### UnsetPlatformDetails
-`func (o *AwsExtendedImagesListDto) UnsetPlatformDetails()`
-
-UnsetPlatformDetails ensures that no value is present for PlatformDetails, not even an explicit nil
 ### GetOwnerId
 
 `func (o *AwsExtendedImagesListDto) GetOwnerId() string`
@@ -196,16 +156,6 @@ SetOwnerId sets OwnerId field to given value.
 
 HasOwnerId returns a boolean if a field has been set.
 
-### SetOwnerIdNil
-
-`func (o *AwsExtendedImagesListDto) SetOwnerIdNil(b bool)`
-
- SetOwnerIdNil sets the value for OwnerId to be an explicit nil
-
-### UnsetOwnerId
-`func (o *AwsExtendedImagesListDto) UnsetOwnerId()`
-
-UnsetOwnerId ensures that no value is present for OwnerId, not even an explicit nil
 ### GetOwnerAlias
 
 `func (o *AwsExtendedImagesListDto) GetOwnerAlias() string`
@@ -231,16 +181,6 @@ SetOwnerAlias sets OwnerAlias field to given value.
 
 HasOwnerAlias returns a boolean if a field has been set.
 
-### SetOwnerAliasNil
-
-`func (o *AwsExtendedImagesListDto) SetOwnerAliasNil(b bool)`
-
- SetOwnerAliasNil sets the value for OwnerAlias to be an explicit nil
-
-### UnsetOwnerAlias
-`func (o *AwsExtendedImagesListDto) UnsetOwnerAlias()`
-
-UnsetOwnerAlias ensures that no value is present for OwnerAlias, not even an explicit nil
 ### GetLogo
 
 `func (o *AwsExtendedImagesListDto) GetLogo() string`
@@ -266,16 +206,6 @@ SetLogo sets Logo field to given value.
 
 HasLogo returns a boolean if a field has been set.
 
-### SetLogoNil
-
-`func (o *AwsExtendedImagesListDto) SetLogoNil(b bool)`
-
- SetLogoNil sets the value for Logo to be an explicit nil
-
-### UnsetLogo
-`func (o *AwsExtendedImagesListDto) UnsetLogo()`
-
-UnsetLogo ensures that no value is present for Logo, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Token** | Pointer to **NullableString** |  | [optional] 
-**Mode** | Pointer to **NullableString** |  | [optional] 
+**Token** | Pointer to **string** |  | [optional] 
+**Mode** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -51,16 +51,6 @@ SetToken sets Token field to given value.
 
 HasToken returns a boolean if a field has been set.
 
-### SetTokenNil
-
-`func (o *VerifyEmailCommand) SetTokenNil(b bool)`
-
- SetTokenNil sets the value for Token to be an explicit nil
-
-### UnsetToken
-`func (o *VerifyEmailCommand) UnsetToken()`
-
-UnsetToken ensures that no value is present for Token, not even an explicit nil
 ### GetMode
 
 `func (o *VerifyEmailCommand) GetMode() string`
@@ -86,16 +76,6 @@ SetMode sets Mode field to given value.
 
 HasMode returns a boolean if a field has been set.
 
-### SetModeNil
-
-`func (o *VerifyEmailCommand) SetModeNil(b bool)`
-
- SetModeNil sets the value for Mode to be an explicit nil
-
-### UnsetMode
-`func (o *VerifyEmailCommand) UnsetMode()`
-
-UnsetMode ensures that no value is present for Mode, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

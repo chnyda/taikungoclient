@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CategoryName** | Pointer to **NullableString** |  | [optional] 
+**CategoryName** | Pointer to **string** |  | [optional] 
 **Data** | Pointer to [**[]PrometheusDashboardDto**](PrometheusDashboardDto.md) |  | [optional] 
 
 ## Methods
@@ -51,16 +51,6 @@ SetCategoryName sets CategoryName field to given value.
 
 HasCategoryName returns a boolean if a field has been set.
 
-### SetCategoryNameNil
-
-`func (o *PrometheusDashboardListDto) SetCategoryNameNil(b bool)`
-
- SetCategoryNameNil sets the value for CategoryName to be an explicit nil
-
-### UnsetCategoryName
-`func (o *PrometheusDashboardListDto) UnsetCategoryName()`
-
-UnsetCategoryName ensures that no value is present for CategoryName, not even an explicit nil
 ### GetData
 
 `func (o *PrometheusDashboardListDto) GetData() []PrometheusDashboardDto`
@@ -86,16 +76,6 @@ SetData sets Data field to given value.
 
 HasData returns a boolean if a field has been set.
 
-### SetDataNil
-
-`func (o *PrometheusDashboardListDto) SetDataNil(b bool)`
-
- SetDataNil sets the value for Data to be an explicit nil
-
-### UnsetData
-`func (o *PrometheusDashboardListDto) UnsetData()`
-
-UnsetData ensures that no value is present for Data, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

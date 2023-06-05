@@ -44,9 +44,9 @@ func NewProjectChartDtoWithDefaults() *ProjectChartDto {
 	return &this
 }
 
-// GetSucceeded returns the Succeeded field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetSucceeded returns the Succeeded field value if set, zero value otherwise.
 func (o *ProjectChartDto) GetSucceeded() []ProjectCommonRecordDto {
-	if o == nil {
+	if o == nil || IsNil(o.Succeeded) {
 		var ret []ProjectCommonRecordDto
 		return ret
 	}
@@ -55,7 +55,6 @@ func (o *ProjectChartDto) GetSucceeded() []ProjectCommonRecordDto {
 
 // GetSucceededOk returns a tuple with the Succeeded field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProjectChartDto) GetSucceededOk() ([]ProjectCommonRecordDto, bool) {
 	if o == nil || IsNil(o.Succeeded) {
 		return nil, false
@@ -65,7 +64,7 @@ func (o *ProjectChartDto) GetSucceededOk() ([]ProjectCommonRecordDto, bool) {
 
 // HasSucceeded returns a boolean if a field has been set.
 func (o *ProjectChartDto) HasSucceeded() bool {
-	if o != nil && IsNil(o.Succeeded) {
+	if o != nil && !IsNil(o.Succeeded) {
 		return true
 	}
 
@@ -77,9 +76,9 @@ func (o *ProjectChartDto) SetSucceeded(v []ProjectCommonRecordDto) {
 	o.Succeeded = v
 }
 
-// GetPending returns the Pending field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetPending returns the Pending field value if set, zero value otherwise.
 func (o *ProjectChartDto) GetPending() []ProjectCommonRecordDto {
-	if o == nil {
+	if o == nil || IsNil(o.Pending) {
 		var ret []ProjectCommonRecordDto
 		return ret
 	}
@@ -88,7 +87,6 @@ func (o *ProjectChartDto) GetPending() []ProjectCommonRecordDto {
 
 // GetPendingOk returns a tuple with the Pending field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProjectChartDto) GetPendingOk() ([]ProjectCommonRecordDto, bool) {
 	if o == nil || IsNil(o.Pending) {
 		return nil, false
@@ -98,7 +96,7 @@ func (o *ProjectChartDto) GetPendingOk() ([]ProjectCommonRecordDto, bool) {
 
 // HasPending returns a boolean if a field has been set.
 func (o *ProjectChartDto) HasPending() bool {
-	if o != nil && IsNil(o.Pending) {
+	if o != nil && !IsNil(o.Pending) {
 		return true
 	}
 
@@ -110,9 +108,9 @@ func (o *ProjectChartDto) SetPending(v []ProjectCommonRecordDto) {
 	o.Pending = v
 }
 
-// GetUpdating returns the Updating field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetUpdating returns the Updating field value if set, zero value otherwise.
 func (o *ProjectChartDto) GetUpdating() []ProjectCommonRecordDto {
-	if o == nil {
+	if o == nil || IsNil(o.Updating) {
 		var ret []ProjectCommonRecordDto
 		return ret
 	}
@@ -121,7 +119,6 @@ func (o *ProjectChartDto) GetUpdating() []ProjectCommonRecordDto {
 
 // GetUpdatingOk returns a tuple with the Updating field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProjectChartDto) GetUpdatingOk() ([]ProjectCommonRecordDto, bool) {
 	if o == nil || IsNil(o.Updating) {
 		return nil, false
@@ -131,7 +128,7 @@ func (o *ProjectChartDto) GetUpdatingOk() ([]ProjectCommonRecordDto, bool) {
 
 // HasUpdating returns a boolean if a field has been set.
 func (o *ProjectChartDto) HasUpdating() bool {
-	if o != nil && IsNil(o.Updating) {
+	if o != nil && !IsNil(o.Updating) {
 		return true
 	}
 
@@ -175,9 +172,9 @@ func (o *ProjectChartDto) SetTotalCount(v int32) {
 	o.TotalCount = &v
 }
 
-// GetFailed returns the Failed field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetFailed returns the Failed field value if set, zero value otherwise.
 func (o *ProjectChartDto) GetFailed() []ProjectCommonRecordDto {
-	if o == nil {
+	if o == nil || IsNil(o.Failed) {
 		var ret []ProjectCommonRecordDto
 		return ret
 	}
@@ -186,7 +183,6 @@ func (o *ProjectChartDto) GetFailed() []ProjectCommonRecordDto {
 
 // GetFailedOk returns a tuple with the Failed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProjectChartDto) GetFailedOk() ([]ProjectCommonRecordDto, bool) {
 	if o == nil || IsNil(o.Failed) {
 		return nil, false
@@ -196,7 +192,7 @@ func (o *ProjectChartDto) GetFailedOk() ([]ProjectCommonRecordDto, bool) {
 
 // HasFailed returns a boolean if a field has been set.
 func (o *ProjectChartDto) HasFailed() bool {
-	if o != nil && IsNil(o.Failed) {
+	if o != nil && !IsNil(o.Failed) {
 		return true
 	}
 
@@ -218,19 +214,19 @@ func (o ProjectChartDto) MarshalJSON() ([]byte, error) {
 
 func (o ProjectChartDto) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Succeeded != nil {
+	if !IsNil(o.Succeeded) {
 		toSerialize["succeeded"] = o.Succeeded
 	}
-	if o.Pending != nil {
+	if !IsNil(o.Pending) {
 		toSerialize["pending"] = o.Pending
 	}
-	if o.Updating != nil {
+	if !IsNil(o.Updating) {
 		toSerialize["updating"] = o.Updating
 	}
 	if !IsNil(o.TotalCount) {
 		toSerialize["totalCount"] = o.TotalCount
 	}
-	if o.Failed != nil {
+	if !IsNil(o.Failed) {
 		toSerialize["failed"] = o.Failed
 	}
 	return toSerialize, nil

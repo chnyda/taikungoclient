@@ -26,7 +26,9 @@ func Test_taikuncore_InvoicesApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.InvoicesApi.InvoicesCreate(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.InvoicesApi.InvoicesCreate(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -38,34 +40,39 @@ func Test_taikuncore_InvoicesApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.InvoicesApi.InvoicesDownload(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.InvoicesApi.InvoicesDownload(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test InvoicesApiService InvoicesList", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		resp, httpRes, err := apiClient.InvoicesApi.InvoicesList(context.Background()).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test InvoicesApiService InvoicesUpdate", func(t *testing.T) {
+	t.Run("Test InvoicesApiService InvoicesEdit", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var invoiceId int32
+		var v string
 
-		httpRes, err := apiClient.InvoicesApi.InvoicesUpdate(context.Background(), invoiceId).Execute()
+		httpRes, err := apiClient.InvoicesApi.InvoicesEdit(context.Background(), invoiceId, v).Execute()
 
 		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test InvoicesApiService InvoicesInvoices", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var v string
+
+		resp, httpRes, err := apiClient.InvoicesApi.InvoicesInvoices(context.Background(), v).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})

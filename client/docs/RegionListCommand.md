@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AwsAccessKeyId** | Pointer to **NullableString** |  | [optional] 
-**AwsSecretAccessKey** | Pointer to **NullableString** |  | [optional] 
+**AwsAccessKeyId** | Pointer to **string** |  | [optional] 
+**AwsSecretAccessKey** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -51,16 +51,6 @@ SetAwsAccessKeyId sets AwsAccessKeyId field to given value.
 
 HasAwsAccessKeyId returns a boolean if a field has been set.
 
-### SetAwsAccessKeyIdNil
-
-`func (o *RegionListCommand) SetAwsAccessKeyIdNil(b bool)`
-
- SetAwsAccessKeyIdNil sets the value for AwsAccessKeyId to be an explicit nil
-
-### UnsetAwsAccessKeyId
-`func (o *RegionListCommand) UnsetAwsAccessKeyId()`
-
-UnsetAwsAccessKeyId ensures that no value is present for AwsAccessKeyId, not even an explicit nil
 ### GetAwsSecretAccessKey
 
 `func (o *RegionListCommand) GetAwsSecretAccessKey() string`
@@ -86,16 +76,6 @@ SetAwsSecretAccessKey sets AwsSecretAccessKey field to given value.
 
 HasAwsSecretAccessKey returns a boolean if a field has been set.
 
-### SetAwsSecretAccessKeyNil
-
-`func (o *RegionListCommand) SetAwsSecretAccessKeyNil(b bool)`
-
- SetAwsSecretAccessKeyNil sets the value for AwsSecretAccessKey to be an explicit nil
-
-### UnsetAwsSecretAccessKey
-`func (o *RegionListCommand) UnsetAwsSecretAccessKey()`
-
-UnsetAwsSecretAccessKey ensures that no value is present for AwsSecretAccessKey, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

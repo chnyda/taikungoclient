@@ -5,20 +5,20 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
-**Namespace** | Pointer to **NullableString** |  | [optional] 
-**Status** | Pointer to **NullableString** |  | [optional] 
-**Version** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**Namespace** | Pointer to **string** |  | [optional] 
+**Status** | Pointer to **string** |  | [optional] 
+**Version** | Pointer to **string** |  | [optional] 
 **CatalogId** | Pointer to **int32** |  | [optional] 
-**CatalogName** | Pointer to **NullableString** |  | [optional] 
-**CatalogAppName** | Pointer to **NullableString** |  | [optional] 
-**AppRepoName** | Pointer to **NullableString** |  | [optional] 
-**Logo** | Pointer to **NullableString** |  | [optional] 
-**Values** | Pointer to **NullableString** |  | [optional] 
+**CatalogName** | Pointer to **string** |  | [optional] 
+**CatalogAppName** | Pointer to **string** |  | [optional] 
+**AppRepoName** | Pointer to **string** |  | [optional] 
+**Logo** | Pointer to **string** |  | [optional] 
+**Values** | Pointer to **string** |  | [optional] 
 **AutoSync** | Pointer to **bool** |  | [optional] 
-**ReleaseNotes** | Pointer to **NullableString** |  | [optional] 
-**ProjectName** | Pointer to **NullableString** |  | [optional] 
-**HelmResult** | Pointer to **NullableString** |  | [optional] 
+**ReleaseNotes** | Pointer to **string** |  | [optional] 
+**ProjectName** | Pointer to **string** |  | [optional] 
+**HelmResult** | Pointer to **string** |  | [optional] 
 **ProjectId** | Pointer to **int32** |  | [optional] 
 **HasJsonSchema** | Pointer to **bool** |  | [optional] 
 **ProjectAppParams** | Pointer to [**[]ProjectAppParamDto**](ProjectAppParamDto.md) |  | [optional] 
@@ -92,16 +92,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *ProjectAppDetailsDto) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *ProjectAppDetailsDto) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetNamespace
 
 `func (o *ProjectAppDetailsDto) GetNamespace() string`
@@ -127,16 +117,6 @@ SetNamespace sets Namespace field to given value.
 
 HasNamespace returns a boolean if a field has been set.
 
-### SetNamespaceNil
-
-`func (o *ProjectAppDetailsDto) SetNamespaceNil(b bool)`
-
- SetNamespaceNil sets the value for Namespace to be an explicit nil
-
-### UnsetNamespace
-`func (o *ProjectAppDetailsDto) UnsetNamespace()`
-
-UnsetNamespace ensures that no value is present for Namespace, not even an explicit nil
 ### GetStatus
 
 `func (o *ProjectAppDetailsDto) GetStatus() string`
@@ -162,16 +142,6 @@ SetStatus sets Status field to given value.
 
 HasStatus returns a boolean if a field has been set.
 
-### SetStatusNil
-
-`func (o *ProjectAppDetailsDto) SetStatusNil(b bool)`
-
- SetStatusNil sets the value for Status to be an explicit nil
-
-### UnsetStatus
-`func (o *ProjectAppDetailsDto) UnsetStatus()`
-
-UnsetStatus ensures that no value is present for Status, not even an explicit nil
 ### GetVersion
 
 `func (o *ProjectAppDetailsDto) GetVersion() string`
@@ -197,16 +167,6 @@ SetVersion sets Version field to given value.
 
 HasVersion returns a boolean if a field has been set.
 
-### SetVersionNil
-
-`func (o *ProjectAppDetailsDto) SetVersionNil(b bool)`
-
- SetVersionNil sets the value for Version to be an explicit nil
-
-### UnsetVersion
-`func (o *ProjectAppDetailsDto) UnsetVersion()`
-
-UnsetVersion ensures that no value is present for Version, not even an explicit nil
 ### GetCatalogId
 
 `func (o *ProjectAppDetailsDto) GetCatalogId() int32`
@@ -257,16 +217,6 @@ SetCatalogName sets CatalogName field to given value.
 
 HasCatalogName returns a boolean if a field has been set.
 
-### SetCatalogNameNil
-
-`func (o *ProjectAppDetailsDto) SetCatalogNameNil(b bool)`
-
- SetCatalogNameNil sets the value for CatalogName to be an explicit nil
-
-### UnsetCatalogName
-`func (o *ProjectAppDetailsDto) UnsetCatalogName()`
-
-UnsetCatalogName ensures that no value is present for CatalogName, not even an explicit nil
 ### GetCatalogAppName
 
 `func (o *ProjectAppDetailsDto) GetCatalogAppName() string`
@@ -292,16 +242,6 @@ SetCatalogAppName sets CatalogAppName field to given value.
 
 HasCatalogAppName returns a boolean if a field has been set.
 
-### SetCatalogAppNameNil
-
-`func (o *ProjectAppDetailsDto) SetCatalogAppNameNil(b bool)`
-
- SetCatalogAppNameNil sets the value for CatalogAppName to be an explicit nil
-
-### UnsetCatalogAppName
-`func (o *ProjectAppDetailsDto) UnsetCatalogAppName()`
-
-UnsetCatalogAppName ensures that no value is present for CatalogAppName, not even an explicit nil
 ### GetAppRepoName
 
 `func (o *ProjectAppDetailsDto) GetAppRepoName() string`
@@ -327,16 +267,6 @@ SetAppRepoName sets AppRepoName field to given value.
 
 HasAppRepoName returns a boolean if a field has been set.
 
-### SetAppRepoNameNil
-
-`func (o *ProjectAppDetailsDto) SetAppRepoNameNil(b bool)`
-
- SetAppRepoNameNil sets the value for AppRepoName to be an explicit nil
-
-### UnsetAppRepoName
-`func (o *ProjectAppDetailsDto) UnsetAppRepoName()`
-
-UnsetAppRepoName ensures that no value is present for AppRepoName, not even an explicit nil
 ### GetLogo
 
 `func (o *ProjectAppDetailsDto) GetLogo() string`
@@ -362,16 +292,6 @@ SetLogo sets Logo field to given value.
 
 HasLogo returns a boolean if a field has been set.
 
-### SetLogoNil
-
-`func (o *ProjectAppDetailsDto) SetLogoNil(b bool)`
-
- SetLogoNil sets the value for Logo to be an explicit nil
-
-### UnsetLogo
-`func (o *ProjectAppDetailsDto) UnsetLogo()`
-
-UnsetLogo ensures that no value is present for Logo, not even an explicit nil
 ### GetValues
 
 `func (o *ProjectAppDetailsDto) GetValues() string`
@@ -397,16 +317,6 @@ SetValues sets Values field to given value.
 
 HasValues returns a boolean if a field has been set.
 
-### SetValuesNil
-
-`func (o *ProjectAppDetailsDto) SetValuesNil(b bool)`
-
- SetValuesNil sets the value for Values to be an explicit nil
-
-### UnsetValues
-`func (o *ProjectAppDetailsDto) UnsetValues()`
-
-UnsetValues ensures that no value is present for Values, not even an explicit nil
 ### GetAutoSync
 
 `func (o *ProjectAppDetailsDto) GetAutoSync() bool`
@@ -457,16 +367,6 @@ SetReleaseNotes sets ReleaseNotes field to given value.
 
 HasReleaseNotes returns a boolean if a field has been set.
 
-### SetReleaseNotesNil
-
-`func (o *ProjectAppDetailsDto) SetReleaseNotesNil(b bool)`
-
- SetReleaseNotesNil sets the value for ReleaseNotes to be an explicit nil
-
-### UnsetReleaseNotes
-`func (o *ProjectAppDetailsDto) UnsetReleaseNotes()`
-
-UnsetReleaseNotes ensures that no value is present for ReleaseNotes, not even an explicit nil
 ### GetProjectName
 
 `func (o *ProjectAppDetailsDto) GetProjectName() string`
@@ -492,16 +392,6 @@ SetProjectName sets ProjectName field to given value.
 
 HasProjectName returns a boolean if a field has been set.
 
-### SetProjectNameNil
-
-`func (o *ProjectAppDetailsDto) SetProjectNameNil(b bool)`
-
- SetProjectNameNil sets the value for ProjectName to be an explicit nil
-
-### UnsetProjectName
-`func (o *ProjectAppDetailsDto) UnsetProjectName()`
-
-UnsetProjectName ensures that no value is present for ProjectName, not even an explicit nil
 ### GetHelmResult
 
 `func (o *ProjectAppDetailsDto) GetHelmResult() string`
@@ -527,16 +417,6 @@ SetHelmResult sets HelmResult field to given value.
 
 HasHelmResult returns a boolean if a field has been set.
 
-### SetHelmResultNil
-
-`func (o *ProjectAppDetailsDto) SetHelmResultNil(b bool)`
-
- SetHelmResultNil sets the value for HelmResult to be an explicit nil
-
-### UnsetHelmResult
-`func (o *ProjectAppDetailsDto) UnsetHelmResult()`
-
-UnsetHelmResult ensures that no value is present for HelmResult, not even an explicit nil
 ### GetProjectId
 
 `func (o *ProjectAppDetailsDto) GetProjectId() int32`
@@ -612,16 +492,6 @@ SetProjectAppParams sets ProjectAppParams field to given value.
 
 HasProjectAppParams returns a boolean if a field has been set.
 
-### SetProjectAppParamsNil
-
-`func (o *ProjectAppDetailsDto) SetProjectAppParamsNil(b bool)`
-
- SetProjectAppParamsNil sets the value for ProjectAppParams to be an explicit nil
-
-### UnsetProjectAppParams
-`func (o *ProjectAppDetailsDto) UnsetProjectAppParams()`
-
-UnsetProjectAppParams ensures that no value is present for ProjectAppParams, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

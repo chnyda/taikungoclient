@@ -4,19 +4,19 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ProjectgroupsBind**](ProjectGroupsApi.md#ProjectgroupsBind) | **Post** /api/v1/projectgroups/bind | Bind User groups
-[**ProjectgroupsCreate**](ProjectGroupsApi.md#ProjectgroupsCreate) | **Post** /api/v1/projectgroups/create | Add Project groups
-[**ProjectgroupsDelete**](ProjectGroupsApi.md#ProjectgroupsDelete) | **Delete** /api/v1/projectgroups | Remove Project group(s)
-[**ProjectgroupsEdit**](ProjectGroupsApi.md#ProjectgroupsEdit) | **Put** /api/v1/projectgroups/update/{projectGroupId} | Update project groups
-[**ProjectgroupsList**](ProjectGroupsApi.md#ProjectgroupsList) | **Get** /api/v1/projectgroups/list | Retrieve list of Project groups
-[**ProjectgroupsListByUserId**](ProjectGroupsApi.md#ProjectgroupsListByUserId) | **Get** /api/v1/projectgroups/list/{userGroupId} | Retrieve list of Project groups by user group id for dropdown
-[**ProjectgroupsProjectList**](ProjectGroupsApi.md#ProjectgroupsProjectList) | **Get** /api/v1/projectgroups/{projectGroupId}/projects | Retrieve list of projects by project group id
+[**ProjectGroupsBindUserGroups**](ProjectGroupsApi.md#ProjectGroupsBindUserGroups) | **Post** /api/v{v}/ProjectGroups/bind-user-groups | Bind User groups
+[**ProjectGroupsCreate**](ProjectGroupsApi.md#ProjectGroupsCreate) | **Post** /api/v{v}/ProjectGroups/create | Add Project groups
+[**ProjectGroupsDelete**](ProjectGroupsApi.md#ProjectGroupsDelete) | **Delete** /api/v{v}/ProjectGroups | Remove Project group(s)
+[**ProjectGroupsList**](ProjectGroupsApi.md#ProjectGroupsList) | **Get** /api/v{v}/ProjectGroups/list | Retrieve list of Project groups
+[**ProjectGroupsListByUserGroupId**](ProjectGroupsApi.md#ProjectGroupsListByUserGroupId) | **Get** /api/v{v}/ProjectGroups/list-by-user-group-id | Retrieve list of Project groups by user group id for dropdown
+[**ProjectGroupsProjectListByProjectGroupId**](ProjectGroupsApi.md#ProjectGroupsProjectListByProjectGroupId) | **Get** /api/v{v}/ProjectGroups/{projectGroupId}/projects | Retrieve list of projects by project group id
+[**ProjectGroupsUpdate**](ProjectGroupsApi.md#ProjectGroupsUpdate) | **Put** /api/v{v}/ProjectGroups/update | Update Project groups
 
 
 
-## ProjectgroupsBind
+## ProjectGroupsBindUserGroups
 
-> ProjectgroupsBind(ctx).BindUserGroupsToProjectGroupCommand(bindUserGroupsToProjectGroupCommand).Execute()
+> ProjectGroupsBindUserGroups(ctx, v).Body(body).Execute()
 
 Bind User groups
 
@@ -33,13 +33,14 @@ import (
 )
 
 func main() {
-    bindUserGroupsToProjectGroupCommand := *openapiclient.NewBindUserGroupsToProjectGroupCommand(int32(123)) // BindUserGroupsToProjectGroupCommand |  (optional)
+    v := "v_example" // string | 
+    body := *openapiclient.NewBindUserGroupsToProjectGroupCommand(int32(123)) // BindUserGroupsToProjectGroupCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.ProjectGroupsApi.ProjectgroupsBind(context.Background()).BindUserGroupsToProjectGroupCommand(bindUserGroupsToProjectGroupCommand).Execute()
+    r, err := apiClient.ProjectGroupsApi.ProjectGroupsBindUserGroups(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ProjectGroupsApi.ProjectgroupsBind``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ProjectGroupsApi.ProjectGroupsBindUserGroups``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -48,15 +49,20 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiProjectgroupsBindRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiProjectGroupsBindUserGroupsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **bindUserGroupsToProjectGroupCommand** | [**BindUserGroupsToProjectGroupCommand**](BindUserGroupsToProjectGroupCommand.md) |  | 
+
+ **body** | [**BindUserGroupsToProjectGroupCommand**](BindUserGroupsToProjectGroupCommand.md) |  | 
 
 ### Return type
 
@@ -68,17 +74,17 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## ProjectgroupsCreate
+## ProjectGroupsCreate
 
-> ApiResponse ProjectgroupsCreate(ctx).CreateProjectGroupCommand(createProjectGroupCommand).Execute()
+> ApiResponse ProjectGroupsCreate(ctx, v).Body(body).Execute()
 
 Add Project groups
 
@@ -95,32 +101,38 @@ import (
 )
 
 func main() {
-    createProjectGroupCommand := *openapiclient.NewCreateProjectGroupCommand("Name_example") // CreateProjectGroupCommand |  (optional)
+    v := "v_example" // string | 
+    body := *openapiclient.NewCreateProjectGroupCommand("Name_example") // CreateProjectGroupCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ProjectGroupsApi.ProjectgroupsCreate(context.Background()).CreateProjectGroupCommand(createProjectGroupCommand).Execute()
+    resp, r, err := apiClient.ProjectGroupsApi.ProjectGroupsCreate(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ProjectGroupsApi.ProjectgroupsCreate``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ProjectGroupsApi.ProjectGroupsCreate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ProjectgroupsCreate`: ApiResponse
-    fmt.Fprintf(os.Stdout, "Response from `ProjectGroupsApi.ProjectgroupsCreate`: %v\n", resp)
+    // response from `ProjectGroupsCreate`: ApiResponse
+    fmt.Fprintf(os.Stdout, "Response from `ProjectGroupsApi.ProjectGroupsCreate`: %v\n", resp)
 }
 ```
 
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiProjectgroupsCreateRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiProjectGroupsCreateRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createProjectGroupCommand** | [**CreateProjectGroupCommand**](CreateProjectGroupCommand.md) |  | 
+
+ **body** | [**CreateProjectGroupCommand**](CreateProjectGroupCommand.md) |  | 
 
 ### Return type
 
@@ -132,17 +144,17 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## ProjectgroupsDelete
+## ProjectGroupsDelete
 
-> ProjectgroupsDelete(ctx).RequestBody(requestBody).Execute()
+> ProjectGroupsDelete(ctx, v).Body(body).Execute()
 
 Remove Project group(s)
 
@@ -159,76 +171,14 @@ import (
 )
 
 func main() {
-    requestBody := []int32{int32(123)} // []int32 |  (optional)
+    v := "v_example" // string | 
+    body := []int32{int32(123)} // []int32 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.ProjectGroupsApi.ProjectgroupsDelete(context.Background()).RequestBody(requestBody).Execute()
+    r, err := apiClient.ProjectGroupsApi.ProjectGroupsDelete(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ProjectGroupsApi.ProjectgroupsDelete``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiProjectgroupsDeleteRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **requestBody** | **[]int32** |  | 
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## ProjectgroupsEdit
-
-> ProjectgroupsEdit(ctx, projectGroupId).UpdateProjectGroupDto(updateProjectGroupDto).Execute()
-
-Update project groups
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/chnyda/taikungoclient"
-)
-
-func main() {
-    projectGroupId := int32(56) // int32 | 
-    updateProjectGroupDto := *openapiclient.NewUpdateProjectGroupDto() // UpdateProjectGroupDto |  (optional)
-
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.ProjectGroupsApi.ProjectgroupsEdit(context.Background(), projectGroupId).UpdateProjectGroupDto(updateProjectGroupDto).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ProjectGroupsApi.ProjectgroupsEdit``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ProjectGroupsApi.ProjectGroupsDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -240,17 +190,17 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**projectGroupId** | **int32** |  | 
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiProjectgroupsEditRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiProjectGroupsDeleteRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateProjectGroupDto** | [**UpdateProjectGroupDto**](UpdateProjectGroupDto.md) |  | 
+ **body** | **[]int32** |  | 
 
 ### Return type
 
@@ -262,17 +212,17 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## ProjectgroupsList
+## ProjectGroupsList
 
-> ProjectGroupList ProjectgroupsList(ctx).Limit(limit).Offset(offset).OrganizationId(organizationId).SortBy(sortBy).SortDirection(sortDirection).Search(search).SearchId(searchId).Id(id).Execute()
+> ProjectGroupList ProjectGroupsList(ctx, v).Limit(limit).Offset(offset).OrganizationId(organizationId).SortBy(sortBy).SortDirection(sortDirection).Search(search).SearchId(searchId).Id(id).Execute()
 
 Retrieve list of Project groups
 
@@ -289,6 +239,7 @@ import (
 )
 
 func main() {
+    v := "v_example" // string | 
     limit := int32(56) // int32 |  (optional)
     offset := int32(56) // int32 |  (optional)
     organizationId := int32(56) // int32 |  (optional)
@@ -300,27 +251,32 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ProjectGroupsApi.ProjectgroupsList(context.Background()).Limit(limit).Offset(offset).OrganizationId(organizationId).SortBy(sortBy).SortDirection(sortDirection).Search(search).SearchId(searchId).Id(id).Execute()
+    resp, r, err := apiClient.ProjectGroupsApi.ProjectGroupsList(context.Background(), v).Limit(limit).Offset(offset).OrganizationId(organizationId).SortBy(sortBy).SortDirection(sortDirection).Search(search).SearchId(searchId).Id(id).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ProjectGroupsApi.ProjectgroupsList``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ProjectGroupsApi.ProjectGroupsList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ProjectgroupsList`: ProjectGroupList
-    fmt.Fprintf(os.Stdout, "Response from `ProjectGroupsApi.ProjectgroupsList`: %v\n", resp)
+    // response from `ProjectGroupsList`: ProjectGroupList
+    fmt.Fprintf(os.Stdout, "Response from `ProjectGroupsApi.ProjectGroupsList`: %v\n", resp)
 }
 ```
 
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiProjectgroupsListRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiProjectGroupsListRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
  **limit** | **int32** |  | 
  **offset** | **int32** |  | 
  **organizationId** | **int32** |  | 
@@ -341,16 +297,16 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## ProjectgroupsListByUserId
+## ProjectGroupsListByUserGroupId
 
-> []CommonDropdownDto ProjectgroupsListByUserId(ctx, userGroupId).Execute()
+> []CommonDropdownDto ProjectGroupsListByUserGroupId(ctx, v).UserGroupId(userGroupId).Execute()
 
 Retrieve list of Project groups by user group id for dropdown
 
@@ -367,17 +323,18 @@ import (
 )
 
 func main() {
-    userGroupId := int32(56) // int32 | 
+    v := "v_example" // string | 
+    userGroupId := int32(56) // int32 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ProjectGroupsApi.ProjectgroupsListByUserId(context.Background(), userGroupId).Execute()
+    resp, r, err := apiClient.ProjectGroupsApi.ProjectGroupsListByUserGroupId(context.Background(), v).UserGroupId(userGroupId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ProjectGroupsApi.ProjectgroupsListByUserId``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ProjectGroupsApi.ProjectGroupsListByUserGroupId``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ProjectgroupsListByUserId`: []CommonDropdownDto
-    fmt.Fprintf(os.Stdout, "Response from `ProjectGroupsApi.ProjectgroupsListByUserId`: %v\n", resp)
+    // response from `ProjectGroupsListByUserGroupId`: []CommonDropdownDto
+    fmt.Fprintf(os.Stdout, "Response from `ProjectGroupsApi.ProjectGroupsListByUserGroupId`: %v\n", resp)
 }
 ```
 
@@ -387,16 +344,17 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userGroupId** | **int32** |  | 
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiProjectgroupsListByUserIdRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiProjectGroupsListByUserGroupIdRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **userGroupId** | **int32** |  | 
 
 ### Return type
 
@@ -409,16 +367,16 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## ProjectgroupsProjectList
+## ProjectGroupsProjectListByProjectGroupId
 
-> []ProjectListForProjectGroupDto ProjectgroupsProjectList(ctx, projectGroupId).OrganizationId(organizationId).Execute()
+> []ProjectListForProjectGroupDto ProjectGroupsProjectListByProjectGroupId(ctx, projectGroupId, v).OrganizationId(organizationId).Execute()
 
 Retrieve list of projects by project group id
 
@@ -436,17 +394,18 @@ import (
 
 func main() {
     projectGroupId := int32(56) // int32 | 
-    organizationId := int32(56) // int32 | 
+    v := "v_example" // string | 
+    organizationId := int32(56) // int32 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ProjectGroupsApi.ProjectgroupsProjectList(context.Background(), projectGroupId).OrganizationId(organizationId).Execute()
+    resp, r, err := apiClient.ProjectGroupsApi.ProjectGroupsProjectListByProjectGroupId(context.Background(), projectGroupId, v).OrganizationId(organizationId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ProjectGroupsApi.ProjectgroupsProjectList``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ProjectGroupsApi.ProjectGroupsProjectListByProjectGroupId``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ProjectgroupsProjectList`: []ProjectListForProjectGroupDto
-    fmt.Fprintf(os.Stdout, "Response from `ProjectGroupsApi.ProjectgroupsProjectList`: %v\n", resp)
+    // response from `ProjectGroupsProjectListByProjectGroupId`: []ProjectListForProjectGroupDto
+    fmt.Fprintf(os.Stdout, "Response from `ProjectGroupsApi.ProjectGroupsProjectListByProjectGroupId`: %v\n", resp)
 }
 ```
 
@@ -457,14 +416,16 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **projectGroupId** | **int32** |  | 
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiProjectgroupsProjectListRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiProjectGroupsProjectListByProjectGroupIdRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
 
  **organizationId** | **int32** |  | 
 
@@ -479,7 +440,77 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ProjectGroupsUpdate
+
+> ProjectGroupsUpdate(ctx, v).ProjectGroupId(projectGroupId).Body(body).Execute()
+
+Update Project groups
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/chnyda/taikungoclient"
+)
+
+func main() {
+    v := "v_example" // string | 
+    projectGroupId := int32(56) // int32 |  (optional)
+    body := *openapiclient.NewUpdateProjectGroupDto() // UpdateProjectGroupDto |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.ProjectGroupsApi.ProjectGroupsUpdate(context.Background(), v).ProjectGroupId(projectGroupId).Body(body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ProjectGroupsApi.ProjectGroupsUpdate``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiProjectGroupsUpdateRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **projectGroupId** | **int32** |  | 
+ **body** | [**UpdateProjectGroupDto**](UpdateProjectGroupDto.md) |  | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

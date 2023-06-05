@@ -21,7 +21,7 @@ var _ MappedNullable = &AttachDetachAlertingProfileCommand{}
 // AttachDetachAlertingProfileCommand struct for AttachDetachAlertingProfileCommand
 type AttachDetachAlertingProfileCommand struct {
 	ProjectId *int32 `json:"projectId,omitempty"`
-	AlertingProfileId NullableInt32 `json:"alertingProfileId,omitempty"`
+	AlertingProfileId *int32 `json:"alertingProfileId,omitempty"`
 }
 
 // NewAttachDetachAlertingProfileCommand instantiates a new AttachDetachAlertingProfileCommand object
@@ -73,46 +73,36 @@ func (o *AttachDetachAlertingProfileCommand) SetProjectId(v int32) {
 	o.ProjectId = &v
 }
 
-// GetAlertingProfileId returns the AlertingProfileId field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetAlertingProfileId returns the AlertingProfileId field value if set, zero value otherwise.
 func (o *AttachDetachAlertingProfileCommand) GetAlertingProfileId() int32 {
-	if o == nil || IsNil(o.AlertingProfileId.Get()) {
+	if o == nil || IsNil(o.AlertingProfileId) {
 		var ret int32
 		return ret
 	}
-	return *o.AlertingProfileId.Get()
+	return *o.AlertingProfileId
 }
 
 // GetAlertingProfileIdOk returns a tuple with the AlertingProfileId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AttachDetachAlertingProfileCommand) GetAlertingProfileIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.AlertingProfileId) {
 		return nil, false
 	}
-	return o.AlertingProfileId.Get(), o.AlertingProfileId.IsSet()
+	return o.AlertingProfileId, true
 }
 
 // HasAlertingProfileId returns a boolean if a field has been set.
 func (o *AttachDetachAlertingProfileCommand) HasAlertingProfileId() bool {
-	if o != nil && o.AlertingProfileId.IsSet() {
+	if o != nil && !IsNil(o.AlertingProfileId) {
 		return true
 	}
 
 	return false
 }
 
-// SetAlertingProfileId gets a reference to the given NullableInt32 and assigns it to the AlertingProfileId field.
+// SetAlertingProfileId gets a reference to the given int32 and assigns it to the AlertingProfileId field.
 func (o *AttachDetachAlertingProfileCommand) SetAlertingProfileId(v int32) {
-	o.AlertingProfileId.Set(&v)
-}
-// SetAlertingProfileIdNil sets the value for AlertingProfileId to be an explicit nil
-func (o *AttachDetachAlertingProfileCommand) SetAlertingProfileIdNil() {
-	o.AlertingProfileId.Set(nil)
-}
-
-// UnsetAlertingProfileId ensures that no value is present for AlertingProfileId, not even an explicit nil
-func (o *AttachDetachAlertingProfileCommand) UnsetAlertingProfileId() {
-	o.AlertingProfileId.Unset()
+	o.AlertingProfileId = &v
 }
 
 func (o AttachDetachAlertingProfileCommand) MarshalJSON() ([]byte, error) {
@@ -128,8 +118,8 @@ func (o AttachDetachAlertingProfileCommand) ToMap() (map[string]interface{}, err
 	if !IsNil(o.ProjectId) {
 		toSerialize["projectId"] = o.ProjectId
 	}
-	if o.AlertingProfileId.IsSet() {
-		toSerialize["alertingProfileId"] = o.AlertingProfileId.Get()
+	if !IsNil(o.AlertingProfileId) {
+		toSerialize["alertingProfileId"] = o.AlertingProfileId
 	}
 	return toSerialize, nil
 }

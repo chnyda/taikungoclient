@@ -24,37 +24,40 @@ import (
 // OpaProfilesApiService OpaProfilesApi service
 type OpaProfilesApiService service
 
-type ApiOpaprofilesCreateRequest struct {
+type ApiOpaProfilesCreateRequest struct {
 	ctx context.Context
 	ApiService *OpaProfilesApiService
-	createOpaProfileCommand *CreateOpaProfileCommand
+	v string
+	body *CreateOpaProfileCommand
 }
 
-func (r ApiOpaprofilesCreateRequest) CreateOpaProfileCommand(createOpaProfileCommand CreateOpaProfileCommand) ApiOpaprofilesCreateRequest {
-	r.createOpaProfileCommand = &createOpaProfileCommand
+func (r ApiOpaProfilesCreateRequest) Body(body CreateOpaProfileCommand) ApiOpaProfilesCreateRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiOpaprofilesCreateRequest) Execute() (*ApiResponse, *http.Response, error) {
-	return r.ApiService.OpaprofilesCreateExecute(r)
+func (r ApiOpaProfilesCreateRequest) Execute() (*ApiResponse, *http.Response, error) {
+	return r.ApiService.OpaProfilesCreateExecute(r)
 }
 
 /*
-OpaprofilesCreate Add policy profile
+OpaProfilesCreate Create policy profile
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiOpaprofilesCreateRequest
+ @param v
+ @return ApiOpaProfilesCreateRequest
 */
-func (a *OpaProfilesApiService) OpaprofilesCreate(ctx context.Context) ApiOpaprofilesCreateRequest {
-	return ApiOpaprofilesCreateRequest{
+func (a *OpaProfilesApiService) OpaProfilesCreate(ctx context.Context, v string) ApiOpaProfilesCreateRequest {
+	return ApiOpaProfilesCreateRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
 //  @return ApiResponse
-func (a *OpaProfilesApiService) OpaprofilesCreateExecute(r ApiOpaprofilesCreateRequest) (*ApiResponse, *http.Response, error) {
+func (a *OpaProfilesApiService) OpaProfilesCreateExecute(r ApiOpaProfilesCreateRequest) (*ApiResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -62,22 +65,20 @@ func (a *OpaProfilesApiService) OpaprofilesCreateExecute(r ApiOpaprofilesCreateR
 		localVarReturnValue  *ApiResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OpaProfilesApiService.OpaprofilesCreate")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OpaProfilesApiService.OpaProfilesCreate")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/opaprofiles/create"
+	localVarPath := localBasePath + "/api/v{v}/OpaProfiles"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createOpaProfileCommand == nil {
-		return localVarReturnValue, nil, reportError("createOpaProfileCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -86,7 +87,7 @@ func (a *OpaProfilesApiService) OpaprofilesCreateExecute(r ApiOpaprofilesCreateR
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -94,7 +95,7 @@ func (a *OpaProfilesApiService) OpaprofilesCreateExecute(r ApiOpaprofilesCreateR
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createOpaProfileCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -131,17 +132,6 @@ func (a *OpaProfilesApiService) OpaprofilesCreateExecute(r ApiOpaprofilesCreateR
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -175,7 +165,7 @@ func (a *OpaProfilesApiService) OpaprofilesCreateExecute(r ApiOpaprofilesCreateR
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -200,216 +190,59 @@ func (a *OpaProfilesApiService) OpaprofilesCreateExecute(r ApiOpaprofilesCreateR
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiOpaprofilesDeleteRequest struct {
+type ApiOpaProfilesDeleteRequest struct {
 	ctx context.Context
 	ApiService *OpaProfilesApiService
-	id int32
+	v string
+	body *DeleteOpaProfileCommand
 }
 
-func (r ApiOpaprofilesDeleteRequest) Execute() (*http.Response, error) {
-	return r.ApiService.OpaprofilesDeleteExecute(r)
-}
-
-/*
-OpaprofilesDelete Remove Opa profile by Id
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id
- @return ApiOpaprofilesDeleteRequest
-*/
-func (a *OpaProfilesApiService) OpaprofilesDelete(ctx context.Context, id int32) ApiOpaprofilesDeleteRequest {
-	return ApiOpaprofilesDeleteRequest{
-		ApiService: a,
-		ctx: ctx,
-		id: id,
-	}
-}
-
-// Execute executes the request
-func (a *OpaProfilesApiService) OpaprofilesDeleteExecute(r ApiOpaprofilesDeleteRequest) (*http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OpaProfilesApiService.OpaprofilesDelete")
-	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v1/opaprofiles/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["Bearer"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
-}
-
-type ApiOpaprofilesDisableGatekeeperRequest struct {
-	ctx context.Context
-	ApiService *OpaProfilesApiService
-	disableGatekeeperCommand *DisableGatekeeperCommand
-}
-
-func (r ApiOpaprofilesDisableGatekeeperRequest) DisableGatekeeperCommand(disableGatekeeperCommand DisableGatekeeperCommand) ApiOpaprofilesDisableGatekeeperRequest {
-	r.disableGatekeeperCommand = &disableGatekeeperCommand
+func (r ApiOpaProfilesDeleteRequest) Body(body DeleteOpaProfileCommand) ApiOpaProfilesDeleteRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiOpaprofilesDisableGatekeeperRequest) Execute() (*http.Response, error) {
-	return r.ApiService.OpaprofilesDisableGatekeeperExecute(r)
+func (r ApiOpaProfilesDeleteRequest) Execute() (*http.Response, error) {
+	return r.ApiService.OpaProfilesDeleteExecute(r)
 }
 
 /*
-OpaprofilesDisableGatekeeper Disable Gatekeeper by the projectId
+OpaProfilesDelete Delete policy profile
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiOpaprofilesDisableGatekeeperRequest
+ @param v
+ @return ApiOpaProfilesDeleteRequest
 */
-func (a *OpaProfilesApiService) OpaprofilesDisableGatekeeper(ctx context.Context) ApiOpaprofilesDisableGatekeeperRequest {
-	return ApiOpaprofilesDisableGatekeeperRequest{
+func (a *OpaProfilesApiService) OpaProfilesDelete(ctx context.Context, v string) ApiOpaProfilesDeleteRequest {
+	return ApiOpaProfilesDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
-func (a *OpaProfilesApiService) OpaprofilesDisableGatekeeperExecute(r ApiOpaprofilesDisableGatekeeperRequest) (*http.Response, error) {
+func (a *OpaProfilesApiService) OpaProfilesDeleteExecute(r ApiOpaProfilesDeleteRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OpaProfilesApiService.OpaprofilesDisableGatekeeper")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OpaProfilesApiService.OpaProfilesDelete")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/opaprofiles/disablegatekeeper"
+	localVarPath := localBasePath + "/api/v{v}/OpaProfiles/delete"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.disableGatekeeperCommand == nil {
-		return nil, reportError("disableGatekeeperCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -418,7 +251,7 @@ func (a *OpaProfilesApiService) OpaprofilesDisableGatekeeperExecute(r ApiOpaprof
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -426,7 +259,7 @@ func (a *OpaProfilesApiService) OpaprofilesDisableGatekeeperExecute(r ApiOpaprof
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.disableGatekeeperCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -463,17 +296,6 @@ func (a *OpaProfilesApiService) OpaprofilesDisableGatekeeperExecute(r ApiOpaprof
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -507,7 +329,7 @@ func (a *OpaProfilesApiService) OpaprofilesDisableGatekeeperExecute(r ApiOpaprof
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -523,241 +345,59 @@ func (a *OpaProfilesApiService) OpaprofilesDisableGatekeeperExecute(r ApiOpaprof
 	return localVarHTTPResponse, nil
 }
 
-type ApiOpaprofilesDropdownRequest struct {
+type ApiOpaProfilesDisableGatekeeperRequest struct {
 	ctx context.Context
 	ApiService *OpaProfilesApiService
-	organizationId *int32
-	search *string
+	v string
+	body *DisableGatekeeperCommand
 }
 
-func (r ApiOpaprofilesDropdownRequest) OrganizationId(organizationId int32) ApiOpaprofilesDropdownRequest {
-	r.organizationId = &organizationId
+func (r ApiOpaProfilesDisableGatekeeperRequest) Body(body DisableGatekeeperCommand) ApiOpaProfilesDisableGatekeeperRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiOpaprofilesDropdownRequest) Search(search string) ApiOpaprofilesDropdownRequest {
-	r.search = &search
-	return r
-}
-
-func (r ApiOpaprofilesDropdownRequest) Execute() ([]CommonExtendedDropdownDto, *http.Response, error) {
-	return r.ApiService.OpaprofilesDropdownExecute(r)
+func (r ApiOpaProfilesDisableGatekeeperRequest) Execute() (*http.Response, error) {
+	return r.ApiService.OpaProfilesDisableGatekeeperExecute(r)
 }
 
 /*
-OpaprofilesDropdown Retrieve policy profiles for organization
+OpaProfilesDisableGatekeeper Disable Gatekeeper by the projectId
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiOpaprofilesDropdownRequest
+ @param v
+ @return ApiOpaProfilesDisableGatekeeperRequest
 */
-func (a *OpaProfilesApiService) OpaprofilesDropdown(ctx context.Context) ApiOpaprofilesDropdownRequest {
-	return ApiOpaprofilesDropdownRequest{
+func (a *OpaProfilesApiService) OpaProfilesDisableGatekeeper(ctx context.Context, v string) ApiOpaProfilesDisableGatekeeperRequest {
+	return ApiOpaProfilesDisableGatekeeperRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
-//  @return []CommonExtendedDropdownDto
-func (a *OpaProfilesApiService) OpaprofilesDropdownExecute(r ApiOpaprofilesDropdownRequest) ([]CommonExtendedDropdownDto, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  []CommonExtendedDropdownDto
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OpaProfilesApiService.OpaprofilesDropdown")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v1/opaprofiles/list"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	if r.organizationId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "OrganizationId", r.organizationId, "")
-	}
-	if r.search != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Search", r.search, "")
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["Bearer"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiOpaprofilesEnableGatekeeperRequest struct {
-	ctx context.Context
-	ApiService *OpaProfilesApiService
-	enableGatekeeperCommand *EnableGatekeeperCommand
-}
-
-func (r ApiOpaprofilesEnableGatekeeperRequest) EnableGatekeeperCommand(enableGatekeeperCommand EnableGatekeeperCommand) ApiOpaprofilesEnableGatekeeperRequest {
-	r.enableGatekeeperCommand = &enableGatekeeperCommand
-	return r
-}
-
-func (r ApiOpaprofilesEnableGatekeeperRequest) Execute() (*http.Response, error) {
-	return r.ApiService.OpaprofilesEnableGatekeeperExecute(r)
-}
-
-/*
-OpaprofilesEnableGatekeeper Enable Gatekeeper by the projectId
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiOpaprofilesEnableGatekeeperRequest
-*/
-func (a *OpaProfilesApiService) OpaprofilesEnableGatekeeper(ctx context.Context) ApiOpaprofilesEnableGatekeeperRequest {
-	return ApiOpaprofilesEnableGatekeeperRequest{
-		ApiService: a,
-		ctx: ctx,
-	}
-}
-
-// Execute executes the request
-func (a *OpaProfilesApiService) OpaprofilesEnableGatekeeperExecute(r ApiOpaprofilesEnableGatekeeperRequest) (*http.Response, error) {
+func (a *OpaProfilesApiService) OpaProfilesDisableGatekeeperExecute(r ApiOpaProfilesDisableGatekeeperRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OpaProfilesApiService.OpaprofilesEnableGatekeeper")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OpaProfilesApiService.OpaProfilesDisableGatekeeper")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/opaprofiles/enablegatekeeper"
+	localVarPath := localBasePath + "/api/v{v}/OpaProfiles/disablegatekeeper"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.enableGatekeeperCommand == nil {
-		return nil, reportError("enableGatekeeperCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -766,7 +406,7 @@ func (a *OpaProfilesApiService) OpaprofilesEnableGatekeeperExecute(r ApiOpaprofi
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -774,7 +414,7 @@ func (a *OpaProfilesApiService) OpaprofilesEnableGatekeeperExecute(r ApiOpaprofi
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.enableGatekeeperCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -811,7 +451,7 @@ func (a *OpaProfilesApiService) OpaprofilesEnableGatekeeperExecute(r ApiOpaprofi
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
+		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -821,6 +461,150 @@ func (a *OpaProfilesApiService) OpaprofilesEnableGatekeeperExecute(r ApiOpaprofi
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
 			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type ApiOpaProfilesEnableGatekeeperRequest struct {
+	ctx context.Context
+	ApiService *OpaProfilesApiService
+	v string
+	body *EnableGatekeeperCommand
+}
+
+func (r ApiOpaProfilesEnableGatekeeperRequest) Body(body EnableGatekeeperCommand) ApiOpaProfilesEnableGatekeeperRequest {
+	r.body = &body
+	return r
+}
+
+func (r ApiOpaProfilesEnableGatekeeperRequest) Execute() (*http.Response, error) {
+	return r.ApiService.OpaProfilesEnableGatekeeperExecute(r)
+}
+
+/*
+OpaProfilesEnableGatekeeper Enable Gatekeeper by the projectId
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param v
+ @return ApiOpaProfilesEnableGatekeeperRequest
+*/
+func (a *OpaProfilesApiService) OpaProfilesEnableGatekeeper(ctx context.Context, v string) ApiOpaProfilesEnableGatekeeperRequest {
+	return ApiOpaProfilesEnableGatekeeperRequest{
+		ApiService: a,
+		ctx: ctx,
+		v: v,
+	}
+}
+
+// Execute executes the request
+func (a *OpaProfilesApiService) OpaProfilesEnableGatekeeperExecute(r ApiOpaProfilesEnableGatekeeperRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OpaProfilesApiService.OpaProfilesEnableGatekeeper")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v{v}/OpaProfiles/enablegatekeeper"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.body
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["Bearer"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
@@ -855,7 +639,7 @@ func (a *OpaProfilesApiService) OpaprofilesEnableGatekeeperExecute(r ApiOpaprofi
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -871,9 +655,10 @@ func (a *OpaProfilesApiService) OpaprofilesEnableGatekeeperExecute(r ApiOpaprofi
 	return localVarHTTPResponse, nil
 }
 
-type ApiOpaprofilesListRequest struct {
+type ApiOpaProfilesListRequest struct {
 	ctx context.Context
 	ApiService *OpaProfilesApiService
+	v string
 	organizationId *int32
 	limit *int32
 	offset *int32
@@ -884,66 +669,72 @@ type ApiOpaprofilesListRequest struct {
 	searchId *string
 }
 
-func (r ApiOpaprofilesListRequest) OrganizationId(organizationId int32) ApiOpaprofilesListRequest {
+// org id
+func (r ApiOpaProfilesListRequest) OrganizationId(organizationId int32) ApiOpaProfilesListRequest {
 	r.organizationId = &organizationId
 	return r
 }
 
-func (r ApiOpaprofilesListRequest) Limit(limit int32) ApiOpaprofilesListRequest {
+// Limits user size (by default 50)
+func (r ApiOpaProfilesListRequest) Limit(limit int32) ApiOpaProfilesListRequest {
 	r.limit = &limit
 	return r
 }
 
-func (r ApiOpaprofilesListRequest) Offset(offset int32) ApiOpaprofilesListRequest {
+// Skip elements
+func (r ApiOpaProfilesListRequest) Offset(offset int32) ApiOpaProfilesListRequest {
 	r.offset = &offset
 	return r
 }
 
-func (r ApiOpaprofilesListRequest) SortBy(sortBy string) ApiOpaprofilesListRequest {
+func (r ApiOpaProfilesListRequest) SortBy(sortBy string) ApiOpaProfilesListRequest {
 	r.sortBy = &sortBy
 	return r
 }
 
-func (r ApiOpaprofilesListRequest) SortDirection(sortDirection string) ApiOpaprofilesListRequest {
+func (r ApiOpaProfilesListRequest) SortDirection(sortDirection string) ApiOpaProfilesListRequest {
 	r.sortDirection = &sortDirection
 	return r
 }
 
-func (r ApiOpaprofilesListRequest) Search(search string) ApiOpaprofilesListRequest {
+// Keyword for searching
+func (r ApiOpaProfilesListRequest) Search(search string) ApiOpaProfilesListRequest {
 	r.search = &search
 	return r
 }
 
-func (r ApiOpaprofilesListRequest) Id(id int32) ApiOpaprofilesListRequest {
+func (r ApiOpaProfilesListRequest) Id(id int32) ApiOpaProfilesListRequest {
 	r.id = &id
 	return r
 }
 
-func (r ApiOpaprofilesListRequest) SearchId(searchId string) ApiOpaprofilesListRequest {
+func (r ApiOpaProfilesListRequest) SearchId(searchId string) ApiOpaProfilesListRequest {
 	r.searchId = &searchId
 	return r
 }
 
-func (r ApiOpaprofilesListRequest) Execute() (*OpaProfileList, *http.Response, error) {
-	return r.ApiService.OpaprofilesListExecute(r)
+func (r ApiOpaProfilesListRequest) Execute() (*OpaProfileList, *http.Response, error) {
+	return r.ApiService.OpaProfilesListExecute(r)
 }
 
 /*
-OpaprofilesList Retrieve all policy profiles
+OpaProfilesList Retrieve a list of policy profile for project.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiOpaprofilesListRequest
+ @param v
+ @return ApiOpaProfilesListRequest
 */
-func (a *OpaProfilesApiService) OpaprofilesList(ctx context.Context) ApiOpaprofilesListRequest {
-	return ApiOpaprofilesListRequest{
+func (a *OpaProfilesApiService) OpaProfilesList(ctx context.Context, v string) ApiOpaProfilesListRequest {
+	return ApiOpaProfilesListRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
 //  @return OpaProfileList
-func (a *OpaProfilesApiService) OpaprofilesListExecute(r ApiOpaprofilesListRequest) (*OpaProfileList, *http.Response, error) {
+func (a *OpaProfilesApiService) OpaProfilesListExecute(r ApiOpaProfilesListRequest) (*OpaProfileList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -951,40 +742,41 @@ func (a *OpaProfilesApiService) OpaprofilesListExecute(r ApiOpaprofilesListReque
 		localVarReturnValue  *OpaProfileList
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OpaProfilesApiService.OpaprofilesList")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OpaProfilesApiService.OpaProfilesList")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/opaprofiles"
+	localVarPath := localBasePath + "/api/v{v}/OpaProfiles"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.organizationId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "OrganizationId", r.organizationId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "organizationId", r.organizationId, "")
 	}
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
 	}
 	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Offset", r.offset, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
 	}
 	if r.sortBy != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "SortBy", r.sortBy, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", r.sortBy, "")
 	}
 	if r.sortDirection != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "SortDirection", r.sortDirection, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "sortDirection", r.sortDirection, "")
 	}
 	if r.search != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Search", r.search, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "")
 	}
 	if r.id != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Id", r.id, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "")
 	}
 	if r.searchId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "SearchId", r.searchId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "searchId", r.searchId, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -996,7 +788,7 @@ func (a *OpaProfilesApiService) OpaprofilesListExecute(r ApiOpaprofilesListReque
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1039,17 +831,6 @@ func (a *OpaProfilesApiService) OpaprofilesListExecute(r ApiOpaprofilesListReque
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1083,7 +864,7 @@ func (a *OpaProfilesApiService) OpaprofilesListExecute(r ApiOpaprofilesListReque
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1108,58 +889,59 @@ func (a *OpaProfilesApiService) OpaprofilesListExecute(r ApiOpaprofilesListReque
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiOpaprofilesLockManagerRequest struct {
+type ApiOpaProfilesLockManagerRequest struct {
 	ctx context.Context
 	ApiService *OpaProfilesApiService
-	opaProfileLockManagerCommand *OpaProfileLockManagerCommand
+	v string
+	body *OpaProfileLockManagerCommand
 }
 
-func (r ApiOpaprofilesLockManagerRequest) OpaProfileLockManagerCommand(opaProfileLockManagerCommand OpaProfileLockManagerCommand) ApiOpaprofilesLockManagerRequest {
-	r.opaProfileLockManagerCommand = &opaProfileLockManagerCommand
+func (r ApiOpaProfilesLockManagerRequest) Body(body OpaProfileLockManagerCommand) ApiOpaProfilesLockManagerRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiOpaprofilesLockManagerRequest) Execute() (*http.Response, error) {
-	return r.ApiService.OpaprofilesLockManagerExecute(r)
+func (r ApiOpaProfilesLockManagerRequest) Execute() (*http.Response, error) {
+	return r.ApiService.OpaProfilesLockManagerExecute(r)
 }
 
 /*
-OpaprofilesLockManager Lock/Unlock policy profile
+OpaProfilesLockManager Lock/Unlock policy profile
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiOpaprofilesLockManagerRequest
+ @param v
+ @return ApiOpaProfilesLockManagerRequest
 */
-func (a *OpaProfilesApiService) OpaprofilesLockManager(ctx context.Context) ApiOpaprofilesLockManagerRequest {
-	return ApiOpaprofilesLockManagerRequest{
+func (a *OpaProfilesApiService) OpaProfilesLockManager(ctx context.Context, v string) ApiOpaProfilesLockManagerRequest {
+	return ApiOpaProfilesLockManagerRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
-func (a *OpaProfilesApiService) OpaprofilesLockManagerExecute(r ApiOpaprofilesLockManagerRequest) (*http.Response, error) {
+func (a *OpaProfilesApiService) OpaProfilesLockManagerExecute(r ApiOpaProfilesLockManagerRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OpaProfilesApiService.OpaprofilesLockManager")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OpaProfilesApiService.OpaProfilesLockManager")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/opaprofiles/lockmanager"
+	localVarPath := localBasePath + "/api/v{v}/OpaProfiles/lockmanager"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.opaProfileLockManagerCommand == nil {
-		return nil, reportError("opaProfileLockManagerCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -1168,7 +950,7 @@ func (a *OpaProfilesApiService) OpaprofilesLockManagerExecute(r ApiOpaprofilesLo
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1176,7 +958,7 @@ func (a *OpaProfilesApiService) OpaprofilesLockManagerExecute(r ApiOpaprofilesLo
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.opaProfileLockManagerCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1213,17 +995,6 @@ func (a *OpaProfilesApiService) OpaprofilesLockManagerExecute(r ApiOpaprofilesLo
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1257,7 +1028,7 @@ func (a *OpaProfilesApiService) OpaprofilesLockManagerExecute(r ApiOpaprofilesLo
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1273,58 +1044,59 @@ func (a *OpaProfilesApiService) OpaprofilesLockManagerExecute(r ApiOpaprofilesLo
 	return localVarHTTPResponse, nil
 }
 
-type ApiOpaprofilesMakeDefaultRequest struct {
+type ApiOpaProfilesMakeDefaultRequest struct {
 	ctx context.Context
 	ApiService *OpaProfilesApiService
-	opaMakeDefaultCommand *OpaMakeDefaultCommand
+	v string
+	body *OpaMakeDefaultCommand
 }
 
-func (r ApiOpaprofilesMakeDefaultRequest) OpaMakeDefaultCommand(opaMakeDefaultCommand OpaMakeDefaultCommand) ApiOpaprofilesMakeDefaultRequest {
-	r.opaMakeDefaultCommand = &opaMakeDefaultCommand
+func (r ApiOpaProfilesMakeDefaultRequest) Body(body OpaMakeDefaultCommand) ApiOpaProfilesMakeDefaultRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiOpaprofilesMakeDefaultRequest) Execute() (*http.Response, error) {
-	return r.ApiService.OpaprofilesMakeDefaultExecute(r)
+func (r ApiOpaProfilesMakeDefaultRequest) Execute() (*http.Response, error) {
+	return r.ApiService.OpaProfilesMakeDefaultExecute(r)
 }
 
 /*
-OpaprofilesMakeDefault Choose default policy profile
+OpaProfilesMakeDefault Choose default policy profile
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiOpaprofilesMakeDefaultRequest
+ @param v
+ @return ApiOpaProfilesMakeDefaultRequest
 */
-func (a *OpaProfilesApiService) OpaprofilesMakeDefault(ctx context.Context) ApiOpaprofilesMakeDefaultRequest {
-	return ApiOpaprofilesMakeDefaultRequest{
+func (a *OpaProfilesApiService) OpaProfilesMakeDefault(ctx context.Context, v string) ApiOpaProfilesMakeDefaultRequest {
+	return ApiOpaProfilesMakeDefaultRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
-func (a *OpaProfilesApiService) OpaprofilesMakeDefaultExecute(r ApiOpaprofilesMakeDefaultRequest) (*http.Response, error) {
+func (a *OpaProfilesApiService) OpaProfilesMakeDefaultExecute(r ApiOpaProfilesMakeDefaultRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OpaProfilesApiService.OpaprofilesMakeDefault")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OpaProfilesApiService.OpaProfilesMakeDefault")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/opaprofiles/make-default"
+	localVarPath := localBasePath + "/api/v{v}/OpaProfiles/make-default"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.opaMakeDefaultCommand == nil {
-		return nil, reportError("opaMakeDefaultCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -1333,7 +1105,7 @@ func (a *OpaProfilesApiService) OpaprofilesMakeDefaultExecute(r ApiOpaprofilesMa
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1341,7 +1113,7 @@ func (a *OpaProfilesApiService) OpaprofilesMakeDefaultExecute(r ApiOpaprofilesMa
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.opaMakeDefaultCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1378,17 +1150,6 @@ func (a *OpaProfilesApiService) OpaprofilesMakeDefaultExecute(r ApiOpaprofilesMa
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1422,7 +1183,7 @@ func (a *OpaProfilesApiService) OpaprofilesMakeDefaultExecute(r ApiOpaprofilesMa
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1438,58 +1199,73 @@ func (a *OpaProfilesApiService) OpaprofilesMakeDefaultExecute(r ApiOpaprofilesMa
 	return localVarHTTPResponse, nil
 }
 
-type ApiOpaprofilesSyncRequest struct {
+type ApiOpaProfilesOpaProfilesForOrganizationListRequest struct {
 	ctx context.Context
 	ApiService *OpaProfilesApiService
-	opaProfileSyncCommand *OpaProfileSyncCommand
+	v string
+	organizationId *int32
+	search *string
 }
 
-func (r ApiOpaprofilesSyncRequest) OpaProfileSyncCommand(opaProfileSyncCommand OpaProfileSyncCommand) ApiOpaprofilesSyncRequest {
-	r.opaProfileSyncCommand = &opaProfileSyncCommand
+func (r ApiOpaProfilesOpaProfilesForOrganizationListRequest) OrganizationId(organizationId int32) ApiOpaProfilesOpaProfilesForOrganizationListRequest {
+	r.organizationId = &organizationId
 	return r
 }
 
-func (r ApiOpaprofilesSyncRequest) Execute() (*http.Response, error) {
-	return r.ApiService.OpaprofilesSyncExecute(r)
+func (r ApiOpaProfilesOpaProfilesForOrganizationListRequest) Search(search string) ApiOpaProfilesOpaProfilesForOrganizationListRequest {
+	r.search = &search
+	return r
+}
+
+func (r ApiOpaProfilesOpaProfilesForOrganizationListRequest) Execute() ([]CommonExtendedDropdownDto, *http.Response, error) {
+	return r.ApiService.OpaProfilesOpaProfilesForOrganizationListExecute(r)
 }
 
 /*
-OpaprofilesSync Sync policy profile
+OpaProfilesOpaProfilesForOrganizationList Retrieve policy profiles by organization Id
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiOpaprofilesSyncRequest
+ @param v
+ @return ApiOpaProfilesOpaProfilesForOrganizationListRequest
 */
-func (a *OpaProfilesApiService) OpaprofilesSync(ctx context.Context) ApiOpaprofilesSyncRequest {
-	return ApiOpaprofilesSyncRequest{
+func (a *OpaProfilesApiService) OpaProfilesOpaProfilesForOrganizationList(ctx context.Context, v string) ApiOpaProfilesOpaProfilesForOrganizationListRequest {
+	return ApiOpaProfilesOpaProfilesForOrganizationListRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
-func (a *OpaProfilesApiService) OpaprofilesSyncExecute(r ApiOpaprofilesSyncRequest) (*http.Response, error) {
+//  @return []CommonExtendedDropdownDto
+func (a *OpaProfilesApiService) OpaProfilesOpaProfilesForOrganizationListExecute(r ApiOpaProfilesOpaProfilesForOrganizationListRequest) ([]CommonExtendedDropdownDto, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
+		localVarReturnValue  []CommonExtendedDropdownDto
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OpaProfilesApiService.OpaprofilesSync")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OpaProfilesApiService.OpaProfilesOpaProfilesForOrganizationList")
 	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/opaprofiles/sync"
+	localVarPath := localBasePath + "/api/v{v}/OpaProfiles/list"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.opaProfileSyncCommand == nil {
-		return nil, reportError("opaProfileSyncCommand is required and must be specified")
-	}
 
+	if r.organizationId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "organizationId", r.organizationId, "")
+	}
+	if r.search != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "")
+	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -1498,7 +1274,169 @@ func (a *OpaProfilesApiService) OpaprofilesSyncExecute(r ApiOpaprofilesSyncReque
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["Bearer"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiOpaProfilesSyncRequest struct {
+	ctx context.Context
+	ApiService *OpaProfilesApiService
+	v string
+	body *OpaProfileSyncCommand
+}
+
+func (r ApiOpaProfilesSyncRequest) Body(body OpaProfileSyncCommand) ApiOpaProfilesSyncRequest {
+	r.body = &body
+	return r
+}
+
+func (r ApiOpaProfilesSyncRequest) Execute() (*http.Response, error) {
+	return r.ApiService.OpaProfilesSyncExecute(r)
+}
+
+/*
+OpaProfilesSync Sync policy profile
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param v
+ @return ApiOpaProfilesSyncRequest
+*/
+func (a *OpaProfilesApiService) OpaProfilesSync(ctx context.Context, v string) ApiOpaProfilesSyncRequest {
+	return ApiOpaProfilesSyncRequest{
+		ApiService: a,
+		ctx: ctx,
+		v: v,
+	}
+}
+
+// Execute executes the request
+func (a *OpaProfilesApiService) OpaProfilesSyncExecute(r ApiOpaProfilesSyncRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OpaProfilesApiService.OpaProfilesSync")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v{v}/OpaProfiles/sync"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1506,7 +1444,7 @@ func (a *OpaProfilesApiService) OpaprofilesSyncExecute(r ApiOpaprofilesSyncReque
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.opaProfileSyncCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1543,17 +1481,6 @@ func (a *OpaProfilesApiService) OpaprofilesSyncExecute(r ApiOpaprofilesSyncReque
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1587,7 +1514,7 @@ func (a *OpaProfilesApiService) OpaprofilesSyncExecute(r ApiOpaprofilesSyncReque
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1603,55 +1530,59 @@ func (a *OpaProfilesApiService) OpaprofilesSyncExecute(r ApiOpaprofilesSyncReque
 	return localVarHTTPResponse, nil
 }
 
-type ApiOpaprofilesUpdateRequest struct {
+type ApiOpaProfilesUpdateRequest struct {
 	ctx context.Context
 	ApiService *OpaProfilesApiService
-	opaProfileUpdateCommand *OpaProfileUpdateCommand
+	v string
+	body *OpaProfileUpdateCommand
 }
 
-func (r ApiOpaprofilesUpdateRequest) OpaProfileUpdateCommand(opaProfileUpdateCommand OpaProfileUpdateCommand) ApiOpaprofilesUpdateRequest {
-	r.opaProfileUpdateCommand = &opaProfileUpdateCommand
+func (r ApiOpaProfilesUpdateRequest) Body(body OpaProfileUpdateCommand) ApiOpaProfilesUpdateRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiOpaprofilesUpdateRequest) Execute() (*http.Response, error) {
-	return r.ApiService.OpaprofilesUpdateExecute(r)
+func (r ApiOpaProfilesUpdateRequest) Execute() (*http.Response, error) {
+	return r.ApiService.OpaProfilesUpdateExecute(r)
 }
 
 /*
-OpaprofilesUpdate Update policy profile
+OpaProfilesUpdate Update policy profile
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiOpaprofilesUpdateRequest
+ @param v
+ @return ApiOpaProfilesUpdateRequest
 */
-func (a *OpaProfilesApiService) OpaprofilesUpdate(ctx context.Context) ApiOpaprofilesUpdateRequest {
-	return ApiOpaprofilesUpdateRequest{
+func (a *OpaProfilesApiService) OpaProfilesUpdate(ctx context.Context, v string) ApiOpaProfilesUpdateRequest {
+	return ApiOpaProfilesUpdateRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
-func (a *OpaProfilesApiService) OpaprofilesUpdateExecute(r ApiOpaprofilesUpdateRequest) (*http.Response, error) {
+func (a *OpaProfilesApiService) OpaProfilesUpdateExecute(r ApiOpaProfilesUpdateRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OpaProfilesApiService.OpaprofilesUpdate")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OpaProfilesApiService.OpaProfilesUpdate")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/opaprofiles"
+	localVarPath := localBasePath + "/api/v{v}/OpaProfiles"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -1660,7 +1591,7 @@ func (a *OpaProfilesApiService) OpaprofilesUpdateExecute(r ApiOpaprofilesUpdateR
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1668,7 +1599,7 @@ func (a *OpaProfilesApiService) OpaprofilesUpdateExecute(r ApiOpaprofilesUpdateR
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.opaProfileUpdateCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1705,17 +1636,6 @@ func (a *OpaProfilesApiService) OpaprofilesUpdateExecute(r ApiOpaprofilesUpdateR
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1749,7 +1669,7 @@ func (a *OpaProfilesApiService) OpaprofilesUpdateExecute(r ApiOpaprofilesUpdateR
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

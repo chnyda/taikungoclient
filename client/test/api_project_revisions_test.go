@@ -22,13 +22,14 @@ func Test_taikuncore_ProjectRevisionsApiService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test ProjectRevisionsApiService ProjectrevisionsEdit", func(t *testing.T) {
+	t.Run("Test ProjectRevisionsApiService ProjectRevisionsEdit", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var projectId int32
+		var v string
 
-		httpRes, err := apiClient.ProjectRevisionsApi.ProjectrevisionsEdit(context.Background(), projectId).Execute()
+		httpRes, err := apiClient.ProjectRevisionsApi.ProjectRevisionsEdit(context.Background(), projectId, v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)

@@ -5,9 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ProjectId** | Pointer to **int32** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
-**Namespace** | Pointer to **NullableString** |  | [optional] 
-**Container** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**Namespace** | Pointer to **string** |  | [optional] 
+**Container** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -78,16 +78,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *KubernetesPodLogsCommand) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *KubernetesPodLogsCommand) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetNamespace
 
 `func (o *KubernetesPodLogsCommand) GetNamespace() string`
@@ -113,16 +103,6 @@ SetNamespace sets Namespace field to given value.
 
 HasNamespace returns a boolean if a field has been set.
 
-### SetNamespaceNil
-
-`func (o *KubernetesPodLogsCommand) SetNamespaceNil(b bool)`
-
- SetNamespaceNil sets the value for Namespace to be an explicit nil
-
-### UnsetNamespace
-`func (o *KubernetesPodLogsCommand) UnsetNamespace()`
-
-UnsetNamespace ensures that no value is present for Namespace, not even an explicit nil
 ### GetContainer
 
 `func (o *KubernetesPodLogsCommand) GetContainer() string`
@@ -148,16 +128,6 @@ SetContainer sets Container field to given value.
 
 HasContainer returns a boolean if a field has been set.
 
-### SetContainerNil
-
-`func (o *KubernetesPodLogsCommand) SetContainerNil(b bool)`
-
- SetContainerNil sets the value for Container to be an explicit nil
-
-### UnsetContainer
-`func (o *KubernetesPodLogsCommand) UnsetContainer()`
-
-UnsetContainer ensures that no value is present for Container, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -10,10 +10,11 @@ Name | Type | Description | Notes
 **RequireProbe** | Pointer to **bool** |  | [optional] 
 **UniqueIngresses** | Pointer to **bool** |  | [optional] 
 **UniqueServiceSelector** | Pointer to **bool** |  | [optional] 
+**ForcePodResource** | Pointer to **bool** |  | [optional] 
 **AllowedRepo** | Pointer to **[]string** |  | [optional] 
 **ForbidSpecificTags** | Pointer to **[]string** |  | [optional] 
 **IngressWhitelist** | Pointer to **[]string** |  | [optional] 
-**OrganizationId** | Pointer to **NullableInt32** |  | [optional] 
+**OrganizationId** | Pointer to **int32** |  | [optional] 
 
 ## Methods
 
@@ -179,6 +180,31 @@ SetUniqueServiceSelector sets UniqueServiceSelector field to given value.
 
 HasUniqueServiceSelector returns a boolean if a field has been set.
 
+### GetForcePodResource
+
+`func (o *CreateOpaProfileCommand) GetForcePodResource() bool`
+
+GetForcePodResource returns the ForcePodResource field if non-nil, zero value otherwise.
+
+### GetForcePodResourceOk
+
+`func (o *CreateOpaProfileCommand) GetForcePodResourceOk() (*bool, bool)`
+
+GetForcePodResourceOk returns a tuple with the ForcePodResource field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetForcePodResource
+
+`func (o *CreateOpaProfileCommand) SetForcePodResource(v bool)`
+
+SetForcePodResource sets ForcePodResource field to given value.
+
+### HasForcePodResource
+
+`func (o *CreateOpaProfileCommand) HasForcePodResource() bool`
+
+HasForcePodResource returns a boolean if a field has been set.
+
 ### GetAllowedRepo
 
 `func (o *CreateOpaProfileCommand) GetAllowedRepo() []string`
@@ -204,16 +230,6 @@ SetAllowedRepo sets AllowedRepo field to given value.
 
 HasAllowedRepo returns a boolean if a field has been set.
 
-### SetAllowedRepoNil
-
-`func (o *CreateOpaProfileCommand) SetAllowedRepoNil(b bool)`
-
- SetAllowedRepoNil sets the value for AllowedRepo to be an explicit nil
-
-### UnsetAllowedRepo
-`func (o *CreateOpaProfileCommand) UnsetAllowedRepo()`
-
-UnsetAllowedRepo ensures that no value is present for AllowedRepo, not even an explicit nil
 ### GetForbidSpecificTags
 
 `func (o *CreateOpaProfileCommand) GetForbidSpecificTags() []string`
@@ -239,16 +255,6 @@ SetForbidSpecificTags sets ForbidSpecificTags field to given value.
 
 HasForbidSpecificTags returns a boolean if a field has been set.
 
-### SetForbidSpecificTagsNil
-
-`func (o *CreateOpaProfileCommand) SetForbidSpecificTagsNil(b bool)`
-
- SetForbidSpecificTagsNil sets the value for ForbidSpecificTags to be an explicit nil
-
-### UnsetForbidSpecificTags
-`func (o *CreateOpaProfileCommand) UnsetForbidSpecificTags()`
-
-UnsetForbidSpecificTags ensures that no value is present for ForbidSpecificTags, not even an explicit nil
 ### GetIngressWhitelist
 
 `func (o *CreateOpaProfileCommand) GetIngressWhitelist() []string`
@@ -274,16 +280,6 @@ SetIngressWhitelist sets IngressWhitelist field to given value.
 
 HasIngressWhitelist returns a boolean if a field has been set.
 
-### SetIngressWhitelistNil
-
-`func (o *CreateOpaProfileCommand) SetIngressWhitelistNil(b bool)`
-
- SetIngressWhitelistNil sets the value for IngressWhitelist to be an explicit nil
-
-### UnsetIngressWhitelist
-`func (o *CreateOpaProfileCommand) UnsetIngressWhitelist()`
-
-UnsetIngressWhitelist ensures that no value is present for IngressWhitelist, not even an explicit nil
 ### GetOrganizationId
 
 `func (o *CreateOpaProfileCommand) GetOrganizationId() int32`
@@ -309,16 +305,6 @@ SetOrganizationId sets OrganizationId field to given value.
 
 HasOrganizationId returns a boolean if a field has been set.
 
-### SetOrganizationIdNil
-
-`func (o *CreateOpaProfileCommand) SetOrganizationIdNil(b bool)`
-
- SetOrganizationIdNil sets the value for OrganizationId to be an explicit nil
-
-### UnsetOrganizationId
-`func (o *CreateOpaProfileCommand) UnsetOrganizationId()`
-
-UnsetOrganizationId ensures that no value is present for OrganizationId, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

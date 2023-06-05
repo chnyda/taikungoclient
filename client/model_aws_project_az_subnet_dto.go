@@ -20,9 +20,9 @@ var _ MappedNullable = &AwsProjectAZSubnetDto{}
 
 // AwsProjectAZSubnetDto struct for AwsProjectAZSubnetDto
 type AwsProjectAZSubnetDto struct {
-	Zone NullableString `json:"zone,omitempty"`
-	PublicIp NullableString `json:"publicIp,omitempty"`
-	PrivateIp NullableString `json:"privateIp,omitempty"`
+	Zone *string `json:"zone,omitempty"`
+	PublicIp *string `json:"publicIp,omitempty"`
+	PrivateIp *string `json:"privateIp,omitempty"`
 }
 
 // NewAwsProjectAZSubnetDto instantiates a new AwsProjectAZSubnetDto object
@@ -42,130 +42,100 @@ func NewAwsProjectAZSubnetDtoWithDefaults() *AwsProjectAZSubnetDto {
 	return &this
 }
 
-// GetZone returns the Zone field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetZone returns the Zone field value if set, zero value otherwise.
 func (o *AwsProjectAZSubnetDto) GetZone() string {
-	if o == nil || IsNil(o.Zone.Get()) {
+	if o == nil || IsNil(o.Zone) {
 		var ret string
 		return ret
 	}
-	return *o.Zone.Get()
+	return *o.Zone
 }
 
 // GetZoneOk returns a tuple with the Zone field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AwsProjectAZSubnetDto) GetZoneOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Zone) {
 		return nil, false
 	}
-	return o.Zone.Get(), o.Zone.IsSet()
+	return o.Zone, true
 }
 
 // HasZone returns a boolean if a field has been set.
 func (o *AwsProjectAZSubnetDto) HasZone() bool {
-	if o != nil && o.Zone.IsSet() {
+	if o != nil && !IsNil(o.Zone) {
 		return true
 	}
 
 	return false
 }
 
-// SetZone gets a reference to the given NullableString and assigns it to the Zone field.
+// SetZone gets a reference to the given string and assigns it to the Zone field.
 func (o *AwsProjectAZSubnetDto) SetZone(v string) {
-	o.Zone.Set(&v)
-}
-// SetZoneNil sets the value for Zone to be an explicit nil
-func (o *AwsProjectAZSubnetDto) SetZoneNil() {
-	o.Zone.Set(nil)
+	o.Zone = &v
 }
 
-// UnsetZone ensures that no value is present for Zone, not even an explicit nil
-func (o *AwsProjectAZSubnetDto) UnsetZone() {
-	o.Zone.Unset()
-}
-
-// GetPublicIp returns the PublicIp field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetPublicIp returns the PublicIp field value if set, zero value otherwise.
 func (o *AwsProjectAZSubnetDto) GetPublicIp() string {
-	if o == nil || IsNil(o.PublicIp.Get()) {
+	if o == nil || IsNil(o.PublicIp) {
 		var ret string
 		return ret
 	}
-	return *o.PublicIp.Get()
+	return *o.PublicIp
 }
 
 // GetPublicIpOk returns a tuple with the PublicIp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AwsProjectAZSubnetDto) GetPublicIpOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.PublicIp) {
 		return nil, false
 	}
-	return o.PublicIp.Get(), o.PublicIp.IsSet()
+	return o.PublicIp, true
 }
 
 // HasPublicIp returns a boolean if a field has been set.
 func (o *AwsProjectAZSubnetDto) HasPublicIp() bool {
-	if o != nil && o.PublicIp.IsSet() {
+	if o != nil && !IsNil(o.PublicIp) {
 		return true
 	}
 
 	return false
 }
 
-// SetPublicIp gets a reference to the given NullableString and assigns it to the PublicIp field.
+// SetPublicIp gets a reference to the given string and assigns it to the PublicIp field.
 func (o *AwsProjectAZSubnetDto) SetPublicIp(v string) {
-	o.PublicIp.Set(&v)
-}
-// SetPublicIpNil sets the value for PublicIp to be an explicit nil
-func (o *AwsProjectAZSubnetDto) SetPublicIpNil() {
-	o.PublicIp.Set(nil)
+	o.PublicIp = &v
 }
 
-// UnsetPublicIp ensures that no value is present for PublicIp, not even an explicit nil
-func (o *AwsProjectAZSubnetDto) UnsetPublicIp() {
-	o.PublicIp.Unset()
-}
-
-// GetPrivateIp returns the PrivateIp field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetPrivateIp returns the PrivateIp field value if set, zero value otherwise.
 func (o *AwsProjectAZSubnetDto) GetPrivateIp() string {
-	if o == nil || IsNil(o.PrivateIp.Get()) {
+	if o == nil || IsNil(o.PrivateIp) {
 		var ret string
 		return ret
 	}
-	return *o.PrivateIp.Get()
+	return *o.PrivateIp
 }
 
 // GetPrivateIpOk returns a tuple with the PrivateIp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AwsProjectAZSubnetDto) GetPrivateIpOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.PrivateIp) {
 		return nil, false
 	}
-	return o.PrivateIp.Get(), o.PrivateIp.IsSet()
+	return o.PrivateIp, true
 }
 
 // HasPrivateIp returns a boolean if a field has been set.
 func (o *AwsProjectAZSubnetDto) HasPrivateIp() bool {
-	if o != nil && o.PrivateIp.IsSet() {
+	if o != nil && !IsNil(o.PrivateIp) {
 		return true
 	}
 
 	return false
 }
 
-// SetPrivateIp gets a reference to the given NullableString and assigns it to the PrivateIp field.
+// SetPrivateIp gets a reference to the given string and assigns it to the PrivateIp field.
 func (o *AwsProjectAZSubnetDto) SetPrivateIp(v string) {
-	o.PrivateIp.Set(&v)
-}
-// SetPrivateIpNil sets the value for PrivateIp to be an explicit nil
-func (o *AwsProjectAZSubnetDto) SetPrivateIpNil() {
-	o.PrivateIp.Set(nil)
-}
-
-// UnsetPrivateIp ensures that no value is present for PrivateIp, not even an explicit nil
-func (o *AwsProjectAZSubnetDto) UnsetPrivateIp() {
-	o.PrivateIp.Unset()
+	o.PrivateIp = &v
 }
 
 func (o AwsProjectAZSubnetDto) MarshalJSON() ([]byte, error) {
@@ -178,14 +148,14 @@ func (o AwsProjectAZSubnetDto) MarshalJSON() ([]byte, error) {
 
 func (o AwsProjectAZSubnetDto) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Zone.IsSet() {
-		toSerialize["zone"] = o.Zone.Get()
+	if !IsNil(o.Zone) {
+		toSerialize["zone"] = o.Zone
 	}
-	if o.PublicIp.IsSet() {
-		toSerialize["publicIp"] = o.PublicIp.Get()
+	if !IsNil(o.PublicIp) {
+		toSerialize["publicIp"] = o.PublicIp
 	}
-	if o.PrivateIp.IsSet() {
-		toSerialize["privateIp"] = o.PrivateIp.Get()
+	if !IsNil(o.PrivateIp) {
+		toSerialize["privateIp"] = o.PrivateIp
 	}
 	return toSerialize, nil
 }

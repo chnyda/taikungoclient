@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**InvoiceId** | Pointer to **NullableString** |  | [optional] 
+**InvoiceId** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -50,16 +50,6 @@ SetInvoiceId sets InvoiceId field to given value.
 
 HasInvoiceId returns a boolean if a field has been set.
 
-### SetInvoiceIdNil
-
-`func (o *PayInvoiceCommand) SetInvoiceIdNil(b bool)`
-
- SetInvoiceIdNil sets the value for InvoiceId to be an explicit nil
-
-### UnsetInvoiceId
-`func (o *PayInvoiceCommand) UnsetInvoiceId()`
-
-UnsetInvoiceId ensures that no value is present for InvoiceId, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

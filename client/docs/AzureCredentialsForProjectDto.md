@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AzureClientId** | Pointer to **NullableString** |  | [optional] 
-**AzureClientSecret** | Pointer to **NullableString** |  | [optional] 
-**AzureSubscriptionId** | Pointer to **NullableString** |  | [optional] 
-**AzureTenantId** | Pointer to **NullableString** |  | [optional] 
-**AzureLocation** | Pointer to **NullableString** |  | [optional] 
+**AzureClientId** | Pointer to **string** |  | [optional] 
+**AzureClientSecret** | Pointer to **string** |  | [optional] 
+**AzureSubscriptionId** | Pointer to **string** |  | [optional] 
+**AzureTenantId** | Pointer to **string** |  | [optional] 
+**AzureLocation** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -54,16 +54,6 @@ SetAzureClientId sets AzureClientId field to given value.
 
 HasAzureClientId returns a boolean if a field has been set.
 
-### SetAzureClientIdNil
-
-`func (o *AzureCredentialsForProjectDto) SetAzureClientIdNil(b bool)`
-
- SetAzureClientIdNil sets the value for AzureClientId to be an explicit nil
-
-### UnsetAzureClientId
-`func (o *AzureCredentialsForProjectDto) UnsetAzureClientId()`
-
-UnsetAzureClientId ensures that no value is present for AzureClientId, not even an explicit nil
 ### GetAzureClientSecret
 
 `func (o *AzureCredentialsForProjectDto) GetAzureClientSecret() string`
@@ -89,16 +79,6 @@ SetAzureClientSecret sets AzureClientSecret field to given value.
 
 HasAzureClientSecret returns a boolean if a field has been set.
 
-### SetAzureClientSecretNil
-
-`func (o *AzureCredentialsForProjectDto) SetAzureClientSecretNil(b bool)`
-
- SetAzureClientSecretNil sets the value for AzureClientSecret to be an explicit nil
-
-### UnsetAzureClientSecret
-`func (o *AzureCredentialsForProjectDto) UnsetAzureClientSecret()`
-
-UnsetAzureClientSecret ensures that no value is present for AzureClientSecret, not even an explicit nil
 ### GetAzureSubscriptionId
 
 `func (o *AzureCredentialsForProjectDto) GetAzureSubscriptionId() string`
@@ -124,16 +104,6 @@ SetAzureSubscriptionId sets AzureSubscriptionId field to given value.
 
 HasAzureSubscriptionId returns a boolean if a field has been set.
 
-### SetAzureSubscriptionIdNil
-
-`func (o *AzureCredentialsForProjectDto) SetAzureSubscriptionIdNil(b bool)`
-
- SetAzureSubscriptionIdNil sets the value for AzureSubscriptionId to be an explicit nil
-
-### UnsetAzureSubscriptionId
-`func (o *AzureCredentialsForProjectDto) UnsetAzureSubscriptionId()`
-
-UnsetAzureSubscriptionId ensures that no value is present for AzureSubscriptionId, not even an explicit nil
 ### GetAzureTenantId
 
 `func (o *AzureCredentialsForProjectDto) GetAzureTenantId() string`
@@ -159,16 +129,6 @@ SetAzureTenantId sets AzureTenantId field to given value.
 
 HasAzureTenantId returns a boolean if a field has been set.
 
-### SetAzureTenantIdNil
-
-`func (o *AzureCredentialsForProjectDto) SetAzureTenantIdNil(b bool)`
-
- SetAzureTenantIdNil sets the value for AzureTenantId to be an explicit nil
-
-### UnsetAzureTenantId
-`func (o *AzureCredentialsForProjectDto) UnsetAzureTenantId()`
-
-UnsetAzureTenantId ensures that no value is present for AzureTenantId, not even an explicit nil
 ### GetAzureLocation
 
 `func (o *AzureCredentialsForProjectDto) GetAzureLocation() string`
@@ -194,16 +154,6 @@ SetAzureLocation sets AzureLocation field to given value.
 
 HasAzureLocation returns a boolean if a field has been set.
 
-### SetAzureLocationNil
-
-`func (o *AzureCredentialsForProjectDto) SetAzureLocationNil(b bool)`
-
- SetAzureLocationNil sets the value for AzureLocation to be an explicit nil
-
-### UnsetAzureLocation
-`func (o *AzureCredentialsForProjectDto) UnsetAzureLocation()`
-
-UnsetAzureLocation ensures that no value is present for AzureLocation, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

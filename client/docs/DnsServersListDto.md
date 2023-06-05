@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** |  | [optional] 
-**Address** | Pointer to **NullableString** |  | [optional] 
-**AccessProfileName** | Pointer to **NullableString** |  | [optional] 
+**Address** | Pointer to **string** |  | [optional] 
+**AccessProfileName** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -77,16 +77,6 @@ SetAddress sets Address field to given value.
 
 HasAddress returns a boolean if a field has been set.
 
-### SetAddressNil
-
-`func (o *DnsServersListDto) SetAddressNil(b bool)`
-
- SetAddressNil sets the value for Address to be an explicit nil
-
-### UnsetAddress
-`func (o *DnsServersListDto) UnsetAddress()`
-
-UnsetAddress ensures that no value is present for Address, not even an explicit nil
 ### GetAccessProfileName
 
 `func (o *DnsServersListDto) GetAccessProfileName() string`
@@ -112,16 +102,6 @@ SetAccessProfileName sets AccessProfileName field to given value.
 
 HasAccessProfileName returns a boolean if a field has been set.
 
-### SetAccessProfileNameNil
-
-`func (o *DnsServersListDto) SetAccessProfileNameNil(b bool)`
-
- SetAccessProfileNameNil sets the value for AccessProfileName to be an explicit nil
-
-### UnsetAccessProfileName
-`func (o *DnsServersListDto) UnsetAccessProfileName()`
-
-UnsetAccessProfileName ensures that no value is present for AccessProfileName, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

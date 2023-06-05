@@ -5,11 +5,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Bridge** | **string** |  | 
-**Gateway** | Pointer to **NullableString** |  | [optional] 
-**IpAddress** | Pointer to **NullableString** |  | [optional] 
+**Gateway** | Pointer to **string** |  | [optional] 
+**IpAddress** | Pointer to **string** |  | [optional] 
 **NetMask** | Pointer to **int32** |  | [optional] 
-**BeginAllocationRange** | Pointer to **NullableString** |  | [optional] 
-**EndAllocationRange** | Pointer to **NullableString** |  | [optional] 
+**BeginAllocationRange** | Pointer to **string** |  | [optional] 
+**EndAllocationRange** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -75,16 +75,6 @@ SetGateway sets Gateway field to given value.
 
 HasGateway returns a boolean if a field has been set.
 
-### SetGatewayNil
-
-`func (o *CreateProxmoxNetworkDto) SetGatewayNil(b bool)`
-
- SetGatewayNil sets the value for Gateway to be an explicit nil
-
-### UnsetGateway
-`func (o *CreateProxmoxNetworkDto) UnsetGateway()`
-
-UnsetGateway ensures that no value is present for Gateway, not even an explicit nil
 ### GetIpAddress
 
 `func (o *CreateProxmoxNetworkDto) GetIpAddress() string`
@@ -110,16 +100,6 @@ SetIpAddress sets IpAddress field to given value.
 
 HasIpAddress returns a boolean if a field has been set.
 
-### SetIpAddressNil
-
-`func (o *CreateProxmoxNetworkDto) SetIpAddressNil(b bool)`
-
- SetIpAddressNil sets the value for IpAddress to be an explicit nil
-
-### UnsetIpAddress
-`func (o *CreateProxmoxNetworkDto) UnsetIpAddress()`
-
-UnsetIpAddress ensures that no value is present for IpAddress, not even an explicit nil
 ### GetNetMask
 
 `func (o *CreateProxmoxNetworkDto) GetNetMask() int32`
@@ -170,16 +150,6 @@ SetBeginAllocationRange sets BeginAllocationRange field to given value.
 
 HasBeginAllocationRange returns a boolean if a field has been set.
 
-### SetBeginAllocationRangeNil
-
-`func (o *CreateProxmoxNetworkDto) SetBeginAllocationRangeNil(b bool)`
-
- SetBeginAllocationRangeNil sets the value for BeginAllocationRange to be an explicit nil
-
-### UnsetBeginAllocationRange
-`func (o *CreateProxmoxNetworkDto) UnsetBeginAllocationRange()`
-
-UnsetBeginAllocationRange ensures that no value is present for BeginAllocationRange, not even an explicit nil
 ### GetEndAllocationRange
 
 `func (o *CreateProxmoxNetworkDto) GetEndAllocationRange() string`
@@ -205,16 +175,6 @@ SetEndAllocationRange sets EndAllocationRange field to given value.
 
 HasEndAllocationRange returns a boolean if a field has been set.
 
-### SetEndAllocationRangeNil
-
-`func (o *CreateProxmoxNetworkDto) SetEndAllocationRangeNil(b bool)`
-
- SetEndAllocationRangeNil sets the value for EndAllocationRange to be an explicit nil
-
-### UnsetEndAllocationRange
-`func (o *CreateProxmoxNetworkDto) UnsetEndAllocationRange()`
-
-UnsetEndAllocationRange ensures that no value is present for EndAllocationRange, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

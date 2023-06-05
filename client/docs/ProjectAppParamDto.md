@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Key** | Pointer to **NullableString** |  | [optional] 
-**Value** | Pointer to **NullableString** |  | [optional] 
+**Key** | Pointer to **string** |  | [optional] 
+**Value** | Pointer to **string** |  | [optional] 
 **IsEditableWhenInstalling** | Pointer to **bool** |  | [optional] 
 **IsEditableAfterInstallation** | Pointer to **bool** |  | [optional] 
 **IsMandatory** | Pointer to **bool** |  | [optional] 
@@ -54,16 +54,6 @@ SetKey sets Key field to given value.
 
 HasKey returns a boolean if a field has been set.
 
-### SetKeyNil
-
-`func (o *ProjectAppParamDto) SetKeyNil(b bool)`
-
- SetKeyNil sets the value for Key to be an explicit nil
-
-### UnsetKey
-`func (o *ProjectAppParamDto) UnsetKey()`
-
-UnsetKey ensures that no value is present for Key, not even an explicit nil
 ### GetValue
 
 `func (o *ProjectAppParamDto) GetValue() string`
@@ -89,16 +79,6 @@ SetValue sets Value field to given value.
 
 HasValue returns a boolean if a field has been set.
 
-### SetValueNil
-
-`func (o *ProjectAppParamDto) SetValueNil(b bool)`
-
- SetValueNil sets the value for Value to be an explicit nil
-
-### UnsetValue
-`func (o *ProjectAppParamDto) UnsetValue()`
-
-UnsetValue ensures that no value is present for Value, not even an explicit nil
 ### GetIsEditableWhenInstalling
 
 `func (o *ProjectAppParamDto) GetIsEditableWhenInstalling() bool`

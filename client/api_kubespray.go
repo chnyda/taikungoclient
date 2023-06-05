@@ -27,11 +27,12 @@ type KubesprayApiService service
 type ApiKubesprayCreateRequest struct {
 	ctx context.Context
 	ApiService *KubesprayApiService
-	kubesprayCreateCommand *KubesprayCreateCommand
+	v string
+	body *KubesprayCreateCommand
 }
 
-func (r ApiKubesprayCreateRequest) KubesprayCreateCommand(kubesprayCreateCommand KubesprayCreateCommand) ApiKubesprayCreateRequest {
-	r.kubesprayCreateCommand = &kubesprayCreateCommand
+func (r ApiKubesprayCreateRequest) Body(body KubesprayCreateCommand) ApiKubesprayCreateRequest {
+	r.body = &body
 	return r
 }
 
@@ -40,15 +41,17 @@ func (r ApiKubesprayCreateRequest) Execute() (*ApiResponse, *http.Response, erro
 }
 
 /*
-KubesprayCreate Add kubespray
+KubesprayCreate Method for KubesprayCreate
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param v
  @return ApiKubesprayCreateRequest
 */
-func (a *KubesprayApiService) KubesprayCreate(ctx context.Context) ApiKubesprayCreateRequest {
+func (a *KubesprayApiService) KubesprayCreate(ctx context.Context, v string) ApiKubesprayCreateRequest {
 	return ApiKubesprayCreateRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
@@ -67,17 +70,15 @@ func (a *KubesprayApiService) KubesprayCreateExecute(r ApiKubesprayCreateRequest
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/kubespray"
+	localVarPath := localBasePath + "/api/v{v}/Kubespray"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.kubesprayCreateCommand == nil {
-		return localVarReturnValue, nil, reportError("kubesprayCreateCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -86,7 +87,7 @@ func (a *KubesprayApiService) KubesprayCreateExecute(r ApiKubesprayCreateRequest
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -94,7 +95,7 @@ func (a *KubesprayApiService) KubesprayCreateExecute(r ApiKubesprayCreateRequest
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.kubesprayCreateCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -131,17 +132,6 @@ func (a *KubesprayApiService) KubesprayCreateExecute(r ApiKubesprayCreateRequest
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -175,7 +165,7 @@ func (a *KubesprayApiService) KubesprayCreateExecute(r ApiKubesprayCreateRequest
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -204,6 +194,7 @@ type ApiKubesprayDeleteRequest struct {
 	ctx context.Context
 	ApiService *KubesprayApiService
 	id int32
+	v string
 }
 
 func (r ApiKubesprayDeleteRequest) Execute() (*http.Response, error) {
@@ -211,17 +202,19 @@ func (r ApiKubesprayDeleteRequest) Execute() (*http.Response, error) {
 }
 
 /*
-KubesprayDelete Delete kubespray
+KubesprayDelete Method for KubesprayDelete
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
+ @param v
  @return ApiKubesprayDeleteRequest
 */
-func (a *KubesprayApiService) KubesprayDelete(ctx context.Context, id int32) ApiKubesprayDeleteRequest {
+func (a *KubesprayApiService) KubesprayDelete(ctx context.Context, id int32, v string) ApiKubesprayDeleteRequest {
 	return ApiKubesprayDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
+		v: v,
 	}
 }
 
@@ -238,8 +231,9 @@ func (a *KubesprayApiService) KubesprayDeleteExecute(r ApiKubesprayDeleteRequest
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/kubespray/{id}"
+	localVarPath := localBasePath + "/api/v{v}/Kubespray/{id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -255,7 +249,7 @@ func (a *KubesprayApiService) KubesprayDeleteExecute(r ApiKubesprayDeleteRequest
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -298,17 +292,6 @@ func (a *KubesprayApiService) KubesprayDeleteExecute(r ApiKubesprayDeleteRequest
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -342,7 +325,7 @@ func (a *KubesprayApiService) KubesprayDeleteExecute(r ApiKubesprayDeleteRequest
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -351,6 +334,7 @@ func (a *KubesprayApiService) KubesprayDeleteExecute(r ApiKubesprayDeleteRequest
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
+			return localVarHTTPResponse, newErr
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -361,6 +345,7 @@ func (a *KubesprayApiService) KubesprayDeleteExecute(r ApiKubesprayDeleteRequest
 type ApiKubesprayListRequest struct {
 	ctx context.Context
 	ApiService *KubesprayApiService
+	v string
 }
 
 func (r ApiKubesprayListRequest) Execute() (*Kubesprays, *http.Response, error) {
@@ -368,15 +353,17 @@ func (r ApiKubesprayListRequest) Execute() (*Kubesprays, *http.Response, error) 
 }
 
 /*
-KubesprayList Retrieve all kubespray versions
+KubesprayList Method for KubesprayList
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param v
  @return ApiKubesprayListRequest
 */
-func (a *KubesprayApiService) KubesprayList(ctx context.Context) ApiKubesprayListRequest {
+func (a *KubesprayApiService) KubesprayList(ctx context.Context, v string) ApiKubesprayListRequest {
 	return ApiKubesprayListRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
@@ -395,7 +382,8 @@ func (a *KubesprayApiService) KubesprayListExecute(r ApiKubesprayListRequest) (*
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/kubespray/list"
+	localVarPath := localBasePath + "/api/v{v}/Kubespray"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -411,7 +399,7 @@ func (a *KubesprayApiService) KubesprayListExecute(r ApiKubesprayListRequest) (*
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -454,17 +442,6 @@ func (a *KubesprayApiService) KubesprayListExecute(r ApiKubesprayListRequest) (*
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -498,7 +475,7 @@ func (a *KubesprayApiService) KubesprayListExecute(r ApiKubesprayListRequest) (*
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

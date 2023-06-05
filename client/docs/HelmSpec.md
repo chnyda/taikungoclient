@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Interval** | Pointer to **NullableString** |  | [optional] 
-**ReleaseName** | Pointer to **NullableString** |  | [optional] 
-**Url** | Pointer to **NullableString** |  | [optional] 
-**TargetNamespace** | Pointer to **NullableString** |  | [optional] 
-**StorageNamespace** | Pointer to **NullableString** |  | [optional] 
+**Interval** | Pointer to **string** |  | [optional] 
+**ReleaseName** | Pointer to **string** |  | [optional] 
+**Url** | Pointer to **string** |  | [optional] 
+**TargetNamespace** | Pointer to **string** |  | [optional] 
+**StorageNamespace** | Pointer to **string** |  | [optional] 
 **Chart** | Pointer to [**Chart**](Chart.md) |  | [optional] 
 **Values** | Pointer to [**JsonNode**](JsonNode.md) |  | [optional] 
 
@@ -56,16 +56,6 @@ SetInterval sets Interval field to given value.
 
 HasInterval returns a boolean if a field has been set.
 
-### SetIntervalNil
-
-`func (o *HelmSpec) SetIntervalNil(b bool)`
-
- SetIntervalNil sets the value for Interval to be an explicit nil
-
-### UnsetInterval
-`func (o *HelmSpec) UnsetInterval()`
-
-UnsetInterval ensures that no value is present for Interval, not even an explicit nil
 ### GetReleaseName
 
 `func (o *HelmSpec) GetReleaseName() string`
@@ -91,16 +81,6 @@ SetReleaseName sets ReleaseName field to given value.
 
 HasReleaseName returns a boolean if a field has been set.
 
-### SetReleaseNameNil
-
-`func (o *HelmSpec) SetReleaseNameNil(b bool)`
-
- SetReleaseNameNil sets the value for ReleaseName to be an explicit nil
-
-### UnsetReleaseName
-`func (o *HelmSpec) UnsetReleaseName()`
-
-UnsetReleaseName ensures that no value is present for ReleaseName, not even an explicit nil
 ### GetUrl
 
 `func (o *HelmSpec) GetUrl() string`
@@ -126,16 +106,6 @@ SetUrl sets Url field to given value.
 
 HasUrl returns a boolean if a field has been set.
 
-### SetUrlNil
-
-`func (o *HelmSpec) SetUrlNil(b bool)`
-
- SetUrlNil sets the value for Url to be an explicit nil
-
-### UnsetUrl
-`func (o *HelmSpec) UnsetUrl()`
-
-UnsetUrl ensures that no value is present for Url, not even an explicit nil
 ### GetTargetNamespace
 
 `func (o *HelmSpec) GetTargetNamespace() string`
@@ -161,16 +131,6 @@ SetTargetNamespace sets TargetNamespace field to given value.
 
 HasTargetNamespace returns a boolean if a field has been set.
 
-### SetTargetNamespaceNil
-
-`func (o *HelmSpec) SetTargetNamespaceNil(b bool)`
-
- SetTargetNamespaceNil sets the value for TargetNamespace to be an explicit nil
-
-### UnsetTargetNamespace
-`func (o *HelmSpec) UnsetTargetNamespace()`
-
-UnsetTargetNamespace ensures that no value is present for TargetNamespace, not even an explicit nil
 ### GetStorageNamespace
 
 `func (o *HelmSpec) GetStorageNamespace() string`
@@ -196,16 +156,6 @@ SetStorageNamespace sets StorageNamespace field to given value.
 
 HasStorageNamespace returns a boolean if a field has been set.
 
-### SetStorageNamespaceNil
-
-`func (o *HelmSpec) SetStorageNamespaceNil(b bool)`
-
- SetStorageNamespaceNil sets the value for StorageNamespace to be an explicit nil
-
-### UnsetStorageNamespace
-`func (o *HelmSpec) UnsetStorageNamespace()`
-
-UnsetStorageNamespace ensures that no value is present for StorageNamespace, not even an explicit nil
 ### GetChart
 
 `func (o *HelmSpec) GetChart() Chart`

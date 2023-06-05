@@ -72,9 +72,9 @@ func (o *CreateBackupPolicyCommand) SetName(v string) {
 	o.Name = v
 }
 
-// GetIncludeNamespaces returns the IncludeNamespaces field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetIncludeNamespaces returns the IncludeNamespaces field value if set, zero value otherwise.
 func (o *CreateBackupPolicyCommand) GetIncludeNamespaces() []string {
-	if o == nil {
+	if o == nil || IsNil(o.IncludeNamespaces) {
 		var ret []string
 		return ret
 	}
@@ -83,7 +83,6 @@ func (o *CreateBackupPolicyCommand) GetIncludeNamespaces() []string {
 
 // GetIncludeNamespacesOk returns a tuple with the IncludeNamespaces field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateBackupPolicyCommand) GetIncludeNamespacesOk() ([]string, bool) {
 	if o == nil || IsNil(o.IncludeNamespaces) {
 		return nil, false
@@ -93,7 +92,7 @@ func (o *CreateBackupPolicyCommand) GetIncludeNamespacesOk() ([]string, bool) {
 
 // HasIncludeNamespaces returns a boolean if a field has been set.
 func (o *CreateBackupPolicyCommand) HasIncludeNamespaces() bool {
-	if o != nil && IsNil(o.IncludeNamespaces) {
+	if o != nil && !IsNil(o.IncludeNamespaces) {
 		return true
 	}
 
@@ -188,7 +187,7 @@ func (o CreateBackupPolicyCommand) MarshalJSON() ([]byte, error) {
 func (o CreateBackupPolicyCommand) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["name"] = o.Name
-	if o.IncludeNamespaces != nil {
+	if !IsNil(o.IncludeNamespaces) {
 		toSerialize["includeNamespaces"] = o.IncludeNamespaces
 	}
 	toSerialize["cronPeriod"] = o.CronPeriod

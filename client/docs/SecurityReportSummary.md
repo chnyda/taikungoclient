@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Low** | Pointer to **NullableInt64** |  | [optional] 
-**High** | Pointer to **NullableInt64** |  | [optional] 
-**Medium** | Pointer to **NullableInt64** |  | [optional] 
-**Unknown** | Pointer to **NullableInt64** |  | [optional] 
-**Critical** | Pointer to **NullableInt64** |  | [optional] 
+**Low** | Pointer to **int64** |  | [optional] 
+**High** | Pointer to **int64** |  | [optional] 
+**Medium** | Pointer to **int64** |  | [optional] 
+**Unknown** | Pointer to **int64** |  | [optional] 
+**Critical** | Pointer to **int64** |  | [optional] 
 
 ## Methods
 
@@ -54,16 +54,6 @@ SetLow sets Low field to given value.
 
 HasLow returns a boolean if a field has been set.
 
-### SetLowNil
-
-`func (o *SecurityReportSummary) SetLowNil(b bool)`
-
- SetLowNil sets the value for Low to be an explicit nil
-
-### UnsetLow
-`func (o *SecurityReportSummary) UnsetLow()`
-
-UnsetLow ensures that no value is present for Low, not even an explicit nil
 ### GetHigh
 
 `func (o *SecurityReportSummary) GetHigh() int64`
@@ -89,16 +79,6 @@ SetHigh sets High field to given value.
 
 HasHigh returns a boolean if a field has been set.
 
-### SetHighNil
-
-`func (o *SecurityReportSummary) SetHighNil(b bool)`
-
- SetHighNil sets the value for High to be an explicit nil
-
-### UnsetHigh
-`func (o *SecurityReportSummary) UnsetHigh()`
-
-UnsetHigh ensures that no value is present for High, not even an explicit nil
 ### GetMedium
 
 `func (o *SecurityReportSummary) GetMedium() int64`
@@ -124,16 +104,6 @@ SetMedium sets Medium field to given value.
 
 HasMedium returns a boolean if a field has been set.
 
-### SetMediumNil
-
-`func (o *SecurityReportSummary) SetMediumNil(b bool)`
-
- SetMediumNil sets the value for Medium to be an explicit nil
-
-### UnsetMedium
-`func (o *SecurityReportSummary) UnsetMedium()`
-
-UnsetMedium ensures that no value is present for Medium, not even an explicit nil
 ### GetUnknown
 
 `func (o *SecurityReportSummary) GetUnknown() int64`
@@ -159,16 +129,6 @@ SetUnknown sets Unknown field to given value.
 
 HasUnknown returns a boolean if a field has been set.
 
-### SetUnknownNil
-
-`func (o *SecurityReportSummary) SetUnknownNil(b bool)`
-
- SetUnknownNil sets the value for Unknown to be an explicit nil
-
-### UnsetUnknown
-`func (o *SecurityReportSummary) UnsetUnknown()`
-
-UnsetUnknown ensures that no value is present for Unknown, not even an explicit nil
 ### GetCritical
 
 `func (o *SecurityReportSummary) GetCritical() int64`
@@ -194,16 +154,6 @@ SetCritical sets Critical field to given value.
 
 HasCritical returns a boolean if a field has been set.
 
-### SetCriticalNil
-
-`func (o *SecurityReportSummary) SetCriticalNil(b bool)`
-
- SetCriticalNil sets the value for Critical to be an explicit nil
-
-### UnsetCritical
-`func (o *SecurityReportSummary) UnsetCritical()`
-
-UnsetCritical ensures that no value is present for Critical, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Chart** | Pointer to **NullableString** |  | [optional] 
-**Version** | Pointer to **NullableString** |  | [optional] 
+**Chart** | Pointer to **string** |  | [optional] 
+**Version** | Pointer to **string** |  | [optional] 
 **SourceRef** | Pointer to [**SourceRef**](SourceRef.md) |  | [optional] 
-**Interval** | Pointer to **NullableString** |  | [optional] 
+**Interval** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -53,16 +53,6 @@ SetChart sets Chart field to given value.
 
 HasChart returns a boolean if a field has been set.
 
-### SetChartNil
-
-`func (o *ChartSpec) SetChartNil(b bool)`
-
- SetChartNil sets the value for Chart to be an explicit nil
-
-### UnsetChart
-`func (o *ChartSpec) UnsetChart()`
-
-UnsetChart ensures that no value is present for Chart, not even an explicit nil
 ### GetVersion
 
 `func (o *ChartSpec) GetVersion() string`
@@ -88,16 +78,6 @@ SetVersion sets Version field to given value.
 
 HasVersion returns a boolean if a field has been set.
 
-### SetVersionNil
-
-`func (o *ChartSpec) SetVersionNil(b bool)`
-
- SetVersionNil sets the value for Version to be an explicit nil
-
-### UnsetVersion
-`func (o *ChartSpec) UnsetVersion()`
-
-UnsetVersion ensures that no value is present for Version, not even an explicit nil
 ### GetSourceRef
 
 `func (o *ChartSpec) GetSourceRef() SourceRef`
@@ -148,16 +128,6 @@ SetInterval sets Interval field to given value.
 
 HasInterval returns a boolean if a field has been set.
 
-### SetIntervalNil
-
-`func (o *ChartSpec) SetIntervalNil(b bool)`
-
- SetIntervalNil sets the value for Interval to be an explicit nil
-
-### UnsetInterval
-`func (o *ChartSpec) UnsetInterval()`
-
-UnsetInterval ensures that no value is present for Interval, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

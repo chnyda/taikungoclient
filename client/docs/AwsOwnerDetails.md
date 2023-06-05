@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**OwnerId** | Pointer to **NullableString** |  | [optional] 
-**OwnerName** | Pointer to **NullableString** |  | [optional] 
+**OwnerId** | Pointer to **string** |  | [optional] 
+**OwnerName** | Pointer to **string** |  | [optional] 
 **Image** | Pointer to [**AwsCommonImages**](AwsCommonImages.md) |  | [optional] 
 
 ## Methods
@@ -52,16 +52,6 @@ SetOwnerId sets OwnerId field to given value.
 
 HasOwnerId returns a boolean if a field has been set.
 
-### SetOwnerIdNil
-
-`func (o *AwsOwnerDetails) SetOwnerIdNil(b bool)`
-
- SetOwnerIdNil sets the value for OwnerId to be an explicit nil
-
-### UnsetOwnerId
-`func (o *AwsOwnerDetails) UnsetOwnerId()`
-
-UnsetOwnerId ensures that no value is present for OwnerId, not even an explicit nil
 ### GetOwnerName
 
 `func (o *AwsOwnerDetails) GetOwnerName() string`
@@ -87,16 +77,6 @@ SetOwnerName sets OwnerName field to given value.
 
 HasOwnerName returns a boolean if a field has been set.
 
-### SetOwnerNameNil
-
-`func (o *AwsOwnerDetails) SetOwnerNameNil(b bool)`
-
- SetOwnerNameNil sets the value for OwnerName to be an explicit nil
-
-### UnsetOwnerName
-`func (o *AwsOwnerDetails) UnsetOwnerName()`
-
-UnsetOwnerName ensures that no value is present for OwnerName, not even an explicit nil
 ### GetImage
 
 `func (o *AwsOwnerDetails) GetImage() AwsCommonImages`

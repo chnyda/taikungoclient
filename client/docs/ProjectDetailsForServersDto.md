@@ -11,20 +11,20 @@ Name | Type | Description | Notes
 **Master** | Pointer to **int32** |  | [optional] 
 **Worker** | Pointer to **int32** |  | [optional] 
 **Bastion** | Pointer to **int32** |  | [optional] 
-**ProjectStatus** | Pointer to **NullableString** |  | [optional] 
-**ProjectName** | Pointer to **NullableString** |  | [optional] 
-**AccessIp** | Pointer to **NullableString** |  | [optional] 
+**ProjectStatus** | Pointer to **string** |  | [optional] 
+**ProjectName** | Pointer to **string** |  | [optional] 
+**AccessIp** | Pointer to **string** |  | [optional] 
 **ProjectId** | Pointer to **int32** |  | [optional] 
 **MasterReady** | Pointer to **int32** |  | [optional] 
-**CloudType** | Pointer to **NullableString** |  | [optional] 
-**CloudName** | Pointer to **NullableString** |  | [optional] 
+**CloudType** | Pointer to **string** |  | [optional] 
+**CloudName** | Pointer to **string** |  | [optional] 
 **CloudId** | Pointer to **int32** |  | [optional] 
 **QuotaId** | Pointer to **int32** |  | [optional] 
-**OrganizationName** | Pointer to **NullableString** |  | [optional] 
+**OrganizationName** | Pointer to **string** |  | [optional] 
 **OrganizationId** | Pointer to **int32** |  | [optional] 
-**KubeCurrentVersion** | Pointer to **NullableString** |  | [optional] 
-**KubernetesCurrentVersion** | Pointer to **NullableString** |  | [optional] 
-**HasNextVersion** | Pointer to **NullableBool** |  | [optional] 
+**KubeCurrentVersion** | Pointer to **string** |  | [optional] 
+**KubernetesCurrentVersion** | Pointer to **string** |  | [optional] 
+**HasNextVersion** | Pointer to **bool** |  | [optional] 
 **IsKubernetes** | Pointer to **bool** |  | [optional] 
 **IsBackupEnabled** | Pointer to **bool** |  | [optional] 
 **IsLocked** | Pointer to **bool** |  | [optional] 
@@ -49,41 +49,44 @@ Name | Type | Description | Notes
 **VmUsedRam** | Pointer to **int64** |  | [optional] 
 **VmUsedVolumeSize** | Pointer to **int64** |  | [optional] 
 **ProjectRevision** | Pointer to **int32** |  | [optional] 
-**AccessProfileRevision** | Pointer to **NullableInt32** |  | [optional] 
+**AccessProfileRevision** | Pointer to **int32** |  | [optional] 
 **ProjectCloudRevision** | Pointer to **int32** |  | [optional] 
 **CloudCredentialRevision** | Pointer to **int32** |  | [optional] 
-**AccessProfileName** | Pointer to **NullableString** |  | [optional] 
-**AccessProfileId** | Pointer to **NullableInt32** |  | [optional] 
-**KubernetesProfileName** | Pointer to **NullableString** |  | [optional] 
-**KubernetesProfileId** | Pointer to **NullableInt32** |  | [optional] 
-**AlertingProfileName** | Pointer to **NullableString** |  | [optional] 
-**ProjectHealth** | Pointer to **NullableString** |  | [optional] 
-**AlertingProfileId** | Pointer to **NullableInt32** |  | [optional] 
-**S3CredentialId** | Pointer to **NullableInt32** |  | [optional] 
-**QuotaMessage** | Pointer to **NullableString** |  | [optional] 
-**CloudProviderMessage** | Pointer to **NullableString** |  | [optional] 
-**ExpiredAt** | Pointer to **NullableString** |  | [optional] 
+**AccessProfileName** | Pointer to **string** |  | [optional] 
+**AccessProfileId** | Pointer to **int32** |  | [optional] 
+**KubernetesProfileName** | Pointer to **string** |  | [optional] 
+**KubernetesProfileId** | Pointer to **int32** |  | [optional] 
+**AlertingProfileName** | Pointer to **string** |  | [optional] 
+**ProjectHealth** | Pointer to **string** |  | [optional] 
+**AlertingProfileId** | Pointer to **int32** |  | [optional] 
+**S3CredentialId** | Pointer to **int32** |  | [optional] 
+**QuotaMessage** | Pointer to **string** |  | [optional] 
+**CloudProviderMessage** | Pointer to **string** |  | [optional] 
+**ExpiredAt** | Pointer to **string** |  | [optional] 
 **DeleteOnExpiration** | Pointer to **bool** |  | [optional] 
-**CertificationExpiredAt** | Pointer to **NullableString** |  | [optional] 
-**OpaProfileId** | Pointer to **NullableInt32** |  | [optional] 
-**OpaProfileName** | Pointer to **NullableString** |  | [optional] 
+**CertificationExpiredAt** | Pointer to **string** |  | [optional] 
+**OpaProfileId** | Pointer to **int32** |  | [optional] 
+**OpaProfileName** | Pointer to **string** |  | [optional] 
 **AllowFullSpotKubernetes** | Pointer to **bool** |  | [optional] 
 **AllowSpotWorkers** | Pointer to **bool** |  | [optional] 
 **AllowSpotVMs** | Pointer to **bool** |  | [optional] 
-**MaxSpotPrice** | Pointer to **NullableFloat64** |  | [optional] 
+**MaxSpotPrice** | Pointer to **float64** |  | [optional] 
 **IsKubevapEnabled** | Pointer to **bool** |  | [optional] 
 **IsKubernetesCurrentVersionKubevapEnabled** | Pointer to **bool** |  | [optional] 
-**FailureReason** | Pointer to **NullableString** |  | [optional] 
-**WarningMessage** | Pointer to **NullableString** |  | [optional] 
+**FailureReason** | Pointer to **string** |  | [optional] 
+**WarningMessage** | Pointer to **string** |  | [optional] 
 **TotalHourlyCost** | Pointer to **float64** |  | [optional] 
-**AutoscalingGroupName** | Pointer to **NullableString** |  | [optional] 
-**MinSize** | Pointer to **NullableInt32** |  | [optional] 
-**MaxSize** | Pointer to **NullableInt32** |  | [optional] 
-**DiskSize** | Pointer to **NullableFloat64** |  | [optional] 
-**Flavor** | Pointer to **NullableString** |  | [optional] 
-**SpotEnabled** | Pointer to **NullableBool** |  | [optional] 
+**AutoscalingGroupName** | Pointer to **string** |  | [optional] 
+**MinSize** | Pointer to **int32** |  | [optional] 
+**MaxSize** | Pointer to **int32** |  | [optional] 
+**DiskSize** | Pointer to **float64** |  | [optional] 
+**Flavor** | Pointer to **string** |  | [optional] 
+**SpotEnabled** | Pointer to **bool** |  | [optional] 
 **IsAutoscalingEnabled** | Pointer to **bool** |  | [optional] 
 **HasExpirationWarning** | Pointer to **bool** |  | [optional] 
+**HasNfsServer** | Pointer to **bool** |  | [optional] 
+**AvailabilityZones** | Pointer to **[]string** |  | [optional] 
+**Hypervisors** | Pointer to **[]string** |  | [optional] 
 
 ## Methods
 
@@ -304,16 +307,6 @@ SetProjectStatus sets ProjectStatus field to given value.
 
 HasProjectStatus returns a boolean if a field has been set.
 
-### SetProjectStatusNil
-
-`func (o *ProjectDetailsForServersDto) SetProjectStatusNil(b bool)`
-
- SetProjectStatusNil sets the value for ProjectStatus to be an explicit nil
-
-### UnsetProjectStatus
-`func (o *ProjectDetailsForServersDto) UnsetProjectStatus()`
-
-UnsetProjectStatus ensures that no value is present for ProjectStatus, not even an explicit nil
 ### GetProjectName
 
 `func (o *ProjectDetailsForServersDto) GetProjectName() string`
@@ -339,16 +332,6 @@ SetProjectName sets ProjectName field to given value.
 
 HasProjectName returns a boolean if a field has been set.
 
-### SetProjectNameNil
-
-`func (o *ProjectDetailsForServersDto) SetProjectNameNil(b bool)`
-
- SetProjectNameNil sets the value for ProjectName to be an explicit nil
-
-### UnsetProjectName
-`func (o *ProjectDetailsForServersDto) UnsetProjectName()`
-
-UnsetProjectName ensures that no value is present for ProjectName, not even an explicit nil
 ### GetAccessIp
 
 `func (o *ProjectDetailsForServersDto) GetAccessIp() string`
@@ -374,16 +357,6 @@ SetAccessIp sets AccessIp field to given value.
 
 HasAccessIp returns a boolean if a field has been set.
 
-### SetAccessIpNil
-
-`func (o *ProjectDetailsForServersDto) SetAccessIpNil(b bool)`
-
- SetAccessIpNil sets the value for AccessIp to be an explicit nil
-
-### UnsetAccessIp
-`func (o *ProjectDetailsForServersDto) UnsetAccessIp()`
-
-UnsetAccessIp ensures that no value is present for AccessIp, not even an explicit nil
 ### GetProjectId
 
 `func (o *ProjectDetailsForServersDto) GetProjectId() int32`
@@ -459,16 +432,6 @@ SetCloudType sets CloudType field to given value.
 
 HasCloudType returns a boolean if a field has been set.
 
-### SetCloudTypeNil
-
-`func (o *ProjectDetailsForServersDto) SetCloudTypeNil(b bool)`
-
- SetCloudTypeNil sets the value for CloudType to be an explicit nil
-
-### UnsetCloudType
-`func (o *ProjectDetailsForServersDto) UnsetCloudType()`
-
-UnsetCloudType ensures that no value is present for CloudType, not even an explicit nil
 ### GetCloudName
 
 `func (o *ProjectDetailsForServersDto) GetCloudName() string`
@@ -494,16 +457,6 @@ SetCloudName sets CloudName field to given value.
 
 HasCloudName returns a boolean if a field has been set.
 
-### SetCloudNameNil
-
-`func (o *ProjectDetailsForServersDto) SetCloudNameNil(b bool)`
-
- SetCloudNameNil sets the value for CloudName to be an explicit nil
-
-### UnsetCloudName
-`func (o *ProjectDetailsForServersDto) UnsetCloudName()`
-
-UnsetCloudName ensures that no value is present for CloudName, not even an explicit nil
 ### GetCloudId
 
 `func (o *ProjectDetailsForServersDto) GetCloudId() int32`
@@ -579,16 +532,6 @@ SetOrganizationName sets OrganizationName field to given value.
 
 HasOrganizationName returns a boolean if a field has been set.
 
-### SetOrganizationNameNil
-
-`func (o *ProjectDetailsForServersDto) SetOrganizationNameNil(b bool)`
-
- SetOrganizationNameNil sets the value for OrganizationName to be an explicit nil
-
-### UnsetOrganizationName
-`func (o *ProjectDetailsForServersDto) UnsetOrganizationName()`
-
-UnsetOrganizationName ensures that no value is present for OrganizationName, not even an explicit nil
 ### GetOrganizationId
 
 `func (o *ProjectDetailsForServersDto) GetOrganizationId() int32`
@@ -639,16 +582,6 @@ SetKubeCurrentVersion sets KubeCurrentVersion field to given value.
 
 HasKubeCurrentVersion returns a boolean if a field has been set.
 
-### SetKubeCurrentVersionNil
-
-`func (o *ProjectDetailsForServersDto) SetKubeCurrentVersionNil(b bool)`
-
- SetKubeCurrentVersionNil sets the value for KubeCurrentVersion to be an explicit nil
-
-### UnsetKubeCurrentVersion
-`func (o *ProjectDetailsForServersDto) UnsetKubeCurrentVersion()`
-
-UnsetKubeCurrentVersion ensures that no value is present for KubeCurrentVersion, not even an explicit nil
 ### GetKubernetesCurrentVersion
 
 `func (o *ProjectDetailsForServersDto) GetKubernetesCurrentVersion() string`
@@ -674,16 +607,6 @@ SetKubernetesCurrentVersion sets KubernetesCurrentVersion field to given value.
 
 HasKubernetesCurrentVersion returns a boolean if a field has been set.
 
-### SetKubernetesCurrentVersionNil
-
-`func (o *ProjectDetailsForServersDto) SetKubernetesCurrentVersionNil(b bool)`
-
- SetKubernetesCurrentVersionNil sets the value for KubernetesCurrentVersion to be an explicit nil
-
-### UnsetKubernetesCurrentVersion
-`func (o *ProjectDetailsForServersDto) UnsetKubernetesCurrentVersion()`
-
-UnsetKubernetesCurrentVersion ensures that no value is present for KubernetesCurrentVersion, not even an explicit nil
 ### GetHasNextVersion
 
 `func (o *ProjectDetailsForServersDto) GetHasNextVersion() bool`
@@ -709,16 +632,6 @@ SetHasNextVersion sets HasNextVersion field to given value.
 
 HasHasNextVersion returns a boolean if a field has been set.
 
-### SetHasNextVersionNil
-
-`func (o *ProjectDetailsForServersDto) SetHasNextVersionNil(b bool)`
-
- SetHasNextVersionNil sets the value for HasNextVersion to be an explicit nil
-
-### UnsetHasNextVersion
-`func (o *ProjectDetailsForServersDto) UnsetHasNextVersion()`
-
-UnsetHasNextVersion ensures that no value is present for HasNextVersion, not even an explicit nil
 ### GetIsKubernetes
 
 `func (o *ProjectDetailsForServersDto) GetIsKubernetes() bool`
@@ -1344,16 +1257,6 @@ SetAccessProfileRevision sets AccessProfileRevision field to given value.
 
 HasAccessProfileRevision returns a boolean if a field has been set.
 
-### SetAccessProfileRevisionNil
-
-`func (o *ProjectDetailsForServersDto) SetAccessProfileRevisionNil(b bool)`
-
- SetAccessProfileRevisionNil sets the value for AccessProfileRevision to be an explicit nil
-
-### UnsetAccessProfileRevision
-`func (o *ProjectDetailsForServersDto) UnsetAccessProfileRevision()`
-
-UnsetAccessProfileRevision ensures that no value is present for AccessProfileRevision, not even an explicit nil
 ### GetProjectCloudRevision
 
 `func (o *ProjectDetailsForServersDto) GetProjectCloudRevision() int32`
@@ -1429,16 +1332,6 @@ SetAccessProfileName sets AccessProfileName field to given value.
 
 HasAccessProfileName returns a boolean if a field has been set.
 
-### SetAccessProfileNameNil
-
-`func (o *ProjectDetailsForServersDto) SetAccessProfileNameNil(b bool)`
-
- SetAccessProfileNameNil sets the value for AccessProfileName to be an explicit nil
-
-### UnsetAccessProfileName
-`func (o *ProjectDetailsForServersDto) UnsetAccessProfileName()`
-
-UnsetAccessProfileName ensures that no value is present for AccessProfileName, not even an explicit nil
 ### GetAccessProfileId
 
 `func (o *ProjectDetailsForServersDto) GetAccessProfileId() int32`
@@ -1464,16 +1357,6 @@ SetAccessProfileId sets AccessProfileId field to given value.
 
 HasAccessProfileId returns a boolean if a field has been set.
 
-### SetAccessProfileIdNil
-
-`func (o *ProjectDetailsForServersDto) SetAccessProfileIdNil(b bool)`
-
- SetAccessProfileIdNil sets the value for AccessProfileId to be an explicit nil
-
-### UnsetAccessProfileId
-`func (o *ProjectDetailsForServersDto) UnsetAccessProfileId()`
-
-UnsetAccessProfileId ensures that no value is present for AccessProfileId, not even an explicit nil
 ### GetKubernetesProfileName
 
 `func (o *ProjectDetailsForServersDto) GetKubernetesProfileName() string`
@@ -1499,16 +1382,6 @@ SetKubernetesProfileName sets KubernetesProfileName field to given value.
 
 HasKubernetesProfileName returns a boolean if a field has been set.
 
-### SetKubernetesProfileNameNil
-
-`func (o *ProjectDetailsForServersDto) SetKubernetesProfileNameNil(b bool)`
-
- SetKubernetesProfileNameNil sets the value for KubernetesProfileName to be an explicit nil
-
-### UnsetKubernetesProfileName
-`func (o *ProjectDetailsForServersDto) UnsetKubernetesProfileName()`
-
-UnsetKubernetesProfileName ensures that no value is present for KubernetesProfileName, not even an explicit nil
 ### GetKubernetesProfileId
 
 `func (o *ProjectDetailsForServersDto) GetKubernetesProfileId() int32`
@@ -1534,16 +1407,6 @@ SetKubernetesProfileId sets KubernetesProfileId field to given value.
 
 HasKubernetesProfileId returns a boolean if a field has been set.
 
-### SetKubernetesProfileIdNil
-
-`func (o *ProjectDetailsForServersDto) SetKubernetesProfileIdNil(b bool)`
-
- SetKubernetesProfileIdNil sets the value for KubernetesProfileId to be an explicit nil
-
-### UnsetKubernetesProfileId
-`func (o *ProjectDetailsForServersDto) UnsetKubernetesProfileId()`
-
-UnsetKubernetesProfileId ensures that no value is present for KubernetesProfileId, not even an explicit nil
 ### GetAlertingProfileName
 
 `func (o *ProjectDetailsForServersDto) GetAlertingProfileName() string`
@@ -1569,16 +1432,6 @@ SetAlertingProfileName sets AlertingProfileName field to given value.
 
 HasAlertingProfileName returns a boolean if a field has been set.
 
-### SetAlertingProfileNameNil
-
-`func (o *ProjectDetailsForServersDto) SetAlertingProfileNameNil(b bool)`
-
- SetAlertingProfileNameNil sets the value for AlertingProfileName to be an explicit nil
-
-### UnsetAlertingProfileName
-`func (o *ProjectDetailsForServersDto) UnsetAlertingProfileName()`
-
-UnsetAlertingProfileName ensures that no value is present for AlertingProfileName, not even an explicit nil
 ### GetProjectHealth
 
 `func (o *ProjectDetailsForServersDto) GetProjectHealth() string`
@@ -1604,16 +1457,6 @@ SetProjectHealth sets ProjectHealth field to given value.
 
 HasProjectHealth returns a boolean if a field has been set.
 
-### SetProjectHealthNil
-
-`func (o *ProjectDetailsForServersDto) SetProjectHealthNil(b bool)`
-
- SetProjectHealthNil sets the value for ProjectHealth to be an explicit nil
-
-### UnsetProjectHealth
-`func (o *ProjectDetailsForServersDto) UnsetProjectHealth()`
-
-UnsetProjectHealth ensures that no value is present for ProjectHealth, not even an explicit nil
 ### GetAlertingProfileId
 
 `func (o *ProjectDetailsForServersDto) GetAlertingProfileId() int32`
@@ -1639,16 +1482,6 @@ SetAlertingProfileId sets AlertingProfileId field to given value.
 
 HasAlertingProfileId returns a boolean if a field has been set.
 
-### SetAlertingProfileIdNil
-
-`func (o *ProjectDetailsForServersDto) SetAlertingProfileIdNil(b bool)`
-
- SetAlertingProfileIdNil sets the value for AlertingProfileId to be an explicit nil
-
-### UnsetAlertingProfileId
-`func (o *ProjectDetailsForServersDto) UnsetAlertingProfileId()`
-
-UnsetAlertingProfileId ensures that no value is present for AlertingProfileId, not even an explicit nil
 ### GetS3CredentialId
 
 `func (o *ProjectDetailsForServersDto) GetS3CredentialId() int32`
@@ -1674,16 +1507,6 @@ SetS3CredentialId sets S3CredentialId field to given value.
 
 HasS3CredentialId returns a boolean if a field has been set.
 
-### SetS3CredentialIdNil
-
-`func (o *ProjectDetailsForServersDto) SetS3CredentialIdNil(b bool)`
-
- SetS3CredentialIdNil sets the value for S3CredentialId to be an explicit nil
-
-### UnsetS3CredentialId
-`func (o *ProjectDetailsForServersDto) UnsetS3CredentialId()`
-
-UnsetS3CredentialId ensures that no value is present for S3CredentialId, not even an explicit nil
 ### GetQuotaMessage
 
 `func (o *ProjectDetailsForServersDto) GetQuotaMessage() string`
@@ -1709,16 +1532,6 @@ SetQuotaMessage sets QuotaMessage field to given value.
 
 HasQuotaMessage returns a boolean if a field has been set.
 
-### SetQuotaMessageNil
-
-`func (o *ProjectDetailsForServersDto) SetQuotaMessageNil(b bool)`
-
- SetQuotaMessageNil sets the value for QuotaMessage to be an explicit nil
-
-### UnsetQuotaMessage
-`func (o *ProjectDetailsForServersDto) UnsetQuotaMessage()`
-
-UnsetQuotaMessage ensures that no value is present for QuotaMessage, not even an explicit nil
 ### GetCloudProviderMessage
 
 `func (o *ProjectDetailsForServersDto) GetCloudProviderMessage() string`
@@ -1744,16 +1557,6 @@ SetCloudProviderMessage sets CloudProviderMessage field to given value.
 
 HasCloudProviderMessage returns a boolean if a field has been set.
 
-### SetCloudProviderMessageNil
-
-`func (o *ProjectDetailsForServersDto) SetCloudProviderMessageNil(b bool)`
-
- SetCloudProviderMessageNil sets the value for CloudProviderMessage to be an explicit nil
-
-### UnsetCloudProviderMessage
-`func (o *ProjectDetailsForServersDto) UnsetCloudProviderMessage()`
-
-UnsetCloudProviderMessage ensures that no value is present for CloudProviderMessage, not even an explicit nil
 ### GetExpiredAt
 
 `func (o *ProjectDetailsForServersDto) GetExpiredAt() string`
@@ -1779,16 +1582,6 @@ SetExpiredAt sets ExpiredAt field to given value.
 
 HasExpiredAt returns a boolean if a field has been set.
 
-### SetExpiredAtNil
-
-`func (o *ProjectDetailsForServersDto) SetExpiredAtNil(b bool)`
-
- SetExpiredAtNil sets the value for ExpiredAt to be an explicit nil
-
-### UnsetExpiredAt
-`func (o *ProjectDetailsForServersDto) UnsetExpiredAt()`
-
-UnsetExpiredAt ensures that no value is present for ExpiredAt, not even an explicit nil
 ### GetDeleteOnExpiration
 
 `func (o *ProjectDetailsForServersDto) GetDeleteOnExpiration() bool`
@@ -1839,16 +1632,6 @@ SetCertificationExpiredAt sets CertificationExpiredAt field to given value.
 
 HasCertificationExpiredAt returns a boolean if a field has been set.
 
-### SetCertificationExpiredAtNil
-
-`func (o *ProjectDetailsForServersDto) SetCertificationExpiredAtNil(b bool)`
-
- SetCertificationExpiredAtNil sets the value for CertificationExpiredAt to be an explicit nil
-
-### UnsetCertificationExpiredAt
-`func (o *ProjectDetailsForServersDto) UnsetCertificationExpiredAt()`
-
-UnsetCertificationExpiredAt ensures that no value is present for CertificationExpiredAt, not even an explicit nil
 ### GetOpaProfileId
 
 `func (o *ProjectDetailsForServersDto) GetOpaProfileId() int32`
@@ -1874,16 +1657,6 @@ SetOpaProfileId sets OpaProfileId field to given value.
 
 HasOpaProfileId returns a boolean if a field has been set.
 
-### SetOpaProfileIdNil
-
-`func (o *ProjectDetailsForServersDto) SetOpaProfileIdNil(b bool)`
-
- SetOpaProfileIdNil sets the value for OpaProfileId to be an explicit nil
-
-### UnsetOpaProfileId
-`func (o *ProjectDetailsForServersDto) UnsetOpaProfileId()`
-
-UnsetOpaProfileId ensures that no value is present for OpaProfileId, not even an explicit nil
 ### GetOpaProfileName
 
 `func (o *ProjectDetailsForServersDto) GetOpaProfileName() string`
@@ -1909,16 +1682,6 @@ SetOpaProfileName sets OpaProfileName field to given value.
 
 HasOpaProfileName returns a boolean if a field has been set.
 
-### SetOpaProfileNameNil
-
-`func (o *ProjectDetailsForServersDto) SetOpaProfileNameNil(b bool)`
-
- SetOpaProfileNameNil sets the value for OpaProfileName to be an explicit nil
-
-### UnsetOpaProfileName
-`func (o *ProjectDetailsForServersDto) UnsetOpaProfileName()`
-
-UnsetOpaProfileName ensures that no value is present for OpaProfileName, not even an explicit nil
 ### GetAllowFullSpotKubernetes
 
 `func (o *ProjectDetailsForServersDto) GetAllowFullSpotKubernetes() bool`
@@ -2019,16 +1782,6 @@ SetMaxSpotPrice sets MaxSpotPrice field to given value.
 
 HasMaxSpotPrice returns a boolean if a field has been set.
 
-### SetMaxSpotPriceNil
-
-`func (o *ProjectDetailsForServersDto) SetMaxSpotPriceNil(b bool)`
-
- SetMaxSpotPriceNil sets the value for MaxSpotPrice to be an explicit nil
-
-### UnsetMaxSpotPrice
-`func (o *ProjectDetailsForServersDto) UnsetMaxSpotPrice()`
-
-UnsetMaxSpotPrice ensures that no value is present for MaxSpotPrice, not even an explicit nil
 ### GetIsKubevapEnabled
 
 `func (o *ProjectDetailsForServersDto) GetIsKubevapEnabled() bool`
@@ -2104,16 +1857,6 @@ SetFailureReason sets FailureReason field to given value.
 
 HasFailureReason returns a boolean if a field has been set.
 
-### SetFailureReasonNil
-
-`func (o *ProjectDetailsForServersDto) SetFailureReasonNil(b bool)`
-
- SetFailureReasonNil sets the value for FailureReason to be an explicit nil
-
-### UnsetFailureReason
-`func (o *ProjectDetailsForServersDto) UnsetFailureReason()`
-
-UnsetFailureReason ensures that no value is present for FailureReason, not even an explicit nil
 ### GetWarningMessage
 
 `func (o *ProjectDetailsForServersDto) GetWarningMessage() string`
@@ -2139,16 +1882,6 @@ SetWarningMessage sets WarningMessage field to given value.
 
 HasWarningMessage returns a boolean if a field has been set.
 
-### SetWarningMessageNil
-
-`func (o *ProjectDetailsForServersDto) SetWarningMessageNil(b bool)`
-
- SetWarningMessageNil sets the value for WarningMessage to be an explicit nil
-
-### UnsetWarningMessage
-`func (o *ProjectDetailsForServersDto) UnsetWarningMessage()`
-
-UnsetWarningMessage ensures that no value is present for WarningMessage, not even an explicit nil
 ### GetTotalHourlyCost
 
 `func (o *ProjectDetailsForServersDto) GetTotalHourlyCost() float64`
@@ -2199,16 +1932,6 @@ SetAutoscalingGroupName sets AutoscalingGroupName field to given value.
 
 HasAutoscalingGroupName returns a boolean if a field has been set.
 
-### SetAutoscalingGroupNameNil
-
-`func (o *ProjectDetailsForServersDto) SetAutoscalingGroupNameNil(b bool)`
-
- SetAutoscalingGroupNameNil sets the value for AutoscalingGroupName to be an explicit nil
-
-### UnsetAutoscalingGroupName
-`func (o *ProjectDetailsForServersDto) UnsetAutoscalingGroupName()`
-
-UnsetAutoscalingGroupName ensures that no value is present for AutoscalingGroupName, not even an explicit nil
 ### GetMinSize
 
 `func (o *ProjectDetailsForServersDto) GetMinSize() int32`
@@ -2234,16 +1957,6 @@ SetMinSize sets MinSize field to given value.
 
 HasMinSize returns a boolean if a field has been set.
 
-### SetMinSizeNil
-
-`func (o *ProjectDetailsForServersDto) SetMinSizeNil(b bool)`
-
- SetMinSizeNil sets the value for MinSize to be an explicit nil
-
-### UnsetMinSize
-`func (o *ProjectDetailsForServersDto) UnsetMinSize()`
-
-UnsetMinSize ensures that no value is present for MinSize, not even an explicit nil
 ### GetMaxSize
 
 `func (o *ProjectDetailsForServersDto) GetMaxSize() int32`
@@ -2269,16 +1982,6 @@ SetMaxSize sets MaxSize field to given value.
 
 HasMaxSize returns a boolean if a field has been set.
 
-### SetMaxSizeNil
-
-`func (o *ProjectDetailsForServersDto) SetMaxSizeNil(b bool)`
-
- SetMaxSizeNil sets the value for MaxSize to be an explicit nil
-
-### UnsetMaxSize
-`func (o *ProjectDetailsForServersDto) UnsetMaxSize()`
-
-UnsetMaxSize ensures that no value is present for MaxSize, not even an explicit nil
 ### GetDiskSize
 
 `func (o *ProjectDetailsForServersDto) GetDiskSize() float64`
@@ -2304,16 +2007,6 @@ SetDiskSize sets DiskSize field to given value.
 
 HasDiskSize returns a boolean if a field has been set.
 
-### SetDiskSizeNil
-
-`func (o *ProjectDetailsForServersDto) SetDiskSizeNil(b bool)`
-
- SetDiskSizeNil sets the value for DiskSize to be an explicit nil
-
-### UnsetDiskSize
-`func (o *ProjectDetailsForServersDto) UnsetDiskSize()`
-
-UnsetDiskSize ensures that no value is present for DiskSize, not even an explicit nil
 ### GetFlavor
 
 `func (o *ProjectDetailsForServersDto) GetFlavor() string`
@@ -2339,16 +2032,6 @@ SetFlavor sets Flavor field to given value.
 
 HasFlavor returns a boolean if a field has been set.
 
-### SetFlavorNil
-
-`func (o *ProjectDetailsForServersDto) SetFlavorNil(b bool)`
-
- SetFlavorNil sets the value for Flavor to be an explicit nil
-
-### UnsetFlavor
-`func (o *ProjectDetailsForServersDto) UnsetFlavor()`
-
-UnsetFlavor ensures that no value is present for Flavor, not even an explicit nil
 ### GetSpotEnabled
 
 `func (o *ProjectDetailsForServersDto) GetSpotEnabled() bool`
@@ -2374,16 +2057,6 @@ SetSpotEnabled sets SpotEnabled field to given value.
 
 HasSpotEnabled returns a boolean if a field has been set.
 
-### SetSpotEnabledNil
-
-`func (o *ProjectDetailsForServersDto) SetSpotEnabledNil(b bool)`
-
- SetSpotEnabledNil sets the value for SpotEnabled to be an explicit nil
-
-### UnsetSpotEnabled
-`func (o *ProjectDetailsForServersDto) UnsetSpotEnabled()`
-
-UnsetSpotEnabled ensures that no value is present for SpotEnabled, not even an explicit nil
 ### GetIsAutoscalingEnabled
 
 `func (o *ProjectDetailsForServersDto) GetIsAutoscalingEnabled() bool`
@@ -2433,6 +2106,81 @@ SetHasExpirationWarning sets HasExpirationWarning field to given value.
 `func (o *ProjectDetailsForServersDto) HasHasExpirationWarning() bool`
 
 HasHasExpirationWarning returns a boolean if a field has been set.
+
+### GetHasNfsServer
+
+`func (o *ProjectDetailsForServersDto) GetHasNfsServer() bool`
+
+GetHasNfsServer returns the HasNfsServer field if non-nil, zero value otherwise.
+
+### GetHasNfsServerOk
+
+`func (o *ProjectDetailsForServersDto) GetHasNfsServerOk() (*bool, bool)`
+
+GetHasNfsServerOk returns a tuple with the HasNfsServer field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHasNfsServer
+
+`func (o *ProjectDetailsForServersDto) SetHasNfsServer(v bool)`
+
+SetHasNfsServer sets HasNfsServer field to given value.
+
+### HasHasNfsServer
+
+`func (o *ProjectDetailsForServersDto) HasHasNfsServer() bool`
+
+HasHasNfsServer returns a boolean if a field has been set.
+
+### GetAvailabilityZones
+
+`func (o *ProjectDetailsForServersDto) GetAvailabilityZones() []string`
+
+GetAvailabilityZones returns the AvailabilityZones field if non-nil, zero value otherwise.
+
+### GetAvailabilityZonesOk
+
+`func (o *ProjectDetailsForServersDto) GetAvailabilityZonesOk() (*[]string, bool)`
+
+GetAvailabilityZonesOk returns a tuple with the AvailabilityZones field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAvailabilityZones
+
+`func (o *ProjectDetailsForServersDto) SetAvailabilityZones(v []string)`
+
+SetAvailabilityZones sets AvailabilityZones field to given value.
+
+### HasAvailabilityZones
+
+`func (o *ProjectDetailsForServersDto) HasAvailabilityZones() bool`
+
+HasAvailabilityZones returns a boolean if a field has been set.
+
+### GetHypervisors
+
+`func (o *ProjectDetailsForServersDto) GetHypervisors() []string`
+
+GetHypervisors returns the Hypervisors field if non-nil, zero value otherwise.
+
+### GetHypervisorsOk
+
+`func (o *ProjectDetailsForServersDto) GetHypervisorsOk() (*[]string, bool)`
+
+GetHypervisorsOk returns a tuple with the Hypervisors field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHypervisors
+
+`func (o *ProjectDetailsForServersDto) SetHypervisors(v []string)`
+
+SetHypervisors sets Hypervisors field to given value.
+
+### HasHypervisors
+
+`func (o *ProjectDetailsForServersDto) HasHypervisors() bool`
+
+HasHypervisors returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

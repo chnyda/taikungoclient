@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **NullableString** |  | [optional] 
-**InvoiceStatus** | Pointer to **NullableString** |  | [optional] 
-**ChargeStatus** | Pointer to **NullableString** |  | [optional] 
-**ChargeReason** | Pointer to **NullableString** |  | [optional] 
+**Id** | Pointer to **string** |  | [optional] 
+**InvoiceStatus** | Pointer to **string** |  | [optional] 
+**ChargeStatus** | Pointer to **string** |  | [optional] 
+**ChargeReason** | Pointer to **string** |  | [optional] 
 **Price** | Pointer to **float64** |  | [optional] 
 **StartDate** | Pointer to **time.Time** |  | [optional] 
 **EndDate** | Pointer to **time.Time** |  | [optional] 
@@ -56,16 +56,6 @@ SetId sets Id field to given value.
 
 HasId returns a boolean if a field has been set.
 
-### SetIdNil
-
-`func (o *StripeInvoiceListDto) SetIdNil(b bool)`
-
- SetIdNil sets the value for Id to be an explicit nil
-
-### UnsetId
-`func (o *StripeInvoiceListDto) UnsetId()`
-
-UnsetId ensures that no value is present for Id, not even an explicit nil
 ### GetInvoiceStatus
 
 `func (o *StripeInvoiceListDto) GetInvoiceStatus() string`
@@ -91,16 +81,6 @@ SetInvoiceStatus sets InvoiceStatus field to given value.
 
 HasInvoiceStatus returns a boolean if a field has been set.
 
-### SetInvoiceStatusNil
-
-`func (o *StripeInvoiceListDto) SetInvoiceStatusNil(b bool)`
-
- SetInvoiceStatusNil sets the value for InvoiceStatus to be an explicit nil
-
-### UnsetInvoiceStatus
-`func (o *StripeInvoiceListDto) UnsetInvoiceStatus()`
-
-UnsetInvoiceStatus ensures that no value is present for InvoiceStatus, not even an explicit nil
 ### GetChargeStatus
 
 `func (o *StripeInvoiceListDto) GetChargeStatus() string`
@@ -126,16 +106,6 @@ SetChargeStatus sets ChargeStatus field to given value.
 
 HasChargeStatus returns a boolean if a field has been set.
 
-### SetChargeStatusNil
-
-`func (o *StripeInvoiceListDto) SetChargeStatusNil(b bool)`
-
- SetChargeStatusNil sets the value for ChargeStatus to be an explicit nil
-
-### UnsetChargeStatus
-`func (o *StripeInvoiceListDto) UnsetChargeStatus()`
-
-UnsetChargeStatus ensures that no value is present for ChargeStatus, not even an explicit nil
 ### GetChargeReason
 
 `func (o *StripeInvoiceListDto) GetChargeReason() string`
@@ -161,16 +131,6 @@ SetChargeReason sets ChargeReason field to given value.
 
 HasChargeReason returns a boolean if a field has been set.
 
-### SetChargeReasonNil
-
-`func (o *StripeInvoiceListDto) SetChargeReasonNil(b bool)`
-
- SetChargeReasonNil sets the value for ChargeReason to be an explicit nil
-
-### UnsetChargeReason
-`func (o *StripeInvoiceListDto) UnsetChargeReason()`
-
-UnsetChargeReason ensures that no value is present for ChargeReason, not even an explicit nil
 ### GetPrice
 
 `func (o *StripeInvoiceListDto) GetPrice() float64`

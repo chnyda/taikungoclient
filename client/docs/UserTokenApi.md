@@ -4,19 +4,19 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**UsertokenAvailableEndpoints**](UserTokenApi.md#UsertokenAvailableEndpoints) | **Get** /api/v1/usertoken/available-endpoints | Get available endpoint list
-[**UsertokenBindUnbind**](UserTokenApi.md#UsertokenBindUnbind) | **Post** /api/v1/usertoken/bind-unbind | Bind and unbind endpoints
-[**UsertokenCreate**](UserTokenApi.md#UsertokenCreate) | **Post** /api/v1/usertoken/create | Create a new user token
-[**UsertokenDelete**](UserTokenApi.md#UsertokenDelete) | **Delete** /api/v1/usertoken/delete/{id} | 
-[**UsertokenList**](UserTokenApi.md#UsertokenList) | **Get** /api/v1/usertoken/list | Get user token list
+[**UserTokenAvailableEndpointList**](UserTokenApi.md#UserTokenAvailableEndpointList) | **Get** /api/v{v}/UserToken/available-endpoints | Get available endpoints list
+[**UserTokenBindUnbind**](UserTokenApi.md#UserTokenBindUnbind) | **Post** /api/v{v}/UserToken/bind-unbind | Bind and unbind endpoints
+[**UserTokenCreate**](UserTokenApi.md#UserTokenCreate) | **Post** /api/v{v}/UserToken/create | Create a new user token
+[**UserTokenDelete**](UserTokenApi.md#UserTokenDelete) | **Delete** /api/v{v}/UserToken/delete/{id} | Delete token
+[**UserTokenList**](UserTokenApi.md#UserTokenList) | **Get** /api/v{v}/UserToken/list | Get user token list
 
 
 
-## UsertokenAvailableEndpoints
+## UserTokenAvailableEndpointList
 
-> AvailableEndpointsList UsertokenAvailableEndpoints(ctx).IsAdd(isAdd).IsReadonly(isReadonly).Limit(limit).Offset(offset).SortBy(sortBy).SortDirection(sortDirection).Search(search).Id(id).Execute()
+> AvailableEndpointsList UserTokenAvailableEndpointList(ctx, v).Limit(limit).Offset(offset).SortBy(sortBy).SortDirection(sortDirection).Search(search).Id(id).IsAdd(isAdd).IsReadonly(isReadonly).Execute()
 
-Get available endpoint list
+Get available endpoints list
 
 ### Example
 
@@ -31,46 +31,52 @@ import (
 )
 
 func main() {
-    isAdd := true // bool | 
-    isReadonly := true // bool | 
+    v := "v_example" // string | 
     limit := int32(56) // int32 |  (optional)
     offset := int32(56) // int32 |  (optional)
     sortBy := "sortBy_example" // string |  (optional)
     sortDirection := "sortDirection_example" // string |  (optional)
     search := "search_example" // string |  (optional)
     id := "id_example" // string |  (optional)
+    isAdd := true // bool |  (optional)
+    isReadonly := true // bool |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.UserTokenApi.UsertokenAvailableEndpoints(context.Background()).IsAdd(isAdd).IsReadonly(isReadonly).Limit(limit).Offset(offset).SortBy(sortBy).SortDirection(sortDirection).Search(search).Id(id).Execute()
+    resp, r, err := apiClient.UserTokenApi.UserTokenAvailableEndpointList(context.Background(), v).Limit(limit).Offset(offset).SortBy(sortBy).SortDirection(sortDirection).Search(search).Id(id).IsAdd(isAdd).IsReadonly(isReadonly).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UserTokenApi.UsertokenAvailableEndpoints``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `UserTokenApi.UserTokenAvailableEndpointList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UsertokenAvailableEndpoints`: AvailableEndpointsList
-    fmt.Fprintf(os.Stdout, "Response from `UserTokenApi.UsertokenAvailableEndpoints`: %v\n", resp)
+    // response from `UserTokenAvailableEndpointList`: AvailableEndpointsList
+    fmt.Fprintf(os.Stdout, "Response from `UserTokenApi.UserTokenAvailableEndpointList`: %v\n", resp)
 }
 ```
 
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiUsertokenAvailableEndpointsRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiUserTokenAvailableEndpointListRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **isAdd** | **bool** |  | 
- **isReadonly** | **bool** |  | 
+
  **limit** | **int32** |  | 
  **offset** | **int32** |  | 
  **sortBy** | **string** |  | 
  **sortDirection** | **string** |  | 
  **search** | **string** |  | 
  **id** | **string** |  | 
+ **isAdd** | **bool** |  | 
+ **isReadonly** | **bool** |  | 
 
 ### Return type
 
@@ -83,16 +89,16 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## UsertokenBindUnbind
+## UserTokenBindUnbind
 
-> UsertokenBindUnbind(ctx).BindUnbindEndpointToTokenCommand(bindUnbindEndpointToTokenCommand).Execute()
+> UserTokenBindUnbind(ctx, v).Body(body).Execute()
 
 Bind and unbind endpoints
 
@@ -109,13 +115,14 @@ import (
 )
 
 func main() {
-    bindUnbindEndpointToTokenCommand := *openapiclient.NewBindUnbindEndpointToTokenCommand() // BindUnbindEndpointToTokenCommand |  (optional)
+    v := "v_example" // string | 
+    body := *openapiclient.NewBindUnbindEndpointToTokenCommand() // BindUnbindEndpointToTokenCommand | Create command (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.UserTokenApi.UsertokenBindUnbind(context.Background()).BindUnbindEndpointToTokenCommand(bindUnbindEndpointToTokenCommand).Execute()
+    r, err := apiClient.UserTokenApi.UserTokenBindUnbind(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UserTokenApi.UsertokenBindUnbind``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `UserTokenApi.UserTokenBindUnbind``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -124,15 +131,20 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiUsertokenBindUnbindRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiUserTokenBindUnbindRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **bindUnbindEndpointToTokenCommand** | [**BindUnbindEndpointToTokenCommand**](BindUnbindEndpointToTokenCommand.md) |  | 
+
+ **body** | [**BindUnbindEndpointToTokenCommand**](BindUnbindEndpointToTokenCommand.md) | Create command | 
 
 ### Return type
 
@@ -144,17 +156,17 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## UsertokenCreate
+## UserTokenCreate
 
-> UserTokenCreateDto UsertokenCreate(ctx).UserTokenCreateCommand(userTokenCreateCommand).Execute()
+> UserTokenCreateDto UserTokenCreate(ctx, v).Body(body).Execute()
 
 Create a new user token
 
@@ -171,32 +183,38 @@ import (
 )
 
 func main() {
-    userTokenCreateCommand := *openapiclient.NewUserTokenCreateCommand() // UserTokenCreateCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewUserTokenCreateCommand() // UserTokenCreateCommand | Create command (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.UserTokenApi.UsertokenCreate(context.Background()).UserTokenCreateCommand(userTokenCreateCommand).Execute()
+    resp, r, err := apiClient.UserTokenApi.UserTokenCreate(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UserTokenApi.UsertokenCreate``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `UserTokenApi.UserTokenCreate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UsertokenCreate`: UserTokenCreateDto
-    fmt.Fprintf(os.Stdout, "Response from `UserTokenApi.UsertokenCreate`: %v\n", resp)
+    // response from `UserTokenCreate`: UserTokenCreateDto
+    fmt.Fprintf(os.Stdout, "Response from `UserTokenApi.UserTokenCreate`: %v\n", resp)
 }
 ```
 
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiUsertokenCreateRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiUserTokenCreateRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userTokenCreateCommand** | [**UserTokenCreateCommand**](UserTokenCreateCommand.md) |  | 
+
+ **body** | [**UserTokenCreateCommand**](UserTokenCreateCommand.md) | Create command | 
 
 ### Return type
 
@@ -208,19 +226,19 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## UsertokenDelete
+## UserTokenDelete
 
-> UsertokenDelete(ctx, id).Execute()
+> UserTokenDelete(ctx, id, v).Execute()
 
-
+Delete token
 
 ### Example
 
@@ -235,13 +253,14 @@ import (
 )
 
 func main() {
-    id := "id_example" // string | 
+    id := "id_example" // string | Delete command
+    v := "v_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.UserTokenApi.UsertokenDelete(context.Background(), id).Execute()
+    r, err := apiClient.UserTokenApi.UserTokenDelete(context.Background(), id, v).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UserTokenApi.UsertokenDelete``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `UserTokenApi.UserTokenDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -253,15 +272,17 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
+**id** | **string** | Delete command | 
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiUsertokenDeleteRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiUserTokenDeleteRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
 
 
 ### Return type
@@ -275,16 +296,16 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## UsertokenList
+## UserTokenList
 
-> []UserTokensListDto UsertokenList(ctx).Execute()
+> []UserTokensListDto UserTokenList(ctx, v).Execute()
 
 Get user token list
 
@@ -301,26 +322,35 @@ import (
 )
 
 func main() {
+    v := "v_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.UserTokenApi.UsertokenList(context.Background()).Execute()
+    resp, r, err := apiClient.UserTokenApi.UserTokenList(context.Background(), v).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UserTokenApi.UsertokenList``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `UserTokenApi.UserTokenList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UsertokenList`: []UserTokensListDto
-    fmt.Fprintf(os.Stdout, "Response from `UserTokenApi.UsertokenList`: %v\n", resp)
+    // response from `UserTokenList`: []UserTokensListDto
+    fmt.Fprintf(os.Stdout, "Response from `UserTokenApi.UserTokenList`: %v\n", resp)
 }
 ```
 
 ### Path Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiUsertokenListRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiUserTokenListRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
 
 
 ### Return type
@@ -334,7 +364,7 @@ Other parameters are passed through a pointer to a apiUsertokenListRequest struc
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

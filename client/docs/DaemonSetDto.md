@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**MetadataName** | Pointer to **NullableString** |  | [optional] 
-**Status** | Pointer to **NullableString** |  | [optional] 
-**Namespace** | Pointer to **NullableString** |  | [optional] 
-**Age** | Pointer to **NullableString** |  | [optional] 
+**MetadataName** | Pointer to **string** |  | [optional] 
+**Status** | Pointer to **string** |  | [optional] 
+**Namespace** | Pointer to **string** |  | [optional] 
+**Age** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -53,16 +53,6 @@ SetMetadataName sets MetadataName field to given value.
 
 HasMetadataName returns a boolean if a field has been set.
 
-### SetMetadataNameNil
-
-`func (o *DaemonSetDto) SetMetadataNameNil(b bool)`
-
- SetMetadataNameNil sets the value for MetadataName to be an explicit nil
-
-### UnsetMetadataName
-`func (o *DaemonSetDto) UnsetMetadataName()`
-
-UnsetMetadataName ensures that no value is present for MetadataName, not even an explicit nil
 ### GetStatus
 
 `func (o *DaemonSetDto) GetStatus() string`
@@ -88,16 +78,6 @@ SetStatus sets Status field to given value.
 
 HasStatus returns a boolean if a field has been set.
 
-### SetStatusNil
-
-`func (o *DaemonSetDto) SetStatusNil(b bool)`
-
- SetStatusNil sets the value for Status to be an explicit nil
-
-### UnsetStatus
-`func (o *DaemonSetDto) UnsetStatus()`
-
-UnsetStatus ensures that no value is present for Status, not even an explicit nil
 ### GetNamespace
 
 `func (o *DaemonSetDto) GetNamespace() string`
@@ -123,16 +103,6 @@ SetNamespace sets Namespace field to given value.
 
 HasNamespace returns a boolean if a field has been set.
 
-### SetNamespaceNil
-
-`func (o *DaemonSetDto) SetNamespaceNil(b bool)`
-
- SetNamespaceNil sets the value for Namespace to be an explicit nil
-
-### UnsetNamespace
-`func (o *DaemonSetDto) UnsetNamespace()`
-
-UnsetNamespace ensures that no value is present for Namespace, not even an explicit nil
 ### GetAge
 
 `func (o *DaemonSetDto) GetAge() string`
@@ -158,16 +128,6 @@ SetAge sets Age field to given value.
 
 HasAge returns a boolean if a field has been set.
 
-### SetAgeNil
-
-`func (o *DaemonSetDto) SetAgeNil(b bool)`
-
- SetAgeNil sets the value for Age to be an explicit nil
-
-### UnsetAge
-`func (o *DaemonSetDto) UnsetAge()`
-
-UnsetAge ensures that no value is present for Age, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

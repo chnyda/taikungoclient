@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
 **IsBound** | Pointer to **bool** |  | [optional] 
 **HasKubeConfigFile** | Pointer to **bool** |  | [optional] 
 
@@ -78,16 +78,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *CommonDropdownIsBoundDtoForProject) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *CommonDropdownIsBoundDtoForProject) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetIsBound
 
 `func (o *CommonDropdownIsBoundDtoForProject) GetIsBound() bool`

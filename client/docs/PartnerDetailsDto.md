@@ -5,16 +5,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
-**Link** | Pointer to **NullableString** |  | [optional] 
-**Domain** | Pointer to **NullableString** |  | [optional] 
-**Country** | Pointer to **NullableString** |  | [optional] 
-**City** | Pointer to **NullableString** |  | [optional] 
-**VatNumber** | Pointer to **NullableString** |  | [optional] 
-**Address** | Pointer to **NullableString** |  | [optional] 
-**Logo** | Pointer to **NullableString** |  | [optional] 
-**Phone** | Pointer to **NullableString** |  | [optional] 
-**Email** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**Link** | Pointer to **string** |  | [optional] 
+**Domain** | Pointer to **string** |  | [optional] 
+**Country** | Pointer to **string** |  | [optional] 
+**City** | Pointer to **string** |  | [optional] 
+**VatNumber** | Pointer to **string** |  | [optional] 
+**Address** | Pointer to **string** |  | [optional] 
+**Logo** | Pointer to **string** |  | [optional] 
+**Phone** | Pointer to **string** |  | [optional] 
+**Email** | Pointer to **string** |  | [optional] 
 **PaymentEnabled** | Pointer to **bool** |  | [optional] 
 **AllowRegistration** | Pointer to **bool** |  | [optional] 
 **RequiredUserApproval** | Pointer to **bool** |  | [optional] 
@@ -90,16 +90,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *PartnerDetailsDto) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *PartnerDetailsDto) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetLink
 
 `func (o *PartnerDetailsDto) GetLink() string`
@@ -125,16 +115,6 @@ SetLink sets Link field to given value.
 
 HasLink returns a boolean if a field has been set.
 
-### SetLinkNil
-
-`func (o *PartnerDetailsDto) SetLinkNil(b bool)`
-
- SetLinkNil sets the value for Link to be an explicit nil
-
-### UnsetLink
-`func (o *PartnerDetailsDto) UnsetLink()`
-
-UnsetLink ensures that no value is present for Link, not even an explicit nil
 ### GetDomain
 
 `func (o *PartnerDetailsDto) GetDomain() string`
@@ -160,16 +140,6 @@ SetDomain sets Domain field to given value.
 
 HasDomain returns a boolean if a field has been set.
 
-### SetDomainNil
-
-`func (o *PartnerDetailsDto) SetDomainNil(b bool)`
-
- SetDomainNil sets the value for Domain to be an explicit nil
-
-### UnsetDomain
-`func (o *PartnerDetailsDto) UnsetDomain()`
-
-UnsetDomain ensures that no value is present for Domain, not even an explicit nil
 ### GetCountry
 
 `func (o *PartnerDetailsDto) GetCountry() string`
@@ -195,16 +165,6 @@ SetCountry sets Country field to given value.
 
 HasCountry returns a boolean if a field has been set.
 
-### SetCountryNil
-
-`func (o *PartnerDetailsDto) SetCountryNil(b bool)`
-
- SetCountryNil sets the value for Country to be an explicit nil
-
-### UnsetCountry
-`func (o *PartnerDetailsDto) UnsetCountry()`
-
-UnsetCountry ensures that no value is present for Country, not even an explicit nil
 ### GetCity
 
 `func (o *PartnerDetailsDto) GetCity() string`
@@ -230,16 +190,6 @@ SetCity sets City field to given value.
 
 HasCity returns a boolean if a field has been set.
 
-### SetCityNil
-
-`func (o *PartnerDetailsDto) SetCityNil(b bool)`
-
- SetCityNil sets the value for City to be an explicit nil
-
-### UnsetCity
-`func (o *PartnerDetailsDto) UnsetCity()`
-
-UnsetCity ensures that no value is present for City, not even an explicit nil
 ### GetVatNumber
 
 `func (o *PartnerDetailsDto) GetVatNumber() string`
@@ -265,16 +215,6 @@ SetVatNumber sets VatNumber field to given value.
 
 HasVatNumber returns a boolean if a field has been set.
 
-### SetVatNumberNil
-
-`func (o *PartnerDetailsDto) SetVatNumberNil(b bool)`
-
- SetVatNumberNil sets the value for VatNumber to be an explicit nil
-
-### UnsetVatNumber
-`func (o *PartnerDetailsDto) UnsetVatNumber()`
-
-UnsetVatNumber ensures that no value is present for VatNumber, not even an explicit nil
 ### GetAddress
 
 `func (o *PartnerDetailsDto) GetAddress() string`
@@ -300,16 +240,6 @@ SetAddress sets Address field to given value.
 
 HasAddress returns a boolean if a field has been set.
 
-### SetAddressNil
-
-`func (o *PartnerDetailsDto) SetAddressNil(b bool)`
-
- SetAddressNil sets the value for Address to be an explicit nil
-
-### UnsetAddress
-`func (o *PartnerDetailsDto) UnsetAddress()`
-
-UnsetAddress ensures that no value is present for Address, not even an explicit nil
 ### GetLogo
 
 `func (o *PartnerDetailsDto) GetLogo() string`
@@ -335,16 +265,6 @@ SetLogo sets Logo field to given value.
 
 HasLogo returns a boolean if a field has been set.
 
-### SetLogoNil
-
-`func (o *PartnerDetailsDto) SetLogoNil(b bool)`
-
- SetLogoNil sets the value for Logo to be an explicit nil
-
-### UnsetLogo
-`func (o *PartnerDetailsDto) UnsetLogo()`
-
-UnsetLogo ensures that no value is present for Logo, not even an explicit nil
 ### GetPhone
 
 `func (o *PartnerDetailsDto) GetPhone() string`
@@ -370,16 +290,6 @@ SetPhone sets Phone field to given value.
 
 HasPhone returns a boolean if a field has been set.
 
-### SetPhoneNil
-
-`func (o *PartnerDetailsDto) SetPhoneNil(b bool)`
-
- SetPhoneNil sets the value for Phone to be an explicit nil
-
-### UnsetPhone
-`func (o *PartnerDetailsDto) UnsetPhone()`
-
-UnsetPhone ensures that no value is present for Phone, not even an explicit nil
 ### GetEmail
 
 `func (o *PartnerDetailsDto) GetEmail() string`
@@ -405,16 +315,6 @@ SetEmail sets Email field to given value.
 
 HasEmail returns a boolean if a field has been set.
 
-### SetEmailNil
-
-`func (o *PartnerDetailsDto) SetEmailNil(b bool)`
-
- SetEmailNil sets the value for Email to be an explicit nil
-
-### UnsetEmail
-`func (o *PartnerDetailsDto) UnsetEmail()`
-
-UnsetEmail ensures that no value is present for Email, not even an explicit nil
 ### GetPaymentEnabled
 
 `func (o *PartnerDetailsDto) GetPaymentEnabled() bool`
@@ -515,16 +415,6 @@ SetOrganizations sets Organizations field to given value.
 
 HasOrganizations returns a boolean if a field has been set.
 
-### SetOrganizationsNil
-
-`func (o *PartnerDetailsDto) SetOrganizationsNil(b bool)`
-
- SetOrganizationsNil sets the value for Organizations to be an explicit nil
-
-### UnsetOrganizations
-`func (o *PartnerDetailsDto) UnsetOrganizations()`
-
-UnsetOrganizations ensures that no value is present for Organizations, not even an explicit nil
 ### GetWhiteListDomains
 
 `func (o *PartnerDetailsDto) GetWhiteListDomains() []WhiteListDomainDto`
@@ -550,16 +440,6 @@ SetWhiteListDomains sets WhiteListDomains field to given value.
 
 HasWhiteListDomains returns a boolean if a field has been set.
 
-### SetWhiteListDomainsNil
-
-`func (o *PartnerDetailsDto) SetWhiteListDomainsNil(b bool)`
-
- SetWhiteListDomainsNil sets the value for WhiteListDomains to be an explicit nil
-
-### UnsetWhiteListDomains
-`func (o *PartnerDetailsDto) UnsetWhiteListDomains()`
-
-UnsetWhiteListDomains ensures that no value is present for WhiteListDomains, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -20,15 +20,15 @@ var _ MappedNullable = &ChangePasswordCommand{}
 
 // ChangePasswordCommand struct for ChangePasswordCommand
 type ChangePasswordCommand struct {
-	Password interface{} `json:"password"`
-	NewPassword interface{} `json:"newPassword"`
+	Password AdminUserCreateCommandPassword `json:"password"`
+	NewPassword AdminUserCreateCommandPassword `json:"newPassword"`
 }
 
 // NewChangePasswordCommand instantiates a new ChangePasswordCommand object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewChangePasswordCommand(password interface{}, newPassword interface{}) *ChangePasswordCommand {
+func NewChangePasswordCommand(password AdminUserCreateCommandPassword, newPassword AdminUserCreateCommandPassword) *ChangePasswordCommand {
 	this := ChangePasswordCommand{}
 	this.Password = password
 	this.NewPassword = newPassword
@@ -44,9 +44,9 @@ func NewChangePasswordCommandWithDefaults() *ChangePasswordCommand {
 }
 
 // GetPassword returns the Password field value
-func (o *ChangePasswordCommand) GetPassword() interface{} {
+func (o *ChangePasswordCommand) GetPassword() AdminUserCreateCommandPassword {
 	if o == nil {
-		var ret interface{}
+		var ret AdminUserCreateCommandPassword
 		return ret
 	}
 
@@ -55,7 +55,7 @@ func (o *ChangePasswordCommand) GetPassword() interface{} {
 
 // GetPasswordOk returns a tuple with the Password field value
 // and a boolean to check if the value has been set.
-func (o *ChangePasswordCommand) GetPasswordOk() (*interface{}, bool) {
+func (o *ChangePasswordCommand) GetPasswordOk() (*AdminUserCreateCommandPassword, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -63,14 +63,14 @@ func (o *ChangePasswordCommand) GetPasswordOk() (*interface{}, bool) {
 }
 
 // SetPassword sets field value
-func (o *ChangePasswordCommand) SetPassword(v interface{}) {
+func (o *ChangePasswordCommand) SetPassword(v AdminUserCreateCommandPassword) {
 	o.Password = v
 }
 
 // GetNewPassword returns the NewPassword field value
-func (o *ChangePasswordCommand) GetNewPassword() interface{} {
+func (o *ChangePasswordCommand) GetNewPassword() AdminUserCreateCommandPassword {
 	if o == nil {
-		var ret interface{}
+		var ret AdminUserCreateCommandPassword
 		return ret
 	}
 
@@ -79,7 +79,7 @@ func (o *ChangePasswordCommand) GetNewPassword() interface{} {
 
 // GetNewPasswordOk returns a tuple with the NewPassword field value
 // and a boolean to check if the value has been set.
-func (o *ChangePasswordCommand) GetNewPasswordOk() (*interface{}, bool) {
+func (o *ChangePasswordCommand) GetNewPasswordOk() (*AdminUserCreateCommandPassword, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -87,7 +87,7 @@ func (o *ChangePasswordCommand) GetNewPasswordOk() (*interface{}, bool) {
 }
 
 // SetNewPassword sets field value
-func (o *ChangePasswordCommand) SetNewPassword(v interface{}) {
+func (o *ChangePasswordCommand) SetNewPassword(v AdminUserCreateCommandPassword) {
 	o.NewPassword = v
 }
 

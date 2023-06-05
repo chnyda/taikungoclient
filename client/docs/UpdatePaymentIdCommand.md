@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**PaymentMethodId** | Pointer to **NullableString** |  | [optional] 
-**PaymentIntentId** | Pointer to **NullableString** |  | [optional] 
+**PaymentMethodId** | Pointer to **string** |  | [optional] 
+**PaymentIntentId** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -51,16 +51,6 @@ SetPaymentMethodId sets PaymentMethodId field to given value.
 
 HasPaymentMethodId returns a boolean if a field has been set.
 
-### SetPaymentMethodIdNil
-
-`func (o *UpdatePaymentIdCommand) SetPaymentMethodIdNil(b bool)`
-
- SetPaymentMethodIdNil sets the value for PaymentMethodId to be an explicit nil
-
-### UnsetPaymentMethodId
-`func (o *UpdatePaymentIdCommand) UnsetPaymentMethodId()`
-
-UnsetPaymentMethodId ensures that no value is present for PaymentMethodId, not even an explicit nil
 ### GetPaymentIntentId
 
 `func (o *UpdatePaymentIdCommand) GetPaymentIntentId() string`
@@ -86,16 +76,6 @@ SetPaymentIntentId sets PaymentIntentId field to given value.
 
 HasPaymentIntentId returns a boolean if a field has been set.
 
-### SetPaymentIntentIdNil
-
-`func (o *UpdatePaymentIdCommand) SetPaymentIntentIdNil(b bool)`
-
- SetPaymentIntentIdNil sets the value for PaymentIntentId to be an explicit nil
-
-### UnsetPaymentIntentId
-`func (o *UpdatePaymentIdCommand) UnsetPaymentIntentId()`
-
-UnsetPaymentIntentId ensures that no value is present for PaymentIntentId, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

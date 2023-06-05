@@ -74,16 +74,6 @@ SetIncludeNamespaces sets IncludeNamespaces field to given value.
 
 HasIncludeNamespaces returns a boolean if a field has been set.
 
-### SetIncludeNamespacesNil
-
-`func (o *CreateBackupPolicyCommand) SetIncludeNamespacesNil(b bool)`
-
- SetIncludeNamespacesNil sets the value for IncludeNamespaces to be an explicit nil
-
-### UnsetIncludeNamespaces
-`func (o *CreateBackupPolicyCommand) UnsetIncludeNamespaces()`
-
-UnsetIncludeNamespaces ensures that no value is present for IncludeNamespaces, not even an explicit nil
 ### GetCronPeriod
 
 `func (o *CreateBackupPolicyCommand) GetCronPeriod() string`

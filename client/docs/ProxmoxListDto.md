@@ -7,22 +7,21 @@ Name | Type | Description | Notes
 **Id** | Pointer to **int32** |  | [optional] 
 **ProjectCount** | Pointer to **int32** |  | [optional] 
 **IsLocked** | Pointer to **bool** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
 **Projects** | Pointer to [**[]CommonDropdownDto**](CommonDropdownDto.md) |  | [optional] 
-**CreatedBy** | Pointer to **NullableString** |  | [optional] 
-**CreatedAt** | Pointer to **NullableString** |  | [optional] 
-**LastModified** | Pointer to **NullableString** |  | [optional] 
-**LastModifiedBy** | Pointer to **NullableString** |  | [optional] 
+**CreatedBy** | Pointer to **string** |  | [optional] 
+**CreatedAt** | Pointer to **string** |  | [optional] 
+**LastModified** | Pointer to **string** |  | [optional] 
+**LastModifiedBy** | Pointer to **string** |  | [optional] 
 **IsDefault** | Pointer to **bool** |  | [optional] 
 **OrganizationId** | Pointer to **int32** |  | [optional] 
-**OrganizationName** | Pointer to **NullableString** |  | [optional] 
-**ContinentName** | Pointer to **NullableString** |  | [optional] 
+**OrganizationName** | Pointer to **string** |  | [optional] 
+**ContinentName** | Pointer to **string** |  | [optional] 
 **Hypervisors** | Pointer to [**[]CommonDropdownDto**](CommonDropdownDto.md) |  | [optional] 
-**Username** | Pointer to **NullableString** |  | [optional] 
-**Url** | Pointer to **NullableString** |  | [optional] 
-**Password** | Pointer to **NullableString** |  | [optional] 
-**Storage** | Pointer to **NullableString** |  | [optional] 
-**VmTemplateName** | Pointer to **NullableString** |  | [optional] 
+**TokenId** | Pointer to **string** |  | [optional] 
+**Url** | Pointer to **string** |  | [optional] 
+**Storage** | Pointer to **string** |  | [optional] 
+**VmTemplateName** | Pointer to **string** |  | [optional] 
 **ProxmoxNetworks** | Pointer to [**[]ProxmoxNetworkListDto**](ProxmoxNetworkListDto.md) |  | [optional] 
 
 ## Methods
@@ -144,16 +143,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *ProxmoxListDto) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *ProxmoxListDto) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetProjects
 
 `func (o *ProxmoxListDto) GetProjects() []CommonDropdownDto`
@@ -179,16 +168,6 @@ SetProjects sets Projects field to given value.
 
 HasProjects returns a boolean if a field has been set.
 
-### SetProjectsNil
-
-`func (o *ProxmoxListDto) SetProjectsNil(b bool)`
-
- SetProjectsNil sets the value for Projects to be an explicit nil
-
-### UnsetProjects
-`func (o *ProxmoxListDto) UnsetProjects()`
-
-UnsetProjects ensures that no value is present for Projects, not even an explicit nil
 ### GetCreatedBy
 
 `func (o *ProxmoxListDto) GetCreatedBy() string`
@@ -214,16 +193,6 @@ SetCreatedBy sets CreatedBy field to given value.
 
 HasCreatedBy returns a boolean if a field has been set.
 
-### SetCreatedByNil
-
-`func (o *ProxmoxListDto) SetCreatedByNil(b bool)`
-
- SetCreatedByNil sets the value for CreatedBy to be an explicit nil
-
-### UnsetCreatedBy
-`func (o *ProxmoxListDto) UnsetCreatedBy()`
-
-UnsetCreatedBy ensures that no value is present for CreatedBy, not even an explicit nil
 ### GetCreatedAt
 
 `func (o *ProxmoxListDto) GetCreatedAt() string`
@@ -249,16 +218,6 @@ SetCreatedAt sets CreatedAt field to given value.
 
 HasCreatedAt returns a boolean if a field has been set.
 
-### SetCreatedAtNil
-
-`func (o *ProxmoxListDto) SetCreatedAtNil(b bool)`
-
- SetCreatedAtNil sets the value for CreatedAt to be an explicit nil
-
-### UnsetCreatedAt
-`func (o *ProxmoxListDto) UnsetCreatedAt()`
-
-UnsetCreatedAt ensures that no value is present for CreatedAt, not even an explicit nil
 ### GetLastModified
 
 `func (o *ProxmoxListDto) GetLastModified() string`
@@ -284,16 +243,6 @@ SetLastModified sets LastModified field to given value.
 
 HasLastModified returns a boolean if a field has been set.
 
-### SetLastModifiedNil
-
-`func (o *ProxmoxListDto) SetLastModifiedNil(b bool)`
-
- SetLastModifiedNil sets the value for LastModified to be an explicit nil
-
-### UnsetLastModified
-`func (o *ProxmoxListDto) UnsetLastModified()`
-
-UnsetLastModified ensures that no value is present for LastModified, not even an explicit nil
 ### GetLastModifiedBy
 
 `func (o *ProxmoxListDto) GetLastModifiedBy() string`
@@ -319,16 +268,6 @@ SetLastModifiedBy sets LastModifiedBy field to given value.
 
 HasLastModifiedBy returns a boolean if a field has been set.
 
-### SetLastModifiedByNil
-
-`func (o *ProxmoxListDto) SetLastModifiedByNil(b bool)`
-
- SetLastModifiedByNil sets the value for LastModifiedBy to be an explicit nil
-
-### UnsetLastModifiedBy
-`func (o *ProxmoxListDto) UnsetLastModifiedBy()`
-
-UnsetLastModifiedBy ensures that no value is present for LastModifiedBy, not even an explicit nil
 ### GetIsDefault
 
 `func (o *ProxmoxListDto) GetIsDefault() bool`
@@ -404,16 +343,6 @@ SetOrganizationName sets OrganizationName field to given value.
 
 HasOrganizationName returns a boolean if a field has been set.
 
-### SetOrganizationNameNil
-
-`func (o *ProxmoxListDto) SetOrganizationNameNil(b bool)`
-
- SetOrganizationNameNil sets the value for OrganizationName to be an explicit nil
-
-### UnsetOrganizationName
-`func (o *ProxmoxListDto) UnsetOrganizationName()`
-
-UnsetOrganizationName ensures that no value is present for OrganizationName, not even an explicit nil
 ### GetContinentName
 
 `func (o *ProxmoxListDto) GetContinentName() string`
@@ -439,16 +368,6 @@ SetContinentName sets ContinentName field to given value.
 
 HasContinentName returns a boolean if a field has been set.
 
-### SetContinentNameNil
-
-`func (o *ProxmoxListDto) SetContinentNameNil(b bool)`
-
- SetContinentNameNil sets the value for ContinentName to be an explicit nil
-
-### UnsetContinentName
-`func (o *ProxmoxListDto) UnsetContinentName()`
-
-UnsetContinentName ensures that no value is present for ContinentName, not even an explicit nil
 ### GetHypervisors
 
 `func (o *ProxmoxListDto) GetHypervisors() []CommonDropdownDto`
@@ -474,51 +393,31 @@ SetHypervisors sets Hypervisors field to given value.
 
 HasHypervisors returns a boolean if a field has been set.
 
-### SetHypervisorsNil
+### GetTokenId
 
-`func (o *ProxmoxListDto) SetHypervisorsNil(b bool)`
+`func (o *ProxmoxListDto) GetTokenId() string`
 
- SetHypervisorsNil sets the value for Hypervisors to be an explicit nil
+GetTokenId returns the TokenId field if non-nil, zero value otherwise.
 
-### UnsetHypervisors
-`func (o *ProxmoxListDto) UnsetHypervisors()`
+### GetTokenIdOk
 
-UnsetHypervisors ensures that no value is present for Hypervisors, not even an explicit nil
-### GetUsername
+`func (o *ProxmoxListDto) GetTokenIdOk() (*string, bool)`
 
-`func (o *ProxmoxListDto) GetUsername() string`
-
-GetUsername returns the Username field if non-nil, zero value otherwise.
-
-### GetUsernameOk
-
-`func (o *ProxmoxListDto) GetUsernameOk() (*string, bool)`
-
-GetUsernameOk returns a tuple with the Username field if it's non-nil, zero value otherwise
+GetTokenIdOk returns a tuple with the TokenId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetUsername
+### SetTokenId
 
-`func (o *ProxmoxListDto) SetUsername(v string)`
+`func (o *ProxmoxListDto) SetTokenId(v string)`
 
-SetUsername sets Username field to given value.
+SetTokenId sets TokenId field to given value.
 
-### HasUsername
+### HasTokenId
 
-`func (o *ProxmoxListDto) HasUsername() bool`
+`func (o *ProxmoxListDto) HasTokenId() bool`
 
-HasUsername returns a boolean if a field has been set.
+HasTokenId returns a boolean if a field has been set.
 
-### SetUsernameNil
-
-`func (o *ProxmoxListDto) SetUsernameNil(b bool)`
-
- SetUsernameNil sets the value for Username to be an explicit nil
-
-### UnsetUsername
-`func (o *ProxmoxListDto) UnsetUsername()`
-
-UnsetUsername ensures that no value is present for Username, not even an explicit nil
 ### GetUrl
 
 `func (o *ProxmoxListDto) GetUrl() string`
@@ -544,51 +443,6 @@ SetUrl sets Url field to given value.
 
 HasUrl returns a boolean if a field has been set.
 
-### SetUrlNil
-
-`func (o *ProxmoxListDto) SetUrlNil(b bool)`
-
- SetUrlNil sets the value for Url to be an explicit nil
-
-### UnsetUrl
-`func (o *ProxmoxListDto) UnsetUrl()`
-
-UnsetUrl ensures that no value is present for Url, not even an explicit nil
-### GetPassword
-
-`func (o *ProxmoxListDto) GetPassword() string`
-
-GetPassword returns the Password field if non-nil, zero value otherwise.
-
-### GetPasswordOk
-
-`func (o *ProxmoxListDto) GetPasswordOk() (*string, bool)`
-
-GetPasswordOk returns a tuple with the Password field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPassword
-
-`func (o *ProxmoxListDto) SetPassword(v string)`
-
-SetPassword sets Password field to given value.
-
-### HasPassword
-
-`func (o *ProxmoxListDto) HasPassword() bool`
-
-HasPassword returns a boolean if a field has been set.
-
-### SetPasswordNil
-
-`func (o *ProxmoxListDto) SetPasswordNil(b bool)`
-
- SetPasswordNil sets the value for Password to be an explicit nil
-
-### UnsetPassword
-`func (o *ProxmoxListDto) UnsetPassword()`
-
-UnsetPassword ensures that no value is present for Password, not even an explicit nil
 ### GetStorage
 
 `func (o *ProxmoxListDto) GetStorage() string`
@@ -614,16 +468,6 @@ SetStorage sets Storage field to given value.
 
 HasStorage returns a boolean if a field has been set.
 
-### SetStorageNil
-
-`func (o *ProxmoxListDto) SetStorageNil(b bool)`
-
- SetStorageNil sets the value for Storage to be an explicit nil
-
-### UnsetStorage
-`func (o *ProxmoxListDto) UnsetStorage()`
-
-UnsetStorage ensures that no value is present for Storage, not even an explicit nil
 ### GetVmTemplateName
 
 `func (o *ProxmoxListDto) GetVmTemplateName() string`
@@ -649,16 +493,6 @@ SetVmTemplateName sets VmTemplateName field to given value.
 
 HasVmTemplateName returns a boolean if a field has been set.
 
-### SetVmTemplateNameNil
-
-`func (o *ProxmoxListDto) SetVmTemplateNameNil(b bool)`
-
- SetVmTemplateNameNil sets the value for VmTemplateName to be an explicit nil
-
-### UnsetVmTemplateName
-`func (o *ProxmoxListDto) UnsetVmTemplateName()`
-
-UnsetVmTemplateName ensures that no value is present for VmTemplateName, not even an explicit nil
 ### GetProxmoxNetworks
 
 `func (o *ProxmoxListDto) GetProxmoxNetworks() []ProxmoxNetworkListDto`
@@ -684,16 +518,6 @@ SetProxmoxNetworks sets ProxmoxNetworks field to given value.
 
 HasProxmoxNetworks returns a boolean if a field has been set.
 
-### SetProxmoxNetworksNil
-
-`func (o *ProxmoxListDto) SetProxmoxNetworksNil(b bool)`
-
- SetProxmoxNetworksNil sets the value for ProxmoxNetworks to be an explicit nil
-
-### UnsetProxmoxNetworks
-`func (o *ProxmoxListDto) UnsetProxmoxNetworks()`
-
-UnsetProxmoxNetworks ensures that no value is present for ProxmoxNetworks, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

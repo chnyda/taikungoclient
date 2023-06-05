@@ -5,22 +5,22 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
 **Cpu** | Pointer to **int32** |  | [optional] 
 **Ram** | Pointer to **int64** |  | [optional] 
-**ProjectId** | Pointer to **NullableInt32** |  | [optional] 
+**ProjectId** | Pointer to **int32** |  | [optional] 
 **IsAzure** | Pointer to **bool** |  | [optional] 
 **IsAws** | Pointer to **bool** |  | [optional] 
 **IsOpenstack** | Pointer to **bool** |  | [optional] 
 **IsGoogle** | Pointer to **bool** |  | [optional] 
-**ProjectName** | Pointer to **NullableString** |  | [optional] 
-**MaxDataDiskCount** | Pointer to **NullableInt32** |  | [optional] 
-**IsLinuxSpotPrice** | Pointer to **bool** |  | [optional] 
-**IsWindowsSpotPrice** | Pointer to **bool** |  | [optional] 
-**LinuxSpotPrice** | Pointer to **NullableString** |  | [optional] 
-**LinuxPrice** | Pointer to **NullableString** |  | [optional] 
-**WindowsSpotPrice** | Pointer to **NullableString** |  | [optional] 
-**WindowsPrice** | Pointer to **NullableString** |  | [optional] 
+**ProjectName** | Pointer to **string** |  | [optional] 
+**MaxDataDiskCount** | Pointer to **int32** |  | [optional] 
+**HasLinuxSpotPrice** | Pointer to **bool** |  | [optional] 
+**HasWindowsSpotPrice** | Pointer to **bool** |  | [optional] 
+**LinuxSpotPrice** | Pointer to **string** |  | [optional] 
+**LinuxPrice** | Pointer to **string** |  | [optional] 
+**WindowsSpotPrice** | Pointer to **string** |  | [optional] 
+**WindowsPrice** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -91,16 +91,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *BoundFlavorsForProjectsListDto) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *BoundFlavorsForProjectsListDto) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetCpu
 
 `func (o *BoundFlavorsForProjectsListDto) GetCpu() int32`
@@ -176,16 +166,6 @@ SetProjectId sets ProjectId field to given value.
 
 HasProjectId returns a boolean if a field has been set.
 
-### SetProjectIdNil
-
-`func (o *BoundFlavorsForProjectsListDto) SetProjectIdNil(b bool)`
-
- SetProjectIdNil sets the value for ProjectId to be an explicit nil
-
-### UnsetProjectId
-`func (o *BoundFlavorsForProjectsListDto) UnsetProjectId()`
-
-UnsetProjectId ensures that no value is present for ProjectId, not even an explicit nil
 ### GetIsAzure
 
 `func (o *BoundFlavorsForProjectsListDto) GetIsAzure() bool`
@@ -311,16 +291,6 @@ SetProjectName sets ProjectName field to given value.
 
 HasProjectName returns a boolean if a field has been set.
 
-### SetProjectNameNil
-
-`func (o *BoundFlavorsForProjectsListDto) SetProjectNameNil(b bool)`
-
- SetProjectNameNil sets the value for ProjectName to be an explicit nil
-
-### UnsetProjectName
-`func (o *BoundFlavorsForProjectsListDto) UnsetProjectName()`
-
-UnsetProjectName ensures that no value is present for ProjectName, not even an explicit nil
 ### GetMaxDataDiskCount
 
 `func (o *BoundFlavorsForProjectsListDto) GetMaxDataDiskCount() int32`
@@ -346,65 +316,55 @@ SetMaxDataDiskCount sets MaxDataDiskCount field to given value.
 
 HasMaxDataDiskCount returns a boolean if a field has been set.
 
-### SetMaxDataDiskCountNil
+### GetHasLinuxSpotPrice
 
-`func (o *BoundFlavorsForProjectsListDto) SetMaxDataDiskCountNil(b bool)`
+`func (o *BoundFlavorsForProjectsListDto) GetHasLinuxSpotPrice() bool`
 
- SetMaxDataDiskCountNil sets the value for MaxDataDiskCount to be an explicit nil
+GetHasLinuxSpotPrice returns the HasLinuxSpotPrice field if non-nil, zero value otherwise.
 
-### UnsetMaxDataDiskCount
-`func (o *BoundFlavorsForProjectsListDto) UnsetMaxDataDiskCount()`
+### GetHasLinuxSpotPriceOk
 
-UnsetMaxDataDiskCount ensures that no value is present for MaxDataDiskCount, not even an explicit nil
-### GetIsLinuxSpotPrice
+`func (o *BoundFlavorsForProjectsListDto) GetHasLinuxSpotPriceOk() (*bool, bool)`
 
-`func (o *BoundFlavorsForProjectsListDto) GetIsLinuxSpotPrice() bool`
-
-GetIsLinuxSpotPrice returns the IsLinuxSpotPrice field if non-nil, zero value otherwise.
-
-### GetIsLinuxSpotPriceOk
-
-`func (o *BoundFlavorsForProjectsListDto) GetIsLinuxSpotPriceOk() (*bool, bool)`
-
-GetIsLinuxSpotPriceOk returns a tuple with the IsLinuxSpotPrice field if it's non-nil, zero value otherwise
+GetHasLinuxSpotPriceOk returns a tuple with the HasLinuxSpotPrice field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetIsLinuxSpotPrice
+### SetHasLinuxSpotPrice
 
-`func (o *BoundFlavorsForProjectsListDto) SetIsLinuxSpotPrice(v bool)`
+`func (o *BoundFlavorsForProjectsListDto) SetHasLinuxSpotPrice(v bool)`
 
-SetIsLinuxSpotPrice sets IsLinuxSpotPrice field to given value.
+SetHasLinuxSpotPrice sets HasLinuxSpotPrice field to given value.
 
-### HasIsLinuxSpotPrice
+### HasHasLinuxSpotPrice
 
-`func (o *BoundFlavorsForProjectsListDto) HasIsLinuxSpotPrice() bool`
+`func (o *BoundFlavorsForProjectsListDto) HasHasLinuxSpotPrice() bool`
 
-HasIsLinuxSpotPrice returns a boolean if a field has been set.
+HasHasLinuxSpotPrice returns a boolean if a field has been set.
 
-### GetIsWindowsSpotPrice
+### GetHasWindowsSpotPrice
 
-`func (o *BoundFlavorsForProjectsListDto) GetIsWindowsSpotPrice() bool`
+`func (o *BoundFlavorsForProjectsListDto) GetHasWindowsSpotPrice() bool`
 
-GetIsWindowsSpotPrice returns the IsWindowsSpotPrice field if non-nil, zero value otherwise.
+GetHasWindowsSpotPrice returns the HasWindowsSpotPrice field if non-nil, zero value otherwise.
 
-### GetIsWindowsSpotPriceOk
+### GetHasWindowsSpotPriceOk
 
-`func (o *BoundFlavorsForProjectsListDto) GetIsWindowsSpotPriceOk() (*bool, bool)`
+`func (o *BoundFlavorsForProjectsListDto) GetHasWindowsSpotPriceOk() (*bool, bool)`
 
-GetIsWindowsSpotPriceOk returns a tuple with the IsWindowsSpotPrice field if it's non-nil, zero value otherwise
+GetHasWindowsSpotPriceOk returns a tuple with the HasWindowsSpotPrice field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetIsWindowsSpotPrice
+### SetHasWindowsSpotPrice
 
-`func (o *BoundFlavorsForProjectsListDto) SetIsWindowsSpotPrice(v bool)`
+`func (o *BoundFlavorsForProjectsListDto) SetHasWindowsSpotPrice(v bool)`
 
-SetIsWindowsSpotPrice sets IsWindowsSpotPrice field to given value.
+SetHasWindowsSpotPrice sets HasWindowsSpotPrice field to given value.
 
-### HasIsWindowsSpotPrice
+### HasHasWindowsSpotPrice
 
-`func (o *BoundFlavorsForProjectsListDto) HasIsWindowsSpotPrice() bool`
+`func (o *BoundFlavorsForProjectsListDto) HasHasWindowsSpotPrice() bool`
 
-HasIsWindowsSpotPrice returns a boolean if a field has been set.
+HasHasWindowsSpotPrice returns a boolean if a field has been set.
 
 ### GetLinuxSpotPrice
 
@@ -431,16 +391,6 @@ SetLinuxSpotPrice sets LinuxSpotPrice field to given value.
 
 HasLinuxSpotPrice returns a boolean if a field has been set.
 
-### SetLinuxSpotPriceNil
-
-`func (o *BoundFlavorsForProjectsListDto) SetLinuxSpotPriceNil(b bool)`
-
- SetLinuxSpotPriceNil sets the value for LinuxSpotPrice to be an explicit nil
-
-### UnsetLinuxSpotPrice
-`func (o *BoundFlavorsForProjectsListDto) UnsetLinuxSpotPrice()`
-
-UnsetLinuxSpotPrice ensures that no value is present for LinuxSpotPrice, not even an explicit nil
 ### GetLinuxPrice
 
 `func (o *BoundFlavorsForProjectsListDto) GetLinuxPrice() string`
@@ -466,16 +416,6 @@ SetLinuxPrice sets LinuxPrice field to given value.
 
 HasLinuxPrice returns a boolean if a field has been set.
 
-### SetLinuxPriceNil
-
-`func (o *BoundFlavorsForProjectsListDto) SetLinuxPriceNil(b bool)`
-
- SetLinuxPriceNil sets the value for LinuxPrice to be an explicit nil
-
-### UnsetLinuxPrice
-`func (o *BoundFlavorsForProjectsListDto) UnsetLinuxPrice()`
-
-UnsetLinuxPrice ensures that no value is present for LinuxPrice, not even an explicit nil
 ### GetWindowsSpotPrice
 
 `func (o *BoundFlavorsForProjectsListDto) GetWindowsSpotPrice() string`
@@ -501,16 +441,6 @@ SetWindowsSpotPrice sets WindowsSpotPrice field to given value.
 
 HasWindowsSpotPrice returns a boolean if a field has been set.
 
-### SetWindowsSpotPriceNil
-
-`func (o *BoundFlavorsForProjectsListDto) SetWindowsSpotPriceNil(b bool)`
-
- SetWindowsSpotPriceNil sets the value for WindowsSpotPrice to be an explicit nil
-
-### UnsetWindowsSpotPrice
-`func (o *BoundFlavorsForProjectsListDto) UnsetWindowsSpotPrice()`
-
-UnsetWindowsSpotPrice ensures that no value is present for WindowsSpotPrice, not even an explicit nil
 ### GetWindowsPrice
 
 `func (o *BoundFlavorsForProjectsListDto) GetWindowsPrice() string`
@@ -536,16 +466,6 @@ SetWindowsPrice sets WindowsPrice field to given value.
 
 HasWindowsPrice returns a boolean if a field has been set.
 
-### SetWindowsPriceNil
-
-`func (o *BoundFlavorsForProjectsListDto) SetWindowsPriceNil(b bool)`
-
- SetWindowsPriceNil sets the value for WindowsPrice to be an explicit nil
-
-### UnsetWindowsPrice
-`func (o *BoundFlavorsForProjectsListDto) UnsetWindowsPrice()`
-
-UnsetWindowsPrice ensures that no value is present for WindowsPrice, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

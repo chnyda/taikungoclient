@@ -21,11 +21,11 @@ var _ MappedNullable = &TanzuImagesListDto{}
 
 // TanzuImagesListDto struct for TanzuImagesListDto
 type TanzuImagesListDto struct {
-	ImageId NullableString `json:"imageId,omitempty"`
-	Name NullableString `json:"name,omitempty"`
+	ImageId *string `json:"imageId,omitempty"`
+	Name *string `json:"name,omitempty"`
 	CreatedAt *time.Time `json:"createdAt,omitempty"`
-	Type NullableString `json:"type,omitempty"`
-	Details interface{} `json:"details,omitempty"`
+	Type *string `json:"type,omitempty"`
+	Details map[string]interface{} `json:"details,omitempty"`
 }
 
 // NewTanzuImagesListDto instantiates a new TanzuImagesListDto object
@@ -45,88 +45,68 @@ func NewTanzuImagesListDtoWithDefaults() *TanzuImagesListDto {
 	return &this
 }
 
-// GetImageId returns the ImageId field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetImageId returns the ImageId field value if set, zero value otherwise.
 func (o *TanzuImagesListDto) GetImageId() string {
-	if o == nil || IsNil(o.ImageId.Get()) {
+	if o == nil || IsNil(o.ImageId) {
 		var ret string
 		return ret
 	}
-	return *o.ImageId.Get()
+	return *o.ImageId
 }
 
 // GetImageIdOk returns a tuple with the ImageId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *TanzuImagesListDto) GetImageIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ImageId) {
 		return nil, false
 	}
-	return o.ImageId.Get(), o.ImageId.IsSet()
+	return o.ImageId, true
 }
 
 // HasImageId returns a boolean if a field has been set.
 func (o *TanzuImagesListDto) HasImageId() bool {
-	if o != nil && o.ImageId.IsSet() {
+	if o != nil && !IsNil(o.ImageId) {
 		return true
 	}
 
 	return false
 }
 
-// SetImageId gets a reference to the given NullableString and assigns it to the ImageId field.
+// SetImageId gets a reference to the given string and assigns it to the ImageId field.
 func (o *TanzuImagesListDto) SetImageId(v string) {
-	o.ImageId.Set(&v)
-}
-// SetImageIdNil sets the value for ImageId to be an explicit nil
-func (o *TanzuImagesListDto) SetImageIdNil() {
-	o.ImageId.Set(nil)
+	o.ImageId = &v
 }
 
-// UnsetImageId ensures that no value is present for ImageId, not even an explicit nil
-func (o *TanzuImagesListDto) UnsetImageId() {
-	o.ImageId.Unset()
-}
-
-// GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetName returns the Name field value if set, zero value otherwise.
 func (o *TanzuImagesListDto) GetName() string {
-	if o == nil || IsNil(o.Name.Get()) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
-	return *o.Name.Get()
+	return *o.Name
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *TanzuImagesListDto) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
-	return o.Name.Get(), o.Name.IsSet()
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *TanzuImagesListDto) HasName() bool {
-	if o != nil && o.Name.IsSet() {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
 	return false
 }
 
-// SetName gets a reference to the given NullableString and assigns it to the Name field.
+// SetName gets a reference to the given string and assigns it to the Name field.
 func (o *TanzuImagesListDto) SetName(v string) {
-	o.Name.Set(&v)
-}
-// SetNameNil sets the value for Name to be an explicit nil
-func (o *TanzuImagesListDto) SetNameNil() {
-	o.Name.Set(nil)
-}
-
-// UnsetName ensures that no value is present for Name, not even an explicit nil
-func (o *TanzuImagesListDto) UnsetName() {
-	o.Name.Unset()
+	o.Name = &v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
@@ -161,52 +141,42 @@ func (o *TanzuImagesListDto) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
 
-// GetType returns the Type field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetType returns the Type field value if set, zero value otherwise.
 func (o *TanzuImagesListDto) GetType() string {
-	if o == nil || IsNil(o.Type.Get()) {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
-	return *o.Type.Get()
+	return *o.Type
 }
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *TanzuImagesListDto) GetTypeOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
-	return o.Type.Get(), o.Type.IsSet()
+	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
 func (o *TanzuImagesListDto) HasType() bool {
-	if o != nil && o.Type.IsSet() {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
 	return false
 }
 
-// SetType gets a reference to the given NullableString and assigns it to the Type field.
+// SetType gets a reference to the given string and assigns it to the Type field.
 func (o *TanzuImagesListDto) SetType(v string) {
-	o.Type.Set(&v)
-}
-// SetTypeNil sets the value for Type to be an explicit nil
-func (o *TanzuImagesListDto) SetTypeNil() {
-	o.Type.Set(nil)
+	o.Type = &v
 }
 
-// UnsetType ensures that no value is present for Type, not even an explicit nil
-func (o *TanzuImagesListDto) UnsetType() {
-	o.Type.Unset()
-}
-
-// GetDetails returns the Details field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *TanzuImagesListDto) GetDetails() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetDetails returns the Details field value if set, zero value otherwise.
+func (o *TanzuImagesListDto) GetDetails() map[string]interface{} {
+	if o == nil || IsNil(o.Details) {
+		var ret map[string]interface{}
 		return ret
 	}
 	return o.Details
@@ -214,25 +184,24 @@ func (o *TanzuImagesListDto) GetDetails() interface{} {
 
 // GetDetailsOk returns a tuple with the Details field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *TanzuImagesListDto) GetDetailsOk() (*interface{}, bool) {
+func (o *TanzuImagesListDto) GetDetailsOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.Details) {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
-	return &o.Details, true
+	return o.Details, true
 }
 
 // HasDetails returns a boolean if a field has been set.
 func (o *TanzuImagesListDto) HasDetails() bool {
-	if o != nil && IsNil(o.Details) {
+	if o != nil && !IsNil(o.Details) {
 		return true
 	}
 
 	return false
 }
 
-// SetDetails gets a reference to the given interface{} and assigns it to the Details field.
-func (o *TanzuImagesListDto) SetDetails(v interface{}) {
+// SetDetails gets a reference to the given map[string]interface{} and assigns it to the Details field.
+func (o *TanzuImagesListDto) SetDetails(v map[string]interface{}) {
 	o.Details = v
 }
 
@@ -246,19 +215,19 @@ func (o TanzuImagesListDto) MarshalJSON() ([]byte, error) {
 
 func (o TanzuImagesListDto) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.ImageId.IsSet() {
-		toSerialize["imageId"] = o.ImageId.Get()
+	if !IsNil(o.ImageId) {
+		toSerialize["imageId"] = o.ImageId
 	}
-	if o.Name.IsSet() {
-		toSerialize["name"] = o.Name.Get()
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
 	}
 	if !IsNil(o.CreatedAt) {
 		toSerialize["createdAt"] = o.CreatedAt
 	}
-	if o.Type.IsSet() {
-		toSerialize["type"] = o.Type.Get()
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
 	}
-	if o.Details != nil {
+	if !IsNil(o.Details) {
 		toSerialize["details"] = o.Details
 	}
 	return toSerialize, nil

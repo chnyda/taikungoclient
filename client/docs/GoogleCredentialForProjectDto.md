@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Config** | Pointer to **NullableString** |  | [optional] 
-**FolderId** | Pointer to **NullableString** |  | [optional] 
-**BillingAccountId** | Pointer to **NullableString** |  | [optional] 
-**Zone** | Pointer to **NullableString** |  | [optional] 
-**Region** | Pointer to **NullableString** |  | [optional] 
+**Config** | Pointer to **string** |  | [optional] 
+**FolderId** | Pointer to **string** |  | [optional] 
+**BillingAccountId** | Pointer to **string** |  | [optional] 
+**Zone** | Pointer to **string** |  | [optional] 
+**Region** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -54,16 +54,6 @@ SetConfig sets Config field to given value.
 
 HasConfig returns a boolean if a field has been set.
 
-### SetConfigNil
-
-`func (o *GoogleCredentialForProjectDto) SetConfigNil(b bool)`
-
- SetConfigNil sets the value for Config to be an explicit nil
-
-### UnsetConfig
-`func (o *GoogleCredentialForProjectDto) UnsetConfig()`
-
-UnsetConfig ensures that no value is present for Config, not even an explicit nil
 ### GetFolderId
 
 `func (o *GoogleCredentialForProjectDto) GetFolderId() string`
@@ -89,16 +79,6 @@ SetFolderId sets FolderId field to given value.
 
 HasFolderId returns a boolean if a field has been set.
 
-### SetFolderIdNil
-
-`func (o *GoogleCredentialForProjectDto) SetFolderIdNil(b bool)`
-
- SetFolderIdNil sets the value for FolderId to be an explicit nil
-
-### UnsetFolderId
-`func (o *GoogleCredentialForProjectDto) UnsetFolderId()`
-
-UnsetFolderId ensures that no value is present for FolderId, not even an explicit nil
 ### GetBillingAccountId
 
 `func (o *GoogleCredentialForProjectDto) GetBillingAccountId() string`
@@ -124,16 +104,6 @@ SetBillingAccountId sets BillingAccountId field to given value.
 
 HasBillingAccountId returns a boolean if a field has been set.
 
-### SetBillingAccountIdNil
-
-`func (o *GoogleCredentialForProjectDto) SetBillingAccountIdNil(b bool)`
-
- SetBillingAccountIdNil sets the value for BillingAccountId to be an explicit nil
-
-### UnsetBillingAccountId
-`func (o *GoogleCredentialForProjectDto) UnsetBillingAccountId()`
-
-UnsetBillingAccountId ensures that no value is present for BillingAccountId, not even an explicit nil
 ### GetZone
 
 `func (o *GoogleCredentialForProjectDto) GetZone() string`
@@ -159,16 +129,6 @@ SetZone sets Zone field to given value.
 
 HasZone returns a boolean if a field has been set.
 
-### SetZoneNil
-
-`func (o *GoogleCredentialForProjectDto) SetZoneNil(b bool)`
-
- SetZoneNil sets the value for Zone to be an explicit nil
-
-### UnsetZone
-`func (o *GoogleCredentialForProjectDto) UnsetZone()`
-
-UnsetZone ensures that no value is present for Zone, not even an explicit nil
 ### GetRegion
 
 `func (o *GoogleCredentialForProjectDto) GetRegion() string`
@@ -194,16 +154,6 @@ SetRegion sets Region field to given value.
 
 HasRegion returns a boolean if a field has been set.
 
-### SetRegionNil
-
-`func (o *GoogleCredentialForProjectDto) SetRegionNil(b bool)`
-
- SetRegionNil sets the value for Region to be an explicit nil
-
-### UnsetRegion
-`func (o *GoogleCredentialForProjectDto) UnsetRegion()`
-
-UnsetRegion ensures that no value is present for Region, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

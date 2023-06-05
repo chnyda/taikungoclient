@@ -26,7 +26,9 @@ func Test_taikuncore_OrganizationsApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.OrganizationsApi.OrganizationsAcceptOffer(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.OrganizationsApi.OrganizationsAcceptOffer(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -37,7 +39,9 @@ func Test_taikuncore_OrganizationsApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.OrganizationsApi.OrganizationsCreate(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.OrganizationsApi.OrganizationsCreate(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -49,20 +53,23 @@ func Test_taikuncore_OrganizationsApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id int32
+		var organizationId int32
+		var v string
 
-		httpRes, err := apiClient.OrganizationsApi.OrganizationsDelete(context.Background(), id).Execute()
+		httpRes, err := apiClient.OrganizationsApi.OrganizationsDelete(context.Background(), organizationId, v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test OrganizationsApiService OrganizationsDetawils", func(t *testing.T) {
+	t.Run("Test OrganizationsApiService OrganizationsDetails", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.OrganizationsApi.OrganizationsDetawils(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.OrganizationsApi.OrganizationsDetails(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -74,18 +81,22 @@ func Test_taikuncore_OrganizationsApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.OrganizationsApi.OrganizationsExportCsv(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.OrganizationsApi.OrganizationsExportCsv(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test OrganizationsApiService OrganizationsLeave", func(t *testing.T) {
+	t.Run("Test OrganizationsApiService OrganizationsLeaveTaikun", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.OrganizationsApi.OrganizationsLeave(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.OrganizationsApi.OrganizationsLeaveTaikun(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -97,7 +108,9 @@ func Test_taikuncore_OrganizationsApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.OrganizationsApi.OrganizationsList(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.OrganizationsApi.OrganizationsList(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -109,7 +122,9 @@ func Test_taikuncore_OrganizationsApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.OrganizationsApi.OrganizationsOrganizationList(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.OrganizationsApi.OrganizationsOrganizationList(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -117,11 +132,13 @@ func Test_taikuncore_OrganizationsApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test OrganizationsApiService OrganizationsToggle", func(t *testing.T) {
+	t.Run("Test OrganizationsApiService OrganizationsToggleKeycloak", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.OrganizationsApi.OrganizationsToggle(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.OrganizationsApi.OrganizationsToggleKeycloak(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -132,18 +149,35 @@ func Test_taikuncore_OrganizationsApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.OrganizationsApi.OrganizationsUpdate(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.OrganizationsApi.OrganizationsUpdate(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test OrganizationsApiService OrganizationsUpdatePayment", func(t *testing.T) {
+	t.Run("Test OrganizationsApiService OrganizationsUpdatePaymentMethod", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.OrganizationsApi.OrganizationsUpdatePayment(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.OrganizationsApi.OrganizationsUpdatePaymentMethod(context.Background(), v).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test OrganizationsApiService OrganizationsUpdateSubscription", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var v string
+
+		httpRes, err := apiClient.OrganizationsApi.OrganizationsUpdateSubscription(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)

@@ -5,11 +5,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
-**OrganizationId** | Pointer to **NullableInt32** |  | [optional] 
-**OrganizationName** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**OrganizationId** | Pointer to **int32** |  | [optional] 
+**OrganizationName** | Pointer to **string** |  | [optional] 
 **ProjectId** | Pointer to **int32** |  | [optional] 
-**ProjectName** | Pointer to **NullableString** |  | [optional] 
+**ProjectName** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -80,16 +80,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *ServersSearchResponseData) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *ServersSearchResponseData) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetOrganizationId
 
 `func (o *ServersSearchResponseData) GetOrganizationId() int32`
@@ -115,16 +105,6 @@ SetOrganizationId sets OrganizationId field to given value.
 
 HasOrganizationId returns a boolean if a field has been set.
 
-### SetOrganizationIdNil
-
-`func (o *ServersSearchResponseData) SetOrganizationIdNil(b bool)`
-
- SetOrganizationIdNil sets the value for OrganizationId to be an explicit nil
-
-### UnsetOrganizationId
-`func (o *ServersSearchResponseData) UnsetOrganizationId()`
-
-UnsetOrganizationId ensures that no value is present for OrganizationId, not even an explicit nil
 ### GetOrganizationName
 
 `func (o *ServersSearchResponseData) GetOrganizationName() string`
@@ -150,16 +130,6 @@ SetOrganizationName sets OrganizationName field to given value.
 
 HasOrganizationName returns a boolean if a field has been set.
 
-### SetOrganizationNameNil
-
-`func (o *ServersSearchResponseData) SetOrganizationNameNil(b bool)`
-
- SetOrganizationNameNil sets the value for OrganizationName to be an explicit nil
-
-### UnsetOrganizationName
-`func (o *ServersSearchResponseData) UnsetOrganizationName()`
-
-UnsetOrganizationName ensures that no value is present for OrganizationName, not even an explicit nil
 ### GetProjectId
 
 `func (o *ServersSearchResponseData) GetProjectId() int32`
@@ -210,16 +180,6 @@ SetProjectName sets ProjectName field to given value.
 
 HasProjectName returns a boolean if a field has been set.
 
-### SetProjectNameNil
-
-`func (o *ServersSearchResponseData) SetProjectNameNil(b bool)`
-
- SetProjectNameNil sets the value for ProjectName to be an explicit nil
-
-### UnsetProjectName
-`func (o *ServersSearchResponseData) UnsetProjectName()`
-
-UnsetProjectName ensures that no value is present for ProjectName, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

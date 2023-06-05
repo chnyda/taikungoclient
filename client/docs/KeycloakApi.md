@@ -4,16 +4,16 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**KeycloakCreate**](KeycloakApi.md#KeycloakCreate) | **Post** /api/v1/keycloak/create | Create keycloak configuration for organization
-[**KeycloakDelete**](KeycloakApi.md#KeycloakDelete) | **Post** /api/v1/keycloak/delete | Delete keycloak configuration
-[**KeycloakEdit**](KeycloakApi.md#KeycloakEdit) | **Post** /api/v1/keycloak/edit | Edit keycloak configuration for organization
-[**KeycloakList**](KeycloakApi.md#KeycloakList) | **Get** /api/v1/keycloak | Get keycloak configuration
+[**KeycloakCreate**](KeycloakApi.md#KeycloakCreate) | **Post** /api/v{v}/Keycloak/create | Create keycloak configuration for organization
+[**KeycloakDelete**](KeycloakApi.md#KeycloakDelete) | **Post** /api/v{v}/Keycloak/delete | Delete keycloak configuration
+[**KeycloakEdit**](KeycloakApi.md#KeycloakEdit) | **Put** /api/v{v}/Keycloak/edit | Edit keycloak configuration for organization
+[**KeycloakGet**](KeycloakApi.md#KeycloakGet) | **Get** /api/v{v}/Keycloak | Get keycloak configuration
 
 
 
 ## KeycloakCreate
 
-> KeycloakCreate(ctx).KeycloakCreateCommand(keycloakCreateCommand).Execute()
+> KeycloakCreate(ctx, v).Body(body).Execute()
 
 Create keycloak configuration for organization
 
@@ -30,11 +30,12 @@ import (
 )
 
 func main() {
-    keycloakCreateCommand := *openapiclient.NewKeycloakCreateCommand("Name_example", "Url_example", "RealmsName_example", "ClientId_example", "ClientSecret_example") // KeycloakCreateCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewKeycloakCreateCommand("Name_example", "Url_example", "RealmsName_example", "ClientId_example", "ClientSecret_example") // KeycloakCreateCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.KeycloakApi.KeycloakCreate(context.Background()).KeycloakCreateCommand(keycloakCreateCommand).Execute()
+    r, err := apiClient.KeycloakApi.KeycloakCreate(context.Background(), v).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `KeycloakApi.KeycloakCreate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -45,6 +46,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -53,7 +58,8 @@ Other parameters are passed through a pointer to a apiKeycloakCreateRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **keycloakCreateCommand** | [**KeycloakCreateCommand**](KeycloakCreateCommand.md) |  | 
+
+ **body** | [**KeycloakCreateCommand**](KeycloakCreateCommand.md) |  | 
 
 ### Return type
 
@@ -65,8 +71,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -75,7 +81,7 @@ Name | Type | Description  | Notes
 
 ## KeycloakDelete
 
-> KeycloakDelete(ctx).KeycloakDeleteCommand(keycloakDeleteCommand).Execute()
+> KeycloakDelete(ctx, v).Body(body).Execute()
 
 Delete keycloak configuration
 
@@ -92,11 +98,12 @@ import (
 )
 
 func main() {
-    keycloakDeleteCommand := *openapiclient.NewKeycloakDeleteCommand() // KeycloakDeleteCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewKeycloakDeleteCommand() // KeycloakDeleteCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.KeycloakApi.KeycloakDelete(context.Background()).KeycloakDeleteCommand(keycloakDeleteCommand).Execute()
+    r, err := apiClient.KeycloakApi.KeycloakDelete(context.Background(), v).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `KeycloakApi.KeycloakDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -107,6 +114,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -115,7 +126,8 @@ Other parameters are passed through a pointer to a apiKeycloakDeleteRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **keycloakDeleteCommand** | [**KeycloakDeleteCommand**](KeycloakDeleteCommand.md) |  | 
+
+ **body** | [**KeycloakDeleteCommand**](KeycloakDeleteCommand.md) |  | 
 
 ### Return type
 
@@ -127,8 +139,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -137,7 +149,7 @@ Name | Type | Description  | Notes
 
 ## KeycloakEdit
 
-> KeycloakEdit(ctx).KeycloakEditCommand(keycloakEditCommand).Execute()
+> KeycloakEdit(ctx, v).Body(body).Execute()
 
 Edit keycloak configuration for organization
 
@@ -154,11 +166,12 @@ import (
 )
 
 func main() {
-    keycloakEditCommand := *openapiclient.NewKeycloakEditCommand(int32(123), "Name_example", "Url_example", "RealmsName_example", "ClientId_example", "ClientSecret_example") // KeycloakEditCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewKeycloakEditCommand(int32(123), "Name_example", "Url_example", "RealmsName_example", "ClientId_example", "ClientSecret_example") // KeycloakEditCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.KeycloakApi.KeycloakEdit(context.Background()).KeycloakEditCommand(keycloakEditCommand).Execute()
+    r, err := apiClient.KeycloakApi.KeycloakEdit(context.Background(), v).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `KeycloakApi.KeycloakEdit``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -169,6 +182,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -177,7 +194,8 @@ Other parameters are passed through a pointer to a apiKeycloakEditRequest struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **keycloakEditCommand** | [**KeycloakEditCommand**](KeycloakEditCommand.md) |  | 
+
+ **body** | [**KeycloakEditCommand**](KeycloakEditCommand.md) |  | 
 
 ### Return type
 
@@ -189,17 +207,17 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## KeycloakList
+## KeycloakGet
 
-> KeycloakListDto KeycloakList(ctx).Execute()
+> KeycloakListDto KeycloakGet(ctx, v).Execute()
 
 Get keycloak configuration
 
@@ -216,26 +234,35 @@ import (
 )
 
 func main() {
+    v := "v_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.KeycloakApi.KeycloakList(context.Background()).Execute()
+    resp, r, err := apiClient.KeycloakApi.KeycloakGet(context.Background(), v).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `KeycloakApi.KeycloakList``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `KeycloakApi.KeycloakGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `KeycloakList`: KeycloakListDto
-    fmt.Fprintf(os.Stdout, "Response from `KeycloakApi.KeycloakList`: %v\n", resp)
+    // response from `KeycloakGet`: KeycloakListDto
+    fmt.Fprintf(os.Stdout, "Response from `KeycloakApi.KeycloakGet`: %v\n", resp)
 }
 ```
 
 ### Path Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiKeycloakListRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiKeycloakGetRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
 
 
 ### Return type
@@ -249,7 +276,7 @@ Other parameters are passed through a pointer to a apiKeycloakListRequest struct
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

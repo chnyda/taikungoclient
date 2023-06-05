@@ -22,11 +22,13 @@ func Test_taikuncore_AllowedHostApiService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test AllowedHostApiService AllowedhostCreate", func(t *testing.T) {
+	t.Run("Test AllowedHostApiService AllowedHostCreate", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.AllowedHostApi.AllowedhostCreate(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.AllowedHostApi.AllowedHostCreate(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -34,39 +36,42 @@ func Test_taikuncore_AllowedHostApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test AllowedHostApiService AllowedhostDelete", func(t *testing.T) {
+	t.Run("Test AllowedHostApiService AllowedHostDelete", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id int32
+		var v string
 
-		httpRes, err := apiClient.AllowedHostApi.AllowedhostDelete(context.Background(), id).Execute()
+		httpRes, err := apiClient.AllowedHostApi.AllowedHostDelete(context.Background(), id, v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test AllowedHostApiService AllowedhostEdit", func(t *testing.T) {
+	t.Run("Test AllowedHostApiService AllowedHostEdit", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id int32
+		var v string
 
-		httpRes, err := apiClient.AllowedHostApi.AllowedhostEdit(context.Background(), id).Execute()
+		httpRes, err := apiClient.AllowedHostApi.AllowedHostEdit(context.Background(), id, v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test AllowedHostApiService AllowedhostList", func(t *testing.T) {
+	t.Run("Test AllowedHostApiService AllowedHostList", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var accessProfileId int32
+		var v string
 
-		resp, httpRes, err := apiClient.AllowedHostApi.AllowedhostList(context.Background(), accessProfileId).Execute()
+		resp, httpRes, err := apiClient.AllowedHostApi.AllowedHostList(context.Background(), accessProfileId, v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

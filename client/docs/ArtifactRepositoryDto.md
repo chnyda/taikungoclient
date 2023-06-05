@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**RepositoryId** | Pointer to **NullableString** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
-**DisplayName** | Pointer to **NullableString** |  | [optional] 
-**Url** | Pointer to **NullableString** |  | [optional] 
-**OrganizationName** | Pointer to **NullableString** |  | [optional] 
+**RepositoryId** | Pointer to **string** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**DisplayName** | Pointer to **string** |  | [optional] 
+**Url** | Pointer to **string** |  | [optional] 
+**OrganizationName** | Pointer to **string** |  | [optional] 
 **Disabled** | Pointer to **bool** |  | [optional] 
 **VerifiedPublisher** | Pointer to **bool** |  | [optional] 
 **Official** | Pointer to **bool** |  | [optional] 
 **IsBound** | Pointer to **bool** |  | [optional] 
 **HasCatalogApp** | Pointer to **bool** |  | [optional] 
-**TrueUrl** | Pointer to **NullableString** |  | [optional] 
+**TrueUrl** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -60,16 +60,6 @@ SetRepositoryId sets RepositoryId field to given value.
 
 HasRepositoryId returns a boolean if a field has been set.
 
-### SetRepositoryIdNil
-
-`func (o *ArtifactRepositoryDto) SetRepositoryIdNil(b bool)`
-
- SetRepositoryIdNil sets the value for RepositoryId to be an explicit nil
-
-### UnsetRepositoryId
-`func (o *ArtifactRepositoryDto) UnsetRepositoryId()`
-
-UnsetRepositoryId ensures that no value is present for RepositoryId, not even an explicit nil
 ### GetName
 
 `func (o *ArtifactRepositoryDto) GetName() string`
@@ -95,16 +85,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *ArtifactRepositoryDto) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *ArtifactRepositoryDto) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetDisplayName
 
 `func (o *ArtifactRepositoryDto) GetDisplayName() string`
@@ -130,16 +110,6 @@ SetDisplayName sets DisplayName field to given value.
 
 HasDisplayName returns a boolean if a field has been set.
 
-### SetDisplayNameNil
-
-`func (o *ArtifactRepositoryDto) SetDisplayNameNil(b bool)`
-
- SetDisplayNameNil sets the value for DisplayName to be an explicit nil
-
-### UnsetDisplayName
-`func (o *ArtifactRepositoryDto) UnsetDisplayName()`
-
-UnsetDisplayName ensures that no value is present for DisplayName, not even an explicit nil
 ### GetUrl
 
 `func (o *ArtifactRepositoryDto) GetUrl() string`
@@ -165,16 +135,6 @@ SetUrl sets Url field to given value.
 
 HasUrl returns a boolean if a field has been set.
 
-### SetUrlNil
-
-`func (o *ArtifactRepositoryDto) SetUrlNil(b bool)`
-
- SetUrlNil sets the value for Url to be an explicit nil
-
-### UnsetUrl
-`func (o *ArtifactRepositoryDto) UnsetUrl()`
-
-UnsetUrl ensures that no value is present for Url, not even an explicit nil
 ### GetOrganizationName
 
 `func (o *ArtifactRepositoryDto) GetOrganizationName() string`
@@ -200,16 +160,6 @@ SetOrganizationName sets OrganizationName field to given value.
 
 HasOrganizationName returns a boolean if a field has been set.
 
-### SetOrganizationNameNil
-
-`func (o *ArtifactRepositoryDto) SetOrganizationNameNil(b bool)`
-
- SetOrganizationNameNil sets the value for OrganizationName to be an explicit nil
-
-### UnsetOrganizationName
-`func (o *ArtifactRepositoryDto) UnsetOrganizationName()`
-
-UnsetOrganizationName ensures that no value is present for OrganizationName, not even an explicit nil
 ### GetDisabled
 
 `func (o *ArtifactRepositoryDto) GetDisabled() bool`
@@ -360,16 +310,6 @@ SetTrueUrl sets TrueUrl field to given value.
 
 HasTrueUrl returns a boolean if a field has been set.
 
-### SetTrueUrlNil
-
-`func (o *ArtifactRepositoryDto) SetTrueUrlNil(b bool)`
-
- SetTrueUrlNil sets the value for TrueUrl to be an explicit nil
-
-### UnsetTrueUrl
-`func (o *ArtifactRepositoryDto) UnsetTrueUrl()`
-
-UnsetTrueUrl ensures that no value is present for TrueUrl, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

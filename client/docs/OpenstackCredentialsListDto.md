@@ -7,27 +7,27 @@ Name | Type | Description | Notes
 **Id** | Pointer to **int32** |  | [optional] 
 **ProjectCount** | Pointer to **int32** |  | [optional] 
 **IsLocked** | Pointer to **bool** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
-**User** | Pointer to **NullableString** |  | [optional] 
-**Url** | Pointer to **NullableString** |  | [optional] 
-**Project** | Pointer to **NullableString** |  | [optional] 
-**Domain** | Pointer to **NullableString** |  | [optional] 
-**Region** | Pointer to **NullableString** |  | [optional] 
-**PublicNetwork** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**User** | Pointer to **string** |  | [optional] 
+**Url** | Pointer to **string** |  | [optional] 
+**Project** | Pointer to **string** |  | [optional] 
+**Domain** | Pointer to **string** |  | [optional] 
+**Region** | Pointer to **string** |  | [optional] 
+**PublicNetwork** | Pointer to **string** |  | [optional] 
 **ImportNetwork** | Pointer to **bool** |  | [optional] 
-**TenantId** | Pointer to **NullableString** |  | [optional] 
-**AvailabilityZone** | Pointer to **NullableString** |  | [optional] 
-**VolumeType** | Pointer to **NullableString** |  | [optional] 
-**InternalSubnetId** | Pointer to **NullableString** |  | [optional] 
+**TenantId** | Pointer to **string** |  | [optional] 
+**AvailabilityZone** | Pointer to **string** |  | [optional] 
+**VolumeType** | Pointer to **string** |  | [optional] 
+**InternalSubnetId** | Pointer to **string** |  | [optional] 
 **Projects** | Pointer to [**[]CommonDropdownDto**](CommonDropdownDto.md) |  | [optional] 
-**CreatedBy** | Pointer to **NullableString** |  | [optional] 
-**LastModified** | Pointer to **NullableString** |  | [optional] 
-**LastModifiedBy** | Pointer to **NullableString** |  | [optional] 
+**CreatedBy** | Pointer to **string** |  | [optional] 
+**LastModified** | Pointer to **string** |  | [optional] 
+**LastModifiedBy** | Pointer to **string** |  | [optional] 
 **IsDefault** | Pointer to **bool** |  | [optional] 
 **OrganizationId** | Pointer to **int32** |  | [optional] 
-**OrganizationName** | Pointer to **NullableString** |  | [optional] 
-**CreatedAt** | Pointer to **NullableString** |  | [optional] 
-**ContinentName** | Pointer to **NullableString** |  | [optional] 
+**OrganizationName** | Pointer to **string** |  | [optional] 
+**CreatedAt** | Pointer to **string** |  | [optional] 
+**ContinentName** | Pointer to **string** |  | [optional] 
 **IsAdmin** | Pointer to **bool** |  | [optional] 
 
 ## Methods
@@ -149,16 +149,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *OpenstackCredentialsListDto) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *OpenstackCredentialsListDto) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetUser
 
 `func (o *OpenstackCredentialsListDto) GetUser() string`
@@ -184,16 +174,6 @@ SetUser sets User field to given value.
 
 HasUser returns a boolean if a field has been set.
 
-### SetUserNil
-
-`func (o *OpenstackCredentialsListDto) SetUserNil(b bool)`
-
- SetUserNil sets the value for User to be an explicit nil
-
-### UnsetUser
-`func (o *OpenstackCredentialsListDto) UnsetUser()`
-
-UnsetUser ensures that no value is present for User, not even an explicit nil
 ### GetUrl
 
 `func (o *OpenstackCredentialsListDto) GetUrl() string`
@@ -219,16 +199,6 @@ SetUrl sets Url field to given value.
 
 HasUrl returns a boolean if a field has been set.
 
-### SetUrlNil
-
-`func (o *OpenstackCredentialsListDto) SetUrlNil(b bool)`
-
- SetUrlNil sets the value for Url to be an explicit nil
-
-### UnsetUrl
-`func (o *OpenstackCredentialsListDto) UnsetUrl()`
-
-UnsetUrl ensures that no value is present for Url, not even an explicit nil
 ### GetProject
 
 `func (o *OpenstackCredentialsListDto) GetProject() string`
@@ -254,16 +224,6 @@ SetProject sets Project field to given value.
 
 HasProject returns a boolean if a field has been set.
 
-### SetProjectNil
-
-`func (o *OpenstackCredentialsListDto) SetProjectNil(b bool)`
-
- SetProjectNil sets the value for Project to be an explicit nil
-
-### UnsetProject
-`func (o *OpenstackCredentialsListDto) UnsetProject()`
-
-UnsetProject ensures that no value is present for Project, not even an explicit nil
 ### GetDomain
 
 `func (o *OpenstackCredentialsListDto) GetDomain() string`
@@ -289,16 +249,6 @@ SetDomain sets Domain field to given value.
 
 HasDomain returns a boolean if a field has been set.
 
-### SetDomainNil
-
-`func (o *OpenstackCredentialsListDto) SetDomainNil(b bool)`
-
- SetDomainNil sets the value for Domain to be an explicit nil
-
-### UnsetDomain
-`func (o *OpenstackCredentialsListDto) UnsetDomain()`
-
-UnsetDomain ensures that no value is present for Domain, not even an explicit nil
 ### GetRegion
 
 `func (o *OpenstackCredentialsListDto) GetRegion() string`
@@ -324,16 +274,6 @@ SetRegion sets Region field to given value.
 
 HasRegion returns a boolean if a field has been set.
 
-### SetRegionNil
-
-`func (o *OpenstackCredentialsListDto) SetRegionNil(b bool)`
-
- SetRegionNil sets the value for Region to be an explicit nil
-
-### UnsetRegion
-`func (o *OpenstackCredentialsListDto) UnsetRegion()`
-
-UnsetRegion ensures that no value is present for Region, not even an explicit nil
 ### GetPublicNetwork
 
 `func (o *OpenstackCredentialsListDto) GetPublicNetwork() string`
@@ -359,16 +299,6 @@ SetPublicNetwork sets PublicNetwork field to given value.
 
 HasPublicNetwork returns a boolean if a field has been set.
 
-### SetPublicNetworkNil
-
-`func (o *OpenstackCredentialsListDto) SetPublicNetworkNil(b bool)`
-
- SetPublicNetworkNil sets the value for PublicNetwork to be an explicit nil
-
-### UnsetPublicNetwork
-`func (o *OpenstackCredentialsListDto) UnsetPublicNetwork()`
-
-UnsetPublicNetwork ensures that no value is present for PublicNetwork, not even an explicit nil
 ### GetImportNetwork
 
 `func (o *OpenstackCredentialsListDto) GetImportNetwork() bool`
@@ -419,16 +349,6 @@ SetTenantId sets TenantId field to given value.
 
 HasTenantId returns a boolean if a field has been set.
 
-### SetTenantIdNil
-
-`func (o *OpenstackCredentialsListDto) SetTenantIdNil(b bool)`
-
- SetTenantIdNil sets the value for TenantId to be an explicit nil
-
-### UnsetTenantId
-`func (o *OpenstackCredentialsListDto) UnsetTenantId()`
-
-UnsetTenantId ensures that no value is present for TenantId, not even an explicit nil
 ### GetAvailabilityZone
 
 `func (o *OpenstackCredentialsListDto) GetAvailabilityZone() string`
@@ -454,16 +374,6 @@ SetAvailabilityZone sets AvailabilityZone field to given value.
 
 HasAvailabilityZone returns a boolean if a field has been set.
 
-### SetAvailabilityZoneNil
-
-`func (o *OpenstackCredentialsListDto) SetAvailabilityZoneNil(b bool)`
-
- SetAvailabilityZoneNil sets the value for AvailabilityZone to be an explicit nil
-
-### UnsetAvailabilityZone
-`func (o *OpenstackCredentialsListDto) UnsetAvailabilityZone()`
-
-UnsetAvailabilityZone ensures that no value is present for AvailabilityZone, not even an explicit nil
 ### GetVolumeType
 
 `func (o *OpenstackCredentialsListDto) GetVolumeType() string`
@@ -489,16 +399,6 @@ SetVolumeType sets VolumeType field to given value.
 
 HasVolumeType returns a boolean if a field has been set.
 
-### SetVolumeTypeNil
-
-`func (o *OpenstackCredentialsListDto) SetVolumeTypeNil(b bool)`
-
- SetVolumeTypeNil sets the value for VolumeType to be an explicit nil
-
-### UnsetVolumeType
-`func (o *OpenstackCredentialsListDto) UnsetVolumeType()`
-
-UnsetVolumeType ensures that no value is present for VolumeType, not even an explicit nil
 ### GetInternalSubnetId
 
 `func (o *OpenstackCredentialsListDto) GetInternalSubnetId() string`
@@ -524,16 +424,6 @@ SetInternalSubnetId sets InternalSubnetId field to given value.
 
 HasInternalSubnetId returns a boolean if a field has been set.
 
-### SetInternalSubnetIdNil
-
-`func (o *OpenstackCredentialsListDto) SetInternalSubnetIdNil(b bool)`
-
- SetInternalSubnetIdNil sets the value for InternalSubnetId to be an explicit nil
-
-### UnsetInternalSubnetId
-`func (o *OpenstackCredentialsListDto) UnsetInternalSubnetId()`
-
-UnsetInternalSubnetId ensures that no value is present for InternalSubnetId, not even an explicit nil
 ### GetProjects
 
 `func (o *OpenstackCredentialsListDto) GetProjects() []CommonDropdownDto`
@@ -559,16 +449,6 @@ SetProjects sets Projects field to given value.
 
 HasProjects returns a boolean if a field has been set.
 
-### SetProjectsNil
-
-`func (o *OpenstackCredentialsListDto) SetProjectsNil(b bool)`
-
- SetProjectsNil sets the value for Projects to be an explicit nil
-
-### UnsetProjects
-`func (o *OpenstackCredentialsListDto) UnsetProjects()`
-
-UnsetProjects ensures that no value is present for Projects, not even an explicit nil
 ### GetCreatedBy
 
 `func (o *OpenstackCredentialsListDto) GetCreatedBy() string`
@@ -594,16 +474,6 @@ SetCreatedBy sets CreatedBy field to given value.
 
 HasCreatedBy returns a boolean if a field has been set.
 
-### SetCreatedByNil
-
-`func (o *OpenstackCredentialsListDto) SetCreatedByNil(b bool)`
-
- SetCreatedByNil sets the value for CreatedBy to be an explicit nil
-
-### UnsetCreatedBy
-`func (o *OpenstackCredentialsListDto) UnsetCreatedBy()`
-
-UnsetCreatedBy ensures that no value is present for CreatedBy, not even an explicit nil
 ### GetLastModified
 
 `func (o *OpenstackCredentialsListDto) GetLastModified() string`
@@ -629,16 +499,6 @@ SetLastModified sets LastModified field to given value.
 
 HasLastModified returns a boolean if a field has been set.
 
-### SetLastModifiedNil
-
-`func (o *OpenstackCredentialsListDto) SetLastModifiedNil(b bool)`
-
- SetLastModifiedNil sets the value for LastModified to be an explicit nil
-
-### UnsetLastModified
-`func (o *OpenstackCredentialsListDto) UnsetLastModified()`
-
-UnsetLastModified ensures that no value is present for LastModified, not even an explicit nil
 ### GetLastModifiedBy
 
 `func (o *OpenstackCredentialsListDto) GetLastModifiedBy() string`
@@ -664,16 +524,6 @@ SetLastModifiedBy sets LastModifiedBy field to given value.
 
 HasLastModifiedBy returns a boolean if a field has been set.
 
-### SetLastModifiedByNil
-
-`func (o *OpenstackCredentialsListDto) SetLastModifiedByNil(b bool)`
-
- SetLastModifiedByNil sets the value for LastModifiedBy to be an explicit nil
-
-### UnsetLastModifiedBy
-`func (o *OpenstackCredentialsListDto) UnsetLastModifiedBy()`
-
-UnsetLastModifiedBy ensures that no value is present for LastModifiedBy, not even an explicit nil
 ### GetIsDefault
 
 `func (o *OpenstackCredentialsListDto) GetIsDefault() bool`
@@ -749,16 +599,6 @@ SetOrganizationName sets OrganizationName field to given value.
 
 HasOrganizationName returns a boolean if a field has been set.
 
-### SetOrganizationNameNil
-
-`func (o *OpenstackCredentialsListDto) SetOrganizationNameNil(b bool)`
-
- SetOrganizationNameNil sets the value for OrganizationName to be an explicit nil
-
-### UnsetOrganizationName
-`func (o *OpenstackCredentialsListDto) UnsetOrganizationName()`
-
-UnsetOrganizationName ensures that no value is present for OrganizationName, not even an explicit nil
 ### GetCreatedAt
 
 `func (o *OpenstackCredentialsListDto) GetCreatedAt() string`
@@ -784,16 +624,6 @@ SetCreatedAt sets CreatedAt field to given value.
 
 HasCreatedAt returns a boolean if a field has been set.
 
-### SetCreatedAtNil
-
-`func (o *OpenstackCredentialsListDto) SetCreatedAtNil(b bool)`
-
- SetCreatedAtNil sets the value for CreatedAt to be an explicit nil
-
-### UnsetCreatedAt
-`func (o *OpenstackCredentialsListDto) UnsetCreatedAt()`
-
-UnsetCreatedAt ensures that no value is present for CreatedAt, not even an explicit nil
 ### GetContinentName
 
 `func (o *OpenstackCredentialsListDto) GetContinentName() string`
@@ -819,16 +649,6 @@ SetContinentName sets ContinentName field to given value.
 
 HasContinentName returns a boolean if a field has been set.
 
-### SetContinentNameNil
-
-`func (o *OpenstackCredentialsListDto) SetContinentNameNil(b bool)`
-
- SetContinentNameNil sets the value for ContinentName to be an explicit nil
-
-### UnsetContinentName
-`func (o *OpenstackCredentialsListDto) UnsetContinentName()`
-
-UnsetContinentName ensures that no value is present for ContinentName, not even an explicit nil
 ### GetIsAdmin
 
 `func (o *OpenstackCredentialsListDto) GetIsAdmin() bool`

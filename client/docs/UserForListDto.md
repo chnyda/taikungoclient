@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **NullableString** |  | [optional] 
-**Username** | Pointer to **NullableString** |  | [optional] 
-**OrganizationName** | Pointer to **NullableString** |  | [optional] 
+**Id** | Pointer to **string** |  | [optional] 
+**Username** | Pointer to **string** |  | [optional] 
+**OrganizationName** | Pointer to **string** |  | [optional] 
 **HasCustomerId** | Pointer to **bool** |  | [optional] 
 **HasPaymentMethod** | Pointer to **bool** |  | [optional] 
 **OrganizationId** | Pointer to **int32** |  | [optional] 
-**Role** | Pointer to **NullableString** |  | [optional] 
-**Email** | Pointer to **NullableString** |  | [optional] 
-**DisplayName** | Pointer to **NullableString** |  | [optional] 
-**CreatedAt** | Pointer to **NullableString** |  | [optional] 
+**Role** | Pointer to **string** |  | [optional] 
+**Email** | Pointer to **string** |  | [optional] 
+**DisplayName** | Pointer to **string** |  | [optional] 
+**CreatedAt** | Pointer to **string** |  | [optional] 
 **IsEmailConfirmed** | Pointer to **bool** |  | [optional] 
 **IsEmailNotificationEnabled** | Pointer to **bool** |  | [optional] 
 **IsForcedToResetPassword** | Pointer to **bool** |  | [optional] 
@@ -25,7 +25,7 @@ Name | Type | Description | Notes
 **IsReadOnly** | Pointer to **bool** |  | [optional] 
 **HasRepo** | Pointer to **bool** |  | [optional] 
 **DemoModeEnabled** | Pointer to **bool** |  | [optional] 
-**LastLoginAt** | Pointer to **NullableString** |  | [optional] 
+**LastLoginAt** | Pointer to **string** |  | [optional] 
 **BoundProjects** | Pointer to [**[]ProjectDto**](ProjectDto.md) |  | [optional] 
 **Partner** | Pointer to [**PartnerDetailsForUserDto**](PartnerDetailsForUserDto.md) |  | [optional] 
 
@@ -73,16 +73,6 @@ SetId sets Id field to given value.
 
 HasId returns a boolean if a field has been set.
 
-### SetIdNil
-
-`func (o *UserForListDto) SetIdNil(b bool)`
-
- SetIdNil sets the value for Id to be an explicit nil
-
-### UnsetId
-`func (o *UserForListDto) UnsetId()`
-
-UnsetId ensures that no value is present for Id, not even an explicit nil
 ### GetUsername
 
 `func (o *UserForListDto) GetUsername() string`
@@ -108,16 +98,6 @@ SetUsername sets Username field to given value.
 
 HasUsername returns a boolean if a field has been set.
 
-### SetUsernameNil
-
-`func (o *UserForListDto) SetUsernameNil(b bool)`
-
- SetUsernameNil sets the value for Username to be an explicit nil
-
-### UnsetUsername
-`func (o *UserForListDto) UnsetUsername()`
-
-UnsetUsername ensures that no value is present for Username, not even an explicit nil
 ### GetOrganizationName
 
 `func (o *UserForListDto) GetOrganizationName() string`
@@ -143,16 +123,6 @@ SetOrganizationName sets OrganizationName field to given value.
 
 HasOrganizationName returns a boolean if a field has been set.
 
-### SetOrganizationNameNil
-
-`func (o *UserForListDto) SetOrganizationNameNil(b bool)`
-
- SetOrganizationNameNil sets the value for OrganizationName to be an explicit nil
-
-### UnsetOrganizationName
-`func (o *UserForListDto) UnsetOrganizationName()`
-
-UnsetOrganizationName ensures that no value is present for OrganizationName, not even an explicit nil
 ### GetHasCustomerId
 
 `func (o *UserForListDto) GetHasCustomerId() bool`
@@ -253,16 +223,6 @@ SetRole sets Role field to given value.
 
 HasRole returns a boolean if a field has been set.
 
-### SetRoleNil
-
-`func (o *UserForListDto) SetRoleNil(b bool)`
-
- SetRoleNil sets the value for Role to be an explicit nil
-
-### UnsetRole
-`func (o *UserForListDto) UnsetRole()`
-
-UnsetRole ensures that no value is present for Role, not even an explicit nil
 ### GetEmail
 
 `func (o *UserForListDto) GetEmail() string`
@@ -288,16 +248,6 @@ SetEmail sets Email field to given value.
 
 HasEmail returns a boolean if a field has been set.
 
-### SetEmailNil
-
-`func (o *UserForListDto) SetEmailNil(b bool)`
-
- SetEmailNil sets the value for Email to be an explicit nil
-
-### UnsetEmail
-`func (o *UserForListDto) UnsetEmail()`
-
-UnsetEmail ensures that no value is present for Email, not even an explicit nil
 ### GetDisplayName
 
 `func (o *UserForListDto) GetDisplayName() string`
@@ -323,16 +273,6 @@ SetDisplayName sets DisplayName field to given value.
 
 HasDisplayName returns a boolean if a field has been set.
 
-### SetDisplayNameNil
-
-`func (o *UserForListDto) SetDisplayNameNil(b bool)`
-
- SetDisplayNameNil sets the value for DisplayName to be an explicit nil
-
-### UnsetDisplayName
-`func (o *UserForListDto) UnsetDisplayName()`
-
-UnsetDisplayName ensures that no value is present for DisplayName, not even an explicit nil
 ### GetCreatedAt
 
 `func (o *UserForListDto) GetCreatedAt() string`
@@ -358,16 +298,6 @@ SetCreatedAt sets CreatedAt field to given value.
 
 HasCreatedAt returns a boolean if a field has been set.
 
-### SetCreatedAtNil
-
-`func (o *UserForListDto) SetCreatedAtNil(b bool)`
-
- SetCreatedAtNil sets the value for CreatedAt to be an explicit nil
-
-### UnsetCreatedAt
-`func (o *UserForListDto) UnsetCreatedAt()`
-
-UnsetCreatedAt ensures that no value is present for CreatedAt, not even an explicit nil
 ### GetIsEmailConfirmed
 
 `func (o *UserForListDto) GetIsEmailConfirmed() bool`
@@ -668,16 +598,6 @@ SetLastLoginAt sets LastLoginAt field to given value.
 
 HasLastLoginAt returns a boolean if a field has been set.
 
-### SetLastLoginAtNil
-
-`func (o *UserForListDto) SetLastLoginAtNil(b bool)`
-
- SetLastLoginAtNil sets the value for LastLoginAt to be an explicit nil
-
-### UnsetLastLoginAt
-`func (o *UserForListDto) UnsetLastLoginAt()`
-
-UnsetLastLoginAt ensures that no value is present for LastLoginAt, not even an explicit nil
 ### GetBoundProjects
 
 `func (o *UserForListDto) GetBoundProjects() []ProjectDto`
@@ -703,16 +623,6 @@ SetBoundProjects sets BoundProjects field to given value.
 
 HasBoundProjects returns a boolean if a field has been set.
 
-### SetBoundProjectsNil
-
-`func (o *UserForListDto) SetBoundProjectsNil(b bool)`
-
- SetBoundProjectsNil sets the value for BoundProjects to be an explicit nil
-
-### UnsetBoundProjects
-`func (o *UserForListDto) UnsetBoundProjects()`
-
-UnsetBoundProjects ensures that no value is present for BoundProjects, not even an explicit nil
 ### GetPartner
 
 `func (o *UserForListDto) GetPartner() PartnerDetailsForUserDto`

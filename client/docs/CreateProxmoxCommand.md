@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** |  | 
-**Username** | **string** |  | 
+**TokenId** | **string** |  | 
 **Url** | **string** |  | 
-**Password** | **string** |  | 
+**TokenSecret** | **string** |  | 
 **Storage** | **string** |  | 
 **VmTemplateName** | **string** |  | 
-**Continent** | Pointer to **NullableString** |  | [optional] 
-**OrganizationId** | Pointer to **NullableInt32** |  | [optional] 
+**Continent** | Pointer to **string** |  | [optional] 
+**OrganizationId** | Pointer to **int32** |  | [optional] 
 **Hypervisors** | Pointer to **[]string** |  | [optional] 
 **PublicNetwork** | Pointer to [**CreateProxmoxNetworkDto**](CreateProxmoxNetworkDto.md) |  | [optional] 
 **PrivateNetwork** | Pointer to [**CreateProxmoxNetworkDto**](CreateProxmoxNetworkDto.md) |  | [optional] 
@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 
 ### NewCreateProxmoxCommand
 
-`func NewCreateProxmoxCommand(name string, username string, url string, password string, storage string, vmTemplateName string, ) *CreateProxmoxCommand`
+`func NewCreateProxmoxCommand(name string, tokenId string, url string, tokenSecret string, storage string, vmTemplateName string, ) *CreateProxmoxCommand`
 
 NewCreateProxmoxCommand instantiates a new CreateProxmoxCommand object
 This constructor will assign default values to properties that have it defined,
@@ -55,24 +55,24 @@ and a boolean to check if the value has been set.
 SetName sets Name field to given value.
 
 
-### GetUsername
+### GetTokenId
 
-`func (o *CreateProxmoxCommand) GetUsername() string`
+`func (o *CreateProxmoxCommand) GetTokenId() string`
 
-GetUsername returns the Username field if non-nil, zero value otherwise.
+GetTokenId returns the TokenId field if non-nil, zero value otherwise.
 
-### GetUsernameOk
+### GetTokenIdOk
 
-`func (o *CreateProxmoxCommand) GetUsernameOk() (*string, bool)`
+`func (o *CreateProxmoxCommand) GetTokenIdOk() (*string, bool)`
 
-GetUsernameOk returns a tuple with the Username field if it's non-nil, zero value otherwise
+GetTokenIdOk returns a tuple with the TokenId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetUsername
+### SetTokenId
 
-`func (o *CreateProxmoxCommand) SetUsername(v string)`
+`func (o *CreateProxmoxCommand) SetTokenId(v string)`
 
-SetUsername sets Username field to given value.
+SetTokenId sets TokenId field to given value.
 
 
 ### GetUrl
@@ -95,24 +95,24 @@ and a boolean to check if the value has been set.
 SetUrl sets Url field to given value.
 
 
-### GetPassword
+### GetTokenSecret
 
-`func (o *CreateProxmoxCommand) GetPassword() string`
+`func (o *CreateProxmoxCommand) GetTokenSecret() string`
 
-GetPassword returns the Password field if non-nil, zero value otherwise.
+GetTokenSecret returns the TokenSecret field if non-nil, zero value otherwise.
 
-### GetPasswordOk
+### GetTokenSecretOk
 
-`func (o *CreateProxmoxCommand) GetPasswordOk() (*string, bool)`
+`func (o *CreateProxmoxCommand) GetTokenSecretOk() (*string, bool)`
 
-GetPasswordOk returns a tuple with the Password field if it's non-nil, zero value otherwise
+GetTokenSecretOk returns a tuple with the TokenSecret field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetPassword
+### SetTokenSecret
 
-`func (o *CreateProxmoxCommand) SetPassword(v string)`
+`func (o *CreateProxmoxCommand) SetTokenSecret(v string)`
 
-SetPassword sets Password field to given value.
+SetTokenSecret sets TokenSecret field to given value.
 
 
 ### GetStorage
@@ -180,16 +180,6 @@ SetContinent sets Continent field to given value.
 
 HasContinent returns a boolean if a field has been set.
 
-### SetContinentNil
-
-`func (o *CreateProxmoxCommand) SetContinentNil(b bool)`
-
- SetContinentNil sets the value for Continent to be an explicit nil
-
-### UnsetContinent
-`func (o *CreateProxmoxCommand) UnsetContinent()`
-
-UnsetContinent ensures that no value is present for Continent, not even an explicit nil
 ### GetOrganizationId
 
 `func (o *CreateProxmoxCommand) GetOrganizationId() int32`
@@ -215,16 +205,6 @@ SetOrganizationId sets OrganizationId field to given value.
 
 HasOrganizationId returns a boolean if a field has been set.
 
-### SetOrganizationIdNil
-
-`func (o *CreateProxmoxCommand) SetOrganizationIdNil(b bool)`
-
- SetOrganizationIdNil sets the value for OrganizationId to be an explicit nil
-
-### UnsetOrganizationId
-`func (o *CreateProxmoxCommand) UnsetOrganizationId()`
-
-UnsetOrganizationId ensures that no value is present for OrganizationId, not even an explicit nil
 ### GetHypervisors
 
 `func (o *CreateProxmoxCommand) GetHypervisors() []string`
@@ -250,16 +230,6 @@ SetHypervisors sets Hypervisors field to given value.
 
 HasHypervisors returns a boolean if a field has been set.
 
-### SetHypervisorsNil
-
-`func (o *CreateProxmoxCommand) SetHypervisorsNil(b bool)`
-
- SetHypervisorsNil sets the value for Hypervisors to be an explicit nil
-
-### UnsetHypervisors
-`func (o *CreateProxmoxCommand) UnsetHypervisors()`
-
-UnsetHypervisors ensures that no value is present for Hypervisors, not even an explicit nil
 ### GetPublicNetwork
 
 `func (o *CreateProxmoxCommand) GetPublicNetwork() CreateProxmoxNetworkDto`

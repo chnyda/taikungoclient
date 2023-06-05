@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**RepoName** | Pointer to **NullableString** |  | [optional] 
-**PackageName** | Pointer to **NullableString** |  | [optional] 
-**CurrentVersion** | Pointer to **NullableString** |  | [optional] 
+**RepoName** | Pointer to **string** |  | [optional] 
+**PackageName** | Pointer to **string** |  | [optional] 
+**CurrentVersion** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -52,16 +52,6 @@ SetRepoName sets RepoName field to given value.
 
 HasRepoName returns a boolean if a field has been set.
 
-### SetRepoNameNil
-
-`func (o *ListCatalogAppAvailableVersionsCommand) SetRepoNameNil(b bool)`
-
- SetRepoNameNil sets the value for RepoName to be an explicit nil
-
-### UnsetRepoName
-`func (o *ListCatalogAppAvailableVersionsCommand) UnsetRepoName()`
-
-UnsetRepoName ensures that no value is present for RepoName, not even an explicit nil
 ### GetPackageName
 
 `func (o *ListCatalogAppAvailableVersionsCommand) GetPackageName() string`
@@ -87,16 +77,6 @@ SetPackageName sets PackageName field to given value.
 
 HasPackageName returns a boolean if a field has been set.
 
-### SetPackageNameNil
-
-`func (o *ListCatalogAppAvailableVersionsCommand) SetPackageNameNil(b bool)`
-
- SetPackageNameNil sets the value for PackageName to be an explicit nil
-
-### UnsetPackageName
-`func (o *ListCatalogAppAvailableVersionsCommand) UnsetPackageName()`
-
-UnsetPackageName ensures that no value is present for PackageName, not even an explicit nil
 ### GetCurrentVersion
 
 `func (o *ListCatalogAppAvailableVersionsCommand) GetCurrentVersion() string`
@@ -122,16 +102,6 @@ SetCurrentVersion sets CurrentVersion field to given value.
 
 HasCurrentVersion returns a boolean if a field has been set.
 
-### SetCurrentVersionNil
-
-`func (o *ListCatalogAppAvailableVersionsCommand) SetCurrentVersionNil(b bool)`
-
- SetCurrentVersionNil sets the value for CurrentVersion to be an explicit nil
-
-### UnsetCurrentVersion
-`func (o *ListCatalogAppAvailableVersionsCommand) UnsetCurrentVersion()`
-
-UnsetCurrentVersion ensures that no value is present for CurrentVersion, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

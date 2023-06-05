@@ -26,7 +26,9 @@ func Test_taikuncore_BillingApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.BillingApi.BillingCreate(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.BillingApi.BillingCreate(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -37,7 +39,9 @@ func Test_taikuncore_BillingApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.BillingApi.BillingExportCsv(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.BillingApi.BillingExportCsv(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -48,7 +52,9 @@ func Test_taikuncore_BillingApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.BillingApi.BillingGroupedList(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.BillingApi.BillingGroupedList(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -60,7 +66,9 @@ func Test_taikuncore_BillingApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.BillingApi.BillingList(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.BillingApi.BillingList(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

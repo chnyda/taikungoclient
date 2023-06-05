@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **NullableString** |  | [optional] 
-**HttpProxy** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**HttpProxy** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -51,16 +51,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *UpdateAccessProfileDto) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *UpdateAccessProfileDto) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetHttpProxy
 
 `func (o *UpdateAccessProfileDto) GetHttpProxy() string`
@@ -86,16 +76,6 @@ SetHttpProxy sets HttpProxy field to given value.
 
 HasHttpProxy returns a boolean if a field has been set.
 
-### SetHttpProxyNil
-
-`func (o *UpdateAccessProfileDto) SetHttpProxyNil(b bool)`
-
- SetHttpProxyNil sets the value for HttpProxy to be an explicit nil
-
-### UnsetHttpProxy
-`func (o *UpdateAccessProfileDto) UnsetHttpProxy()`
-
-UnsetHttpProxy ensures that no value is present for HttpProxy, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

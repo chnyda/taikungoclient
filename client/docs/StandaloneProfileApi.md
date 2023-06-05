@@ -1,23 +1,23 @@
-# \StandaloneProfileApi
+# \StandAloneProfileApi
 
 All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**StandaloneprofileCreate**](StandaloneProfileApi.md#StandaloneprofileCreate) | **Post** /api/v1/standaloneprofile/create | Create standalone profile.
-[**StandaloneprofileDelete**](StandaloneProfileApi.md#StandaloneprofileDelete) | **Post** /api/v1/standaloneprofile/delete | Delete standalone profile.
-[**StandaloneprofileDropdown**](StandaloneProfileApi.md#StandaloneprofileDropdown) | **Get** /api/v1/standaloneprofile/list | Retrieve all standalone profiles for organization
-[**StandaloneprofileEdit**](StandaloneProfileApi.md#StandaloneprofileEdit) | **Post** /api/v1/standaloneprofile/edit | Edit standalone profile.
-[**StandaloneprofileList**](StandaloneProfileApi.md#StandaloneprofileList) | **Get** /api/v1/standaloneprofile | Retrieve all standalone profiles
-[**StandaloneprofileLockManagement**](StandaloneProfileApi.md#StandaloneprofileLockManagement) | **Post** /api/v1/standaloneprofile/lockmanager | Lock/unlock standalone profile.
+[**StandAloneProfileCreate**](StandAloneProfileApi.md#StandAloneProfileCreate) | **Post** /api/v{v}/StandAloneProfile/create | Create standalone profile
+[**StandAloneProfileDelete**](StandAloneProfileApi.md#StandAloneProfileDelete) | **Post** /api/v{v}/StandAloneProfile/delete | Delete standalone profile
+[**StandAloneProfileDropdownList**](StandAloneProfileApi.md#StandAloneProfileDropdownList) | **Get** /api/v{v}/StandAloneProfile/list | Retrieve dropdown list of stand alone profiles
+[**StandAloneProfileEdit**](StandAloneProfileApi.md#StandAloneProfileEdit) | **Post** /api/v{v}/StandAloneProfile/edit | Update standalone profile
+[**StandAloneProfileList**](StandAloneProfileApi.md#StandAloneProfileList) | **Get** /api/v{v}/StandAloneProfile | Retrieve a list of stand alone profiles
+[**StandAloneProfileLockManagement**](StandAloneProfileApi.md#StandAloneProfileLockManagement) | **Post** /api/v{v}/StandAloneProfile/lockmanager | Lock/unlock standalone profile
 
 
 
-## StandaloneprofileCreate
+## StandAloneProfileCreate
 
-> ApiResponse StandaloneprofileCreate(ctx).StandAloneProfileCreateCommand(standAloneProfileCreateCommand).Execute()
+> ApiResponse StandAloneProfileCreate(ctx, v).Body(body).Execute()
 
-Create standalone profile.
+Create standalone profile
 
 ### Example
 
@@ -32,32 +32,38 @@ import (
 )
 
 func main() {
-    standAloneProfileCreateCommand := *openapiclient.NewStandAloneProfileCreateCommand("Name_example", "PublicKey_example") // StandAloneProfileCreateCommand |  (optional)
+    v := "v_example" // string | 
+    body := *openapiclient.NewStandAloneProfileCreateCommand("Name_example", "PublicKey_example") // StandAloneProfileCreateCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.StandaloneProfileApi.StandaloneprofileCreate(context.Background()).StandAloneProfileCreateCommand(standAloneProfileCreateCommand).Execute()
+    resp, r, err := apiClient.StandAloneProfileApi.StandAloneProfileCreate(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `StandaloneProfileApi.StandaloneprofileCreate``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `StandAloneProfileApi.StandAloneProfileCreate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `StandaloneprofileCreate`: ApiResponse
-    fmt.Fprintf(os.Stdout, "Response from `StandaloneProfileApi.StandaloneprofileCreate`: %v\n", resp)
+    // response from `StandAloneProfileCreate`: ApiResponse
+    fmt.Fprintf(os.Stdout, "Response from `StandAloneProfileApi.StandAloneProfileCreate`: %v\n", resp)
 }
 ```
 
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiStandaloneprofileCreateRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiStandAloneProfileCreateRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **standAloneProfileCreateCommand** | [**StandAloneProfileCreateCommand**](StandAloneProfileCreateCommand.md) |  | 
+
+ **body** | [**StandAloneProfileCreateCommand**](StandAloneProfileCreateCommand.md) |  | 
 
 ### Return type
 
@@ -69,19 +75,19 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## StandaloneprofileDelete
+## StandAloneProfileDelete
 
-> StandaloneprofileDelete(ctx).DeleteStandAloneProfileCommand(deleteStandAloneProfileCommand).Execute()
+> StandAloneProfileDelete(ctx, v).Body(body).Execute()
 
-Delete standalone profile.
+Delete standalone profile
 
 ### Example
 
@@ -96,13 +102,14 @@ import (
 )
 
 func main() {
-    deleteStandAloneProfileCommand := *openapiclient.NewDeleteStandAloneProfileCommand() // DeleteStandAloneProfileCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewDeleteStandAloneProfileCommand() // DeleteStandAloneProfileCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.StandaloneProfileApi.StandaloneprofileDelete(context.Background()).DeleteStandAloneProfileCommand(deleteStandAloneProfileCommand).Execute()
+    r, err := apiClient.StandAloneProfileApi.StandAloneProfileDelete(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `StandaloneProfileApi.StandaloneprofileDelete``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `StandAloneProfileApi.StandAloneProfileDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -111,15 +118,20 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiStandaloneprofileDeleteRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiStandAloneProfileDeleteRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **deleteStandAloneProfileCommand** | [**DeleteStandAloneProfileCommand**](DeleteStandAloneProfileCommand.md) |  | 
+
+ **body** | [**DeleteStandAloneProfileCommand**](DeleteStandAloneProfileCommand.md) |  | 
 
 ### Return type
 
@@ -131,19 +143,19 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## StandaloneprofileDropdown
+## StandAloneProfileDropdownList
 
-> []CommonDropdownDto StandaloneprofileDropdown(ctx).OrganizationId(organizationId).Search(search).Execute()
+> []CommonDropdownDto StandAloneProfileDropdownList(ctx, v).OrganizationId(organizationId).Search(search).Execute()
 
-Retrieve all standalone profiles for organization
+Retrieve dropdown list of stand alone profiles
 
 ### Example
 
@@ -158,32 +170,38 @@ import (
 )
 
 func main() {
+    v := "v_example" // string | 
     organizationId := int32(56) // int32 |  (optional)
     search := "search_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.StandaloneProfileApi.StandaloneprofileDropdown(context.Background()).OrganizationId(organizationId).Search(search).Execute()
+    resp, r, err := apiClient.StandAloneProfileApi.StandAloneProfileDropdownList(context.Background(), v).OrganizationId(organizationId).Search(search).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `StandaloneProfileApi.StandaloneprofileDropdown``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `StandAloneProfileApi.StandAloneProfileDropdownList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `StandaloneprofileDropdown`: []CommonDropdownDto
-    fmt.Fprintf(os.Stdout, "Response from `StandaloneProfileApi.StandaloneprofileDropdown`: %v\n", resp)
+    // response from `StandAloneProfileDropdownList`: []CommonDropdownDto
+    fmt.Fprintf(os.Stdout, "Response from `StandAloneProfileApi.StandAloneProfileDropdownList`: %v\n", resp)
 }
 ```
 
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiStandaloneprofileDropdownRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiStandAloneProfileDropdownListRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
  **organizationId** | **int32** |  | 
  **search** | **string** |  | 
 
@@ -198,18 +216,18 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## StandaloneprofileEdit
+## StandAloneProfileEdit
 
-> StandaloneprofileEdit(ctx).StandAloneProfileUpdateCommand(standAloneProfileUpdateCommand).Execute()
+> StandAloneProfileEdit(ctx, v).Body(body).Execute()
 
-Edit standalone profile.
+Update standalone profile
 
 ### Example
 
@@ -224,13 +242,14 @@ import (
 )
 
 func main() {
-    standAloneProfileUpdateCommand := *openapiclient.NewStandAloneProfileUpdateCommand(int32(123), "Name_example") // StandAloneProfileUpdateCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewStandAloneProfileUpdateCommand(int32(123), "Name_example") // StandAloneProfileUpdateCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.StandaloneProfileApi.StandaloneprofileEdit(context.Background()).StandAloneProfileUpdateCommand(standAloneProfileUpdateCommand).Execute()
+    r, err := apiClient.StandAloneProfileApi.StandAloneProfileEdit(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `StandaloneProfileApi.StandaloneprofileEdit``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `StandAloneProfileApi.StandAloneProfileEdit``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -239,15 +258,20 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiStandaloneprofileEditRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiStandAloneProfileEditRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **standAloneProfileUpdateCommand** | [**StandAloneProfileUpdateCommand**](StandAloneProfileUpdateCommand.md) |  | 
+
+ **body** | [**StandAloneProfileUpdateCommand**](StandAloneProfileUpdateCommand.md) |  | 
 
 ### Return type
 
@@ -259,19 +283,19 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## StandaloneprofileList
+## StandAloneProfileList
 
-> StandAloneProfiles StandaloneprofileList(ctx).Limit(limit).Offset(offset).OrganizationId(organizationId).SortBy(sortBy).SortDirection(sortDirection).Search(search).SearchId(searchId).Id(id).Execute()
+> StandAloneProfiles StandAloneProfileList(ctx, v).Limit(limit).Offset(offset).OrganizationId(organizationId).SortBy(sortBy).SortDirection(sortDirection).Search(search).SearchId(searchId).Id(id).Execute()
 
-Retrieve all standalone profiles
+Retrieve a list of stand alone profiles
 
 ### Example
 
@@ -286,44 +310,50 @@ import (
 )
 
 func main() {
-    limit := int32(56) // int32 |  (optional)
-    offset := int32(56) // int32 |  (optional)
+    v := "v_example" // string | 
+    limit := int32(56) // int32 | Limits user size (by default 50) (optional)
+    offset := int32(56) // int32 | Skip elements (optional)
     organizationId := int32(56) // int32 |  (optional)
     sortBy := "sortBy_example" // string |  (optional)
     sortDirection := "sortDirection_example" // string |  (optional)
-    search := "search_example" // string |  (optional)
+    search := "search_example" // string | Keyword for searching (optional)
     searchId := "searchId_example" // string |  (optional)
     id := int32(56) // int32 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.StandaloneProfileApi.StandaloneprofileList(context.Background()).Limit(limit).Offset(offset).OrganizationId(organizationId).SortBy(sortBy).SortDirection(sortDirection).Search(search).SearchId(searchId).Id(id).Execute()
+    resp, r, err := apiClient.StandAloneProfileApi.StandAloneProfileList(context.Background(), v).Limit(limit).Offset(offset).OrganizationId(organizationId).SortBy(sortBy).SortDirection(sortDirection).Search(search).SearchId(searchId).Id(id).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `StandaloneProfileApi.StandaloneprofileList``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `StandAloneProfileApi.StandAloneProfileList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `StandaloneprofileList`: StandAloneProfiles
-    fmt.Fprintf(os.Stdout, "Response from `StandaloneProfileApi.StandaloneprofileList`: %v\n", resp)
+    // response from `StandAloneProfileList`: StandAloneProfiles
+    fmt.Fprintf(os.Stdout, "Response from `StandAloneProfileApi.StandAloneProfileList`: %v\n", resp)
 }
 ```
 
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiStandaloneprofileListRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiStandAloneProfileListRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **limit** | **int32** |  | 
- **offset** | **int32** |  | 
+
+ **limit** | **int32** | Limits user size (by default 50) | 
+ **offset** | **int32** | Skip elements | 
  **organizationId** | **int32** |  | 
  **sortBy** | **string** |  | 
  **sortDirection** | **string** |  | 
- **search** | **string** |  | 
+ **search** | **string** | Keyword for searching | 
  **searchId** | **string** |  | 
  **id** | **int32** |  | 
 
@@ -338,18 +368,18 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## StandaloneprofileLockManagement
+## StandAloneProfileLockManagement
 
-> StandaloneprofileLockManagement(ctx).StandAloneProfileLockManagementCommand(standAloneProfileLockManagementCommand).Execute()
+> StandAloneProfileLockManagement(ctx, v).Body(body).Execute()
 
-Lock/unlock standalone profile.
+Lock/unlock standalone profile
 
 ### Example
 
@@ -364,13 +394,14 @@ import (
 )
 
 func main() {
-    standAloneProfileLockManagementCommand := *openapiclient.NewStandAloneProfileLockManagementCommand() // StandAloneProfileLockManagementCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewStandAloneProfileLockManagementCommand() // StandAloneProfileLockManagementCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.StandaloneProfileApi.StandaloneprofileLockManagement(context.Background()).StandAloneProfileLockManagementCommand(standAloneProfileLockManagementCommand).Execute()
+    r, err := apiClient.StandAloneProfileApi.StandAloneProfileLockManagement(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `StandaloneProfileApi.StandaloneprofileLockManagement``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `StandAloneProfileApi.StandAloneProfileLockManagement``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -379,15 +410,20 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiStandaloneprofileLockManagementRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiStandAloneProfileLockManagementRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **standAloneProfileLockManagementCommand** | [**StandAloneProfileLockManagementCommand**](StandAloneProfileLockManagementCommand.md) |  | 
+
+ **body** | [**StandAloneProfileLockManagementCommand**](StandAloneProfileLockManagementCommand.md) |  | 
 
 ### Return type
 
@@ -399,8 +435,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

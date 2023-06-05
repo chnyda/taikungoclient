@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Status** | Pointer to **NullableString** |  | [optional] 
-**Labels** | Pointer to **interface{}** |  | [optional] 
+**Status** | Pointer to **string** |  | [optional] 
+**Labels** | Pointer to **map[string]interface{}** |  | [optional] 
 **Annotations** | Pointer to [**Annotations**](Annotations.md) |  | [optional] 
 **StartsAt** | Pointer to **time.Time** |  | [optional] 
 **EndsAt** | Pointer to **time.Time** |  | [optional] 
-**Fingerprint** | Pointer to **NullableString** |  | [optional] 
+**Fingerprint** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -55,32 +55,22 @@ SetStatus sets Status field to given value.
 
 HasStatus returns a boolean if a field has been set.
 
-### SetStatusNil
-
-`func (o *KubernetesAlertCreateDto) SetStatusNil(b bool)`
-
- SetStatusNil sets the value for Status to be an explicit nil
-
-### UnsetStatus
-`func (o *KubernetesAlertCreateDto) UnsetStatus()`
-
-UnsetStatus ensures that no value is present for Status, not even an explicit nil
 ### GetLabels
 
-`func (o *KubernetesAlertCreateDto) GetLabels() interface{}`
+`func (o *KubernetesAlertCreateDto) GetLabels() map[string]interface{}`
 
 GetLabels returns the Labels field if non-nil, zero value otherwise.
 
 ### GetLabelsOk
 
-`func (o *KubernetesAlertCreateDto) GetLabelsOk() (*interface{}, bool)`
+`func (o *KubernetesAlertCreateDto) GetLabelsOk() (*map[string]interface{}, bool)`
 
 GetLabelsOk returns a tuple with the Labels field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLabels
 
-`func (o *KubernetesAlertCreateDto) SetLabels(v interface{})`
+`func (o *KubernetesAlertCreateDto) SetLabels(v map[string]interface{})`
 
 SetLabels sets Labels field to given value.
 
@@ -90,16 +80,6 @@ SetLabels sets Labels field to given value.
 
 HasLabels returns a boolean if a field has been set.
 
-### SetLabelsNil
-
-`func (o *KubernetesAlertCreateDto) SetLabelsNil(b bool)`
-
- SetLabelsNil sets the value for Labels to be an explicit nil
-
-### UnsetLabels
-`func (o *KubernetesAlertCreateDto) UnsetLabels()`
-
-UnsetLabels ensures that no value is present for Labels, not even an explicit nil
 ### GetAnnotations
 
 `func (o *KubernetesAlertCreateDto) GetAnnotations() Annotations`
@@ -200,16 +180,6 @@ SetFingerprint sets Fingerprint field to given value.
 
 HasFingerprint returns a boolean if a field has been set.
 
-### SetFingerprintNil
-
-`func (o *KubernetesAlertCreateDto) SetFingerprintNil(b bool)`
-
- SetFingerprintNil sets the value for Fingerprint to be an explicit nil
-
-### UnsetFingerprint
-`func (o *KubernetesAlertCreateDto) UnsetFingerprint()`
-
-UnsetFingerprint ensures that no value is present for Fingerprint, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AzureSubscriptionId** | Pointer to **NullableString** |  | [optional] 
-**AzureClientId** | Pointer to **NullableString** |  | [optional] 
-**AzureClientSecret** | Pointer to **NullableString** |  | [optional] 
-**AzureTenantId** | Pointer to **NullableString** |  | [optional] 
-**AzureLocation** | Pointer to **NullableString** |  | [optional] 
-**CloudId** | Pointer to **NullableInt32** |  | [optional] 
+**AzureSubscriptionId** | Pointer to **string** |  | [optional] 
+**AzureClientId** | Pointer to **string** |  | [optional] 
+**AzureClientSecret** | Pointer to **string** |  | [optional] 
+**AzureTenantId** | Pointer to **string** |  | [optional] 
+**AzureLocation** | Pointer to **string** |  | [optional] 
+**CloudId** | Pointer to **int32** |  | [optional] 
 
 ## Methods
 
@@ -55,16 +55,6 @@ SetAzureSubscriptionId sets AzureSubscriptionId field to given value.
 
 HasAzureSubscriptionId returns a boolean if a field has been set.
 
-### SetAzureSubscriptionIdNil
-
-`func (o *AzureZonesCommand) SetAzureSubscriptionIdNil(b bool)`
-
- SetAzureSubscriptionIdNil sets the value for AzureSubscriptionId to be an explicit nil
-
-### UnsetAzureSubscriptionId
-`func (o *AzureZonesCommand) UnsetAzureSubscriptionId()`
-
-UnsetAzureSubscriptionId ensures that no value is present for AzureSubscriptionId, not even an explicit nil
 ### GetAzureClientId
 
 `func (o *AzureZonesCommand) GetAzureClientId() string`
@@ -90,16 +80,6 @@ SetAzureClientId sets AzureClientId field to given value.
 
 HasAzureClientId returns a boolean if a field has been set.
 
-### SetAzureClientIdNil
-
-`func (o *AzureZonesCommand) SetAzureClientIdNil(b bool)`
-
- SetAzureClientIdNil sets the value for AzureClientId to be an explicit nil
-
-### UnsetAzureClientId
-`func (o *AzureZonesCommand) UnsetAzureClientId()`
-
-UnsetAzureClientId ensures that no value is present for AzureClientId, not even an explicit nil
 ### GetAzureClientSecret
 
 `func (o *AzureZonesCommand) GetAzureClientSecret() string`
@@ -125,16 +105,6 @@ SetAzureClientSecret sets AzureClientSecret field to given value.
 
 HasAzureClientSecret returns a boolean if a field has been set.
 
-### SetAzureClientSecretNil
-
-`func (o *AzureZonesCommand) SetAzureClientSecretNil(b bool)`
-
- SetAzureClientSecretNil sets the value for AzureClientSecret to be an explicit nil
-
-### UnsetAzureClientSecret
-`func (o *AzureZonesCommand) UnsetAzureClientSecret()`
-
-UnsetAzureClientSecret ensures that no value is present for AzureClientSecret, not even an explicit nil
 ### GetAzureTenantId
 
 `func (o *AzureZonesCommand) GetAzureTenantId() string`
@@ -160,16 +130,6 @@ SetAzureTenantId sets AzureTenantId field to given value.
 
 HasAzureTenantId returns a boolean if a field has been set.
 
-### SetAzureTenantIdNil
-
-`func (o *AzureZonesCommand) SetAzureTenantIdNil(b bool)`
-
- SetAzureTenantIdNil sets the value for AzureTenantId to be an explicit nil
-
-### UnsetAzureTenantId
-`func (o *AzureZonesCommand) UnsetAzureTenantId()`
-
-UnsetAzureTenantId ensures that no value is present for AzureTenantId, not even an explicit nil
 ### GetAzureLocation
 
 `func (o *AzureZonesCommand) GetAzureLocation() string`
@@ -195,16 +155,6 @@ SetAzureLocation sets AzureLocation field to given value.
 
 HasAzureLocation returns a boolean if a field has been set.
 
-### SetAzureLocationNil
-
-`func (o *AzureZonesCommand) SetAzureLocationNil(b bool)`
-
- SetAzureLocationNil sets the value for AzureLocation to be an explicit nil
-
-### UnsetAzureLocation
-`func (o *AzureZonesCommand) UnsetAzureLocation()`
-
-UnsetAzureLocation ensures that no value is present for AzureLocation, not even an explicit nil
 ### GetCloudId
 
 `func (o *AzureZonesCommand) GetCloudId() int32`
@@ -230,16 +180,6 @@ SetCloudId sets CloudId field to given value.
 
 HasCloudId returns a boolean if a field has been set.
 
-### SetCloudIdNil
-
-`func (o *AzureZonesCommand) SetCloudIdNil(b bool)`
-
- SetCloudIdNil sets the value for CloudId to be an explicit nil
-
-### UnsetCloudId
-`func (o *AzureZonesCommand) UnsetCloudId()`
-
-UnsetCloudId ensures that no value is present for CloudId, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

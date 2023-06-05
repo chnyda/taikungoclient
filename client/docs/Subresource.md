@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
 **Metadata** | Pointer to [**Metadata**](Metadata.md) |  | [optional] 
-**HourlyCost** | Pointer to **NullableString** |  | [optional] 
-**MonthlyCost** | Pointer to **NullableString** |  | [optional] 
+**HourlyCost** | Pointer to **string** |  | [optional] 
+**MonthlyCost** | Pointer to **string** |  | [optional] 
 **CostComponents** | Pointer to [**[]CostComponent**](CostComponent.md) |  | [optional] 
 
 ## Methods
@@ -54,16 +54,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *Subresource) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *Subresource) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetMetadata
 
 `func (o *Subresource) GetMetadata() Metadata`
@@ -114,16 +104,6 @@ SetHourlyCost sets HourlyCost field to given value.
 
 HasHourlyCost returns a boolean if a field has been set.
 
-### SetHourlyCostNil
-
-`func (o *Subresource) SetHourlyCostNil(b bool)`
-
- SetHourlyCostNil sets the value for HourlyCost to be an explicit nil
-
-### UnsetHourlyCost
-`func (o *Subresource) UnsetHourlyCost()`
-
-UnsetHourlyCost ensures that no value is present for HourlyCost, not even an explicit nil
 ### GetMonthlyCost
 
 `func (o *Subresource) GetMonthlyCost() string`
@@ -149,16 +129,6 @@ SetMonthlyCost sets MonthlyCost field to given value.
 
 HasMonthlyCost returns a boolean if a field has been set.
 
-### SetMonthlyCostNil
-
-`func (o *Subresource) SetMonthlyCostNil(b bool)`
-
- SetMonthlyCostNil sets the value for MonthlyCost to be an explicit nil
-
-### UnsetMonthlyCost
-`func (o *Subresource) UnsetMonthlyCost()`
-
-UnsetMonthlyCost ensures that no value is present for MonthlyCost, not even an explicit nil
 ### GetCostComponents
 
 `func (o *Subresource) GetCostComponents() []CostComponent`
@@ -184,16 +154,6 @@ SetCostComponents sets CostComponents field to given value.
 
 HasCostComponents returns a boolean if a field has been set.
 
-### SetCostComponentsNil
-
-`func (o *Subresource) SetCostComponentsNil(b bool)`
-
- SetCostComponentsNil sets the value for CostComponents to be an explicit nil
-
-### UnsetCostComponents
-`func (o *Subresource) UnsetCostComponents()`
-
-UnsetCostComponents ensures that no value is present for CostComponents, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

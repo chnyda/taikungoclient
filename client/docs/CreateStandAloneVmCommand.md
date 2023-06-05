@@ -4,22 +4,22 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **string** |  | 
+**Name** | Pointer to **string** |  | [optional] 
 **FlavorName** | **string** |  | 
 **VolumeSize** | Pointer to **int64** |  | [optional] 
-**VolumeType** | Pointer to **NullableString** |  | [optional] 
-**Username** | Pointer to **NullableString** |  | [optional] 
-**Password** | Pointer to **NullableString** |  | [optional] 
+**VolumeType** | Pointer to **string** |  | [optional] 
+**Username** | Pointer to **string** |  | [optional] 
+**Password** | Pointer to **string** |  | [optional] 
 **PublicIpEnabled** | Pointer to **bool** |  | [optional] 
 **Image** | **string** |  | 
-**CloudInit** | Pointer to **NullableString** |  | [optional] 
+**CloudInit** | Pointer to **string** |  | [optional] 
 **StandAloneProfileId** | **int32** |  | 
 **ProjectId** | **int32** |  | 
 **Count** | Pointer to **int32** |  | [optional] 
-**SpotPrice** | Pointer to **NullableFloat64** |  | [optional] 
+**SpotPrice** | Pointer to **float64** |  | [optional] 
 **SpotInstance** | Pointer to **bool** |  | [optional] 
-**AvailabilityZone** | Pointer to **NullableString** |  | [optional] 
-**Hypervisor** | Pointer to **NullableString** |  | [optional] 
+**AvailabilityZone** | Pointer to **string** |  | [optional] 
+**Hypervisor** | Pointer to **string** |  | [optional] 
 **StandAloneVmDisks** | Pointer to [**[]StandAloneVmDiskDto**](StandAloneVmDiskDto.md) |  | [optional] 
 **StandAloneMetaDatas** | Pointer to [**[]StandAloneMetaDataDto**](StandAloneMetaDataDto.md) |  | [optional] 
 
@@ -27,7 +27,7 @@ Name | Type | Description | Notes
 
 ### NewCreateStandAloneVmCommand
 
-`func NewCreateStandAloneVmCommand(name string, flavorName string, image string, standAloneProfileId int32, projectId int32, ) *CreateStandAloneVmCommand`
+`func NewCreateStandAloneVmCommand(flavorName string, image string, standAloneProfileId int32, projectId int32, ) *CreateStandAloneVmCommand`
 
 NewCreateStandAloneVmCommand instantiates a new CreateStandAloneVmCommand object
 This constructor will assign default values to properties that have it defined,
@@ -61,6 +61,11 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
+### HasName
+
+`func (o *CreateStandAloneVmCommand) HasName() bool`
+
+HasName returns a boolean if a field has been set.
 
 ### GetFlavorName
 
@@ -132,16 +137,6 @@ SetVolumeType sets VolumeType field to given value.
 
 HasVolumeType returns a boolean if a field has been set.
 
-### SetVolumeTypeNil
-
-`func (o *CreateStandAloneVmCommand) SetVolumeTypeNil(b bool)`
-
- SetVolumeTypeNil sets the value for VolumeType to be an explicit nil
-
-### UnsetVolumeType
-`func (o *CreateStandAloneVmCommand) UnsetVolumeType()`
-
-UnsetVolumeType ensures that no value is present for VolumeType, not even an explicit nil
 ### GetUsername
 
 `func (o *CreateStandAloneVmCommand) GetUsername() string`
@@ -167,16 +162,6 @@ SetUsername sets Username field to given value.
 
 HasUsername returns a boolean if a field has been set.
 
-### SetUsernameNil
-
-`func (o *CreateStandAloneVmCommand) SetUsernameNil(b bool)`
-
- SetUsernameNil sets the value for Username to be an explicit nil
-
-### UnsetUsername
-`func (o *CreateStandAloneVmCommand) UnsetUsername()`
-
-UnsetUsername ensures that no value is present for Username, not even an explicit nil
 ### GetPassword
 
 `func (o *CreateStandAloneVmCommand) GetPassword() string`
@@ -202,16 +187,6 @@ SetPassword sets Password field to given value.
 
 HasPassword returns a boolean if a field has been set.
 
-### SetPasswordNil
-
-`func (o *CreateStandAloneVmCommand) SetPasswordNil(b bool)`
-
- SetPasswordNil sets the value for Password to be an explicit nil
-
-### UnsetPassword
-`func (o *CreateStandAloneVmCommand) UnsetPassword()`
-
-UnsetPassword ensures that no value is present for Password, not even an explicit nil
 ### GetPublicIpEnabled
 
 `func (o *CreateStandAloneVmCommand) GetPublicIpEnabled() bool`
@@ -282,16 +257,6 @@ SetCloudInit sets CloudInit field to given value.
 
 HasCloudInit returns a boolean if a field has been set.
 
-### SetCloudInitNil
-
-`func (o *CreateStandAloneVmCommand) SetCloudInitNil(b bool)`
-
- SetCloudInitNil sets the value for CloudInit to be an explicit nil
-
-### UnsetCloudInit
-`func (o *CreateStandAloneVmCommand) UnsetCloudInit()`
-
-UnsetCloudInit ensures that no value is present for CloudInit, not even an explicit nil
 ### GetStandAloneProfileId
 
 `func (o *CreateStandAloneVmCommand) GetStandAloneProfileId() int32`
@@ -382,16 +347,6 @@ SetSpotPrice sets SpotPrice field to given value.
 
 HasSpotPrice returns a boolean if a field has been set.
 
-### SetSpotPriceNil
-
-`func (o *CreateStandAloneVmCommand) SetSpotPriceNil(b bool)`
-
- SetSpotPriceNil sets the value for SpotPrice to be an explicit nil
-
-### UnsetSpotPrice
-`func (o *CreateStandAloneVmCommand) UnsetSpotPrice()`
-
-UnsetSpotPrice ensures that no value is present for SpotPrice, not even an explicit nil
 ### GetSpotInstance
 
 `func (o *CreateStandAloneVmCommand) GetSpotInstance() bool`
@@ -442,16 +397,6 @@ SetAvailabilityZone sets AvailabilityZone field to given value.
 
 HasAvailabilityZone returns a boolean if a field has been set.
 
-### SetAvailabilityZoneNil
-
-`func (o *CreateStandAloneVmCommand) SetAvailabilityZoneNil(b bool)`
-
- SetAvailabilityZoneNil sets the value for AvailabilityZone to be an explicit nil
-
-### UnsetAvailabilityZone
-`func (o *CreateStandAloneVmCommand) UnsetAvailabilityZone()`
-
-UnsetAvailabilityZone ensures that no value is present for AvailabilityZone, not even an explicit nil
 ### GetHypervisor
 
 `func (o *CreateStandAloneVmCommand) GetHypervisor() string`
@@ -477,16 +422,6 @@ SetHypervisor sets Hypervisor field to given value.
 
 HasHypervisor returns a boolean if a field has been set.
 
-### SetHypervisorNil
-
-`func (o *CreateStandAloneVmCommand) SetHypervisorNil(b bool)`
-
- SetHypervisorNil sets the value for Hypervisor to be an explicit nil
-
-### UnsetHypervisor
-`func (o *CreateStandAloneVmCommand) UnsetHypervisor()`
-
-UnsetHypervisor ensures that no value is present for Hypervisor, not even an explicit nil
 ### GetStandAloneVmDisks
 
 `func (o *CreateStandAloneVmCommand) GetStandAloneVmDisks() []StandAloneVmDiskDto`
@@ -512,16 +447,6 @@ SetStandAloneVmDisks sets StandAloneVmDisks field to given value.
 
 HasStandAloneVmDisks returns a boolean if a field has been set.
 
-### SetStandAloneVmDisksNil
-
-`func (o *CreateStandAloneVmCommand) SetStandAloneVmDisksNil(b bool)`
-
- SetStandAloneVmDisksNil sets the value for StandAloneVmDisks to be an explicit nil
-
-### UnsetStandAloneVmDisks
-`func (o *CreateStandAloneVmCommand) UnsetStandAloneVmDisks()`
-
-UnsetStandAloneVmDisks ensures that no value is present for StandAloneVmDisks, not even an explicit nil
 ### GetStandAloneMetaDatas
 
 `func (o *CreateStandAloneVmCommand) GetStandAloneMetaDatas() []StandAloneMetaDataDto`
@@ -547,16 +472,6 @@ SetStandAloneMetaDatas sets StandAloneMetaDatas field to given value.
 
 HasStandAloneMetaDatas returns a boolean if a field has been set.
 
-### SetStandAloneMetaDatasNil
-
-`func (o *CreateStandAloneVmCommand) SetStandAloneMetaDatasNil(b bool)`
-
- SetStandAloneMetaDatasNil sets the value for StandAloneMetaDatas to be an explicit nil
-
-### UnsetStandAloneMetaDatas
-`func (o *CreateStandAloneVmCommand) UnsetStandAloneMetaDatas()`
-
-UnsetStandAloneMetaDatas ensures that no value is present for StandAloneMetaDatas, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

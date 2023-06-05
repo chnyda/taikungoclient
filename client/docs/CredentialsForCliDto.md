@@ -5,11 +5,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** |  | [optional] 
-**CloudCredentialName** | Pointer to **NullableString** |  | [optional] 
-**CloudType** | Pointer to **NullableString** |  | [optional] 
+**CloudCredentialName** | Pointer to **string** |  | [optional] 
+**CloudType** | Pointer to **string** |  | [optional] 
 **OrganizationId** | Pointer to **int32** |  | [optional] 
-**OrganizationName** | Pointer to **NullableString** |  | [optional] 
-**PartnerName** | Pointer to **NullableString** |  | [optional] 
+**OrganizationName** | Pointer to **string** |  | [optional] 
+**PartnerName** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -80,16 +80,6 @@ SetCloudCredentialName sets CloudCredentialName field to given value.
 
 HasCloudCredentialName returns a boolean if a field has been set.
 
-### SetCloudCredentialNameNil
-
-`func (o *CredentialsForCliDto) SetCloudCredentialNameNil(b bool)`
-
- SetCloudCredentialNameNil sets the value for CloudCredentialName to be an explicit nil
-
-### UnsetCloudCredentialName
-`func (o *CredentialsForCliDto) UnsetCloudCredentialName()`
-
-UnsetCloudCredentialName ensures that no value is present for CloudCredentialName, not even an explicit nil
 ### GetCloudType
 
 `func (o *CredentialsForCliDto) GetCloudType() string`
@@ -115,16 +105,6 @@ SetCloudType sets CloudType field to given value.
 
 HasCloudType returns a boolean if a field has been set.
 
-### SetCloudTypeNil
-
-`func (o *CredentialsForCliDto) SetCloudTypeNil(b bool)`
-
- SetCloudTypeNil sets the value for CloudType to be an explicit nil
-
-### UnsetCloudType
-`func (o *CredentialsForCliDto) UnsetCloudType()`
-
-UnsetCloudType ensures that no value is present for CloudType, not even an explicit nil
 ### GetOrganizationId
 
 `func (o *CredentialsForCliDto) GetOrganizationId() int32`
@@ -175,16 +155,6 @@ SetOrganizationName sets OrganizationName field to given value.
 
 HasOrganizationName returns a boolean if a field has been set.
 
-### SetOrganizationNameNil
-
-`func (o *CredentialsForCliDto) SetOrganizationNameNil(b bool)`
-
- SetOrganizationNameNil sets the value for OrganizationName to be an explicit nil
-
-### UnsetOrganizationName
-`func (o *CredentialsForCliDto) UnsetOrganizationName()`
-
-UnsetOrganizationName ensures that no value is present for OrganizationName, not even an explicit nil
 ### GetPartnerName
 
 `func (o *CredentialsForCliDto) GetPartnerName() string`
@@ -210,16 +180,6 @@ SetPartnerName sets PartnerName field to given value.
 
 HasPartnerName returns a boolean if a field has been set.
 
-### SetPartnerNameNil
-
-`func (o *CredentialsForCliDto) SetPartnerNameNil(b bool)`
-
- SetPartnerNameNil sets the value for PartnerName to be an explicit nil
-
-### UnsetPartnerName
-`func (o *CredentialsForCliDto) UnsetPartnerName()`
-
-UnsetPartnerName ensures that no value is present for PartnerName, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

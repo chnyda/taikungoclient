@@ -42,9 +42,9 @@ func NewBindUsersCommandWithDefaults() *BindUsersCommand {
 	return &this
 }
 
-// GetUsers returns the Users field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetUsers returns the Users field value if set, zero value otherwise.
 func (o *BindUsersCommand) GetUsers() []UpdateProjectUserDto {
-	if o == nil {
+	if o == nil || IsNil(o.Users) {
 		var ret []UpdateProjectUserDto
 		return ret
 	}
@@ -53,7 +53,6 @@ func (o *BindUsersCommand) GetUsers() []UpdateProjectUserDto {
 
 // GetUsersOk returns a tuple with the Users field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *BindUsersCommand) GetUsersOk() ([]UpdateProjectUserDto, bool) {
 	if o == nil || IsNil(o.Users) {
 		return nil, false
@@ -63,7 +62,7 @@ func (o *BindUsersCommand) GetUsersOk() ([]UpdateProjectUserDto, bool) {
 
 // HasUsers returns a boolean if a field has been set.
 func (o *BindUsersCommand) HasUsers() bool {
-	if o != nil && IsNil(o.Users) {
+	if o != nil && !IsNil(o.Users) {
 		return true
 	}
 
@@ -109,7 +108,7 @@ func (o BindUsersCommand) MarshalJSON() ([]byte, error) {
 
 func (o BindUsersCommand) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Users != nil {
+	if !IsNil(o.Users) {
 		toSerialize["users"] = o.Users
 	}
 	toSerialize["projectId"] = o.ProjectId

@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Name** | **string** |  | 
 **BusinessEmail** | **string** |  | 
 **CompanyName** | **string** |  | 
-**Comment** | Pointer to **NullableString** |  | [optional] 
+**Comment** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -113,16 +113,6 @@ SetComment sets Comment field to given value.
 
 HasComment returns a boolean if a field has been set.
 
-### SetCommentNil
-
-`func (o *ContactUsCommand) SetCommentNil(b bool)`
-
- SetCommentNil sets the value for Comment to be an explicit nil
-
-### UnsetComment
-`func (o *ContactUsCommand) UnsetComment()`
-
-UnsetComment ensures that no value is present for Comment, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

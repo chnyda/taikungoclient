@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**MetadataName** | Pointer to **NullableString** |  | [optional] 
-**Namespace** | Pointer to **NullableString** |  | [optional] 
-**Age** | Pointer to **NullableString** |  | [optional] 
-**Type** | Pointer to **NullableString** |  | [optional] 
-**Ip** | Pointer to **interface{}** |  | [optional] 
+**MetadataName** | Pointer to **string** |  | [optional] 
+**Namespace** | Pointer to **string** |  | [optional] 
+**Age** | Pointer to **string** |  | [optional] 
+**Type** | Pointer to **string** |  | [optional] 
+**Ip** | Pointer to **map[string]interface{}** |  | [optional] 
 
 ## Methods
 
@@ -54,16 +54,6 @@ SetMetadataName sets MetadataName field to given value.
 
 HasMetadataName returns a boolean if a field has been set.
 
-### SetMetadataNameNil
-
-`func (o *ServiceDto) SetMetadataNameNil(b bool)`
-
- SetMetadataNameNil sets the value for MetadataName to be an explicit nil
-
-### UnsetMetadataName
-`func (o *ServiceDto) UnsetMetadataName()`
-
-UnsetMetadataName ensures that no value is present for MetadataName, not even an explicit nil
 ### GetNamespace
 
 `func (o *ServiceDto) GetNamespace() string`
@@ -89,16 +79,6 @@ SetNamespace sets Namespace field to given value.
 
 HasNamespace returns a boolean if a field has been set.
 
-### SetNamespaceNil
-
-`func (o *ServiceDto) SetNamespaceNil(b bool)`
-
- SetNamespaceNil sets the value for Namespace to be an explicit nil
-
-### UnsetNamespace
-`func (o *ServiceDto) UnsetNamespace()`
-
-UnsetNamespace ensures that no value is present for Namespace, not even an explicit nil
 ### GetAge
 
 `func (o *ServiceDto) GetAge() string`
@@ -124,16 +104,6 @@ SetAge sets Age field to given value.
 
 HasAge returns a boolean if a field has been set.
 
-### SetAgeNil
-
-`func (o *ServiceDto) SetAgeNil(b bool)`
-
- SetAgeNil sets the value for Age to be an explicit nil
-
-### UnsetAge
-`func (o *ServiceDto) UnsetAge()`
-
-UnsetAge ensures that no value is present for Age, not even an explicit nil
 ### GetType
 
 `func (o *ServiceDto) GetType() string`
@@ -159,32 +129,22 @@ SetType sets Type field to given value.
 
 HasType returns a boolean if a field has been set.
 
-### SetTypeNil
-
-`func (o *ServiceDto) SetTypeNil(b bool)`
-
- SetTypeNil sets the value for Type to be an explicit nil
-
-### UnsetType
-`func (o *ServiceDto) UnsetType()`
-
-UnsetType ensures that no value is present for Type, not even an explicit nil
 ### GetIp
 
-`func (o *ServiceDto) GetIp() interface{}`
+`func (o *ServiceDto) GetIp() map[string]interface{}`
 
 GetIp returns the Ip field if non-nil, zero value otherwise.
 
 ### GetIpOk
 
-`func (o *ServiceDto) GetIpOk() (*interface{}, bool)`
+`func (o *ServiceDto) GetIpOk() (*map[string]interface{}, bool)`
 
 GetIpOk returns a tuple with the Ip field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIp
 
-`func (o *ServiceDto) SetIp(v interface{})`
+`func (o *ServiceDto) SetIp(v map[string]interface{})`
 
 SetIp sets Ip field to given value.
 
@@ -194,16 +154,6 @@ SetIp sets Ip field to given value.
 
 HasIp returns a boolean if a field has been set.
 
-### SetIpNil
-
-`func (o *ServiceDto) SetIpNil(b bool)`
-
- SetIpNil sets the value for Ip to be an explicit nil
-
-### UnsetIp
-`func (o *ServiceDto) UnsetIp()`
-
-UnsetIp ensures that no value is present for Ip, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -21,8 +21,8 @@ var _ MappedNullable = &BindRulesToOrganizationDto{}
 // BindRulesToOrganizationDto struct for BindRulesToOrganizationDto
 type BindRulesToOrganizationDto struct {
 	Id *int32 `json:"id,omitempty"`
-	Name NullableString `json:"name,omitempty"`
-	DiscountRate NullableFloat64 `json:"discountRate,omitempty"`
+	Name *string `json:"name,omitempty"`
+	DiscountRate *float64 `json:"discountRate,omitempty"`
 	IsBound *bool `json:"isBound,omitempty"`
 }
 
@@ -75,88 +75,68 @@ func (o *BindRulesToOrganizationDto) SetId(v int32) {
 	o.Id = &v
 }
 
-// GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetName returns the Name field value if set, zero value otherwise.
 func (o *BindRulesToOrganizationDto) GetName() string {
-	if o == nil || IsNil(o.Name.Get()) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
-	return *o.Name.Get()
+	return *o.Name
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *BindRulesToOrganizationDto) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
-	return o.Name.Get(), o.Name.IsSet()
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *BindRulesToOrganizationDto) HasName() bool {
-	if o != nil && o.Name.IsSet() {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
 	return false
 }
 
-// SetName gets a reference to the given NullableString and assigns it to the Name field.
+// SetName gets a reference to the given string and assigns it to the Name field.
 func (o *BindRulesToOrganizationDto) SetName(v string) {
-	o.Name.Set(&v)
-}
-// SetNameNil sets the value for Name to be an explicit nil
-func (o *BindRulesToOrganizationDto) SetNameNil() {
-	o.Name.Set(nil)
+	o.Name = &v
 }
 
-// UnsetName ensures that no value is present for Name, not even an explicit nil
-func (o *BindRulesToOrganizationDto) UnsetName() {
-	o.Name.Unset()
-}
-
-// GetDiscountRate returns the DiscountRate field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetDiscountRate returns the DiscountRate field value if set, zero value otherwise.
 func (o *BindRulesToOrganizationDto) GetDiscountRate() float64 {
-	if o == nil || IsNil(o.DiscountRate.Get()) {
+	if o == nil || IsNil(o.DiscountRate) {
 		var ret float64
 		return ret
 	}
-	return *o.DiscountRate.Get()
+	return *o.DiscountRate
 }
 
 // GetDiscountRateOk returns a tuple with the DiscountRate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *BindRulesToOrganizationDto) GetDiscountRateOk() (*float64, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.DiscountRate) {
 		return nil, false
 	}
-	return o.DiscountRate.Get(), o.DiscountRate.IsSet()
+	return o.DiscountRate, true
 }
 
 // HasDiscountRate returns a boolean if a field has been set.
 func (o *BindRulesToOrganizationDto) HasDiscountRate() bool {
-	if o != nil && o.DiscountRate.IsSet() {
+	if o != nil && !IsNil(o.DiscountRate) {
 		return true
 	}
 
 	return false
 }
 
-// SetDiscountRate gets a reference to the given NullableFloat64 and assigns it to the DiscountRate field.
+// SetDiscountRate gets a reference to the given float64 and assigns it to the DiscountRate field.
 func (o *BindRulesToOrganizationDto) SetDiscountRate(v float64) {
-	o.DiscountRate.Set(&v)
-}
-// SetDiscountRateNil sets the value for DiscountRate to be an explicit nil
-func (o *BindRulesToOrganizationDto) SetDiscountRateNil() {
-	o.DiscountRate.Set(nil)
-}
-
-// UnsetDiscountRate ensures that no value is present for DiscountRate, not even an explicit nil
-func (o *BindRulesToOrganizationDto) UnsetDiscountRate() {
-	o.DiscountRate.Unset()
+	o.DiscountRate = &v
 }
 
 // GetIsBound returns the IsBound field value if set, zero value otherwise.
@@ -204,11 +184,11 @@ func (o BindRulesToOrganizationDto) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if o.Name.IsSet() {
-		toSerialize["name"] = o.Name.Get()
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
 	}
-	if o.DiscountRate.IsSet() {
-		toSerialize["discountRate"] = o.DiscountRate.Get()
+	if !IsNil(o.DiscountRate) {
+		toSerialize["discountRate"] = o.DiscountRate
 	}
 	if !IsNil(o.IsBound) {
 		toSerialize["isBound"] = o.IsBound

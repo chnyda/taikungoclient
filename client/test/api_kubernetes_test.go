@@ -22,138 +22,72 @@ func Test_taikuncore_KubernetesApiService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test KubernetesApiService KubernetesAddK8sAlert", func(t *testing.T) {
+	t.Run("Test KubernetesApiService KubernetesClearCrds", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var projectId int32
+		var v string
 
-		httpRes, err := apiClient.KubernetesApi.KubernetesAddK8sAlert(context.Background(), projectId).Execute()
+		httpRes, err := apiClient.KubernetesApi.KubernetesClearCrds(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test KubernetesApiService KubernetesAddK8sEvents", func(t *testing.T) {
+	t.Run("Test KubernetesApiService KubernetesCreateKubernetesAlert", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var projectId int32
+		var v string
 
-		httpRes, err := apiClient.KubernetesApi.KubernetesAddK8sEvents(context.Background(), projectId).Execute()
+		httpRes, err := apiClient.KubernetesApi.KubernetesCreateKubernetesAlert(context.Background(), projectId, v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test KubernetesApiService KubernetesAlertList", func(t *testing.T) {
+	t.Run("Test KubernetesApiService KubernetesCreateKubernetesEvent", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var projectId int32
+		var v string
 
-		resp, httpRes, err := apiClient.KubernetesApi.KubernetesAlertList(context.Background(), projectId).Execute()
+		httpRes, err := apiClient.KubernetesApi.KubernetesCreateKubernetesEvent(context.Background(), projectId, v).Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test KubernetesApiService KubernetesCli", func(t *testing.T) {
+	t.Run("Test KubernetesApiService KubernetesDeleteAlerts", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.KubernetesApi.KubernetesCli(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.KubernetesApi.KubernetesDeleteAlerts(context.Background(), v).Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test KubernetesApiService KubernetesConfigMapList", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var projectId int32
-
-		resp, httpRes, err := apiClient.KubernetesApi.KubernetesConfigMapList(context.Background(), projectId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test KubernetesApiService KubernetesCrdList", func(t *testing.T) {
+	t.Run("Test KubernetesApiService KubernetesDeletePod", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var projectId int32
+		var metadataName string
+		var podNamespace string
+		var v string
 
-		resp, httpRes, err := apiClient.KubernetesApi.KubernetesCrdList(context.Background(), projectId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test KubernetesApiService KubernetesCronJobList", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var projectId int32
-
-		resp, httpRes, err := apiClient.KubernetesApi.KubernetesCronJobList(context.Background(), projectId).Execute()
+		httpRes, err := apiClient.KubernetesApi.KubernetesDeletePod(context.Background(), projectId, metadataName, podNamespace, v).Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test KubernetesApiService KubernetesDaemonSetList", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var projectId int32
-
-		resp, httpRes, err := apiClient.KubernetesApi.KubernetesDaemonSetList(context.Background(), projectId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test KubernetesApiService KubernetesDashboardList", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var projectId int32
-
-		resp, httpRes, err := apiClient.KubernetesApi.KubernetesDashboardList(context.Background(), projectId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test KubernetesApiService KubernetesDeploymentList", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var projectId int32
-
-		resp, httpRes, err := apiClient.KubernetesApi.KubernetesDeploymentList(context.Background(), projectId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
@@ -162,7 +96,9 @@ func Test_taikuncore_KubernetesApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.KubernetesApi.KubernetesDescribeConfigMap(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.KubernetesApi.KubernetesDescribeConfigMap(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -174,7 +110,9 @@ func Test_taikuncore_KubernetesApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.KubernetesApi.KubernetesDescribeCrd(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.KubernetesApi.KubernetesDescribeCrd(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -182,11 +120,13 @@ func Test_taikuncore_KubernetesApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test KubernetesApiService KubernetesDescribeCronjob", func(t *testing.T) {
+	t.Run("Test KubernetesApiService KubernetesDescribeCronJob", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.KubernetesApi.KubernetesDescribeCronjob(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.KubernetesApi.KubernetesDescribeCronJob(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -198,7 +138,9 @@ func Test_taikuncore_KubernetesApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.KubernetesApi.KubernetesDescribeDaemonSet(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.KubernetesApi.KubernetesDescribeDaemonSet(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -210,7 +152,9 @@ func Test_taikuncore_KubernetesApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.KubernetesApi.KubernetesDescribeDeployment(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.KubernetesApi.KubernetesDescribeDeployment(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -222,7 +166,9 @@ func Test_taikuncore_KubernetesApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.KubernetesApi.KubernetesDescribeIngress(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.KubernetesApi.KubernetesDescribeIngress(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -234,7 +180,9 @@ func Test_taikuncore_KubernetesApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.KubernetesApi.KubernetesDescribeJob(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.KubernetesApi.KubernetesDescribeJob(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -246,7 +194,9 @@ func Test_taikuncore_KubernetesApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.KubernetesApi.KubernetesDescribeNetworkPolicy(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.KubernetesApi.KubernetesDescribeNetworkPolicy(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -258,7 +208,9 @@ func Test_taikuncore_KubernetesApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.KubernetesApi.KubernetesDescribeNode(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.KubernetesApi.KubernetesDescribeNode(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -270,7 +222,9 @@ func Test_taikuncore_KubernetesApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.KubernetesApi.KubernetesDescribePdb(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.KubernetesApi.KubernetesDescribePdb(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -282,7 +236,9 @@ func Test_taikuncore_KubernetesApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.KubernetesApi.KubernetesDescribePod(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.KubernetesApi.KubernetesDescribePod(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -294,7 +250,9 @@ func Test_taikuncore_KubernetesApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.KubernetesApi.KubernetesDescribePvc(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.KubernetesApi.KubernetesDescribePvc(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -306,7 +264,9 @@ func Test_taikuncore_KubernetesApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.KubernetesApi.KubernetesDescribeSecret(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.KubernetesApi.KubernetesDescribeSecret(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -318,7 +278,9 @@ func Test_taikuncore_KubernetesApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.KubernetesApi.KubernetesDescribeService(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.KubernetesApi.KubernetesDescribeService(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -330,7 +292,9 @@ func Test_taikuncore_KubernetesApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.KubernetesApi.KubernetesDescribeStorageClass(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.KubernetesApi.KubernetesDescribeStorageClass(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -342,7 +306,9 @@ func Test_taikuncore_KubernetesApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.KubernetesApi.KubernetesDescribeSts(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.KubernetesApi.KubernetesDescribeSts(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -355,8 +321,367 @@ func Test_taikuncore_KubernetesApiService(t *testing.T) {
 		t.Skip("skip test")  // remove to run test
 
 		var projectId int32
+		var v string
 
-		resp, httpRes, err := apiClient.KubernetesApi.KubernetesDownload(context.Background(), projectId).Execute()
+		resp, httpRes, err := apiClient.KubernetesApi.KubernetesDownload(context.Background(), projectId, v).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test KubernetesApiService KubernetesExecCli", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var v string
+
+		resp, httpRes, err := apiClient.KubernetesApi.KubernetesExecCli(context.Background(), v).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test KubernetesApiService KubernetesGetConfigMap", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var projectId int32
+		var v string
+
+		resp, httpRes, err := apiClient.KubernetesApi.KubernetesGetConfigMap(context.Background(), projectId, v).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test KubernetesApiService KubernetesGetCrdList", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var projectId int32
+		var v string
+
+		resp, httpRes, err := apiClient.KubernetesApi.KubernetesGetCrdList(context.Background(), projectId, v).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test KubernetesApiService KubernetesGetCronJobsList", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var projectId int32
+		var v string
+
+		resp, httpRes, err := apiClient.KubernetesApi.KubernetesGetCronJobsList(context.Background(), projectId, v).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test KubernetesApiService KubernetesGetDaemonSet", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var projectId int32
+		var v string
+
+		resp, httpRes, err := apiClient.KubernetesApi.KubernetesGetDaemonSet(context.Background(), projectId, v).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test KubernetesApiService KubernetesGetDashboard", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var projectId int32
+		var v string
+
+		resp, httpRes, err := apiClient.KubernetesApi.KubernetesGetDashboard(context.Background(), projectId, v).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test KubernetesApiService KubernetesGetDeploymentList", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var projectId int32
+		var v string
+
+		resp, httpRes, err := apiClient.KubernetesApi.KubernetesGetDeploymentList(context.Background(), projectId, v).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test KubernetesApiService KubernetesGetHelmReleaseList", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var projectId int32
+		var v string
+
+		resp, httpRes, err := apiClient.KubernetesApi.KubernetesGetHelmReleaseList(context.Background(), projectId, v).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test KubernetesApiService KubernetesGetIngresses", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var projectId int32
+		var v string
+
+		resp, httpRes, err := apiClient.KubernetesApi.KubernetesGetIngresses(context.Background(), projectId, v).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test KubernetesApiService KubernetesGetJobsList", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var projectId int32
+		var v string
+
+		resp, httpRes, err := apiClient.KubernetesApi.KubernetesGetJobsList(context.Background(), projectId, v).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test KubernetesApiService KubernetesGetKubeConfigFile", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var projectId int32
+		var v string
+
+		resp, httpRes, err := apiClient.KubernetesApi.KubernetesGetKubeConfigFile(context.Background(), projectId, v).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test KubernetesApiService KubernetesGetKubernetesAlertsList", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var projectId int32
+		var v string
+
+		resp, httpRes, err := apiClient.KubernetesApi.KubernetesGetKubernetesAlertsList(context.Background(), projectId, v).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test KubernetesApiService KubernetesGetNamespacesList", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var projectId int32
+		var v string
+
+		resp, httpRes, err := apiClient.KubernetesApi.KubernetesGetNamespacesList(context.Background(), projectId, v).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test KubernetesApiService KubernetesGetNetworkPolicies", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var projectId int32
+		var v string
+
+		resp, httpRes, err := apiClient.KubernetesApi.KubernetesGetNetworkPolicies(context.Background(), projectId, v).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test KubernetesApiService KubernetesGetNodeList", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var projectId int32
+		var v string
+
+		resp, httpRes, err := apiClient.KubernetesApi.KubernetesGetNodeList(context.Background(), projectId, v).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test KubernetesApiService KubernetesGetPdbList", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var projectId int32
+		var v string
+
+		resp, httpRes, err := apiClient.KubernetesApi.KubernetesGetPdbList(context.Background(), projectId, v).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test KubernetesApiService KubernetesGetPersistentVolumeClaim", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var projectId int32
+		var v string
+
+		resp, httpRes, err := apiClient.KubernetesApi.KubernetesGetPersistentVolumeClaim(context.Background(), projectId, v).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test KubernetesApiService KubernetesGetPodList", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var projectId int32
+		var v string
+
+		resp, httpRes, err := apiClient.KubernetesApi.KubernetesGetPodList(context.Background(), projectId, v).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test KubernetesApiService KubernetesGetPodLogsList", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var v string
+
+		resp, httpRes, err := apiClient.KubernetesApi.KubernetesGetPodLogsList(context.Background(), v).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test KubernetesApiService KubernetesGetQuota", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var projectId int32
+		var v string
+
+		resp, httpRes, err := apiClient.KubernetesApi.KubernetesGetQuota(context.Background(), projectId, v).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test KubernetesApiService KubernetesGetSecret", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var projectId int32
+		var v string
+
+		resp, httpRes, err := apiClient.KubernetesApi.KubernetesGetSecret(context.Background(), projectId, v).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test KubernetesApiService KubernetesGetService", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var projectId int32
+		var v string
+
+		resp, httpRes, err := apiClient.KubernetesApi.KubernetesGetService(context.Background(), projectId, v).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test KubernetesApiService KubernetesGetStorageClasses", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var projectId int32
+		var v string
+
+		resp, httpRes, err := apiClient.KubernetesApi.KubernetesGetStorageClasses(context.Background(), projectId, v).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test KubernetesApiService KubernetesGetSts", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var projectId int32
+		var v string
+
+		resp, httpRes, err := apiClient.KubernetesApi.KubernetesGetSts(context.Background(), projectId, v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -368,35 +693,9 @@ func Test_taikuncore_KubernetesApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.KubernetesApi.KubernetesGetSupportedList(context.Background()).Execute()
+		var v string
 
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test KubernetesApiService KubernetesHelmReleaseList", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var projectId int32
-
-		resp, httpRes, err := apiClient.KubernetesApi.KubernetesHelmReleaseList(context.Background(), projectId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test KubernetesApiService KubernetesIngressList", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var projectId int32
-
-		resp, httpRes, err := apiClient.KubernetesApi.KubernetesIngressList(context.Background(), projectId).Execute()
+		resp, httpRes, err := apiClient.KubernetesApi.KubernetesGetSupportedList(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -408,92 +707,9 @@ func Test_taikuncore_KubernetesApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.KubernetesApi.KubernetesInteractiveShell(context.Background()).Execute()
+		var v string
 
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test KubernetesApiService KubernetesJobsList", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var projectId int32
-
-		resp, httpRes, err := apiClient.KubernetesApi.KubernetesJobsList(context.Background(), projectId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test KubernetesApiService KubernetesKillPod", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var projectId int32
-		var metadataName string
-		var namespace string
-
-		httpRes, err := apiClient.KubernetesApi.KubernetesKillPod(context.Background(), projectId, metadataName, namespace).Execute()
-
-		require.Nil(t, err)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test KubernetesApiService KubernetesKubeConfig", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var projectId int32
-
-		resp, httpRes, err := apiClient.KubernetesApi.KubernetesKubeConfig(context.Background(), projectId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test KubernetesApiService KubernetesNamespaceList", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var projectId int32
-
-		resp, httpRes, err := apiClient.KubernetesApi.KubernetesNamespaceList(context.Background(), projectId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test KubernetesApiService KubernetesNetworkPolicyList", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var projectId int32
-
-		resp, httpRes, err := apiClient.KubernetesApi.KubernetesNetworkPolicyList(context.Background(), projectId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test KubernetesApiService KubernetesNodeList", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var projectId int32
-
-		resp, httpRes, err := apiClient.KubernetesApi.KubernetesNodeList(context.Background(), projectId).Execute()
+		resp, httpRes, err := apiClient.KubernetesApi.KubernetesInteractiveShell(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -505,10 +721,25 @@ func Test_taikuncore_KubernetesApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.KubernetesApi.KubernetesOverview(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.KubernetesApi.KubernetesOverview(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test KubernetesApiService KubernetesPatchConfigMap", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var v string
+
+		httpRes, err := apiClient.KubernetesApi.KubernetesPatchConfigMap(context.Background(), v).Execute()
+
+		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
@@ -517,7 +748,9 @@ func Test_taikuncore_KubernetesApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.KubernetesApi.KubernetesPatchCrd(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.KubernetesApi.KubernetesPatchCrd(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -528,7 +761,22 @@ func Test_taikuncore_KubernetesApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.KubernetesApi.KubernetesPatchCronJob(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.KubernetesApi.KubernetesPatchCronJob(context.Background(), v).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test KubernetesApiService KubernetesPatchDeployment", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var v string
+
+		httpRes, err := apiClient.KubernetesApi.KubernetesPatchDeployment(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -539,7 +787,9 @@ func Test_taikuncore_KubernetesApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.KubernetesApi.KubernetesPatchIngress(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.KubernetesApi.KubernetesPatchIngress(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -550,7 +800,9 @@ func Test_taikuncore_KubernetesApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.KubernetesApi.KubernetesPatchJob(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.KubernetesApi.KubernetesPatchJob(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -561,7 +813,9 @@ func Test_taikuncore_KubernetesApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.KubernetesApi.KubernetesPatchNode(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.KubernetesApi.KubernetesPatchNode(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -572,7 +826,9 @@ func Test_taikuncore_KubernetesApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.KubernetesApi.KubernetesPatchPdb(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.KubernetesApi.KubernetesPatchPdb(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -583,7 +839,9 @@ func Test_taikuncore_KubernetesApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.KubernetesApi.KubernetesPatchPod(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.KubernetesApi.KubernetesPatchPod(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -594,7 +852,9 @@ func Test_taikuncore_KubernetesApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.KubernetesApi.KubernetesPatchPvc(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.KubernetesApi.KubernetesPatchPvc(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -605,7 +865,9 @@ func Test_taikuncore_KubernetesApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.KubernetesApi.KubernetesPatchSecret(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.KubernetesApi.KubernetesPatchSecret(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -616,72 +878,9 @@ func Test_taikuncore_KubernetesApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.KubernetesApi.KubernetesPatchSts(context.Background()).Execute()
+		var v string
 
-		require.Nil(t, err)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test KubernetesApiService KubernetesPdbList", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var projectId int32
-
-		resp, httpRes, err := apiClient.KubernetesApi.KubernetesPdbList(context.Background(), projectId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test KubernetesApiService KubernetesPodList", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var projectId int32
-
-		resp, httpRes, err := apiClient.KubernetesApi.KubernetesPodList(context.Background(), projectId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test KubernetesApiService KubernetesPodLogs", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		resp, httpRes, err := apiClient.KubernetesApi.KubernetesPodLogs(context.Background()).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test KubernetesApiService KubernetesPvcList", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var projectId int32
-
-		resp, httpRes, err := apiClient.KubernetesApi.KubernetesPvcList(context.Background(), projectId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test KubernetesApiService KubernetesRemovealerts", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		httpRes, err := apiClient.KubernetesApi.KubernetesRemovealerts(context.Background()).Execute()
+		httpRes, err := apiClient.KubernetesApi.KubernetesPatchSts(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -692,7 +891,9 @@ func Test_taikuncore_KubernetesApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.KubernetesApi.KubernetesRestartDaemonSet(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.KubernetesApi.KubernetesRestartDaemonSet(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -703,7 +904,9 @@ func Test_taikuncore_KubernetesApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.KubernetesApi.KubernetesRestartDeployment(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.KubernetesApi.KubernetesRestartDeployment(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -714,37 +917,11 @@ func Test_taikuncore_KubernetesApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.KubernetesApi.KubernetesRestartSts(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.KubernetesApi.KubernetesRestartSts(context.Background(), v).Execute()
 
 		require.Nil(t, err)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test KubernetesApiService KubernetesSecretList", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var projectId int32
-
-		resp, httpRes, err := apiClient.KubernetesApi.KubernetesSecretList(context.Background(), projectId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test KubernetesApiService KubernetesServiceList", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var projectId int32
-
-		resp, httpRes, err := apiClient.KubernetesApi.KubernetesServiceList(context.Background(), projectId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
@@ -753,48 +930,23 @@ func Test_taikuncore_KubernetesApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.KubernetesApi.KubernetesSilenceManager(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.KubernetesApi.KubernetesSilenceManager(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test KubernetesApiService KubernetesStorageClassList", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var projectId int32
-
-		resp, httpRes, err := apiClient.KubernetesApi.KubernetesStorageClassList(context.Background(), projectId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test KubernetesApiService KubernetesStsList", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var projectId int32
-
-		resp, httpRes, err := apiClient.KubernetesApi.KubernetesStsList(context.Background(), projectId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test KubernetesApiService KubernetesUpdateAlert", func(t *testing.T) {
+	t.Run("Test KubernetesApiService KubernetesUpdateKubernetesAlert", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var alertId int32
+		var v string
 
-		httpRes, err := apiClient.KubernetesApi.KubernetesUpdateAlert(context.Background(), alertId).Execute()
+		httpRes, err := apiClient.KubernetesApi.KubernetesUpdateKubernetesAlert(context.Background(), alertId, v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)

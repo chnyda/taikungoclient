@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**MetadataName** | Pointer to **NullableString** |  | [optional] 
-**Provider** | Pointer to **NullableString** |  | [optional] 
-**Namespace** | Pointer to **NullableString** |  | [optional] 
-**LastValidated** | Pointer to **NullableTime** |  | [optional] 
-**CreatedAt** | Pointer to **NullableTime** |  | [optional] 
-**AccessMode** | Pointer to **NullableString** |  | [optional] 
-**Phase** | Pointer to **NullableString** |  | [optional] 
-**BackupCredentialId** | Pointer to **NullableInt32** |  | [optional] 
+**MetadataName** | Pointer to **string** |  | [optional] 
+**Provider** | Pointer to **string** |  | [optional] 
+**Namespace** | Pointer to **string** |  | [optional] 
+**LastValidated** | Pointer to **time.Time** |  | [optional] 
+**CreatedAt** | Pointer to **time.Time** |  | [optional] 
+**AccessMode** | Pointer to **string** |  | [optional] 
+**Phase** | Pointer to **string** |  | [optional] 
+**BackupCredentialId** | Pointer to **int32** |  | [optional] 
 
 ## Methods
 
@@ -57,16 +57,6 @@ SetMetadataName sets MetadataName field to given value.
 
 HasMetadataName returns a boolean if a field has been set.
 
-### SetMetadataNameNil
-
-`func (o *BackupStorageLocationDto) SetMetadataNameNil(b bool)`
-
- SetMetadataNameNil sets the value for MetadataName to be an explicit nil
-
-### UnsetMetadataName
-`func (o *BackupStorageLocationDto) UnsetMetadataName()`
-
-UnsetMetadataName ensures that no value is present for MetadataName, not even an explicit nil
 ### GetProvider
 
 `func (o *BackupStorageLocationDto) GetProvider() string`
@@ -92,16 +82,6 @@ SetProvider sets Provider field to given value.
 
 HasProvider returns a boolean if a field has been set.
 
-### SetProviderNil
-
-`func (o *BackupStorageLocationDto) SetProviderNil(b bool)`
-
- SetProviderNil sets the value for Provider to be an explicit nil
-
-### UnsetProvider
-`func (o *BackupStorageLocationDto) UnsetProvider()`
-
-UnsetProvider ensures that no value is present for Provider, not even an explicit nil
 ### GetNamespace
 
 `func (o *BackupStorageLocationDto) GetNamespace() string`
@@ -127,16 +107,6 @@ SetNamespace sets Namespace field to given value.
 
 HasNamespace returns a boolean if a field has been set.
 
-### SetNamespaceNil
-
-`func (o *BackupStorageLocationDto) SetNamespaceNil(b bool)`
-
- SetNamespaceNil sets the value for Namespace to be an explicit nil
-
-### UnsetNamespace
-`func (o *BackupStorageLocationDto) UnsetNamespace()`
-
-UnsetNamespace ensures that no value is present for Namespace, not even an explicit nil
 ### GetLastValidated
 
 `func (o *BackupStorageLocationDto) GetLastValidated() time.Time`
@@ -162,16 +132,6 @@ SetLastValidated sets LastValidated field to given value.
 
 HasLastValidated returns a boolean if a field has been set.
 
-### SetLastValidatedNil
-
-`func (o *BackupStorageLocationDto) SetLastValidatedNil(b bool)`
-
- SetLastValidatedNil sets the value for LastValidated to be an explicit nil
-
-### UnsetLastValidated
-`func (o *BackupStorageLocationDto) UnsetLastValidated()`
-
-UnsetLastValidated ensures that no value is present for LastValidated, not even an explicit nil
 ### GetCreatedAt
 
 `func (o *BackupStorageLocationDto) GetCreatedAt() time.Time`
@@ -197,16 +157,6 @@ SetCreatedAt sets CreatedAt field to given value.
 
 HasCreatedAt returns a boolean if a field has been set.
 
-### SetCreatedAtNil
-
-`func (o *BackupStorageLocationDto) SetCreatedAtNil(b bool)`
-
- SetCreatedAtNil sets the value for CreatedAt to be an explicit nil
-
-### UnsetCreatedAt
-`func (o *BackupStorageLocationDto) UnsetCreatedAt()`
-
-UnsetCreatedAt ensures that no value is present for CreatedAt, not even an explicit nil
 ### GetAccessMode
 
 `func (o *BackupStorageLocationDto) GetAccessMode() string`
@@ -232,16 +182,6 @@ SetAccessMode sets AccessMode field to given value.
 
 HasAccessMode returns a boolean if a field has been set.
 
-### SetAccessModeNil
-
-`func (o *BackupStorageLocationDto) SetAccessModeNil(b bool)`
-
- SetAccessModeNil sets the value for AccessMode to be an explicit nil
-
-### UnsetAccessMode
-`func (o *BackupStorageLocationDto) UnsetAccessMode()`
-
-UnsetAccessMode ensures that no value is present for AccessMode, not even an explicit nil
 ### GetPhase
 
 `func (o *BackupStorageLocationDto) GetPhase() string`
@@ -267,16 +207,6 @@ SetPhase sets Phase field to given value.
 
 HasPhase returns a boolean if a field has been set.
 
-### SetPhaseNil
-
-`func (o *BackupStorageLocationDto) SetPhaseNil(b bool)`
-
- SetPhaseNil sets the value for Phase to be an explicit nil
-
-### UnsetPhase
-`func (o *BackupStorageLocationDto) UnsetPhase()`
-
-UnsetPhase ensures that no value is present for Phase, not even an explicit nil
 ### GetBackupCredentialId
 
 `func (o *BackupStorageLocationDto) GetBackupCredentialId() int32`
@@ -302,16 +232,6 @@ SetBackupCredentialId sets BackupCredentialId field to given value.
 
 HasBackupCredentialId returns a boolean if a field has been set.
 
-### SetBackupCredentialIdNil
-
-`func (o *BackupStorageLocationDto) SetBackupCredentialIdNil(b bool)`
-
- SetBackupCredentialIdNil sets the value for BackupCredentialId to be an explicit nil
-
-### UnsetBackupCredentialId
-`func (o *BackupStorageLocationDto) UnsetBackupCredentialId()`
-
-UnsetBackupCredentialId ensures that no value is present for BackupCredentialId, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

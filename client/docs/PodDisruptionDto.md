@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **NullableString** |  | [optional] 
-**Namespace** | Pointer to **NullableString** |  | [optional] 
-**MinAvailable** | Pointer to **interface{}** |  | [optional] 
-**MaxAvailable** | Pointer to **interface{}** |  | [optional] 
-**AllowedDisruptions** | Pointer to **interface{}** |  | [optional] 
-**CreatedAt** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**Namespace** | Pointer to **string** |  | [optional] 
+**MinAvailable** | Pointer to **map[string]interface{}** |  | [optional] 
+**MaxAvailable** | Pointer to **map[string]interface{}** |  | [optional] 
+**AllowedDisruptions** | Pointer to **map[string]interface{}** |  | [optional] 
+**CreatedAt** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -55,16 +55,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *PodDisruptionDto) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *PodDisruptionDto) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetNamespace
 
 `func (o *PodDisruptionDto) GetNamespace() string`
@@ -90,32 +80,22 @@ SetNamespace sets Namespace field to given value.
 
 HasNamespace returns a boolean if a field has been set.
 
-### SetNamespaceNil
-
-`func (o *PodDisruptionDto) SetNamespaceNil(b bool)`
-
- SetNamespaceNil sets the value for Namespace to be an explicit nil
-
-### UnsetNamespace
-`func (o *PodDisruptionDto) UnsetNamespace()`
-
-UnsetNamespace ensures that no value is present for Namespace, not even an explicit nil
 ### GetMinAvailable
 
-`func (o *PodDisruptionDto) GetMinAvailable() interface{}`
+`func (o *PodDisruptionDto) GetMinAvailable() map[string]interface{}`
 
 GetMinAvailable returns the MinAvailable field if non-nil, zero value otherwise.
 
 ### GetMinAvailableOk
 
-`func (o *PodDisruptionDto) GetMinAvailableOk() (*interface{}, bool)`
+`func (o *PodDisruptionDto) GetMinAvailableOk() (*map[string]interface{}, bool)`
 
 GetMinAvailableOk returns a tuple with the MinAvailable field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMinAvailable
 
-`func (o *PodDisruptionDto) SetMinAvailable(v interface{})`
+`func (o *PodDisruptionDto) SetMinAvailable(v map[string]interface{})`
 
 SetMinAvailable sets MinAvailable field to given value.
 
@@ -125,32 +105,22 @@ SetMinAvailable sets MinAvailable field to given value.
 
 HasMinAvailable returns a boolean if a field has been set.
 
-### SetMinAvailableNil
-
-`func (o *PodDisruptionDto) SetMinAvailableNil(b bool)`
-
- SetMinAvailableNil sets the value for MinAvailable to be an explicit nil
-
-### UnsetMinAvailable
-`func (o *PodDisruptionDto) UnsetMinAvailable()`
-
-UnsetMinAvailable ensures that no value is present for MinAvailable, not even an explicit nil
 ### GetMaxAvailable
 
-`func (o *PodDisruptionDto) GetMaxAvailable() interface{}`
+`func (o *PodDisruptionDto) GetMaxAvailable() map[string]interface{}`
 
 GetMaxAvailable returns the MaxAvailable field if non-nil, zero value otherwise.
 
 ### GetMaxAvailableOk
 
-`func (o *PodDisruptionDto) GetMaxAvailableOk() (*interface{}, bool)`
+`func (o *PodDisruptionDto) GetMaxAvailableOk() (*map[string]interface{}, bool)`
 
 GetMaxAvailableOk returns a tuple with the MaxAvailable field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMaxAvailable
 
-`func (o *PodDisruptionDto) SetMaxAvailable(v interface{})`
+`func (o *PodDisruptionDto) SetMaxAvailable(v map[string]interface{})`
 
 SetMaxAvailable sets MaxAvailable field to given value.
 
@@ -160,32 +130,22 @@ SetMaxAvailable sets MaxAvailable field to given value.
 
 HasMaxAvailable returns a boolean if a field has been set.
 
-### SetMaxAvailableNil
-
-`func (o *PodDisruptionDto) SetMaxAvailableNil(b bool)`
-
- SetMaxAvailableNil sets the value for MaxAvailable to be an explicit nil
-
-### UnsetMaxAvailable
-`func (o *PodDisruptionDto) UnsetMaxAvailable()`
-
-UnsetMaxAvailable ensures that no value is present for MaxAvailable, not even an explicit nil
 ### GetAllowedDisruptions
 
-`func (o *PodDisruptionDto) GetAllowedDisruptions() interface{}`
+`func (o *PodDisruptionDto) GetAllowedDisruptions() map[string]interface{}`
 
 GetAllowedDisruptions returns the AllowedDisruptions field if non-nil, zero value otherwise.
 
 ### GetAllowedDisruptionsOk
 
-`func (o *PodDisruptionDto) GetAllowedDisruptionsOk() (*interface{}, bool)`
+`func (o *PodDisruptionDto) GetAllowedDisruptionsOk() (*map[string]interface{}, bool)`
 
 GetAllowedDisruptionsOk returns a tuple with the AllowedDisruptions field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAllowedDisruptions
 
-`func (o *PodDisruptionDto) SetAllowedDisruptions(v interface{})`
+`func (o *PodDisruptionDto) SetAllowedDisruptions(v map[string]interface{})`
 
 SetAllowedDisruptions sets AllowedDisruptions field to given value.
 
@@ -195,16 +155,6 @@ SetAllowedDisruptions sets AllowedDisruptions field to given value.
 
 HasAllowedDisruptions returns a boolean if a field has been set.
 
-### SetAllowedDisruptionsNil
-
-`func (o *PodDisruptionDto) SetAllowedDisruptionsNil(b bool)`
-
- SetAllowedDisruptionsNil sets the value for AllowedDisruptions to be an explicit nil
-
-### UnsetAllowedDisruptions
-`func (o *PodDisruptionDto) UnsetAllowedDisruptions()`
-
-UnsetAllowedDisruptions ensures that no value is present for AllowedDisruptions, not even an explicit nil
 ### GetCreatedAt
 
 `func (o *PodDisruptionDto) GetCreatedAt() string`
@@ -230,16 +180,6 @@ SetCreatedAt sets CreatedAt field to given value.
 
 HasCreatedAt returns a boolean if a field has been set.
 
-### SetCreatedAtNil
-
-`func (o *PodDisruptionDto) SetCreatedAtNil(b bool)`
-
- SetCreatedAtNil sets the value for CreatedAt to be an explicit nil
-
-### UnsetCreatedAt
-`func (o *PodDisruptionDto) UnsetCreatedAt()`
-
-UnsetCreatedAt ensures that no value is present for CreatedAt, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

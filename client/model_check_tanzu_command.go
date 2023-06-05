@@ -24,7 +24,7 @@ type CheckTanzuCommand struct {
 	Url string `json:"url"`
 	Password string `json:"password"`
 	Namespace string `json:"namespace"`
-	Port NullableInt32 `json:"port,omitempty"`
+	Port *int32 `json:"port,omitempty"`
 	VolumeType string `json:"volumeType"`
 }
 
@@ -146,46 +146,36 @@ func (o *CheckTanzuCommand) SetNamespace(v string) {
 	o.Namespace = v
 }
 
-// GetPort returns the Port field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetPort returns the Port field value if set, zero value otherwise.
 func (o *CheckTanzuCommand) GetPort() int32 {
-	if o == nil || IsNil(o.Port.Get()) {
+	if o == nil || IsNil(o.Port) {
 		var ret int32
 		return ret
 	}
-	return *o.Port.Get()
+	return *o.Port
 }
 
 // GetPortOk returns a tuple with the Port field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CheckTanzuCommand) GetPortOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Port) {
 		return nil, false
 	}
-	return o.Port.Get(), o.Port.IsSet()
+	return o.Port, true
 }
 
 // HasPort returns a boolean if a field has been set.
 func (o *CheckTanzuCommand) HasPort() bool {
-	if o != nil && o.Port.IsSet() {
+	if o != nil && !IsNil(o.Port) {
 		return true
 	}
 
 	return false
 }
 
-// SetPort gets a reference to the given NullableInt32 and assigns it to the Port field.
+// SetPort gets a reference to the given int32 and assigns it to the Port field.
 func (o *CheckTanzuCommand) SetPort(v int32) {
-	o.Port.Set(&v)
-}
-// SetPortNil sets the value for Port to be an explicit nil
-func (o *CheckTanzuCommand) SetPortNil() {
-	o.Port.Set(nil)
-}
-
-// UnsetPort ensures that no value is present for Port, not even an explicit nil
-func (o *CheckTanzuCommand) UnsetPort() {
-	o.Port.Unset()
+	o.Port = &v
 }
 
 // GetVolumeType returns the VolumeType field value
@@ -226,8 +216,8 @@ func (o CheckTanzuCommand) ToMap() (map[string]interface{}, error) {
 	toSerialize["url"] = o.Url
 	toSerialize["password"] = o.Password
 	toSerialize["namespace"] = o.Namespace
-	if o.Port.IsSet() {
-		toSerialize["port"] = o.Port.Get()
+	if !IsNil(o.Port) {
+		toSerialize["port"] = o.Port
 	}
 	toSerialize["volumeType"] = o.VolumeType
 	return toSerialize, nil

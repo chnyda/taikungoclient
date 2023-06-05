@@ -22,7 +22,7 @@ var _ MappedNullable = &GetCatalogAppValueAutocompleteCommand{}
 type GetCatalogAppValueAutocompleteCommand struct {
 	PackageId string `json:"packageId"`
 	Version string `json:"version"`
-	CatalogAppId NullableInt32 `json:"catalogAppId,omitempty"`
+	CatalogAppId *int32 `json:"catalogAppId,omitempty"`
 }
 
 // NewGetCatalogAppValueAutocompleteCommand instantiates a new GetCatalogAppValueAutocompleteCommand object
@@ -92,46 +92,36 @@ func (o *GetCatalogAppValueAutocompleteCommand) SetVersion(v string) {
 	o.Version = v
 }
 
-// GetCatalogAppId returns the CatalogAppId field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetCatalogAppId returns the CatalogAppId field value if set, zero value otherwise.
 func (o *GetCatalogAppValueAutocompleteCommand) GetCatalogAppId() int32 {
-	if o == nil || IsNil(o.CatalogAppId.Get()) {
+	if o == nil || IsNil(o.CatalogAppId) {
 		var ret int32
 		return ret
 	}
-	return *o.CatalogAppId.Get()
+	return *o.CatalogAppId
 }
 
 // GetCatalogAppIdOk returns a tuple with the CatalogAppId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *GetCatalogAppValueAutocompleteCommand) GetCatalogAppIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CatalogAppId) {
 		return nil, false
 	}
-	return o.CatalogAppId.Get(), o.CatalogAppId.IsSet()
+	return o.CatalogAppId, true
 }
 
 // HasCatalogAppId returns a boolean if a field has been set.
 func (o *GetCatalogAppValueAutocompleteCommand) HasCatalogAppId() bool {
-	if o != nil && o.CatalogAppId.IsSet() {
+	if o != nil && !IsNil(o.CatalogAppId) {
 		return true
 	}
 
 	return false
 }
 
-// SetCatalogAppId gets a reference to the given NullableInt32 and assigns it to the CatalogAppId field.
+// SetCatalogAppId gets a reference to the given int32 and assigns it to the CatalogAppId field.
 func (o *GetCatalogAppValueAutocompleteCommand) SetCatalogAppId(v int32) {
-	o.CatalogAppId.Set(&v)
-}
-// SetCatalogAppIdNil sets the value for CatalogAppId to be an explicit nil
-func (o *GetCatalogAppValueAutocompleteCommand) SetCatalogAppIdNil() {
-	o.CatalogAppId.Set(nil)
-}
-
-// UnsetCatalogAppId ensures that no value is present for CatalogAppId, not even an explicit nil
-func (o *GetCatalogAppValueAutocompleteCommand) UnsetCatalogAppId() {
-	o.CatalogAppId.Unset()
+	o.CatalogAppId = &v
 }
 
 func (o GetCatalogAppValueAutocompleteCommand) MarshalJSON() ([]byte, error) {
@@ -146,8 +136,8 @@ func (o GetCatalogAppValueAutocompleteCommand) ToMap() (map[string]interface{}, 
 	toSerialize := map[string]interface{}{}
 	toSerialize["packageId"] = o.PackageId
 	toSerialize["version"] = o.Version
-	if o.CatalogAppId.IsSet() {
-		toSerialize["catalogAppId"] = o.CatalogAppId.Get()
+	if !IsNil(o.CatalogAppId) {
+		toSerialize["catalogAppId"] = o.CatalogAppId
 	}
 	return toSerialize, nil
 }

@@ -72,16 +72,6 @@ SetDiskIds sets DiskIds field to given value.
 
 HasDiskIds returns a boolean if a field has been set.
 
-### SetDiskIdsNil
-
-`func (o *ResetStandAloneVmDiskStatusCommand) SetDiskIdsNil(b bool)`
-
- SetDiskIdsNil sets the value for DiskIds to be an explicit nil
-
-### UnsetDiskIds
-`func (o *ResetStandAloneVmDiskStatusCommand) UnsetDiskIds()`
-
-UnsetDiskIds ensures that no value is present for DiskIds, not even an explicit nil
 ### GetStatus
 
 `func (o *ResetStandAloneVmDiskStatusCommand) GetStatus() StandAloneVmDiskStatus`

@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **PrometheusRuleId** | Pointer to **int32** |  | [optional] 
-**PrometheusRuleName** | Pointer to **NullableString** |  | [optional] 
+**PrometheusRuleName** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -76,16 +76,6 @@ SetPrometheusRuleName sets PrometheusRuleName field to given value.
 
 HasPrometheusRuleName returns a boolean if a field has been set.
 
-### SetPrometheusRuleNameNil
-
-`func (o *SimplePrometheusEntity) SetPrometheusRuleNameNil(b bool)`
-
- SetPrometheusRuleNameNil sets the value for PrometheusRuleName to be an explicit nil
-
-### UnsetPrometheusRuleName
-`func (o *SimplePrometheusEntity) UnsetPrometheusRuleName()`
-
-UnsetPrometheusRuleName ensures that no value is present for PrometheusRuleName, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

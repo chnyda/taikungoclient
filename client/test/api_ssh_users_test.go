@@ -22,11 +22,13 @@ func Test_taikuncore_SshUsersApiService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test SshUsersApiService SshusersCreate", func(t *testing.T) {
+	t.Run("Test SshUsersApiService SshUsersCreate", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.SshUsersApi.SshusersCreate(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.SshUsersApi.SshUsersCreate(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -34,35 +36,40 @@ func Test_taikuncore_SshUsersApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test SshUsersApiService SshusersDelete", func(t *testing.T) {
+	t.Run("Test SshUsersApiService SshUsersDelete", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.SshUsersApi.SshusersDelete(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.SshUsersApi.SshUsersDelete(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test SshUsersApiService SshusersEdit", func(t *testing.T) {
+	t.Run("Test SshUsersApiService SshUsersEdit", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.SshUsersApi.SshusersEdit(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.SshUsersApi.SshUsersEdit(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test SshUsersApiService SshusersList", func(t *testing.T) {
+	t.Run("Test SshUsersApiService SshUsersList", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var accessProfileId int32
+		var v string
 
-		resp, httpRes, err := apiClient.SshUsersApi.SshusersList(context.Background(), accessProfileId).Execute()
+		resp, httpRes, err := apiClient.SshUsersApi.SshUsersList(context.Background(), accessProfileId, v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

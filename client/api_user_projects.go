@@ -24,55 +24,59 @@ import (
 // UserProjectsApiService UserProjectsApi service
 type UserProjectsApiService service
 
-type ApiUserprojectsBindProjectsRequest struct {
+type ApiUserProjectsBindProjectsRequest struct {
 	ctx context.Context
 	ApiService *UserProjectsApiService
-	bindProjectsCommand *BindProjectsCommand
+	v string
+	body *BindProjectsCommand
 }
 
-func (r ApiUserprojectsBindProjectsRequest) BindProjectsCommand(bindProjectsCommand BindProjectsCommand) ApiUserprojectsBindProjectsRequest {
-	r.bindProjectsCommand = &bindProjectsCommand
+func (r ApiUserProjectsBindProjectsRequest) Body(body BindProjectsCommand) ApiUserProjectsBindProjectsRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiUserprojectsBindProjectsRequest) Execute() (*http.Response, error) {
-	return r.ApiService.UserprojectsBindProjectsExecute(r)
+func (r ApiUserProjectsBindProjectsRequest) Execute() (*http.Response, error) {
+	return r.ApiService.UserProjectsBindProjectsExecute(r)
 }
 
 /*
-UserprojectsBindProjects Bind projects to user
+UserProjectsBindProjects Bind projects to users
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiUserprojectsBindProjectsRequest
+ @param v
+ @return ApiUserProjectsBindProjectsRequest
 */
-func (a *UserProjectsApiService) UserprojectsBindProjects(ctx context.Context) ApiUserprojectsBindProjectsRequest {
-	return ApiUserprojectsBindProjectsRequest{
+func (a *UserProjectsApiService) UserProjectsBindProjects(ctx context.Context, v string) ApiUserProjectsBindProjectsRequest {
+	return ApiUserProjectsBindProjectsRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
-func (a *UserProjectsApiService) UserprojectsBindProjectsExecute(r ApiUserprojectsBindProjectsRequest) (*http.Response, error) {
+func (a *UserProjectsApiService) UserProjectsBindProjectsExecute(r ApiUserProjectsBindProjectsRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserProjectsApiService.UserprojectsBindProjects")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserProjectsApiService.UserProjectsBindProjects")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/userprojects/bindprojects"
+	localVarPath := localBasePath + "/api/v{v}/UserProjects/bindprojects"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -81,7 +85,7 @@ func (a *UserProjectsApiService) UserprojectsBindProjectsExecute(r ApiUserprojec
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -89,7 +93,7 @@ func (a *UserProjectsApiService) UserprojectsBindProjectsExecute(r ApiUserprojec
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.bindProjectsCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -126,17 +130,6 @@ func (a *UserProjectsApiService) UserprojectsBindProjectsExecute(r ApiUserprojec
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -170,7 +163,7 @@ func (a *UserProjectsApiService) UserprojectsBindProjectsExecute(r ApiUserprojec
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -186,55 +179,59 @@ func (a *UserProjectsApiService) UserprojectsBindProjectsExecute(r ApiUserprojec
 	return localVarHTTPResponse, nil
 }
 
-type ApiUserprojectsBindUsersRequest struct {
+type ApiUserProjectsBindUsersRequest struct {
 	ctx context.Context
 	ApiService *UserProjectsApiService
-	bindUsersCommand *BindUsersCommand
+	v string
+	body *BindUsersCommand
 }
 
-func (r ApiUserprojectsBindUsersRequest) BindUsersCommand(bindUsersCommand BindUsersCommand) ApiUserprojectsBindUsersRequest {
-	r.bindUsersCommand = &bindUsersCommand
+func (r ApiUserProjectsBindUsersRequest) Body(body BindUsersCommand) ApiUserProjectsBindUsersRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiUserprojectsBindUsersRequest) Execute() (*http.Response, error) {
-	return r.ApiService.UserprojectsBindUsersExecute(r)
+func (r ApiUserProjectsBindUsersRequest) Execute() (*http.Response, error) {
+	return r.ApiService.UserProjectsBindUsersExecute(r)
 }
 
 /*
-UserprojectsBindUsers Bind users to project
+UserProjectsBindUsers Bind users to projects
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiUserprojectsBindUsersRequest
+ @param v
+ @return ApiUserProjectsBindUsersRequest
 */
-func (a *UserProjectsApiService) UserprojectsBindUsers(ctx context.Context) ApiUserprojectsBindUsersRequest {
-	return ApiUserprojectsBindUsersRequest{
+func (a *UserProjectsApiService) UserProjectsBindUsers(ctx context.Context, v string) ApiUserProjectsBindUsersRequest {
+	return ApiUserProjectsBindUsersRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
-func (a *UserProjectsApiService) UserprojectsBindUsersExecute(r ApiUserprojectsBindUsersRequest) (*http.Response, error) {
+func (a *UserProjectsApiService) UserProjectsBindUsersExecute(r ApiUserProjectsBindUsersRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserProjectsApiService.UserprojectsBindUsers")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserProjectsApiService.UserProjectsBindUsers")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/userprojects/bindusers"
+	localVarPath := localBasePath + "/api/v{v}/UserProjects/bindusers"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -243,7 +240,7 @@ func (a *UserProjectsApiService) UserprojectsBindUsersExecute(r ApiUserprojectsB
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -251,7 +248,7 @@ func (a *UserProjectsApiService) UserprojectsBindUsersExecute(r ApiUserprojectsB
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.bindUsersCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -288,17 +285,6 @@ func (a *UserProjectsApiService) UserprojectsBindUsersExecute(r ApiUserprojectsB
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -332,7 +318,7 @@ func (a *UserProjectsApiService) UserprojectsBindUsersExecute(r ApiUserprojectsB
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -348,31 +334,34 @@ func (a *UserProjectsApiService) UserprojectsBindUsersExecute(r ApiUserprojectsB
 	return localVarHTTPResponse, nil
 }
 
-type ApiUserprojectsProjectListByUserRequest struct {
+type ApiUserProjectsProjectsListByUserRequest struct {
 	ctx context.Context
 	ApiService *UserProjectsApiService
+	v string
 }
 
-func (r ApiUserprojectsProjectListByUserRequest) Execute() ([]CommonDropdownDto, *http.Response, error) {
-	return r.ApiService.UserprojectsProjectListByUserExecute(r)
+func (r ApiUserProjectsProjectsListByUserRequest) Execute() ([]CommonDropdownDto, *http.Response, error) {
+	return r.ApiService.UserProjectsProjectsListByUserExecute(r)
 }
 
 /*
-UserprojectsProjectListByUser Projects list for user
+UserProjectsProjectsListByUser Projects list for user
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiUserprojectsProjectListByUserRequest
+ @param v
+ @return ApiUserProjectsProjectsListByUserRequest
 */
-func (a *UserProjectsApiService) UserprojectsProjectListByUser(ctx context.Context) ApiUserprojectsProjectListByUserRequest {
-	return ApiUserprojectsProjectListByUserRequest{
+func (a *UserProjectsApiService) UserProjectsProjectsListByUser(ctx context.Context, v string) ApiUserProjectsProjectsListByUserRequest {
+	return ApiUserProjectsProjectsListByUserRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
 //  @return []CommonDropdownDto
-func (a *UserProjectsApiService) UserprojectsProjectListByUserExecute(r ApiUserprojectsProjectListByUserRequest) ([]CommonDropdownDto, *http.Response, error) {
+func (a *UserProjectsApiService) UserProjectsProjectsListByUserExecute(r ApiUserProjectsProjectsListByUserRequest) ([]CommonDropdownDto, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -380,12 +369,13 @@ func (a *UserProjectsApiService) UserprojectsProjectListByUserExecute(r ApiUserp
 		localVarReturnValue  []CommonDropdownDto
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserProjectsApiService.UserprojectsProjectListByUser")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserProjectsApiService.UserProjectsProjectsListByUser")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/userprojects/projects/list"
+	localVarPath := localBasePath + "/api/v{v}/UserProjects/projects/list"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -401,7 +391,7 @@ func (a *UserProjectsApiService) UserprojectsProjectListByUserExecute(r ApiUserp
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -444,17 +434,6 @@ func (a *UserProjectsApiService) UserprojectsProjectListByUserExecute(r ApiUserp
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -488,7 +467,7 @@ func (a *UserProjectsApiService) UserprojectsProjectListByUserExecute(r ApiUserp
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -513,34 +492,37 @@ func (a *UserProjectsApiService) UserprojectsProjectListByUserExecute(r ApiUserp
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiUserprojectsUserListByProjectRequest struct {
+type ApiUserProjectsUsersListByProjectRequest struct {
 	ctx context.Context
 	ApiService *UserProjectsApiService
 	projectId int32
+	v string
 }
 
-func (r ApiUserprojectsUserListByProjectRequest) Execute() ([]CommonStringBasedDropdownDto, *http.Response, error) {
-	return r.ApiService.UserprojectsUserListByProjectExecute(r)
+func (r ApiUserProjectsUsersListByProjectRequest) Execute() ([]CommonStringBasedDropdownDto, *http.Response, error) {
+	return r.ApiService.UserProjectsUsersListByProjectExecute(r)
 }
 
 /*
-UserprojectsUserListByProject Users list by project id
+UserProjectsUsersListByProject Users list by project id
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param projectId
- @return ApiUserprojectsUserListByProjectRequest
+ @param v
+ @return ApiUserProjectsUsersListByProjectRequest
 */
-func (a *UserProjectsApiService) UserprojectsUserListByProject(ctx context.Context, projectId int32) ApiUserprojectsUserListByProjectRequest {
-	return ApiUserprojectsUserListByProjectRequest{
+func (a *UserProjectsApiService) UserProjectsUsersListByProject(ctx context.Context, projectId int32, v string) ApiUserProjectsUsersListByProjectRequest {
+	return ApiUserProjectsUsersListByProjectRequest{
 		ApiService: a,
 		ctx: ctx,
 		projectId: projectId,
+		v: v,
 	}
 }
 
 // Execute executes the request
 //  @return []CommonStringBasedDropdownDto
-func (a *UserProjectsApiService) UserprojectsUserListByProjectExecute(r ApiUserprojectsUserListByProjectRequest) ([]CommonStringBasedDropdownDto, *http.Response, error) {
+func (a *UserProjectsApiService) UserProjectsUsersListByProjectExecute(r ApiUserProjectsUsersListByProjectRequest) ([]CommonStringBasedDropdownDto, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -548,13 +530,14 @@ func (a *UserProjectsApiService) UserprojectsUserListByProjectExecute(r ApiUserp
 		localVarReturnValue  []CommonStringBasedDropdownDto
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserProjectsApiService.UserprojectsUserListByProject")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserProjectsApiService.UserProjectsUsersListByProject")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/userprojects/users/list/{projectId}"
+	localVarPath := localBasePath + "/api/v{v}/UserProjects/users/list/{projectId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -570,7 +553,7 @@ func (a *UserProjectsApiService) UserprojectsUserListByProjectExecute(r ApiUserp
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -613,17 +596,6 @@ func (a *UserProjectsApiService) UserprojectsUserListByProjectExecute(r ApiUserp
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -657,7 +629,7 @@ func (a *UserProjectsApiService) UserprojectsUserListByProjectExecute(r ApiUserp
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

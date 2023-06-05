@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
-**Namespace** | Pointer to **NullableString** |  | [optional] 
-**ProjectName** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**Namespace** | Pointer to **string** |  | [optional] 
+**ProjectName** | Pointer to **string** |  | [optional] 
 **ProjectId** | Pointer to **int32** |  | [optional] 
-**Version** | Pointer to **NullableString** |  | [optional] 
+**Version** | Pointer to **string** |  | [optional] 
 **IsLocked** | Pointer to **bool** |  | [optional] 
-**Status** | Pointer to **NullableString** |  | [optional] 
+**Status** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -82,16 +82,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *ProjectAppDto) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *ProjectAppDto) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetNamespace
 
 `func (o *ProjectAppDto) GetNamespace() string`
@@ -117,16 +107,6 @@ SetNamespace sets Namespace field to given value.
 
 HasNamespace returns a boolean if a field has been set.
 
-### SetNamespaceNil
-
-`func (o *ProjectAppDto) SetNamespaceNil(b bool)`
-
- SetNamespaceNil sets the value for Namespace to be an explicit nil
-
-### UnsetNamespace
-`func (o *ProjectAppDto) UnsetNamespace()`
-
-UnsetNamespace ensures that no value is present for Namespace, not even an explicit nil
 ### GetProjectName
 
 `func (o *ProjectAppDto) GetProjectName() string`
@@ -152,16 +132,6 @@ SetProjectName sets ProjectName field to given value.
 
 HasProjectName returns a boolean if a field has been set.
 
-### SetProjectNameNil
-
-`func (o *ProjectAppDto) SetProjectNameNil(b bool)`
-
- SetProjectNameNil sets the value for ProjectName to be an explicit nil
-
-### UnsetProjectName
-`func (o *ProjectAppDto) UnsetProjectName()`
-
-UnsetProjectName ensures that no value is present for ProjectName, not even an explicit nil
 ### GetProjectId
 
 `func (o *ProjectAppDto) GetProjectId() int32`
@@ -212,16 +182,6 @@ SetVersion sets Version field to given value.
 
 HasVersion returns a boolean if a field has been set.
 
-### SetVersionNil
-
-`func (o *ProjectAppDto) SetVersionNil(b bool)`
-
- SetVersionNil sets the value for Version to be an explicit nil
-
-### UnsetVersion
-`func (o *ProjectAppDto) UnsetVersion()`
-
-UnsetVersion ensures that no value is present for Version, not even an explicit nil
 ### GetIsLocked
 
 `func (o *ProjectAppDto) GetIsLocked() bool`
@@ -272,16 +232,6 @@ SetStatus sets Status field to given value.
 
 HasStatus returns a boolean if a field has been set.
 
-### SetStatusNil
-
-`func (o *ProjectAppDto) SetStatusNil(b bool)`
-
- SetStatusNil sets the value for Status to be an explicit nil
-
-### UnsetStatus
-`func (o *ProjectAppDto) UnsetStatus()`
-
-UnsetStatus ensures that no value is present for Status, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

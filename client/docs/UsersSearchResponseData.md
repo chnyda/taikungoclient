@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **NullableString** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
-**OrganizationId** | Pointer to **NullableInt32** |  | [optional] 
-**OrganizationName** | Pointer to **NullableString** |  | [optional] 
-**Email** | Pointer to **NullableString** |  | [optional] 
+**Id** | Pointer to **string** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**OrganizationId** | Pointer to **int32** |  | [optional] 
+**OrganizationName** | Pointer to **string** |  | [optional] 
+**Email** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -54,16 +54,6 @@ SetId sets Id field to given value.
 
 HasId returns a boolean if a field has been set.
 
-### SetIdNil
-
-`func (o *UsersSearchResponseData) SetIdNil(b bool)`
-
- SetIdNil sets the value for Id to be an explicit nil
-
-### UnsetId
-`func (o *UsersSearchResponseData) UnsetId()`
-
-UnsetId ensures that no value is present for Id, not even an explicit nil
 ### GetName
 
 `func (o *UsersSearchResponseData) GetName() string`
@@ -89,16 +79,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *UsersSearchResponseData) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *UsersSearchResponseData) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetOrganizationId
 
 `func (o *UsersSearchResponseData) GetOrganizationId() int32`
@@ -124,16 +104,6 @@ SetOrganizationId sets OrganizationId field to given value.
 
 HasOrganizationId returns a boolean if a field has been set.
 
-### SetOrganizationIdNil
-
-`func (o *UsersSearchResponseData) SetOrganizationIdNil(b bool)`
-
- SetOrganizationIdNil sets the value for OrganizationId to be an explicit nil
-
-### UnsetOrganizationId
-`func (o *UsersSearchResponseData) UnsetOrganizationId()`
-
-UnsetOrganizationId ensures that no value is present for OrganizationId, not even an explicit nil
 ### GetOrganizationName
 
 `func (o *UsersSearchResponseData) GetOrganizationName() string`
@@ -159,16 +129,6 @@ SetOrganizationName sets OrganizationName field to given value.
 
 HasOrganizationName returns a boolean if a field has been set.
 
-### SetOrganizationNameNil
-
-`func (o *UsersSearchResponseData) SetOrganizationNameNil(b bool)`
-
- SetOrganizationNameNil sets the value for OrganizationName to be an explicit nil
-
-### UnsetOrganizationName
-`func (o *UsersSearchResponseData) UnsetOrganizationName()`
-
-UnsetOrganizationName ensures that no value is present for OrganizationName, not even an explicit nil
 ### GetEmail
 
 `func (o *UsersSearchResponseData) GetEmail() string`
@@ -194,16 +154,6 @@ SetEmail sets Email field to given value.
 
 HasEmail returns a boolean if a field has been set.
 
-### SetEmailNil
-
-`func (o *UsersSearchResponseData) SetEmailNil(b bool)`
-
- SetEmailNil sets the value for Email to be an explicit nil
-
-### UnsetEmail
-`func (o *UsersSearchResponseData) UnsetEmail()`
-
-UnsetEmail ensures that no value is present for Email, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

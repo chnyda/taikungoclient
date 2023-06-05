@@ -26,7 +26,9 @@ func Test_taikuncore_SlackApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.SlackApi.SlackCreate(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.SlackApi.SlackCreate(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -38,21 +40,11 @@ func Test_taikuncore_SlackApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.SlackApi.SlackDeleteMultiple(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.SlackApi.SlackDeleteMultiple(context.Background(), v).Execute()
 
 		require.Nil(t, err)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test SlackApiService SlackDropdown", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		resp, httpRes, err := apiClient.SlackApi.SlackDropdown(context.Background()).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
@@ -61,7 +53,23 @@ func Test_taikuncore_SlackApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.SlackApi.SlackList(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.SlackApi.SlackList(context.Background(), v).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test SlackApiService SlackSlackConfigurationForOrganizationList", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var v string
+
+		resp, httpRes, err := apiClient.SlackApi.SlackSlackConfigurationForOrganizationList(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -74,19 +82,22 @@ func Test_taikuncore_SlackApiService(t *testing.T) {
 		t.Skip("skip test")  // remove to run test
 
 		var id int32
+		var v string
 
-		httpRes, err := apiClient.SlackApi.SlackUpdate(context.Background(), id).Execute()
+		httpRes, err := apiClient.SlackApi.SlackUpdate(context.Background(), id, v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test SlackApiService SlackVerify", func(t *testing.T) {
+	t.Run("Test SlackApiService SlackVerifySlackCredentials", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.SlackApi.SlackVerify(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.SlackApi.SlackVerifySlackCredentials(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)

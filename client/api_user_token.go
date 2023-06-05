@@ -24,79 +24,82 @@ import (
 // UserTokenApiService UserTokenApi service
 type UserTokenApiService service
 
-type ApiUsertokenAvailableEndpointsRequest struct {
+type ApiUserTokenAvailableEndpointListRequest struct {
 	ctx context.Context
 	ApiService *UserTokenApiService
-	isAdd *bool
-	isReadonly *bool
+	v string
 	limit *int32
 	offset *int32
 	sortBy *string
 	sortDirection *string
 	search *string
 	id *string
+	isAdd *bool
+	isReadonly *bool
 }
 
-func (r ApiUsertokenAvailableEndpointsRequest) IsAdd(isAdd bool) ApiUsertokenAvailableEndpointsRequest {
-	r.isAdd = &isAdd
-	return r
-}
-
-func (r ApiUsertokenAvailableEndpointsRequest) IsReadonly(isReadonly bool) ApiUsertokenAvailableEndpointsRequest {
-	r.isReadonly = &isReadonly
-	return r
-}
-
-func (r ApiUsertokenAvailableEndpointsRequest) Limit(limit int32) ApiUsertokenAvailableEndpointsRequest {
+func (r ApiUserTokenAvailableEndpointListRequest) Limit(limit int32) ApiUserTokenAvailableEndpointListRequest {
 	r.limit = &limit
 	return r
 }
 
-func (r ApiUsertokenAvailableEndpointsRequest) Offset(offset int32) ApiUsertokenAvailableEndpointsRequest {
+func (r ApiUserTokenAvailableEndpointListRequest) Offset(offset int32) ApiUserTokenAvailableEndpointListRequest {
 	r.offset = &offset
 	return r
 }
 
-func (r ApiUsertokenAvailableEndpointsRequest) SortBy(sortBy string) ApiUsertokenAvailableEndpointsRequest {
+func (r ApiUserTokenAvailableEndpointListRequest) SortBy(sortBy string) ApiUserTokenAvailableEndpointListRequest {
 	r.sortBy = &sortBy
 	return r
 }
 
-func (r ApiUsertokenAvailableEndpointsRequest) SortDirection(sortDirection string) ApiUsertokenAvailableEndpointsRequest {
+func (r ApiUserTokenAvailableEndpointListRequest) SortDirection(sortDirection string) ApiUserTokenAvailableEndpointListRequest {
 	r.sortDirection = &sortDirection
 	return r
 }
 
-func (r ApiUsertokenAvailableEndpointsRequest) Search(search string) ApiUsertokenAvailableEndpointsRequest {
+func (r ApiUserTokenAvailableEndpointListRequest) Search(search string) ApiUserTokenAvailableEndpointListRequest {
 	r.search = &search
 	return r
 }
 
-func (r ApiUsertokenAvailableEndpointsRequest) Id(id string) ApiUsertokenAvailableEndpointsRequest {
+func (r ApiUserTokenAvailableEndpointListRequest) Id(id string) ApiUserTokenAvailableEndpointListRequest {
 	r.id = &id
 	return r
 }
 
-func (r ApiUsertokenAvailableEndpointsRequest) Execute() (*AvailableEndpointsList, *http.Response, error) {
-	return r.ApiService.UsertokenAvailableEndpointsExecute(r)
+func (r ApiUserTokenAvailableEndpointListRequest) IsAdd(isAdd bool) ApiUserTokenAvailableEndpointListRequest {
+	r.isAdd = &isAdd
+	return r
+}
+
+func (r ApiUserTokenAvailableEndpointListRequest) IsReadonly(isReadonly bool) ApiUserTokenAvailableEndpointListRequest {
+	r.isReadonly = &isReadonly
+	return r
+}
+
+func (r ApiUserTokenAvailableEndpointListRequest) Execute() (*AvailableEndpointsList, *http.Response, error) {
+	return r.ApiService.UserTokenAvailableEndpointListExecute(r)
 }
 
 /*
-UsertokenAvailableEndpoints Get available endpoint list
+UserTokenAvailableEndpointList Get available endpoints list
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiUsertokenAvailableEndpointsRequest
+ @param v
+ @return ApiUserTokenAvailableEndpointListRequest
 */
-func (a *UserTokenApiService) UsertokenAvailableEndpoints(ctx context.Context) ApiUsertokenAvailableEndpointsRequest {
-	return ApiUsertokenAvailableEndpointsRequest{
+func (a *UserTokenApiService) UserTokenAvailableEndpointList(ctx context.Context, v string) ApiUserTokenAvailableEndpointListRequest {
+	return ApiUserTokenAvailableEndpointListRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
 //  @return AvailableEndpointsList
-func (a *UserTokenApiService) UsertokenAvailableEndpointsExecute(r ApiUsertokenAvailableEndpointsRequest) (*AvailableEndpointsList, *http.Response, error) {
+func (a *UserTokenApiService) UserTokenAvailableEndpointListExecute(r ApiUserTokenAvailableEndpointListRequest) (*AvailableEndpointsList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -104,43 +107,42 @@ func (a *UserTokenApiService) UsertokenAvailableEndpointsExecute(r ApiUsertokenA
 		localVarReturnValue  *AvailableEndpointsList
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserTokenApiService.UsertokenAvailableEndpoints")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserTokenApiService.UserTokenAvailableEndpointList")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/usertoken/available-endpoints"
+	localVarPath := localBasePath + "/api/v{v}/UserToken/available-endpoints"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.isAdd == nil {
-		return localVarReturnValue, nil, reportError("isAdd is required and must be specified")
-	}
-	if r.isReadonly == nil {
-		return localVarReturnValue, nil, reportError("isReadonly is required and must be specified")
-	}
 
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
 	}
 	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Offset", r.offset, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
 	}
 	if r.sortBy != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "SortBy", r.sortBy, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", r.sortBy, "")
 	}
 	if r.sortDirection != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "SortDirection", r.sortDirection, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "sortDirection", r.sortDirection, "")
 	}
 	if r.search != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Search", r.search, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "")
 	}
 	if r.id != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Id", r.id, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "")
 	}
-	parameterAddToHeaderOrQuery(localVarQueryParams, "IsAdd", r.isAdd, "")
-	parameterAddToHeaderOrQuery(localVarQueryParams, "IsReadonly", r.isReadonly, "")
+	if r.isAdd != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "isAdd", r.isAdd, "")
+	}
+	if r.isReadonly != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "isReadonly", r.isReadonly, "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -151,7 +153,7 @@ func (a *UserTokenApiService) UsertokenAvailableEndpointsExecute(r ApiUsertokenA
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -194,17 +196,6 @@ func (a *UserTokenApiService) UsertokenAvailableEndpointsExecute(r ApiUsertokenA
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -238,7 +229,7 @@ func (a *UserTokenApiService) UsertokenAvailableEndpointsExecute(r ApiUsertokenA
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -263,55 +254,60 @@ func (a *UserTokenApiService) UsertokenAvailableEndpointsExecute(r ApiUsertokenA
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiUsertokenBindUnbindRequest struct {
+type ApiUserTokenBindUnbindRequest struct {
 	ctx context.Context
 	ApiService *UserTokenApiService
-	bindUnbindEndpointToTokenCommand *BindUnbindEndpointToTokenCommand
+	v string
+	body *BindUnbindEndpointToTokenCommand
 }
 
-func (r ApiUsertokenBindUnbindRequest) BindUnbindEndpointToTokenCommand(bindUnbindEndpointToTokenCommand BindUnbindEndpointToTokenCommand) ApiUsertokenBindUnbindRequest {
-	r.bindUnbindEndpointToTokenCommand = &bindUnbindEndpointToTokenCommand
+// Create command
+func (r ApiUserTokenBindUnbindRequest) Body(body BindUnbindEndpointToTokenCommand) ApiUserTokenBindUnbindRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiUsertokenBindUnbindRequest) Execute() (*http.Response, error) {
-	return r.ApiService.UsertokenBindUnbindExecute(r)
+func (r ApiUserTokenBindUnbindRequest) Execute() (*http.Response, error) {
+	return r.ApiService.UserTokenBindUnbindExecute(r)
 }
 
 /*
-UsertokenBindUnbind Bind and unbind endpoints
+UserTokenBindUnbind Bind and unbind endpoints
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiUsertokenBindUnbindRequest
+ @param v
+ @return ApiUserTokenBindUnbindRequest
 */
-func (a *UserTokenApiService) UsertokenBindUnbind(ctx context.Context) ApiUsertokenBindUnbindRequest {
-	return ApiUsertokenBindUnbindRequest{
+func (a *UserTokenApiService) UserTokenBindUnbind(ctx context.Context, v string) ApiUserTokenBindUnbindRequest {
+	return ApiUserTokenBindUnbindRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
-func (a *UserTokenApiService) UsertokenBindUnbindExecute(r ApiUsertokenBindUnbindRequest) (*http.Response, error) {
+func (a *UserTokenApiService) UserTokenBindUnbindExecute(r ApiUserTokenBindUnbindRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserTokenApiService.UsertokenBindUnbind")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserTokenApiService.UserTokenBindUnbind")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/usertoken/bind-unbind"
+	localVarPath := localBasePath + "/api/v{v}/UserToken/bind-unbind"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -320,7 +316,7 @@ func (a *UserTokenApiService) UsertokenBindUnbindExecute(r ApiUsertokenBindUnbin
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -328,7 +324,7 @@ func (a *UserTokenApiService) UsertokenBindUnbindExecute(r ApiUsertokenBindUnbin
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.bindUnbindEndpointToTokenCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -365,17 +361,6 @@ func (a *UserTokenApiService) UsertokenBindUnbindExecute(r ApiUsertokenBindUnbin
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -409,7 +394,7 @@ func (a *UserTokenApiService) UsertokenBindUnbindExecute(r ApiUsertokenBindUnbin
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -425,37 +410,41 @@ func (a *UserTokenApiService) UsertokenBindUnbindExecute(r ApiUsertokenBindUnbin
 	return localVarHTTPResponse, nil
 }
 
-type ApiUsertokenCreateRequest struct {
+type ApiUserTokenCreateRequest struct {
 	ctx context.Context
 	ApiService *UserTokenApiService
-	userTokenCreateCommand *UserTokenCreateCommand
+	v string
+	body *UserTokenCreateCommand
 }
 
-func (r ApiUsertokenCreateRequest) UserTokenCreateCommand(userTokenCreateCommand UserTokenCreateCommand) ApiUsertokenCreateRequest {
-	r.userTokenCreateCommand = &userTokenCreateCommand
+// Create command
+func (r ApiUserTokenCreateRequest) Body(body UserTokenCreateCommand) ApiUserTokenCreateRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiUsertokenCreateRequest) Execute() (*UserTokenCreateDto, *http.Response, error) {
-	return r.ApiService.UsertokenCreateExecute(r)
+func (r ApiUserTokenCreateRequest) Execute() (*UserTokenCreateDto, *http.Response, error) {
+	return r.ApiService.UserTokenCreateExecute(r)
 }
 
 /*
-UsertokenCreate Create a new user token
+UserTokenCreate Create a new user token
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiUsertokenCreateRequest
+ @param v
+ @return ApiUserTokenCreateRequest
 */
-func (a *UserTokenApiService) UsertokenCreate(ctx context.Context) ApiUsertokenCreateRequest {
-	return ApiUsertokenCreateRequest{
+func (a *UserTokenApiService) UserTokenCreate(ctx context.Context, v string) ApiUserTokenCreateRequest {
+	return ApiUserTokenCreateRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
 //  @return UserTokenCreateDto
-func (a *UserTokenApiService) UsertokenCreateExecute(r ApiUsertokenCreateRequest) (*UserTokenCreateDto, *http.Response, error) {
+func (a *UserTokenApiService) UserTokenCreateExecute(r ApiUserTokenCreateRequest) (*UserTokenCreateDto, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -463,22 +452,20 @@ func (a *UserTokenApiService) UsertokenCreateExecute(r ApiUsertokenCreateRequest
 		localVarReturnValue  *UserTokenCreateDto
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserTokenApiService.UsertokenCreate")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserTokenApiService.UserTokenCreate")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/usertoken/create"
+	localVarPath := localBasePath + "/api/v{v}/UserToken/create"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.userTokenCreateCommand == nil {
-		return localVarReturnValue, nil, reportError("userTokenCreateCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -487,7 +474,7 @@ func (a *UserTokenApiService) UsertokenCreateExecute(r ApiUsertokenCreateRequest
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -495,7 +482,7 @@ func (a *UserTokenApiService) UsertokenCreateExecute(r ApiUsertokenCreateRequest
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.userTokenCreateCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -532,17 +519,6 @@ func (a *UserTokenApiService) UsertokenCreateExecute(r ApiUsertokenCreateRequest
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -576,7 +552,7 @@ func (a *UserTokenApiService) UsertokenCreateExecute(r ApiUsertokenCreateRequest
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -601,46 +577,50 @@ func (a *UserTokenApiService) UsertokenCreateExecute(r ApiUsertokenCreateRequest
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiUsertokenDeleteRequest struct {
+type ApiUserTokenDeleteRequest struct {
 	ctx context.Context
 	ApiService *UserTokenApiService
 	id string
+	v string
 }
 
-func (r ApiUsertokenDeleteRequest) Execute() (*http.Response, error) {
-	return r.ApiService.UsertokenDeleteExecute(r)
+func (r ApiUserTokenDeleteRequest) Execute() (*http.Response, error) {
+	return r.ApiService.UserTokenDeleteExecute(r)
 }
 
 /*
-UsertokenDelete Method for UsertokenDelete
+UserTokenDelete Delete token
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id
- @return ApiUsertokenDeleteRequest
+ @param id Delete command
+ @param v
+ @return ApiUserTokenDeleteRequest
 */
-func (a *UserTokenApiService) UsertokenDelete(ctx context.Context, id string) ApiUsertokenDeleteRequest {
-	return ApiUsertokenDeleteRequest{
+func (a *UserTokenApiService) UserTokenDelete(ctx context.Context, id string, v string) ApiUserTokenDeleteRequest {
+	return ApiUserTokenDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
+		v: v,
 	}
 }
 
 // Execute executes the request
-func (a *UserTokenApiService) UsertokenDeleteExecute(r ApiUsertokenDeleteRequest) (*http.Response, error) {
+func (a *UserTokenApiService) UserTokenDeleteExecute(r ApiUserTokenDeleteRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserTokenApiService.UsertokenDelete")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserTokenApiService.UserTokenDelete")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/usertoken/delete/{id}"
+	localVarPath := localBasePath + "/api/v{v}/UserToken/delete/{id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -656,7 +636,7 @@ func (a *UserTokenApiService) UsertokenDeleteExecute(r ApiUsertokenDeleteRequest
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -699,17 +679,6 @@ func (a *UserTokenApiService) UsertokenDeleteExecute(r ApiUsertokenDeleteRequest
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -743,7 +712,7 @@ func (a *UserTokenApiService) UsertokenDeleteExecute(r ApiUsertokenDeleteRequest
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -759,31 +728,34 @@ func (a *UserTokenApiService) UsertokenDeleteExecute(r ApiUsertokenDeleteRequest
 	return localVarHTTPResponse, nil
 }
 
-type ApiUsertokenListRequest struct {
+type ApiUserTokenListRequest struct {
 	ctx context.Context
 	ApiService *UserTokenApiService
+	v string
 }
 
-func (r ApiUsertokenListRequest) Execute() ([]UserTokensListDto, *http.Response, error) {
-	return r.ApiService.UsertokenListExecute(r)
+func (r ApiUserTokenListRequest) Execute() ([]UserTokensListDto, *http.Response, error) {
+	return r.ApiService.UserTokenListExecute(r)
 }
 
 /*
-UsertokenList Get user token list
+UserTokenList Get user token list
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiUsertokenListRequest
+ @param v
+ @return ApiUserTokenListRequest
 */
-func (a *UserTokenApiService) UsertokenList(ctx context.Context) ApiUsertokenListRequest {
-	return ApiUsertokenListRequest{
+func (a *UserTokenApiService) UserTokenList(ctx context.Context, v string) ApiUserTokenListRequest {
+	return ApiUserTokenListRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
 //  @return []UserTokensListDto
-func (a *UserTokenApiService) UsertokenListExecute(r ApiUsertokenListRequest) ([]UserTokensListDto, *http.Response, error) {
+func (a *UserTokenApiService) UserTokenListExecute(r ApiUserTokenListRequest) ([]UserTokensListDto, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -791,12 +763,13 @@ func (a *UserTokenApiService) UsertokenListExecute(r ApiUsertokenListRequest) ([
 		localVarReturnValue  []UserTokensListDto
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserTokenApiService.UsertokenList")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserTokenApiService.UserTokenList")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/usertoken/list"
+	localVarPath := localBasePath + "/api/v{v}/UserToken/list"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -812,7 +785,7 @@ func (a *UserTokenApiService) UsertokenListExecute(r ApiUsertokenListRequest) ([
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -855,17 +828,6 @@ func (a *UserTokenApiService) UsertokenListExecute(r ApiUsertokenListRequest) ([
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -899,7 +861,7 @@ func (a *UserTokenApiService) UsertokenListExecute(r ApiUsertokenListRequest) ([
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

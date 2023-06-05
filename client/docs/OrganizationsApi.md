@@ -4,23 +4,24 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**OrganizationsAcceptOffer**](OrganizationsApi.md#OrganizationsAcceptOffer) | **Post** /api/v1/organizations/accept-offer | Accept discount offer
-[**OrganizationsCreate**](OrganizationsApi.md#OrganizationsCreate) | **Post** /api/v1/organizations | Add a new organization. Only available for admins.
-[**OrganizationsDelete**](OrganizationsApi.md#OrganizationsDelete) | **Delete** /api/v1/organizations/{id} | Delete the specified organization. Only available for admins.
-[**OrganizationsDetawils**](OrganizationsApi.md#OrganizationsDetawils) | **Get** /api/v1/organizations/details | Retrieve all data about current organization by Id
-[**OrganizationsExportCsv**](OrganizationsApi.md#OrganizationsExportCsv) | **Get** /api/v1/organizations/export | Export Csv file
-[**OrganizationsLeave**](OrganizationsApi.md#OrganizationsLeave) | **Post** /api/v1/organizations/leave | Leave taikun
-[**OrganizationsList**](OrganizationsApi.md#OrganizationsList) | **Get** /api/v1/organizations | Retrieve all organizations
-[**OrganizationsOrganizationList**](OrganizationsApi.md#OrganizationsOrganizationList) | **Get** /api/v1/organizations/list | Retrieve organizations
-[**OrganizationsToggle**](OrganizationsApi.md#OrganizationsToggle) | **Post** /api/v1/organizations/toggle/keycloak | Toggle keycloak login option
-[**OrganizationsUpdate**](OrganizationsApi.md#OrganizationsUpdate) | **Post** /api/v1/organizations/update | Update organization by Id
-[**OrganizationsUpdatePayment**](OrganizationsApi.md#OrganizationsUpdatePayment) | **Post** /api/v1/organizations/updatepaymentmethod | Update organization payment Id
+[**OrganizationsAcceptOffer**](OrganizationsApi.md#OrganizationsAcceptOffer) | **Post** /api/v{v}/Organizations/accept-offer | Accept discount offer
+[**OrganizationsCreate**](OrganizationsApi.md#OrganizationsCreate) | **Post** /api/v{v}/Organizations | Create a new organization. Only available for admins.
+[**OrganizationsDelete**](OrganizationsApi.md#OrganizationsDelete) | **Post** /api/v{v}/Organizations/delete/{organizationId} | Delete the specified organization.Only available for admins.
+[**OrganizationsDetails**](OrganizationsApi.md#OrganizationsDetails) | **Get** /api/v{v}/Organizations/details | Retrieve all data about current organization by Id
+[**OrganizationsExportCsv**](OrganizationsApi.md#OrganizationsExportCsv) | **Get** /api/v{v}/Organizations/export | Export Csv file
+[**OrganizationsLeaveTaikun**](OrganizationsApi.md#OrganizationsLeaveTaikun) | **Post** /api/v{v}/Organizations/leave | Leave taikun
+[**OrganizationsList**](OrganizationsApi.md#OrganizationsList) | **Get** /api/v{v}/Organizations | Retrieve all organizations
+[**OrganizationsOrganizationList**](OrganizationsApi.md#OrganizationsOrganizationList) | **Get** /api/v{v}/Organizations/list | Retrieve organizations
+[**OrganizationsToggleKeycloak**](OrganizationsApi.md#OrganizationsToggleKeycloak) | **Post** /api/v{v}/Organizations/toggle/keycloak | Toggle keycloak login option
+[**OrganizationsUpdate**](OrganizationsApi.md#OrganizationsUpdate) | **Post** /api/v{v}/Organizations/update | Update organization by Id
+[**OrganizationsUpdatePaymentMethod**](OrganizationsApi.md#OrganizationsUpdatePaymentMethod) | **Post** /api/v{v}/Organizations/updatepaymentmethod | Update organization payment Id
+[**OrganizationsUpdateSubscription**](OrganizationsApi.md#OrganizationsUpdateSubscription) | **Post** /api/v{v}/Organizations/updatesubscription | Update subscription
 
 
 
 ## OrganizationsAcceptOffer
 
-> OrganizationsAcceptOffer(ctx).Body(body).Execute()
+> OrganizationsAcceptOffer(ctx, v).Body(body).Execute()
 
 Accept discount offer
 
@@ -37,11 +38,12 @@ import (
 )
 
 func main() {
-    body := map[string]interface{}{ ... } // map[string]interface{} | 
+    v := "v_example" // string | 
+    body := map[string]interface{}{ ... } // map[string]interface{} |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.OrganizationsApi.OrganizationsAcceptOffer(context.Background()).Body(body).Execute()
+    r, err := apiClient.OrganizationsApi.OrganizationsAcceptOffer(context.Background(), v).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.OrganizationsAcceptOffer``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -52,6 +54,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -60,6 +66,7 @@ Other parameters are passed through a pointer to a apiOrganizationsAcceptOfferRe
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
  **body** | **map[string]interface{}** |  | 
 
 ### Return type
@@ -72,8 +79,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -82,9 +89,9 @@ Name | Type | Description  | Notes
 
 ## OrganizationsCreate
 
-> ApiResponse OrganizationsCreate(ctx).OrganizationCreateCommand(organizationCreateCommand).Execute()
+> ApiResponse OrganizationsCreate(ctx, v).Body(body).Execute()
 
-Add a new organization. Only available for admins.
+Create a new organization. Only available for admins.
 
 ### Example
 
@@ -99,11 +106,12 @@ import (
 )
 
 func main() {
-    organizationCreateCommand := *openapiclient.NewOrganizationCreateCommand("Name_example", "FullName_example") // OrganizationCreateCommand |  (optional)
+    v := "v_example" // string | 
+    body := *openapiclient.NewOrganizationCreateCommand("Name_example", "FullName_example") // OrganizationCreateCommand | Create command (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrganizationsApi.OrganizationsCreate(context.Background()).OrganizationCreateCommand(organizationCreateCommand).Execute()
+    resp, r, err := apiClient.OrganizationsApi.OrganizationsCreate(context.Background(), v).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.OrganizationsCreate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -116,6 +124,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -124,7 +136,8 @@ Other parameters are passed through a pointer to a apiOrganizationsCreateRequest
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organizationCreateCommand** | [**OrganizationCreateCommand**](OrganizationCreateCommand.md) |  | 
+
+ **body** | [**OrganizationCreateCommand**](OrganizationCreateCommand.md) | Create command | 
 
 ### Return type
 
@@ -136,8 +149,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -146,9 +159,9 @@ Name | Type | Description  | Notes
 
 ## OrganizationsDelete
 
-> OrganizationsDelete(ctx, id).Execute()
+> OrganizationsDelete(ctx, organizationId, v).Execute()
 
-Delete the specified organization. Only available for admins.
+Delete the specified organization.Only available for admins.
 
 ### Example
 
@@ -163,11 +176,12 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 
+    organizationId := int32(56) // int32 | Id of the organization to delete
+    v := "v_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.OrganizationsApi.OrganizationsDelete(context.Background(), id).Execute()
+    r, err := apiClient.OrganizationsApi.OrganizationsDelete(context.Background(), organizationId, v).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.OrganizationsDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -181,7 +195,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** |  | 
+**organizationId** | **int32** | Id of the organization to delete | 
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -190,6 +205,7 @@ Other parameters are passed through a pointer to a apiOrganizationsDeleteRequest
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
 
 
 ### Return type
@@ -203,16 +219,16 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## OrganizationsDetawils
+## OrganizationsDetails
 
-> DashboardChart OrganizationsDetawils(ctx).OrganizationId(organizationId).Execute()
+> DashboardChart OrganizationsDetails(ctx, v).OrganizationId(organizationId).Execute()
 
 Retrieve all data about current organization by Id
 
@@ -229,31 +245,37 @@ import (
 )
 
 func main() {
+    v := "v_example" // string | 
     organizationId := int32(56) // int32 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrganizationsApi.OrganizationsDetawils(context.Background()).OrganizationId(organizationId).Execute()
+    resp, r, err := apiClient.OrganizationsApi.OrganizationsDetails(context.Background(), v).OrganizationId(organizationId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.OrganizationsDetawils``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.OrganizationsDetails``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `OrganizationsDetawils`: DashboardChart
-    fmt.Fprintf(os.Stdout, "Response from `OrganizationsApi.OrganizationsDetawils`: %v\n", resp)
+    // response from `OrganizationsDetails`: DashboardChart
+    fmt.Fprintf(os.Stdout, "Response from `OrganizationsApi.OrganizationsDetails`: %v\n", resp)
 }
 ```
 
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiOrganizationsDetawilsRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiOrganizationsDetailsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
  **organizationId** | **int32** |  | 
 
 ### Return type
@@ -267,7 +289,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -276,7 +298,7 @@ Name | Type | Description  | Notes
 
 ## OrganizationsExportCsv
 
-> OrganizationsExportCsv(ctx).Execute()
+> OrganizationsExportCsv(ctx, v).Execute()
 
 Export Csv file
 
@@ -293,10 +315,11 @@ import (
 )
 
 func main() {
+    v := "v_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.OrganizationsApi.OrganizationsExportCsv(context.Background()).Execute()
+    r, err := apiClient.OrganizationsApi.OrganizationsExportCsv(context.Background(), v).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.OrganizationsExportCsv``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -306,11 +329,19 @@ func main() {
 
 ### Path Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiOrganizationsExportCsvRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
 
 
 ### Return type
@@ -324,16 +355,16 @@ Other parameters are passed through a pointer to a apiOrganizationsExportCsvRequ
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## OrganizationsLeave
+## OrganizationsLeaveTaikun
 
-> LeaveTaikunDto OrganizationsLeave(ctx).LeaveTaikunCommand(leaveTaikunCommand).Execute()
+> LeaveTaikunDto OrganizationsLeaveTaikun(ctx, v).Body(body).Execute()
 
 Leave taikun
 
@@ -350,32 +381,38 @@ import (
 )
 
 func main() {
-    leaveTaikunCommand := *openapiclient.NewLeaveTaikunCommand("Reason_example") // LeaveTaikunCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewLeaveTaikunCommand("Reason_example") // LeaveTaikunCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrganizationsApi.OrganizationsLeave(context.Background()).LeaveTaikunCommand(leaveTaikunCommand).Execute()
+    resp, r, err := apiClient.OrganizationsApi.OrganizationsLeaveTaikun(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.OrganizationsLeave``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.OrganizationsLeaveTaikun``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `OrganizationsLeave`: LeaveTaikunDto
-    fmt.Fprintf(os.Stdout, "Response from `OrganizationsApi.OrganizationsLeave`: %v\n", resp)
+    // response from `OrganizationsLeaveTaikun`: LeaveTaikunDto
+    fmt.Fprintf(os.Stdout, "Response from `OrganizationsApi.OrganizationsLeaveTaikun`: %v\n", resp)
 }
 ```
 
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiOrganizationsLeaveRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiOrganizationsLeaveTaikunRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **leaveTaikunCommand** | [**LeaveTaikunCommand**](LeaveTaikunCommand.md) |  | 
+
+ **body** | [**LeaveTaikunCommand**](LeaveTaikunCommand.md) |  | 
 
 ### Return type
 
@@ -387,8 +424,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -397,7 +434,7 @@ Name | Type | Description  | Notes
 
 ## OrganizationsList
 
-> OrganizationsList OrganizationsList(ctx).Limit(limit).Offset(offset).SortBy(sortBy).SortDirection(sortDirection).Search(search).SearchId(searchId).Id(id).Execute()
+> OrganizationsList OrganizationsList(ctx, v).Limit(limit).Offset(offset).SortBy(sortBy).SortDirection(sortDirection).Search(search).SearchId(searchId).Id(id).Execute()
 
 Retrieve all organizations
 
@@ -414,8 +451,9 @@ import (
 )
 
 func main() {
-    limit := int32(56) // int32 |  (optional)
-    offset := int32(56) // int32 |  (optional)
+    v := "v_example" // string | 
+    limit := int32(56) // int32 | Limits user size (by default 50) (optional)
+    offset := int32(56) // int32 | Skip elements (optional)
     sortBy := "sortBy_example" // string |  (optional)
     sortDirection := "sortDirection_example" // string |  (optional)
     search := "search_example" // string |  (optional)
@@ -424,7 +462,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrganizationsApi.OrganizationsList(context.Background()).Limit(limit).Offset(offset).SortBy(sortBy).SortDirection(sortDirection).Search(search).SearchId(searchId).Id(id).Execute()
+    resp, r, err := apiClient.OrganizationsApi.OrganizationsList(context.Background(), v).Limit(limit).Offset(offset).SortBy(sortBy).SortDirection(sortDirection).Search(search).SearchId(searchId).Id(id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.OrganizationsList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -437,6 +475,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -445,8 +487,9 @@ Other parameters are passed through a pointer to a apiOrganizationsListRequest s
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **limit** | **int32** |  | 
- **offset** | **int32** |  | 
+
+ **limit** | **int32** | Limits user size (by default 50) | 
+ **offset** | **int32** | Skip elements | 
  **sortBy** | **string** |  | 
  **sortDirection** | **string** |  | 
  **search** | **string** |  | 
@@ -464,7 +507,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -473,7 +516,7 @@ Name | Type | Description  | Notes
 
 ## OrganizationsOrganizationList
 
-> []CommonDropdownDto OrganizationsOrganizationList(ctx).PartnerId(partnerId).Search(search).Execute()
+> []CommonDropdownDto OrganizationsOrganizationList(ctx, v).PartnerId(partnerId).Search(search).Execute()
 
 Retrieve organizations
 
@@ -490,12 +533,13 @@ import (
 )
 
 func main() {
+    v := "v_example" // string | 
     partnerId := int32(56) // int32 |  (optional)
     search := "search_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrganizationsApi.OrganizationsOrganizationList(context.Background()).PartnerId(partnerId).Search(search).Execute()
+    resp, r, err := apiClient.OrganizationsApi.OrganizationsOrganizationList(context.Background(), v).PartnerId(partnerId).Search(search).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.OrganizationsOrganizationList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -508,6 +552,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -516,6 +564,7 @@ Other parameters are passed through a pointer to a apiOrganizationsOrganizationL
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
  **partnerId** | **int32** |  | 
  **search** | **string** |  | 
 
@@ -530,16 +579,16 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## OrganizationsToggle
+## OrganizationsToggleKeycloak
 
-> OrganizationsToggle(ctx).ToggleKeycloakCommand(toggleKeycloakCommand).Execute()
+> OrganizationsToggleKeycloak(ctx, v).Body(body).Execute()
 
 Toggle keycloak login option
 
@@ -556,13 +605,14 @@ import (
 )
 
 func main() {
-    toggleKeycloakCommand := *openapiclient.NewToggleKeycloakCommand() // ToggleKeycloakCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewToggleKeycloakCommand() // ToggleKeycloakCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.OrganizationsApi.OrganizationsToggle(context.Background()).ToggleKeycloakCommand(toggleKeycloakCommand).Execute()
+    r, err := apiClient.OrganizationsApi.OrganizationsToggleKeycloak(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.OrganizationsToggle``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.OrganizationsToggleKeycloak``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -571,15 +621,20 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiOrganizationsToggleRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiOrganizationsToggleKeycloakRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **toggleKeycloakCommand** | [**ToggleKeycloakCommand**](ToggleKeycloakCommand.md) |  | 
+
+ **body** | [**ToggleKeycloakCommand**](ToggleKeycloakCommand.md) |  | 
 
 ### Return type
 
@@ -591,8 +646,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -601,7 +656,7 @@ Name | Type | Description  | Notes
 
 ## OrganizationsUpdate
 
-> OrganizationsUpdate(ctx).UpdateOrganizationCommand(updateOrganizationCommand).Execute()
+> OrganizationsUpdate(ctx, v).Body(body).Execute()
 
 Update organization by Id
 
@@ -618,11 +673,12 @@ import (
 )
 
 func main() {
-    updateOrganizationCommand := *openapiclient.NewUpdateOrganizationCommand("Name_example", "FullName_example") // UpdateOrganizationCommand |  (optional)
+    v := "v_example" // string | 
+    body := *openapiclient.NewUpdateOrganizationCommand("Name_example", "FullName_example") // UpdateOrganizationCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.OrganizationsApi.OrganizationsUpdate(context.Background()).UpdateOrganizationCommand(updateOrganizationCommand).Execute()
+    r, err := apiClient.OrganizationsApi.OrganizationsUpdate(context.Background(), v).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.OrganizationsUpdate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -633,6 +689,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -641,7 +701,8 @@ Other parameters are passed through a pointer to a apiOrganizationsUpdateRequest
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **updateOrganizationCommand** | [**UpdateOrganizationCommand**](UpdateOrganizationCommand.md) |  | 
+
+ **body** | [**UpdateOrganizationCommand**](UpdateOrganizationCommand.md) |  | 
 
 ### Return type
 
@@ -653,17 +714,17 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## OrganizationsUpdatePayment
+## OrganizationsUpdatePaymentMethod
 
-> OrganizationsUpdatePayment(ctx).UpdatePaymentIdCommand(updatePaymentIdCommand).Execute()
+> OrganizationsUpdatePaymentMethod(ctx, v).Body(body).Execute()
 
 Update organization payment Id
 
@@ -680,13 +741,14 @@ import (
 )
 
 func main() {
-    updatePaymentIdCommand := *openapiclient.NewUpdatePaymentIdCommand() // UpdatePaymentIdCommand |  (optional)
+    v := "v_example" // string | 
+    body := *openapiclient.NewUpdatePaymentIdCommand() // UpdatePaymentIdCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.OrganizationsApi.OrganizationsUpdatePayment(context.Background()).UpdatePaymentIdCommand(updatePaymentIdCommand).Execute()
+    r, err := apiClient.OrganizationsApi.OrganizationsUpdatePaymentMethod(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.OrganizationsUpdatePayment``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.OrganizationsUpdatePaymentMethod``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -695,15 +757,20 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiOrganizationsUpdatePaymentRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiOrganizationsUpdatePaymentMethodRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **updatePaymentIdCommand** | [**UpdatePaymentIdCommand**](UpdatePaymentIdCommand.md) |  | 
+
+ **body** | [**UpdatePaymentIdCommand**](UpdatePaymentIdCommand.md) |  | 
 
 ### Return type
 
@@ -715,8 +782,76 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## OrganizationsUpdateSubscription
+
+> OrganizationsUpdateSubscription(ctx, v).Body(body).Execute()
+
+Update subscription
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/chnyda/taikungoclient"
+)
+
+func main() {
+    v := "v_example" // string | 
+    body := *openapiclient.NewUpdateOrganizationSubscriptionCommand() // UpdateOrganizationSubscriptionCommand |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.OrganizationsApi.OrganizationsUpdateSubscription(context.Background(), v).Body(body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.OrganizationsUpdateSubscription``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiOrganizationsUpdateSubscriptionRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **body** | [**UpdateOrganizationSubscriptionCommand**](UpdateOrganizationSubscriptionCommand.md) |  | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

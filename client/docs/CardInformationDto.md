@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ExpirationMonth** | Pointer to **NullableString** |  | [optional] 
-**ExpirationYear** | Pointer to **NullableString** |  | [optional] 
-**Last4** | Pointer to **NullableString** |  | [optional] 
-**Brand** | Pointer to **NullableString** |  | [optional] 
-**HolderName** | Pointer to **NullableString** |  | [optional] 
+**ExpirationMonth** | Pointer to **string** |  | [optional] 
+**ExpirationYear** | Pointer to **string** |  | [optional] 
+**Last4** | Pointer to **string** |  | [optional] 
+**Brand** | Pointer to **string** |  | [optional] 
+**HolderName** | Pointer to **string** |  | [optional] 
 **Balance** | Pointer to **int64** |  | [optional] 
 
 ## Methods
@@ -55,16 +55,6 @@ SetExpirationMonth sets ExpirationMonth field to given value.
 
 HasExpirationMonth returns a boolean if a field has been set.
 
-### SetExpirationMonthNil
-
-`func (o *CardInformationDto) SetExpirationMonthNil(b bool)`
-
- SetExpirationMonthNil sets the value for ExpirationMonth to be an explicit nil
-
-### UnsetExpirationMonth
-`func (o *CardInformationDto) UnsetExpirationMonth()`
-
-UnsetExpirationMonth ensures that no value is present for ExpirationMonth, not even an explicit nil
 ### GetExpirationYear
 
 `func (o *CardInformationDto) GetExpirationYear() string`
@@ -90,16 +80,6 @@ SetExpirationYear sets ExpirationYear field to given value.
 
 HasExpirationYear returns a boolean if a field has been set.
 
-### SetExpirationYearNil
-
-`func (o *CardInformationDto) SetExpirationYearNil(b bool)`
-
- SetExpirationYearNil sets the value for ExpirationYear to be an explicit nil
-
-### UnsetExpirationYear
-`func (o *CardInformationDto) UnsetExpirationYear()`
-
-UnsetExpirationYear ensures that no value is present for ExpirationYear, not even an explicit nil
 ### GetLast4
 
 `func (o *CardInformationDto) GetLast4() string`
@@ -125,16 +105,6 @@ SetLast4 sets Last4 field to given value.
 
 HasLast4 returns a boolean if a field has been set.
 
-### SetLast4Nil
-
-`func (o *CardInformationDto) SetLast4Nil(b bool)`
-
- SetLast4Nil sets the value for Last4 to be an explicit nil
-
-### UnsetLast4
-`func (o *CardInformationDto) UnsetLast4()`
-
-UnsetLast4 ensures that no value is present for Last4, not even an explicit nil
 ### GetBrand
 
 `func (o *CardInformationDto) GetBrand() string`
@@ -160,16 +130,6 @@ SetBrand sets Brand field to given value.
 
 HasBrand returns a boolean if a field has been set.
 
-### SetBrandNil
-
-`func (o *CardInformationDto) SetBrandNil(b bool)`
-
- SetBrandNil sets the value for Brand to be an explicit nil
-
-### UnsetBrand
-`func (o *CardInformationDto) UnsetBrand()`
-
-UnsetBrand ensures that no value is present for Brand, not even an explicit nil
 ### GetHolderName
 
 `func (o *CardInformationDto) GetHolderName() string`
@@ -195,16 +155,6 @@ SetHolderName sets HolderName field to given value.
 
 HasHolderName returns a boolean if a field has been set.
 
-### SetHolderNameNil
-
-`func (o *CardInformationDto) SetHolderNameNil(b bool)`
-
- SetHolderNameNil sets the value for HolderName to be an explicit nil
-
-### UnsetHolderName
-`func (o *CardInformationDto) UnsetHolderName()`
-
-UnsetHolderName ensures that no value is present for HolderName, not even an explicit nil
 ### GetBalance
 
 `func (o *CardInformationDto) GetBalance() int64`

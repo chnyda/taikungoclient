@@ -22,11 +22,13 @@ func Test_taikuncore_S3CredentialsApiService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test S3CredentialsApiService S3credentialsCreate", func(t *testing.T) {
+	t.Run("Test S3CredentialsApiService S3CredentialsBackupCredentialsForOrganizationList", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.S3CredentialsApi.S3credentialsCreate(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.S3CredentialsApi.S3CredentialsBackupCredentialsForOrganizationList(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -34,36 +36,41 @@ func Test_taikuncore_S3CredentialsApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test S3CredentialsApiService S3credentialsDelete", func(t *testing.T) {
+	t.Run("Test S3CredentialsApiService S3CredentialsCreate", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var v string
+
+		resp, httpRes, err := apiClient.S3CredentialsApi.S3CredentialsCreate(context.Background(), v).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test S3CredentialsApiService S3CredentialsDelete", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id int32
+		var v string
 
-		httpRes, err := apiClient.S3CredentialsApi.S3credentialsDelete(context.Background(), id).Execute()
+		httpRes, err := apiClient.S3CredentialsApi.S3CredentialsDelete(context.Background(), id, v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test S3CredentialsApiService S3credentialsDropdown", func(t *testing.T) {
+	t.Run("Test S3CredentialsApiService S3CredentialsList", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.S3CredentialsApi.S3credentialsDropdown(context.Background()).Execute()
+		var v string
 
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test S3CredentialsApiService S3credentialsList", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		resp, httpRes, err := apiClient.S3CredentialsApi.S3credentialsList(context.Background()).Execute()
+		resp, httpRes, err := apiClient.S3CredentialsApi.S3CredentialsList(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -71,33 +78,39 @@ func Test_taikuncore_S3CredentialsApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test S3CredentialsApiService S3credentialsLockManagement", func(t *testing.T) {
+	t.Run("Test S3CredentialsApiService S3CredentialsLockManager", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.S3CredentialsApi.S3credentialsLockManagement(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.S3CredentialsApi.S3CredentialsLockManager(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test S3CredentialsApiService S3credentialsMakeDeafult", func(t *testing.T) {
+	t.Run("Test S3CredentialsApiService S3CredentialsMakeDefault", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.S3CredentialsApi.S3credentialsMakeDeafult(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.S3CredentialsApi.S3CredentialsMakeDefault(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test S3CredentialsApiService S3credentialsUpdate", func(t *testing.T) {
+	t.Run("Test S3CredentialsApiService S3CredentialsUpdate", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.S3CredentialsApi.S3credentialsUpdate(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.S3CredentialsApi.S3CredentialsUpdate(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)

@@ -5,14 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Token** | **string** |  | 
-**Email** | Pointer to **NullableString** |  | [optional] 
-**NewPassword** | **interface{}** |  | 
+**Email** | Pointer to **string** |  | [optional] 
+**NewPassword** | [**AdminUserCreateCommandPassword**](AdminUserCreateCommandPassword.md) |  | 
 
 ## Methods
 
 ### NewResetPasswordCommand
 
-`func NewResetPasswordCommand(token string, newPassword interface{}, ) *ResetPasswordCommand`
+`func NewResetPasswordCommand(token string, newPassword AdminUserCreateCommandPassword, ) *ResetPasswordCommand`
 
 NewResetPasswordCommand instantiates a new ResetPasswordCommand object
 This constructor will assign default values to properties that have it defined,
@@ -72,32 +72,22 @@ SetEmail sets Email field to given value.
 
 HasEmail returns a boolean if a field has been set.
 
-### SetEmailNil
-
-`func (o *ResetPasswordCommand) SetEmailNil(b bool)`
-
- SetEmailNil sets the value for Email to be an explicit nil
-
-### UnsetEmail
-`func (o *ResetPasswordCommand) UnsetEmail()`
-
-UnsetEmail ensures that no value is present for Email, not even an explicit nil
 ### GetNewPassword
 
-`func (o *ResetPasswordCommand) GetNewPassword() interface{}`
+`func (o *ResetPasswordCommand) GetNewPassword() AdminUserCreateCommandPassword`
 
 GetNewPassword returns the NewPassword field if non-nil, zero value otherwise.
 
 ### GetNewPasswordOk
 
-`func (o *ResetPasswordCommand) GetNewPasswordOk() (*interface{}, bool)`
+`func (o *ResetPasswordCommand) GetNewPasswordOk() (*AdminUserCreateCommandPassword, bool)`
 
 GetNewPasswordOk returns a tuple with the NewPassword field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNewPassword
 
-`func (o *ResetPasswordCommand) SetNewPassword(v interface{})`
+`func (o *ResetPasswordCommand) SetNewPassword(v AdminUserCreateCommandPassword)`
 
 SetNewPassword sets NewPassword field to given value.
 

@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **NullableString** |  | [optional] 
-**MetricName** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**MetricName** | Pointer to **string** |  | [optional] 
 **Type** | Pointer to [**PrometheusType**](PrometheusType.md) |  | [optional] 
-**Price** | Pointer to **NullableFloat64** |  | [optional] 
+**Price** | Pointer to **float64** |  | [optional] 
 **LabelsToAdd** | Pointer to [**[]PrometheusLabelListDto**](PrometheusLabelListDto.md) |  | [optional] 
 **LabelsToDelete** | Pointer to [**[]PrometheusLabelDeleteDto**](PrometheusLabelDeleteDto.md) |  | [optional] 
 **LabelsToUpdate** | Pointer to [**[]PrometheusLabelUpdateDto**](PrometheusLabelUpdateDto.md) |  | [optional] 
-**OrganizationId** | Pointer to **NullableInt32** |  | [optional] 
-**RuleDiscountRate** | Pointer to **NullableInt32** |  | [optional] 
-**OperationCredentialId** | Pointer to **NullableInt32** |  | [optional] 
+**OrganizationId** | Pointer to **int32** |  | [optional] 
+**RuleDiscountRate** | Pointer to **int32** |  | [optional] 
+**OperationCredentialId** | Pointer to **int32** |  | [optional] 
 
 ## Methods
 
@@ -59,16 +59,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *RuleForUpdateDto) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *RuleForUpdateDto) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetMetricName
 
 `func (o *RuleForUpdateDto) GetMetricName() string`
@@ -94,16 +84,6 @@ SetMetricName sets MetricName field to given value.
 
 HasMetricName returns a boolean if a field has been set.
 
-### SetMetricNameNil
-
-`func (o *RuleForUpdateDto) SetMetricNameNil(b bool)`
-
- SetMetricNameNil sets the value for MetricName to be an explicit nil
-
-### UnsetMetricName
-`func (o *RuleForUpdateDto) UnsetMetricName()`
-
-UnsetMetricName ensures that no value is present for MetricName, not even an explicit nil
 ### GetType
 
 `func (o *RuleForUpdateDto) GetType() PrometheusType`
@@ -154,16 +134,6 @@ SetPrice sets Price field to given value.
 
 HasPrice returns a boolean if a field has been set.
 
-### SetPriceNil
-
-`func (o *RuleForUpdateDto) SetPriceNil(b bool)`
-
- SetPriceNil sets the value for Price to be an explicit nil
-
-### UnsetPrice
-`func (o *RuleForUpdateDto) UnsetPrice()`
-
-UnsetPrice ensures that no value is present for Price, not even an explicit nil
 ### GetLabelsToAdd
 
 `func (o *RuleForUpdateDto) GetLabelsToAdd() []PrometheusLabelListDto`
@@ -189,16 +159,6 @@ SetLabelsToAdd sets LabelsToAdd field to given value.
 
 HasLabelsToAdd returns a boolean if a field has been set.
 
-### SetLabelsToAddNil
-
-`func (o *RuleForUpdateDto) SetLabelsToAddNil(b bool)`
-
- SetLabelsToAddNil sets the value for LabelsToAdd to be an explicit nil
-
-### UnsetLabelsToAdd
-`func (o *RuleForUpdateDto) UnsetLabelsToAdd()`
-
-UnsetLabelsToAdd ensures that no value is present for LabelsToAdd, not even an explicit nil
 ### GetLabelsToDelete
 
 `func (o *RuleForUpdateDto) GetLabelsToDelete() []PrometheusLabelDeleteDto`
@@ -224,16 +184,6 @@ SetLabelsToDelete sets LabelsToDelete field to given value.
 
 HasLabelsToDelete returns a boolean if a field has been set.
 
-### SetLabelsToDeleteNil
-
-`func (o *RuleForUpdateDto) SetLabelsToDeleteNil(b bool)`
-
- SetLabelsToDeleteNil sets the value for LabelsToDelete to be an explicit nil
-
-### UnsetLabelsToDelete
-`func (o *RuleForUpdateDto) UnsetLabelsToDelete()`
-
-UnsetLabelsToDelete ensures that no value is present for LabelsToDelete, not even an explicit nil
 ### GetLabelsToUpdate
 
 `func (o *RuleForUpdateDto) GetLabelsToUpdate() []PrometheusLabelUpdateDto`
@@ -259,16 +209,6 @@ SetLabelsToUpdate sets LabelsToUpdate field to given value.
 
 HasLabelsToUpdate returns a boolean if a field has been set.
 
-### SetLabelsToUpdateNil
-
-`func (o *RuleForUpdateDto) SetLabelsToUpdateNil(b bool)`
-
- SetLabelsToUpdateNil sets the value for LabelsToUpdate to be an explicit nil
-
-### UnsetLabelsToUpdate
-`func (o *RuleForUpdateDto) UnsetLabelsToUpdate()`
-
-UnsetLabelsToUpdate ensures that no value is present for LabelsToUpdate, not even an explicit nil
 ### GetOrganizationId
 
 `func (o *RuleForUpdateDto) GetOrganizationId() int32`
@@ -294,16 +234,6 @@ SetOrganizationId sets OrganizationId field to given value.
 
 HasOrganizationId returns a boolean if a field has been set.
 
-### SetOrganizationIdNil
-
-`func (o *RuleForUpdateDto) SetOrganizationIdNil(b bool)`
-
- SetOrganizationIdNil sets the value for OrganizationId to be an explicit nil
-
-### UnsetOrganizationId
-`func (o *RuleForUpdateDto) UnsetOrganizationId()`
-
-UnsetOrganizationId ensures that no value is present for OrganizationId, not even an explicit nil
 ### GetRuleDiscountRate
 
 `func (o *RuleForUpdateDto) GetRuleDiscountRate() int32`
@@ -329,16 +259,6 @@ SetRuleDiscountRate sets RuleDiscountRate field to given value.
 
 HasRuleDiscountRate returns a boolean if a field has been set.
 
-### SetRuleDiscountRateNil
-
-`func (o *RuleForUpdateDto) SetRuleDiscountRateNil(b bool)`
-
- SetRuleDiscountRateNil sets the value for RuleDiscountRate to be an explicit nil
-
-### UnsetRuleDiscountRate
-`func (o *RuleForUpdateDto) UnsetRuleDiscountRate()`
-
-UnsetRuleDiscountRate ensures that no value is present for RuleDiscountRate, not even an explicit nil
 ### GetOperationCredentialId
 
 `func (o *RuleForUpdateDto) GetOperationCredentialId() int32`
@@ -364,16 +284,6 @@ SetOperationCredentialId sets OperationCredentialId field to given value.
 
 HasOperationCredentialId returns a boolean if a field has been set.
 
-### SetOperationCredentialIdNil
-
-`func (o *RuleForUpdateDto) SetOperationCredentialIdNil(b bool)`
-
- SetOperationCredentialIdNil sets the value for OperationCredentialId to be an explicit nil
-
-### UnsetOperationCredentialId
-`func (o *RuleForUpdateDto) UnsetOperationCredentialId()`
-
-UnsetOperationCredentialId ensures that no value is present for OperationCredentialId, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

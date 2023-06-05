@@ -51,16 +51,6 @@ SetList sets List field to given value.
 
 HasList returns a boolean if a field has been set.
 
-### SetListNil
-
-`func (o *AzResult) SetListNil(b bool)`
-
- SetListNil sets the value for List to be an explicit nil
-
-### UnsetList
-`func (o *AzResult) UnsetList()`
-
-UnsetList ensures that no value is present for List, not even an explicit nil
 ### GetTotalCount
 
 `func (o *AzResult) GetTotalCount() int32`

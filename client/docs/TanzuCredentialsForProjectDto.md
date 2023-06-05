@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Username** | Pointer to **NullableString** |  | [optional] 
-**Url** | Pointer to **NullableString** |  | [optional] 
-**Password** | Pointer to **NullableString** |  | [optional] 
-**VolumeType** | Pointer to **NullableString** |  | [optional] 
-**Namespace** | Pointer to **NullableString** |  | [optional] 
-**Port** | Pointer to **NullableInt32** |  | [optional] 
+**Username** | Pointer to **string** |  | [optional] 
+**Url** | Pointer to **string** |  | [optional] 
+**Password** | Pointer to **string** |  | [optional] 
+**VolumeType** | Pointer to **string** |  | [optional] 
+**Namespace** | Pointer to **string** |  | [optional] 
+**Port** | Pointer to **int32** |  | [optional] 
 
 ## Methods
 
@@ -55,16 +55,6 @@ SetUsername sets Username field to given value.
 
 HasUsername returns a boolean if a field has been set.
 
-### SetUsernameNil
-
-`func (o *TanzuCredentialsForProjectDto) SetUsernameNil(b bool)`
-
- SetUsernameNil sets the value for Username to be an explicit nil
-
-### UnsetUsername
-`func (o *TanzuCredentialsForProjectDto) UnsetUsername()`
-
-UnsetUsername ensures that no value is present for Username, not even an explicit nil
 ### GetUrl
 
 `func (o *TanzuCredentialsForProjectDto) GetUrl() string`
@@ -90,16 +80,6 @@ SetUrl sets Url field to given value.
 
 HasUrl returns a boolean if a field has been set.
 
-### SetUrlNil
-
-`func (o *TanzuCredentialsForProjectDto) SetUrlNil(b bool)`
-
- SetUrlNil sets the value for Url to be an explicit nil
-
-### UnsetUrl
-`func (o *TanzuCredentialsForProjectDto) UnsetUrl()`
-
-UnsetUrl ensures that no value is present for Url, not even an explicit nil
 ### GetPassword
 
 `func (o *TanzuCredentialsForProjectDto) GetPassword() string`
@@ -125,16 +105,6 @@ SetPassword sets Password field to given value.
 
 HasPassword returns a boolean if a field has been set.
 
-### SetPasswordNil
-
-`func (o *TanzuCredentialsForProjectDto) SetPasswordNil(b bool)`
-
- SetPasswordNil sets the value for Password to be an explicit nil
-
-### UnsetPassword
-`func (o *TanzuCredentialsForProjectDto) UnsetPassword()`
-
-UnsetPassword ensures that no value is present for Password, not even an explicit nil
 ### GetVolumeType
 
 `func (o *TanzuCredentialsForProjectDto) GetVolumeType() string`
@@ -160,16 +130,6 @@ SetVolumeType sets VolumeType field to given value.
 
 HasVolumeType returns a boolean if a field has been set.
 
-### SetVolumeTypeNil
-
-`func (o *TanzuCredentialsForProjectDto) SetVolumeTypeNil(b bool)`
-
- SetVolumeTypeNil sets the value for VolumeType to be an explicit nil
-
-### UnsetVolumeType
-`func (o *TanzuCredentialsForProjectDto) UnsetVolumeType()`
-
-UnsetVolumeType ensures that no value is present for VolumeType, not even an explicit nil
 ### GetNamespace
 
 `func (o *TanzuCredentialsForProjectDto) GetNamespace() string`
@@ -195,16 +155,6 @@ SetNamespace sets Namespace field to given value.
 
 HasNamespace returns a boolean if a field has been set.
 
-### SetNamespaceNil
-
-`func (o *TanzuCredentialsForProjectDto) SetNamespaceNil(b bool)`
-
- SetNamespaceNil sets the value for Namespace to be an explicit nil
-
-### UnsetNamespace
-`func (o *TanzuCredentialsForProjectDto) UnsetNamespace()`
-
-UnsetNamespace ensures that no value is present for Namespace, not even an explicit nil
 ### GetPort
 
 `func (o *TanzuCredentialsForProjectDto) GetPort() int32`
@@ -230,16 +180,6 @@ SetPort sets Port field to given value.
 
 HasPort returns a boolean if a field has been set.
 
-### SetPortNil
-
-`func (o *TanzuCredentialsForProjectDto) SetPortNil(b bool)`
-
- SetPortNil sets the value for Port to be an explicit nil
-
-### UnsetPort
-`func (o *TanzuCredentialsForProjectDto) UnsetPort()`
-
-UnsetPort ensures that no value is present for Port, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

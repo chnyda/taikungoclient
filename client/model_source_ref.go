@@ -20,8 +20,8 @@ var _ MappedNullable = &SourceRef{}
 
 // SourceRef struct for SourceRef
 type SourceRef struct {
-	Kind NullableString `json:"kind,omitempty"`
-	Name NullableString `json:"name,omitempty"`
+	Kind *string `json:"kind,omitempty"`
+	Name *string `json:"name,omitempty"`
 }
 
 // NewSourceRef instantiates a new SourceRef object
@@ -41,88 +41,68 @@ func NewSourceRefWithDefaults() *SourceRef {
 	return &this
 }
 
-// GetKind returns the Kind field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetKind returns the Kind field value if set, zero value otherwise.
 func (o *SourceRef) GetKind() string {
-	if o == nil || IsNil(o.Kind.Get()) {
+	if o == nil || IsNil(o.Kind) {
 		var ret string
 		return ret
 	}
-	return *o.Kind.Get()
+	return *o.Kind
 }
 
 // GetKindOk returns a tuple with the Kind field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SourceRef) GetKindOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Kind) {
 		return nil, false
 	}
-	return o.Kind.Get(), o.Kind.IsSet()
+	return o.Kind, true
 }
 
 // HasKind returns a boolean if a field has been set.
 func (o *SourceRef) HasKind() bool {
-	if o != nil && o.Kind.IsSet() {
+	if o != nil && !IsNil(o.Kind) {
 		return true
 	}
 
 	return false
 }
 
-// SetKind gets a reference to the given NullableString and assigns it to the Kind field.
+// SetKind gets a reference to the given string and assigns it to the Kind field.
 func (o *SourceRef) SetKind(v string) {
-	o.Kind.Set(&v)
-}
-// SetKindNil sets the value for Kind to be an explicit nil
-func (o *SourceRef) SetKindNil() {
-	o.Kind.Set(nil)
+	o.Kind = &v
 }
 
-// UnsetKind ensures that no value is present for Kind, not even an explicit nil
-func (o *SourceRef) UnsetKind() {
-	o.Kind.Unset()
-}
-
-// GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetName returns the Name field value if set, zero value otherwise.
 func (o *SourceRef) GetName() string {
-	if o == nil || IsNil(o.Name.Get()) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
-	return *o.Name.Get()
+	return *o.Name
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SourceRef) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
-	return o.Name.Get(), o.Name.IsSet()
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *SourceRef) HasName() bool {
-	if o != nil && o.Name.IsSet() {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
 	return false
 }
 
-// SetName gets a reference to the given NullableString and assigns it to the Name field.
+// SetName gets a reference to the given string and assigns it to the Name field.
 func (o *SourceRef) SetName(v string) {
-	o.Name.Set(&v)
-}
-// SetNameNil sets the value for Name to be an explicit nil
-func (o *SourceRef) SetNameNil() {
-	o.Name.Set(nil)
-}
-
-// UnsetName ensures that no value is present for Name, not even an explicit nil
-func (o *SourceRef) UnsetName() {
-	o.Name.Unset()
+	o.Name = &v
 }
 
 func (o SourceRef) MarshalJSON() ([]byte, error) {
@@ -135,11 +115,11 @@ func (o SourceRef) MarshalJSON() ([]byte, error) {
 
 func (o SourceRef) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Kind.IsSet() {
-		toSerialize["kind"] = o.Kind.Get()
+	if !IsNil(o.Kind) {
+		toSerialize["kind"] = o.Kind
 	}
-	if o.Name.IsSet() {
-		toSerialize["name"] = o.Name.Get()
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
 	}
 	return toSerialize, nil
 }

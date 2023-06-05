@@ -22,37 +22,41 @@ func Test_taikuncore_PreDefinedQueriesApiService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test PreDefinedQueriesApiService PredefinedqueriesCreate", func(t *testing.T) {
+	t.Run("Test PreDefinedQueriesApiService PreDefinedQueriesCreatePrometheusDashboard", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.PreDefinedQueriesApi.PredefinedqueriesCreate(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.PreDefinedQueriesApi.PreDefinedQueriesCreatePrometheusDashboard(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test PreDefinedQueriesApiService PredefinedqueriesDelete", func(t *testing.T) {
+	t.Run("Test PreDefinedQueriesApiService PreDefinedQueriesDeletePrometheusDashboard", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id int32
+		var v string
 
-		httpRes, err := apiClient.PreDefinedQueriesApi.PredefinedqueriesDelete(context.Background(), id).Execute()
+		httpRes, err := apiClient.PreDefinedQueriesApi.PreDefinedQueriesDeletePrometheusDashboard(context.Background(), id, v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test PreDefinedQueriesApiService PredefinedqueriesList", func(t *testing.T) {
+	t.Run("Test PreDefinedQueriesApiService PreDefinedQueriesGetPrometheusCommonDashboardList", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var projectId int32
+		var v string
 
-		resp, httpRes, err := apiClient.PreDefinedQueriesApi.PredefinedqueriesList(context.Background(), projectId).Execute()
+		resp, httpRes, err := apiClient.PreDefinedQueriesApi.PreDefinedQueriesGetPrometheusCommonDashboardList(context.Background(), projectId, v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -60,13 +64,14 @@ func Test_taikuncore_PreDefinedQueriesApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test PreDefinedQueriesApiService PredefinedqueriesPrometheusDashboardCommon", func(t *testing.T) {
+	t.Run("Test PreDefinedQueriesApiService PreDefinedQueriesGetPrometheusDashboardList", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var projectId int32
+		var v string
 
-		resp, httpRes, err := apiClient.PreDefinedQueriesApi.PredefinedqueriesPrometheusDashboardCommon(context.Background(), projectId).Execute()
+		resp, httpRes, err := apiClient.PreDefinedQueriesApi.PreDefinedQueriesGetPrometheusDashboardList(context.Background(), projectId, v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -74,11 +79,13 @@ func Test_taikuncore_PreDefinedQueriesApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test PreDefinedQueriesApiService PredefinedqueriesUpdate", func(t *testing.T) {
+	t.Run("Test PreDefinedQueriesApiService PreDefinedQueriesUpdatePrometheusDashboard", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.PreDefinedQueriesApi.PredefinedqueriesUpdate(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.PreDefinedQueriesApi.PreDefinedQueriesUpdatePrometheusDashboard(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)

@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Status** | Pointer to **NullableString** |  | [optional] 
-**PaymentIntentClientSecret** | Pointer to **NullableString** |  | [optional] 
-**InvoiceFailureCode** | Pointer to **NullableString** |  | [optional] 
-**InvoiceFailureMessage** | Pointer to **NullableString** |  | [optional] 
-**InvoiceFailureReason** | Pointer to **NullableString** |  | [optional] 
+**Status** | Pointer to **string** |  | [optional] 
+**PaymentIntentClientSecret** | Pointer to **string** |  | [optional] 
+**InvoiceFailureCode** | Pointer to **string** |  | [optional] 
+**InvoiceFailureMessage** | Pointer to **string** |  | [optional] 
+**InvoiceFailureReason** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -54,16 +54,6 @@ SetStatus sets Status field to given value.
 
 HasStatus returns a boolean if a field has been set.
 
-### SetStatusNil
-
-`func (o *BindSubscriptionResponseDto) SetStatusNil(b bool)`
-
- SetStatusNil sets the value for Status to be an explicit nil
-
-### UnsetStatus
-`func (o *BindSubscriptionResponseDto) UnsetStatus()`
-
-UnsetStatus ensures that no value is present for Status, not even an explicit nil
 ### GetPaymentIntentClientSecret
 
 `func (o *BindSubscriptionResponseDto) GetPaymentIntentClientSecret() string`
@@ -89,16 +79,6 @@ SetPaymentIntentClientSecret sets PaymentIntentClientSecret field to given value
 
 HasPaymentIntentClientSecret returns a boolean if a field has been set.
 
-### SetPaymentIntentClientSecretNil
-
-`func (o *BindSubscriptionResponseDto) SetPaymentIntentClientSecretNil(b bool)`
-
- SetPaymentIntentClientSecretNil sets the value for PaymentIntentClientSecret to be an explicit nil
-
-### UnsetPaymentIntentClientSecret
-`func (o *BindSubscriptionResponseDto) UnsetPaymentIntentClientSecret()`
-
-UnsetPaymentIntentClientSecret ensures that no value is present for PaymentIntentClientSecret, not even an explicit nil
 ### GetInvoiceFailureCode
 
 `func (o *BindSubscriptionResponseDto) GetInvoiceFailureCode() string`
@@ -124,16 +104,6 @@ SetInvoiceFailureCode sets InvoiceFailureCode field to given value.
 
 HasInvoiceFailureCode returns a boolean if a field has been set.
 
-### SetInvoiceFailureCodeNil
-
-`func (o *BindSubscriptionResponseDto) SetInvoiceFailureCodeNil(b bool)`
-
- SetInvoiceFailureCodeNil sets the value for InvoiceFailureCode to be an explicit nil
-
-### UnsetInvoiceFailureCode
-`func (o *BindSubscriptionResponseDto) UnsetInvoiceFailureCode()`
-
-UnsetInvoiceFailureCode ensures that no value is present for InvoiceFailureCode, not even an explicit nil
 ### GetInvoiceFailureMessage
 
 `func (o *BindSubscriptionResponseDto) GetInvoiceFailureMessage() string`
@@ -159,16 +129,6 @@ SetInvoiceFailureMessage sets InvoiceFailureMessage field to given value.
 
 HasInvoiceFailureMessage returns a boolean if a field has been set.
 
-### SetInvoiceFailureMessageNil
-
-`func (o *BindSubscriptionResponseDto) SetInvoiceFailureMessageNil(b bool)`
-
- SetInvoiceFailureMessageNil sets the value for InvoiceFailureMessage to be an explicit nil
-
-### UnsetInvoiceFailureMessage
-`func (o *BindSubscriptionResponseDto) UnsetInvoiceFailureMessage()`
-
-UnsetInvoiceFailureMessage ensures that no value is present for InvoiceFailureMessage, not even an explicit nil
 ### GetInvoiceFailureReason
 
 `func (o *BindSubscriptionResponseDto) GetInvoiceFailureReason() string`
@@ -194,16 +154,6 @@ SetInvoiceFailureReason sets InvoiceFailureReason field to given value.
 
 HasInvoiceFailureReason returns a boolean if a field has been set.
 
-### SetInvoiceFailureReasonNil
-
-`func (o *BindSubscriptionResponseDto) SetInvoiceFailureReasonNil(b bool)`
-
- SetInvoiceFailureReasonNil sets the value for InvoiceFailureReason to be an explicit nil
-
-### UnsetInvoiceFailureReason
-`func (o *BindSubscriptionResponseDto) UnsetInvoiceFailureReason()`
-
-UnsetInvoiceFailureReason ensures that no value is present for InvoiceFailureReason, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

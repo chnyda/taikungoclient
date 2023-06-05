@@ -5,15 +5,15 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
-**ProjectId** | Pointer to **NullableInt32** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**ProjectId** | Pointer to **int32** |  | [optional] 
 **IsAzure** | Pointer to **bool** |  | [optional] 
 **IsAws** | Pointer to **bool** |  | [optional] 
 **IsOpenstack** | Pointer to **bool** |  | [optional] 
-**ProjectName** | Pointer to **NullableString** |  | [optional] 
-**Size** | Pointer to **NullableFloat64** |  | [optional] 
-**ImageId** | Pointer to **NullableString** |  | [optional] 
-**CloudId** | Pointer to **NullableInt32** |  | [optional] 
+**ProjectName** | Pointer to **string** |  | [optional] 
+**Size** | Pointer to **float64** |  | [optional] 
+**ImageId** | Pointer to **string** |  | [optional] 
+**CloudId** | Pointer to **int32** |  | [optional] 
 **IsWindows** | Pointer to **bool** |  | [optional] 
 
 ## Methods
@@ -85,16 +85,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *BoundImagesForProjectsListDto) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *BoundImagesForProjectsListDto) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetProjectId
 
 `func (o *BoundImagesForProjectsListDto) GetProjectId() int32`
@@ -120,16 +110,6 @@ SetProjectId sets ProjectId field to given value.
 
 HasProjectId returns a boolean if a field has been set.
 
-### SetProjectIdNil
-
-`func (o *BoundImagesForProjectsListDto) SetProjectIdNil(b bool)`
-
- SetProjectIdNil sets the value for ProjectId to be an explicit nil
-
-### UnsetProjectId
-`func (o *BoundImagesForProjectsListDto) UnsetProjectId()`
-
-UnsetProjectId ensures that no value is present for ProjectId, not even an explicit nil
 ### GetIsAzure
 
 `func (o *BoundImagesForProjectsListDto) GetIsAzure() bool`
@@ -230,16 +210,6 @@ SetProjectName sets ProjectName field to given value.
 
 HasProjectName returns a boolean if a field has been set.
 
-### SetProjectNameNil
-
-`func (o *BoundImagesForProjectsListDto) SetProjectNameNil(b bool)`
-
- SetProjectNameNil sets the value for ProjectName to be an explicit nil
-
-### UnsetProjectName
-`func (o *BoundImagesForProjectsListDto) UnsetProjectName()`
-
-UnsetProjectName ensures that no value is present for ProjectName, not even an explicit nil
 ### GetSize
 
 `func (o *BoundImagesForProjectsListDto) GetSize() float64`
@@ -265,16 +235,6 @@ SetSize sets Size field to given value.
 
 HasSize returns a boolean if a field has been set.
 
-### SetSizeNil
-
-`func (o *BoundImagesForProjectsListDto) SetSizeNil(b bool)`
-
- SetSizeNil sets the value for Size to be an explicit nil
-
-### UnsetSize
-`func (o *BoundImagesForProjectsListDto) UnsetSize()`
-
-UnsetSize ensures that no value is present for Size, not even an explicit nil
 ### GetImageId
 
 `func (o *BoundImagesForProjectsListDto) GetImageId() string`
@@ -300,16 +260,6 @@ SetImageId sets ImageId field to given value.
 
 HasImageId returns a boolean if a field has been set.
 
-### SetImageIdNil
-
-`func (o *BoundImagesForProjectsListDto) SetImageIdNil(b bool)`
-
- SetImageIdNil sets the value for ImageId to be an explicit nil
-
-### UnsetImageId
-`func (o *BoundImagesForProjectsListDto) UnsetImageId()`
-
-UnsetImageId ensures that no value is present for ImageId, not even an explicit nil
 ### GetCloudId
 
 `func (o *BoundImagesForProjectsListDto) GetCloudId() int32`
@@ -335,16 +285,6 @@ SetCloudId sets CloudId field to given value.
 
 HasCloudId returns a boolean if a field has been set.
 
-### SetCloudIdNil
-
-`func (o *BoundImagesForProjectsListDto) SetCloudIdNil(b bool)`
-
- SetCloudIdNil sets the value for CloudId to be an explicit nil
-
-### UnsetCloudId
-`func (o *BoundImagesForProjectsListDto) UnsetCloudId()`
-
-UnsetCloudId ensures that no value is present for CloudId, not even an explicit nil
 ### GetIsWindows
 
 `func (o *BoundImagesForProjectsListDto) GetIsWindows() bool`

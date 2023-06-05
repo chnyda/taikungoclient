@@ -22,11 +22,13 @@ func Test_taikuncore_OpaProfilesApiService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test OpaProfilesApiService OpaprofilesCreate", func(t *testing.T) {
+	t.Run("Test OpaProfilesApiService OpaProfilesCreate", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.OpaProfilesApi.OpaprofilesCreate(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.OpaProfilesApi.OpaProfilesCreate(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -34,58 +36,52 @@ func Test_taikuncore_OpaProfilesApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test OpaProfilesApiService OpaprofilesDelete", func(t *testing.T) {
+	t.Run("Test OpaProfilesApiService OpaProfilesDelete", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id int32
+		var v string
 
-		httpRes, err := apiClient.OpaProfilesApi.OpaprofilesDelete(context.Background(), id).Execute()
+		httpRes, err := apiClient.OpaProfilesApi.OpaProfilesDelete(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test OpaProfilesApiService OpaprofilesDisableGatekeeper", func(t *testing.T) {
+	t.Run("Test OpaProfilesApiService OpaProfilesDisableGatekeeper", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.OpaProfilesApi.OpaprofilesDisableGatekeeper(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.OpaProfilesApi.OpaProfilesDisableGatekeeper(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test OpaProfilesApiService OpaprofilesDropdown", func(t *testing.T) {
+	t.Run("Test OpaProfilesApiService OpaProfilesEnableGatekeeper", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.OpaProfilesApi.OpaprofilesDropdown(context.Background()).Execute()
+		var v string
 
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test OpaProfilesApiService OpaprofilesEnableGatekeeper", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		httpRes, err := apiClient.OpaProfilesApi.OpaprofilesEnableGatekeeper(context.Background()).Execute()
+		httpRes, err := apiClient.OpaProfilesApi.OpaProfilesEnableGatekeeper(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test OpaProfilesApiService OpaprofilesList", func(t *testing.T) {
+	t.Run("Test OpaProfilesApiService OpaProfilesList", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.OpaProfilesApi.OpaprofilesList(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.OpaProfilesApi.OpaProfilesList(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -93,44 +89,66 @@ func Test_taikuncore_OpaProfilesApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test OpaProfilesApiService OpaprofilesLockManager", func(t *testing.T) {
+	t.Run("Test OpaProfilesApiService OpaProfilesLockManager", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.OpaProfilesApi.OpaprofilesLockManager(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.OpaProfilesApi.OpaProfilesLockManager(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test OpaProfilesApiService OpaprofilesMakeDefault", func(t *testing.T) {
+	t.Run("Test OpaProfilesApiService OpaProfilesMakeDefault", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.OpaProfilesApi.OpaprofilesMakeDefault(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.OpaProfilesApi.OpaProfilesMakeDefault(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test OpaProfilesApiService OpaprofilesSync", func(t *testing.T) {
+	t.Run("Test OpaProfilesApiService OpaProfilesOpaProfilesForOrganizationList", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.OpaProfilesApi.OpaprofilesSync(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.OpaProfilesApi.OpaProfilesOpaProfilesForOrganizationList(context.Background(), v).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test OpaProfilesApiService OpaProfilesSync", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var v string
+
+		httpRes, err := apiClient.OpaProfilesApi.OpaProfilesSync(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test OpaProfilesApiService OpaprofilesUpdate", func(t *testing.T) {
+	t.Run("Test OpaProfilesApiService OpaProfilesUpdate", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.OpaProfilesApi.OpaprofilesUpdate(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.OpaProfilesApi.OpaProfilesUpdate(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)

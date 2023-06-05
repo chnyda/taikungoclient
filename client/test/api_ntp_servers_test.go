@@ -22,11 +22,13 @@ func Test_taikuncore_NtpServersApiService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test NtpServersApiService NtpserversCreate", func(t *testing.T) {
+	t.Run("Test NtpServersApiService NtpServersCreate", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.NtpServersApi.NtpserversCreate(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.NtpServersApi.NtpServersCreate(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -34,39 +36,42 @@ func Test_taikuncore_NtpServersApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test NtpServersApiService NtpserversDelete", func(t *testing.T) {
+	t.Run("Test NtpServersApiService NtpServersDelete", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id int32
+		var v string
 
-		httpRes, err := apiClient.NtpServersApi.NtpserversDelete(context.Background(), id).Execute()
+		httpRes, err := apiClient.NtpServersApi.NtpServersDelete(context.Background(), id, v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test NtpServersApiService NtpserversEdit", func(t *testing.T) {
+	t.Run("Test NtpServersApiService NtpServersEdit", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id int32
+		var v string
 
-		httpRes, err := apiClient.NtpServersApi.NtpserversEdit(context.Background(), id).Execute()
+		httpRes, err := apiClient.NtpServersApi.NtpServersEdit(context.Background(), id, v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test NtpServersApiService NtpserversList", func(t *testing.T) {
+	t.Run("Test NtpServersApiService NtpServersList", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var accessProfileId int32
+		var v string
 
-		resp, httpRes, err := apiClient.NtpServersApi.NtpserversList(context.Background(), accessProfileId).Execute()
+		resp, httpRes, err := apiClient.NtpServersApi.NtpServersList(context.Background(), accessProfileId, v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

@@ -23,7 +23,7 @@ type CredentialsForProjectList struct {
 	CloudType *CloudType `json:"cloudType,omitempty"`
 	CloudCredentialRevision *int32 `json:"cloudCredentialRevision,omitempty"`
 	BillingEnabled *bool `json:"billingEnabled,omitempty"`
-	ContinentName NullableString `json:"continentName,omitempty"`
+	ContinentName *string `json:"continentName,omitempty"`
 	RequiresVPN *bool `json:"requiresVPN,omitempty"`
 	Openstack *OpenstackCredentialsForProjectDto `json:"openstack,omitempty"`
 	Azure *AzureCredentialsForProjectDto `json:"azure,omitempty"`
@@ -146,46 +146,36 @@ func (o *CredentialsForProjectList) SetBillingEnabled(v bool) {
 	o.BillingEnabled = &v
 }
 
-// GetContinentName returns the ContinentName field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetContinentName returns the ContinentName field value if set, zero value otherwise.
 func (o *CredentialsForProjectList) GetContinentName() string {
-	if o == nil || IsNil(o.ContinentName.Get()) {
+	if o == nil || IsNil(o.ContinentName) {
 		var ret string
 		return ret
 	}
-	return *o.ContinentName.Get()
+	return *o.ContinentName
 }
 
 // GetContinentNameOk returns a tuple with the ContinentName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CredentialsForProjectList) GetContinentNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ContinentName) {
 		return nil, false
 	}
-	return o.ContinentName.Get(), o.ContinentName.IsSet()
+	return o.ContinentName, true
 }
 
 // HasContinentName returns a boolean if a field has been set.
 func (o *CredentialsForProjectList) HasContinentName() bool {
-	if o != nil && o.ContinentName.IsSet() {
+	if o != nil && !IsNil(o.ContinentName) {
 		return true
 	}
 
 	return false
 }
 
-// SetContinentName gets a reference to the given NullableString and assigns it to the ContinentName field.
+// SetContinentName gets a reference to the given string and assigns it to the ContinentName field.
 func (o *CredentialsForProjectList) SetContinentName(v string) {
-	o.ContinentName.Set(&v)
-}
-// SetContinentNameNil sets the value for ContinentName to be an explicit nil
-func (o *CredentialsForProjectList) SetContinentNameNil() {
-	o.ContinentName.Set(nil)
-}
-
-// UnsetContinentName ensures that no value is present for ContinentName, not even an explicit nil
-func (o *CredentialsForProjectList) UnsetContinentName() {
-	o.ContinentName.Unset()
+	o.ContinentName = &v
 }
 
 // GetRequiresVPN returns the RequiresVPN field value if set, zero value otherwise.
@@ -431,8 +421,8 @@ func (o CredentialsForProjectList) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.BillingEnabled) {
 		toSerialize["billingEnabled"] = o.BillingEnabled
 	}
-	if o.ContinentName.IsSet() {
-		toSerialize["continentName"] = o.ContinentName.Get()
+	if !IsNil(o.ContinentName) {
+		toSerialize["continentName"] = o.ContinentName
 	}
 	if !IsNil(o.RequiresVPN) {
 		toSerialize["requiresVPN"] = o.RequiresVPN

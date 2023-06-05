@@ -59,16 +59,6 @@ SetAmazon sets Amazon field to given value.
 
 HasAmazon returns a boolean if a field has been set.
 
-### SetAmazonNil
-
-`func (o *CredentialsChart) SetAmazonNil(b bool)`
-
- SetAmazonNil sets the value for Amazon to be an explicit nil
-
-### UnsetAmazon
-`func (o *CredentialsChart) UnsetAmazon()`
-
-UnsetAmazon ensures that no value is present for Amazon, not even an explicit nil
 ### GetOpenstack
 
 `func (o *CredentialsChart) GetOpenstack() []OpenstackCredentialsListDto`
@@ -94,16 +84,6 @@ SetOpenstack sets Openstack field to given value.
 
 HasOpenstack returns a boolean if a field has been set.
 
-### SetOpenstackNil
-
-`func (o *CredentialsChart) SetOpenstackNil(b bool)`
-
- SetOpenstackNil sets the value for Openstack to be an explicit nil
-
-### UnsetOpenstack
-`func (o *CredentialsChart) UnsetOpenstack()`
-
-UnsetOpenstack ensures that no value is present for Openstack, not even an explicit nil
 ### GetAzure
 
 `func (o *CredentialsChart) GetAzure() []AzureCredentialsListDto`
@@ -129,16 +109,6 @@ SetAzure sets Azure field to given value.
 
 HasAzure returns a boolean if a field has been set.
 
-### SetAzureNil
-
-`func (o *CredentialsChart) SetAzureNil(b bool)`
-
- SetAzureNil sets the value for Azure to be an explicit nil
-
-### UnsetAzure
-`func (o *CredentialsChart) UnsetAzure()`
-
-UnsetAzure ensures that no value is present for Azure, not even an explicit nil
 ### GetGoogle
 
 `func (o *CredentialsChart) GetGoogle() []GoogleCredentialsListDto`
@@ -164,16 +134,6 @@ SetGoogle sets Google field to given value.
 
 HasGoogle returns a boolean if a field has been set.
 
-### SetGoogleNil
-
-`func (o *CredentialsChart) SetGoogleNil(b bool)`
-
- SetGoogleNil sets the value for Google to be an explicit nil
-
-### UnsetGoogle
-`func (o *CredentialsChart) UnsetGoogle()`
-
-UnsetGoogle ensures that no value is present for Google, not even an explicit nil
 ### GetTanzu
 
 `func (o *CredentialsChart) GetTanzu() []TanzuCredentialsListDto`
@@ -199,16 +159,6 @@ SetTanzu sets Tanzu field to given value.
 
 HasTanzu returns a boolean if a field has been set.
 
-### SetTanzuNil
-
-`func (o *CredentialsChart) SetTanzuNil(b bool)`
-
- SetTanzuNil sets the value for Tanzu to be an explicit nil
-
-### UnsetTanzu
-`func (o *CredentialsChart) UnsetTanzu()`
-
-UnsetTanzu ensures that no value is present for Tanzu, not even an explicit nil
 ### GetTotalCountOpenstack
 
 `func (o *CredentialsChart) GetTotalCountOpenstack() int32`

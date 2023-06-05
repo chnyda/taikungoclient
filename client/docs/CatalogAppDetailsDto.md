@@ -5,20 +5,20 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
-**AppRepoName** | Pointer to **NullableString** |  | [optional] 
-**AppRepoOrganizationName** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**AppRepoName** | Pointer to **string** |  | [optional] 
+**AppRepoOrganizationName** | Pointer to **string** |  | [optional] 
 **AppRepoId** | Pointer to **int32** |  | [optional] 
-**CatalogName** | Pointer to **NullableString** |  | [optional] 
+**CatalogName** | Pointer to **string** |  | [optional] 
 **CatalogId** | Pointer to **int32** |  | [optional] 
-**PackageId** | Pointer to **NullableString** |  | [optional] 
-**Version** | Pointer to **NullableString** |  | [optional] 
-**LogoId** | Pointer to **NullableString** |  | [optional] 
+**PackageId** | Pointer to **string** |  | [optional] 
+**Version** | Pointer to **string** |  | [optional] 
+**LogoId** | Pointer to **string** |  | [optional] 
 **ProjectApps** | Pointer to [**[]ProjectAppDto**](ProjectAppDto.md) |  | [optional] 
-**Description** | Pointer to **NullableString** |  | [optional] 
-**Readme** | Pointer to **NullableString** |  | [optional] 
+**Description** | Pointer to **string** |  | [optional] 
+**Readme** | Pointer to **string** |  | [optional] 
 **SecurityReport** | Pointer to [**SecurityReportSummaryDto**](SecurityReportSummaryDto.md) |  | [optional] 
-**AppVersion** | Pointer to **NullableString** |  | [optional] 
+**AppVersion** | Pointer to **string** |  | [optional] 
 **Stars** | Pointer to **int32** |  | [optional] 
 **VerifiedPublisher** | Pointer to **bool** |  | [optional] 
 **Official** | Pointer to **bool** |  | [optional] 
@@ -93,16 +93,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *CatalogAppDetailsDto) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *CatalogAppDetailsDto) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetAppRepoName
 
 `func (o *CatalogAppDetailsDto) GetAppRepoName() string`
@@ -128,16 +118,6 @@ SetAppRepoName sets AppRepoName field to given value.
 
 HasAppRepoName returns a boolean if a field has been set.
 
-### SetAppRepoNameNil
-
-`func (o *CatalogAppDetailsDto) SetAppRepoNameNil(b bool)`
-
- SetAppRepoNameNil sets the value for AppRepoName to be an explicit nil
-
-### UnsetAppRepoName
-`func (o *CatalogAppDetailsDto) UnsetAppRepoName()`
-
-UnsetAppRepoName ensures that no value is present for AppRepoName, not even an explicit nil
 ### GetAppRepoOrganizationName
 
 `func (o *CatalogAppDetailsDto) GetAppRepoOrganizationName() string`
@@ -163,16 +143,6 @@ SetAppRepoOrganizationName sets AppRepoOrganizationName field to given value.
 
 HasAppRepoOrganizationName returns a boolean if a field has been set.
 
-### SetAppRepoOrganizationNameNil
-
-`func (o *CatalogAppDetailsDto) SetAppRepoOrganizationNameNil(b bool)`
-
- SetAppRepoOrganizationNameNil sets the value for AppRepoOrganizationName to be an explicit nil
-
-### UnsetAppRepoOrganizationName
-`func (o *CatalogAppDetailsDto) UnsetAppRepoOrganizationName()`
-
-UnsetAppRepoOrganizationName ensures that no value is present for AppRepoOrganizationName, not even an explicit nil
 ### GetAppRepoId
 
 `func (o *CatalogAppDetailsDto) GetAppRepoId() int32`
@@ -223,16 +193,6 @@ SetCatalogName sets CatalogName field to given value.
 
 HasCatalogName returns a boolean if a field has been set.
 
-### SetCatalogNameNil
-
-`func (o *CatalogAppDetailsDto) SetCatalogNameNil(b bool)`
-
- SetCatalogNameNil sets the value for CatalogName to be an explicit nil
-
-### UnsetCatalogName
-`func (o *CatalogAppDetailsDto) UnsetCatalogName()`
-
-UnsetCatalogName ensures that no value is present for CatalogName, not even an explicit nil
 ### GetCatalogId
 
 `func (o *CatalogAppDetailsDto) GetCatalogId() int32`
@@ -283,16 +243,6 @@ SetPackageId sets PackageId field to given value.
 
 HasPackageId returns a boolean if a field has been set.
 
-### SetPackageIdNil
-
-`func (o *CatalogAppDetailsDto) SetPackageIdNil(b bool)`
-
- SetPackageIdNil sets the value for PackageId to be an explicit nil
-
-### UnsetPackageId
-`func (o *CatalogAppDetailsDto) UnsetPackageId()`
-
-UnsetPackageId ensures that no value is present for PackageId, not even an explicit nil
 ### GetVersion
 
 `func (o *CatalogAppDetailsDto) GetVersion() string`
@@ -318,16 +268,6 @@ SetVersion sets Version field to given value.
 
 HasVersion returns a boolean if a field has been set.
 
-### SetVersionNil
-
-`func (o *CatalogAppDetailsDto) SetVersionNil(b bool)`
-
- SetVersionNil sets the value for Version to be an explicit nil
-
-### UnsetVersion
-`func (o *CatalogAppDetailsDto) UnsetVersion()`
-
-UnsetVersion ensures that no value is present for Version, not even an explicit nil
 ### GetLogoId
 
 `func (o *CatalogAppDetailsDto) GetLogoId() string`
@@ -353,16 +293,6 @@ SetLogoId sets LogoId field to given value.
 
 HasLogoId returns a boolean if a field has been set.
 
-### SetLogoIdNil
-
-`func (o *CatalogAppDetailsDto) SetLogoIdNil(b bool)`
-
- SetLogoIdNil sets the value for LogoId to be an explicit nil
-
-### UnsetLogoId
-`func (o *CatalogAppDetailsDto) UnsetLogoId()`
-
-UnsetLogoId ensures that no value is present for LogoId, not even an explicit nil
 ### GetProjectApps
 
 `func (o *CatalogAppDetailsDto) GetProjectApps() []ProjectAppDto`
@@ -388,16 +318,6 @@ SetProjectApps sets ProjectApps field to given value.
 
 HasProjectApps returns a boolean if a field has been set.
 
-### SetProjectAppsNil
-
-`func (o *CatalogAppDetailsDto) SetProjectAppsNil(b bool)`
-
- SetProjectAppsNil sets the value for ProjectApps to be an explicit nil
-
-### UnsetProjectApps
-`func (o *CatalogAppDetailsDto) UnsetProjectApps()`
-
-UnsetProjectApps ensures that no value is present for ProjectApps, not even an explicit nil
 ### GetDescription
 
 `func (o *CatalogAppDetailsDto) GetDescription() string`
@@ -423,16 +343,6 @@ SetDescription sets Description field to given value.
 
 HasDescription returns a boolean if a field has been set.
 
-### SetDescriptionNil
-
-`func (o *CatalogAppDetailsDto) SetDescriptionNil(b bool)`
-
- SetDescriptionNil sets the value for Description to be an explicit nil
-
-### UnsetDescription
-`func (o *CatalogAppDetailsDto) UnsetDescription()`
-
-UnsetDescription ensures that no value is present for Description, not even an explicit nil
 ### GetReadme
 
 `func (o *CatalogAppDetailsDto) GetReadme() string`
@@ -458,16 +368,6 @@ SetReadme sets Readme field to given value.
 
 HasReadme returns a boolean if a field has been set.
 
-### SetReadmeNil
-
-`func (o *CatalogAppDetailsDto) SetReadmeNil(b bool)`
-
- SetReadmeNil sets the value for Readme to be an explicit nil
-
-### UnsetReadme
-`func (o *CatalogAppDetailsDto) UnsetReadme()`
-
-UnsetReadme ensures that no value is present for Readme, not even an explicit nil
 ### GetSecurityReport
 
 `func (o *CatalogAppDetailsDto) GetSecurityReport() SecurityReportSummaryDto`
@@ -518,16 +418,6 @@ SetAppVersion sets AppVersion field to given value.
 
 HasAppVersion returns a boolean if a field has been set.
 
-### SetAppVersionNil
-
-`func (o *CatalogAppDetailsDto) SetAppVersionNil(b bool)`
-
- SetAppVersionNil sets the value for AppVersion to be an explicit nil
-
-### UnsetAppVersion
-`func (o *CatalogAppDetailsDto) UnsetAppVersion()`
-
-UnsetAppVersion ensures that no value is present for AppVersion, not even an explicit nil
 ### GetStars
 
 `func (o *CatalogAppDetailsDto) GetStars() int32`

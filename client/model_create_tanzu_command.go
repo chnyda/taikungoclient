@@ -20,15 +20,15 @@ var _ MappedNullable = &CreateTanzuCommand{}
 
 // CreateTanzuCommand struct for CreateTanzuCommand
 type CreateTanzuCommand struct {
-	OrganizationId NullableInt32 `json:"organizationId,omitempty"`
+	OrganizationId *int32 `json:"organizationId,omitempty"`
 	Name string `json:"name"`
 	Username string `json:"username"`
 	Url string `json:"url"`
 	Password string `json:"password"`
 	VolumeType string `json:"volumeType"`
 	Namespace string `json:"namespace"`
-	TanzuContinent NullableString `json:"tanzuContinent,omitempty"`
-	Port NullableInt32 `json:"port,omitempty"`
+	TanzuContinent *string `json:"tanzuContinent,omitempty"`
+	Port *int32 `json:"port,omitempty"`
 }
 
 // NewCreateTanzuCommand instantiates a new CreateTanzuCommand object
@@ -54,46 +54,36 @@ func NewCreateTanzuCommandWithDefaults() *CreateTanzuCommand {
 	return &this
 }
 
-// GetOrganizationId returns the OrganizationId field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetOrganizationId returns the OrganizationId field value if set, zero value otherwise.
 func (o *CreateTanzuCommand) GetOrganizationId() int32 {
-	if o == nil || IsNil(o.OrganizationId.Get()) {
+	if o == nil || IsNil(o.OrganizationId) {
 		var ret int32
 		return ret
 	}
-	return *o.OrganizationId.Get()
+	return *o.OrganizationId
 }
 
 // GetOrganizationIdOk returns a tuple with the OrganizationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateTanzuCommand) GetOrganizationIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.OrganizationId) {
 		return nil, false
 	}
-	return o.OrganizationId.Get(), o.OrganizationId.IsSet()
+	return o.OrganizationId, true
 }
 
 // HasOrganizationId returns a boolean if a field has been set.
 func (o *CreateTanzuCommand) HasOrganizationId() bool {
-	if o != nil && o.OrganizationId.IsSet() {
+	if o != nil && !IsNil(o.OrganizationId) {
 		return true
 	}
 
 	return false
 }
 
-// SetOrganizationId gets a reference to the given NullableInt32 and assigns it to the OrganizationId field.
+// SetOrganizationId gets a reference to the given int32 and assigns it to the OrganizationId field.
 func (o *CreateTanzuCommand) SetOrganizationId(v int32) {
-	o.OrganizationId.Set(&v)
-}
-// SetOrganizationIdNil sets the value for OrganizationId to be an explicit nil
-func (o *CreateTanzuCommand) SetOrganizationIdNil() {
-	o.OrganizationId.Set(nil)
-}
-
-// UnsetOrganizationId ensures that no value is present for OrganizationId, not even an explicit nil
-func (o *CreateTanzuCommand) UnsetOrganizationId() {
-	o.OrganizationId.Unset()
+	o.OrganizationId = &v
 }
 
 // GetName returns the Name field value
@@ -240,88 +230,68 @@ func (o *CreateTanzuCommand) SetNamespace(v string) {
 	o.Namespace = v
 }
 
-// GetTanzuContinent returns the TanzuContinent field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetTanzuContinent returns the TanzuContinent field value if set, zero value otherwise.
 func (o *CreateTanzuCommand) GetTanzuContinent() string {
-	if o == nil || IsNil(o.TanzuContinent.Get()) {
+	if o == nil || IsNil(o.TanzuContinent) {
 		var ret string
 		return ret
 	}
-	return *o.TanzuContinent.Get()
+	return *o.TanzuContinent
 }
 
 // GetTanzuContinentOk returns a tuple with the TanzuContinent field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateTanzuCommand) GetTanzuContinentOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.TanzuContinent) {
 		return nil, false
 	}
-	return o.TanzuContinent.Get(), o.TanzuContinent.IsSet()
+	return o.TanzuContinent, true
 }
 
 // HasTanzuContinent returns a boolean if a field has been set.
 func (o *CreateTanzuCommand) HasTanzuContinent() bool {
-	if o != nil && o.TanzuContinent.IsSet() {
+	if o != nil && !IsNil(o.TanzuContinent) {
 		return true
 	}
 
 	return false
 }
 
-// SetTanzuContinent gets a reference to the given NullableString and assigns it to the TanzuContinent field.
+// SetTanzuContinent gets a reference to the given string and assigns it to the TanzuContinent field.
 func (o *CreateTanzuCommand) SetTanzuContinent(v string) {
-	o.TanzuContinent.Set(&v)
-}
-// SetTanzuContinentNil sets the value for TanzuContinent to be an explicit nil
-func (o *CreateTanzuCommand) SetTanzuContinentNil() {
-	o.TanzuContinent.Set(nil)
+	o.TanzuContinent = &v
 }
 
-// UnsetTanzuContinent ensures that no value is present for TanzuContinent, not even an explicit nil
-func (o *CreateTanzuCommand) UnsetTanzuContinent() {
-	o.TanzuContinent.Unset()
-}
-
-// GetPort returns the Port field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetPort returns the Port field value if set, zero value otherwise.
 func (o *CreateTanzuCommand) GetPort() int32 {
-	if o == nil || IsNil(o.Port.Get()) {
+	if o == nil || IsNil(o.Port) {
 		var ret int32
 		return ret
 	}
-	return *o.Port.Get()
+	return *o.Port
 }
 
 // GetPortOk returns a tuple with the Port field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateTanzuCommand) GetPortOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Port) {
 		return nil, false
 	}
-	return o.Port.Get(), o.Port.IsSet()
+	return o.Port, true
 }
 
 // HasPort returns a boolean if a field has been set.
 func (o *CreateTanzuCommand) HasPort() bool {
-	if o != nil && o.Port.IsSet() {
+	if o != nil && !IsNil(o.Port) {
 		return true
 	}
 
 	return false
 }
 
-// SetPort gets a reference to the given NullableInt32 and assigns it to the Port field.
+// SetPort gets a reference to the given int32 and assigns it to the Port field.
 func (o *CreateTanzuCommand) SetPort(v int32) {
-	o.Port.Set(&v)
-}
-// SetPortNil sets the value for Port to be an explicit nil
-func (o *CreateTanzuCommand) SetPortNil() {
-	o.Port.Set(nil)
-}
-
-// UnsetPort ensures that no value is present for Port, not even an explicit nil
-func (o *CreateTanzuCommand) UnsetPort() {
-	o.Port.Unset()
+	o.Port = &v
 }
 
 func (o CreateTanzuCommand) MarshalJSON() ([]byte, error) {
@@ -334,8 +304,8 @@ func (o CreateTanzuCommand) MarshalJSON() ([]byte, error) {
 
 func (o CreateTanzuCommand) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.OrganizationId.IsSet() {
-		toSerialize["organizationId"] = o.OrganizationId.Get()
+	if !IsNil(o.OrganizationId) {
+		toSerialize["organizationId"] = o.OrganizationId
 	}
 	toSerialize["name"] = o.Name
 	toSerialize["username"] = o.Username
@@ -343,11 +313,11 @@ func (o CreateTanzuCommand) ToMap() (map[string]interface{}, error) {
 	toSerialize["password"] = o.Password
 	toSerialize["volumeType"] = o.VolumeType
 	toSerialize["namespace"] = o.Namespace
-	if o.TanzuContinent.IsSet() {
-		toSerialize["tanzuContinent"] = o.TanzuContinent.Get()
+	if !IsNil(o.TanzuContinent) {
+		toSerialize["tanzuContinent"] = o.TanzuContinent
 	}
-	if o.Port.IsSet() {
-		toSerialize["port"] = o.Port.Get()
+	if !IsNil(o.Port) {
+		toSerialize["port"] = o.Port
 	}
 	return toSerialize, nil
 }

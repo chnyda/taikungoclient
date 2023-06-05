@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** |  | 
-**OrganizationId** | Pointer to **NullableInt32** |  | [optional] 
+**OrganizationId** | Pointer to **int32** |  | [optional] 
 **UserIds** | Pointer to **[]string** |  | [optional] 
 
 ## Methods
@@ -72,16 +72,6 @@ SetOrganizationId sets OrganizationId field to given value.
 
 HasOrganizationId returns a boolean if a field has been set.
 
-### SetOrganizationIdNil
-
-`func (o *CreateUserGroupCommand) SetOrganizationIdNil(b bool)`
-
- SetOrganizationIdNil sets the value for OrganizationId to be an explicit nil
-
-### UnsetOrganizationId
-`func (o *CreateUserGroupCommand) UnsetOrganizationId()`
-
-UnsetOrganizationId ensures that no value is present for OrganizationId, not even an explicit nil
 ### GetUserIds
 
 `func (o *CreateUserGroupCommand) GetUserIds() []string`
@@ -107,16 +97,6 @@ SetUserIds sets UserIds field to given value.
 
 HasUserIds returns a boolean if a field has been set.
 
-### SetUserIdsNil
-
-`func (o *CreateUserGroupCommand) SetUserIdsNil(b bool)`
-
- SetUserIdsNil sets the value for UserIds to be an explicit nil
-
-### UnsetUserIds
-`func (o *CreateUserGroupCommand) UnsetUserIds()`
-
-UnsetUserIds ensures that no value is present for UserIds, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

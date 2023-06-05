@@ -76,16 +76,6 @@ SetVmIds sets VmIds field to given value.
 
 HasVmIds returns a boolean if a field has been set.
 
-### SetVmIdsNil
-
-`func (o *PurgeStandAloneCommand) SetVmIdsNil(b bool)`
-
- SetVmIdsNil sets the value for VmIds to be an explicit nil
-
-### UnsetVmIds
-`func (o *PurgeStandAloneCommand) UnsetVmIds()`
-
-UnsetVmIds ensures that no value is present for VmIds, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

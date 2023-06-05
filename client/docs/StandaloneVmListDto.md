@@ -5,28 +5,28 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
-**FlavorId** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**FlavorId** | Pointer to **string** |  | [optional] 
 **VolumeSize** | Pointer to **int64** |  | [optional] 
-**OrganizationName** | Pointer to **NullableString** |  | [optional] 
+**OrganizationName** | Pointer to **string** |  | [optional] 
 **OrganizationId** | Pointer to **int32** |  | [optional] 
 **Ram** | Pointer to **int64** |  | [optional] 
 **Cpu** | Pointer to **int32** |  | [optional] 
-**VolumeType** | Pointer to **NullableString** |  | [optional] 
+**VolumeType** | Pointer to **string** |  | [optional] 
 **PublicIpEnabled** | Pointer to **bool** |  | [optional] 
-**PublicIp** | Pointer to **NullableString** |  | [optional] 
-**IpAddress** | Pointer to **NullableString** |  | [optional] 
-**CloudType** | Pointer to **NullableString** |  | [optional] 
-**ImageName** | Pointer to **NullableString** |  | [optional] 
+**PublicIp** | Pointer to **string** |  | [optional] 
+**IpAddress** | Pointer to **string** |  | [optional] 
+**CloudType** | Pointer to **string** |  | [optional] 
+**ImageName** | Pointer to **string** |  | [optional] 
 **Revision** | Pointer to **int32** |  | [optional] 
 **IsWindows** | Pointer to **bool** |  | [optional] 
-**Status** | Pointer to **NullableString** |  | [optional] 
-**ProjectName** | Pointer to **NullableString** |  | [optional] 
+**Status** | Pointer to **string** |  | [optional] 
+**ProjectName** | Pointer to **string** |  | [optional] 
 **ProjectId** | Pointer to **int32** |  | [optional] 
 **StandAloneProfile** | Pointer to [**StandaloneProfileListDto**](StandaloneProfileListDto.md) |  | [optional] 
-**CreatedAt** | Pointer to **NullableString** |  | [optional] 
-**CreatedBy** | Pointer to **NullableString** |  | [optional] 
-**LastModified** | Pointer to **NullableString** |  | [optional] 
+**CreatedAt** | Pointer to **string** |  | [optional] 
+**CreatedBy** | Pointer to **string** |  | [optional] 
+**LastModified** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -97,16 +97,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *StandaloneVmListDto) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *StandaloneVmListDto) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetFlavorId
 
 `func (o *StandaloneVmListDto) GetFlavorId() string`
@@ -132,16 +122,6 @@ SetFlavorId sets FlavorId field to given value.
 
 HasFlavorId returns a boolean if a field has been set.
 
-### SetFlavorIdNil
-
-`func (o *StandaloneVmListDto) SetFlavorIdNil(b bool)`
-
- SetFlavorIdNil sets the value for FlavorId to be an explicit nil
-
-### UnsetFlavorId
-`func (o *StandaloneVmListDto) UnsetFlavorId()`
-
-UnsetFlavorId ensures that no value is present for FlavorId, not even an explicit nil
 ### GetVolumeSize
 
 `func (o *StandaloneVmListDto) GetVolumeSize() int64`
@@ -192,16 +172,6 @@ SetOrganizationName sets OrganizationName field to given value.
 
 HasOrganizationName returns a boolean if a field has been set.
 
-### SetOrganizationNameNil
-
-`func (o *StandaloneVmListDto) SetOrganizationNameNil(b bool)`
-
- SetOrganizationNameNil sets the value for OrganizationName to be an explicit nil
-
-### UnsetOrganizationName
-`func (o *StandaloneVmListDto) UnsetOrganizationName()`
-
-UnsetOrganizationName ensures that no value is present for OrganizationName, not even an explicit nil
 ### GetOrganizationId
 
 `func (o *StandaloneVmListDto) GetOrganizationId() int32`
@@ -302,16 +272,6 @@ SetVolumeType sets VolumeType field to given value.
 
 HasVolumeType returns a boolean if a field has been set.
 
-### SetVolumeTypeNil
-
-`func (o *StandaloneVmListDto) SetVolumeTypeNil(b bool)`
-
- SetVolumeTypeNil sets the value for VolumeType to be an explicit nil
-
-### UnsetVolumeType
-`func (o *StandaloneVmListDto) UnsetVolumeType()`
-
-UnsetVolumeType ensures that no value is present for VolumeType, not even an explicit nil
 ### GetPublicIpEnabled
 
 `func (o *StandaloneVmListDto) GetPublicIpEnabled() bool`
@@ -362,16 +322,6 @@ SetPublicIp sets PublicIp field to given value.
 
 HasPublicIp returns a boolean if a field has been set.
 
-### SetPublicIpNil
-
-`func (o *StandaloneVmListDto) SetPublicIpNil(b bool)`
-
- SetPublicIpNil sets the value for PublicIp to be an explicit nil
-
-### UnsetPublicIp
-`func (o *StandaloneVmListDto) UnsetPublicIp()`
-
-UnsetPublicIp ensures that no value is present for PublicIp, not even an explicit nil
 ### GetIpAddress
 
 `func (o *StandaloneVmListDto) GetIpAddress() string`
@@ -397,16 +347,6 @@ SetIpAddress sets IpAddress field to given value.
 
 HasIpAddress returns a boolean if a field has been set.
 
-### SetIpAddressNil
-
-`func (o *StandaloneVmListDto) SetIpAddressNil(b bool)`
-
- SetIpAddressNil sets the value for IpAddress to be an explicit nil
-
-### UnsetIpAddress
-`func (o *StandaloneVmListDto) UnsetIpAddress()`
-
-UnsetIpAddress ensures that no value is present for IpAddress, not even an explicit nil
 ### GetCloudType
 
 `func (o *StandaloneVmListDto) GetCloudType() string`
@@ -432,16 +372,6 @@ SetCloudType sets CloudType field to given value.
 
 HasCloudType returns a boolean if a field has been set.
 
-### SetCloudTypeNil
-
-`func (o *StandaloneVmListDto) SetCloudTypeNil(b bool)`
-
- SetCloudTypeNil sets the value for CloudType to be an explicit nil
-
-### UnsetCloudType
-`func (o *StandaloneVmListDto) UnsetCloudType()`
-
-UnsetCloudType ensures that no value is present for CloudType, not even an explicit nil
 ### GetImageName
 
 `func (o *StandaloneVmListDto) GetImageName() string`
@@ -467,16 +397,6 @@ SetImageName sets ImageName field to given value.
 
 HasImageName returns a boolean if a field has been set.
 
-### SetImageNameNil
-
-`func (o *StandaloneVmListDto) SetImageNameNil(b bool)`
-
- SetImageNameNil sets the value for ImageName to be an explicit nil
-
-### UnsetImageName
-`func (o *StandaloneVmListDto) UnsetImageName()`
-
-UnsetImageName ensures that no value is present for ImageName, not even an explicit nil
 ### GetRevision
 
 `func (o *StandaloneVmListDto) GetRevision() int32`
@@ -552,16 +472,6 @@ SetStatus sets Status field to given value.
 
 HasStatus returns a boolean if a field has been set.
 
-### SetStatusNil
-
-`func (o *StandaloneVmListDto) SetStatusNil(b bool)`
-
- SetStatusNil sets the value for Status to be an explicit nil
-
-### UnsetStatus
-`func (o *StandaloneVmListDto) UnsetStatus()`
-
-UnsetStatus ensures that no value is present for Status, not even an explicit nil
 ### GetProjectName
 
 `func (o *StandaloneVmListDto) GetProjectName() string`
@@ -587,16 +497,6 @@ SetProjectName sets ProjectName field to given value.
 
 HasProjectName returns a boolean if a field has been set.
 
-### SetProjectNameNil
-
-`func (o *StandaloneVmListDto) SetProjectNameNil(b bool)`
-
- SetProjectNameNil sets the value for ProjectName to be an explicit nil
-
-### UnsetProjectName
-`func (o *StandaloneVmListDto) UnsetProjectName()`
-
-UnsetProjectName ensures that no value is present for ProjectName, not even an explicit nil
 ### GetProjectId
 
 `func (o *StandaloneVmListDto) GetProjectId() int32`
@@ -672,16 +572,6 @@ SetCreatedAt sets CreatedAt field to given value.
 
 HasCreatedAt returns a boolean if a field has been set.
 
-### SetCreatedAtNil
-
-`func (o *StandaloneVmListDto) SetCreatedAtNil(b bool)`
-
- SetCreatedAtNil sets the value for CreatedAt to be an explicit nil
-
-### UnsetCreatedAt
-`func (o *StandaloneVmListDto) UnsetCreatedAt()`
-
-UnsetCreatedAt ensures that no value is present for CreatedAt, not even an explicit nil
 ### GetCreatedBy
 
 `func (o *StandaloneVmListDto) GetCreatedBy() string`
@@ -707,16 +597,6 @@ SetCreatedBy sets CreatedBy field to given value.
 
 HasCreatedBy returns a boolean if a field has been set.
 
-### SetCreatedByNil
-
-`func (o *StandaloneVmListDto) SetCreatedByNil(b bool)`
-
- SetCreatedByNil sets the value for CreatedBy to be an explicit nil
-
-### UnsetCreatedBy
-`func (o *StandaloneVmListDto) UnsetCreatedBy()`
-
-UnsetCreatedBy ensures that no value is present for CreatedBy, not even an explicit nil
 ### GetLastModified
 
 `func (o *StandaloneVmListDto) GetLastModified() string`
@@ -742,16 +622,6 @@ SetLastModified sets LastModified field to given value.
 
 HasLastModified returns a boolean if a field has been set.
 
-### SetLastModifiedNil
-
-`func (o *StandaloneVmListDto) SetLastModifiedNil(b bool)`
-
- SetLastModifiedNil sets the value for LastModified to be an explicit nil
-
-### UnsetLastModified
-`func (o *StandaloneVmListDto) UnsetLastModified()`
-
-UnsetLastModified ensures that no value is present for LastModified, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -50,8 +50,6 @@ type APIClient struct {
 
 	// API Services
 
-	AWSCloudCredentialApi *AWSCloudCredentialApiService
-
 	AccessProfilesApi *AccessProfilesApiService
 
 	AdminApi *AdminApiService
@@ -62,35 +60,35 @@ type APIClient struct {
 
 	AllowedHostApi *AllowedHostApiService
 
-	AppRepositoriesApi *AppRepositoriesApiService
-
-	AuthManagementApi *AuthManagementApiService
+	AuthApi *AuthApiService
 
 	AutoscalingApi *AutoscalingApiService
 
-	AzureCloudCredentialApi *AzureCloudCredentialApiService
+	AwsApi *AwsApiService
 
-	BackupPolicyApi *BackupPolicyApiService
+	AzureApi *AzureApiService
+
+	BackupApi *BackupApiService
 
 	BillingApi *BillingApiService
 
 	CatalogApi *CatalogApiService
 
-	CatalogAppApi *CatalogAppApiService
-
 	CheckerApi *CheckerApiService
 
-	CloudCredentialApi *CloudCredentialApiService
+	CloudCredentialsApi *CloudCredentialsApiService
 
 	CommonApi *CommonApiService
 
-	CronJobServiceApi *CronJobServiceApiService
+	CronJobApi *CronJobApiService
 
 	DnsServersApi *DnsServersApiService
 
+	DocumentationApi *DocumentationApiService
+
 	FlavorsApi *FlavorsApiService
 
-	GoogleApi *GoogleApiService
+	GoogleCloudApi *GoogleCloudApiService
 
 	ImagesApi *ImagesApiService
 
@@ -114,29 +112,23 @@ type APIClient struct {
 
 	OpaProfilesApi *OpaProfilesApiService
 
-	OpenstackCloudCredentialApi *OpenstackCloudCredentialApiService
+	OpenstackApi *OpenstackApiService
 
-	OperationCredentialsApi *OperationCredentialsApiService
+	OpsCredentialsApi *OpsCredentialsApiService
 
 	OrganizationSubscriptionsApi *OrganizationSubscriptionsApiService
 
 	OrganizationsApi *OrganizationsApiService
 
-	PackageApi *PackageApiService
-
-	PartnersApi *PartnersApiService
+	PartnerApi *PartnerApiService
 
 	PaymentApi *PaymentApiService
-
-	PaymentsApi *PaymentsApiService
 
 	PreDefinedQueriesApi *PreDefinedQueriesApiService
 
 	ProjectActionsApi *ProjectActionsApiService
 
-	ProjectAppParamsApi *ProjectAppParamsApiService
-
-	ProjectAppsApi *ProjectAppsApiService
+	ProjectAppApi *ProjectAppApiService
 
 	ProjectGroupsApi *ProjectGroupsApiService
 
@@ -146,17 +138,15 @@ type APIClient struct {
 
 	ProjectRevisionsApi *ProjectRevisionsApiService
 
-	ProjectTemplatesApi *ProjectTemplatesApiService
+	ProjectTemplateApi *ProjectTemplateApiService
 
 	ProjectsApi *ProjectsApiService
 
-	PrometheusBillingsApi *PrometheusBillingsApiService
+	PrometheusApi *PrometheusApiService
 
-	PrometheusOrganizationsApi *PrometheusOrganizationsApiService
+	ProxmoxApi *ProxmoxApiService
 
-	PrometheusRulesApi *PrometheusRulesApiService
-
-	ProxmoxCloudCredentialApi *ProxmoxCloudCredentialApiService
+	RepositoryApi *RepositoryApiService
 
 	S3CredentialsApi *S3CredentialsApiService
 
@@ -170,13 +160,13 @@ type APIClient struct {
 
 	SshUsersApi *SshUsersApiService
 
-	StandaloneApi *StandaloneApiService
+	StandAloneApi *StandAloneApiService
 
-	StandaloneActionsApi *StandaloneActionsApiService
+	StandAloneActionsApi *StandAloneActionsApiService
 
-	StandaloneProfileApi *StandaloneProfileApiService
+	StandAloneProfileApi *StandAloneProfileApiService
 
-	StandaloneVMDisksApi *StandaloneVMDisksApiService
+	StandAloneVmDisksApi *StandAloneVmDisksApiService
 
 	SubscriptionApi *SubscriptionApiService
 
@@ -184,7 +174,7 @@ type APIClient struct {
 
 	TicketApi *TicketApiService
 
-	UserGroupApi *UserGroupApiService
+	UserGroupsApi *UserGroupsApiService
 
 	UserProjectsApi *UserProjectsApiService
 
@@ -209,27 +199,26 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.common.client = c
 
 	// API Services
-	c.AWSCloudCredentialApi = (*AWSCloudCredentialApiService)(&c.common)
 	c.AccessProfilesApi = (*AccessProfilesApiService)(&c.common)
 	c.AdminApi = (*AdminApiService)(&c.common)
 	c.AlertingIntegrationsApi = (*AlertingIntegrationsApiService)(&c.common)
 	c.AlertingProfilesApi = (*AlertingProfilesApiService)(&c.common)
 	c.AllowedHostApi = (*AllowedHostApiService)(&c.common)
-	c.AppRepositoriesApi = (*AppRepositoriesApiService)(&c.common)
-	c.AuthManagementApi = (*AuthManagementApiService)(&c.common)
+	c.AuthApi = (*AuthApiService)(&c.common)
 	c.AutoscalingApi = (*AutoscalingApiService)(&c.common)
-	c.AzureCloudCredentialApi = (*AzureCloudCredentialApiService)(&c.common)
-	c.BackupPolicyApi = (*BackupPolicyApiService)(&c.common)
+	c.AwsApi = (*AwsApiService)(&c.common)
+	c.AzureApi = (*AzureApiService)(&c.common)
+	c.BackupApi = (*BackupApiService)(&c.common)
 	c.BillingApi = (*BillingApiService)(&c.common)
 	c.CatalogApi = (*CatalogApiService)(&c.common)
-	c.CatalogAppApi = (*CatalogAppApiService)(&c.common)
 	c.CheckerApi = (*CheckerApiService)(&c.common)
-	c.CloudCredentialApi = (*CloudCredentialApiService)(&c.common)
+	c.CloudCredentialsApi = (*CloudCredentialsApiService)(&c.common)
 	c.CommonApi = (*CommonApiService)(&c.common)
-	c.CronJobServiceApi = (*CronJobServiceApiService)(&c.common)
+	c.CronJobApi = (*CronJobApiService)(&c.common)
 	c.DnsServersApi = (*DnsServersApiService)(&c.common)
+	c.DocumentationApi = (*DocumentationApiService)(&c.common)
 	c.FlavorsApi = (*FlavorsApiService)(&c.common)
-	c.GoogleApi = (*GoogleApiService)(&c.common)
+	c.GoogleCloudApi = (*GoogleCloudApiService)(&c.common)
 	c.ImagesApi = (*ImagesApiService)(&c.common)
 	c.InvoicesApi = (*InvoicesApiService)(&c.common)
 	c.KeycloakApi = (*KeycloakApiService)(&c.common)
@@ -241,42 +230,38 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.NotificationsApi = (*NotificationsApiService)(&c.common)
 	c.NtpServersApi = (*NtpServersApiService)(&c.common)
 	c.OpaProfilesApi = (*OpaProfilesApiService)(&c.common)
-	c.OpenstackCloudCredentialApi = (*OpenstackCloudCredentialApiService)(&c.common)
-	c.OperationCredentialsApi = (*OperationCredentialsApiService)(&c.common)
+	c.OpenstackApi = (*OpenstackApiService)(&c.common)
+	c.OpsCredentialsApi = (*OpsCredentialsApiService)(&c.common)
 	c.OrganizationSubscriptionsApi = (*OrganizationSubscriptionsApiService)(&c.common)
 	c.OrganizationsApi = (*OrganizationsApiService)(&c.common)
-	c.PackageApi = (*PackageApiService)(&c.common)
-	c.PartnersApi = (*PartnersApiService)(&c.common)
+	c.PartnerApi = (*PartnerApiService)(&c.common)
 	c.PaymentApi = (*PaymentApiService)(&c.common)
-	c.PaymentsApi = (*PaymentsApiService)(&c.common)
 	c.PreDefinedQueriesApi = (*PreDefinedQueriesApiService)(&c.common)
 	c.ProjectActionsApi = (*ProjectActionsApiService)(&c.common)
-	c.ProjectAppParamsApi = (*ProjectAppParamsApiService)(&c.common)
-	c.ProjectAppsApi = (*ProjectAppsApiService)(&c.common)
+	c.ProjectAppApi = (*ProjectAppApiService)(&c.common)
 	c.ProjectGroupsApi = (*ProjectGroupsApiService)(&c.common)
 	c.ProjectInfracostsApi = (*ProjectInfracostsApiService)(&c.common)
 	c.ProjectQuotasApi = (*ProjectQuotasApiService)(&c.common)
 	c.ProjectRevisionsApi = (*ProjectRevisionsApiService)(&c.common)
-	c.ProjectTemplatesApi = (*ProjectTemplatesApiService)(&c.common)
+	c.ProjectTemplateApi = (*ProjectTemplateApiService)(&c.common)
 	c.ProjectsApi = (*ProjectsApiService)(&c.common)
-	c.PrometheusBillingsApi = (*PrometheusBillingsApiService)(&c.common)
-	c.PrometheusOrganizationsApi = (*PrometheusOrganizationsApiService)(&c.common)
-	c.PrometheusRulesApi = (*PrometheusRulesApiService)(&c.common)
-	c.ProxmoxCloudCredentialApi = (*ProxmoxCloudCredentialApiService)(&c.common)
+	c.PrometheusApi = (*PrometheusApiService)(&c.common)
+	c.ProxmoxApi = (*ProxmoxApiService)(&c.common)
+	c.RepositoryApi = (*RepositoryApiService)(&c.common)
 	c.S3CredentialsApi = (*S3CredentialsApiService)(&c.common)
 	c.SearchApi = (*SearchApiService)(&c.common)
 	c.SecurityGroupApi = (*SecurityGroupApiService)(&c.common)
 	c.ServersApi = (*ServersApiService)(&c.common)
 	c.SlackApi = (*SlackApiService)(&c.common)
 	c.SshUsersApi = (*SshUsersApiService)(&c.common)
-	c.StandaloneApi = (*StandaloneApiService)(&c.common)
-	c.StandaloneActionsApi = (*StandaloneActionsApiService)(&c.common)
-	c.StandaloneProfileApi = (*StandaloneProfileApiService)(&c.common)
-	c.StandaloneVMDisksApi = (*StandaloneVMDisksApiService)(&c.common)
+	c.StandAloneApi = (*StandAloneApiService)(&c.common)
+	c.StandAloneActionsApi = (*StandAloneActionsApiService)(&c.common)
+	c.StandAloneProfileApi = (*StandAloneProfileApiService)(&c.common)
+	c.StandAloneVmDisksApi = (*StandAloneVmDisksApiService)(&c.common)
 	c.SubscriptionApi = (*SubscriptionApiService)(&c.common)
 	c.TanzuApi = (*TanzuApiService)(&c.common)
 	c.TicketApi = (*TicketApiService)(&c.common)
-	c.UserGroupApi = (*UserGroupApiService)(&c.common)
+	c.UserGroupsApi = (*UserGroupsApiService)(&c.common)
 	c.UserProjectsApi = (*UserProjectsApiService)(&c.common)
 	c.UserTokenApi = (*UserTokenApiService)(&c.common)
 	c.UsersApi = (*UsersApiService)(&c.common)

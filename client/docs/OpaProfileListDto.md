@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
 **ForbidNodePort** | Pointer to **bool** |  | [optional] 
 **ForbidHttpIngress** | Pointer to **bool** |  | [optional] 
 **RequireProbe** | Pointer to **bool** |  | [optional] 
@@ -17,8 +17,8 @@ Name | Type | Description | Notes
 **IsLocked** | Pointer to **bool** |  | [optional] 
 **Revision** | Pointer to **int32** |  | [optional] 
 **OrganizationId** | Pointer to **int32** |  | [optional] 
-**OrganizationName** | Pointer to **NullableString** |  | [optional] 
-**CreatedAt** | Pointer to **NullableString** |  | [optional] 
+**OrganizationName** | Pointer to **string** |  | [optional] 
+**CreatedAt** | Pointer to **string** |  | [optional] 
 **IsDefault** | Pointer to **bool** |  | [optional] 
 **Projects** | Pointer to [**[]CommonDropdownDto**](CommonDropdownDto.md) |  | [optional] 
 
@@ -91,16 +91,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *OpaProfileListDto) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *OpaProfileListDto) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetForbidNodePort
 
 `func (o *OpaProfileListDto) GetForbidNodePort() bool`
@@ -251,16 +241,6 @@ SetAllowedRepo sets AllowedRepo field to given value.
 
 HasAllowedRepo returns a boolean if a field has been set.
 
-### SetAllowedRepoNil
-
-`func (o *OpaProfileListDto) SetAllowedRepoNil(b bool)`
-
- SetAllowedRepoNil sets the value for AllowedRepo to be an explicit nil
-
-### UnsetAllowedRepo
-`func (o *OpaProfileListDto) UnsetAllowedRepo()`
-
-UnsetAllowedRepo ensures that no value is present for AllowedRepo, not even an explicit nil
 ### GetForbidSpecificTags
 
 `func (o *OpaProfileListDto) GetForbidSpecificTags() []string`
@@ -286,16 +266,6 @@ SetForbidSpecificTags sets ForbidSpecificTags field to given value.
 
 HasForbidSpecificTags returns a boolean if a field has been set.
 
-### SetForbidSpecificTagsNil
-
-`func (o *OpaProfileListDto) SetForbidSpecificTagsNil(b bool)`
-
- SetForbidSpecificTagsNil sets the value for ForbidSpecificTags to be an explicit nil
-
-### UnsetForbidSpecificTags
-`func (o *OpaProfileListDto) UnsetForbidSpecificTags()`
-
-UnsetForbidSpecificTags ensures that no value is present for ForbidSpecificTags, not even an explicit nil
 ### GetIngressWhitelist
 
 `func (o *OpaProfileListDto) GetIngressWhitelist() []string`
@@ -321,16 +291,6 @@ SetIngressWhitelist sets IngressWhitelist field to given value.
 
 HasIngressWhitelist returns a boolean if a field has been set.
 
-### SetIngressWhitelistNil
-
-`func (o *OpaProfileListDto) SetIngressWhitelistNil(b bool)`
-
- SetIngressWhitelistNil sets the value for IngressWhitelist to be an explicit nil
-
-### UnsetIngressWhitelist
-`func (o *OpaProfileListDto) UnsetIngressWhitelist()`
-
-UnsetIngressWhitelist ensures that no value is present for IngressWhitelist, not even an explicit nil
 ### GetIsLocked
 
 `func (o *OpaProfileListDto) GetIsLocked() bool`
@@ -431,16 +391,6 @@ SetOrganizationName sets OrganizationName field to given value.
 
 HasOrganizationName returns a boolean if a field has been set.
 
-### SetOrganizationNameNil
-
-`func (o *OpaProfileListDto) SetOrganizationNameNil(b bool)`
-
- SetOrganizationNameNil sets the value for OrganizationName to be an explicit nil
-
-### UnsetOrganizationName
-`func (o *OpaProfileListDto) UnsetOrganizationName()`
-
-UnsetOrganizationName ensures that no value is present for OrganizationName, not even an explicit nil
 ### GetCreatedAt
 
 `func (o *OpaProfileListDto) GetCreatedAt() string`
@@ -466,16 +416,6 @@ SetCreatedAt sets CreatedAt field to given value.
 
 HasCreatedAt returns a boolean if a field has been set.
 
-### SetCreatedAtNil
-
-`func (o *OpaProfileListDto) SetCreatedAtNil(b bool)`
-
- SetCreatedAtNil sets the value for CreatedAt to be an explicit nil
-
-### UnsetCreatedAt
-`func (o *OpaProfileListDto) UnsetCreatedAt()`
-
-UnsetCreatedAt ensures that no value is present for CreatedAt, not even an explicit nil
 ### GetIsDefault
 
 `func (o *OpaProfileListDto) GetIsDefault() bool`
@@ -526,16 +466,6 @@ SetProjects sets Projects field to given value.
 
 HasProjects returns a boolean if a field has been set.
 
-### SetProjectsNil
-
-`func (o *OpaProfileListDto) SetProjectsNil(b bool)`
-
- SetProjectsNil sets the value for Projects to be an explicit nil
-
-### UnsetProjects
-`func (o *OpaProfileListDto) UnsetProjects()`
-
-UnsetProjects ensures that no value is present for Projects, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

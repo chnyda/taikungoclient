@@ -4,11 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Username** | Pointer to **NullableString** |  | [optional] 
-**Url** | Pointer to **NullableString** |  | [optional] 
-**Password** | Pointer to **NullableString** |  | [optional] 
-**Storage** | Pointer to **NullableString** |  | [optional] 
-**VmTemplateName** | Pointer to **NullableString** |  | [optional] 
+**TokenId** | Pointer to **string** |  | [optional] 
+**TokenSecret** | Pointer to **string** |  | [optional] 
+**Url** | Pointer to **string** |  | [optional] 
+**Password** | Pointer to **string** |  | [optional] 
+**Storage** | Pointer to **string** |  | [optional] 
+**VmTemplateName** | Pointer to **string** |  | [optional] 
 **ProxmoxNetworks** | Pointer to [**[]ProxmoxNetworkListDto**](ProxmoxNetworkListDto.md) |  | [optional] 
 
 ## Methods
@@ -30,41 +31,56 @@ NewProxmoxCredentialsForProjectDtoWithDefaults instantiates a new ProxmoxCredent
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetUsername
+### GetTokenId
 
-`func (o *ProxmoxCredentialsForProjectDto) GetUsername() string`
+`func (o *ProxmoxCredentialsForProjectDto) GetTokenId() string`
 
-GetUsername returns the Username field if non-nil, zero value otherwise.
+GetTokenId returns the TokenId field if non-nil, zero value otherwise.
 
-### GetUsernameOk
+### GetTokenIdOk
 
-`func (o *ProxmoxCredentialsForProjectDto) GetUsernameOk() (*string, bool)`
+`func (o *ProxmoxCredentialsForProjectDto) GetTokenIdOk() (*string, bool)`
 
-GetUsernameOk returns a tuple with the Username field if it's non-nil, zero value otherwise
+GetTokenIdOk returns a tuple with the TokenId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetUsername
+### SetTokenId
 
-`func (o *ProxmoxCredentialsForProjectDto) SetUsername(v string)`
+`func (o *ProxmoxCredentialsForProjectDto) SetTokenId(v string)`
 
-SetUsername sets Username field to given value.
+SetTokenId sets TokenId field to given value.
 
-### HasUsername
+### HasTokenId
 
-`func (o *ProxmoxCredentialsForProjectDto) HasUsername() bool`
+`func (o *ProxmoxCredentialsForProjectDto) HasTokenId() bool`
 
-HasUsername returns a boolean if a field has been set.
+HasTokenId returns a boolean if a field has been set.
 
-### SetUsernameNil
+### GetTokenSecret
 
-`func (o *ProxmoxCredentialsForProjectDto) SetUsernameNil(b bool)`
+`func (o *ProxmoxCredentialsForProjectDto) GetTokenSecret() string`
 
- SetUsernameNil sets the value for Username to be an explicit nil
+GetTokenSecret returns the TokenSecret field if non-nil, zero value otherwise.
 
-### UnsetUsername
-`func (o *ProxmoxCredentialsForProjectDto) UnsetUsername()`
+### GetTokenSecretOk
 
-UnsetUsername ensures that no value is present for Username, not even an explicit nil
+`func (o *ProxmoxCredentialsForProjectDto) GetTokenSecretOk() (*string, bool)`
+
+GetTokenSecretOk returns a tuple with the TokenSecret field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTokenSecret
+
+`func (o *ProxmoxCredentialsForProjectDto) SetTokenSecret(v string)`
+
+SetTokenSecret sets TokenSecret field to given value.
+
+### HasTokenSecret
+
+`func (o *ProxmoxCredentialsForProjectDto) HasTokenSecret() bool`
+
+HasTokenSecret returns a boolean if a field has been set.
+
 ### GetUrl
 
 `func (o *ProxmoxCredentialsForProjectDto) GetUrl() string`
@@ -90,16 +106,6 @@ SetUrl sets Url field to given value.
 
 HasUrl returns a boolean if a field has been set.
 
-### SetUrlNil
-
-`func (o *ProxmoxCredentialsForProjectDto) SetUrlNil(b bool)`
-
- SetUrlNil sets the value for Url to be an explicit nil
-
-### UnsetUrl
-`func (o *ProxmoxCredentialsForProjectDto) UnsetUrl()`
-
-UnsetUrl ensures that no value is present for Url, not even an explicit nil
 ### GetPassword
 
 `func (o *ProxmoxCredentialsForProjectDto) GetPassword() string`
@@ -125,16 +131,6 @@ SetPassword sets Password field to given value.
 
 HasPassword returns a boolean if a field has been set.
 
-### SetPasswordNil
-
-`func (o *ProxmoxCredentialsForProjectDto) SetPasswordNil(b bool)`
-
- SetPasswordNil sets the value for Password to be an explicit nil
-
-### UnsetPassword
-`func (o *ProxmoxCredentialsForProjectDto) UnsetPassword()`
-
-UnsetPassword ensures that no value is present for Password, not even an explicit nil
 ### GetStorage
 
 `func (o *ProxmoxCredentialsForProjectDto) GetStorage() string`
@@ -160,16 +156,6 @@ SetStorage sets Storage field to given value.
 
 HasStorage returns a boolean if a field has been set.
 
-### SetStorageNil
-
-`func (o *ProxmoxCredentialsForProjectDto) SetStorageNil(b bool)`
-
- SetStorageNil sets the value for Storage to be an explicit nil
-
-### UnsetStorage
-`func (o *ProxmoxCredentialsForProjectDto) UnsetStorage()`
-
-UnsetStorage ensures that no value is present for Storage, not even an explicit nil
 ### GetVmTemplateName
 
 `func (o *ProxmoxCredentialsForProjectDto) GetVmTemplateName() string`
@@ -195,16 +181,6 @@ SetVmTemplateName sets VmTemplateName field to given value.
 
 HasVmTemplateName returns a boolean if a field has been set.
 
-### SetVmTemplateNameNil
-
-`func (o *ProxmoxCredentialsForProjectDto) SetVmTemplateNameNil(b bool)`
-
- SetVmTemplateNameNil sets the value for VmTemplateName to be an explicit nil
-
-### UnsetVmTemplateName
-`func (o *ProxmoxCredentialsForProjectDto) UnsetVmTemplateName()`
-
-UnsetVmTemplateName ensures that no value is present for VmTemplateName, not even an explicit nil
 ### GetProxmoxNetworks
 
 `func (o *ProxmoxCredentialsForProjectDto) GetProxmoxNetworks() []ProxmoxNetworkListDto`
@@ -230,16 +206,6 @@ SetProxmoxNetworks sets ProxmoxNetworks field to given value.
 
 HasProxmoxNetworks returns a boolean if a field has been set.
 
-### SetProxmoxNetworksNil
-
-`func (o *ProxmoxCredentialsForProjectDto) SetProxmoxNetworksNil(b bool)`
-
- SetProxmoxNetworksNil sets the value for ProxmoxNetworks to be an explicit nil
-
-### UnsetProxmoxNetworks
-`func (o *ProxmoxCredentialsForProjectDto) UnsetProxmoxNetworks()`
-
-UnsetProxmoxNetworks ensures that no value is present for ProxmoxNetworks, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -27,20 +27,20 @@ type ProjectDetailsForServersDto struct {
 	Master *int32 `json:"master,omitempty"`
 	Worker *int32 `json:"worker,omitempty"`
 	Bastion *int32 `json:"bastion,omitempty"`
-	ProjectStatus NullableString `json:"projectStatus,omitempty"`
-	ProjectName NullableString `json:"projectName,omitempty"`
-	AccessIp NullableString `json:"accessIp,omitempty"`
+	ProjectStatus *string `json:"projectStatus,omitempty"`
+	ProjectName *string `json:"projectName,omitempty"`
+	AccessIp *string `json:"accessIp,omitempty"`
 	ProjectId *int32 `json:"projectId,omitempty"`
 	MasterReady *int32 `json:"masterReady,omitempty"`
-	CloudType NullableString `json:"cloudType,omitempty"`
-	CloudName NullableString `json:"cloudName,omitempty"`
+	CloudType *string `json:"cloudType,omitempty"`
+	CloudName *string `json:"cloudName,omitempty"`
 	CloudId *int32 `json:"cloudId,omitempty"`
 	QuotaId *int32 `json:"quotaId,omitempty"`
-	OrganizationName NullableString `json:"organizationName,omitempty"`
+	OrganizationName *string `json:"organizationName,omitempty"`
 	OrganizationId *int32 `json:"organizationId,omitempty"`
-	KubeCurrentVersion NullableString `json:"kubeCurrentVersion,omitempty"`
-	KubernetesCurrentVersion NullableString `json:"kubernetesCurrentVersion,omitempty"`
-	HasNextVersion NullableBool `json:"hasNextVersion,omitempty"`
+	KubeCurrentVersion *string `json:"kubeCurrentVersion,omitempty"`
+	KubernetesCurrentVersion *string `json:"kubernetesCurrentVersion,omitempty"`
+	HasNextVersion *bool `json:"hasNextVersion,omitempty"`
 	IsKubernetes *bool `json:"isKubernetes,omitempty"`
 	IsBackupEnabled *bool `json:"isBackupEnabled,omitempty"`
 	IsLocked *bool `json:"isLocked,omitempty"`
@@ -65,41 +65,44 @@ type ProjectDetailsForServersDto struct {
 	VmUsedRam *int64 `json:"vmUsedRam,omitempty"`
 	VmUsedVolumeSize *int64 `json:"vmUsedVolumeSize,omitempty"`
 	ProjectRevision *int32 `json:"projectRevision,omitempty"`
-	AccessProfileRevision NullableInt32 `json:"accessProfileRevision,omitempty"`
+	AccessProfileRevision *int32 `json:"accessProfileRevision,omitempty"`
 	ProjectCloudRevision *int32 `json:"projectCloudRevision,omitempty"`
 	CloudCredentialRevision *int32 `json:"cloudCredentialRevision,omitempty"`
-	AccessProfileName NullableString `json:"accessProfileName,omitempty"`
-	AccessProfileId NullableInt32 `json:"accessProfileId,omitempty"`
-	KubernetesProfileName NullableString `json:"kubernetesProfileName,omitempty"`
-	KubernetesProfileId NullableInt32 `json:"kubernetesProfileId,omitempty"`
-	AlertingProfileName NullableString `json:"alertingProfileName,omitempty"`
-	ProjectHealth NullableString `json:"projectHealth,omitempty"`
-	AlertingProfileId NullableInt32 `json:"alertingProfileId,omitempty"`
-	S3CredentialId NullableInt32 `json:"s3CredentialId,omitempty"`
-	QuotaMessage NullableString `json:"quotaMessage,omitempty"`
-	CloudProviderMessage NullableString `json:"cloudProviderMessage,omitempty"`
-	ExpiredAt NullableString `json:"expiredAt,omitempty"`
+	AccessProfileName *string `json:"accessProfileName,omitempty"`
+	AccessProfileId *int32 `json:"accessProfileId,omitempty"`
+	KubernetesProfileName *string `json:"kubernetesProfileName,omitempty"`
+	KubernetesProfileId *int32 `json:"kubernetesProfileId,omitempty"`
+	AlertingProfileName *string `json:"alertingProfileName,omitempty"`
+	ProjectHealth *string `json:"projectHealth,omitempty"`
+	AlertingProfileId *int32 `json:"alertingProfileId,omitempty"`
+	S3CredentialId *int32 `json:"s3CredentialId,omitempty"`
+	QuotaMessage *string `json:"quotaMessage,omitempty"`
+	CloudProviderMessage *string `json:"cloudProviderMessage,omitempty"`
+	ExpiredAt *string `json:"expiredAt,omitempty"`
 	DeleteOnExpiration *bool `json:"deleteOnExpiration,omitempty"`
-	CertificationExpiredAt NullableString `json:"certificationExpiredAt,omitempty"`
-	OpaProfileId NullableInt32 `json:"opaProfileId,omitempty"`
-	OpaProfileName NullableString `json:"opaProfileName,omitempty"`
+	CertificationExpiredAt *string `json:"certificationExpiredAt,omitempty"`
+	OpaProfileId *int32 `json:"opaProfileId,omitempty"`
+	OpaProfileName *string `json:"opaProfileName,omitempty"`
 	AllowFullSpotKubernetes *bool `json:"allowFullSpotKubernetes,omitempty"`
 	AllowSpotWorkers *bool `json:"allowSpotWorkers,omitempty"`
 	AllowSpotVMs *bool `json:"allowSpotVMs,omitempty"`
-	MaxSpotPrice NullableFloat64 `json:"maxSpotPrice,omitempty"`
+	MaxSpotPrice *float64 `json:"maxSpotPrice,omitempty"`
 	IsKubevapEnabled *bool `json:"isKubevapEnabled,omitempty"`
 	IsKubernetesCurrentVersionKubevapEnabled *bool `json:"isKubernetesCurrentVersionKubevapEnabled,omitempty"`
-	FailureReason NullableString `json:"failureReason,omitempty"`
-	WarningMessage NullableString `json:"warningMessage,omitempty"`
+	FailureReason *string `json:"failureReason,omitempty"`
+	WarningMessage *string `json:"warningMessage,omitempty"`
 	TotalHourlyCost *float64 `json:"totalHourlyCost,omitempty"`
-	AutoscalingGroupName NullableString `json:"autoscalingGroupName,omitempty"`
-	MinSize NullableInt32 `json:"minSize,omitempty"`
-	MaxSize NullableInt32 `json:"maxSize,omitempty"`
-	DiskSize NullableFloat64 `json:"diskSize,omitempty"`
-	Flavor NullableString `json:"flavor,omitempty"`
-	SpotEnabled NullableBool `json:"spotEnabled,omitempty"`
+	AutoscalingGroupName *string `json:"autoscalingGroupName,omitempty"`
+	MinSize *int32 `json:"minSize,omitempty"`
+	MaxSize *int32 `json:"maxSize,omitempty"`
+	DiskSize *float64 `json:"diskSize,omitempty"`
+	Flavor *string `json:"flavor,omitempty"`
+	SpotEnabled *bool `json:"spotEnabled,omitempty"`
 	IsAutoscalingEnabled *bool `json:"isAutoscalingEnabled,omitempty"`
 	HasExpirationWarning *bool `json:"hasExpirationWarning,omitempty"`
+	HasNfsServer *bool `json:"hasNfsServer,omitempty"`
+	AvailabilityZones []string `json:"availabilityZones,omitempty"`
+	Hypervisors []string `json:"hypervisors,omitempty"`
 }
 
 // NewProjectDetailsForServersDto instantiates a new ProjectDetailsForServersDto object
@@ -343,130 +346,100 @@ func (o *ProjectDetailsForServersDto) SetBastion(v int32) {
 	o.Bastion = &v
 }
 
-// GetProjectStatus returns the ProjectStatus field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetProjectStatus returns the ProjectStatus field value if set, zero value otherwise.
 func (o *ProjectDetailsForServersDto) GetProjectStatus() string {
-	if o == nil || IsNil(o.ProjectStatus.Get()) {
+	if o == nil || IsNil(o.ProjectStatus) {
 		var ret string
 		return ret
 	}
-	return *o.ProjectStatus.Get()
+	return *o.ProjectStatus
 }
 
 // GetProjectStatusOk returns a tuple with the ProjectStatus field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProjectDetailsForServersDto) GetProjectStatusOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ProjectStatus) {
 		return nil, false
 	}
-	return o.ProjectStatus.Get(), o.ProjectStatus.IsSet()
+	return o.ProjectStatus, true
 }
 
 // HasProjectStatus returns a boolean if a field has been set.
 func (o *ProjectDetailsForServersDto) HasProjectStatus() bool {
-	if o != nil && o.ProjectStatus.IsSet() {
+	if o != nil && !IsNil(o.ProjectStatus) {
 		return true
 	}
 
 	return false
 }
 
-// SetProjectStatus gets a reference to the given NullableString and assigns it to the ProjectStatus field.
+// SetProjectStatus gets a reference to the given string and assigns it to the ProjectStatus field.
 func (o *ProjectDetailsForServersDto) SetProjectStatus(v string) {
-	o.ProjectStatus.Set(&v)
-}
-// SetProjectStatusNil sets the value for ProjectStatus to be an explicit nil
-func (o *ProjectDetailsForServersDto) SetProjectStatusNil() {
-	o.ProjectStatus.Set(nil)
+	o.ProjectStatus = &v
 }
 
-// UnsetProjectStatus ensures that no value is present for ProjectStatus, not even an explicit nil
-func (o *ProjectDetailsForServersDto) UnsetProjectStatus() {
-	o.ProjectStatus.Unset()
-}
-
-// GetProjectName returns the ProjectName field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetProjectName returns the ProjectName field value if set, zero value otherwise.
 func (o *ProjectDetailsForServersDto) GetProjectName() string {
-	if o == nil || IsNil(o.ProjectName.Get()) {
+	if o == nil || IsNil(o.ProjectName) {
 		var ret string
 		return ret
 	}
-	return *o.ProjectName.Get()
+	return *o.ProjectName
 }
 
 // GetProjectNameOk returns a tuple with the ProjectName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProjectDetailsForServersDto) GetProjectNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ProjectName) {
 		return nil, false
 	}
-	return o.ProjectName.Get(), o.ProjectName.IsSet()
+	return o.ProjectName, true
 }
 
 // HasProjectName returns a boolean if a field has been set.
 func (o *ProjectDetailsForServersDto) HasProjectName() bool {
-	if o != nil && o.ProjectName.IsSet() {
+	if o != nil && !IsNil(o.ProjectName) {
 		return true
 	}
 
 	return false
 }
 
-// SetProjectName gets a reference to the given NullableString and assigns it to the ProjectName field.
+// SetProjectName gets a reference to the given string and assigns it to the ProjectName field.
 func (o *ProjectDetailsForServersDto) SetProjectName(v string) {
-	o.ProjectName.Set(&v)
-}
-// SetProjectNameNil sets the value for ProjectName to be an explicit nil
-func (o *ProjectDetailsForServersDto) SetProjectNameNil() {
-	o.ProjectName.Set(nil)
+	o.ProjectName = &v
 }
 
-// UnsetProjectName ensures that no value is present for ProjectName, not even an explicit nil
-func (o *ProjectDetailsForServersDto) UnsetProjectName() {
-	o.ProjectName.Unset()
-}
-
-// GetAccessIp returns the AccessIp field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetAccessIp returns the AccessIp field value if set, zero value otherwise.
 func (o *ProjectDetailsForServersDto) GetAccessIp() string {
-	if o == nil || IsNil(o.AccessIp.Get()) {
+	if o == nil || IsNil(o.AccessIp) {
 		var ret string
 		return ret
 	}
-	return *o.AccessIp.Get()
+	return *o.AccessIp
 }
 
 // GetAccessIpOk returns a tuple with the AccessIp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProjectDetailsForServersDto) GetAccessIpOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.AccessIp) {
 		return nil, false
 	}
-	return o.AccessIp.Get(), o.AccessIp.IsSet()
+	return o.AccessIp, true
 }
 
 // HasAccessIp returns a boolean if a field has been set.
 func (o *ProjectDetailsForServersDto) HasAccessIp() bool {
-	if o != nil && o.AccessIp.IsSet() {
+	if o != nil && !IsNil(o.AccessIp) {
 		return true
 	}
 
 	return false
 }
 
-// SetAccessIp gets a reference to the given NullableString and assigns it to the AccessIp field.
+// SetAccessIp gets a reference to the given string and assigns it to the AccessIp field.
 func (o *ProjectDetailsForServersDto) SetAccessIp(v string) {
-	o.AccessIp.Set(&v)
-}
-// SetAccessIpNil sets the value for AccessIp to be an explicit nil
-func (o *ProjectDetailsForServersDto) SetAccessIpNil() {
-	o.AccessIp.Set(nil)
-}
-
-// UnsetAccessIp ensures that no value is present for AccessIp, not even an explicit nil
-func (o *ProjectDetailsForServersDto) UnsetAccessIp() {
-	o.AccessIp.Unset()
+	o.AccessIp = &v
 }
 
 // GetProjectId returns the ProjectId field value if set, zero value otherwise.
@@ -533,88 +506,68 @@ func (o *ProjectDetailsForServersDto) SetMasterReady(v int32) {
 	o.MasterReady = &v
 }
 
-// GetCloudType returns the CloudType field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetCloudType returns the CloudType field value if set, zero value otherwise.
 func (o *ProjectDetailsForServersDto) GetCloudType() string {
-	if o == nil || IsNil(o.CloudType.Get()) {
+	if o == nil || IsNil(o.CloudType) {
 		var ret string
 		return ret
 	}
-	return *o.CloudType.Get()
+	return *o.CloudType
 }
 
 // GetCloudTypeOk returns a tuple with the CloudType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProjectDetailsForServersDto) GetCloudTypeOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CloudType) {
 		return nil, false
 	}
-	return o.CloudType.Get(), o.CloudType.IsSet()
+	return o.CloudType, true
 }
 
 // HasCloudType returns a boolean if a field has been set.
 func (o *ProjectDetailsForServersDto) HasCloudType() bool {
-	if o != nil && o.CloudType.IsSet() {
+	if o != nil && !IsNil(o.CloudType) {
 		return true
 	}
 
 	return false
 }
 
-// SetCloudType gets a reference to the given NullableString and assigns it to the CloudType field.
+// SetCloudType gets a reference to the given string and assigns it to the CloudType field.
 func (o *ProjectDetailsForServersDto) SetCloudType(v string) {
-	o.CloudType.Set(&v)
-}
-// SetCloudTypeNil sets the value for CloudType to be an explicit nil
-func (o *ProjectDetailsForServersDto) SetCloudTypeNil() {
-	o.CloudType.Set(nil)
+	o.CloudType = &v
 }
 
-// UnsetCloudType ensures that no value is present for CloudType, not even an explicit nil
-func (o *ProjectDetailsForServersDto) UnsetCloudType() {
-	o.CloudType.Unset()
-}
-
-// GetCloudName returns the CloudName field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetCloudName returns the CloudName field value if set, zero value otherwise.
 func (o *ProjectDetailsForServersDto) GetCloudName() string {
-	if o == nil || IsNil(o.CloudName.Get()) {
+	if o == nil || IsNil(o.CloudName) {
 		var ret string
 		return ret
 	}
-	return *o.CloudName.Get()
+	return *o.CloudName
 }
 
 // GetCloudNameOk returns a tuple with the CloudName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProjectDetailsForServersDto) GetCloudNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CloudName) {
 		return nil, false
 	}
-	return o.CloudName.Get(), o.CloudName.IsSet()
+	return o.CloudName, true
 }
 
 // HasCloudName returns a boolean if a field has been set.
 func (o *ProjectDetailsForServersDto) HasCloudName() bool {
-	if o != nil && o.CloudName.IsSet() {
+	if o != nil && !IsNil(o.CloudName) {
 		return true
 	}
 
 	return false
 }
 
-// SetCloudName gets a reference to the given NullableString and assigns it to the CloudName field.
+// SetCloudName gets a reference to the given string and assigns it to the CloudName field.
 func (o *ProjectDetailsForServersDto) SetCloudName(v string) {
-	o.CloudName.Set(&v)
-}
-// SetCloudNameNil sets the value for CloudName to be an explicit nil
-func (o *ProjectDetailsForServersDto) SetCloudNameNil() {
-	o.CloudName.Set(nil)
-}
-
-// UnsetCloudName ensures that no value is present for CloudName, not even an explicit nil
-func (o *ProjectDetailsForServersDto) UnsetCloudName() {
-	o.CloudName.Unset()
+	o.CloudName = &v
 }
 
 // GetCloudId returns the CloudId field value if set, zero value otherwise.
@@ -681,46 +634,36 @@ func (o *ProjectDetailsForServersDto) SetQuotaId(v int32) {
 	o.QuotaId = &v
 }
 
-// GetOrganizationName returns the OrganizationName field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetOrganizationName returns the OrganizationName field value if set, zero value otherwise.
 func (o *ProjectDetailsForServersDto) GetOrganizationName() string {
-	if o == nil || IsNil(o.OrganizationName.Get()) {
+	if o == nil || IsNil(o.OrganizationName) {
 		var ret string
 		return ret
 	}
-	return *o.OrganizationName.Get()
+	return *o.OrganizationName
 }
 
 // GetOrganizationNameOk returns a tuple with the OrganizationName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProjectDetailsForServersDto) GetOrganizationNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.OrganizationName) {
 		return nil, false
 	}
-	return o.OrganizationName.Get(), o.OrganizationName.IsSet()
+	return o.OrganizationName, true
 }
 
 // HasOrganizationName returns a boolean if a field has been set.
 func (o *ProjectDetailsForServersDto) HasOrganizationName() bool {
-	if o != nil && o.OrganizationName.IsSet() {
+	if o != nil && !IsNil(o.OrganizationName) {
 		return true
 	}
 
 	return false
 }
 
-// SetOrganizationName gets a reference to the given NullableString and assigns it to the OrganizationName field.
+// SetOrganizationName gets a reference to the given string and assigns it to the OrganizationName field.
 func (o *ProjectDetailsForServersDto) SetOrganizationName(v string) {
-	o.OrganizationName.Set(&v)
-}
-// SetOrganizationNameNil sets the value for OrganizationName to be an explicit nil
-func (o *ProjectDetailsForServersDto) SetOrganizationNameNil() {
-	o.OrganizationName.Set(nil)
-}
-
-// UnsetOrganizationName ensures that no value is present for OrganizationName, not even an explicit nil
-func (o *ProjectDetailsForServersDto) UnsetOrganizationName() {
-	o.OrganizationName.Unset()
+	o.OrganizationName = &v
 }
 
 // GetOrganizationId returns the OrganizationId field value if set, zero value otherwise.
@@ -755,130 +698,100 @@ func (o *ProjectDetailsForServersDto) SetOrganizationId(v int32) {
 	o.OrganizationId = &v
 }
 
-// GetKubeCurrentVersion returns the KubeCurrentVersion field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetKubeCurrentVersion returns the KubeCurrentVersion field value if set, zero value otherwise.
 func (o *ProjectDetailsForServersDto) GetKubeCurrentVersion() string {
-	if o == nil || IsNil(o.KubeCurrentVersion.Get()) {
+	if o == nil || IsNil(o.KubeCurrentVersion) {
 		var ret string
 		return ret
 	}
-	return *o.KubeCurrentVersion.Get()
+	return *o.KubeCurrentVersion
 }
 
 // GetKubeCurrentVersionOk returns a tuple with the KubeCurrentVersion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProjectDetailsForServersDto) GetKubeCurrentVersionOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.KubeCurrentVersion) {
 		return nil, false
 	}
-	return o.KubeCurrentVersion.Get(), o.KubeCurrentVersion.IsSet()
+	return o.KubeCurrentVersion, true
 }
 
 // HasKubeCurrentVersion returns a boolean if a field has been set.
 func (o *ProjectDetailsForServersDto) HasKubeCurrentVersion() bool {
-	if o != nil && o.KubeCurrentVersion.IsSet() {
+	if o != nil && !IsNil(o.KubeCurrentVersion) {
 		return true
 	}
 
 	return false
 }
 
-// SetKubeCurrentVersion gets a reference to the given NullableString and assigns it to the KubeCurrentVersion field.
+// SetKubeCurrentVersion gets a reference to the given string and assigns it to the KubeCurrentVersion field.
 func (o *ProjectDetailsForServersDto) SetKubeCurrentVersion(v string) {
-	o.KubeCurrentVersion.Set(&v)
-}
-// SetKubeCurrentVersionNil sets the value for KubeCurrentVersion to be an explicit nil
-func (o *ProjectDetailsForServersDto) SetKubeCurrentVersionNil() {
-	o.KubeCurrentVersion.Set(nil)
+	o.KubeCurrentVersion = &v
 }
 
-// UnsetKubeCurrentVersion ensures that no value is present for KubeCurrentVersion, not even an explicit nil
-func (o *ProjectDetailsForServersDto) UnsetKubeCurrentVersion() {
-	o.KubeCurrentVersion.Unset()
-}
-
-// GetKubernetesCurrentVersion returns the KubernetesCurrentVersion field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetKubernetesCurrentVersion returns the KubernetesCurrentVersion field value if set, zero value otherwise.
 func (o *ProjectDetailsForServersDto) GetKubernetesCurrentVersion() string {
-	if o == nil || IsNil(o.KubernetesCurrentVersion.Get()) {
+	if o == nil || IsNil(o.KubernetesCurrentVersion) {
 		var ret string
 		return ret
 	}
-	return *o.KubernetesCurrentVersion.Get()
+	return *o.KubernetesCurrentVersion
 }
 
 // GetKubernetesCurrentVersionOk returns a tuple with the KubernetesCurrentVersion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProjectDetailsForServersDto) GetKubernetesCurrentVersionOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.KubernetesCurrentVersion) {
 		return nil, false
 	}
-	return o.KubernetesCurrentVersion.Get(), o.KubernetesCurrentVersion.IsSet()
+	return o.KubernetesCurrentVersion, true
 }
 
 // HasKubernetesCurrentVersion returns a boolean if a field has been set.
 func (o *ProjectDetailsForServersDto) HasKubernetesCurrentVersion() bool {
-	if o != nil && o.KubernetesCurrentVersion.IsSet() {
+	if o != nil && !IsNil(o.KubernetesCurrentVersion) {
 		return true
 	}
 
 	return false
 }
 
-// SetKubernetesCurrentVersion gets a reference to the given NullableString and assigns it to the KubernetesCurrentVersion field.
+// SetKubernetesCurrentVersion gets a reference to the given string and assigns it to the KubernetesCurrentVersion field.
 func (o *ProjectDetailsForServersDto) SetKubernetesCurrentVersion(v string) {
-	o.KubernetesCurrentVersion.Set(&v)
-}
-// SetKubernetesCurrentVersionNil sets the value for KubernetesCurrentVersion to be an explicit nil
-func (o *ProjectDetailsForServersDto) SetKubernetesCurrentVersionNil() {
-	o.KubernetesCurrentVersion.Set(nil)
+	o.KubernetesCurrentVersion = &v
 }
 
-// UnsetKubernetesCurrentVersion ensures that no value is present for KubernetesCurrentVersion, not even an explicit nil
-func (o *ProjectDetailsForServersDto) UnsetKubernetesCurrentVersion() {
-	o.KubernetesCurrentVersion.Unset()
-}
-
-// GetHasNextVersion returns the HasNextVersion field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetHasNextVersion returns the HasNextVersion field value if set, zero value otherwise.
 func (o *ProjectDetailsForServersDto) GetHasNextVersion() bool {
-	if o == nil || IsNil(o.HasNextVersion.Get()) {
+	if o == nil || IsNil(o.HasNextVersion) {
 		var ret bool
 		return ret
 	}
-	return *o.HasNextVersion.Get()
+	return *o.HasNextVersion
 }
 
 // GetHasNextVersionOk returns a tuple with the HasNextVersion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProjectDetailsForServersDto) GetHasNextVersionOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.HasNextVersion) {
 		return nil, false
 	}
-	return o.HasNextVersion.Get(), o.HasNextVersion.IsSet()
+	return o.HasNextVersion, true
 }
 
 // HasHasNextVersion returns a boolean if a field has been set.
 func (o *ProjectDetailsForServersDto) HasHasNextVersion() bool {
-	if o != nil && o.HasNextVersion.IsSet() {
+	if o != nil && !IsNil(o.HasNextVersion) {
 		return true
 	}
 
 	return false
 }
 
-// SetHasNextVersion gets a reference to the given NullableBool and assigns it to the HasNextVersion field.
+// SetHasNextVersion gets a reference to the given bool and assigns it to the HasNextVersion field.
 func (o *ProjectDetailsForServersDto) SetHasNextVersion(v bool) {
-	o.HasNextVersion.Set(&v)
-}
-// SetHasNextVersionNil sets the value for HasNextVersion to be an explicit nil
-func (o *ProjectDetailsForServersDto) SetHasNextVersionNil() {
-	o.HasNextVersion.Set(nil)
-}
-
-// UnsetHasNextVersion ensures that no value is present for HasNextVersion, not even an explicit nil
-func (o *ProjectDetailsForServersDto) UnsetHasNextVersion() {
-	o.HasNextVersion.Unset()
+	o.HasNextVersion = &v
 }
 
 // GetIsKubernetes returns the IsKubernetes field value if set, zero value otherwise.
@@ -1649,46 +1562,36 @@ func (o *ProjectDetailsForServersDto) SetProjectRevision(v int32) {
 	o.ProjectRevision = &v
 }
 
-// GetAccessProfileRevision returns the AccessProfileRevision field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetAccessProfileRevision returns the AccessProfileRevision field value if set, zero value otherwise.
 func (o *ProjectDetailsForServersDto) GetAccessProfileRevision() int32 {
-	if o == nil || IsNil(o.AccessProfileRevision.Get()) {
+	if o == nil || IsNil(o.AccessProfileRevision) {
 		var ret int32
 		return ret
 	}
-	return *o.AccessProfileRevision.Get()
+	return *o.AccessProfileRevision
 }
 
 // GetAccessProfileRevisionOk returns a tuple with the AccessProfileRevision field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProjectDetailsForServersDto) GetAccessProfileRevisionOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.AccessProfileRevision) {
 		return nil, false
 	}
-	return o.AccessProfileRevision.Get(), o.AccessProfileRevision.IsSet()
+	return o.AccessProfileRevision, true
 }
 
 // HasAccessProfileRevision returns a boolean if a field has been set.
 func (o *ProjectDetailsForServersDto) HasAccessProfileRevision() bool {
-	if o != nil && o.AccessProfileRevision.IsSet() {
+	if o != nil && !IsNil(o.AccessProfileRevision) {
 		return true
 	}
 
 	return false
 }
 
-// SetAccessProfileRevision gets a reference to the given NullableInt32 and assigns it to the AccessProfileRevision field.
+// SetAccessProfileRevision gets a reference to the given int32 and assigns it to the AccessProfileRevision field.
 func (o *ProjectDetailsForServersDto) SetAccessProfileRevision(v int32) {
-	o.AccessProfileRevision.Set(&v)
-}
-// SetAccessProfileRevisionNil sets the value for AccessProfileRevision to be an explicit nil
-func (o *ProjectDetailsForServersDto) SetAccessProfileRevisionNil() {
-	o.AccessProfileRevision.Set(nil)
-}
-
-// UnsetAccessProfileRevision ensures that no value is present for AccessProfileRevision, not even an explicit nil
-func (o *ProjectDetailsForServersDto) UnsetAccessProfileRevision() {
-	o.AccessProfileRevision.Unset()
+	o.AccessProfileRevision = &v
 }
 
 // GetProjectCloudRevision returns the ProjectCloudRevision field value if set, zero value otherwise.
@@ -1755,466 +1658,356 @@ func (o *ProjectDetailsForServersDto) SetCloudCredentialRevision(v int32) {
 	o.CloudCredentialRevision = &v
 }
 
-// GetAccessProfileName returns the AccessProfileName field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetAccessProfileName returns the AccessProfileName field value if set, zero value otherwise.
 func (o *ProjectDetailsForServersDto) GetAccessProfileName() string {
-	if o == nil || IsNil(o.AccessProfileName.Get()) {
+	if o == nil || IsNil(o.AccessProfileName) {
 		var ret string
 		return ret
 	}
-	return *o.AccessProfileName.Get()
+	return *o.AccessProfileName
 }
 
 // GetAccessProfileNameOk returns a tuple with the AccessProfileName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProjectDetailsForServersDto) GetAccessProfileNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.AccessProfileName) {
 		return nil, false
 	}
-	return o.AccessProfileName.Get(), o.AccessProfileName.IsSet()
+	return o.AccessProfileName, true
 }
 
 // HasAccessProfileName returns a boolean if a field has been set.
 func (o *ProjectDetailsForServersDto) HasAccessProfileName() bool {
-	if o != nil && o.AccessProfileName.IsSet() {
+	if o != nil && !IsNil(o.AccessProfileName) {
 		return true
 	}
 
 	return false
 }
 
-// SetAccessProfileName gets a reference to the given NullableString and assigns it to the AccessProfileName field.
+// SetAccessProfileName gets a reference to the given string and assigns it to the AccessProfileName field.
 func (o *ProjectDetailsForServersDto) SetAccessProfileName(v string) {
-	o.AccessProfileName.Set(&v)
-}
-// SetAccessProfileNameNil sets the value for AccessProfileName to be an explicit nil
-func (o *ProjectDetailsForServersDto) SetAccessProfileNameNil() {
-	o.AccessProfileName.Set(nil)
+	o.AccessProfileName = &v
 }
 
-// UnsetAccessProfileName ensures that no value is present for AccessProfileName, not even an explicit nil
-func (o *ProjectDetailsForServersDto) UnsetAccessProfileName() {
-	o.AccessProfileName.Unset()
-}
-
-// GetAccessProfileId returns the AccessProfileId field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetAccessProfileId returns the AccessProfileId field value if set, zero value otherwise.
 func (o *ProjectDetailsForServersDto) GetAccessProfileId() int32 {
-	if o == nil || IsNil(o.AccessProfileId.Get()) {
+	if o == nil || IsNil(o.AccessProfileId) {
 		var ret int32
 		return ret
 	}
-	return *o.AccessProfileId.Get()
+	return *o.AccessProfileId
 }
 
 // GetAccessProfileIdOk returns a tuple with the AccessProfileId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProjectDetailsForServersDto) GetAccessProfileIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.AccessProfileId) {
 		return nil, false
 	}
-	return o.AccessProfileId.Get(), o.AccessProfileId.IsSet()
+	return o.AccessProfileId, true
 }
 
 // HasAccessProfileId returns a boolean if a field has been set.
 func (o *ProjectDetailsForServersDto) HasAccessProfileId() bool {
-	if o != nil && o.AccessProfileId.IsSet() {
+	if o != nil && !IsNil(o.AccessProfileId) {
 		return true
 	}
 
 	return false
 }
 
-// SetAccessProfileId gets a reference to the given NullableInt32 and assigns it to the AccessProfileId field.
+// SetAccessProfileId gets a reference to the given int32 and assigns it to the AccessProfileId field.
 func (o *ProjectDetailsForServersDto) SetAccessProfileId(v int32) {
-	o.AccessProfileId.Set(&v)
-}
-// SetAccessProfileIdNil sets the value for AccessProfileId to be an explicit nil
-func (o *ProjectDetailsForServersDto) SetAccessProfileIdNil() {
-	o.AccessProfileId.Set(nil)
+	o.AccessProfileId = &v
 }
 
-// UnsetAccessProfileId ensures that no value is present for AccessProfileId, not even an explicit nil
-func (o *ProjectDetailsForServersDto) UnsetAccessProfileId() {
-	o.AccessProfileId.Unset()
-}
-
-// GetKubernetesProfileName returns the KubernetesProfileName field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetKubernetesProfileName returns the KubernetesProfileName field value if set, zero value otherwise.
 func (o *ProjectDetailsForServersDto) GetKubernetesProfileName() string {
-	if o == nil || IsNil(o.KubernetesProfileName.Get()) {
+	if o == nil || IsNil(o.KubernetesProfileName) {
 		var ret string
 		return ret
 	}
-	return *o.KubernetesProfileName.Get()
+	return *o.KubernetesProfileName
 }
 
 // GetKubernetesProfileNameOk returns a tuple with the KubernetesProfileName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProjectDetailsForServersDto) GetKubernetesProfileNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.KubernetesProfileName) {
 		return nil, false
 	}
-	return o.KubernetesProfileName.Get(), o.KubernetesProfileName.IsSet()
+	return o.KubernetesProfileName, true
 }
 
 // HasKubernetesProfileName returns a boolean if a field has been set.
 func (o *ProjectDetailsForServersDto) HasKubernetesProfileName() bool {
-	if o != nil && o.KubernetesProfileName.IsSet() {
+	if o != nil && !IsNil(o.KubernetesProfileName) {
 		return true
 	}
 
 	return false
 }
 
-// SetKubernetesProfileName gets a reference to the given NullableString and assigns it to the KubernetesProfileName field.
+// SetKubernetesProfileName gets a reference to the given string and assigns it to the KubernetesProfileName field.
 func (o *ProjectDetailsForServersDto) SetKubernetesProfileName(v string) {
-	o.KubernetesProfileName.Set(&v)
-}
-// SetKubernetesProfileNameNil sets the value for KubernetesProfileName to be an explicit nil
-func (o *ProjectDetailsForServersDto) SetKubernetesProfileNameNil() {
-	o.KubernetesProfileName.Set(nil)
+	o.KubernetesProfileName = &v
 }
 
-// UnsetKubernetesProfileName ensures that no value is present for KubernetesProfileName, not even an explicit nil
-func (o *ProjectDetailsForServersDto) UnsetKubernetesProfileName() {
-	o.KubernetesProfileName.Unset()
-}
-
-// GetKubernetesProfileId returns the KubernetesProfileId field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetKubernetesProfileId returns the KubernetesProfileId field value if set, zero value otherwise.
 func (o *ProjectDetailsForServersDto) GetKubernetesProfileId() int32 {
-	if o == nil || IsNil(o.KubernetesProfileId.Get()) {
+	if o == nil || IsNil(o.KubernetesProfileId) {
 		var ret int32
 		return ret
 	}
-	return *o.KubernetesProfileId.Get()
+	return *o.KubernetesProfileId
 }
 
 // GetKubernetesProfileIdOk returns a tuple with the KubernetesProfileId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProjectDetailsForServersDto) GetKubernetesProfileIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.KubernetesProfileId) {
 		return nil, false
 	}
-	return o.KubernetesProfileId.Get(), o.KubernetesProfileId.IsSet()
+	return o.KubernetesProfileId, true
 }
 
 // HasKubernetesProfileId returns a boolean if a field has been set.
 func (o *ProjectDetailsForServersDto) HasKubernetesProfileId() bool {
-	if o != nil && o.KubernetesProfileId.IsSet() {
+	if o != nil && !IsNil(o.KubernetesProfileId) {
 		return true
 	}
 
 	return false
 }
 
-// SetKubernetesProfileId gets a reference to the given NullableInt32 and assigns it to the KubernetesProfileId field.
+// SetKubernetesProfileId gets a reference to the given int32 and assigns it to the KubernetesProfileId field.
 func (o *ProjectDetailsForServersDto) SetKubernetesProfileId(v int32) {
-	o.KubernetesProfileId.Set(&v)
-}
-// SetKubernetesProfileIdNil sets the value for KubernetesProfileId to be an explicit nil
-func (o *ProjectDetailsForServersDto) SetKubernetesProfileIdNil() {
-	o.KubernetesProfileId.Set(nil)
+	o.KubernetesProfileId = &v
 }
 
-// UnsetKubernetesProfileId ensures that no value is present for KubernetesProfileId, not even an explicit nil
-func (o *ProjectDetailsForServersDto) UnsetKubernetesProfileId() {
-	o.KubernetesProfileId.Unset()
-}
-
-// GetAlertingProfileName returns the AlertingProfileName field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetAlertingProfileName returns the AlertingProfileName field value if set, zero value otherwise.
 func (o *ProjectDetailsForServersDto) GetAlertingProfileName() string {
-	if o == nil || IsNil(o.AlertingProfileName.Get()) {
+	if o == nil || IsNil(o.AlertingProfileName) {
 		var ret string
 		return ret
 	}
-	return *o.AlertingProfileName.Get()
+	return *o.AlertingProfileName
 }
 
 // GetAlertingProfileNameOk returns a tuple with the AlertingProfileName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProjectDetailsForServersDto) GetAlertingProfileNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.AlertingProfileName) {
 		return nil, false
 	}
-	return o.AlertingProfileName.Get(), o.AlertingProfileName.IsSet()
+	return o.AlertingProfileName, true
 }
 
 // HasAlertingProfileName returns a boolean if a field has been set.
 func (o *ProjectDetailsForServersDto) HasAlertingProfileName() bool {
-	if o != nil && o.AlertingProfileName.IsSet() {
+	if o != nil && !IsNil(o.AlertingProfileName) {
 		return true
 	}
 
 	return false
 }
 
-// SetAlertingProfileName gets a reference to the given NullableString and assigns it to the AlertingProfileName field.
+// SetAlertingProfileName gets a reference to the given string and assigns it to the AlertingProfileName field.
 func (o *ProjectDetailsForServersDto) SetAlertingProfileName(v string) {
-	o.AlertingProfileName.Set(&v)
-}
-// SetAlertingProfileNameNil sets the value for AlertingProfileName to be an explicit nil
-func (o *ProjectDetailsForServersDto) SetAlertingProfileNameNil() {
-	o.AlertingProfileName.Set(nil)
+	o.AlertingProfileName = &v
 }
 
-// UnsetAlertingProfileName ensures that no value is present for AlertingProfileName, not even an explicit nil
-func (o *ProjectDetailsForServersDto) UnsetAlertingProfileName() {
-	o.AlertingProfileName.Unset()
-}
-
-// GetProjectHealth returns the ProjectHealth field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetProjectHealth returns the ProjectHealth field value if set, zero value otherwise.
 func (o *ProjectDetailsForServersDto) GetProjectHealth() string {
-	if o == nil || IsNil(o.ProjectHealth.Get()) {
+	if o == nil || IsNil(o.ProjectHealth) {
 		var ret string
 		return ret
 	}
-	return *o.ProjectHealth.Get()
+	return *o.ProjectHealth
 }
 
 // GetProjectHealthOk returns a tuple with the ProjectHealth field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProjectDetailsForServersDto) GetProjectHealthOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ProjectHealth) {
 		return nil, false
 	}
-	return o.ProjectHealth.Get(), o.ProjectHealth.IsSet()
+	return o.ProjectHealth, true
 }
 
 // HasProjectHealth returns a boolean if a field has been set.
 func (o *ProjectDetailsForServersDto) HasProjectHealth() bool {
-	if o != nil && o.ProjectHealth.IsSet() {
+	if o != nil && !IsNil(o.ProjectHealth) {
 		return true
 	}
 
 	return false
 }
 
-// SetProjectHealth gets a reference to the given NullableString and assigns it to the ProjectHealth field.
+// SetProjectHealth gets a reference to the given string and assigns it to the ProjectHealth field.
 func (o *ProjectDetailsForServersDto) SetProjectHealth(v string) {
-	o.ProjectHealth.Set(&v)
-}
-// SetProjectHealthNil sets the value for ProjectHealth to be an explicit nil
-func (o *ProjectDetailsForServersDto) SetProjectHealthNil() {
-	o.ProjectHealth.Set(nil)
+	o.ProjectHealth = &v
 }
 
-// UnsetProjectHealth ensures that no value is present for ProjectHealth, not even an explicit nil
-func (o *ProjectDetailsForServersDto) UnsetProjectHealth() {
-	o.ProjectHealth.Unset()
-}
-
-// GetAlertingProfileId returns the AlertingProfileId field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetAlertingProfileId returns the AlertingProfileId field value if set, zero value otherwise.
 func (o *ProjectDetailsForServersDto) GetAlertingProfileId() int32 {
-	if o == nil || IsNil(o.AlertingProfileId.Get()) {
+	if o == nil || IsNil(o.AlertingProfileId) {
 		var ret int32
 		return ret
 	}
-	return *o.AlertingProfileId.Get()
+	return *o.AlertingProfileId
 }
 
 // GetAlertingProfileIdOk returns a tuple with the AlertingProfileId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProjectDetailsForServersDto) GetAlertingProfileIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.AlertingProfileId) {
 		return nil, false
 	}
-	return o.AlertingProfileId.Get(), o.AlertingProfileId.IsSet()
+	return o.AlertingProfileId, true
 }
 
 // HasAlertingProfileId returns a boolean if a field has been set.
 func (o *ProjectDetailsForServersDto) HasAlertingProfileId() bool {
-	if o != nil && o.AlertingProfileId.IsSet() {
+	if o != nil && !IsNil(o.AlertingProfileId) {
 		return true
 	}
 
 	return false
 }
 
-// SetAlertingProfileId gets a reference to the given NullableInt32 and assigns it to the AlertingProfileId field.
+// SetAlertingProfileId gets a reference to the given int32 and assigns it to the AlertingProfileId field.
 func (o *ProjectDetailsForServersDto) SetAlertingProfileId(v int32) {
-	o.AlertingProfileId.Set(&v)
-}
-// SetAlertingProfileIdNil sets the value for AlertingProfileId to be an explicit nil
-func (o *ProjectDetailsForServersDto) SetAlertingProfileIdNil() {
-	o.AlertingProfileId.Set(nil)
+	o.AlertingProfileId = &v
 }
 
-// UnsetAlertingProfileId ensures that no value is present for AlertingProfileId, not even an explicit nil
-func (o *ProjectDetailsForServersDto) UnsetAlertingProfileId() {
-	o.AlertingProfileId.Unset()
-}
-
-// GetS3CredentialId returns the S3CredentialId field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetS3CredentialId returns the S3CredentialId field value if set, zero value otherwise.
 func (o *ProjectDetailsForServersDto) GetS3CredentialId() int32 {
-	if o == nil || IsNil(o.S3CredentialId.Get()) {
+	if o == nil || IsNil(o.S3CredentialId) {
 		var ret int32
 		return ret
 	}
-	return *o.S3CredentialId.Get()
+	return *o.S3CredentialId
 }
 
 // GetS3CredentialIdOk returns a tuple with the S3CredentialId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProjectDetailsForServersDto) GetS3CredentialIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.S3CredentialId) {
 		return nil, false
 	}
-	return o.S3CredentialId.Get(), o.S3CredentialId.IsSet()
+	return o.S3CredentialId, true
 }
 
 // HasS3CredentialId returns a boolean if a field has been set.
 func (o *ProjectDetailsForServersDto) HasS3CredentialId() bool {
-	if o != nil && o.S3CredentialId.IsSet() {
+	if o != nil && !IsNil(o.S3CredentialId) {
 		return true
 	}
 
 	return false
 }
 
-// SetS3CredentialId gets a reference to the given NullableInt32 and assigns it to the S3CredentialId field.
+// SetS3CredentialId gets a reference to the given int32 and assigns it to the S3CredentialId field.
 func (o *ProjectDetailsForServersDto) SetS3CredentialId(v int32) {
-	o.S3CredentialId.Set(&v)
-}
-// SetS3CredentialIdNil sets the value for S3CredentialId to be an explicit nil
-func (o *ProjectDetailsForServersDto) SetS3CredentialIdNil() {
-	o.S3CredentialId.Set(nil)
+	o.S3CredentialId = &v
 }
 
-// UnsetS3CredentialId ensures that no value is present for S3CredentialId, not even an explicit nil
-func (o *ProjectDetailsForServersDto) UnsetS3CredentialId() {
-	o.S3CredentialId.Unset()
-}
-
-// GetQuotaMessage returns the QuotaMessage field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetQuotaMessage returns the QuotaMessage field value if set, zero value otherwise.
 func (o *ProjectDetailsForServersDto) GetQuotaMessage() string {
-	if o == nil || IsNil(o.QuotaMessage.Get()) {
+	if o == nil || IsNil(o.QuotaMessage) {
 		var ret string
 		return ret
 	}
-	return *o.QuotaMessage.Get()
+	return *o.QuotaMessage
 }
 
 // GetQuotaMessageOk returns a tuple with the QuotaMessage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProjectDetailsForServersDto) GetQuotaMessageOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.QuotaMessage) {
 		return nil, false
 	}
-	return o.QuotaMessage.Get(), o.QuotaMessage.IsSet()
+	return o.QuotaMessage, true
 }
 
 // HasQuotaMessage returns a boolean if a field has been set.
 func (o *ProjectDetailsForServersDto) HasQuotaMessage() bool {
-	if o != nil && o.QuotaMessage.IsSet() {
+	if o != nil && !IsNil(o.QuotaMessage) {
 		return true
 	}
 
 	return false
 }
 
-// SetQuotaMessage gets a reference to the given NullableString and assigns it to the QuotaMessage field.
+// SetQuotaMessage gets a reference to the given string and assigns it to the QuotaMessage field.
 func (o *ProjectDetailsForServersDto) SetQuotaMessage(v string) {
-	o.QuotaMessage.Set(&v)
-}
-// SetQuotaMessageNil sets the value for QuotaMessage to be an explicit nil
-func (o *ProjectDetailsForServersDto) SetQuotaMessageNil() {
-	o.QuotaMessage.Set(nil)
+	o.QuotaMessage = &v
 }
 
-// UnsetQuotaMessage ensures that no value is present for QuotaMessage, not even an explicit nil
-func (o *ProjectDetailsForServersDto) UnsetQuotaMessage() {
-	o.QuotaMessage.Unset()
-}
-
-// GetCloudProviderMessage returns the CloudProviderMessage field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetCloudProviderMessage returns the CloudProviderMessage field value if set, zero value otherwise.
 func (o *ProjectDetailsForServersDto) GetCloudProviderMessage() string {
-	if o == nil || IsNil(o.CloudProviderMessage.Get()) {
+	if o == nil || IsNil(o.CloudProviderMessage) {
 		var ret string
 		return ret
 	}
-	return *o.CloudProviderMessage.Get()
+	return *o.CloudProviderMessage
 }
 
 // GetCloudProviderMessageOk returns a tuple with the CloudProviderMessage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProjectDetailsForServersDto) GetCloudProviderMessageOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CloudProviderMessage) {
 		return nil, false
 	}
-	return o.CloudProviderMessage.Get(), o.CloudProviderMessage.IsSet()
+	return o.CloudProviderMessage, true
 }
 
 // HasCloudProviderMessage returns a boolean if a field has been set.
 func (o *ProjectDetailsForServersDto) HasCloudProviderMessage() bool {
-	if o != nil && o.CloudProviderMessage.IsSet() {
+	if o != nil && !IsNil(o.CloudProviderMessage) {
 		return true
 	}
 
 	return false
 }
 
-// SetCloudProviderMessage gets a reference to the given NullableString and assigns it to the CloudProviderMessage field.
+// SetCloudProviderMessage gets a reference to the given string and assigns it to the CloudProviderMessage field.
 func (o *ProjectDetailsForServersDto) SetCloudProviderMessage(v string) {
-	o.CloudProviderMessage.Set(&v)
-}
-// SetCloudProviderMessageNil sets the value for CloudProviderMessage to be an explicit nil
-func (o *ProjectDetailsForServersDto) SetCloudProviderMessageNil() {
-	o.CloudProviderMessage.Set(nil)
+	o.CloudProviderMessage = &v
 }
 
-// UnsetCloudProviderMessage ensures that no value is present for CloudProviderMessage, not even an explicit nil
-func (o *ProjectDetailsForServersDto) UnsetCloudProviderMessage() {
-	o.CloudProviderMessage.Unset()
-}
-
-// GetExpiredAt returns the ExpiredAt field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetExpiredAt returns the ExpiredAt field value if set, zero value otherwise.
 func (o *ProjectDetailsForServersDto) GetExpiredAt() string {
-	if o == nil || IsNil(o.ExpiredAt.Get()) {
+	if o == nil || IsNil(o.ExpiredAt) {
 		var ret string
 		return ret
 	}
-	return *o.ExpiredAt.Get()
+	return *o.ExpiredAt
 }
 
 // GetExpiredAtOk returns a tuple with the ExpiredAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProjectDetailsForServersDto) GetExpiredAtOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ExpiredAt) {
 		return nil, false
 	}
-	return o.ExpiredAt.Get(), o.ExpiredAt.IsSet()
+	return o.ExpiredAt, true
 }
 
 // HasExpiredAt returns a boolean if a field has been set.
 func (o *ProjectDetailsForServersDto) HasExpiredAt() bool {
-	if o != nil && o.ExpiredAt.IsSet() {
+	if o != nil && !IsNil(o.ExpiredAt) {
 		return true
 	}
 
 	return false
 }
 
-// SetExpiredAt gets a reference to the given NullableString and assigns it to the ExpiredAt field.
+// SetExpiredAt gets a reference to the given string and assigns it to the ExpiredAt field.
 func (o *ProjectDetailsForServersDto) SetExpiredAt(v string) {
-	o.ExpiredAt.Set(&v)
-}
-// SetExpiredAtNil sets the value for ExpiredAt to be an explicit nil
-func (o *ProjectDetailsForServersDto) SetExpiredAtNil() {
-	o.ExpiredAt.Set(nil)
-}
-
-// UnsetExpiredAt ensures that no value is present for ExpiredAt, not even an explicit nil
-func (o *ProjectDetailsForServersDto) UnsetExpiredAt() {
-	o.ExpiredAt.Unset()
+	o.ExpiredAt = &v
 }
 
 // GetDeleteOnExpiration returns the DeleteOnExpiration field value if set, zero value otherwise.
@@ -2249,130 +2042,100 @@ func (o *ProjectDetailsForServersDto) SetDeleteOnExpiration(v bool) {
 	o.DeleteOnExpiration = &v
 }
 
-// GetCertificationExpiredAt returns the CertificationExpiredAt field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetCertificationExpiredAt returns the CertificationExpiredAt field value if set, zero value otherwise.
 func (o *ProjectDetailsForServersDto) GetCertificationExpiredAt() string {
-	if o == nil || IsNil(o.CertificationExpiredAt.Get()) {
+	if o == nil || IsNil(o.CertificationExpiredAt) {
 		var ret string
 		return ret
 	}
-	return *o.CertificationExpiredAt.Get()
+	return *o.CertificationExpiredAt
 }
 
 // GetCertificationExpiredAtOk returns a tuple with the CertificationExpiredAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProjectDetailsForServersDto) GetCertificationExpiredAtOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CertificationExpiredAt) {
 		return nil, false
 	}
-	return o.CertificationExpiredAt.Get(), o.CertificationExpiredAt.IsSet()
+	return o.CertificationExpiredAt, true
 }
 
 // HasCertificationExpiredAt returns a boolean if a field has been set.
 func (o *ProjectDetailsForServersDto) HasCertificationExpiredAt() bool {
-	if o != nil && o.CertificationExpiredAt.IsSet() {
+	if o != nil && !IsNil(o.CertificationExpiredAt) {
 		return true
 	}
 
 	return false
 }
 
-// SetCertificationExpiredAt gets a reference to the given NullableString and assigns it to the CertificationExpiredAt field.
+// SetCertificationExpiredAt gets a reference to the given string and assigns it to the CertificationExpiredAt field.
 func (o *ProjectDetailsForServersDto) SetCertificationExpiredAt(v string) {
-	o.CertificationExpiredAt.Set(&v)
-}
-// SetCertificationExpiredAtNil sets the value for CertificationExpiredAt to be an explicit nil
-func (o *ProjectDetailsForServersDto) SetCertificationExpiredAtNil() {
-	o.CertificationExpiredAt.Set(nil)
+	o.CertificationExpiredAt = &v
 }
 
-// UnsetCertificationExpiredAt ensures that no value is present for CertificationExpiredAt, not even an explicit nil
-func (o *ProjectDetailsForServersDto) UnsetCertificationExpiredAt() {
-	o.CertificationExpiredAt.Unset()
-}
-
-// GetOpaProfileId returns the OpaProfileId field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetOpaProfileId returns the OpaProfileId field value if set, zero value otherwise.
 func (o *ProjectDetailsForServersDto) GetOpaProfileId() int32 {
-	if o == nil || IsNil(o.OpaProfileId.Get()) {
+	if o == nil || IsNil(o.OpaProfileId) {
 		var ret int32
 		return ret
 	}
-	return *o.OpaProfileId.Get()
+	return *o.OpaProfileId
 }
 
 // GetOpaProfileIdOk returns a tuple with the OpaProfileId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProjectDetailsForServersDto) GetOpaProfileIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.OpaProfileId) {
 		return nil, false
 	}
-	return o.OpaProfileId.Get(), o.OpaProfileId.IsSet()
+	return o.OpaProfileId, true
 }
 
 // HasOpaProfileId returns a boolean if a field has been set.
 func (o *ProjectDetailsForServersDto) HasOpaProfileId() bool {
-	if o != nil && o.OpaProfileId.IsSet() {
+	if o != nil && !IsNil(o.OpaProfileId) {
 		return true
 	}
 
 	return false
 }
 
-// SetOpaProfileId gets a reference to the given NullableInt32 and assigns it to the OpaProfileId field.
+// SetOpaProfileId gets a reference to the given int32 and assigns it to the OpaProfileId field.
 func (o *ProjectDetailsForServersDto) SetOpaProfileId(v int32) {
-	o.OpaProfileId.Set(&v)
-}
-// SetOpaProfileIdNil sets the value for OpaProfileId to be an explicit nil
-func (o *ProjectDetailsForServersDto) SetOpaProfileIdNil() {
-	o.OpaProfileId.Set(nil)
+	o.OpaProfileId = &v
 }
 
-// UnsetOpaProfileId ensures that no value is present for OpaProfileId, not even an explicit nil
-func (o *ProjectDetailsForServersDto) UnsetOpaProfileId() {
-	o.OpaProfileId.Unset()
-}
-
-// GetOpaProfileName returns the OpaProfileName field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetOpaProfileName returns the OpaProfileName field value if set, zero value otherwise.
 func (o *ProjectDetailsForServersDto) GetOpaProfileName() string {
-	if o == nil || IsNil(o.OpaProfileName.Get()) {
+	if o == nil || IsNil(o.OpaProfileName) {
 		var ret string
 		return ret
 	}
-	return *o.OpaProfileName.Get()
+	return *o.OpaProfileName
 }
 
 // GetOpaProfileNameOk returns a tuple with the OpaProfileName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProjectDetailsForServersDto) GetOpaProfileNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.OpaProfileName) {
 		return nil, false
 	}
-	return o.OpaProfileName.Get(), o.OpaProfileName.IsSet()
+	return o.OpaProfileName, true
 }
 
 // HasOpaProfileName returns a boolean if a field has been set.
 func (o *ProjectDetailsForServersDto) HasOpaProfileName() bool {
-	if o != nil && o.OpaProfileName.IsSet() {
+	if o != nil && !IsNil(o.OpaProfileName) {
 		return true
 	}
 
 	return false
 }
 
-// SetOpaProfileName gets a reference to the given NullableString and assigns it to the OpaProfileName field.
+// SetOpaProfileName gets a reference to the given string and assigns it to the OpaProfileName field.
 func (o *ProjectDetailsForServersDto) SetOpaProfileName(v string) {
-	o.OpaProfileName.Set(&v)
-}
-// SetOpaProfileNameNil sets the value for OpaProfileName to be an explicit nil
-func (o *ProjectDetailsForServersDto) SetOpaProfileNameNil() {
-	o.OpaProfileName.Set(nil)
-}
-
-// UnsetOpaProfileName ensures that no value is present for OpaProfileName, not even an explicit nil
-func (o *ProjectDetailsForServersDto) UnsetOpaProfileName() {
-	o.OpaProfileName.Unset()
+	o.OpaProfileName = &v
 }
 
 // GetAllowFullSpotKubernetes returns the AllowFullSpotKubernetes field value if set, zero value otherwise.
@@ -2471,46 +2234,36 @@ func (o *ProjectDetailsForServersDto) SetAllowSpotVMs(v bool) {
 	o.AllowSpotVMs = &v
 }
 
-// GetMaxSpotPrice returns the MaxSpotPrice field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetMaxSpotPrice returns the MaxSpotPrice field value if set, zero value otherwise.
 func (o *ProjectDetailsForServersDto) GetMaxSpotPrice() float64 {
-	if o == nil || IsNil(o.MaxSpotPrice.Get()) {
+	if o == nil || IsNil(o.MaxSpotPrice) {
 		var ret float64
 		return ret
 	}
-	return *o.MaxSpotPrice.Get()
+	return *o.MaxSpotPrice
 }
 
 // GetMaxSpotPriceOk returns a tuple with the MaxSpotPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProjectDetailsForServersDto) GetMaxSpotPriceOk() (*float64, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.MaxSpotPrice) {
 		return nil, false
 	}
-	return o.MaxSpotPrice.Get(), o.MaxSpotPrice.IsSet()
+	return o.MaxSpotPrice, true
 }
 
 // HasMaxSpotPrice returns a boolean if a field has been set.
 func (o *ProjectDetailsForServersDto) HasMaxSpotPrice() bool {
-	if o != nil && o.MaxSpotPrice.IsSet() {
+	if o != nil && !IsNil(o.MaxSpotPrice) {
 		return true
 	}
 
 	return false
 }
 
-// SetMaxSpotPrice gets a reference to the given NullableFloat64 and assigns it to the MaxSpotPrice field.
+// SetMaxSpotPrice gets a reference to the given float64 and assigns it to the MaxSpotPrice field.
 func (o *ProjectDetailsForServersDto) SetMaxSpotPrice(v float64) {
-	o.MaxSpotPrice.Set(&v)
-}
-// SetMaxSpotPriceNil sets the value for MaxSpotPrice to be an explicit nil
-func (o *ProjectDetailsForServersDto) SetMaxSpotPriceNil() {
-	o.MaxSpotPrice.Set(nil)
-}
-
-// UnsetMaxSpotPrice ensures that no value is present for MaxSpotPrice, not even an explicit nil
-func (o *ProjectDetailsForServersDto) UnsetMaxSpotPrice() {
-	o.MaxSpotPrice.Unset()
+	o.MaxSpotPrice = &v
 }
 
 // GetIsKubevapEnabled returns the IsKubevapEnabled field value if set, zero value otherwise.
@@ -2577,88 +2330,68 @@ func (o *ProjectDetailsForServersDto) SetIsKubernetesCurrentVersionKubevapEnable
 	o.IsKubernetesCurrentVersionKubevapEnabled = &v
 }
 
-// GetFailureReason returns the FailureReason field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetFailureReason returns the FailureReason field value if set, zero value otherwise.
 func (o *ProjectDetailsForServersDto) GetFailureReason() string {
-	if o == nil || IsNil(o.FailureReason.Get()) {
+	if o == nil || IsNil(o.FailureReason) {
 		var ret string
 		return ret
 	}
-	return *o.FailureReason.Get()
+	return *o.FailureReason
 }
 
 // GetFailureReasonOk returns a tuple with the FailureReason field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProjectDetailsForServersDto) GetFailureReasonOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.FailureReason) {
 		return nil, false
 	}
-	return o.FailureReason.Get(), o.FailureReason.IsSet()
+	return o.FailureReason, true
 }
 
 // HasFailureReason returns a boolean if a field has been set.
 func (o *ProjectDetailsForServersDto) HasFailureReason() bool {
-	if o != nil && o.FailureReason.IsSet() {
+	if o != nil && !IsNil(o.FailureReason) {
 		return true
 	}
 
 	return false
 }
 
-// SetFailureReason gets a reference to the given NullableString and assigns it to the FailureReason field.
+// SetFailureReason gets a reference to the given string and assigns it to the FailureReason field.
 func (o *ProjectDetailsForServersDto) SetFailureReason(v string) {
-	o.FailureReason.Set(&v)
-}
-// SetFailureReasonNil sets the value for FailureReason to be an explicit nil
-func (o *ProjectDetailsForServersDto) SetFailureReasonNil() {
-	o.FailureReason.Set(nil)
+	o.FailureReason = &v
 }
 
-// UnsetFailureReason ensures that no value is present for FailureReason, not even an explicit nil
-func (o *ProjectDetailsForServersDto) UnsetFailureReason() {
-	o.FailureReason.Unset()
-}
-
-// GetWarningMessage returns the WarningMessage field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetWarningMessage returns the WarningMessage field value if set, zero value otherwise.
 func (o *ProjectDetailsForServersDto) GetWarningMessage() string {
-	if o == nil || IsNil(o.WarningMessage.Get()) {
+	if o == nil || IsNil(o.WarningMessage) {
 		var ret string
 		return ret
 	}
-	return *o.WarningMessage.Get()
+	return *o.WarningMessage
 }
 
 // GetWarningMessageOk returns a tuple with the WarningMessage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProjectDetailsForServersDto) GetWarningMessageOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.WarningMessage) {
 		return nil, false
 	}
-	return o.WarningMessage.Get(), o.WarningMessage.IsSet()
+	return o.WarningMessage, true
 }
 
 // HasWarningMessage returns a boolean if a field has been set.
 func (o *ProjectDetailsForServersDto) HasWarningMessage() bool {
-	if o != nil && o.WarningMessage.IsSet() {
+	if o != nil && !IsNil(o.WarningMessage) {
 		return true
 	}
 
 	return false
 }
 
-// SetWarningMessage gets a reference to the given NullableString and assigns it to the WarningMessage field.
+// SetWarningMessage gets a reference to the given string and assigns it to the WarningMessage field.
 func (o *ProjectDetailsForServersDto) SetWarningMessage(v string) {
-	o.WarningMessage.Set(&v)
-}
-// SetWarningMessageNil sets the value for WarningMessage to be an explicit nil
-func (o *ProjectDetailsForServersDto) SetWarningMessageNil() {
-	o.WarningMessage.Set(nil)
-}
-
-// UnsetWarningMessage ensures that no value is present for WarningMessage, not even an explicit nil
-func (o *ProjectDetailsForServersDto) UnsetWarningMessage() {
-	o.WarningMessage.Unset()
+	o.WarningMessage = &v
 }
 
 // GetTotalHourlyCost returns the TotalHourlyCost field value if set, zero value otherwise.
@@ -2693,256 +2426,196 @@ func (o *ProjectDetailsForServersDto) SetTotalHourlyCost(v float64) {
 	o.TotalHourlyCost = &v
 }
 
-// GetAutoscalingGroupName returns the AutoscalingGroupName field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetAutoscalingGroupName returns the AutoscalingGroupName field value if set, zero value otherwise.
 func (o *ProjectDetailsForServersDto) GetAutoscalingGroupName() string {
-	if o == nil || IsNil(o.AutoscalingGroupName.Get()) {
+	if o == nil || IsNil(o.AutoscalingGroupName) {
 		var ret string
 		return ret
 	}
-	return *o.AutoscalingGroupName.Get()
+	return *o.AutoscalingGroupName
 }
 
 // GetAutoscalingGroupNameOk returns a tuple with the AutoscalingGroupName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProjectDetailsForServersDto) GetAutoscalingGroupNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.AutoscalingGroupName) {
 		return nil, false
 	}
-	return o.AutoscalingGroupName.Get(), o.AutoscalingGroupName.IsSet()
+	return o.AutoscalingGroupName, true
 }
 
 // HasAutoscalingGroupName returns a boolean if a field has been set.
 func (o *ProjectDetailsForServersDto) HasAutoscalingGroupName() bool {
-	if o != nil && o.AutoscalingGroupName.IsSet() {
+	if o != nil && !IsNil(o.AutoscalingGroupName) {
 		return true
 	}
 
 	return false
 }
 
-// SetAutoscalingGroupName gets a reference to the given NullableString and assigns it to the AutoscalingGroupName field.
+// SetAutoscalingGroupName gets a reference to the given string and assigns it to the AutoscalingGroupName field.
 func (o *ProjectDetailsForServersDto) SetAutoscalingGroupName(v string) {
-	o.AutoscalingGroupName.Set(&v)
-}
-// SetAutoscalingGroupNameNil sets the value for AutoscalingGroupName to be an explicit nil
-func (o *ProjectDetailsForServersDto) SetAutoscalingGroupNameNil() {
-	o.AutoscalingGroupName.Set(nil)
+	o.AutoscalingGroupName = &v
 }
 
-// UnsetAutoscalingGroupName ensures that no value is present for AutoscalingGroupName, not even an explicit nil
-func (o *ProjectDetailsForServersDto) UnsetAutoscalingGroupName() {
-	o.AutoscalingGroupName.Unset()
-}
-
-// GetMinSize returns the MinSize field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetMinSize returns the MinSize field value if set, zero value otherwise.
 func (o *ProjectDetailsForServersDto) GetMinSize() int32 {
-	if o == nil || IsNil(o.MinSize.Get()) {
+	if o == nil || IsNil(o.MinSize) {
 		var ret int32
 		return ret
 	}
-	return *o.MinSize.Get()
+	return *o.MinSize
 }
 
 // GetMinSizeOk returns a tuple with the MinSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProjectDetailsForServersDto) GetMinSizeOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.MinSize) {
 		return nil, false
 	}
-	return o.MinSize.Get(), o.MinSize.IsSet()
+	return o.MinSize, true
 }
 
 // HasMinSize returns a boolean if a field has been set.
 func (o *ProjectDetailsForServersDto) HasMinSize() bool {
-	if o != nil && o.MinSize.IsSet() {
+	if o != nil && !IsNil(o.MinSize) {
 		return true
 	}
 
 	return false
 }
 
-// SetMinSize gets a reference to the given NullableInt32 and assigns it to the MinSize field.
+// SetMinSize gets a reference to the given int32 and assigns it to the MinSize field.
 func (o *ProjectDetailsForServersDto) SetMinSize(v int32) {
-	o.MinSize.Set(&v)
-}
-// SetMinSizeNil sets the value for MinSize to be an explicit nil
-func (o *ProjectDetailsForServersDto) SetMinSizeNil() {
-	o.MinSize.Set(nil)
+	o.MinSize = &v
 }
 
-// UnsetMinSize ensures that no value is present for MinSize, not even an explicit nil
-func (o *ProjectDetailsForServersDto) UnsetMinSize() {
-	o.MinSize.Unset()
-}
-
-// GetMaxSize returns the MaxSize field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetMaxSize returns the MaxSize field value if set, zero value otherwise.
 func (o *ProjectDetailsForServersDto) GetMaxSize() int32 {
-	if o == nil || IsNil(o.MaxSize.Get()) {
+	if o == nil || IsNil(o.MaxSize) {
 		var ret int32
 		return ret
 	}
-	return *o.MaxSize.Get()
+	return *o.MaxSize
 }
 
 // GetMaxSizeOk returns a tuple with the MaxSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProjectDetailsForServersDto) GetMaxSizeOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.MaxSize) {
 		return nil, false
 	}
-	return o.MaxSize.Get(), o.MaxSize.IsSet()
+	return o.MaxSize, true
 }
 
 // HasMaxSize returns a boolean if a field has been set.
 func (o *ProjectDetailsForServersDto) HasMaxSize() bool {
-	if o != nil && o.MaxSize.IsSet() {
+	if o != nil && !IsNil(o.MaxSize) {
 		return true
 	}
 
 	return false
 }
 
-// SetMaxSize gets a reference to the given NullableInt32 and assigns it to the MaxSize field.
+// SetMaxSize gets a reference to the given int32 and assigns it to the MaxSize field.
 func (o *ProjectDetailsForServersDto) SetMaxSize(v int32) {
-	o.MaxSize.Set(&v)
-}
-// SetMaxSizeNil sets the value for MaxSize to be an explicit nil
-func (o *ProjectDetailsForServersDto) SetMaxSizeNil() {
-	o.MaxSize.Set(nil)
+	o.MaxSize = &v
 }
 
-// UnsetMaxSize ensures that no value is present for MaxSize, not even an explicit nil
-func (o *ProjectDetailsForServersDto) UnsetMaxSize() {
-	o.MaxSize.Unset()
-}
-
-// GetDiskSize returns the DiskSize field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetDiskSize returns the DiskSize field value if set, zero value otherwise.
 func (o *ProjectDetailsForServersDto) GetDiskSize() float64 {
-	if o == nil || IsNil(o.DiskSize.Get()) {
+	if o == nil || IsNil(o.DiskSize) {
 		var ret float64
 		return ret
 	}
-	return *o.DiskSize.Get()
+	return *o.DiskSize
 }
 
 // GetDiskSizeOk returns a tuple with the DiskSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProjectDetailsForServersDto) GetDiskSizeOk() (*float64, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.DiskSize) {
 		return nil, false
 	}
-	return o.DiskSize.Get(), o.DiskSize.IsSet()
+	return o.DiskSize, true
 }
 
 // HasDiskSize returns a boolean if a field has been set.
 func (o *ProjectDetailsForServersDto) HasDiskSize() bool {
-	if o != nil && o.DiskSize.IsSet() {
+	if o != nil && !IsNil(o.DiskSize) {
 		return true
 	}
 
 	return false
 }
 
-// SetDiskSize gets a reference to the given NullableFloat64 and assigns it to the DiskSize field.
+// SetDiskSize gets a reference to the given float64 and assigns it to the DiskSize field.
 func (o *ProjectDetailsForServersDto) SetDiskSize(v float64) {
-	o.DiskSize.Set(&v)
-}
-// SetDiskSizeNil sets the value for DiskSize to be an explicit nil
-func (o *ProjectDetailsForServersDto) SetDiskSizeNil() {
-	o.DiskSize.Set(nil)
+	o.DiskSize = &v
 }
 
-// UnsetDiskSize ensures that no value is present for DiskSize, not even an explicit nil
-func (o *ProjectDetailsForServersDto) UnsetDiskSize() {
-	o.DiskSize.Unset()
-}
-
-// GetFlavor returns the Flavor field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetFlavor returns the Flavor field value if set, zero value otherwise.
 func (o *ProjectDetailsForServersDto) GetFlavor() string {
-	if o == nil || IsNil(o.Flavor.Get()) {
+	if o == nil || IsNil(o.Flavor) {
 		var ret string
 		return ret
 	}
-	return *o.Flavor.Get()
+	return *o.Flavor
 }
 
 // GetFlavorOk returns a tuple with the Flavor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProjectDetailsForServersDto) GetFlavorOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Flavor) {
 		return nil, false
 	}
-	return o.Flavor.Get(), o.Flavor.IsSet()
+	return o.Flavor, true
 }
 
 // HasFlavor returns a boolean if a field has been set.
 func (o *ProjectDetailsForServersDto) HasFlavor() bool {
-	if o != nil && o.Flavor.IsSet() {
+	if o != nil && !IsNil(o.Flavor) {
 		return true
 	}
 
 	return false
 }
 
-// SetFlavor gets a reference to the given NullableString and assigns it to the Flavor field.
+// SetFlavor gets a reference to the given string and assigns it to the Flavor field.
 func (o *ProjectDetailsForServersDto) SetFlavor(v string) {
-	o.Flavor.Set(&v)
-}
-// SetFlavorNil sets the value for Flavor to be an explicit nil
-func (o *ProjectDetailsForServersDto) SetFlavorNil() {
-	o.Flavor.Set(nil)
+	o.Flavor = &v
 }
 
-// UnsetFlavor ensures that no value is present for Flavor, not even an explicit nil
-func (o *ProjectDetailsForServersDto) UnsetFlavor() {
-	o.Flavor.Unset()
-}
-
-// GetSpotEnabled returns the SpotEnabled field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetSpotEnabled returns the SpotEnabled field value if set, zero value otherwise.
 func (o *ProjectDetailsForServersDto) GetSpotEnabled() bool {
-	if o == nil || IsNil(o.SpotEnabled.Get()) {
+	if o == nil || IsNil(o.SpotEnabled) {
 		var ret bool
 		return ret
 	}
-	return *o.SpotEnabled.Get()
+	return *o.SpotEnabled
 }
 
 // GetSpotEnabledOk returns a tuple with the SpotEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProjectDetailsForServersDto) GetSpotEnabledOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.SpotEnabled) {
 		return nil, false
 	}
-	return o.SpotEnabled.Get(), o.SpotEnabled.IsSet()
+	return o.SpotEnabled, true
 }
 
 // HasSpotEnabled returns a boolean if a field has been set.
 func (o *ProjectDetailsForServersDto) HasSpotEnabled() bool {
-	if o != nil && o.SpotEnabled.IsSet() {
+	if o != nil && !IsNil(o.SpotEnabled) {
 		return true
 	}
 
 	return false
 }
 
-// SetSpotEnabled gets a reference to the given NullableBool and assigns it to the SpotEnabled field.
+// SetSpotEnabled gets a reference to the given bool and assigns it to the SpotEnabled field.
 func (o *ProjectDetailsForServersDto) SetSpotEnabled(v bool) {
-	o.SpotEnabled.Set(&v)
-}
-// SetSpotEnabledNil sets the value for SpotEnabled to be an explicit nil
-func (o *ProjectDetailsForServersDto) SetSpotEnabledNil() {
-	o.SpotEnabled.Set(nil)
-}
-
-// UnsetSpotEnabled ensures that no value is present for SpotEnabled, not even an explicit nil
-func (o *ProjectDetailsForServersDto) UnsetSpotEnabled() {
-	o.SpotEnabled.Unset()
+	o.SpotEnabled = &v
 }
 
 // GetIsAutoscalingEnabled returns the IsAutoscalingEnabled field value if set, zero value otherwise.
@@ -3009,6 +2682,102 @@ func (o *ProjectDetailsForServersDto) SetHasExpirationWarning(v bool) {
 	o.HasExpirationWarning = &v
 }
 
+// GetHasNfsServer returns the HasNfsServer field value if set, zero value otherwise.
+func (o *ProjectDetailsForServersDto) GetHasNfsServer() bool {
+	if o == nil || IsNil(o.HasNfsServer) {
+		var ret bool
+		return ret
+	}
+	return *o.HasNfsServer
+}
+
+// GetHasNfsServerOk returns a tuple with the HasNfsServer field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ProjectDetailsForServersDto) GetHasNfsServerOk() (*bool, bool) {
+	if o == nil || IsNil(o.HasNfsServer) {
+		return nil, false
+	}
+	return o.HasNfsServer, true
+}
+
+// HasHasNfsServer returns a boolean if a field has been set.
+func (o *ProjectDetailsForServersDto) HasHasNfsServer() bool {
+	if o != nil && !IsNil(o.HasNfsServer) {
+		return true
+	}
+
+	return false
+}
+
+// SetHasNfsServer gets a reference to the given bool and assigns it to the HasNfsServer field.
+func (o *ProjectDetailsForServersDto) SetHasNfsServer(v bool) {
+	o.HasNfsServer = &v
+}
+
+// GetAvailabilityZones returns the AvailabilityZones field value if set, zero value otherwise.
+func (o *ProjectDetailsForServersDto) GetAvailabilityZones() []string {
+	if o == nil || IsNil(o.AvailabilityZones) {
+		var ret []string
+		return ret
+	}
+	return o.AvailabilityZones
+}
+
+// GetAvailabilityZonesOk returns a tuple with the AvailabilityZones field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ProjectDetailsForServersDto) GetAvailabilityZonesOk() ([]string, bool) {
+	if o == nil || IsNil(o.AvailabilityZones) {
+		return nil, false
+	}
+	return o.AvailabilityZones, true
+}
+
+// HasAvailabilityZones returns a boolean if a field has been set.
+func (o *ProjectDetailsForServersDto) HasAvailabilityZones() bool {
+	if o != nil && !IsNil(o.AvailabilityZones) {
+		return true
+	}
+
+	return false
+}
+
+// SetAvailabilityZones gets a reference to the given []string and assigns it to the AvailabilityZones field.
+func (o *ProjectDetailsForServersDto) SetAvailabilityZones(v []string) {
+	o.AvailabilityZones = v
+}
+
+// GetHypervisors returns the Hypervisors field value if set, zero value otherwise.
+func (o *ProjectDetailsForServersDto) GetHypervisors() []string {
+	if o == nil || IsNil(o.Hypervisors) {
+		var ret []string
+		return ret
+	}
+	return o.Hypervisors
+}
+
+// GetHypervisorsOk returns a tuple with the Hypervisors field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ProjectDetailsForServersDto) GetHypervisorsOk() ([]string, bool) {
+	if o == nil || IsNil(o.Hypervisors) {
+		return nil, false
+	}
+	return o.Hypervisors, true
+}
+
+// HasHypervisors returns a boolean if a field has been set.
+func (o *ProjectDetailsForServersDto) HasHypervisors() bool {
+	if o != nil && !IsNil(o.Hypervisors) {
+		return true
+	}
+
+	return false
+}
+
+// SetHypervisors gets a reference to the given []string and assigns it to the Hypervisors field.
+func (o *ProjectDetailsForServersDto) SetHypervisors(v []string) {
+	o.Hypervisors = v
+}
+
 func (o ProjectDetailsForServersDto) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -3040,14 +2809,14 @@ func (o ProjectDetailsForServersDto) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Bastion) {
 		toSerialize["bastion"] = o.Bastion
 	}
-	if o.ProjectStatus.IsSet() {
-		toSerialize["projectStatus"] = o.ProjectStatus.Get()
+	if !IsNil(o.ProjectStatus) {
+		toSerialize["projectStatus"] = o.ProjectStatus
 	}
-	if o.ProjectName.IsSet() {
-		toSerialize["projectName"] = o.ProjectName.Get()
+	if !IsNil(o.ProjectName) {
+		toSerialize["projectName"] = o.ProjectName
 	}
-	if o.AccessIp.IsSet() {
-		toSerialize["accessIp"] = o.AccessIp.Get()
+	if !IsNil(o.AccessIp) {
+		toSerialize["accessIp"] = o.AccessIp
 	}
 	if !IsNil(o.ProjectId) {
 		toSerialize["projectId"] = o.ProjectId
@@ -3055,11 +2824,11 @@ func (o ProjectDetailsForServersDto) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.MasterReady) {
 		toSerialize["masterReady"] = o.MasterReady
 	}
-	if o.CloudType.IsSet() {
-		toSerialize["cloudType"] = o.CloudType.Get()
+	if !IsNil(o.CloudType) {
+		toSerialize["cloudType"] = o.CloudType
 	}
-	if o.CloudName.IsSet() {
-		toSerialize["cloudName"] = o.CloudName.Get()
+	if !IsNil(o.CloudName) {
+		toSerialize["cloudName"] = o.CloudName
 	}
 	if !IsNil(o.CloudId) {
 		toSerialize["cloudId"] = o.CloudId
@@ -3067,20 +2836,20 @@ func (o ProjectDetailsForServersDto) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.QuotaId) {
 		toSerialize["quotaId"] = o.QuotaId
 	}
-	if o.OrganizationName.IsSet() {
-		toSerialize["organizationName"] = o.OrganizationName.Get()
+	if !IsNil(o.OrganizationName) {
+		toSerialize["organizationName"] = o.OrganizationName
 	}
 	if !IsNil(o.OrganizationId) {
 		toSerialize["organizationId"] = o.OrganizationId
 	}
-	if o.KubeCurrentVersion.IsSet() {
-		toSerialize["kubeCurrentVersion"] = o.KubeCurrentVersion.Get()
+	if !IsNil(o.KubeCurrentVersion) {
+		toSerialize["kubeCurrentVersion"] = o.KubeCurrentVersion
 	}
-	if o.KubernetesCurrentVersion.IsSet() {
-		toSerialize["kubernetesCurrentVersion"] = o.KubernetesCurrentVersion.Get()
+	if !IsNil(o.KubernetesCurrentVersion) {
+		toSerialize["kubernetesCurrentVersion"] = o.KubernetesCurrentVersion
 	}
-	if o.HasNextVersion.IsSet() {
-		toSerialize["hasNextVersion"] = o.HasNextVersion.Get()
+	if !IsNil(o.HasNextVersion) {
+		toSerialize["hasNextVersion"] = o.HasNextVersion
 	}
 	if !IsNil(o.IsKubernetes) {
 		toSerialize["isKubernetes"] = o.IsKubernetes
@@ -3154,8 +2923,8 @@ func (o ProjectDetailsForServersDto) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ProjectRevision) {
 		toSerialize["projectRevision"] = o.ProjectRevision
 	}
-	if o.AccessProfileRevision.IsSet() {
-		toSerialize["accessProfileRevision"] = o.AccessProfileRevision.Get()
+	if !IsNil(o.AccessProfileRevision) {
+		toSerialize["accessProfileRevision"] = o.AccessProfileRevision
 	}
 	if !IsNil(o.ProjectCloudRevision) {
 		toSerialize["projectCloudRevision"] = o.ProjectCloudRevision
@@ -3163,50 +2932,50 @@ func (o ProjectDetailsForServersDto) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.CloudCredentialRevision) {
 		toSerialize["cloudCredentialRevision"] = o.CloudCredentialRevision
 	}
-	if o.AccessProfileName.IsSet() {
-		toSerialize["accessProfileName"] = o.AccessProfileName.Get()
+	if !IsNil(o.AccessProfileName) {
+		toSerialize["accessProfileName"] = o.AccessProfileName
 	}
-	if o.AccessProfileId.IsSet() {
-		toSerialize["accessProfileId"] = o.AccessProfileId.Get()
+	if !IsNil(o.AccessProfileId) {
+		toSerialize["accessProfileId"] = o.AccessProfileId
 	}
-	if o.KubernetesProfileName.IsSet() {
-		toSerialize["kubernetesProfileName"] = o.KubernetesProfileName.Get()
+	if !IsNil(o.KubernetesProfileName) {
+		toSerialize["kubernetesProfileName"] = o.KubernetesProfileName
 	}
-	if o.KubernetesProfileId.IsSet() {
-		toSerialize["kubernetesProfileId"] = o.KubernetesProfileId.Get()
+	if !IsNil(o.KubernetesProfileId) {
+		toSerialize["kubernetesProfileId"] = o.KubernetesProfileId
 	}
-	if o.AlertingProfileName.IsSet() {
-		toSerialize["alertingProfileName"] = o.AlertingProfileName.Get()
+	if !IsNil(o.AlertingProfileName) {
+		toSerialize["alertingProfileName"] = o.AlertingProfileName
 	}
-	if o.ProjectHealth.IsSet() {
-		toSerialize["projectHealth"] = o.ProjectHealth.Get()
+	if !IsNil(o.ProjectHealth) {
+		toSerialize["projectHealth"] = o.ProjectHealth
 	}
-	if o.AlertingProfileId.IsSet() {
-		toSerialize["alertingProfileId"] = o.AlertingProfileId.Get()
+	if !IsNil(o.AlertingProfileId) {
+		toSerialize["alertingProfileId"] = o.AlertingProfileId
 	}
-	if o.S3CredentialId.IsSet() {
-		toSerialize["s3CredentialId"] = o.S3CredentialId.Get()
+	if !IsNil(o.S3CredentialId) {
+		toSerialize["s3CredentialId"] = o.S3CredentialId
 	}
-	if o.QuotaMessage.IsSet() {
-		toSerialize["quotaMessage"] = o.QuotaMessage.Get()
+	if !IsNil(o.QuotaMessage) {
+		toSerialize["quotaMessage"] = o.QuotaMessage
 	}
-	if o.CloudProviderMessage.IsSet() {
-		toSerialize["cloudProviderMessage"] = o.CloudProviderMessage.Get()
+	if !IsNil(o.CloudProviderMessage) {
+		toSerialize["cloudProviderMessage"] = o.CloudProviderMessage
 	}
-	if o.ExpiredAt.IsSet() {
-		toSerialize["expiredAt"] = o.ExpiredAt.Get()
+	if !IsNil(o.ExpiredAt) {
+		toSerialize["expiredAt"] = o.ExpiredAt
 	}
 	if !IsNil(o.DeleteOnExpiration) {
 		toSerialize["deleteOnExpiration"] = o.DeleteOnExpiration
 	}
-	if o.CertificationExpiredAt.IsSet() {
-		toSerialize["certificationExpiredAt"] = o.CertificationExpiredAt.Get()
+	if !IsNil(o.CertificationExpiredAt) {
+		toSerialize["certificationExpiredAt"] = o.CertificationExpiredAt
 	}
-	if o.OpaProfileId.IsSet() {
-		toSerialize["opaProfileId"] = o.OpaProfileId.Get()
+	if !IsNil(o.OpaProfileId) {
+		toSerialize["opaProfileId"] = o.OpaProfileId
 	}
-	if o.OpaProfileName.IsSet() {
-		toSerialize["opaProfileName"] = o.OpaProfileName.Get()
+	if !IsNil(o.OpaProfileName) {
+		toSerialize["opaProfileName"] = o.OpaProfileName
 	}
 	if !IsNil(o.AllowFullSpotKubernetes) {
 		toSerialize["allowFullSpotKubernetes"] = o.AllowFullSpotKubernetes
@@ -3217,8 +2986,8 @@ func (o ProjectDetailsForServersDto) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.AllowSpotVMs) {
 		toSerialize["allowSpotVMs"] = o.AllowSpotVMs
 	}
-	if o.MaxSpotPrice.IsSet() {
-		toSerialize["maxSpotPrice"] = o.MaxSpotPrice.Get()
+	if !IsNil(o.MaxSpotPrice) {
+		toSerialize["maxSpotPrice"] = o.MaxSpotPrice
 	}
 	if !IsNil(o.IsKubevapEnabled) {
 		toSerialize["isKubevapEnabled"] = o.IsKubevapEnabled
@@ -3226,38 +2995,47 @@ func (o ProjectDetailsForServersDto) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.IsKubernetesCurrentVersionKubevapEnabled) {
 		toSerialize["isKubernetesCurrentVersionKubevapEnabled"] = o.IsKubernetesCurrentVersionKubevapEnabled
 	}
-	if o.FailureReason.IsSet() {
-		toSerialize["failureReason"] = o.FailureReason.Get()
+	if !IsNil(o.FailureReason) {
+		toSerialize["failureReason"] = o.FailureReason
 	}
-	if o.WarningMessage.IsSet() {
-		toSerialize["warningMessage"] = o.WarningMessage.Get()
+	if !IsNil(o.WarningMessage) {
+		toSerialize["warningMessage"] = o.WarningMessage
 	}
 	if !IsNil(o.TotalHourlyCost) {
 		toSerialize["totalHourlyCost"] = o.TotalHourlyCost
 	}
-	if o.AutoscalingGroupName.IsSet() {
-		toSerialize["autoscalingGroupName"] = o.AutoscalingGroupName.Get()
+	if !IsNil(o.AutoscalingGroupName) {
+		toSerialize["autoscalingGroupName"] = o.AutoscalingGroupName
 	}
-	if o.MinSize.IsSet() {
-		toSerialize["minSize"] = o.MinSize.Get()
+	if !IsNil(o.MinSize) {
+		toSerialize["minSize"] = o.MinSize
 	}
-	if o.MaxSize.IsSet() {
-		toSerialize["maxSize"] = o.MaxSize.Get()
+	if !IsNil(o.MaxSize) {
+		toSerialize["maxSize"] = o.MaxSize
 	}
-	if o.DiskSize.IsSet() {
-		toSerialize["diskSize"] = o.DiskSize.Get()
+	if !IsNil(o.DiskSize) {
+		toSerialize["diskSize"] = o.DiskSize
 	}
-	if o.Flavor.IsSet() {
-		toSerialize["flavor"] = o.Flavor.Get()
+	if !IsNil(o.Flavor) {
+		toSerialize["flavor"] = o.Flavor
 	}
-	if o.SpotEnabled.IsSet() {
-		toSerialize["spotEnabled"] = o.SpotEnabled.Get()
+	if !IsNil(o.SpotEnabled) {
+		toSerialize["spotEnabled"] = o.SpotEnabled
 	}
 	if !IsNil(o.IsAutoscalingEnabled) {
 		toSerialize["isAutoscalingEnabled"] = o.IsAutoscalingEnabled
 	}
 	if !IsNil(o.HasExpirationWarning) {
 		toSerialize["hasExpirationWarning"] = o.HasExpirationWarning
+	}
+	if !IsNil(o.HasNfsServer) {
+		toSerialize["hasNfsServer"] = o.HasNfsServer
+	}
+	if !IsNil(o.AvailabilityZones) {
+		toSerialize["availabilityZones"] = o.AvailabilityZones
+	}
+	if !IsNil(o.Hypervisors) {
+		toSerialize["hypervisors"] = o.Hypervisors
 	}
 	return toSerialize, nil
 }

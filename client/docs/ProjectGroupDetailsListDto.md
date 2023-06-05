@@ -5,9 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
 **OrganizationId** | Pointer to **int32** |  | [optional] 
-**OrganizationName** | Pointer to **NullableString** |  | [optional] 
+**OrganizationName** | Pointer to **string** |  | [optional] 
 **Projects** | Pointer to [**[]ProjectListDto**](ProjectListDto.md) |  | [optional] 
 **UserGroups** | Pointer to [**[]UserGroupEntityListDto**](UserGroupEntityListDto.md) |  | [optional] 
 
@@ -80,16 +80,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *ProjectGroupDetailsListDto) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *ProjectGroupDetailsListDto) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetOrganizationId
 
 `func (o *ProjectGroupDetailsListDto) GetOrganizationId() int32`
@@ -140,16 +130,6 @@ SetOrganizationName sets OrganizationName field to given value.
 
 HasOrganizationName returns a boolean if a field has been set.
 
-### SetOrganizationNameNil
-
-`func (o *ProjectGroupDetailsListDto) SetOrganizationNameNil(b bool)`
-
- SetOrganizationNameNil sets the value for OrganizationName to be an explicit nil
-
-### UnsetOrganizationName
-`func (o *ProjectGroupDetailsListDto) UnsetOrganizationName()`
-
-UnsetOrganizationName ensures that no value is present for OrganizationName, not even an explicit nil
 ### GetProjects
 
 `func (o *ProjectGroupDetailsListDto) GetProjects() []ProjectListDto`
@@ -175,16 +155,6 @@ SetProjects sets Projects field to given value.
 
 HasProjects returns a boolean if a field has been set.
 
-### SetProjectsNil
-
-`func (o *ProjectGroupDetailsListDto) SetProjectsNil(b bool)`
-
- SetProjectsNil sets the value for Projects to be an explicit nil
-
-### UnsetProjects
-`func (o *ProjectGroupDetailsListDto) UnsetProjects()`
-
-UnsetProjects ensures that no value is present for Projects, not even an explicit nil
 ### GetUserGroups
 
 `func (o *ProjectGroupDetailsListDto) GetUserGroups() []UserGroupEntityListDto`
@@ -210,16 +180,6 @@ SetUserGroups sets UserGroups field to given value.
 
 HasUserGroups returns a boolean if a field has been set.
 
-### SetUserGroupsNil
-
-`func (o *ProjectGroupDetailsListDto) SetUserGroupsNil(b bool)`
-
- SetUserGroupsNil sets the value for UserGroups to be an explicit nil
-
-### UnsetUserGroups
-`func (o *ProjectGroupDetailsListDto) UnsetUserGroups()`
-
-UnsetUserGroups ensures that no value is present for UserGroups, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -5,18 +5,18 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
-**StartDate** | Pointer to **NullableString** |  | [optional] 
-**EndDate** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**StartDate** | Pointer to **string** |  | [optional] 
+**EndDate** | Pointer to **string** |  | [optional] 
 **RequiredPaymentAction** | Pointer to **bool** |  | [optional] 
 **IsPaid** | Pointer to **bool** |  | [optional] 
-**InvoiceId** | Pointer to **NullableString** |  | [optional] 
-**SubscriptionType** | Pointer to **NullableString** |  | [optional] 
-**SubscriptionName** | Pointer to **NullableString** |  | [optional] 
+**InvoiceId** | Pointer to **string** |  | [optional] 
+**SubscriptionType** | Pointer to **string** |  | [optional] 
+**SubscriptionName** | Pointer to **string** |  | [optional] 
 **Price** | Pointer to **float64** |  | [optional] 
 **OrganizationId** | Pointer to **int32** |  | [optional] 
-**OrganizationName** | Pointer to **NullableString** |  | [optional] 
-**InvoiceNumber** | Pointer to **NullableString** |  | [optional] 
+**OrganizationName** | Pointer to **string** |  | [optional] 
+**InvoiceNumber** | Pointer to **string** |  | [optional] 
 **OrganizationSubscriptionId** | Pointer to **int32** |  | [optional] 
 
 ## Methods
@@ -88,16 +88,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *InvoiceListDto) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *InvoiceListDto) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetStartDate
 
 `func (o *InvoiceListDto) GetStartDate() string`
@@ -123,16 +113,6 @@ SetStartDate sets StartDate field to given value.
 
 HasStartDate returns a boolean if a field has been set.
 
-### SetStartDateNil
-
-`func (o *InvoiceListDto) SetStartDateNil(b bool)`
-
- SetStartDateNil sets the value for StartDate to be an explicit nil
-
-### UnsetStartDate
-`func (o *InvoiceListDto) UnsetStartDate()`
-
-UnsetStartDate ensures that no value is present for StartDate, not even an explicit nil
 ### GetEndDate
 
 `func (o *InvoiceListDto) GetEndDate() string`
@@ -158,16 +138,6 @@ SetEndDate sets EndDate field to given value.
 
 HasEndDate returns a boolean if a field has been set.
 
-### SetEndDateNil
-
-`func (o *InvoiceListDto) SetEndDateNil(b bool)`
-
- SetEndDateNil sets the value for EndDate to be an explicit nil
-
-### UnsetEndDate
-`func (o *InvoiceListDto) UnsetEndDate()`
-
-UnsetEndDate ensures that no value is present for EndDate, not even an explicit nil
 ### GetRequiredPaymentAction
 
 `func (o *InvoiceListDto) GetRequiredPaymentAction() bool`
@@ -243,16 +213,6 @@ SetInvoiceId sets InvoiceId field to given value.
 
 HasInvoiceId returns a boolean if a field has been set.
 
-### SetInvoiceIdNil
-
-`func (o *InvoiceListDto) SetInvoiceIdNil(b bool)`
-
- SetInvoiceIdNil sets the value for InvoiceId to be an explicit nil
-
-### UnsetInvoiceId
-`func (o *InvoiceListDto) UnsetInvoiceId()`
-
-UnsetInvoiceId ensures that no value is present for InvoiceId, not even an explicit nil
 ### GetSubscriptionType
 
 `func (o *InvoiceListDto) GetSubscriptionType() string`
@@ -278,16 +238,6 @@ SetSubscriptionType sets SubscriptionType field to given value.
 
 HasSubscriptionType returns a boolean if a field has been set.
 
-### SetSubscriptionTypeNil
-
-`func (o *InvoiceListDto) SetSubscriptionTypeNil(b bool)`
-
- SetSubscriptionTypeNil sets the value for SubscriptionType to be an explicit nil
-
-### UnsetSubscriptionType
-`func (o *InvoiceListDto) UnsetSubscriptionType()`
-
-UnsetSubscriptionType ensures that no value is present for SubscriptionType, not even an explicit nil
 ### GetSubscriptionName
 
 `func (o *InvoiceListDto) GetSubscriptionName() string`
@@ -313,16 +263,6 @@ SetSubscriptionName sets SubscriptionName field to given value.
 
 HasSubscriptionName returns a boolean if a field has been set.
 
-### SetSubscriptionNameNil
-
-`func (o *InvoiceListDto) SetSubscriptionNameNil(b bool)`
-
- SetSubscriptionNameNil sets the value for SubscriptionName to be an explicit nil
-
-### UnsetSubscriptionName
-`func (o *InvoiceListDto) UnsetSubscriptionName()`
-
-UnsetSubscriptionName ensures that no value is present for SubscriptionName, not even an explicit nil
 ### GetPrice
 
 `func (o *InvoiceListDto) GetPrice() float64`
@@ -398,16 +338,6 @@ SetOrganizationName sets OrganizationName field to given value.
 
 HasOrganizationName returns a boolean if a field has been set.
 
-### SetOrganizationNameNil
-
-`func (o *InvoiceListDto) SetOrganizationNameNil(b bool)`
-
- SetOrganizationNameNil sets the value for OrganizationName to be an explicit nil
-
-### UnsetOrganizationName
-`func (o *InvoiceListDto) UnsetOrganizationName()`
-
-UnsetOrganizationName ensures that no value is present for OrganizationName, not even an explicit nil
 ### GetInvoiceNumber
 
 `func (o *InvoiceListDto) GetInvoiceNumber() string`
@@ -433,16 +363,6 @@ SetInvoiceNumber sets InvoiceNumber field to given value.
 
 HasInvoiceNumber returns a boolean if a field has been set.
 
-### SetInvoiceNumberNil
-
-`func (o *InvoiceListDto) SetInvoiceNumberNil(b bool)`
-
- SetInvoiceNumberNil sets the value for InvoiceNumber to be an explicit nil
-
-### UnsetInvoiceNumber
-`func (o *InvoiceListDto) UnsetInvoiceNumber()`
-
-UnsetInvoiceNumber ensures that no value is present for InvoiceNumber, not even an explicit nil
 ### GetOrganizationSubscriptionId
 
 `func (o *InvoiceListDto) GetOrganizationSubscriptionId() int32`

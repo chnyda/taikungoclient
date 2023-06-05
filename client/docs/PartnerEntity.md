@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **PartnerId** | Pointer to **int32** |  | [optional] 
-**PartnerName** | Pointer to **NullableString** |  | [optional] 
+**PartnerName** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -76,16 +76,6 @@ SetPartnerName sets PartnerName field to given value.
 
 HasPartnerName returns a boolean if a field has been set.
 
-### SetPartnerNameNil
-
-`func (o *PartnerEntity) SetPartnerNameNil(b bool)`
-
- SetPartnerNameNil sets the value for PartnerName to be an explicit nil
-
-### UnsetPartnerName
-`func (o *PartnerEntity) UnsetPartnerName()`
-
-UnsetPartnerName ensures that no value is present for PartnerName, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

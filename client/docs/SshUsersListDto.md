@@ -5,9 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
-**SshPublicKey** | Pointer to **NullableString** |  | [optional] 
-**AccessProfileName** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**SshPublicKey** | Pointer to **string** |  | [optional] 
+**AccessProfileName** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -78,16 +78,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *SshUsersListDto) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *SshUsersListDto) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetSshPublicKey
 
 `func (o *SshUsersListDto) GetSshPublicKey() string`
@@ -113,16 +103,6 @@ SetSshPublicKey sets SshPublicKey field to given value.
 
 HasSshPublicKey returns a boolean if a field has been set.
 
-### SetSshPublicKeyNil
-
-`func (o *SshUsersListDto) SetSshPublicKeyNil(b bool)`
-
- SetSshPublicKeyNil sets the value for SshPublicKey to be an explicit nil
-
-### UnsetSshPublicKey
-`func (o *SshUsersListDto) UnsetSshPublicKey()`
-
-UnsetSshPublicKey ensures that no value is present for SshPublicKey, not even an explicit nil
 ### GetAccessProfileName
 
 `func (o *SshUsersListDto) GetAccessProfileName() string`
@@ -148,16 +128,6 @@ SetAccessProfileName sets AccessProfileName field to given value.
 
 HasAccessProfileName returns a boolean if a field has been set.
 
-### SetAccessProfileNameNil
-
-`func (o *SshUsersListDto) SetAccessProfileNameNil(b bool)`
-
- SetAccessProfileNameNil sets the value for AccessProfileName to be an explicit nil
-
-### UnsetAccessProfileName
-`func (o *SshUsersListDto) UnsetAccessProfileName()`
-
-UnsetAccessProfileName ensures that no value is present for AccessProfileName, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

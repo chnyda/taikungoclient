@@ -5,10 +5,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
-**CreatedAt** | Pointer to **NullableTime** |  | [optional] 
-**BillingStartDate** | Pointer to **NullableTime** |  | [optional] 
-**OrganizationName** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**CreatedAt** | Pointer to **time.Time** |  | [optional] 
+**BillingStartDate** | Pointer to **time.Time** |  | [optional] 
+**OrganizationName** | Pointer to **string** |  | [optional] 
 **Price** | Pointer to **float64** |  | [optional] 
 **Servers** | Pointer to [**[]ServersForBillingDto**](ServersForBillingDto.md) |  | [optional] 
 **StandaloneVms** | Pointer to [**[]StandaloneVmsForBillingDto**](StandaloneVmsForBillingDto.md) |  | [optional] 
@@ -83,16 +83,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *ProjectsForBillingDto) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *ProjectsForBillingDto) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetCreatedAt
 
 `func (o *ProjectsForBillingDto) GetCreatedAt() time.Time`
@@ -118,16 +108,6 @@ SetCreatedAt sets CreatedAt field to given value.
 
 HasCreatedAt returns a boolean if a field has been set.
 
-### SetCreatedAtNil
-
-`func (o *ProjectsForBillingDto) SetCreatedAtNil(b bool)`
-
- SetCreatedAtNil sets the value for CreatedAt to be an explicit nil
-
-### UnsetCreatedAt
-`func (o *ProjectsForBillingDto) UnsetCreatedAt()`
-
-UnsetCreatedAt ensures that no value is present for CreatedAt, not even an explicit nil
 ### GetBillingStartDate
 
 `func (o *ProjectsForBillingDto) GetBillingStartDate() time.Time`
@@ -153,16 +133,6 @@ SetBillingStartDate sets BillingStartDate field to given value.
 
 HasBillingStartDate returns a boolean if a field has been set.
 
-### SetBillingStartDateNil
-
-`func (o *ProjectsForBillingDto) SetBillingStartDateNil(b bool)`
-
- SetBillingStartDateNil sets the value for BillingStartDate to be an explicit nil
-
-### UnsetBillingStartDate
-`func (o *ProjectsForBillingDto) UnsetBillingStartDate()`
-
-UnsetBillingStartDate ensures that no value is present for BillingStartDate, not even an explicit nil
 ### GetOrganizationName
 
 `func (o *ProjectsForBillingDto) GetOrganizationName() string`
@@ -188,16 +158,6 @@ SetOrganizationName sets OrganizationName field to given value.
 
 HasOrganizationName returns a boolean if a field has been set.
 
-### SetOrganizationNameNil
-
-`func (o *ProjectsForBillingDto) SetOrganizationNameNil(b bool)`
-
- SetOrganizationNameNil sets the value for OrganizationName to be an explicit nil
-
-### UnsetOrganizationName
-`func (o *ProjectsForBillingDto) UnsetOrganizationName()`
-
-UnsetOrganizationName ensures that no value is present for OrganizationName, not even an explicit nil
 ### GetPrice
 
 `func (o *ProjectsForBillingDto) GetPrice() float64`
@@ -248,16 +208,6 @@ SetServers sets Servers field to given value.
 
 HasServers returns a boolean if a field has been set.
 
-### SetServersNil
-
-`func (o *ProjectsForBillingDto) SetServersNil(b bool)`
-
- SetServersNil sets the value for Servers to be an explicit nil
-
-### UnsetServers
-`func (o *ProjectsForBillingDto) UnsetServers()`
-
-UnsetServers ensures that no value is present for Servers, not even an explicit nil
 ### GetStandaloneVms
 
 `func (o *ProjectsForBillingDto) GetStandaloneVms() []StandaloneVmsForBillingDto`
@@ -283,16 +233,6 @@ SetStandaloneVms sets StandaloneVms field to given value.
 
 HasStandaloneVms returns a boolean if a field has been set.
 
-### SetStandaloneVmsNil
-
-`func (o *ProjectsForBillingDto) SetStandaloneVmsNil(b bool)`
-
- SetStandaloneVmsNil sets the value for StandaloneVms to be an explicit nil
-
-### UnsetStandaloneVms
-`func (o *ProjectsForBillingDto) UnsetStandaloneVms()`
-
-UnsetStandaloneVms ensures that no value is present for StandaloneVms, not even an explicit nil
 ### GetBillingEnabled
 
 `func (o *ProjectsForBillingDto) GetBillingEnabled() bool`

@@ -4,18 +4,18 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DnsserversCreate**](DnsServersApi.md#DnsserversCreate) | **Post** /api/v1/dnsservers/create | Create dns servers for access profile
-[**DnsserversDelete**](DnsServersApi.md#DnsserversDelete) | **Delete** /api/v1/dnsservers/{id} | Delete dns server
-[**DnsserversEdit**](DnsServersApi.md#DnsserversEdit) | **Put** /api/v1/dnsservers/edit/{id} | Edit dns server
-[**DnsserversList**](DnsServersApi.md#DnsserversList) | **Get** /api/v1/dnsservers/{accessProfileId} | 
+[**DnsServersCreate**](DnsServersApi.md#DnsServersCreate) | **Post** /api/v{v}/DnsServers/create | Create access profile dns server
+[**DnsServersDelete**](DnsServersApi.md#DnsServersDelete) | **Delete** /api/v{v}/DnsServers/{id} | Delete access profile dns server
+[**DnsServersEdit**](DnsServersApi.md#DnsServersEdit) | **Put** /api/v{v}/DnsServers/edit/{id} | Edit access profile dns server
+[**DnsServersList**](DnsServersApi.md#DnsServersList) | **Get** /api/v{v}/DnsServers/list/{accessProfileId} | List dns servers by profile id
 
 
 
-## DnsserversCreate
+## DnsServersCreate
 
-> ApiResponse DnsserversCreate(ctx).CreateDnsServerCommand(createDnsServerCommand).Execute()
+> ApiResponse DnsServersCreate(ctx, v).Body(body).Execute()
 
-Create dns servers for access profile
+Create access profile dns server
 
 ### Example
 
@@ -30,32 +30,38 @@ import (
 )
 
 func main() {
-    createDnsServerCommand := *openapiclient.NewCreateDnsServerCommand("Address_example", int32(123)) // CreateDnsServerCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewCreateDnsServerCommand("Address_example", int32(123)) // CreateDnsServerCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DnsServersApi.DnsserversCreate(context.Background()).CreateDnsServerCommand(createDnsServerCommand).Execute()
+    resp, r, err := apiClient.DnsServersApi.DnsServersCreate(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DnsServersApi.DnsserversCreate``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DnsServersApi.DnsServersCreate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `DnsserversCreate`: ApiResponse
-    fmt.Fprintf(os.Stdout, "Response from `DnsServersApi.DnsserversCreate`: %v\n", resp)
+    // response from `DnsServersCreate`: ApiResponse
+    fmt.Fprintf(os.Stdout, "Response from `DnsServersApi.DnsServersCreate`: %v\n", resp)
 }
 ```
 
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiDnsserversCreateRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiDnsServersCreateRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createDnsServerCommand** | [**CreateDnsServerCommand**](CreateDnsServerCommand.md) |  | 
+
+ **body** | [**CreateDnsServerCommand**](CreateDnsServerCommand.md) |  | 
 
 ### Return type
 
@@ -67,19 +73,19 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## DnsserversDelete
+## DnsServersDelete
 
-> DnsserversDelete(ctx, id).Execute()
+> DnsServersDelete(ctx, id, v).Execute()
 
-Delete dns server
+Delete access profile dns server
 
 ### Example
 
@@ -95,12 +101,13 @@ import (
 
 func main() {
     id := int32(56) // int32 | 
+    v := "v_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.DnsServersApi.DnsserversDelete(context.Background(), id).Execute()
+    r, err := apiClient.DnsServersApi.DnsServersDelete(context.Background(), id, v).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DnsServersApi.DnsserversDelete``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DnsServersApi.DnsServersDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -113,14 +120,16 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **id** | **int32** |  | 
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiDnsserversDeleteRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiDnsServersDeleteRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
 
 
 ### Return type
@@ -134,18 +143,18 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## DnsserversEdit
+## DnsServersEdit
 
-> DnsserversEdit(ctx, id).DnsNtpAddressEditDto(dnsNtpAddressEditDto).Execute()
+> DnsServersEdit(ctx, id, v).Body(body).Execute()
 
-Edit dns server
+Edit access profile dns server
 
 ### Example
 
@@ -161,13 +170,14 @@ import (
 
 func main() {
     id := int32(56) // int32 | 
-    dnsNtpAddressEditDto := *openapiclient.NewDnsNtpAddressEditDto() // DnsNtpAddressEditDto | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewDnsNtpAddressEditDto() // DnsNtpAddressEditDto |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.DnsServersApi.DnsserversEdit(context.Background(), id).DnsNtpAddressEditDto(dnsNtpAddressEditDto).Execute()
+    r, err := apiClient.DnsServersApi.DnsServersEdit(context.Background(), id, v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DnsServersApi.DnsserversEdit``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DnsServersApi.DnsServersEdit``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -180,16 +190,18 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **id** | **int32** |  | 
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiDnsserversEditRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiDnsServersEditRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **dnsNtpAddressEditDto** | [**DnsNtpAddressEditDto**](DnsNtpAddressEditDto.md) |  | 
+
+ **body** | [**DnsNtpAddressEditDto**](DnsNtpAddressEditDto.md) |  | 
 
 ### Return type
 
@@ -201,19 +213,19 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## DnsserversList
+## DnsServersList
 
-> []DnsServersListDto DnsserversList(ctx, accessProfileId).Search(search).Execute()
+> []DnsServersListDto DnsServersList(ctx, accessProfileId, v).Search(search).Execute()
 
-
+List dns servers by profile id
 
 ### Example
 
@@ -229,17 +241,18 @@ import (
 
 func main() {
     accessProfileId := int32(56) // int32 | 
+    v := "v_example" // string | 
     search := "search_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DnsServersApi.DnsserversList(context.Background(), accessProfileId).Search(search).Execute()
+    resp, r, err := apiClient.DnsServersApi.DnsServersList(context.Background(), accessProfileId, v).Search(search).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DnsServersApi.DnsserversList``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DnsServersApi.DnsServersList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `DnsserversList`: []DnsServersListDto
-    fmt.Fprintf(os.Stdout, "Response from `DnsServersApi.DnsserversList`: %v\n", resp)
+    // response from `DnsServersList`: []DnsServersListDto
+    fmt.Fprintf(os.Stdout, "Response from `DnsServersApi.DnsServersList`: %v\n", resp)
 }
 ```
 
@@ -250,14 +263,16 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **accessProfileId** | **int32** |  | 
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiDnsserversListRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiDnsServersListRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
 
  **search** | **string** |  | 
 
@@ -272,7 +287,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

@@ -21,8 +21,8 @@ var _ MappedNullable = &PrometheusLabelUpdateDto{}
 // PrometheusLabelUpdateDto struct for PrometheusLabelUpdateDto
 type PrometheusLabelUpdateDto struct {
 	Id *int32 `json:"id,omitempty"`
-	Label NullableString `json:"label,omitempty"`
-	Value NullableString `json:"value,omitempty"`
+	Label *string `json:"label,omitempty"`
+	Value *string `json:"value,omitempty"`
 }
 
 // NewPrometheusLabelUpdateDto instantiates a new PrometheusLabelUpdateDto object
@@ -74,88 +74,68 @@ func (o *PrometheusLabelUpdateDto) SetId(v int32) {
 	o.Id = &v
 }
 
-// GetLabel returns the Label field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetLabel returns the Label field value if set, zero value otherwise.
 func (o *PrometheusLabelUpdateDto) GetLabel() string {
-	if o == nil || IsNil(o.Label.Get()) {
+	if o == nil || IsNil(o.Label) {
 		var ret string
 		return ret
 	}
-	return *o.Label.Get()
+	return *o.Label
 }
 
 // GetLabelOk returns a tuple with the Label field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *PrometheusLabelUpdateDto) GetLabelOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Label) {
 		return nil, false
 	}
-	return o.Label.Get(), o.Label.IsSet()
+	return o.Label, true
 }
 
 // HasLabel returns a boolean if a field has been set.
 func (o *PrometheusLabelUpdateDto) HasLabel() bool {
-	if o != nil && o.Label.IsSet() {
+	if o != nil && !IsNil(o.Label) {
 		return true
 	}
 
 	return false
 }
 
-// SetLabel gets a reference to the given NullableString and assigns it to the Label field.
+// SetLabel gets a reference to the given string and assigns it to the Label field.
 func (o *PrometheusLabelUpdateDto) SetLabel(v string) {
-	o.Label.Set(&v)
-}
-// SetLabelNil sets the value for Label to be an explicit nil
-func (o *PrometheusLabelUpdateDto) SetLabelNil() {
-	o.Label.Set(nil)
+	o.Label = &v
 }
 
-// UnsetLabel ensures that no value is present for Label, not even an explicit nil
-func (o *PrometheusLabelUpdateDto) UnsetLabel() {
-	o.Label.Unset()
-}
-
-// GetValue returns the Value field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetValue returns the Value field value if set, zero value otherwise.
 func (o *PrometheusLabelUpdateDto) GetValue() string {
-	if o == nil || IsNil(o.Value.Get()) {
+	if o == nil || IsNil(o.Value) {
 		var ret string
 		return ret
 	}
-	return *o.Value.Get()
+	return *o.Value
 }
 
 // GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *PrometheusLabelUpdateDto) GetValueOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Value) {
 		return nil, false
 	}
-	return o.Value.Get(), o.Value.IsSet()
+	return o.Value, true
 }
 
 // HasValue returns a boolean if a field has been set.
 func (o *PrometheusLabelUpdateDto) HasValue() bool {
-	if o != nil && o.Value.IsSet() {
+	if o != nil && !IsNil(o.Value) {
 		return true
 	}
 
 	return false
 }
 
-// SetValue gets a reference to the given NullableString and assigns it to the Value field.
+// SetValue gets a reference to the given string and assigns it to the Value field.
 func (o *PrometheusLabelUpdateDto) SetValue(v string) {
-	o.Value.Set(&v)
-}
-// SetValueNil sets the value for Value to be an explicit nil
-func (o *PrometheusLabelUpdateDto) SetValueNil() {
-	o.Value.Set(nil)
-}
-
-// UnsetValue ensures that no value is present for Value, not even an explicit nil
-func (o *PrometheusLabelUpdateDto) UnsetValue() {
-	o.Value.Unset()
+	o.Value = &v
 }
 
 func (o PrometheusLabelUpdateDto) MarshalJSON() ([]byte, error) {
@@ -171,11 +151,11 @@ func (o PrometheusLabelUpdateDto) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if o.Label.IsSet() {
-		toSerialize["label"] = o.Label.Get()
+	if !IsNil(o.Label) {
+		toSerialize["label"] = o.Label
 	}
-	if o.Value.IsSet() {
-		toSerialize["value"] = o.Value.Get()
+	if !IsNil(o.Value) {
+		toSerialize["value"] = o.Value
 	}
 	return toSerialize, nil
 }

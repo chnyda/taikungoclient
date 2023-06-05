@@ -22,11 +22,13 @@ func Test_taikuncore_KubernetesProfilesApiService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test KubernetesProfilesApiService KubernetesprofilesCreate", func(t *testing.T) {
+	t.Run("Test KubernetesProfilesApiService KubernetesProfilesCreate", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.KubernetesProfilesApi.KubernetesprofilesCreate(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.KubernetesProfilesApi.KubernetesProfilesCreate(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -34,24 +36,27 @@ func Test_taikuncore_KubernetesProfilesApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test KubernetesProfilesApiService KubernetesprofilesDelete", func(t *testing.T) {
+	t.Run("Test KubernetesProfilesApiService KubernetesProfilesDelete", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id int32
+		var v string
 
-		httpRes, err := apiClient.KubernetesProfilesApi.KubernetesprofilesDelete(context.Background(), id).Execute()
+		httpRes, err := apiClient.KubernetesProfilesApi.KubernetesProfilesDelete(context.Background(), id, v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test KubernetesProfilesApiService KubernetesprofilesDropdown", func(t *testing.T) {
+	t.Run("Test KubernetesProfilesApiService KubernetesProfilesKubernetesProfilesForOrganizationList", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.KubernetesProfilesApi.KubernetesprofilesDropdown(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.KubernetesProfilesApi.KubernetesProfilesKubernetesProfilesForOrganizationList(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -59,11 +64,13 @@ func Test_taikuncore_KubernetesProfilesApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test KubernetesProfilesApiService KubernetesprofilesList", func(t *testing.T) {
+	t.Run("Test KubernetesProfilesApiService KubernetesProfilesList", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.KubernetesProfilesApi.KubernetesprofilesList(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.KubernetesProfilesApi.KubernetesProfilesList(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -71,25 +78,15 @@ func Test_taikuncore_KubernetesProfilesApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test KubernetesProfilesApiService KubernetesprofilesLockManager", func(t *testing.T) {
+	t.Run("Test KubernetesProfilesApiService KubernetesProfilesLockManager", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.KubernetesProfilesApi.KubernetesprofilesLockManager(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.KubernetesProfilesApi.KubernetesProfilesLockManager(context.Background(), v).Execute()
 
 		require.Nil(t, err)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test KubernetesProfilesApiService NotificationsList", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		resp, httpRes, err := apiClient.KubernetesProfilesApi.NotificationsList(context.Background()).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})

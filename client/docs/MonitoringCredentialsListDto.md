@@ -5,11 +5,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** |  | [optional] 
-**Username** | Pointer to **NullableString** |  | [optional] 
-**Password** | Pointer to **NullableString** |  | [optional] 
-**PrometheusUrl** | Pointer to **NullableString** |  | [optional] 
-**LokiUrl** | Pointer to **NullableString** |  | [optional] 
-**AlertManagerUrl** | Pointer to **NullableString** |  | [optional] 
+**Username** | Pointer to **string** |  | [optional] 
+**Password** | Pointer to **string** |  | [optional] 
+**PrometheusUrl** | Pointer to **string** |  | [optional] 
+**LokiUrl** | Pointer to **string** |  | [optional] 
+**AlertManagerUrl** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -80,16 +80,6 @@ SetUsername sets Username field to given value.
 
 HasUsername returns a boolean if a field has been set.
 
-### SetUsernameNil
-
-`func (o *MonitoringCredentialsListDto) SetUsernameNil(b bool)`
-
- SetUsernameNil sets the value for Username to be an explicit nil
-
-### UnsetUsername
-`func (o *MonitoringCredentialsListDto) UnsetUsername()`
-
-UnsetUsername ensures that no value is present for Username, not even an explicit nil
 ### GetPassword
 
 `func (o *MonitoringCredentialsListDto) GetPassword() string`
@@ -115,16 +105,6 @@ SetPassword sets Password field to given value.
 
 HasPassword returns a boolean if a field has been set.
 
-### SetPasswordNil
-
-`func (o *MonitoringCredentialsListDto) SetPasswordNil(b bool)`
-
- SetPasswordNil sets the value for Password to be an explicit nil
-
-### UnsetPassword
-`func (o *MonitoringCredentialsListDto) UnsetPassword()`
-
-UnsetPassword ensures that no value is present for Password, not even an explicit nil
 ### GetPrometheusUrl
 
 `func (o *MonitoringCredentialsListDto) GetPrometheusUrl() string`
@@ -150,16 +130,6 @@ SetPrometheusUrl sets PrometheusUrl field to given value.
 
 HasPrometheusUrl returns a boolean if a field has been set.
 
-### SetPrometheusUrlNil
-
-`func (o *MonitoringCredentialsListDto) SetPrometheusUrlNil(b bool)`
-
- SetPrometheusUrlNil sets the value for PrometheusUrl to be an explicit nil
-
-### UnsetPrometheusUrl
-`func (o *MonitoringCredentialsListDto) UnsetPrometheusUrl()`
-
-UnsetPrometheusUrl ensures that no value is present for PrometheusUrl, not even an explicit nil
 ### GetLokiUrl
 
 `func (o *MonitoringCredentialsListDto) GetLokiUrl() string`
@@ -185,16 +155,6 @@ SetLokiUrl sets LokiUrl field to given value.
 
 HasLokiUrl returns a boolean if a field has been set.
 
-### SetLokiUrlNil
-
-`func (o *MonitoringCredentialsListDto) SetLokiUrlNil(b bool)`
-
- SetLokiUrlNil sets the value for LokiUrl to be an explicit nil
-
-### UnsetLokiUrl
-`func (o *MonitoringCredentialsListDto) UnsetLokiUrl()`
-
-UnsetLokiUrl ensures that no value is present for LokiUrl, not even an explicit nil
 ### GetAlertManagerUrl
 
 `func (o *MonitoringCredentialsListDto) GetAlertManagerUrl() string`
@@ -220,16 +180,6 @@ SetAlertManagerUrl sets AlertManagerUrl field to given value.
 
 HasAlertManagerUrl returns a boolean if a field has been set.
 
-### SetAlertManagerUrlNil
-
-`func (o *MonitoringCredentialsListDto) SetAlertManagerUrlNil(b bool)`
-
- SetAlertManagerUrlNil sets the value for AlertManagerUrl to be an explicit nil
-
-### UnsetAlertManagerUrl
-`func (o *MonitoringCredentialsListDto) UnsetAlertManagerUrl()`
-
-UnsetAlertManagerUrl ensures that no value is present for AlertManagerUrl, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

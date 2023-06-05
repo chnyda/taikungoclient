@@ -4,28 +4,28 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**UsersChangePassword**](UsersApi.md#UsersChangePassword) | **Post** /api/v1/users/changepassword | Change user password
-[**UsersConfirmEmail**](UsersApi.md#UsersConfirmEmail) | **Post** /api/v1/users/confirmemail | Confirm user email
-[**UsersCreate**](UsersApi.md#UsersCreate) | **Post** /api/v1/users/create | Create user
-[**UsersDelete**](UsersApi.md#UsersDelete) | **Delete** /api/v1/users/{id} | 
-[**UsersDeleteMyAccount**](UsersApi.md#UsersDeleteMyAccount) | **Post** /api/v1/users/delete | Delete my account
-[**UsersDisable**](UsersApi.md#UsersDisable) | **Post** /api/v1/users/disable | Disable user
-[**UsersDropdown**](UsersApi.md#UsersDropdown) | **Get** /api/v1/users/list | Retrieve users as dropdown
-[**UsersExportCsv**](UsersApi.md#UsersExportCsv) | **Get** /api/v1/users/export | Export Csv
-[**UsersForceToResetPassword**](UsersApi.md#UsersForceToResetPassword) | **Post** /api/v1/users/force-to-reset | Force to reset password
-[**UsersList**](UsersApi.md#UsersList) | **Get** /api/v1/users | Retrieve all users
-[**UsersToggleDemoMode**](UsersApi.md#UsersToggleDemoMode) | **Post** /api/v1/users/toggle-demo-mode | Toggle demo mode
-[**UsersToggleMaintenanceMode**](UsersApi.md#UsersToggleMaintenanceMode) | **Post** /api/v1/users/togglemaintenancemode | Toggle maintenance mode
-[**UsersToggleNotificationMode**](UsersApi.md#UsersToggleNotificationMode) | **Post** /api/v1/users/togglenotificationmode | Toggle notification mode
-[**UsersUpdateUser**](UsersApi.md#UsersUpdateUser) | **Post** /api/v1/users/update | Update user
-[**UsersUserInfo**](UsersApi.md#UsersUserInfo) | **Get** /api/v1/users/userinfo | Retrieve user info
-[**UsersVerifyEmail**](UsersApi.md#UsersVerifyEmail) | **Post** /api/v1/users/verifyemail | Verify user email
+[**UsersChangePassword**](UsersApi.md#UsersChangePassword) | **Post** /api/v{v}/Users/changepassword | Change user password
+[**UsersConfirmEmail**](UsersApi.md#UsersConfirmEmail) | **Post** /api/v{v}/Users/confirmemail | Confirm user email
+[**UsersCreate**](UsersApi.md#UsersCreate) | **Post** /api/v{v}/Users | Create a new user
+[**UsersDelete**](UsersApi.md#UsersDelete) | **Delete** /api/v{v}/Users/{id} | Delete user (only valid for admin, moderators and partner).Reminder : moderators can delete users from their organization only.
+[**UsersDeleteMyAccount**](UsersApi.md#UsersDeleteMyAccount) | **Post** /api/v{v}/Users/delete | Delete my account
+[**UsersDetails**](UsersApi.md#UsersDetails) | **Get** /api/v{v}/Users/userinfo | 
+[**UsersDisableUser**](UsersApi.md#UsersDisableUser) | **Post** /api/v{v}/Users/disable | Disable user
+[**UsersExportCsv**](UsersApi.md#UsersExportCsv) | **Get** /api/v{v}/Users/export | Export Csv file
+[**UsersForceToResetPassword**](UsersApi.md#UsersForceToResetPassword) | **Post** /api/v{v}/Users/force-to-reset | Force to reset password
+[**UsersList**](UsersApi.md#UsersList) | **Get** /api/v{v}/Users | Retrieve all users (only valid for admin).
+[**UsersListSelector**](UsersApi.md#UsersListSelector) | **Get** /api/v{v}/Users/list | Retrieve projects according to user role
+[**UsersToggleDemoMode**](UsersApi.md#UsersToggleDemoMode) | **Post** /api/v{v}/Users/toggle-demo-mode | Toggle demo mode
+[**UsersToggleMaintenanceMode**](UsersApi.md#UsersToggleMaintenanceMode) | **Post** /api/v{v}/Users/togglemaintenancemode | 
+[**UsersToggleNotificationMode**](UsersApi.md#UsersToggleNotificationMode) | **Post** /api/v{v}/Users/togglenotificationmode | 
+[**UsersUpdateUser**](UsersApi.md#UsersUpdateUser) | **Post** /api/v{v}/Users/update | Update user credential
+[**UsersVerifyEmail**](UsersApi.md#UsersVerifyEmail) | **Post** /api/v{v}/Users/verifyemail | Verify user email
 
 
 
 ## UsersChangePassword
 
-> UsersChangePassword(ctx).ChangePasswordCommand(changePasswordCommand).Execute()
+> UsersChangePassword(ctx, v).Body(body).Execute()
 
 Change user password
 
@@ -42,11 +42,12 @@ import (
 )
 
 func main() {
-    changePasswordCommand := *openapiclient.NewChangePasswordCommand("Password_example", "NewPassword_example") // ChangePasswordCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewChangePasswordCommand(*openapiclient.NewAdminUserCreateCommandPassword(), *openapiclient.NewAdminUserCreateCommandPassword()) // ChangePasswordCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.UsersApi.UsersChangePassword(context.Background()).ChangePasswordCommand(changePasswordCommand).Execute()
+    r, err := apiClient.UsersApi.UsersChangePassword(context.Background(), v).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.UsersChangePassword``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -57,6 +58,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -65,7 +70,8 @@ Other parameters are passed through a pointer to a apiUsersChangePasswordRequest
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **changePasswordCommand** | [**ChangePasswordCommand**](ChangePasswordCommand.md) |  | 
+
+ **body** | [**ChangePasswordCommand**](ChangePasswordCommand.md) |  | 
 
 ### Return type
 
@@ -77,8 +83,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -87,7 +93,7 @@ Name | Type | Description  | Notes
 
 ## UsersConfirmEmail
 
-> UsersConfirmEmail(ctx).ConfirmEmailCommand(confirmEmailCommand).Execute()
+> UsersConfirmEmail(ctx, v).Body(body).Execute()
 
 Confirm user email
 
@@ -104,11 +110,12 @@ import (
 )
 
 func main() {
-    confirmEmailCommand := *openapiclient.NewConfirmEmailCommand("NewEmail_example", "Mode_example") // ConfirmEmailCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewConfirmEmailCommand("NewEmail_example", "Mode_example") // ConfirmEmailCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.UsersApi.UsersConfirmEmail(context.Background()).ConfirmEmailCommand(confirmEmailCommand).Execute()
+    r, err := apiClient.UsersApi.UsersConfirmEmail(context.Background(), v).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.UsersConfirmEmail``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -119,6 +126,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -127,7 +138,8 @@ Other parameters are passed through a pointer to a apiUsersConfirmEmailRequest s
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **confirmEmailCommand** | [**ConfirmEmailCommand**](ConfirmEmailCommand.md) |  | 
+
+ **body** | [**ConfirmEmailCommand**](ConfirmEmailCommand.md) |  | 
 
 ### Return type
 
@@ -139,8 +151,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -149,9 +161,9 @@ Name | Type | Description  | Notes
 
 ## UsersCreate
 
-> ApiResponse UsersCreate(ctx).CreateUserCommand(createUserCommand).Execute()
+> ApiResponse UsersCreate(ctx, v).Body(body).Execute()
 
-Create user
+Create a new user
 
 ### Example
 
@@ -166,11 +178,12 @@ import (
 )
 
 func main() {
-    createUserCommand := *openapiclient.NewCreateUserCommand("Username_example", "Email_example") // CreateUserCommand |  (optional)
+    v := "v_example" // string | 
+    body := *openapiclient.NewCreateUserCommand("Username_example", "Email_example") // CreateUserCommand | Create command (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.UsersApi.UsersCreate(context.Background()).CreateUserCommand(createUserCommand).Execute()
+    resp, r, err := apiClient.UsersApi.UsersCreate(context.Background(), v).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.UsersCreate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -183,6 +196,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -191,7 +208,8 @@ Other parameters are passed through a pointer to a apiUsersCreateRequest struct 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createUserCommand** | [**CreateUserCommand**](CreateUserCommand.md) |  | 
+
+ **body** | [**CreateUserCommand**](CreateUserCommand.md) | Create command | 
 
 ### Return type
 
@@ -203,8 +221,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -213,9 +231,9 @@ Name | Type | Description  | Notes
 
 ## UsersDelete
 
-> UsersDelete(ctx, id).Execute()
+> UsersDelete(ctx, id, v).Execute()
 
-
+Delete user (only valid for admin, moderators and partner).Reminder : moderators can delete users from their organization only.
 
 ### Example
 
@@ -230,11 +248,12 @@ import (
 )
 
 func main() {
-    id := "id_example" // string | 
+    id := "id_example" // string | Id of the user to delete
+    v := "v_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.UsersApi.UsersDelete(context.Background(), id).Execute()
+    r, err := apiClient.UsersApi.UsersDelete(context.Background(), id, v).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.UsersDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -248,7 +267,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
+**id** | **string** | Id of the user to delete | 
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -257,6 +277,7 @@ Other parameters are passed through a pointer to a apiUsersDeleteRequest struct 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
 
 
 ### Return type
@@ -270,7 +291,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -279,7 +300,7 @@ Name | Type | Description  | Notes
 
 ## UsersDeleteMyAccount
 
-> UsersDeleteMyAccount(ctx).Body(body).Execute()
+> UsersDeleteMyAccount(ctx, v).Execute()
 
 Delete my account
 
@@ -296,11 +317,11 @@ import (
 )
 
 func main() {
-    body := map[string]interface{}{ ... } // map[string]interface{} | 
+    v := "v_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.UsersApi.UsersDeleteMyAccount(context.Background()).Body(body).Execute()
+    r, err := apiClient.UsersApi.UsersDeleteMyAccount(context.Background(), v).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.UsersDeleteMyAccount``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -311,6 +332,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -319,7 +344,7 @@ Other parameters are passed through a pointer to a apiUsersDeleteMyAccountReques
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | **map[string]interface{}** |  | 
+
 
 ### Return type
 
@@ -331,17 +356,85 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## UsersDisable
+## UsersDetails
 
-> UsersDisable(ctx).DisableUserCommand(disableUserCommand).Execute()
+> UserDetails UsersDetails(ctx, v).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/chnyda/taikungoclient"
+)
+
+func main() {
+    v := "v_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.UsersApi.UsersDetails(context.Background(), v).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.UsersDetails``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UsersDetails`: UserDetails
+    fmt.Fprintf(os.Stdout, "Response from `UsersApi.UsersDetails`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUsersDetailsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**UserDetails**](UserDetails.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: text/plain, application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UsersDisableUser
+
+> UsersDisableUser(ctx, v).Body(body).Execute()
 
 Disable user
 
@@ -358,13 +451,14 @@ import (
 )
 
 func main() {
-    disableUserCommand := *openapiclient.NewDisableUserCommand() // DisableUserCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewDisableUserCommand() // DisableUserCommand | Command (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.UsersApi.UsersDisable(context.Background()).DisableUserCommand(disableUserCommand).Execute()
+    r, err := apiClient.UsersApi.UsersDisableUser(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.UsersDisable``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.UsersDisableUser``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -373,15 +467,20 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiUsersDisableRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiUsersDisableUserRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **disableUserCommand** | [**DisableUserCommand**](DisableUserCommand.md) |  | 
+
+ **body** | [**DisableUserCommand**](DisableUserCommand.md) | Command | 
 
 ### Return type
 
@@ -393,76 +492,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## UsersDropdown
-
-> []CommonStringDropdownIsBoundDto UsersDropdown(ctx).OrganizationId(organizationId).Search(search).ProjectId(projectId).Execute()
-
-Retrieve users as dropdown
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/chnyda/taikungoclient"
-)
-
-func main() {
-    organizationId := int32(56) // int32 |  (optional)
-    search := "search_example" // string |  (optional)
-    projectId := int32(56) // int32 |  (optional)
-
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.UsersApi.UsersDropdown(context.Background()).OrganizationId(organizationId).Search(search).ProjectId(projectId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.UsersDropdown``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `UsersDropdown`: []CommonStringDropdownIsBoundDto
-    fmt.Fprintf(os.Stdout, "Response from `UsersApi.UsersDropdown`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUsersDropdownRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **int32** |  | 
- **search** | **string** |  | 
- **projectId** | **int32** |  | 
-
-### Return type
-
-[**[]CommonStringDropdownIsBoundDto**](CommonStringDropdownIsBoundDto.md)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -471,9 +502,9 @@ Name | Type | Description  | Notes
 
 ## UsersExportCsv
 
-> UsersExportCsv(ctx).Execute()
+> UsersExportCsv(ctx, v).Execute()
 
-Export Csv
+Export Csv file
 
 ### Example
 
@@ -488,10 +519,11 @@ import (
 )
 
 func main() {
+    v := "v_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.UsersApi.UsersExportCsv(context.Background()).Execute()
+    r, err := apiClient.UsersApi.UsersExportCsv(context.Background(), v).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.UsersExportCsv``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -501,11 +533,19 @@ func main() {
 
 ### Path Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiUsersExportCsvRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
 
 
 ### Return type
@@ -519,7 +559,7 @@ Other parameters are passed through a pointer to a apiUsersExportCsvRequest stru
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -528,7 +568,7 @@ Other parameters are passed through a pointer to a apiUsersExportCsvRequest stru
 
 ## UsersForceToResetPassword
 
-> UsersForceToResetPassword(ctx).ForceToResetPasswordCommand(forceToResetPasswordCommand).Execute()
+> UsersForceToResetPassword(ctx, v).Body(body).Execute()
 
 Force to reset password
 
@@ -545,11 +585,12 @@ import (
 )
 
 func main() {
-    forceToResetPasswordCommand := *openapiclient.NewForceToResetPasswordCommand() // ForceToResetPasswordCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewForceToResetPasswordCommand() // ForceToResetPasswordCommand | Command (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.UsersApi.UsersForceToResetPassword(context.Background()).ForceToResetPasswordCommand(forceToResetPasswordCommand).Execute()
+    r, err := apiClient.UsersApi.UsersForceToResetPassword(context.Background(), v).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.UsersForceToResetPassword``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -560,6 +601,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -568,7 +613,8 @@ Other parameters are passed through a pointer to a apiUsersForceToResetPasswordR
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **forceToResetPasswordCommand** | [**ForceToResetPasswordCommand**](ForceToResetPasswordCommand.md) |  | 
+
+ **body** | [**ForceToResetPasswordCommand**](ForceToResetPasswordCommand.md) | Command | 
 
 ### Return type
 
@@ -580,8 +626,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -590,9 +636,9 @@ Name | Type | Description  | Notes
 
 ## UsersList
 
-> UsersList UsersList(ctx).Limit(limit).Offset(offset).OrganizationId(organizationId).SortBy(sortBy).SortDirection(sortDirection).Search(search).SearchId(searchId).Id(id).Execute()
+> UsersList UsersList(ctx, v).Offset(offset).Limit(limit).OrganizationId(organizationId).SortBy(sortBy).SortDirection(sortDirection).Search(search).SearchId(searchId).Id(id).Execute()
 
-Retrieve all users
+Retrieve all users (only valid for admin).
 
 ### Example
 
@@ -607,9 +653,10 @@ import (
 )
 
 func main() {
-    limit := int32(56) // int32 |  (optional)
-    offset := int32(56) // int32 |  (optional)
-    organizationId := int32(56) // int32 |  (optional)
+    v := "v_example" // string | 
+    offset := int32(56) // int32 | Skip elements (optional)
+    limit := int32(56) // int32 | Limits user size (by default 50) (optional)
+    organizationId := int32(56) // int32 | Retrieve only members of organizationId (optional)
     sortBy := "sortBy_example" // string |  (optional)
     sortDirection := "sortDirection_example" // string |  (optional)
     search := "search_example" // string |  (optional)
@@ -618,7 +665,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.UsersApi.UsersList(context.Background()).Limit(limit).Offset(offset).OrganizationId(organizationId).SortBy(sortBy).SortDirection(sortDirection).Search(search).SearchId(searchId).Id(id).Execute()
+    resp, r, err := apiClient.UsersApi.UsersList(context.Background(), v).Offset(offset).Limit(limit).OrganizationId(organizationId).SortBy(sortBy).SortDirection(sortDirection).Search(search).SearchId(searchId).Id(id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.UsersList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -631,6 +678,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -639,9 +690,10 @@ Other parameters are passed through a pointer to a apiUsersListRequest struct vi
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **limit** | **int32** |  | 
- **offset** | **int32** |  | 
- **organizationId** | **int32** |  | 
+
+ **offset** | **int32** | Skip elements | 
+ **limit** | **int32** | Limits user size (by default 50) | 
+ **organizationId** | **int32** | Retrieve only members of organizationId | 
  **sortBy** | **string** |  | 
  **sortDirection** | **string** |  | 
  **search** | **string** |  | 
@@ -659,7 +711,81 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UsersListSelector
+
+> []CommonStringDropdownIsBoundDto UsersListSelector(ctx, v).OrganizationId(organizationId).Search(search).ProjectId(projectId).Execute()
+
+Retrieve projects according to user role
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/chnyda/taikungoclient"
+)
+
+func main() {
+    v := "v_example" // string | 
+    organizationId := int32(56) // int32 |  (optional)
+    search := "search_example" // string |  (optional)
+    projectId := int32(56) // int32 |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.UsersApi.UsersListSelector(context.Background(), v).OrganizationId(organizationId).Search(search).ProjectId(projectId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.UsersListSelector``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UsersListSelector`: []CommonStringDropdownIsBoundDto
+    fmt.Fprintf(os.Stdout, "Response from `UsersApi.UsersListSelector`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUsersListSelectorRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **organizationId** | **int32** |  | 
+ **search** | **string** |  | 
+ **projectId** | **int32** |  | 
+
+### Return type
+
+[**[]CommonStringDropdownIsBoundDto**](CommonStringDropdownIsBoundDto.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -668,7 +794,7 @@ Name | Type | Description  | Notes
 
 ## UsersToggleDemoMode
 
-> UsersToggleDemoMode(ctx).ToggleDemoModeCommand(toggleDemoModeCommand).Execute()
+> UsersToggleDemoMode(ctx, v).Body(body).Execute()
 
 Toggle demo mode
 
@@ -685,11 +811,12 @@ import (
 )
 
 func main() {
-    toggleDemoModeCommand := *openapiclient.NewToggleDemoModeCommand() // ToggleDemoModeCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewToggleDemoModeCommand() // ToggleDemoModeCommand | Command (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.UsersApi.UsersToggleDemoMode(context.Background()).ToggleDemoModeCommand(toggleDemoModeCommand).Execute()
+    r, err := apiClient.UsersApi.UsersToggleDemoMode(context.Background(), v).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.UsersToggleDemoMode``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -700,6 +827,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -708,7 +839,8 @@ Other parameters are passed through a pointer to a apiUsersToggleDemoModeRequest
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **toggleDemoModeCommand** | [**ToggleDemoModeCommand**](ToggleDemoModeCommand.md) |  | 
+
+ **body** | [**ToggleDemoModeCommand**](ToggleDemoModeCommand.md) | Command | 
 
 ### Return type
 
@@ -720,8 +852,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -730,9 +862,9 @@ Name | Type | Description  | Notes
 
 ## UsersToggleMaintenanceMode
 
-> UsersToggleMaintenanceMode(ctx).ToggleMaintenanceModeCommand(toggleMaintenanceModeCommand).Execute()
+> UsersToggleMaintenanceMode(ctx, v).Mode(mode).Execute()
 
-Toggle maintenance mode
+
 
 ### Example
 
@@ -747,11 +879,12 @@ import (
 )
 
 func main() {
-    toggleMaintenanceModeCommand := *openapiclient.NewToggleMaintenanceModeCommand() // ToggleMaintenanceModeCommand | 
+    v := "v_example" // string | 
+    mode := "mode_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.UsersApi.UsersToggleMaintenanceMode(context.Background()).ToggleMaintenanceModeCommand(toggleMaintenanceModeCommand).Execute()
+    r, err := apiClient.UsersApi.UsersToggleMaintenanceMode(context.Background(), v).Mode(mode).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.UsersToggleMaintenanceMode``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -762,6 +895,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -770,7 +907,8 @@ Other parameters are passed through a pointer to a apiUsersToggleMaintenanceMode
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **toggleMaintenanceModeCommand** | [**ToggleMaintenanceModeCommand**](ToggleMaintenanceModeCommand.md) |  | 
+
+ **mode** | **string** |  | 
 
 ### Return type
 
@@ -782,8 +920,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -792,9 +930,9 @@ Name | Type | Description  | Notes
 
 ## UsersToggleNotificationMode
 
-> UsersToggleNotificationMode(ctx).ToggleNotificationModeCommand(toggleNotificationModeCommand).Execute()
+> UsersToggleNotificationMode(ctx, v).Mode(mode).Execute()
 
-Toggle notification mode
+
 
 ### Example
 
@@ -809,11 +947,12 @@ import (
 )
 
 func main() {
-    toggleNotificationModeCommand := *openapiclient.NewToggleNotificationModeCommand() // ToggleNotificationModeCommand | 
+    v := "v_example" // string | 
+    mode := "mode_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.UsersApi.UsersToggleNotificationMode(context.Background()).ToggleNotificationModeCommand(toggleNotificationModeCommand).Execute()
+    r, err := apiClient.UsersApi.UsersToggleNotificationMode(context.Background(), v).Mode(mode).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.UsersToggleNotificationMode``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -824,6 +963,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -832,7 +975,8 @@ Other parameters are passed through a pointer to a apiUsersToggleNotificationMod
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **toggleNotificationModeCommand** | [**ToggleNotificationModeCommand**](ToggleNotificationModeCommand.md) |  | 
+
+ **mode** | **string** |  | 
 
 ### Return type
 
@@ -844,8 +988,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -854,9 +998,9 @@ Name | Type | Description  | Notes
 
 ## UsersUpdateUser
 
-> UsersUpdateUser(ctx).UpdateUserCommand(updateUserCommand).Execute()
+> UsersUpdateUser(ctx, v).Body(body).Execute()
 
-Update user
+Update user credential
 
 ### Example
 
@@ -871,11 +1015,12 @@ import (
 )
 
 func main() {
-    updateUserCommand := *openapiclient.NewUpdateUserCommand("Id_example", "Username_example", "Email_example") // UpdateUserCommand |  (optional)
+    v := "v_example" // string | 
+    body := *openapiclient.NewUpdateUserCommand("Id_example", "Username_example", "Email_example") // UpdateUserCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.UsersApi.UsersUpdateUser(context.Background()).UpdateUserCommand(updateUserCommand).Execute()
+    r, err := apiClient.UsersApi.UsersUpdateUser(context.Background(), v).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.UsersUpdateUser``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -886,6 +1031,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -894,7 +1043,8 @@ Other parameters are passed through a pointer to a apiUsersUpdateUserRequest str
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **updateUserCommand** | [**UpdateUserCommand**](UpdateUserCommand.md) |  | 
+
+ **body** | [**UpdateUserCommand**](UpdateUserCommand.md) |  | 
 
 ### Return type
 
@@ -906,67 +1056,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## UsersUserInfo
-
-> UserDetails UsersUserInfo(ctx).Execute()
-
-Retrieve user info
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/chnyda/taikungoclient"
-)
-
-func main() {
-
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.UsersApi.UsersUserInfo(context.Background()).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.UsersUserInfo``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `UsersUserInfo`: UserDetails
-    fmt.Fprintf(os.Stdout, "Response from `UsersApi.UsersUserInfo`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-This endpoint does not need any parameter.
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUsersUserInfoRequest struct via the builder pattern
-
-
-### Return type
-
-[**UserDetails**](UserDetails.md)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -975,7 +1066,7 @@ Other parameters are passed through a pointer to a apiUsersUserInfoRequest struc
 
 ## UsersVerifyEmail
 
-> UsersVerifyEmail(ctx).VerifyEmailCommand(verifyEmailCommand).Execute()
+> UsersVerifyEmail(ctx, v).Body(body).Execute()
 
 Verify user email
 
@@ -992,11 +1083,12 @@ import (
 )
 
 func main() {
-    verifyEmailCommand := *openapiclient.NewVerifyEmailCommand() // VerifyEmailCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewVerifyEmailCommand() // VerifyEmailCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.UsersApi.UsersVerifyEmail(context.Background()).VerifyEmailCommand(verifyEmailCommand).Execute()
+    r, err := apiClient.UsersApi.UsersVerifyEmail(context.Background(), v).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.UsersVerifyEmail``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1007,6 +1099,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -1015,7 +1111,8 @@ Other parameters are passed through a pointer to a apiUsersVerifyEmailRequest st
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **verifyEmailCommand** | [**VerifyEmailCommand**](VerifyEmailCommand.md) |  | 
+
+ **body** | [**VerifyEmailCommand**](VerifyEmailCommand.md) |  | 
 
 ### Return type
 
@@ -1027,8 +1124,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

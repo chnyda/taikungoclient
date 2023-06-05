@@ -9,9 +9,9 @@ Name | Type | Description | Notes
 **IsAccessibleForAll** | Pointer to **bool** |  | [optional] 
 **IsAccessibleForManager** | Pointer to **bool** |  | [optional] 
 **KubeConfigRoleId** | Pointer to **int32** |  | [optional] 
-**UserId** | Pointer to **NullableString** |  | [optional] 
-**Namespace** | Pointer to **NullableString** |  | [optional] 
-**Ttl** | Pointer to **NullableInt32** |  | [optional] 
+**UserId** | Pointer to **string** |  | [optional] 
+**Namespace** | Pointer to **string** |  | [optional] 
+**Ttl** | Pointer to **int32** |  | [optional] 
 
 ## Methods
 
@@ -172,16 +172,6 @@ SetUserId sets UserId field to given value.
 
 HasUserId returns a boolean if a field has been set.
 
-### SetUserIdNil
-
-`func (o *CreateKubeConfigCommand) SetUserIdNil(b bool)`
-
- SetUserIdNil sets the value for UserId to be an explicit nil
-
-### UnsetUserId
-`func (o *CreateKubeConfigCommand) UnsetUserId()`
-
-UnsetUserId ensures that no value is present for UserId, not even an explicit nil
 ### GetNamespace
 
 `func (o *CreateKubeConfigCommand) GetNamespace() string`
@@ -207,16 +197,6 @@ SetNamespace sets Namespace field to given value.
 
 HasNamespace returns a boolean if a field has been set.
 
-### SetNamespaceNil
-
-`func (o *CreateKubeConfigCommand) SetNamespaceNil(b bool)`
-
- SetNamespaceNil sets the value for Namespace to be an explicit nil
-
-### UnsetNamespace
-`func (o *CreateKubeConfigCommand) UnsetNamespace()`
-
-UnsetNamespace ensures that no value is present for Namespace, not even an explicit nil
 ### GetTtl
 
 `func (o *CreateKubeConfigCommand) GetTtl() int32`
@@ -242,16 +222,6 @@ SetTtl sets Ttl field to given value.
 
 HasTtl returns a boolean if a field has been set.
 
-### SetTtlNil
-
-`func (o *CreateKubeConfigCommand) SetTtlNil(b bool)`
-
- SetTtlNil sets the value for Ttl to be an explicit nil
-
-### UnsetTtl
-`func (o *CreateKubeConfigCommand) UnsetTtl()`
-
-UnsetTtl ensures that no value is present for Ttl, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

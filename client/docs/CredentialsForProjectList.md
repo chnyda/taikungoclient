@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **CloudType** | Pointer to [**CloudType**](CloudType.md) |  | [optional] 
 **CloudCredentialRevision** | Pointer to **int32** |  | [optional] 
 **BillingEnabled** | Pointer to **bool** |  | [optional] 
-**ContinentName** | Pointer to **NullableString** |  | [optional] 
+**ContinentName** | Pointer to **string** |  | [optional] 
 **RequiresVPN** | Pointer to **bool** |  | [optional] 
 **Openstack** | Pointer to [**OpenstackCredentialsForProjectDto**](OpenstackCredentialsForProjectDto.md) |  | [optional] 
 **Azure** | Pointer to [**AzureCredentialsForProjectDto**](AzureCredentialsForProjectDto.md) |  | [optional] 
@@ -135,16 +135,6 @@ SetContinentName sets ContinentName field to given value.
 
 HasContinentName returns a boolean if a field has been set.
 
-### SetContinentNameNil
-
-`func (o *CredentialsForProjectList) SetContinentNameNil(b bool)`
-
- SetContinentNameNil sets the value for ContinentName to be an explicit nil
-
-### UnsetContinentName
-`func (o *CredentialsForProjectList) UnsetContinentName()`
-
-UnsetContinentName ensures that no value is present for ContinentName, not even an explicit nil
 ### GetRequiresVPN
 
 `func (o *CredentialsForProjectList) GetRequiresVPN() bool`

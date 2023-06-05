@@ -24,37 +24,40 @@ import (
 // NtpServersApiService NtpServersApi service
 type NtpServersApiService service
 
-type ApiNtpserversCreateRequest struct {
+type ApiNtpServersCreateRequest struct {
 	ctx context.Context
 	ApiService *NtpServersApiService
-	createNtpServerCommand *CreateNtpServerCommand
+	v string
+	body *CreateNtpServerCommand
 }
 
-func (r ApiNtpserversCreateRequest) CreateNtpServerCommand(createNtpServerCommand CreateNtpServerCommand) ApiNtpserversCreateRequest {
-	r.createNtpServerCommand = &createNtpServerCommand
+func (r ApiNtpServersCreateRequest) Body(body CreateNtpServerCommand) ApiNtpServersCreateRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiNtpserversCreateRequest) Execute() (*ApiResponse, *http.Response, error) {
-	return r.ApiService.NtpserversCreateExecute(r)
+func (r ApiNtpServersCreateRequest) Execute() (*ApiResponse, *http.Response, error) {
+	return r.ApiService.NtpServersCreateExecute(r)
 }
 
 /*
-NtpserversCreate Create access profile ntp server
+NtpServersCreate Create access profile ntp server
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiNtpserversCreateRequest
+ @param v
+ @return ApiNtpServersCreateRequest
 */
-func (a *NtpServersApiService) NtpserversCreate(ctx context.Context) ApiNtpserversCreateRequest {
-	return ApiNtpserversCreateRequest{
+func (a *NtpServersApiService) NtpServersCreate(ctx context.Context, v string) ApiNtpServersCreateRequest {
+	return ApiNtpServersCreateRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
 //  @return ApiResponse
-func (a *NtpServersApiService) NtpserversCreateExecute(r ApiNtpserversCreateRequest) (*ApiResponse, *http.Response, error) {
+func (a *NtpServersApiService) NtpServersCreateExecute(r ApiNtpServersCreateRequest) (*ApiResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -62,22 +65,20 @@ func (a *NtpServersApiService) NtpserversCreateExecute(r ApiNtpserversCreateRequ
 		localVarReturnValue  *ApiResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NtpServersApiService.NtpserversCreate")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NtpServersApiService.NtpServersCreate")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/ntpservers/create"
+	localVarPath := localBasePath + "/api/v{v}/NtpServers/create"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNtpServerCommand == nil {
-		return localVarReturnValue, nil, reportError("createNtpServerCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -86,7 +87,7 @@ func (a *NtpServersApiService) NtpserversCreateExecute(r ApiNtpserversCreateRequ
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -94,7 +95,7 @@ func (a *NtpServersApiService) NtpserversCreateExecute(r ApiNtpserversCreateRequ
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNtpServerCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -131,17 +132,6 @@ func (a *NtpServersApiService) NtpserversCreateExecute(r ApiNtpserversCreateRequ
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -175,7 +165,7 @@ func (a *NtpServersApiService) NtpserversCreateExecute(r ApiNtpserversCreateRequ
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -200,46 +190,50 @@ func (a *NtpServersApiService) NtpserversCreateExecute(r ApiNtpserversCreateRequ
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiNtpserversDeleteRequest struct {
+type ApiNtpServersDeleteRequest struct {
 	ctx context.Context
 	ApiService *NtpServersApiService
 	id int32
+	v string
 }
 
-func (r ApiNtpserversDeleteRequest) Execute() (*http.Response, error) {
-	return r.ApiService.NtpserversDeleteExecute(r)
+func (r ApiNtpServersDeleteRequest) Execute() (*http.Response, error) {
+	return r.ApiService.NtpServersDeleteExecute(r)
 }
 
 /*
-NtpserversDelete Delete access profile ntp server
+NtpServersDelete Delete access profile ntp server
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
- @return ApiNtpserversDeleteRequest
+ @param v
+ @return ApiNtpServersDeleteRequest
 */
-func (a *NtpServersApiService) NtpserversDelete(ctx context.Context, id int32) ApiNtpserversDeleteRequest {
-	return ApiNtpserversDeleteRequest{
+func (a *NtpServersApiService) NtpServersDelete(ctx context.Context, id int32, v string) ApiNtpServersDeleteRequest {
+	return ApiNtpServersDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
+		v: v,
 	}
 }
 
 // Execute executes the request
-func (a *NtpServersApiService) NtpserversDeleteExecute(r ApiNtpserversDeleteRequest) (*http.Response, error) {
+func (a *NtpServersApiService) NtpServersDeleteExecute(r ApiNtpServersDeleteRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NtpServersApiService.NtpserversDelete")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NtpServersApiService.NtpServersDelete")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/ntpservers/{id}"
+	localVarPath := localBasePath + "/api/v{v}/NtpServers/{id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -255,7 +249,7 @@ func (a *NtpServersApiService) NtpserversDeleteExecute(r ApiNtpserversDeleteRequ
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -298,17 +292,6 @@ func (a *NtpServersApiService) NtpserversDeleteExecute(r ApiNtpserversDeleteRequ
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -342,7 +325,7 @@ func (a *NtpServersApiService) NtpserversDeleteExecute(r ApiNtpserversDeleteRequ
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -351,6 +334,7 @@ func (a *NtpServersApiService) NtpserversDeleteExecute(r ApiNtpserversDeleteRequ
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
+			return localVarHTTPResponse, newErr
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -358,62 +342,63 @@ func (a *NtpServersApiService) NtpserversDeleteExecute(r ApiNtpserversDeleteRequ
 	return localVarHTTPResponse, nil
 }
 
-type ApiNtpserversEditRequest struct {
+type ApiNtpServersEditRequest struct {
 	ctx context.Context
 	ApiService *NtpServersApiService
 	id int32
-	dnsNtpAddressEditDto *DnsNtpAddressEditDto
+	v string
+	body *DnsNtpAddressEditDto
 }
 
-func (r ApiNtpserversEditRequest) DnsNtpAddressEditDto(dnsNtpAddressEditDto DnsNtpAddressEditDto) ApiNtpserversEditRequest {
-	r.dnsNtpAddressEditDto = &dnsNtpAddressEditDto
+func (r ApiNtpServersEditRequest) Body(body DnsNtpAddressEditDto) ApiNtpServersEditRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiNtpserversEditRequest) Execute() (*http.Response, error) {
-	return r.ApiService.NtpserversEditExecute(r)
+func (r ApiNtpServersEditRequest) Execute() (*http.Response, error) {
+	return r.ApiService.NtpServersEditExecute(r)
 }
 
 /*
-NtpserversEdit Edit access profile ntp server
+NtpServersEdit Edit access profile ntp server
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
- @return ApiNtpserversEditRequest
+ @param v
+ @return ApiNtpServersEditRequest
 */
-func (a *NtpServersApiService) NtpserversEdit(ctx context.Context, id int32) ApiNtpserversEditRequest {
-	return ApiNtpserversEditRequest{
+func (a *NtpServersApiService) NtpServersEdit(ctx context.Context, id int32, v string) ApiNtpServersEditRequest {
+	return ApiNtpServersEditRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
+		v: v,
 	}
 }
 
 // Execute executes the request
-func (a *NtpServersApiService) NtpserversEditExecute(r ApiNtpserversEditRequest) (*http.Response, error) {
+func (a *NtpServersApiService) NtpServersEditExecute(r ApiNtpServersEditRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NtpServersApiService.NtpserversEdit")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NtpServersApiService.NtpServersEdit")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/ntpservers/edit/{id}"
+	localVarPath := localBasePath + "/api/v{v}/NtpServers/edit/{id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.dnsNtpAddressEditDto == nil {
-		return nil, reportError("dnsNtpAddressEditDto is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -422,7 +407,7 @@ func (a *NtpServersApiService) NtpserversEditExecute(r ApiNtpserversEditRequest)
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -430,7 +415,7 @@ func (a *NtpServersApiService) NtpserversEditExecute(r ApiNtpserversEditRequest)
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.dnsNtpAddressEditDto
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -467,17 +452,6 @@ func (a *NtpServersApiService) NtpserversEditExecute(r ApiNtpserversEditRequest)
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -511,7 +485,7 @@ func (a *NtpServersApiService) NtpserversEditExecute(r ApiNtpserversEditRequest)
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -527,40 +501,43 @@ func (a *NtpServersApiService) NtpserversEditExecute(r ApiNtpserversEditRequest)
 	return localVarHTTPResponse, nil
 }
 
-type ApiNtpserversListRequest struct {
+type ApiNtpServersListRequest struct {
 	ctx context.Context
 	ApiService *NtpServersApiService
 	accessProfileId int32
+	v string
 	search *string
 }
 
-func (r ApiNtpserversListRequest) Search(search string) ApiNtpserversListRequest {
+func (r ApiNtpServersListRequest) Search(search string) ApiNtpServersListRequest {
 	r.search = &search
 	return r
 }
 
-func (r ApiNtpserversListRequest) Execute() ([]NtpServersListDto, *http.Response, error) {
-	return r.ApiService.NtpserversListExecute(r)
+func (r ApiNtpServersListRequest) Execute() ([]NtpServersListDto, *http.Response, error) {
+	return r.ApiService.NtpServersListExecute(r)
 }
 
 /*
-NtpserversList List ntp server by access profile id
+NtpServersList List ntp servers by profile id
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param accessProfileId
- @return ApiNtpserversListRequest
+ @param v
+ @return ApiNtpServersListRequest
 */
-func (a *NtpServersApiService) NtpserversList(ctx context.Context, accessProfileId int32) ApiNtpserversListRequest {
-	return ApiNtpserversListRequest{
+func (a *NtpServersApiService) NtpServersList(ctx context.Context, accessProfileId int32, v string) ApiNtpServersListRequest {
+	return ApiNtpServersListRequest{
 		ApiService: a,
 		ctx: ctx,
 		accessProfileId: accessProfileId,
+		v: v,
 	}
 }
 
 // Execute executes the request
 //  @return []NtpServersListDto
-func (a *NtpServersApiService) NtpserversListExecute(r ApiNtpserversListRequest) ([]NtpServersListDto, *http.Response, error) {
+func (a *NtpServersApiService) NtpServersListExecute(r ApiNtpServersListRequest) ([]NtpServersListDto, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -568,20 +545,21 @@ func (a *NtpServersApiService) NtpserversListExecute(r ApiNtpserversListRequest)
 		localVarReturnValue  []NtpServersListDto
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NtpServersApiService.NtpserversList")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NtpServersApiService.NtpServersList")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/ntpservers/list/{accessProfileId}"
+	localVarPath := localBasePath + "/api/v{v}/NtpServers/list/{accessProfileId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"accessProfileId"+"}", url.PathEscape(parameterValueToString(r.accessProfileId, "accessProfileId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.search != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Search", r.search, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -593,7 +571,7 @@ func (a *NtpServersApiService) NtpserversListExecute(r ApiNtpserversListRequest)
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -636,17 +614,6 @@ func (a *NtpServersApiService) NtpserversListExecute(r ApiNtpserversListRequest)
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -680,7 +647,7 @@ func (a *NtpServersApiService) NtpserversListExecute(r ApiNtpserversListRequest)
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

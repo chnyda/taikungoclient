@@ -24,53 +24,59 @@ import (
 // ProjectInfracostsApiService ProjectInfracostsApi service
 type ProjectInfracostsApiService service
 
-type ApiProjectinfracostsDeleteRequest struct {
+type ApiProjectInfracostsDeleteRequest struct {
 	ctx context.Context
 	ApiService *ProjectInfracostsApiService
-	projectId int32
+	v string
+	body *DeleteProjectInfracostCommand
 }
 
-func (r ApiProjectinfracostsDeleteRequest) Execute() (*http.Response, error) {
-	return r.ApiService.ProjectinfracostsDeleteExecute(r)
+func (r ApiProjectInfracostsDeleteRequest) Body(body DeleteProjectInfracostCommand) ApiProjectInfracostsDeleteRequest {
+	r.body = &body
+	return r
+}
+
+func (r ApiProjectInfracostsDeleteRequest) Execute() (*http.Response, error) {
+	return r.ApiService.ProjectInfracostsDeleteExecute(r)
 }
 
 /*
-ProjectinfracostsDelete Delete the project infracost
+ProjectInfracostsDelete Delete the project infracost.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param projectId
- @return ApiProjectinfracostsDeleteRequest
+ @param v
+ @return ApiProjectInfracostsDeleteRequest
 */
-func (a *ProjectInfracostsApiService) ProjectinfracostsDelete(ctx context.Context, projectId int32) ApiProjectinfracostsDeleteRequest {
-	return ApiProjectinfracostsDeleteRequest{
+func (a *ProjectInfracostsApiService) ProjectInfracostsDelete(ctx context.Context, v string) ApiProjectInfracostsDeleteRequest {
+	return ApiProjectInfracostsDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
-		projectId: projectId,
+		v: v,
 	}
 }
 
 // Execute executes the request
-func (a *ProjectInfracostsApiService) ProjectinfracostsDeleteExecute(r ApiProjectinfracostsDeleteRequest) (*http.Response, error) {
+func (a *ProjectInfracostsApiService) ProjectInfracostsDeleteExecute(r ApiProjectInfracostsDeleteRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectInfracostsApiService.ProjectinfracostsDelete")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectInfracostsApiService.ProjectInfracostsDelete")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/projectinfracosts/{projectId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath := localBasePath + "/api/v{v}/ProjectInfracosts/delete"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -79,13 +85,15 @@ func (a *ProjectInfracostsApiService) ProjectinfracostsDeleteExecute(r ApiProjec
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	// body params
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -122,17 +130,6 @@ func (a *ProjectInfracostsApiService) ProjectinfracostsDeleteExecute(r ApiProjec
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -166,7 +163,7 @@ func (a *ProjectInfracostsApiService) ProjectinfracostsDeleteExecute(r ApiProjec
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -175,6 +172,7 @@ func (a *ProjectInfracostsApiService) ProjectinfracostsDeleteExecute(r ApiProjec
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
+			return localVarHTTPResponse, newErr
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -182,34 +180,37 @@ func (a *ProjectInfracostsApiService) ProjectinfracostsDeleteExecute(r ApiProjec
 	return localVarHTTPResponse, nil
 }
 
-type ApiProjectinfracostsDetailsRequest struct {
+type ApiProjectInfracostsDetailsRequest struct {
 	ctx context.Context
 	ApiService *ProjectInfracostsApiService
 	projectId int32
+	v string
 }
 
-func (r ApiProjectinfracostsDetailsRequest) Execute() (*EstimatedInfracost, *http.Response, error) {
-	return r.ApiService.ProjectinfracostsDetailsExecute(r)
+func (r ApiProjectInfracostsDetailsRequest) Execute() (*EstimatedInfracost, *http.Response, error) {
+	return r.ApiService.ProjectInfracostsDetailsExecute(r)
 }
 
 /*
-ProjectinfracostsDetails Project Infracost details
+ProjectInfracostsDetails Project Infracost details
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param projectId
- @return ApiProjectinfracostsDetailsRequest
+ @param projectId Project Id
+ @param v
+ @return ApiProjectInfracostsDetailsRequest
 */
-func (a *ProjectInfracostsApiService) ProjectinfracostsDetails(ctx context.Context, projectId int32) ApiProjectinfracostsDetailsRequest {
-	return ApiProjectinfracostsDetailsRequest{
+func (a *ProjectInfracostsApiService) ProjectInfracostsDetails(ctx context.Context, projectId int32, v string) ApiProjectInfracostsDetailsRequest {
+	return ApiProjectInfracostsDetailsRequest{
 		ApiService: a,
 		ctx: ctx,
 		projectId: projectId,
+		v: v,
 	}
 }
 
 // Execute executes the request
 //  @return EstimatedInfracost
-func (a *ProjectInfracostsApiService) ProjectinfracostsDetailsExecute(r ApiProjectinfracostsDetailsRequest) (*EstimatedInfracost, *http.Response, error) {
+func (a *ProjectInfracostsApiService) ProjectInfracostsDetailsExecute(r ApiProjectInfracostsDetailsRequest) (*EstimatedInfracost, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -217,13 +218,14 @@ func (a *ProjectInfracostsApiService) ProjectinfracostsDetailsExecute(r ApiProje
 		localVarReturnValue  *EstimatedInfracost
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectInfracostsApiService.ProjectinfracostsDetails")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectInfracostsApiService.ProjectInfracostsDetails")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/projectinfracosts/{projectId}"
+	localVarPath := localBasePath + "/api/v{v}/ProjectInfracosts/{projectId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -239,7 +241,7 @@ func (a *ProjectInfracostsApiService) ProjectinfracostsDetailsExecute(r ApiProje
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -282,17 +284,6 @@ func (a *ProjectInfracostsApiService) ProjectinfracostsDetailsExecute(r ApiProje
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -326,7 +317,7 @@ func (a *ProjectInfracostsApiService) ProjectinfracostsDetailsExecute(r ApiProje
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -351,59 +342,63 @@ func (a *ProjectInfracostsApiService) ProjectinfracostsDetailsExecute(r ApiProje
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiProjectinfracostsUpsertRequest struct {
+type ApiProjectInfracostsEditRequest struct {
 	ctx context.Context
 	ApiService *ProjectInfracostsApiService
 	projectId int32
-	projectInfracostUpsertDto *ProjectInfracostUpsertDto
+	v string
+	body *ProjectInfracostUpsertDto
 }
 
-func (r ApiProjectinfracostsUpsertRequest) ProjectInfracostUpsertDto(projectInfracostUpsertDto ProjectInfracostUpsertDto) ApiProjectinfracostsUpsertRequest {
-	r.projectInfracostUpsertDto = &projectInfracostUpsertDto
+func (r ApiProjectInfracostsEditRequest) Body(body ProjectInfracostUpsertDto) ApiProjectInfracostsEditRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiProjectinfracostsUpsertRequest) Execute() (*http.Response, error) {
-	return r.ApiService.ProjectinfracostsUpsertExecute(r)
+func (r ApiProjectInfracostsEditRequest) Execute() (*http.Response, error) {
+	return r.ApiService.ProjectInfracostsEditExecute(r)
 }
 
 /*
-ProjectinfracostsUpsert Upsert project infracost by ProjectId
+ProjectInfracostsEdit Upsert project infracost by ProjectId
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param projectId
- @return ApiProjectinfracostsUpsertRequest
+ @param v
+ @return ApiProjectInfracostsEditRequest
 */
-func (a *ProjectInfracostsApiService) ProjectinfracostsUpsert(ctx context.Context, projectId int32) ApiProjectinfracostsUpsertRequest {
-	return ApiProjectinfracostsUpsertRequest{
+func (a *ProjectInfracostsApiService) ProjectInfracostsEdit(ctx context.Context, projectId int32, v string) ApiProjectInfracostsEditRequest {
+	return ApiProjectInfracostsEditRequest{
 		ApiService: a,
 		ctx: ctx,
 		projectId: projectId,
+		v: v,
 	}
 }
 
 // Execute executes the request
-func (a *ProjectInfracostsApiService) ProjectinfracostsUpsertExecute(r ApiProjectinfracostsUpsertRequest) (*http.Response, error) {
+func (a *ProjectInfracostsApiService) ProjectInfracostsEditExecute(r ApiProjectInfracostsEditRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectInfracostsApiService.ProjectinfracostsUpsert")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectInfracostsApiService.ProjectInfracostsEdit")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/projectinfracosts/upsert/{projectId}"
+	localVarPath := localBasePath + "/api/v{v}/ProjectInfracosts/upsert/{projectId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -412,7 +407,7 @@ func (a *ProjectInfracostsApiService) ProjectinfracostsUpsertExecute(r ApiProjec
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -420,7 +415,7 @@ func (a *ProjectInfracostsApiService) ProjectinfracostsUpsertExecute(r ApiProjec
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.projectInfracostUpsertDto
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -457,17 +452,6 @@ func (a *ProjectInfracostsApiService) ProjectinfracostsUpsertExecute(r ApiProjec
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -501,7 +485,7 @@ func (a *ProjectInfracostsApiService) ProjectinfracostsUpsertExecute(r ApiProjec
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

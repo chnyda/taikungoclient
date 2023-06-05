@@ -4,24 +4,24 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ServersConsole**](ServersApi.md#ServersConsole) | **Post** /api/v1/servers/console | Console screenshot or terminal access for server
-[**ServersCreate**](ServersApi.md#ServersCreate) | **Post** /api/v1/servers/create | Create a new server in the given project.
-[**ServersDelete**](ServersApi.md#ServersDelete) | **Post** /api/v1/servers/delete | Delete server by project id
-[**ServersDetails**](ServersApi.md#ServersDetails) | **Get** /api/v1/servers/{projectId} | Retrieve all servers by given project
-[**ServersList**](ServersApi.md#ServersList) | **Get** /api/v1/servers | Retrieve all servers
-[**ServersReboot**](ServersApi.md#ServersReboot) | **Post** /api/v1/servers/reboot | Reboot server
-[**ServersReset**](ServersApi.md#ServersReset) | **Post** /api/v1/servers/reset | Update server(s) status(es)
-[**ServersStatus**](ServersApi.md#ServersStatus) | **Get** /api/v1/servers/status/{serverId} | Show server status
-[**ServersUpdate**](ServersApi.md#ServersUpdate) | **Post** /api/v1/servers/update | Update server
-[**ServersUpdateByProjectId**](ServersApi.md#ServersUpdateByProjectId) | **Put** /api/v1/servers/update/{projectId} | Update server by projectId
+[**ServersConsole**](ServersApi.md#ServersConsole) | **Post** /api/v{v}/Servers/console | Console servers
+[**ServersCreate**](ServersApi.md#ServersCreate) | **Post** /api/v{v}/Servers | Create a new server in the given project.
+[**ServersDelete**](ServersApi.md#ServersDelete) | **Post** /api/v{v}/Servers/delete | Delete servers by project Id
+[**ServersDetails**](ServersApi.md#ServersDetails) | **Get** /api/v{v}/Servers/{projectId} | Retrieve a list of servers with detailed info
+[**ServersList**](ServersApi.md#ServersList) | **Get** /api/v{v}/Servers | List all servers according to roles
+[**ServersReboot**](ServersApi.md#ServersReboot) | **Post** /api/v{v}/Servers/reboot | Reboot servers
+[**ServersReset**](ServersApi.md#ServersReset) | **Post** /api/v{v}/Servers/reset | Update statuses of servers by project Id
+[**ServersShowServerStatus**](ServersApi.md#ServersShowServerStatus) | **Get** /api/v{v}/Servers/status/{serverId} | Show server status
+[**ServersUpdate**](ServersApi.md#ServersUpdate) | **Post** /api/v{v}/Servers/update | Update server
+[**ServersUpdateByProjectId**](ServersApi.md#ServersUpdateByProjectId) | **Put** /api/v{v}/Servers/update/{projectId} | Update server by projectId
 
 
 
 ## ServersConsole
 
-> string ServersConsole(ctx).ConsoleScreenshotCommand(consoleScreenshotCommand).Execute()
+> string ServersConsole(ctx, v).Body(body).Execute()
 
-Console screenshot or terminal access for server
+Console servers
 
 ### Example
 
@@ -36,11 +36,12 @@ import (
 )
 
 func main() {
-    consoleScreenshotCommand := *openapiclient.NewConsoleScreenshotCommand() // ConsoleScreenshotCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewConsoleScreenshotCommand() // ConsoleScreenshotCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ServersApi.ServersConsole(context.Background()).ConsoleScreenshotCommand(consoleScreenshotCommand).Execute()
+    resp, r, err := apiClient.ServersApi.ServersConsole(context.Background(), v).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServersApi.ServersConsole``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -53,6 +54,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -61,7 +66,8 @@ Other parameters are passed through a pointer to a apiServersConsoleRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **consoleScreenshotCommand** | [**ConsoleScreenshotCommand**](ConsoleScreenshotCommand.md) |  | 
+
+ **body** | [**ConsoleScreenshotCommand**](ConsoleScreenshotCommand.md) |  | 
 
 ### Return type
 
@@ -73,8 +79,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -83,7 +89,7 @@ Name | Type | Description  | Notes
 
 ## ServersCreate
 
-> ApiResponse ServersCreate(ctx).ServerForCreateDto(serverForCreateDto).Execute()
+> ApiResponse ServersCreate(ctx, v).Body(body).Execute()
 
 Create a new server in the given project.
 
@@ -100,11 +106,12 @@ import (
 )
 
 func main() {
-    serverForCreateDto := *openapiclient.NewServerForCreateDto() // ServerForCreateDto |  (optional)
+    v := "v_example" // string | 
+    body := *openapiclient.NewServerForCreateDto() // ServerForCreateDto |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ServersApi.ServersCreate(context.Background()).ServerForCreateDto(serverForCreateDto).Execute()
+    resp, r, err := apiClient.ServersApi.ServersCreate(context.Background(), v).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServersApi.ServersCreate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -117,6 +124,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -125,7 +136,8 @@ Other parameters are passed through a pointer to a apiServersCreateRequest struc
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **serverForCreateDto** | [**ServerForCreateDto**](ServerForCreateDto.md) |  | 
+
+ **body** | [**ServerForCreateDto**](ServerForCreateDto.md) |  | 
 
 ### Return type
 
@@ -137,8 +149,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -147,9 +159,9 @@ Name | Type | Description  | Notes
 
 ## ServersDelete
 
-> ServersDelete(ctx).DeleteServerCommand(deleteServerCommand).Execute()
+> ServersDelete(ctx, v).Body(body).Execute()
 
-Delete server by project id
+Delete servers by project Id
 
 ### Example
 
@@ -164,11 +176,12 @@ import (
 )
 
 func main() {
-    deleteServerCommand := *openapiclient.NewDeleteServerCommand() // DeleteServerCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewDeleteServerCommand() // DeleteServerCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.ServersApi.ServersDelete(context.Background()).DeleteServerCommand(deleteServerCommand).Execute()
+    r, err := apiClient.ServersApi.ServersDelete(context.Background(), v).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServersApi.ServersDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -179,6 +192,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -187,7 +204,8 @@ Other parameters are passed through a pointer to a apiServersDeleteRequest struc
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **deleteServerCommand** | [**DeleteServerCommand**](DeleteServerCommand.md) |  | 
+
+ **body** | [**DeleteServerCommand**](DeleteServerCommand.md) |  | 
 
 ### Return type
 
@@ -199,8 +217,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -209,9 +227,9 @@ Name | Type | Description  | Notes
 
 ## ServersDetails
 
-> ServersListForDetails ServersDetails(ctx, projectId).SortBy(sortBy).SortDirection(sortDirection).WithAutoscalingGroup(withAutoscalingGroup).Execute()
+> ServersListForDetails ServersDetails(ctx, projectId, v).SortBy(sortBy).SortDirection(sortDirection).WithAutoscalingGroup(withAutoscalingGroup).Execute()
 
-Retrieve all servers by given project
+Retrieve a list of servers with detailed info
 
 ### Example
 
@@ -227,13 +245,14 @@ import (
 
 func main() {
     projectId := int32(56) // int32 | 
+    v := "v_example" // string | 
     sortBy := "sortBy_example" // string |  (optional)
     sortDirection := "sortDirection_example" // string |  (optional)
     withAutoscalingGroup := "withAutoscalingGroup_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ServersApi.ServersDetails(context.Background(), projectId).SortBy(sortBy).SortDirection(sortDirection).WithAutoscalingGroup(withAutoscalingGroup).Execute()
+    resp, r, err := apiClient.ServersApi.ServersDetails(context.Background(), projectId, v).SortBy(sortBy).SortDirection(sortDirection).WithAutoscalingGroup(withAutoscalingGroup).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServersApi.ServersDetails``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -250,6 +269,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **projectId** | **int32** |  | 
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -258,6 +278,7 @@ Other parameters are passed through a pointer to a apiServersDetailsRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
 
  **sortBy** | **string** |  | 
  **sortDirection** | **string** |  | 
@@ -274,7 +295,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -283,9 +304,9 @@ Name | Type | Description  | Notes
 
 ## ServersList
 
-> ServersList ServersList(ctx).Limit(limit).Offset(offset).ProjectId(projectId).SortBy(sortBy).SortDirection(sortDirection).Search(search).StartRam(startRam).EndRam(endRam).StartDiskSize(startDiskSize).EndDiskSize(endDiskSize).StartCpu(startCpu).EndCpu(endCpu).OrganizationId(organizationId).Id(id).FilterBy(filterBy).AutoscalingGroup(autoscalingGroup).Execute()
+> ServersList ServersList(ctx, v).Offset(offset).Limit(limit).ProjectId(projectId).SortBy(sortBy).SortDirection(sortDirection).Search(search).StartRam(startRam).EndRam(endRam).StartDiskSize(startDiskSize).EndDiskSize(endDiskSize).StartCpu(startCpu).EndCpu(endCpu).OrganizationId(organizationId).Id(id).FilterBy(filterBy).AutoscalingGroup(autoscalingGroup).Execute()
 
-Retrieve all servers
+List all servers according to roles
 
 ### Example
 
@@ -300,14 +321,15 @@ import (
 )
 
 func main() {
-    limit := int32(56) // int32 |  (optional)
-    offset := int32(56) // int32 |  (optional)
+    v := "v_example" // string | 
+    offset := int32(56) // int32 | Skip elements (optional)
+    limit := int32(56) // int32 | Limits user size (by default 50) (optional)
     projectId := int32(56) // int32 |  (optional)
     sortBy := "sortBy_example" // string |  (optional)
     sortDirection := "sortDirection_example" // string |  (optional)
     search := "search_example" // string |  (optional)
-    startRam := "startRam_example" // string |  (optional)
-    endRam := "endRam_example" // string |  (optional)
+    startRam := float64(1.2) // float64 |  (optional)
+    endRam := float64(1.2) // float64 |  (optional)
     startDiskSize := int64(789) // int64 |  (optional)
     endDiskSize := int64(789) // int64 |  (optional)
     startCpu := int32(56) // int32 |  (optional)
@@ -319,7 +341,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ServersApi.ServersList(context.Background()).Limit(limit).Offset(offset).ProjectId(projectId).SortBy(sortBy).SortDirection(sortDirection).Search(search).StartRam(startRam).EndRam(endRam).StartDiskSize(startDiskSize).EndDiskSize(endDiskSize).StartCpu(startCpu).EndCpu(endCpu).OrganizationId(organizationId).Id(id).FilterBy(filterBy).AutoscalingGroup(autoscalingGroup).Execute()
+    resp, r, err := apiClient.ServersApi.ServersList(context.Background(), v).Offset(offset).Limit(limit).ProjectId(projectId).SortBy(sortBy).SortDirection(sortDirection).Search(search).StartRam(startRam).EndRam(endRam).StartDiskSize(startDiskSize).EndDiskSize(endDiskSize).StartCpu(startCpu).EndCpu(endCpu).OrganizationId(organizationId).Id(id).FilterBy(filterBy).AutoscalingGroup(autoscalingGroup).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServersApi.ServersList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -332,6 +354,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -340,14 +366,15 @@ Other parameters are passed through a pointer to a apiServersListRequest struct 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **limit** | **int32** |  | 
- **offset** | **int32** |  | 
+
+ **offset** | **int32** | Skip elements | 
+ **limit** | **int32** | Limits user size (by default 50) | 
  **projectId** | **int32** |  | 
  **sortBy** | **string** |  | 
  **sortDirection** | **string** |  | 
  **search** | **string** |  | 
- **startRam** | **string** |  | 
- **endRam** | **string** |  | 
+ **startRam** | **float64** |  | 
+ **endRam** | **float64** |  | 
  **startDiskSize** | **int64** |  | 
  **endDiskSize** | **int64** |  | 
  **startCpu** | **int32** |  | 
@@ -368,7 +395,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -377,9 +404,9 @@ Name | Type | Description  | Notes
 
 ## ServersReboot
 
-> ServersReboot(ctx).RebootServerCommand(rebootServerCommand).Execute()
+> ServersReboot(ctx, v).Body(body).Execute()
 
-Reboot server
+Reboot servers
 
 ### Example
 
@@ -394,11 +421,12 @@ import (
 )
 
 func main() {
-    rebootServerCommand := *openapiclient.NewRebootServerCommand() // RebootServerCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewRebootServerCommand() // RebootServerCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.ServersApi.ServersReboot(context.Background()).RebootServerCommand(rebootServerCommand).Execute()
+    r, err := apiClient.ServersApi.ServersReboot(context.Background(), v).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServersApi.ServersReboot``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -409,6 +437,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -417,7 +449,8 @@ Other parameters are passed through a pointer to a apiServersRebootRequest struc
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **rebootServerCommand** | [**RebootServerCommand**](RebootServerCommand.md) |  | 
+
+ **body** | [**RebootServerCommand**](RebootServerCommand.md) |  | 
 
 ### Return type
 
@@ -429,8 +462,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -439,9 +472,9 @@ Name | Type | Description  | Notes
 
 ## ServersReset
 
-> ServersReset(ctx).ResetServerStatusCommand(resetServerStatusCommand).Execute()
+> ServersReset(ctx, v).Body(body).Execute()
 
-Update server(s) status(es)
+Update statuses of servers by project Id
 
 ### Example
 
@@ -456,11 +489,12 @@ import (
 )
 
 func main() {
-    resetServerStatusCommand := *openapiclient.NewResetServerStatusCommand(int32(123)) // ResetServerStatusCommand |  (optional)
+    v := "v_example" // string | 
+    body := *openapiclient.NewResetServerStatusCommand(int32(123)) // ResetServerStatusCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.ServersApi.ServersReset(context.Background()).ResetServerStatusCommand(resetServerStatusCommand).Execute()
+    r, err := apiClient.ServersApi.ServersReset(context.Background(), v).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServersApi.ServersReset``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -471,6 +505,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -479,7 +517,8 @@ Other parameters are passed through a pointer to a apiServersResetRequest struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **resetServerStatusCommand** | [**ResetServerStatusCommand**](ResetServerStatusCommand.md) |  | 
+
+ **body** | [**ResetServerStatusCommand**](ResetServerStatusCommand.md) |  | 
 
 ### Return type
 
@@ -491,17 +530,17 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## ServersStatus
+## ServersShowServerStatus
 
-> string ServersStatus(ctx, serverId).Execute()
+> string ServersShowServerStatus(ctx, serverId, v).Execute()
 
 Show server status
 
@@ -519,16 +558,17 @@ import (
 
 func main() {
     serverId := int32(56) // int32 | 
+    v := "v_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ServersApi.ServersStatus(context.Background(), serverId).Execute()
+    resp, r, err := apiClient.ServersApi.ServersShowServerStatus(context.Background(), serverId, v).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ServersApi.ServersStatus``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ServersApi.ServersShowServerStatus``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ServersStatus`: string
-    fmt.Fprintf(os.Stdout, "Response from `ServersApi.ServersStatus`: %v\n", resp)
+    // response from `ServersShowServerStatus`: string
+    fmt.Fprintf(os.Stdout, "Response from `ServersApi.ServersShowServerStatus`: %v\n", resp)
 }
 ```
 
@@ -539,14 +579,16 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **serverId** | **int32** |  | 
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiServersStatusRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiServersShowServerStatusRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
 
 
 ### Return type
@@ -560,7 +602,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -569,7 +611,7 @@ Name | Type | Description  | Notes
 
 ## ServersUpdate
 
-> ServersUpdate(ctx).UpdateServerCommand(updateServerCommand).Execute()
+> ServersUpdate(ctx, v).Body(body).Execute()
 
 Update server
 
@@ -586,11 +628,12 @@ import (
 )
 
 func main() {
-    updateServerCommand := *openapiclient.NewUpdateServerCommand(int32(123), "Ip_example") // UpdateServerCommand |  (optional)
+    v := "v_example" // string | 
+    body := *openapiclient.NewUpdateServerCommand(int32(123), "Ip_example") // UpdateServerCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.ServersApi.ServersUpdate(context.Background()).UpdateServerCommand(updateServerCommand).Execute()
+    r, err := apiClient.ServersApi.ServersUpdate(context.Background(), v).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServersApi.ServersUpdate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -601,6 +644,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -609,7 +656,8 @@ Other parameters are passed through a pointer to a apiServersUpdateRequest struc
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **updateServerCommand** | [**UpdateServerCommand**](UpdateServerCommand.md) |  | 
+
+ **body** | [**UpdateServerCommand**](UpdateServerCommand.md) |  | 
 
 ### Return type
 
@@ -621,8 +669,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -631,7 +679,7 @@ Name | Type | Description  | Notes
 
 ## ServersUpdateByProjectId
 
-> ServersUpdateByProjectId(ctx, projectId).UpdateServerHealthDto(updateServerHealthDto).Execute()
+> ServersUpdateByProjectId(ctx, projectId, v).Body(body).Execute()
 
 Update server by projectId
 
@@ -649,11 +697,12 @@ import (
 
 func main() {
     projectId := int32(56) // int32 | 
-    updateServerHealthDto := []openapiclient.UpdateServerHealthDto{*openapiclient.NewUpdateServerHealthDto()} // []UpdateServerHealthDto |  (optional)
+    v := "v_example" // string | 
+    body := []openapiclient.UpdateServerHealthDto{*openapiclient.NewUpdateServerHealthDto()} // []UpdateServerHealthDto |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.ServersApi.ServersUpdateByProjectId(context.Background(), projectId).UpdateServerHealthDto(updateServerHealthDto).Execute()
+    r, err := apiClient.ServersApi.ServersUpdateByProjectId(context.Background(), projectId, v).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServersApi.ServersUpdateByProjectId``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -668,6 +717,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **projectId** | **int32** |  | 
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -677,7 +727,8 @@ Other parameters are passed through a pointer to a apiServersUpdateByProjectIdRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateServerHealthDto** | [**[]UpdateServerHealthDto**](UpdateServerHealthDto.md) |  | 
+
+ **body** | [**[]UpdateServerHealthDto**](UpdateServerHealthDto.md) |  | 
 
 ### Return type
 
@@ -689,8 +740,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

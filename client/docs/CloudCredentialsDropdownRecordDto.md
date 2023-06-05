@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
-**CloudType** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**CloudType** | Pointer to **string** |  | [optional] 
 **Projects** | Pointer to [**[]ProjectWithFlavorsAndImagesDto**](ProjectWithFlavorsAndImagesDto.md) |  | [optional] 
 
 ## Methods
@@ -78,16 +78,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *CloudCredentialsDropdownRecordDto) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *CloudCredentialsDropdownRecordDto) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetCloudType
 
 `func (o *CloudCredentialsDropdownRecordDto) GetCloudType() string`
@@ -113,16 +103,6 @@ SetCloudType sets CloudType field to given value.
 
 HasCloudType returns a boolean if a field has been set.
 
-### SetCloudTypeNil
-
-`func (o *CloudCredentialsDropdownRecordDto) SetCloudTypeNil(b bool)`
-
- SetCloudTypeNil sets the value for CloudType to be an explicit nil
-
-### UnsetCloudType
-`func (o *CloudCredentialsDropdownRecordDto) UnsetCloudType()`
-
-UnsetCloudType ensures that no value is present for CloudType, not even an explicit nil
 ### GetProjects
 
 `func (o *CloudCredentialsDropdownRecordDto) GetProjects() []ProjectWithFlavorsAndImagesDto`
@@ -148,16 +128,6 @@ SetProjects sets Projects field to given value.
 
 HasProjects returns a boolean if a field has been set.
 
-### SetProjectsNil
-
-`func (o *CloudCredentialsDropdownRecordDto) SetProjectsNil(b bool)`
-
- SetProjectsNil sets the value for Projects to be an explicit nil
-
-### UnsetProjects
-`func (o *CloudCredentialsDropdownRecordDto) UnsetProjects()`
-
-UnsetProjects ensures that no value is present for Projects, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

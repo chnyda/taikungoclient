@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **LastBackup** | Pointer to **time.Time** |  | [optional] 
-**Phase** | Pointer to **NullableString** |  | [optional] 
+**Phase** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -76,16 +76,6 @@ SetPhase sets Phase field to given value.
 
 HasPhase returns a boolean if a field has been set.
 
-### SetPhaseNil
-
-`func (o *Status) SetPhaseNil(b bool)`
-
- SetPhaseNil sets the value for Phase to be an explicit nil
-
-### UnsetPhase
-`func (o *Status) UnsetPhase()`
-
-UnsetPhase ensures that no value is present for Phase, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

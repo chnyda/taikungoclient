@@ -4,17 +4,16 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**AlertingintegrationsCreate**](AlertingIntegrationsApi.md#AlertingintegrationsCreate) | **Post** /api/v1/alertingintegrations/create | Create alerting profile alerting integration
-[**AlertingintegrationsDelete**](AlertingIntegrationsApi.md#AlertingintegrationsDelete) | **Delete** /api/v1/alertingintegrations/{id} | Delete alerting profile alerting integration
-[**AlertingintegrationsEdit**](AlertingIntegrationsApi.md#AlertingintegrationsEdit) | **Put** /api/v1/alertingintegrations/edit | Edit alerting profile alerting integration
-[**AlertingintegrationsList**](AlertingIntegrationsApi.md#AlertingintegrationsList) | **Get** /api/v1/alertingintegrations/{alertingProfileId} | 
-[**DocumentationList**](AlertingIntegrationsApi.md#DocumentationList) | **Get** /api/v1/documentation | 
+[**AlertingIntegrationsCreate**](AlertingIntegrationsApi.md#AlertingIntegrationsCreate) | **Post** /api/v{v}/AlertingIntegrations/create | Create alerting profile alerting integration
+[**AlertingIntegrationsDelete**](AlertingIntegrationsApi.md#AlertingIntegrationsDelete) | **Delete** /api/v{v}/AlertingIntegrations/{id} | Delete alerting profile alerting integration
+[**AlertingIntegrationsEdit**](AlertingIntegrationsApi.md#AlertingIntegrationsEdit) | **Put** /api/v{v}/AlertingIntegrations/edit | Edit alerting profile alerting integration
+[**AlertingIntegrationsList**](AlertingIntegrationsApi.md#AlertingIntegrationsList) | **Get** /api/v{v}/AlertingIntegrations/{alertingProfileId} | List alerting integrations by profile id
 
 
 
-## AlertingintegrationsCreate
+## AlertingIntegrationsCreate
 
-> ApiResponse AlertingintegrationsCreate(ctx).CreateAlertingIntegrationCommand(createAlertingIntegrationCommand).Execute()
+> ApiResponse AlertingIntegrationsCreate(ctx, v).Body(body).Execute()
 
 Create alerting profile alerting integration
 
@@ -31,32 +30,38 @@ import (
 )
 
 func main() {
-    createAlertingIntegrationCommand := *openapiclient.NewCreateAlertingIntegrationCommand("Url_example", openapiclient.AlertingIntegrationType(100), int32(123)) // CreateAlertingIntegrationCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewCreateAlertingIntegrationCommand("Url_example", openapiclient.AlertingIntegrationType(100), int32(123)) // CreateAlertingIntegrationCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AlertingIntegrationsApi.AlertingintegrationsCreate(context.Background()).CreateAlertingIntegrationCommand(createAlertingIntegrationCommand).Execute()
+    resp, r, err := apiClient.AlertingIntegrationsApi.AlertingIntegrationsCreate(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AlertingIntegrationsApi.AlertingintegrationsCreate``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AlertingIntegrationsApi.AlertingIntegrationsCreate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `AlertingintegrationsCreate`: ApiResponse
-    fmt.Fprintf(os.Stdout, "Response from `AlertingIntegrationsApi.AlertingintegrationsCreate`: %v\n", resp)
+    // response from `AlertingIntegrationsCreate`: ApiResponse
+    fmt.Fprintf(os.Stdout, "Response from `AlertingIntegrationsApi.AlertingIntegrationsCreate`: %v\n", resp)
 }
 ```
 
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAlertingintegrationsCreateRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiAlertingIntegrationsCreateRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createAlertingIntegrationCommand** | [**CreateAlertingIntegrationCommand**](CreateAlertingIntegrationCommand.md) |  | 
+
+ **body** | [**CreateAlertingIntegrationCommand**](CreateAlertingIntegrationCommand.md) |  | 
 
 ### Return type
 
@@ -68,17 +73,17 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## AlertingintegrationsDelete
+## AlertingIntegrationsDelete
 
-> AlertingintegrationsDelete(ctx, id).Execute()
+> AlertingIntegrationsDelete(ctx, id, v).Execute()
 
 Delete alerting profile alerting integration
 
@@ -96,12 +101,13 @@ import (
 
 func main() {
     id := int32(56) // int32 | 
+    v := "v_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.AlertingIntegrationsApi.AlertingintegrationsDelete(context.Background(), id).Execute()
+    r, err := apiClient.AlertingIntegrationsApi.AlertingIntegrationsDelete(context.Background(), id, v).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AlertingIntegrationsApi.AlertingintegrationsDelete``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AlertingIntegrationsApi.AlertingIntegrationsDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -114,14 +120,16 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **id** | **int32** |  | 
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAlertingintegrationsDeleteRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiAlertingIntegrationsDeleteRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
 
 
 ### Return type
@@ -135,16 +143,16 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## AlertingintegrationsEdit
+## AlertingIntegrationsEdit
 
-> AlertingintegrationsEdit(ctx).EditAlertingIntegrationCommand(editAlertingIntegrationCommand).Execute()
+> AlertingIntegrationsEdit(ctx, v).Body(body).Execute()
 
 Edit alerting profile alerting integration
 
@@ -161,13 +169,14 @@ import (
 )
 
 func main() {
-    editAlertingIntegrationCommand := *openapiclient.NewEditAlertingIntegrationCommand(int32(123), "Url_example", openapiclient.AlertingIntegrationType(100), int32(123)) // EditAlertingIntegrationCommand |  (optional)
+    v := "v_example" // string | 
+    body := *openapiclient.NewEditAlertingIntegrationCommand(int32(123), "Url_example", openapiclient.AlertingIntegrationType(100), int32(123)) // EditAlertingIntegrationCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.AlertingIntegrationsApi.AlertingintegrationsEdit(context.Background()).EditAlertingIntegrationCommand(editAlertingIntegrationCommand).Execute()
+    r, err := apiClient.AlertingIntegrationsApi.AlertingIntegrationsEdit(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AlertingIntegrationsApi.AlertingintegrationsEdit``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AlertingIntegrationsApi.AlertingIntegrationsEdit``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -176,15 +185,20 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAlertingintegrationsEditRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiAlertingIntegrationsEditRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **editAlertingIntegrationCommand** | [**EditAlertingIntegrationCommand**](EditAlertingIntegrationCommand.md) |  | 
+
+ **body** | [**EditAlertingIntegrationCommand**](EditAlertingIntegrationCommand.md) |  | 
 
 ### Return type
 
@@ -196,19 +210,19 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## AlertingintegrationsList
+## AlertingIntegrationsList
 
-> []AlertingIntegrationsListDto AlertingintegrationsList(ctx, alertingProfileId).Search(search).Execute()
+> []AlertingIntegrationsListDto AlertingIntegrationsList(ctx, alertingProfileId, v).Search(search).Execute()
 
-
+List alerting integrations by profile id
 
 ### Example
 
@@ -224,17 +238,18 @@ import (
 
 func main() {
     alertingProfileId := int32(56) // int32 | 
+    v := "v_example" // string | 
     search := "search_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AlertingIntegrationsApi.AlertingintegrationsList(context.Background(), alertingProfileId).Search(search).Execute()
+    resp, r, err := apiClient.AlertingIntegrationsApi.AlertingIntegrationsList(context.Background(), alertingProfileId, v).Search(search).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AlertingIntegrationsApi.AlertingintegrationsList``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AlertingIntegrationsApi.AlertingIntegrationsList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `AlertingintegrationsList`: []AlertingIntegrationsListDto
-    fmt.Fprintf(os.Stdout, "Response from `AlertingIntegrationsApi.AlertingintegrationsList`: %v\n", resp)
+    // response from `AlertingIntegrationsList`: []AlertingIntegrationsListDto
+    fmt.Fprintf(os.Stdout, "Response from `AlertingIntegrationsApi.AlertingIntegrationsList`: %v\n", resp)
 }
 ```
 
@@ -245,14 +260,16 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **alertingProfileId** | **int32** |  | 
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAlertingintegrationsListRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiAlertingIntegrationsListRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
 
  **search** | **string** |  | 
 
@@ -267,81 +284,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## DocumentationList
-
-> DocumentationsList DocumentationList(ctx).Limit(limit).Offset(offset).SortBy(sortBy).SortDirection(sortDirection).Search(search).Key(key).Execute()
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/chnyda/taikungoclient"
-)
-
-func main() {
-    limit := int32(56) // int32 |  (optional)
-    offset := int32(56) // int32 |  (optional)
-    sortBy := "sortBy_example" // string |  (optional)
-    sortDirection := "sortDirection_example" // string |  (optional)
-    search := "search_example" // string |  (optional)
-    key := "key_example" // string |  (optional)
-
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AlertingIntegrationsApi.DocumentationList(context.Background()).Limit(limit).Offset(offset).SortBy(sortBy).SortDirection(sortDirection).Search(search).Key(key).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AlertingIntegrationsApi.DocumentationList``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `DocumentationList`: DocumentationsList
-    fmt.Fprintf(os.Stdout, "Response from `AlertingIntegrationsApi.DocumentationList`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDocumentationListRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **limit** | **int32** |  | 
- **offset** | **int32** |  | 
- **sortBy** | **string** |  | 
- **sortDirection** | **string** |  | 
- **search** | **string** |  | 
- **key** | **string** |  | 
-
-### Return type
-
-[**DocumentationsList**](DocumentationsList.md)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

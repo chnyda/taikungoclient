@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Projects** | Pointer to [**[]UpdateUserProjectDto**](UpdateUserProjectDto.md) |  | [optional] 
-**UserId** | Pointer to **NullableString** |  | [optional] 
-**UserName** | Pointer to **NullableString** |  | [optional] 
+**UserId** | Pointer to **string** |  | [optional] 
+**UserName** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -52,16 +52,6 @@ SetProjects sets Projects field to given value.
 
 HasProjects returns a boolean if a field has been set.
 
-### SetProjectsNil
-
-`func (o *BindProjectsCommand) SetProjectsNil(b bool)`
-
- SetProjectsNil sets the value for Projects to be an explicit nil
-
-### UnsetProjects
-`func (o *BindProjectsCommand) UnsetProjects()`
-
-UnsetProjects ensures that no value is present for Projects, not even an explicit nil
 ### GetUserId
 
 `func (o *BindProjectsCommand) GetUserId() string`
@@ -87,16 +77,6 @@ SetUserId sets UserId field to given value.
 
 HasUserId returns a boolean if a field has been set.
 
-### SetUserIdNil
-
-`func (o *BindProjectsCommand) SetUserIdNil(b bool)`
-
- SetUserIdNil sets the value for UserId to be an explicit nil
-
-### UnsetUserId
-`func (o *BindProjectsCommand) UnsetUserId()`
-
-UnsetUserId ensures that no value is present for UserId, not even an explicit nil
 ### GetUserName
 
 `func (o *BindProjectsCommand) GetUserName() string`
@@ -122,16 +102,6 @@ SetUserName sets UserName field to given value.
 
 HasUserName returns a boolean if a field has been set.
 
-### SetUserNameNil
-
-`func (o *BindProjectsCommand) SetUserNameNil(b bool)`
-
- SetUserNameNil sets the value for UserName to be an explicit nil
-
-### UnsetUserName
-`func (o *BindProjectsCommand) UnsetUserName()`
-
-UnsetUserName ensures that no value is present for UserName, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

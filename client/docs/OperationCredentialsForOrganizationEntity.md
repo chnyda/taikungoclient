@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**OperationCredentialId** | Pointer to **NullableInt32** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
+**OperationCredentialId** | Pointer to **int32** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
 **IsDefault** | Pointer to **bool** |  | [optional] 
 
 ## Methods
@@ -52,16 +52,6 @@ SetOperationCredentialId sets OperationCredentialId field to given value.
 
 HasOperationCredentialId returns a boolean if a field has been set.
 
-### SetOperationCredentialIdNil
-
-`func (o *OperationCredentialsForOrganizationEntity) SetOperationCredentialIdNil(b bool)`
-
- SetOperationCredentialIdNil sets the value for OperationCredentialId to be an explicit nil
-
-### UnsetOperationCredentialId
-`func (o *OperationCredentialsForOrganizationEntity) UnsetOperationCredentialId()`
-
-UnsetOperationCredentialId ensures that no value is present for OperationCredentialId, not even an explicit nil
 ### GetName
 
 `func (o *OperationCredentialsForOrganizationEntity) GetName() string`
@@ -87,16 +77,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *OperationCredentialsForOrganizationEntity) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *OperationCredentialsForOrganizationEntity) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetIsDefault
 
 `func (o *OperationCredentialsForOrganizationEntity) GetIsDefault() bool`

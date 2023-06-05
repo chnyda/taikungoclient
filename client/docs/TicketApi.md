@@ -4,26 +4,26 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**TicketArchive**](TicketApi.md#TicketArchive) | **Post** /api/v1/ticket/archive | Archive ticket
-[**TicketClose**](TicketApi.md#TicketClose) | **Post** /api/v1/ticket/close | Close ticket
-[**TicketCreate**](TicketApi.md#TicketCreate) | **Post** /api/v1/ticket/create | Create ticket
-[**TicketDelete**](TicketApi.md#TicketDelete) | **Delete** /api/v1/ticket/delete/{ticketId} | 
-[**TicketDeleteMessage**](TicketApi.md#TicketDeleteMessage) | **Delete** /api/v1/ticket/delete/message/{messageId} | 
-[**TicketEdit**](TicketApi.md#TicketEdit) | **Post** /api/v1/ticket/edit | Edit ticket
-[**TicketEditMessage**](TicketApi.md#TicketEditMessage) | **Post** /api/v1/ticket/edit/message | Edit ticket message
-[**TicketList**](TicketApi.md#TicketList) | **Post** /api/v1/ticket/list | Retrieve list of tickets
-[**TicketMessages**](TicketApi.md#TicketMessages) | **Post** /api/v1/ticket/{ticketId}/messages | 
-[**TicketOpen**](TicketApi.md#TicketOpen) | **Post** /api/v1/ticket/open | Open ticket
-[**TicketReply**](TicketApi.md#TicketReply) | **Post** /api/v1/ticket/reply | Reply message
-[**TicketSetPriority**](TicketApi.md#TicketSetPriority) | **Post** /api/v1/ticket/set-priority | Set priority
-[**TicketTransfer**](TicketApi.md#TicketTransfer) | **Post** /api/v1/ticket/transfer | Transfer ticket
-[**TicketTransferList**](TicketApi.md#TicketTransferList) | **Post** /api/v1/ticket/transfer/list | Retrieve organization managers
+[**TicketArchive**](TicketApi.md#TicketArchive) | **Post** /api/v{v}/Ticket/archive | Archive ticket
+[**TicketArticleList**](TicketApi.md#TicketArticleList) | **Get** /api/v{v}/Ticket/{ticketId}/messages | Retrieve articles of ticket.
+[**TicketClose**](TicketApi.md#TicketClose) | **Post** /api/v{v}/Ticket/close | Close ticket
+[**TicketCreate**](TicketApi.md#TicketCreate) | **Post** /api/v{v}/Ticket/create | Create ticket
+[**TicketDelete**](TicketApi.md#TicketDelete) | **Delete** /api/v{v}/Ticket/delete/{ticketId} | Delete ticket
+[**TicketDeleteMessage**](TicketApi.md#TicketDeleteMessage) | **Delete** /api/v{v}/Ticket/delete/message/{messageId} | Delete ticket message
+[**TicketEdit**](TicketApi.md#TicketEdit) | **Post** /api/v{v}/Ticket/edit | Edit ticket
+[**TicketOpen**](TicketApi.md#TicketOpen) | **Post** /api/v{v}/Ticket/open | Open ticket
+[**TicketReply**](TicketApi.md#TicketReply) | **Post** /api/v{v}/Ticket/reply | Reply message
+[**TicketSetPriority**](TicketApi.md#TicketSetPriority) | **Post** /api/v{v}/Ticket/set-priority | Set priority
+[**TicketTicketList**](TicketApi.md#TicketTicketList) | **Get** /api/v{v}/Ticket/list | Retrieve a list of tickets.
+[**TicketTransfer**](TicketApi.md#TicketTransfer) | **Post** /api/v{v}/Ticket/transfer | Transfer ticket
+[**TicketTransferList**](TicketApi.md#TicketTransferList) | **Get** /api/v{v}/Ticket/transfer/list | Retrieve organization managers.
+[**TicketUpdateMessage**](TicketApi.md#TicketUpdateMessage) | **Post** /api/v{v}/Ticket/edit/message | Edit ticket message
 
 
 
 ## TicketArchive
 
-> TicketArchive(ctx).ArchiveTicketCommand(archiveTicketCommand).Execute()
+> TicketArchive(ctx, v).Body(body).Execute()
 
 Archive ticket
 
@@ -40,11 +40,12 @@ import (
 )
 
 func main() {
-    archiveTicketCommand := *openapiclient.NewArchiveTicketCommand("TicketId_example") // ArchiveTicketCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewArchiveTicketCommand("TicketId_example") // ArchiveTicketCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.TicketApi.TicketArchive(context.Background()).ArchiveTicketCommand(archiveTicketCommand).Execute()
+    r, err := apiClient.TicketApi.TicketArchive(context.Background(), v).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TicketApi.TicketArchive``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -55,6 +56,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -63,7 +68,8 @@ Other parameters are passed through a pointer to a apiTicketArchiveRequest struc
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **archiveTicketCommand** | [**ArchiveTicketCommand**](ArchiveTicketCommand.md) |  | 
+
+ **body** | [**ArchiveTicketCommand**](ArchiveTicketCommand.md) |  | 
 
 ### Return type
 
@@ -75,8 +81,83 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## TicketArticleList
+
+> ArticleList TicketArticleList(ctx, ticketId, v).Limit(limit).Offset(offset).Execute()
+
+Retrieve articles of ticket.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/chnyda/taikungoclient"
+)
+
+func main() {
+    ticketId := "ticketId_example" // string | 
+    v := "v_example" // string | 
+    limit := int32(56) // int32 | Limits user size (by default 50) (optional)
+    offset := int32(56) // int32 | Skip elements (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.TicketApi.TicketArticleList(context.Background(), ticketId, v).Limit(limit).Offset(offset).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `TicketApi.TicketArticleList``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `TicketArticleList`: ArticleList
+    fmt.Fprintf(os.Stdout, "Response from `TicketApi.TicketArticleList`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**ticketId** | **string** |  | 
+**v** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiTicketArticleListRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **limit** | **int32** | Limits user size (by default 50) | 
+ **offset** | **int32** | Skip elements | 
+
+### Return type
+
+[**ArticleList**](ArticleList.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -85,7 +166,7 @@ Name | Type | Description  | Notes
 
 ## TicketClose
 
-> TicketClose(ctx).CloseTicketCommand(closeTicketCommand).Execute()
+> TicketClose(ctx, v).Body(body).Execute()
 
 Close ticket
 
@@ -102,11 +183,12 @@ import (
 )
 
 func main() {
-    closeTicketCommand := *openapiclient.NewCloseTicketCommand("TicketId_example") // CloseTicketCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewCloseTicketCommand("TicketId_example") // CloseTicketCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.TicketApi.TicketClose(context.Background()).CloseTicketCommand(closeTicketCommand).Execute()
+    r, err := apiClient.TicketApi.TicketClose(context.Background(), v).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TicketApi.TicketClose``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -117,6 +199,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -125,7 +211,8 @@ Other parameters are passed through a pointer to a apiTicketCloseRequest struct 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **closeTicketCommand** | [**CloseTicketCommand**](CloseTicketCommand.md) |  | 
+
+ **body** | [**CloseTicketCommand**](CloseTicketCommand.md) |  | 
 
 ### Return type
 
@@ -137,8 +224,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -147,7 +234,7 @@ Name | Type | Description  | Notes
 
 ## TicketCreate
 
-> TicketCreate(ctx).CreateTicketCommand(createTicketCommand).Execute()
+> TicketCreate(ctx, v).Body(body).Execute()
 
 Create ticket
 
@@ -164,11 +251,12 @@ import (
 )
 
 func main() {
-    createTicketCommand := *openapiclient.NewCreateTicketCommand("Name_example", "Description_example") // CreateTicketCommand |  (optional)
+    v := "v_example" // string | 
+    body := *openapiclient.NewCreateTicketCommand("Name_example", "Description_example") // CreateTicketCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.TicketApi.TicketCreate(context.Background()).CreateTicketCommand(createTicketCommand).Execute()
+    r, err := apiClient.TicketApi.TicketCreate(context.Background(), v).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TicketApi.TicketCreate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -179,6 +267,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -187,7 +279,8 @@ Other parameters are passed through a pointer to a apiTicketCreateRequest struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createTicketCommand** | [**CreateTicketCommand**](CreateTicketCommand.md) |  | 
+
+ **body** | [**CreateTicketCommand**](CreateTicketCommand.md) |  | 
 
 ### Return type
 
@@ -199,8 +292,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -209,9 +302,9 @@ Name | Type | Description  | Notes
 
 ## TicketDelete
 
-> TicketDelete(ctx, ticketId).Execute()
+> TicketDelete(ctx, ticketId, v).Execute()
 
-
+Delete ticket
 
 ### Example
 
@@ -227,10 +320,11 @@ import (
 
 func main() {
     ticketId := "ticketId_example" // string | 
+    v := "v_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.TicketApi.TicketDelete(context.Background(), ticketId).Execute()
+    r, err := apiClient.TicketApi.TicketDelete(context.Background(), ticketId, v).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TicketApi.TicketDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -245,6 +339,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **ticketId** | **string** |  | 
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -253,6 +348,7 @@ Other parameters are passed through a pointer to a apiTicketDeleteRequest struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
 
 
 ### Return type
@@ -266,7 +362,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -275,9 +371,9 @@ Name | Type | Description  | Notes
 
 ## TicketDeleteMessage
 
-> TicketDeleteMessage(ctx, messageId).Execute()
+> TicketDeleteMessage(ctx, messageId, v).Execute()
 
-
+Delete ticket message
 
 ### Example
 
@@ -293,10 +389,11 @@ import (
 
 func main() {
     messageId := "messageId_example" // string | 
+    v := "v_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.TicketApi.TicketDeleteMessage(context.Background(), messageId).Execute()
+    r, err := apiClient.TicketApi.TicketDeleteMessage(context.Background(), messageId, v).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TicketApi.TicketDeleteMessage``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -311,6 +408,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **messageId** | **string** |  | 
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -319,6 +417,7 @@ Other parameters are passed through a pointer to a apiTicketDeleteMessageRequest
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
 
 
 ### Return type
@@ -332,7 +431,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -341,7 +440,7 @@ Name | Type | Description  | Notes
 
 ## TicketEdit
 
-> TicketEdit(ctx).EditTicketCommand(editTicketCommand).Execute()
+> TicketEdit(ctx, v).Body(body).Execute()
 
 Edit ticket
 
@@ -358,11 +457,12 @@ import (
 )
 
 func main() {
-    editTicketCommand := *openapiclient.NewEditTicketCommand("TicketId_example", "Name_example", "Description_example") // EditTicketCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewEditTicketCommand("TicketId_example", "Name_example", "Description_example") // EditTicketCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.TicketApi.TicketEdit(context.Background()).EditTicketCommand(editTicketCommand).Execute()
+    r, err := apiClient.TicketApi.TicketEdit(context.Background(), v).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TicketApi.TicketEdit``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -373,6 +473,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -381,7 +485,8 @@ Other parameters are passed through a pointer to a apiTicketEditRequest struct v
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **editTicketCommand** | [**EditTicketCommand**](EditTicketCommand.md) |  | 
+
+ **body** | [**EditTicketCommand**](EditTicketCommand.md) |  | 
 
 ### Return type
 
@@ -393,218 +498,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## TicketEditMessage
-
-> TicketEditMessage(ctx).EditArticleCommand(editArticleCommand).Execute()
-
-Edit ticket message
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/chnyda/taikungoclient"
-)
-
-func main() {
-    editArticleCommand := *openapiclient.NewEditArticleCommand("MessageId_example", "Body_example") // EditArticleCommand | 
-
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.TicketApi.TicketEditMessage(context.Background()).EditArticleCommand(editArticleCommand).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TicketApi.TicketEditMessage``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiTicketEditMessageRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **editArticleCommand** | [**EditArticleCommand**](EditArticleCommand.md) |  | 
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## TicketList
-
-> AllTicketsList TicketList(ctx).Limit(limit).Offset(offset).OrganizationId(organizationId).Search(search).StartDate(startDate).EndDate(endDate).TicketId(ticketId).Execute()
-
-Retrieve list of tickets
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/chnyda/taikungoclient"
-)
-
-func main() {
-    limit := int32(56) // int32 |  (optional)
-    offset := int32(56) // int32 |  (optional)
-    organizationId := int32(56) // int32 |  (optional)
-    search := "search_example" // string |  (optional)
-    startDate := "startDate_example" // string |  (optional)
-    endDate := "endDate_example" // string |  (optional)
-    ticketId := "ticketId_example" // string |  (optional)
-
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TicketApi.TicketList(context.Background()).Limit(limit).Offset(offset).OrganizationId(organizationId).Search(search).StartDate(startDate).EndDate(endDate).TicketId(ticketId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TicketApi.TicketList``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `TicketList`: AllTicketsList
-    fmt.Fprintf(os.Stdout, "Response from `TicketApi.TicketList`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiTicketListRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **limit** | **int32** |  | 
- **offset** | **int32** |  | 
- **organizationId** | **int32** |  | 
- **search** | **string** |  | 
- **startDate** | **string** |  | 
- **endDate** | **string** |  | 
- **ticketId** | **string** |  | 
-
-### Return type
-
-[**AllTicketsList**](AllTicketsList.md)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## TicketMessages
-
-> ArticleList TicketMessages(ctx, ticketId).Limit(limit).Offset(offset).Execute()
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/chnyda/taikungoclient"
-)
-
-func main() {
-    ticketId := "ticketId_example" // string | 
-    limit := int32(56) // int32 |  (optional)
-    offset := int32(56) // int32 |  (optional)
-
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TicketApi.TicketMessages(context.Background(), ticketId).Limit(limit).Offset(offset).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TicketApi.TicketMessages``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `TicketMessages`: ArticleList
-    fmt.Fprintf(os.Stdout, "Response from `TicketApi.TicketMessages`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**ticketId** | **string** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiTicketMessagesRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **limit** | **int32** |  | 
- **offset** | **int32** |  | 
-
-### Return type
-
-[**ArticleList**](ArticleList.md)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -613,7 +508,7 @@ Name | Type | Description  | Notes
 
 ## TicketOpen
 
-> TicketOpen(ctx).OpenTicketCommand(openTicketCommand).Execute()
+> TicketOpen(ctx, v).Body(body).Execute()
 
 Open ticket
 
@@ -630,11 +525,12 @@ import (
 )
 
 func main() {
-    openTicketCommand := *openapiclient.NewOpenTicketCommand("TicketId_example") // OpenTicketCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewOpenTicketCommand("TicketId_example") // OpenTicketCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.TicketApi.TicketOpen(context.Background()).OpenTicketCommand(openTicketCommand).Execute()
+    r, err := apiClient.TicketApi.TicketOpen(context.Background(), v).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TicketApi.TicketOpen``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -645,6 +541,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -653,7 +553,8 @@ Other parameters are passed through a pointer to a apiTicketOpenRequest struct v
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **openTicketCommand** | [**OpenTicketCommand**](OpenTicketCommand.md) |  | 
+
+ **body** | [**OpenTicketCommand**](OpenTicketCommand.md) |  | 
 
 ### Return type
 
@@ -665,8 +566,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -675,7 +576,7 @@ Name | Type | Description  | Notes
 
 ## TicketReply
 
-> TicketReply(ctx).ReplyTicketCommand(replyTicketCommand).Execute()
+> TicketReply(ctx, v).Body(body).Execute()
 
 Reply message
 
@@ -692,11 +593,12 @@ import (
 )
 
 func main() {
-    replyTicketCommand := *openapiclient.NewReplyTicketCommand("TicketId_example", "Body_example") // ReplyTicketCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewReplyTicketCommand("TicketId_example", "Body_example") // ReplyTicketCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.TicketApi.TicketReply(context.Background()).ReplyTicketCommand(replyTicketCommand).Execute()
+    r, err := apiClient.TicketApi.TicketReply(context.Background(), v).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TicketApi.TicketReply``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -707,6 +609,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -715,7 +621,8 @@ Other parameters are passed through a pointer to a apiTicketReplyRequest struct 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **replyTicketCommand** | [**ReplyTicketCommand**](ReplyTicketCommand.md) |  | 
+
+ **body** | [**ReplyTicketCommand**](ReplyTicketCommand.md) |  | 
 
 ### Return type
 
@@ -727,8 +634,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -737,7 +644,7 @@ Name | Type | Description  | Notes
 
 ## TicketSetPriority
 
-> TicketSetPriority(ctx).SetTicketPriorityCommand(setTicketPriorityCommand).Execute()
+> TicketSetPriority(ctx, v).Body(body).Execute()
 
 Set priority
 
@@ -754,11 +661,12 @@ import (
 )
 
 func main() {
-    setTicketPriorityCommand := *openapiclient.NewSetTicketPriorityCommand("Id_example") // SetTicketPriorityCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewSetTicketPriorityCommand("Id_example") // SetTicketPriorityCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.TicketApi.TicketSetPriority(context.Background()).SetTicketPriorityCommand(setTicketPriorityCommand).Execute()
+    r, err := apiClient.TicketApi.TicketSetPriority(context.Background(), v).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TicketApi.TicketSetPriority``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -769,6 +677,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -777,7 +689,8 @@ Other parameters are passed through a pointer to a apiTicketSetPriorityRequest s
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **setTicketPriorityCommand** | [**SetTicketPriorityCommand**](SetTicketPriorityCommand.md) |  | 
+
+ **body** | [**SetTicketPriorityCommand**](SetTicketPriorityCommand.md) |  | 
 
 ### Return type
 
@@ -789,8 +702,91 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## TicketTicketList
+
+> AllTicketsList TicketTicketList(ctx, v).Limit(limit).Offset(offset).OrganizationId(organizationId).Search(search).StartDate(startDate).EndDate(endDate).TicketId(ticketId).Execute()
+
+Retrieve a list of tickets.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    "time"
+    openapiclient "github.com/chnyda/taikungoclient"
+)
+
+func main() {
+    v := "v_example" // string | 
+    limit := int32(56) // int32 | Limits user size (by default 50) (optional)
+    offset := int32(56) // int32 | Skip elements (optional)
+    organizationId := int32(56) // int32 |  (optional)
+    search := "search_example" // string | Keyword for searching (optional)
+    startDate := time.Now() // time.Time |  (optional)
+    endDate := time.Now() // time.Time |  (optional)
+    ticketId := "ticketId_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.TicketApi.TicketTicketList(context.Background(), v).Limit(limit).Offset(offset).OrganizationId(organizationId).Search(search).StartDate(startDate).EndDate(endDate).TicketId(ticketId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `TicketApi.TicketTicketList``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `TicketTicketList`: AllTicketsList
+    fmt.Fprintf(os.Stdout, "Response from `TicketApi.TicketTicketList`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiTicketTicketListRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **limit** | **int32** | Limits user size (by default 50) | 
+ **offset** | **int32** | Skip elements | 
+ **organizationId** | **int32** |  | 
+ **search** | **string** | Keyword for searching | 
+ **startDate** | **time.Time** |  | 
+ **endDate** | **time.Time** |  | 
+ **ticketId** | **string** |  | 
+
+### Return type
+
+[**AllTicketsList**](AllTicketsList.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -799,7 +795,7 @@ Name | Type | Description  | Notes
 
 ## TicketTransfer
 
-> TicketTransfer(ctx).TransferTicketCommand(transferTicketCommand).Execute()
+> TicketTransfer(ctx, v).Body(body).Execute()
 
 Transfer ticket
 
@@ -816,11 +812,12 @@ import (
 )
 
 func main() {
-    transferTicketCommand := *openapiclient.NewTransferTicketCommand("TicketId_example", "UserId_example") // TransferTicketCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewTransferTicketCommand("TicketId_example", "UserId_example") // TransferTicketCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.TicketApi.TicketTransfer(context.Background()).TransferTicketCommand(transferTicketCommand).Execute()
+    r, err := apiClient.TicketApi.TicketTransfer(context.Background(), v).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TicketApi.TicketTransfer``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -831,6 +828,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -839,7 +840,8 @@ Other parameters are passed through a pointer to a apiTicketTransferRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **transferTicketCommand** | [**TransferTicketCommand**](TransferTicketCommand.md) |  | 
+
+ **body** | [**TransferTicketCommand**](TransferTicketCommand.md) |  | 
 
 ### Return type
 
@@ -851,8 +853,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -861,9 +863,9 @@ Name | Type | Description  | Notes
 
 ## TicketTransferList
 
-> []TransferList TicketTransferList(ctx).OrganizationId(organizationId).Execute()
+> []TransferList TicketTransferList(ctx, v).OrganizationId(organizationId).Execute()
 
-Retrieve organization managers
+Retrieve organization managers.
 
 ### Example
 
@@ -878,11 +880,12 @@ import (
 )
 
 func main() {
+    v := "v_example" // string | 
     organizationId := int32(56) // int32 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TicketApi.TicketTransferList(context.Background()).OrganizationId(organizationId).Execute()
+    resp, r, err := apiClient.TicketApi.TicketTransferList(context.Background(), v).OrganizationId(organizationId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TicketApi.TicketTransferList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -895,6 +898,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -903,6 +910,7 @@ Other parameters are passed through a pointer to a apiTicketTransferListRequest 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
  **organizationId** | **int32** |  | 
 
 ### Return type
@@ -916,7 +924,75 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## TicketUpdateMessage
+
+> TicketUpdateMessage(ctx, v).Body(body).Execute()
+
+Edit ticket message
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/chnyda/taikungoclient"
+)
+
+func main() {
+    v := "v_example" // string | 
+    body := *openapiclient.NewEditArticleCommand("MessageId_example", "Body_example") // EditArticleCommand |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.TicketApi.TicketUpdateMessage(context.Background(), v).Body(body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `TicketApi.TicketUpdateMessage``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiTicketUpdateMessageRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **body** | [**EditArticleCommand**](EditArticleCommand.md) |  | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

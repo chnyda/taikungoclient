@@ -7,10 +7,10 @@ Name | Type | Description | Notes
 **ProjectId** | Pointer to **int32** |  | [optional] 
 **Parameters** | Pointer to [**[]Parameter**](Parameter.md) |  | [optional] 
 **Filters** | Pointer to [**[]Filter**](Filter.md) |  | [optional] 
-**Start** | Pointer to **NullableTime** |  | [optional] 
-**End** | Pointer to **NullableTime** |  | [optional] 
-**Limit** | Pointer to **NullableInt32** |  | [optional] 
-**Direction** | Pointer to **NullableString** |  | [optional] 
+**Start** | Pointer to **time.Time** |  | [optional] 
+**End** | Pointer to **time.Time** |  | [optional] 
+**Limit** | Pointer to **int32** |  | [optional] 
+**Direction** | Pointer to **string** |  | [optional] 
 **CanDownload** | Pointer to **bool** |  | [optional] 
 
 ## Methods
@@ -82,16 +82,6 @@ SetParameters sets Parameters field to given value.
 
 HasParameters returns a boolean if a field has been set.
 
-### SetParametersNil
-
-`func (o *LokiResponseDto) SetParametersNil(b bool)`
-
- SetParametersNil sets the value for Parameters to be an explicit nil
-
-### UnsetParameters
-`func (o *LokiResponseDto) UnsetParameters()`
-
-UnsetParameters ensures that no value is present for Parameters, not even an explicit nil
 ### GetFilters
 
 `func (o *LokiResponseDto) GetFilters() []Filter`
@@ -117,16 +107,6 @@ SetFilters sets Filters field to given value.
 
 HasFilters returns a boolean if a field has been set.
 
-### SetFiltersNil
-
-`func (o *LokiResponseDto) SetFiltersNil(b bool)`
-
- SetFiltersNil sets the value for Filters to be an explicit nil
-
-### UnsetFilters
-`func (o *LokiResponseDto) UnsetFilters()`
-
-UnsetFilters ensures that no value is present for Filters, not even an explicit nil
 ### GetStart
 
 `func (o *LokiResponseDto) GetStart() time.Time`
@@ -152,16 +132,6 @@ SetStart sets Start field to given value.
 
 HasStart returns a boolean if a field has been set.
 
-### SetStartNil
-
-`func (o *LokiResponseDto) SetStartNil(b bool)`
-
- SetStartNil sets the value for Start to be an explicit nil
-
-### UnsetStart
-`func (o *LokiResponseDto) UnsetStart()`
-
-UnsetStart ensures that no value is present for Start, not even an explicit nil
 ### GetEnd
 
 `func (o *LokiResponseDto) GetEnd() time.Time`
@@ -187,16 +157,6 @@ SetEnd sets End field to given value.
 
 HasEnd returns a boolean if a field has been set.
 
-### SetEndNil
-
-`func (o *LokiResponseDto) SetEndNil(b bool)`
-
- SetEndNil sets the value for End to be an explicit nil
-
-### UnsetEnd
-`func (o *LokiResponseDto) UnsetEnd()`
-
-UnsetEnd ensures that no value is present for End, not even an explicit nil
 ### GetLimit
 
 `func (o *LokiResponseDto) GetLimit() int32`
@@ -222,16 +182,6 @@ SetLimit sets Limit field to given value.
 
 HasLimit returns a boolean if a field has been set.
 
-### SetLimitNil
-
-`func (o *LokiResponseDto) SetLimitNil(b bool)`
-
- SetLimitNil sets the value for Limit to be an explicit nil
-
-### UnsetLimit
-`func (o *LokiResponseDto) UnsetLimit()`
-
-UnsetLimit ensures that no value is present for Limit, not even an explicit nil
 ### GetDirection
 
 `func (o *LokiResponseDto) GetDirection() string`
@@ -257,16 +207,6 @@ SetDirection sets Direction field to given value.
 
 HasDirection returns a boolean if a field has been set.
 
-### SetDirectionNil
-
-`func (o *LokiResponseDto) SetDirectionNil(b bool)`
-
- SetDirectionNil sets the value for Direction to be an explicit nil
-
-### UnsetDirection
-`func (o *LokiResponseDto) UnsetDirection()`
-
-UnsetDirection ensures that no value is present for Direction, not even an explicit nil
 ### GetCanDownload
 
 `func (o *LokiResponseDto) GetCanDownload() bool`

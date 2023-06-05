@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
 **ProjectLimit** | Pointer to **int32** |  | [optional] 
 **ServerLimit** | Pointer to **int32** |  | [optional] 
 **UserLimit** | Pointer to **int32** |  | [optional] 
@@ -14,10 +14,10 @@ Name | Type | Description | Notes
 **YearlyPrice** | Pointer to **float64** |  | [optional] 
 **TcuPrice** | Pointer to **float64** |  | [optional] 
 **IsDeprecated** | Pointer to **bool** |  | [optional] 
-**Currency** | Pointer to **NullableString** |  | [optional] 
-**PartnerId** | Pointer to **NullableInt32** |  | [optional] 
+**Currency** | Pointer to **string** |  | [optional] 
+**PartnerId** | Pointer to **int32** |  | [optional] 
 **TrialDays** | Pointer to **int32** |  | [optional] 
-**Description** | Pointer to **NullableString** |  | [optional] 
+**Description** | Pointer to **string** |  | [optional] 
 **IsFree** | Pointer to **bool** |  | [optional] 
 **IsEnterprise** | Pointer to **bool** |  | [optional] 
 
@@ -90,16 +90,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *ListForLandingPageDto) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *ListForLandingPageDto) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetProjectLimit
 
 `func (o *ListForLandingPageDto) GetProjectLimit() int32`
@@ -325,16 +315,6 @@ SetCurrency sets Currency field to given value.
 
 HasCurrency returns a boolean if a field has been set.
 
-### SetCurrencyNil
-
-`func (o *ListForLandingPageDto) SetCurrencyNil(b bool)`
-
- SetCurrencyNil sets the value for Currency to be an explicit nil
-
-### UnsetCurrency
-`func (o *ListForLandingPageDto) UnsetCurrency()`
-
-UnsetCurrency ensures that no value is present for Currency, not even an explicit nil
 ### GetPartnerId
 
 `func (o *ListForLandingPageDto) GetPartnerId() int32`
@@ -360,16 +340,6 @@ SetPartnerId sets PartnerId field to given value.
 
 HasPartnerId returns a boolean if a field has been set.
 
-### SetPartnerIdNil
-
-`func (o *ListForLandingPageDto) SetPartnerIdNil(b bool)`
-
- SetPartnerIdNil sets the value for PartnerId to be an explicit nil
-
-### UnsetPartnerId
-`func (o *ListForLandingPageDto) UnsetPartnerId()`
-
-UnsetPartnerId ensures that no value is present for PartnerId, not even an explicit nil
 ### GetTrialDays
 
 `func (o *ListForLandingPageDto) GetTrialDays() int32`
@@ -420,16 +390,6 @@ SetDescription sets Description field to given value.
 
 HasDescription returns a boolean if a field has been set.
 
-### SetDescriptionNil
-
-`func (o *ListForLandingPageDto) SetDescriptionNil(b bool)`
-
- SetDescriptionNil sets the value for Description to be an explicit nil
-
-### UnsetDescription
-`func (o *ListForLandingPageDto) UnsetDescription()`
-
-UnsetDescription ensures that no value is present for Description, not even an explicit nil
 ### GetIsFree
 
 `func (o *ListForLandingPageDto) GetIsFree() bool`

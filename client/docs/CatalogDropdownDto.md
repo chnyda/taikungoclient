@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
 **PackageIds** | Pointer to **[]string** |  | [optional] 
 
 ## Methods
@@ -77,16 +77,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *CatalogDropdownDto) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *CatalogDropdownDto) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetPackageIds
 
 `func (o *CatalogDropdownDto) GetPackageIds() []string`
@@ -112,16 +102,6 @@ SetPackageIds sets PackageIds field to given value.
 
 HasPackageIds returns a boolean if a field has been set.
 
-### SetPackageIdsNil
-
-`func (o *CatalogDropdownDto) SetPackageIdsNil(b bool)`
-
- SetPackageIdsNil sets the value for PackageIds to be an explicit nil
-
-### UnsetPackageIds
-`func (o *CatalogDropdownDto) UnsetPackageIds()`
-
-UnsetPackageIds ensures that no value is present for PackageIds, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

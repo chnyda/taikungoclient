@@ -5,11 +5,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
-**Protocol** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**Protocol** | Pointer to **string** |  | [optional] 
 **PortMinRange** | Pointer to **int32** |  | [optional] 
 **PortMaxRange** | Pointer to **int32** |  | [optional] 
-**RemoteIpPrefix** | Pointer to **NullableString** |  | [optional] 
+**RemoteIpPrefix** | Pointer to **string** |  | [optional] 
 **IsRdpPortEnabled** | Pointer to **bool** |  | [optional] 
 
 ## Methods
@@ -81,16 +81,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *StandAloneProfileSecurityGroupForDetailsDto) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *StandAloneProfileSecurityGroupForDetailsDto) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetProtocol
 
 `func (o *StandAloneProfileSecurityGroupForDetailsDto) GetProtocol() string`
@@ -116,16 +106,6 @@ SetProtocol sets Protocol field to given value.
 
 HasProtocol returns a boolean if a field has been set.
 
-### SetProtocolNil
-
-`func (o *StandAloneProfileSecurityGroupForDetailsDto) SetProtocolNil(b bool)`
-
- SetProtocolNil sets the value for Protocol to be an explicit nil
-
-### UnsetProtocol
-`func (o *StandAloneProfileSecurityGroupForDetailsDto) UnsetProtocol()`
-
-UnsetProtocol ensures that no value is present for Protocol, not even an explicit nil
 ### GetPortMinRange
 
 `func (o *StandAloneProfileSecurityGroupForDetailsDto) GetPortMinRange() int32`
@@ -201,16 +181,6 @@ SetRemoteIpPrefix sets RemoteIpPrefix field to given value.
 
 HasRemoteIpPrefix returns a boolean if a field has been set.
 
-### SetRemoteIpPrefixNil
-
-`func (o *StandAloneProfileSecurityGroupForDetailsDto) SetRemoteIpPrefixNil(b bool)`
-
- SetRemoteIpPrefixNil sets the value for RemoteIpPrefix to be an explicit nil
-
-### UnsetRemoteIpPrefix
-`func (o *StandAloneProfileSecurityGroupForDetailsDto) UnsetRemoteIpPrefix()`
-
-UnsetRemoteIpPrefix ensures that no value is present for RemoteIpPrefix, not even an explicit nil
 ### GetIsRdpPortEnabled
 
 `func (o *StandAloneProfileSecurityGroupForDetailsDto) GetIsRdpPortEnabled() bool`

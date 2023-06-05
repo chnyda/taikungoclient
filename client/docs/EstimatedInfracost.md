@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Resources** | Pointer to [**[]Resource**](Resource.md) |  | [optional] 
-**TotalHourlyCost** | Pointer to **NullableString** |  | [optional] 
-**TotalMonthlyCost** | Pointer to **NullableString** |  | [optional] 
+**TotalHourlyCost** | Pointer to **string** |  | [optional] 
+**TotalMonthlyCost** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -52,16 +52,6 @@ SetResources sets Resources field to given value.
 
 HasResources returns a boolean if a field has been set.
 
-### SetResourcesNil
-
-`func (o *EstimatedInfracost) SetResourcesNil(b bool)`
-
- SetResourcesNil sets the value for Resources to be an explicit nil
-
-### UnsetResources
-`func (o *EstimatedInfracost) UnsetResources()`
-
-UnsetResources ensures that no value is present for Resources, not even an explicit nil
 ### GetTotalHourlyCost
 
 `func (o *EstimatedInfracost) GetTotalHourlyCost() string`
@@ -87,16 +77,6 @@ SetTotalHourlyCost sets TotalHourlyCost field to given value.
 
 HasTotalHourlyCost returns a boolean if a field has been set.
 
-### SetTotalHourlyCostNil
-
-`func (o *EstimatedInfracost) SetTotalHourlyCostNil(b bool)`
-
- SetTotalHourlyCostNil sets the value for TotalHourlyCost to be an explicit nil
-
-### UnsetTotalHourlyCost
-`func (o *EstimatedInfracost) UnsetTotalHourlyCost()`
-
-UnsetTotalHourlyCost ensures that no value is present for TotalHourlyCost, not even an explicit nil
 ### GetTotalMonthlyCost
 
 `func (o *EstimatedInfracost) GetTotalMonthlyCost() string`
@@ -122,16 +102,6 @@ SetTotalMonthlyCost sets TotalMonthlyCost field to given value.
 
 HasTotalMonthlyCost returns a boolean if a field has been set.
 
-### SetTotalMonthlyCostNil
-
-`func (o *EstimatedInfracost) SetTotalMonthlyCostNil(b bool)`
-
- SetTotalMonthlyCostNil sets the value for TotalMonthlyCost to be an explicit nil
-
-### UnsetTotalMonthlyCost
-`func (o *EstimatedInfracost) UnsetTotalMonthlyCost()`
-
-UnsetTotalMonthlyCost ensures that no value is present for TotalMonthlyCost, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

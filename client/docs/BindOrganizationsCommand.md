@@ -51,16 +51,6 @@ SetOrganizations sets Organizations field to given value.
 
 HasOrganizations returns a boolean if a field has been set.
 
-### SetOrganizationsNil
-
-`func (o *BindOrganizationsCommand) SetOrganizationsNil(b bool)`
-
- SetOrganizationsNil sets the value for Organizations to be an explicit nil
-
-### UnsetOrganizations
-`func (o *BindOrganizationsCommand) UnsetOrganizations()`
-
-UnsetOrganizations ensures that no value is present for Organizations, not even an explicit nil
 ### GetPartnerId
 
 `func (o *BindOrganizationsCommand) GetPartnerId() int32`

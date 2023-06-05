@@ -4,16 +4,16 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ProjectactionsDelete**](ProjectActionsApi.md#ProjectactionsDelete) | **Delete** /api/v1/projectactions/{projectId} | Delete the project action
-[**ProjectactionsEdit**](ProjectActionsApi.md#ProjectactionsEdit) | **Put** /api/v1/projectactions/edit/{projectId} | Update project action by projectId
+[**ProjectActionsDelete**](ProjectActionsApi.md#ProjectActionsDelete) | **Post** /api/v{v}/ProjectActions/delete | Delete the project action.
+[**ProjectActionsEdit**](ProjectActionsApi.md#ProjectActionsEdit) | **Post** /api/v{v}/ProjectActions/update/{projectId} | Update project action by ProjectId for poller
 
 
 
-## ProjectactionsDelete
+## ProjectActionsDelete
 
-> ProjectactionsDelete(ctx, projectId).Execute()
+> ProjectActionsDelete(ctx, v).Body(body).Execute()
 
-Delete the project action
+Delete the project action.
 
 ### Example
 
@@ -28,13 +28,14 @@ import (
 )
 
 func main() {
-    projectId := int32(56) // int32 | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewDeleteProjectActionCommand() // DeleteProjectActionCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.ProjectActionsApi.ProjectactionsDelete(context.Background(), projectId).Execute()
+    r, err := apiClient.ProjectActionsApi.ProjectActionsDelete(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ProjectActionsApi.ProjectactionsDelete``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ProjectActionsApi.ProjectActionsDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -46,16 +47,17 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**projectId** | **int32** |  | 
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiProjectactionsDeleteRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiProjectActionsDeleteRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **body** | [**DeleteProjectActionCommand**](DeleteProjectActionCommand.md) |  | 
 
 ### Return type
 
@@ -67,19 +69,19 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## ProjectactionsEdit
+## ProjectActionsEdit
 
-> ProjectactionsEdit(ctx, projectId).ProjectActionUpdateDto(projectActionUpdateDto).Execute()
+> ProjectActionsEdit(ctx, projectId, v).Body(body).Execute()
 
-Update project action by projectId
+Update project action by ProjectId for poller
 
 ### Example
 
@@ -95,13 +97,14 @@ import (
 
 func main() {
     projectId := int32(56) // int32 | 
-    projectActionUpdateDto := *openapiclient.NewProjectActionUpdateDto() // ProjectActionUpdateDto |  (optional)
+    v := "v_example" // string | 
+    body := *openapiclient.NewProjectActionUpdateDto() // ProjectActionUpdateDto |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.ProjectActionsApi.ProjectactionsEdit(context.Background(), projectId).ProjectActionUpdateDto(projectActionUpdateDto).Execute()
+    r, err := apiClient.ProjectActionsApi.ProjectActionsEdit(context.Background(), projectId, v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ProjectActionsApi.ProjectactionsEdit``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ProjectActionsApi.ProjectActionsEdit``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -114,16 +117,18 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **projectId** | **int32** |  | 
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiProjectactionsEditRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiProjectActionsEditRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **projectActionUpdateDto** | [**ProjectActionUpdateDto**](ProjectActionUpdateDto.md) |  | 
+
+ **body** | [**ProjectActionUpdateDto**](ProjectActionUpdateDto.md) |  | 
 
 ### Return type
 
@@ -135,8 +140,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

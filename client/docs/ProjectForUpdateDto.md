@@ -4,21 +4,22 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**KubeConfig** | Pointer to **NullableString** |  | [optional] 
-**KubesprayCurrentVersion** | Pointer to **NullableString** |  | [optional] 
-**AccessIp** | Pointer to **NullableString** |  | [optional] 
-**ImageName** | Pointer to **NullableString** |  | [optional] 
-**TanzuReleaseCurrentVersion** | Pointer to **NullableString** |  | [optional] 
+**KubeConfig** | Pointer to **string** |  | [optional] 
+**KubesprayCurrentVersion** | Pointer to **string** |  | [optional] 
+**AccessIp** | Pointer to **string** |  | [optional] 
+**ImageName** | Pointer to **string** |  | [optional] 
+**MonitoringIp** | Pointer to **string** |  | [optional] 
+**TanzuReleaseCurrentVersion** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to [**ProjectStatus**](ProjectStatus.md) |  | [optional] 
 **Health** | Pointer to [**ProjectHealth**](ProjectHealth.md) |  | [optional] 
-**IsBackupEnabled** | Pointer to **NullableBool** |  | [optional] 
-**IsMonitoringEnabled** | Pointer to **NullableBool** |  | [optional] 
-**IsOpaEnabled** | Pointer to **NullableBool** |  | [optional] 
-**IsAutoUpgrade** | Pointer to **NullableBool** |  | [optional] 
-**AppEnabled** | Pointer to **NullableBool** |  | [optional] 
-**IsKubevapEnabled** | Pointer to **NullableBool** |  | [optional] 
-**KubernetesCurrentVersion** | Pointer to **NullableString** |  | [optional] 
-**FailureReason** | Pointer to **NullableString** |  | [optional] 
+**IsBackupEnabled** | Pointer to **bool** |  | [optional] 
+**IsMonitoringEnabled** | Pointer to **bool** |  | [optional] 
+**IsOpaEnabled** | Pointer to **bool** |  | [optional] 
+**IsAutoUpgrade** | Pointer to **bool** |  | [optional] 
+**AppEnabled** | Pointer to **bool** |  | [optional] 
+**IsKubevapEnabled** | Pointer to **bool** |  | [optional] 
+**KubernetesCurrentVersion** | Pointer to **string** |  | [optional] 
+**FailureReason** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -64,16 +65,6 @@ SetKubeConfig sets KubeConfig field to given value.
 
 HasKubeConfig returns a boolean if a field has been set.
 
-### SetKubeConfigNil
-
-`func (o *ProjectForUpdateDto) SetKubeConfigNil(b bool)`
-
- SetKubeConfigNil sets the value for KubeConfig to be an explicit nil
-
-### UnsetKubeConfig
-`func (o *ProjectForUpdateDto) UnsetKubeConfig()`
-
-UnsetKubeConfig ensures that no value is present for KubeConfig, not even an explicit nil
 ### GetKubesprayCurrentVersion
 
 `func (o *ProjectForUpdateDto) GetKubesprayCurrentVersion() string`
@@ -99,16 +90,6 @@ SetKubesprayCurrentVersion sets KubesprayCurrentVersion field to given value.
 
 HasKubesprayCurrentVersion returns a boolean if a field has been set.
 
-### SetKubesprayCurrentVersionNil
-
-`func (o *ProjectForUpdateDto) SetKubesprayCurrentVersionNil(b bool)`
-
- SetKubesprayCurrentVersionNil sets the value for KubesprayCurrentVersion to be an explicit nil
-
-### UnsetKubesprayCurrentVersion
-`func (o *ProjectForUpdateDto) UnsetKubesprayCurrentVersion()`
-
-UnsetKubesprayCurrentVersion ensures that no value is present for KubesprayCurrentVersion, not even an explicit nil
 ### GetAccessIp
 
 `func (o *ProjectForUpdateDto) GetAccessIp() string`
@@ -134,16 +115,6 @@ SetAccessIp sets AccessIp field to given value.
 
 HasAccessIp returns a boolean if a field has been set.
 
-### SetAccessIpNil
-
-`func (o *ProjectForUpdateDto) SetAccessIpNil(b bool)`
-
- SetAccessIpNil sets the value for AccessIp to be an explicit nil
-
-### UnsetAccessIp
-`func (o *ProjectForUpdateDto) UnsetAccessIp()`
-
-UnsetAccessIp ensures that no value is present for AccessIp, not even an explicit nil
 ### GetImageName
 
 `func (o *ProjectForUpdateDto) GetImageName() string`
@@ -169,16 +140,31 @@ SetImageName sets ImageName field to given value.
 
 HasImageName returns a boolean if a field has been set.
 
-### SetImageNameNil
+### GetMonitoringIp
 
-`func (o *ProjectForUpdateDto) SetImageNameNil(b bool)`
+`func (o *ProjectForUpdateDto) GetMonitoringIp() string`
 
- SetImageNameNil sets the value for ImageName to be an explicit nil
+GetMonitoringIp returns the MonitoringIp field if non-nil, zero value otherwise.
 
-### UnsetImageName
-`func (o *ProjectForUpdateDto) UnsetImageName()`
+### GetMonitoringIpOk
 
-UnsetImageName ensures that no value is present for ImageName, not even an explicit nil
+`func (o *ProjectForUpdateDto) GetMonitoringIpOk() (*string, bool)`
+
+GetMonitoringIpOk returns a tuple with the MonitoringIp field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMonitoringIp
+
+`func (o *ProjectForUpdateDto) SetMonitoringIp(v string)`
+
+SetMonitoringIp sets MonitoringIp field to given value.
+
+### HasMonitoringIp
+
+`func (o *ProjectForUpdateDto) HasMonitoringIp() bool`
+
+HasMonitoringIp returns a boolean if a field has been set.
+
 ### GetTanzuReleaseCurrentVersion
 
 `func (o *ProjectForUpdateDto) GetTanzuReleaseCurrentVersion() string`
@@ -204,16 +190,6 @@ SetTanzuReleaseCurrentVersion sets TanzuReleaseCurrentVersion field to given val
 
 HasTanzuReleaseCurrentVersion returns a boolean if a field has been set.
 
-### SetTanzuReleaseCurrentVersionNil
-
-`func (o *ProjectForUpdateDto) SetTanzuReleaseCurrentVersionNil(b bool)`
-
- SetTanzuReleaseCurrentVersionNil sets the value for TanzuReleaseCurrentVersion to be an explicit nil
-
-### UnsetTanzuReleaseCurrentVersion
-`func (o *ProjectForUpdateDto) UnsetTanzuReleaseCurrentVersion()`
-
-UnsetTanzuReleaseCurrentVersion ensures that no value is present for TanzuReleaseCurrentVersion, not even an explicit nil
 ### GetStatus
 
 `func (o *ProjectForUpdateDto) GetStatus() ProjectStatus`
@@ -289,16 +265,6 @@ SetIsBackupEnabled sets IsBackupEnabled field to given value.
 
 HasIsBackupEnabled returns a boolean if a field has been set.
 
-### SetIsBackupEnabledNil
-
-`func (o *ProjectForUpdateDto) SetIsBackupEnabledNil(b bool)`
-
- SetIsBackupEnabledNil sets the value for IsBackupEnabled to be an explicit nil
-
-### UnsetIsBackupEnabled
-`func (o *ProjectForUpdateDto) UnsetIsBackupEnabled()`
-
-UnsetIsBackupEnabled ensures that no value is present for IsBackupEnabled, not even an explicit nil
 ### GetIsMonitoringEnabled
 
 `func (o *ProjectForUpdateDto) GetIsMonitoringEnabled() bool`
@@ -324,16 +290,6 @@ SetIsMonitoringEnabled sets IsMonitoringEnabled field to given value.
 
 HasIsMonitoringEnabled returns a boolean if a field has been set.
 
-### SetIsMonitoringEnabledNil
-
-`func (o *ProjectForUpdateDto) SetIsMonitoringEnabledNil(b bool)`
-
- SetIsMonitoringEnabledNil sets the value for IsMonitoringEnabled to be an explicit nil
-
-### UnsetIsMonitoringEnabled
-`func (o *ProjectForUpdateDto) UnsetIsMonitoringEnabled()`
-
-UnsetIsMonitoringEnabled ensures that no value is present for IsMonitoringEnabled, not even an explicit nil
 ### GetIsOpaEnabled
 
 `func (o *ProjectForUpdateDto) GetIsOpaEnabled() bool`
@@ -359,16 +315,6 @@ SetIsOpaEnabled sets IsOpaEnabled field to given value.
 
 HasIsOpaEnabled returns a boolean if a field has been set.
 
-### SetIsOpaEnabledNil
-
-`func (o *ProjectForUpdateDto) SetIsOpaEnabledNil(b bool)`
-
- SetIsOpaEnabledNil sets the value for IsOpaEnabled to be an explicit nil
-
-### UnsetIsOpaEnabled
-`func (o *ProjectForUpdateDto) UnsetIsOpaEnabled()`
-
-UnsetIsOpaEnabled ensures that no value is present for IsOpaEnabled, not even an explicit nil
 ### GetIsAutoUpgrade
 
 `func (o *ProjectForUpdateDto) GetIsAutoUpgrade() bool`
@@ -394,16 +340,6 @@ SetIsAutoUpgrade sets IsAutoUpgrade field to given value.
 
 HasIsAutoUpgrade returns a boolean if a field has been set.
 
-### SetIsAutoUpgradeNil
-
-`func (o *ProjectForUpdateDto) SetIsAutoUpgradeNil(b bool)`
-
- SetIsAutoUpgradeNil sets the value for IsAutoUpgrade to be an explicit nil
-
-### UnsetIsAutoUpgrade
-`func (o *ProjectForUpdateDto) UnsetIsAutoUpgrade()`
-
-UnsetIsAutoUpgrade ensures that no value is present for IsAutoUpgrade, not even an explicit nil
 ### GetAppEnabled
 
 `func (o *ProjectForUpdateDto) GetAppEnabled() bool`
@@ -429,16 +365,6 @@ SetAppEnabled sets AppEnabled field to given value.
 
 HasAppEnabled returns a boolean if a field has been set.
 
-### SetAppEnabledNil
-
-`func (o *ProjectForUpdateDto) SetAppEnabledNil(b bool)`
-
- SetAppEnabledNil sets the value for AppEnabled to be an explicit nil
-
-### UnsetAppEnabled
-`func (o *ProjectForUpdateDto) UnsetAppEnabled()`
-
-UnsetAppEnabled ensures that no value is present for AppEnabled, not even an explicit nil
 ### GetIsKubevapEnabled
 
 `func (o *ProjectForUpdateDto) GetIsKubevapEnabled() bool`
@@ -464,16 +390,6 @@ SetIsKubevapEnabled sets IsKubevapEnabled field to given value.
 
 HasIsKubevapEnabled returns a boolean if a field has been set.
 
-### SetIsKubevapEnabledNil
-
-`func (o *ProjectForUpdateDto) SetIsKubevapEnabledNil(b bool)`
-
- SetIsKubevapEnabledNil sets the value for IsKubevapEnabled to be an explicit nil
-
-### UnsetIsKubevapEnabled
-`func (o *ProjectForUpdateDto) UnsetIsKubevapEnabled()`
-
-UnsetIsKubevapEnabled ensures that no value is present for IsKubevapEnabled, not even an explicit nil
 ### GetKubernetesCurrentVersion
 
 `func (o *ProjectForUpdateDto) GetKubernetesCurrentVersion() string`
@@ -499,16 +415,6 @@ SetKubernetesCurrentVersion sets KubernetesCurrentVersion field to given value.
 
 HasKubernetesCurrentVersion returns a boolean if a field has been set.
 
-### SetKubernetesCurrentVersionNil
-
-`func (o *ProjectForUpdateDto) SetKubernetesCurrentVersionNil(b bool)`
-
- SetKubernetesCurrentVersionNil sets the value for KubernetesCurrentVersion to be an explicit nil
-
-### UnsetKubernetesCurrentVersion
-`func (o *ProjectForUpdateDto) UnsetKubernetesCurrentVersion()`
-
-UnsetKubernetesCurrentVersion ensures that no value is present for KubernetesCurrentVersion, not even an explicit nil
 ### GetFailureReason
 
 `func (o *ProjectForUpdateDto) GetFailureReason() string`
@@ -534,16 +440,6 @@ SetFailureReason sets FailureReason field to given value.
 
 HasFailureReason returns a boolean if a field has been set.
 
-### SetFailureReasonNil
-
-`func (o *ProjectForUpdateDto) SetFailureReasonNil(b bool)`
-
- SetFailureReasonNil sets the value for FailureReason to be an explicit nil
-
-### UnsetFailureReason
-`func (o *ProjectForUpdateDto) UnsetFailureReason()`
-
-UnsetFailureReason ensures that no value is present for FailureReason, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

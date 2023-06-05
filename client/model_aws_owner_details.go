@@ -20,8 +20,8 @@ var _ MappedNullable = &AwsOwnerDetails{}
 
 // AwsOwnerDetails struct for AwsOwnerDetails
 type AwsOwnerDetails struct {
-	OwnerId NullableString `json:"ownerId,omitempty"`
-	OwnerName NullableString `json:"ownerName,omitempty"`
+	OwnerId *string `json:"ownerId,omitempty"`
+	OwnerName *string `json:"ownerName,omitempty"`
 	Image *AwsCommonImages `json:"image,omitempty"`
 }
 
@@ -42,88 +42,68 @@ func NewAwsOwnerDetailsWithDefaults() *AwsOwnerDetails {
 	return &this
 }
 
-// GetOwnerId returns the OwnerId field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetOwnerId returns the OwnerId field value if set, zero value otherwise.
 func (o *AwsOwnerDetails) GetOwnerId() string {
-	if o == nil || IsNil(o.OwnerId.Get()) {
+	if o == nil || IsNil(o.OwnerId) {
 		var ret string
 		return ret
 	}
-	return *o.OwnerId.Get()
+	return *o.OwnerId
 }
 
 // GetOwnerIdOk returns a tuple with the OwnerId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AwsOwnerDetails) GetOwnerIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.OwnerId) {
 		return nil, false
 	}
-	return o.OwnerId.Get(), o.OwnerId.IsSet()
+	return o.OwnerId, true
 }
 
 // HasOwnerId returns a boolean if a field has been set.
 func (o *AwsOwnerDetails) HasOwnerId() bool {
-	if o != nil && o.OwnerId.IsSet() {
+	if o != nil && !IsNil(o.OwnerId) {
 		return true
 	}
 
 	return false
 }
 
-// SetOwnerId gets a reference to the given NullableString and assigns it to the OwnerId field.
+// SetOwnerId gets a reference to the given string and assigns it to the OwnerId field.
 func (o *AwsOwnerDetails) SetOwnerId(v string) {
-	o.OwnerId.Set(&v)
-}
-// SetOwnerIdNil sets the value for OwnerId to be an explicit nil
-func (o *AwsOwnerDetails) SetOwnerIdNil() {
-	o.OwnerId.Set(nil)
+	o.OwnerId = &v
 }
 
-// UnsetOwnerId ensures that no value is present for OwnerId, not even an explicit nil
-func (o *AwsOwnerDetails) UnsetOwnerId() {
-	o.OwnerId.Unset()
-}
-
-// GetOwnerName returns the OwnerName field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetOwnerName returns the OwnerName field value if set, zero value otherwise.
 func (o *AwsOwnerDetails) GetOwnerName() string {
-	if o == nil || IsNil(o.OwnerName.Get()) {
+	if o == nil || IsNil(o.OwnerName) {
 		var ret string
 		return ret
 	}
-	return *o.OwnerName.Get()
+	return *o.OwnerName
 }
 
 // GetOwnerNameOk returns a tuple with the OwnerName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AwsOwnerDetails) GetOwnerNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.OwnerName) {
 		return nil, false
 	}
-	return o.OwnerName.Get(), o.OwnerName.IsSet()
+	return o.OwnerName, true
 }
 
 // HasOwnerName returns a boolean if a field has been set.
 func (o *AwsOwnerDetails) HasOwnerName() bool {
-	if o != nil && o.OwnerName.IsSet() {
+	if o != nil && !IsNil(o.OwnerName) {
 		return true
 	}
 
 	return false
 }
 
-// SetOwnerName gets a reference to the given NullableString and assigns it to the OwnerName field.
+// SetOwnerName gets a reference to the given string and assigns it to the OwnerName field.
 func (o *AwsOwnerDetails) SetOwnerName(v string) {
-	o.OwnerName.Set(&v)
-}
-// SetOwnerNameNil sets the value for OwnerName to be an explicit nil
-func (o *AwsOwnerDetails) SetOwnerNameNil() {
-	o.OwnerName.Set(nil)
-}
-
-// UnsetOwnerName ensures that no value is present for OwnerName, not even an explicit nil
-func (o *AwsOwnerDetails) UnsetOwnerName() {
-	o.OwnerName.Unset()
+	o.OwnerName = &v
 }
 
 // GetImage returns the Image field value if set, zero value otherwise.
@@ -168,11 +148,11 @@ func (o AwsOwnerDetails) MarshalJSON() ([]byte, error) {
 
 func (o AwsOwnerDetails) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.OwnerId.IsSet() {
-		toSerialize["ownerId"] = o.OwnerId.Get()
+	if !IsNil(o.OwnerId) {
+		toSerialize["ownerId"] = o.OwnerId
 	}
-	if o.OwnerName.IsSet() {
-		toSerialize["ownerName"] = o.OwnerName.Get()
+	if !IsNil(o.OwnerName) {
+		toSerialize["ownerName"] = o.OwnerName
 	}
 	if !IsNil(o.Image) {
 		toSerialize["image"] = o.Image

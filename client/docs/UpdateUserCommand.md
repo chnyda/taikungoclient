@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** |  | 
-**DisplayName** | Pointer to **NullableString** |  | [optional] 
+**DisplayName** | Pointer to **string** |  | [optional] 
 **Username** | **string** |  | 
 **Email** | **string** |  | 
 **Role** | Pointer to [**UserRole**](UserRole.md) |  | [optional] 
@@ -77,16 +77,6 @@ SetDisplayName sets DisplayName field to given value.
 
 HasDisplayName returns a boolean if a field has been set.
 
-### SetDisplayNameNil
-
-`func (o *UpdateUserCommand) SetDisplayNameNil(b bool)`
-
- SetDisplayNameNil sets the value for DisplayName to be an explicit nil
-
-### UnsetDisplayName
-`func (o *UpdateUserCommand) UnsetDisplayName()`
-
-UnsetDisplayName ensures that no value is present for DisplayName, not even an explicit nil
 ### GetUsername
 
 `func (o *UpdateUserCommand) GetUsername() string`

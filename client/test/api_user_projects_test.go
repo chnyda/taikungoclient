@@ -22,33 +22,39 @@ func Test_taikuncore_UserProjectsApiService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test UserProjectsApiService UserprojectsBindProjects", func(t *testing.T) {
+	t.Run("Test UserProjectsApiService UserProjectsBindProjects", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.UserProjectsApi.UserprojectsBindProjects(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.UserProjectsApi.UserProjectsBindProjects(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test UserProjectsApiService UserprojectsBindUsers", func(t *testing.T) {
+	t.Run("Test UserProjectsApiService UserProjectsBindUsers", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.UserProjectsApi.UserprojectsBindUsers(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.UserProjectsApi.UserProjectsBindUsers(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test UserProjectsApiService UserprojectsProjectListByUser", func(t *testing.T) {
+	t.Run("Test UserProjectsApiService UserProjectsProjectsListByUser", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.UserProjectsApi.UserprojectsProjectListByUser(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.UserProjectsApi.UserProjectsProjectsListByUser(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -56,13 +62,14 @@ func Test_taikuncore_UserProjectsApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test UserProjectsApiService UserprojectsUserListByProject", func(t *testing.T) {
+	t.Run("Test UserProjectsApiService UserProjectsUsersListByProject", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var projectId int32
+		var v string
 
-		resp, httpRes, err := apiClient.UserProjectsApi.UserprojectsUserListByProject(context.Background(), projectId).Execute()
+		resp, httpRes, err := apiClient.UserProjectsApi.UserProjectsUsersListByProject(context.Background(), projectId, v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

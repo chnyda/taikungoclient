@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Begin** | Pointer to **NullableString** |  | [optional] 
-**End** | Pointer to **NullableString** |  | [optional] 
+**Begin** | Pointer to **string** |  | [optional] 
+**End** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -51,16 +51,6 @@ SetBegin sets Begin field to given value.
 
 HasBegin returns a boolean if a field has been set.
 
-### SetBeginNil
-
-`func (o *IpAddressRangeCountCommand) SetBeginNil(b bool)`
-
- SetBeginNil sets the value for Begin to be an explicit nil
-
-### UnsetBegin
-`func (o *IpAddressRangeCountCommand) UnsetBegin()`
-
-UnsetBegin ensures that no value is present for Begin, not even an explicit nil
 ### GetEnd
 
 `func (o *IpAddressRangeCountCommand) GetEnd() string`
@@ -86,16 +76,6 @@ SetEnd sets End field to given value.
 
 HasEnd returns a boolean if a field has been set.
 
-### SetEndNil
-
-`func (o *IpAddressRangeCountCommand) SetEndNil(b bool)`
-
- SetEndNil sets the value for End to be an explicit nil
-
-### UnsetEnd
-`func (o *IpAddressRangeCountCommand) UnsetEnd()`
-
-UnsetEnd ensures that no value is present for End, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

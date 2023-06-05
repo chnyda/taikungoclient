@@ -20,11 +20,11 @@ var _ MappedNullable = &HelmSpec{}
 
 // HelmSpec struct for HelmSpec
 type HelmSpec struct {
-	Interval NullableString `json:"interval,omitempty"`
-	ReleaseName NullableString `json:"releaseName,omitempty"`
-	Url NullableString `json:"url,omitempty"`
-	TargetNamespace NullableString `json:"targetNamespace,omitempty"`
-	StorageNamespace NullableString `json:"storageNamespace,omitempty"`
+	Interval *string `json:"interval,omitempty"`
+	ReleaseName *string `json:"releaseName,omitempty"`
+	Url *string `json:"url,omitempty"`
+	TargetNamespace *string `json:"targetNamespace,omitempty"`
+	StorageNamespace *string `json:"storageNamespace,omitempty"`
 	Chart *Chart `json:"chart,omitempty"`
 	Values *JsonNode `json:"values,omitempty"`
 }
@@ -46,214 +46,164 @@ func NewHelmSpecWithDefaults() *HelmSpec {
 	return &this
 }
 
-// GetInterval returns the Interval field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetInterval returns the Interval field value if set, zero value otherwise.
 func (o *HelmSpec) GetInterval() string {
-	if o == nil || IsNil(o.Interval.Get()) {
+	if o == nil || IsNil(o.Interval) {
 		var ret string
 		return ret
 	}
-	return *o.Interval.Get()
+	return *o.Interval
 }
 
 // GetIntervalOk returns a tuple with the Interval field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *HelmSpec) GetIntervalOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Interval) {
 		return nil, false
 	}
-	return o.Interval.Get(), o.Interval.IsSet()
+	return o.Interval, true
 }
 
 // HasInterval returns a boolean if a field has been set.
 func (o *HelmSpec) HasInterval() bool {
-	if o != nil && o.Interval.IsSet() {
+	if o != nil && !IsNil(o.Interval) {
 		return true
 	}
 
 	return false
 }
 
-// SetInterval gets a reference to the given NullableString and assigns it to the Interval field.
+// SetInterval gets a reference to the given string and assigns it to the Interval field.
 func (o *HelmSpec) SetInterval(v string) {
-	o.Interval.Set(&v)
-}
-// SetIntervalNil sets the value for Interval to be an explicit nil
-func (o *HelmSpec) SetIntervalNil() {
-	o.Interval.Set(nil)
+	o.Interval = &v
 }
 
-// UnsetInterval ensures that no value is present for Interval, not even an explicit nil
-func (o *HelmSpec) UnsetInterval() {
-	o.Interval.Unset()
-}
-
-// GetReleaseName returns the ReleaseName field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetReleaseName returns the ReleaseName field value if set, zero value otherwise.
 func (o *HelmSpec) GetReleaseName() string {
-	if o == nil || IsNil(o.ReleaseName.Get()) {
+	if o == nil || IsNil(o.ReleaseName) {
 		var ret string
 		return ret
 	}
-	return *o.ReleaseName.Get()
+	return *o.ReleaseName
 }
 
 // GetReleaseNameOk returns a tuple with the ReleaseName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *HelmSpec) GetReleaseNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ReleaseName) {
 		return nil, false
 	}
-	return o.ReleaseName.Get(), o.ReleaseName.IsSet()
+	return o.ReleaseName, true
 }
 
 // HasReleaseName returns a boolean if a field has been set.
 func (o *HelmSpec) HasReleaseName() bool {
-	if o != nil && o.ReleaseName.IsSet() {
+	if o != nil && !IsNil(o.ReleaseName) {
 		return true
 	}
 
 	return false
 }
 
-// SetReleaseName gets a reference to the given NullableString and assigns it to the ReleaseName field.
+// SetReleaseName gets a reference to the given string and assigns it to the ReleaseName field.
 func (o *HelmSpec) SetReleaseName(v string) {
-	o.ReleaseName.Set(&v)
-}
-// SetReleaseNameNil sets the value for ReleaseName to be an explicit nil
-func (o *HelmSpec) SetReleaseNameNil() {
-	o.ReleaseName.Set(nil)
+	o.ReleaseName = &v
 }
 
-// UnsetReleaseName ensures that no value is present for ReleaseName, not even an explicit nil
-func (o *HelmSpec) UnsetReleaseName() {
-	o.ReleaseName.Unset()
-}
-
-// GetUrl returns the Url field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetUrl returns the Url field value if set, zero value otherwise.
 func (o *HelmSpec) GetUrl() string {
-	if o == nil || IsNil(o.Url.Get()) {
+	if o == nil || IsNil(o.Url) {
 		var ret string
 		return ret
 	}
-	return *o.Url.Get()
+	return *o.Url
 }
 
 // GetUrlOk returns a tuple with the Url field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *HelmSpec) GetUrlOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Url) {
 		return nil, false
 	}
-	return o.Url.Get(), o.Url.IsSet()
+	return o.Url, true
 }
 
 // HasUrl returns a boolean if a field has been set.
 func (o *HelmSpec) HasUrl() bool {
-	if o != nil && o.Url.IsSet() {
+	if o != nil && !IsNil(o.Url) {
 		return true
 	}
 
 	return false
 }
 
-// SetUrl gets a reference to the given NullableString and assigns it to the Url field.
+// SetUrl gets a reference to the given string and assigns it to the Url field.
 func (o *HelmSpec) SetUrl(v string) {
-	o.Url.Set(&v)
-}
-// SetUrlNil sets the value for Url to be an explicit nil
-func (o *HelmSpec) SetUrlNil() {
-	o.Url.Set(nil)
+	o.Url = &v
 }
 
-// UnsetUrl ensures that no value is present for Url, not even an explicit nil
-func (o *HelmSpec) UnsetUrl() {
-	o.Url.Unset()
-}
-
-// GetTargetNamespace returns the TargetNamespace field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetTargetNamespace returns the TargetNamespace field value if set, zero value otherwise.
 func (o *HelmSpec) GetTargetNamespace() string {
-	if o == nil || IsNil(o.TargetNamespace.Get()) {
+	if o == nil || IsNil(o.TargetNamespace) {
 		var ret string
 		return ret
 	}
-	return *o.TargetNamespace.Get()
+	return *o.TargetNamespace
 }
 
 // GetTargetNamespaceOk returns a tuple with the TargetNamespace field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *HelmSpec) GetTargetNamespaceOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.TargetNamespace) {
 		return nil, false
 	}
-	return o.TargetNamespace.Get(), o.TargetNamespace.IsSet()
+	return o.TargetNamespace, true
 }
 
 // HasTargetNamespace returns a boolean if a field has been set.
 func (o *HelmSpec) HasTargetNamespace() bool {
-	if o != nil && o.TargetNamespace.IsSet() {
+	if o != nil && !IsNil(o.TargetNamespace) {
 		return true
 	}
 
 	return false
 }
 
-// SetTargetNamespace gets a reference to the given NullableString and assigns it to the TargetNamespace field.
+// SetTargetNamespace gets a reference to the given string and assigns it to the TargetNamespace field.
 func (o *HelmSpec) SetTargetNamespace(v string) {
-	o.TargetNamespace.Set(&v)
-}
-// SetTargetNamespaceNil sets the value for TargetNamespace to be an explicit nil
-func (o *HelmSpec) SetTargetNamespaceNil() {
-	o.TargetNamespace.Set(nil)
+	o.TargetNamespace = &v
 }
 
-// UnsetTargetNamespace ensures that no value is present for TargetNamespace, not even an explicit nil
-func (o *HelmSpec) UnsetTargetNamespace() {
-	o.TargetNamespace.Unset()
-}
-
-// GetStorageNamespace returns the StorageNamespace field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetStorageNamespace returns the StorageNamespace field value if set, zero value otherwise.
 func (o *HelmSpec) GetStorageNamespace() string {
-	if o == nil || IsNil(o.StorageNamespace.Get()) {
+	if o == nil || IsNil(o.StorageNamespace) {
 		var ret string
 		return ret
 	}
-	return *o.StorageNamespace.Get()
+	return *o.StorageNamespace
 }
 
 // GetStorageNamespaceOk returns a tuple with the StorageNamespace field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *HelmSpec) GetStorageNamespaceOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.StorageNamespace) {
 		return nil, false
 	}
-	return o.StorageNamespace.Get(), o.StorageNamespace.IsSet()
+	return o.StorageNamespace, true
 }
 
 // HasStorageNamespace returns a boolean if a field has been set.
 func (o *HelmSpec) HasStorageNamespace() bool {
-	if o != nil && o.StorageNamespace.IsSet() {
+	if o != nil && !IsNil(o.StorageNamespace) {
 		return true
 	}
 
 	return false
 }
 
-// SetStorageNamespace gets a reference to the given NullableString and assigns it to the StorageNamespace field.
+// SetStorageNamespace gets a reference to the given string and assigns it to the StorageNamespace field.
 func (o *HelmSpec) SetStorageNamespace(v string) {
-	o.StorageNamespace.Set(&v)
-}
-// SetStorageNamespaceNil sets the value for StorageNamespace to be an explicit nil
-func (o *HelmSpec) SetStorageNamespaceNil() {
-	o.StorageNamespace.Set(nil)
-}
-
-// UnsetStorageNamespace ensures that no value is present for StorageNamespace, not even an explicit nil
-func (o *HelmSpec) UnsetStorageNamespace() {
-	o.StorageNamespace.Unset()
+	o.StorageNamespace = &v
 }
 
 // GetChart returns the Chart field value if set, zero value otherwise.
@@ -330,20 +280,20 @@ func (o HelmSpec) MarshalJSON() ([]byte, error) {
 
 func (o HelmSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Interval.IsSet() {
-		toSerialize["interval"] = o.Interval.Get()
+	if !IsNil(o.Interval) {
+		toSerialize["interval"] = o.Interval
 	}
-	if o.ReleaseName.IsSet() {
-		toSerialize["releaseName"] = o.ReleaseName.Get()
+	if !IsNil(o.ReleaseName) {
+		toSerialize["releaseName"] = o.ReleaseName
 	}
-	if o.Url.IsSet() {
-		toSerialize["url"] = o.Url.Get()
+	if !IsNil(o.Url) {
+		toSerialize["url"] = o.Url
 	}
-	if o.TargetNamespace.IsSet() {
-		toSerialize["targetNamespace"] = o.TargetNamespace.Get()
+	if !IsNil(o.TargetNamespace) {
+		toSerialize["targetNamespace"] = o.TargetNamespace
 	}
-	if o.StorageNamespace.IsSet() {
-		toSerialize["storageNamespace"] = o.StorageNamespace.Get()
+	if !IsNil(o.StorageNamespace) {
+		toSerialize["storageNamespace"] = o.StorageNamespace
 	}
 	if !IsNil(o.Chart) {
 		toSerialize["chart"] = o.Chart

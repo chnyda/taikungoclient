@@ -22,7 +22,7 @@ var _ MappedNullable = &BindProjectGroupsToUserGroupCommand{}
 type BindProjectGroupsToUserGroupCommand struct {
 	ProjectGroups []UpdateUserProjectGroupDto `json:"projectGroups,omitempty"`
 	UserGroupId *int32 `json:"userGroupId,omitempty"`
-	UserGroupName NullableString `json:"userGroupName,omitempty"`
+	UserGroupName *string `json:"userGroupName,omitempty"`
 }
 
 // NewBindProjectGroupsToUserGroupCommand instantiates a new BindProjectGroupsToUserGroupCommand object
@@ -42,9 +42,9 @@ func NewBindProjectGroupsToUserGroupCommandWithDefaults() *BindProjectGroupsToUs
 	return &this
 }
 
-// GetProjectGroups returns the ProjectGroups field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetProjectGroups returns the ProjectGroups field value if set, zero value otherwise.
 func (o *BindProjectGroupsToUserGroupCommand) GetProjectGroups() []UpdateUserProjectGroupDto {
-	if o == nil {
+	if o == nil || IsNil(o.ProjectGroups) {
 		var ret []UpdateUserProjectGroupDto
 		return ret
 	}
@@ -53,7 +53,6 @@ func (o *BindProjectGroupsToUserGroupCommand) GetProjectGroups() []UpdateUserPro
 
 // GetProjectGroupsOk returns a tuple with the ProjectGroups field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *BindProjectGroupsToUserGroupCommand) GetProjectGroupsOk() ([]UpdateUserProjectGroupDto, bool) {
 	if o == nil || IsNil(o.ProjectGroups) {
 		return nil, false
@@ -63,7 +62,7 @@ func (o *BindProjectGroupsToUserGroupCommand) GetProjectGroupsOk() ([]UpdateUser
 
 // HasProjectGroups returns a boolean if a field has been set.
 func (o *BindProjectGroupsToUserGroupCommand) HasProjectGroups() bool {
-	if o != nil && IsNil(o.ProjectGroups) {
+	if o != nil && !IsNil(o.ProjectGroups) {
 		return true
 	}
 
@@ -107,46 +106,36 @@ func (o *BindProjectGroupsToUserGroupCommand) SetUserGroupId(v int32) {
 	o.UserGroupId = &v
 }
 
-// GetUserGroupName returns the UserGroupName field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetUserGroupName returns the UserGroupName field value if set, zero value otherwise.
 func (o *BindProjectGroupsToUserGroupCommand) GetUserGroupName() string {
-	if o == nil || IsNil(o.UserGroupName.Get()) {
+	if o == nil || IsNil(o.UserGroupName) {
 		var ret string
 		return ret
 	}
-	return *o.UserGroupName.Get()
+	return *o.UserGroupName
 }
 
 // GetUserGroupNameOk returns a tuple with the UserGroupName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *BindProjectGroupsToUserGroupCommand) GetUserGroupNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.UserGroupName) {
 		return nil, false
 	}
-	return o.UserGroupName.Get(), o.UserGroupName.IsSet()
+	return o.UserGroupName, true
 }
 
 // HasUserGroupName returns a boolean if a field has been set.
 func (o *BindProjectGroupsToUserGroupCommand) HasUserGroupName() bool {
-	if o != nil && o.UserGroupName.IsSet() {
+	if o != nil && !IsNil(o.UserGroupName) {
 		return true
 	}
 
 	return false
 }
 
-// SetUserGroupName gets a reference to the given NullableString and assigns it to the UserGroupName field.
+// SetUserGroupName gets a reference to the given string and assigns it to the UserGroupName field.
 func (o *BindProjectGroupsToUserGroupCommand) SetUserGroupName(v string) {
-	o.UserGroupName.Set(&v)
-}
-// SetUserGroupNameNil sets the value for UserGroupName to be an explicit nil
-func (o *BindProjectGroupsToUserGroupCommand) SetUserGroupNameNil() {
-	o.UserGroupName.Set(nil)
-}
-
-// UnsetUserGroupName ensures that no value is present for UserGroupName, not even an explicit nil
-func (o *BindProjectGroupsToUserGroupCommand) UnsetUserGroupName() {
-	o.UserGroupName.Unset()
+	o.UserGroupName = &v
 }
 
 func (o BindProjectGroupsToUserGroupCommand) MarshalJSON() ([]byte, error) {
@@ -159,14 +148,14 @@ func (o BindProjectGroupsToUserGroupCommand) MarshalJSON() ([]byte, error) {
 
 func (o BindProjectGroupsToUserGroupCommand) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.ProjectGroups != nil {
+	if !IsNil(o.ProjectGroups) {
 		toSerialize["projectGroups"] = o.ProjectGroups
 	}
 	if !IsNil(o.UserGroupId) {
 		toSerialize["userGroupId"] = o.UserGroupId
 	}
-	if o.UserGroupName.IsSet() {
-		toSerialize["userGroupName"] = o.UserGroupName.Get()
+	if !IsNil(o.UserGroupName) {
+		toSerialize["userGroupName"] = o.UserGroupName
 	}
 	return toSerialize, nil
 }

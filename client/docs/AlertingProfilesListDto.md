@@ -5,20 +5,20 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
-**OrganizationId** | Pointer to **NullableInt32** |  | [optional] 
-**OrganizationName** | Pointer to **NullableString** |  | [optional] 
-**SlackConfigurationId** | Pointer to **NullableInt32** |  | [optional] 
-**SlackConfigurationName** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**OrganizationId** | Pointer to **int32** |  | [optional] 
+**OrganizationName** | Pointer to **string** |  | [optional] 
+**SlackConfigurationId** | Pointer to **int32** |  | [optional] 
+**SlackConfigurationName** | Pointer to **string** |  | [optional] 
 **IsLocked** | Pointer to **bool** |  | [optional] 
 **Emails** | Pointer to [**[]AlertingEmailDto**](AlertingEmailDto.md) |  | [optional] 
 **Webhooks** | Pointer to [**[]AlertingWebhookDto**](AlertingWebhookDto.md) |  | [optional] 
 **Projects** | Pointer to [**[]CommonDropdownDto**](CommonDropdownDto.md) |  | [optional] 
-**CreatedBy** | Pointer to **NullableString** |  | [optional] 
-**LastModified** | Pointer to **NullableString** |  | [optional] 
-**LastModifiedBy** | Pointer to **NullableString** |  | [optional] 
-**Reminder** | Pointer to **NullableString** |  | [optional] 
-**CreatedAt** | Pointer to **NullableString** |  | [optional] 
+**CreatedBy** | Pointer to **string** |  | [optional] 
+**LastModified** | Pointer to **string** |  | [optional] 
+**LastModifiedBy** | Pointer to **string** |  | [optional] 
+**Reminder** | Pointer to **string** |  | [optional] 
+**CreatedAt** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -89,16 +89,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *AlertingProfilesListDto) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *AlertingProfilesListDto) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetOrganizationId
 
 `func (o *AlertingProfilesListDto) GetOrganizationId() int32`
@@ -124,16 +114,6 @@ SetOrganizationId sets OrganizationId field to given value.
 
 HasOrganizationId returns a boolean if a field has been set.
 
-### SetOrganizationIdNil
-
-`func (o *AlertingProfilesListDto) SetOrganizationIdNil(b bool)`
-
- SetOrganizationIdNil sets the value for OrganizationId to be an explicit nil
-
-### UnsetOrganizationId
-`func (o *AlertingProfilesListDto) UnsetOrganizationId()`
-
-UnsetOrganizationId ensures that no value is present for OrganizationId, not even an explicit nil
 ### GetOrganizationName
 
 `func (o *AlertingProfilesListDto) GetOrganizationName() string`
@@ -159,16 +139,6 @@ SetOrganizationName sets OrganizationName field to given value.
 
 HasOrganizationName returns a boolean if a field has been set.
 
-### SetOrganizationNameNil
-
-`func (o *AlertingProfilesListDto) SetOrganizationNameNil(b bool)`
-
- SetOrganizationNameNil sets the value for OrganizationName to be an explicit nil
-
-### UnsetOrganizationName
-`func (o *AlertingProfilesListDto) UnsetOrganizationName()`
-
-UnsetOrganizationName ensures that no value is present for OrganizationName, not even an explicit nil
 ### GetSlackConfigurationId
 
 `func (o *AlertingProfilesListDto) GetSlackConfigurationId() int32`
@@ -194,16 +164,6 @@ SetSlackConfigurationId sets SlackConfigurationId field to given value.
 
 HasSlackConfigurationId returns a boolean if a field has been set.
 
-### SetSlackConfigurationIdNil
-
-`func (o *AlertingProfilesListDto) SetSlackConfigurationIdNil(b bool)`
-
- SetSlackConfigurationIdNil sets the value for SlackConfigurationId to be an explicit nil
-
-### UnsetSlackConfigurationId
-`func (o *AlertingProfilesListDto) UnsetSlackConfigurationId()`
-
-UnsetSlackConfigurationId ensures that no value is present for SlackConfigurationId, not even an explicit nil
 ### GetSlackConfigurationName
 
 `func (o *AlertingProfilesListDto) GetSlackConfigurationName() string`
@@ -229,16 +189,6 @@ SetSlackConfigurationName sets SlackConfigurationName field to given value.
 
 HasSlackConfigurationName returns a boolean if a field has been set.
 
-### SetSlackConfigurationNameNil
-
-`func (o *AlertingProfilesListDto) SetSlackConfigurationNameNil(b bool)`
-
- SetSlackConfigurationNameNil sets the value for SlackConfigurationName to be an explicit nil
-
-### UnsetSlackConfigurationName
-`func (o *AlertingProfilesListDto) UnsetSlackConfigurationName()`
-
-UnsetSlackConfigurationName ensures that no value is present for SlackConfigurationName, not even an explicit nil
 ### GetIsLocked
 
 `func (o *AlertingProfilesListDto) GetIsLocked() bool`
@@ -289,16 +239,6 @@ SetEmails sets Emails field to given value.
 
 HasEmails returns a boolean if a field has been set.
 
-### SetEmailsNil
-
-`func (o *AlertingProfilesListDto) SetEmailsNil(b bool)`
-
- SetEmailsNil sets the value for Emails to be an explicit nil
-
-### UnsetEmails
-`func (o *AlertingProfilesListDto) UnsetEmails()`
-
-UnsetEmails ensures that no value is present for Emails, not even an explicit nil
 ### GetWebhooks
 
 `func (o *AlertingProfilesListDto) GetWebhooks() []AlertingWebhookDto`
@@ -324,16 +264,6 @@ SetWebhooks sets Webhooks field to given value.
 
 HasWebhooks returns a boolean if a field has been set.
 
-### SetWebhooksNil
-
-`func (o *AlertingProfilesListDto) SetWebhooksNil(b bool)`
-
- SetWebhooksNil sets the value for Webhooks to be an explicit nil
-
-### UnsetWebhooks
-`func (o *AlertingProfilesListDto) UnsetWebhooks()`
-
-UnsetWebhooks ensures that no value is present for Webhooks, not even an explicit nil
 ### GetProjects
 
 `func (o *AlertingProfilesListDto) GetProjects() []CommonDropdownDto`
@@ -359,16 +289,6 @@ SetProjects sets Projects field to given value.
 
 HasProjects returns a boolean if a field has been set.
 
-### SetProjectsNil
-
-`func (o *AlertingProfilesListDto) SetProjectsNil(b bool)`
-
- SetProjectsNil sets the value for Projects to be an explicit nil
-
-### UnsetProjects
-`func (o *AlertingProfilesListDto) UnsetProjects()`
-
-UnsetProjects ensures that no value is present for Projects, not even an explicit nil
 ### GetCreatedBy
 
 `func (o *AlertingProfilesListDto) GetCreatedBy() string`
@@ -394,16 +314,6 @@ SetCreatedBy sets CreatedBy field to given value.
 
 HasCreatedBy returns a boolean if a field has been set.
 
-### SetCreatedByNil
-
-`func (o *AlertingProfilesListDto) SetCreatedByNil(b bool)`
-
- SetCreatedByNil sets the value for CreatedBy to be an explicit nil
-
-### UnsetCreatedBy
-`func (o *AlertingProfilesListDto) UnsetCreatedBy()`
-
-UnsetCreatedBy ensures that no value is present for CreatedBy, not even an explicit nil
 ### GetLastModified
 
 `func (o *AlertingProfilesListDto) GetLastModified() string`
@@ -429,16 +339,6 @@ SetLastModified sets LastModified field to given value.
 
 HasLastModified returns a boolean if a field has been set.
 
-### SetLastModifiedNil
-
-`func (o *AlertingProfilesListDto) SetLastModifiedNil(b bool)`
-
- SetLastModifiedNil sets the value for LastModified to be an explicit nil
-
-### UnsetLastModified
-`func (o *AlertingProfilesListDto) UnsetLastModified()`
-
-UnsetLastModified ensures that no value is present for LastModified, not even an explicit nil
 ### GetLastModifiedBy
 
 `func (o *AlertingProfilesListDto) GetLastModifiedBy() string`
@@ -464,16 +364,6 @@ SetLastModifiedBy sets LastModifiedBy field to given value.
 
 HasLastModifiedBy returns a boolean if a field has been set.
 
-### SetLastModifiedByNil
-
-`func (o *AlertingProfilesListDto) SetLastModifiedByNil(b bool)`
-
- SetLastModifiedByNil sets the value for LastModifiedBy to be an explicit nil
-
-### UnsetLastModifiedBy
-`func (o *AlertingProfilesListDto) UnsetLastModifiedBy()`
-
-UnsetLastModifiedBy ensures that no value is present for LastModifiedBy, not even an explicit nil
 ### GetReminder
 
 `func (o *AlertingProfilesListDto) GetReminder() string`
@@ -499,16 +389,6 @@ SetReminder sets Reminder field to given value.
 
 HasReminder returns a boolean if a field has been set.
 
-### SetReminderNil
-
-`func (o *AlertingProfilesListDto) SetReminderNil(b bool)`
-
- SetReminderNil sets the value for Reminder to be an explicit nil
-
-### UnsetReminder
-`func (o *AlertingProfilesListDto) UnsetReminder()`
-
-UnsetReminder ensures that no value is present for Reminder, not even an explicit nil
 ### GetCreatedAt
 
 `func (o *AlertingProfilesListDto) GetCreatedAt() string`
@@ -534,16 +414,6 @@ SetCreatedAt sets CreatedAt field to given value.
 
 HasCreatedAt returns a boolean if a field has been set.
 
-### SetCreatedAtNil
-
-`func (o *AlertingProfilesListDto) SetCreatedAtNil(b bool)`
-
- SetCreatedAtNil sets the value for CreatedAt to be an explicit nil
-
-### UnsetCreatedAt
-`func (o *AlertingProfilesListDto) UnsetCreatedAt()`
-
-UnsetCreatedAt ensures that no value is present for CreatedAt, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

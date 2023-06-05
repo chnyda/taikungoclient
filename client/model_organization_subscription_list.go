@@ -41,9 +41,9 @@ func NewOrganizationSubscriptionListWithDefaults() *OrganizationSubscriptionList
 	return &this
 }
 
-// GetData returns the Data field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetData returns the Data field value if set, zero value otherwise.
 func (o *OrganizationSubscriptionList) GetData() []OrganizationSubscriptionDto {
-	if o == nil {
+	if o == nil || IsNil(o.Data) {
 		var ret []OrganizationSubscriptionDto
 		return ret
 	}
@@ -52,7 +52,6 @@ func (o *OrganizationSubscriptionList) GetData() []OrganizationSubscriptionDto {
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *OrganizationSubscriptionList) GetDataOk() ([]OrganizationSubscriptionDto, bool) {
 	if o == nil || IsNil(o.Data) {
 		return nil, false
@@ -62,7 +61,7 @@ func (o *OrganizationSubscriptionList) GetDataOk() ([]OrganizationSubscriptionDt
 
 // HasData returns a boolean if a field has been set.
 func (o *OrganizationSubscriptionList) HasData() bool {
-	if o != nil && IsNil(o.Data) {
+	if o != nil && !IsNil(o.Data) {
 		return true
 	}
 
@@ -116,7 +115,7 @@ func (o OrganizationSubscriptionList) MarshalJSON() ([]byte, error) {
 
 func (o OrganizationSubscriptionList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Data != nil {
+	if !IsNil(o.Data) {
 		toSerialize["data"] = o.Data
 	}
 	if !IsNil(o.TotalCount) {

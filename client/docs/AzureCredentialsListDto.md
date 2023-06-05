@@ -7,19 +7,20 @@ Name | Type | Description | Notes
 **Id** | Pointer to **int32** |  | [optional] 
 **ProjectCount** | Pointer to **int32** |  | [optional] 
 **IsLocked** | Pointer to **bool** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
-**TenantId** | Pointer to **NullableString** |  | [optional] 
-**Location** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**TenantId** | Pointer to **string** |  | [optional] 
+**Location** | Pointer to **string** |  | [optional] 
 **AvailabilityZones** | Pointer to **[]string** |  | [optional] 
+**AvailabilityZonesCount** | Pointer to **int32** |  | [optional] 
 **Projects** | Pointer to [**[]CommonDropdownDto**](CommonDropdownDto.md) |  | [optional] 
-**CreatedBy** | Pointer to **NullableString** |  | [optional] 
-**CreatedAt** | Pointer to **NullableString** |  | [optional] 
-**LastModified** | Pointer to **NullableString** |  | [optional] 
-**LastModifiedBy** | Pointer to **NullableString** |  | [optional] 
+**CreatedBy** | Pointer to **string** |  | [optional] 
+**CreatedAt** | Pointer to **string** |  | [optional] 
+**LastModified** | Pointer to **string** |  | [optional] 
+**LastModifiedBy** | Pointer to **string** |  | [optional] 
 **IsDefault** | Pointer to **bool** |  | [optional] 
 **OrganizationId** | Pointer to **int32** |  | [optional] 
-**OrganizationName** | Pointer to **NullableString** |  | [optional] 
-**ContinentName** | Pointer to **NullableString** |  | [optional] 
+**OrganizationName** | Pointer to **string** |  | [optional] 
+**ContinentName** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -140,16 +141,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *AzureCredentialsListDto) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *AzureCredentialsListDto) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetTenantId
 
 `func (o *AzureCredentialsListDto) GetTenantId() string`
@@ -175,16 +166,6 @@ SetTenantId sets TenantId field to given value.
 
 HasTenantId returns a boolean if a field has been set.
 
-### SetTenantIdNil
-
-`func (o *AzureCredentialsListDto) SetTenantIdNil(b bool)`
-
- SetTenantIdNil sets the value for TenantId to be an explicit nil
-
-### UnsetTenantId
-`func (o *AzureCredentialsListDto) UnsetTenantId()`
-
-UnsetTenantId ensures that no value is present for TenantId, not even an explicit nil
 ### GetLocation
 
 `func (o *AzureCredentialsListDto) GetLocation() string`
@@ -210,16 +191,6 @@ SetLocation sets Location field to given value.
 
 HasLocation returns a boolean if a field has been set.
 
-### SetLocationNil
-
-`func (o *AzureCredentialsListDto) SetLocationNil(b bool)`
-
- SetLocationNil sets the value for Location to be an explicit nil
-
-### UnsetLocation
-`func (o *AzureCredentialsListDto) UnsetLocation()`
-
-UnsetLocation ensures that no value is present for Location, not even an explicit nil
 ### GetAvailabilityZones
 
 `func (o *AzureCredentialsListDto) GetAvailabilityZones() []string`
@@ -245,16 +216,31 @@ SetAvailabilityZones sets AvailabilityZones field to given value.
 
 HasAvailabilityZones returns a boolean if a field has been set.
 
-### SetAvailabilityZonesNil
+### GetAvailabilityZonesCount
 
-`func (o *AzureCredentialsListDto) SetAvailabilityZonesNil(b bool)`
+`func (o *AzureCredentialsListDto) GetAvailabilityZonesCount() int32`
 
- SetAvailabilityZonesNil sets the value for AvailabilityZones to be an explicit nil
+GetAvailabilityZonesCount returns the AvailabilityZonesCount field if non-nil, zero value otherwise.
 
-### UnsetAvailabilityZones
-`func (o *AzureCredentialsListDto) UnsetAvailabilityZones()`
+### GetAvailabilityZonesCountOk
 
-UnsetAvailabilityZones ensures that no value is present for AvailabilityZones, not even an explicit nil
+`func (o *AzureCredentialsListDto) GetAvailabilityZonesCountOk() (*int32, bool)`
+
+GetAvailabilityZonesCountOk returns a tuple with the AvailabilityZonesCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAvailabilityZonesCount
+
+`func (o *AzureCredentialsListDto) SetAvailabilityZonesCount(v int32)`
+
+SetAvailabilityZonesCount sets AvailabilityZonesCount field to given value.
+
+### HasAvailabilityZonesCount
+
+`func (o *AzureCredentialsListDto) HasAvailabilityZonesCount() bool`
+
+HasAvailabilityZonesCount returns a boolean if a field has been set.
+
 ### GetProjects
 
 `func (o *AzureCredentialsListDto) GetProjects() []CommonDropdownDto`
@@ -280,16 +266,6 @@ SetProjects sets Projects field to given value.
 
 HasProjects returns a boolean if a field has been set.
 
-### SetProjectsNil
-
-`func (o *AzureCredentialsListDto) SetProjectsNil(b bool)`
-
- SetProjectsNil sets the value for Projects to be an explicit nil
-
-### UnsetProjects
-`func (o *AzureCredentialsListDto) UnsetProjects()`
-
-UnsetProjects ensures that no value is present for Projects, not even an explicit nil
 ### GetCreatedBy
 
 `func (o *AzureCredentialsListDto) GetCreatedBy() string`
@@ -315,16 +291,6 @@ SetCreatedBy sets CreatedBy field to given value.
 
 HasCreatedBy returns a boolean if a field has been set.
 
-### SetCreatedByNil
-
-`func (o *AzureCredentialsListDto) SetCreatedByNil(b bool)`
-
- SetCreatedByNil sets the value for CreatedBy to be an explicit nil
-
-### UnsetCreatedBy
-`func (o *AzureCredentialsListDto) UnsetCreatedBy()`
-
-UnsetCreatedBy ensures that no value is present for CreatedBy, not even an explicit nil
 ### GetCreatedAt
 
 `func (o *AzureCredentialsListDto) GetCreatedAt() string`
@@ -350,16 +316,6 @@ SetCreatedAt sets CreatedAt field to given value.
 
 HasCreatedAt returns a boolean if a field has been set.
 
-### SetCreatedAtNil
-
-`func (o *AzureCredentialsListDto) SetCreatedAtNil(b bool)`
-
- SetCreatedAtNil sets the value for CreatedAt to be an explicit nil
-
-### UnsetCreatedAt
-`func (o *AzureCredentialsListDto) UnsetCreatedAt()`
-
-UnsetCreatedAt ensures that no value is present for CreatedAt, not even an explicit nil
 ### GetLastModified
 
 `func (o *AzureCredentialsListDto) GetLastModified() string`
@@ -385,16 +341,6 @@ SetLastModified sets LastModified field to given value.
 
 HasLastModified returns a boolean if a field has been set.
 
-### SetLastModifiedNil
-
-`func (o *AzureCredentialsListDto) SetLastModifiedNil(b bool)`
-
- SetLastModifiedNil sets the value for LastModified to be an explicit nil
-
-### UnsetLastModified
-`func (o *AzureCredentialsListDto) UnsetLastModified()`
-
-UnsetLastModified ensures that no value is present for LastModified, not even an explicit nil
 ### GetLastModifiedBy
 
 `func (o *AzureCredentialsListDto) GetLastModifiedBy() string`
@@ -420,16 +366,6 @@ SetLastModifiedBy sets LastModifiedBy field to given value.
 
 HasLastModifiedBy returns a boolean if a field has been set.
 
-### SetLastModifiedByNil
-
-`func (o *AzureCredentialsListDto) SetLastModifiedByNil(b bool)`
-
- SetLastModifiedByNil sets the value for LastModifiedBy to be an explicit nil
-
-### UnsetLastModifiedBy
-`func (o *AzureCredentialsListDto) UnsetLastModifiedBy()`
-
-UnsetLastModifiedBy ensures that no value is present for LastModifiedBy, not even an explicit nil
 ### GetIsDefault
 
 `func (o *AzureCredentialsListDto) GetIsDefault() bool`
@@ -505,16 +441,6 @@ SetOrganizationName sets OrganizationName field to given value.
 
 HasOrganizationName returns a boolean if a field has been set.
 
-### SetOrganizationNameNil
-
-`func (o *AzureCredentialsListDto) SetOrganizationNameNil(b bool)`
-
- SetOrganizationNameNil sets the value for OrganizationName to be an explicit nil
-
-### UnsetOrganizationName
-`func (o *AzureCredentialsListDto) UnsetOrganizationName()`
-
-UnsetOrganizationName ensures that no value is present for OrganizationName, not even an explicit nil
 ### GetContinentName
 
 `func (o *AzureCredentialsListDto) GetContinentName() string`
@@ -540,16 +466,6 @@ SetContinentName sets ContinentName field to given value.
 
 HasContinentName returns a boolean if a field has been set.
 
-### SetContinentNameNil
-
-`func (o *AzureCredentialsListDto) SetContinentNameNil(b bool)`
-
- SetContinentNameNil sets the value for ContinentName to be an explicit nil
-
-### UnsetContinentName
-`func (o *AzureCredentialsListDto) UnsetContinentName()`
-
-UnsetContinentName ensures that no value is present for ContinentName, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

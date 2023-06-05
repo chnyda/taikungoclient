@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Data** | Pointer to **interface{}** |  | [optional] 
+**Data** | Pointer to **map[string]interface{}** |  | [optional] 
 **TotalCount** | Pointer to **int32** |  | [optional] 
 
 ## Methods
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetData
 
-`func (o *ExceededQuotaList) GetData() interface{}`
+`func (o *ExceededQuotaList) GetData() map[string]interface{}`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *ExceededQuotaList) GetDataOk() (*interface{}, bool)`
+`func (o *ExceededQuotaList) GetDataOk() (*map[string]interface{}, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *ExceededQuotaList) SetData(v interface{})`
+`func (o *ExceededQuotaList) SetData(v map[string]interface{})`
 
 SetData sets Data field to given value.
 
@@ -51,16 +51,6 @@ SetData sets Data field to given value.
 
 HasData returns a boolean if a field has been set.
 
-### SetDataNil
-
-`func (o *ExceededQuotaList) SetDataNil(b bool)`
-
- SetDataNil sets the value for Data to be an explicit nil
-
-### UnsetData
-`func (o *ExceededQuotaList) UnsetData()`
-
-UnsetData ensures that no value is present for Data, not even an explicit nil
 ### GetTotalCount
 
 `func (o *ExceededQuotaList) GetTotalCount() int32`

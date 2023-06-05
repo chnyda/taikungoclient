@@ -25,10 +25,10 @@ type RuleCreateCommand struct {
 	Labels []PrometheusLabelListDto `json:"labels"`
 	Type PrometheusType `json:"type"`
 	Price *float64 `json:"price,omitempty"`
-	PartnerId NullableInt32 `json:"partnerId,omitempty"`
+	PartnerId *int32 `json:"partnerId,omitempty"`
 	OperationCredentialId *int32 `json:"operationCredentialId,omitempty"`
 	OrganizationId []int32 `json:"organizationId,omitempty"`
-	RuleDiscountRate NullableInt32 `json:"ruleDiscountRate,omitempty"`
+	RuleDiscountRate *int32 `json:"ruleDiscountRate,omitempty"`
 }
 
 // NewRuleCreateCommand instantiates a new RuleCreateCommand object
@@ -180,46 +180,36 @@ func (o *RuleCreateCommand) SetPrice(v float64) {
 	o.Price = &v
 }
 
-// GetPartnerId returns the PartnerId field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetPartnerId returns the PartnerId field value if set, zero value otherwise.
 func (o *RuleCreateCommand) GetPartnerId() int32 {
-	if o == nil || IsNil(o.PartnerId.Get()) {
+	if o == nil || IsNil(o.PartnerId) {
 		var ret int32
 		return ret
 	}
-	return *o.PartnerId.Get()
+	return *o.PartnerId
 }
 
 // GetPartnerIdOk returns a tuple with the PartnerId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *RuleCreateCommand) GetPartnerIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.PartnerId) {
 		return nil, false
 	}
-	return o.PartnerId.Get(), o.PartnerId.IsSet()
+	return o.PartnerId, true
 }
 
 // HasPartnerId returns a boolean if a field has been set.
 func (o *RuleCreateCommand) HasPartnerId() bool {
-	if o != nil && o.PartnerId.IsSet() {
+	if o != nil && !IsNil(o.PartnerId) {
 		return true
 	}
 
 	return false
 }
 
-// SetPartnerId gets a reference to the given NullableInt32 and assigns it to the PartnerId field.
+// SetPartnerId gets a reference to the given int32 and assigns it to the PartnerId field.
 func (o *RuleCreateCommand) SetPartnerId(v int32) {
-	o.PartnerId.Set(&v)
-}
-// SetPartnerIdNil sets the value for PartnerId to be an explicit nil
-func (o *RuleCreateCommand) SetPartnerIdNil() {
-	o.PartnerId.Set(nil)
-}
-
-// UnsetPartnerId ensures that no value is present for PartnerId, not even an explicit nil
-func (o *RuleCreateCommand) UnsetPartnerId() {
-	o.PartnerId.Unset()
+	o.PartnerId = &v
 }
 
 // GetOperationCredentialId returns the OperationCredentialId field value if set, zero value otherwise.
@@ -254,9 +244,9 @@ func (o *RuleCreateCommand) SetOperationCredentialId(v int32) {
 	o.OperationCredentialId = &v
 }
 
-// GetOrganizationId returns the OrganizationId field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetOrganizationId returns the OrganizationId field value if set, zero value otherwise.
 func (o *RuleCreateCommand) GetOrganizationId() []int32 {
-	if o == nil {
+	if o == nil || IsNil(o.OrganizationId) {
 		var ret []int32
 		return ret
 	}
@@ -265,7 +255,6 @@ func (o *RuleCreateCommand) GetOrganizationId() []int32 {
 
 // GetOrganizationIdOk returns a tuple with the OrganizationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *RuleCreateCommand) GetOrganizationIdOk() ([]int32, bool) {
 	if o == nil || IsNil(o.OrganizationId) {
 		return nil, false
@@ -275,7 +264,7 @@ func (o *RuleCreateCommand) GetOrganizationIdOk() ([]int32, bool) {
 
 // HasOrganizationId returns a boolean if a field has been set.
 func (o *RuleCreateCommand) HasOrganizationId() bool {
-	if o != nil && IsNil(o.OrganizationId) {
+	if o != nil && !IsNil(o.OrganizationId) {
 		return true
 	}
 
@@ -287,46 +276,36 @@ func (o *RuleCreateCommand) SetOrganizationId(v []int32) {
 	o.OrganizationId = v
 }
 
-// GetRuleDiscountRate returns the RuleDiscountRate field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetRuleDiscountRate returns the RuleDiscountRate field value if set, zero value otherwise.
 func (o *RuleCreateCommand) GetRuleDiscountRate() int32 {
-	if o == nil || IsNil(o.RuleDiscountRate.Get()) {
+	if o == nil || IsNil(o.RuleDiscountRate) {
 		var ret int32
 		return ret
 	}
-	return *o.RuleDiscountRate.Get()
+	return *o.RuleDiscountRate
 }
 
 // GetRuleDiscountRateOk returns a tuple with the RuleDiscountRate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *RuleCreateCommand) GetRuleDiscountRateOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.RuleDiscountRate) {
 		return nil, false
 	}
-	return o.RuleDiscountRate.Get(), o.RuleDiscountRate.IsSet()
+	return o.RuleDiscountRate, true
 }
 
 // HasRuleDiscountRate returns a boolean if a field has been set.
 func (o *RuleCreateCommand) HasRuleDiscountRate() bool {
-	if o != nil && o.RuleDiscountRate.IsSet() {
+	if o != nil && !IsNil(o.RuleDiscountRate) {
 		return true
 	}
 
 	return false
 }
 
-// SetRuleDiscountRate gets a reference to the given NullableInt32 and assigns it to the RuleDiscountRate field.
+// SetRuleDiscountRate gets a reference to the given int32 and assigns it to the RuleDiscountRate field.
 func (o *RuleCreateCommand) SetRuleDiscountRate(v int32) {
-	o.RuleDiscountRate.Set(&v)
-}
-// SetRuleDiscountRateNil sets the value for RuleDiscountRate to be an explicit nil
-func (o *RuleCreateCommand) SetRuleDiscountRateNil() {
-	o.RuleDiscountRate.Set(nil)
-}
-
-// UnsetRuleDiscountRate ensures that no value is present for RuleDiscountRate, not even an explicit nil
-func (o *RuleCreateCommand) UnsetRuleDiscountRate() {
-	o.RuleDiscountRate.Unset()
+	o.RuleDiscountRate = &v
 }
 
 func (o RuleCreateCommand) MarshalJSON() ([]byte, error) {
@@ -346,17 +325,17 @@ func (o RuleCreateCommand) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Price) {
 		toSerialize["price"] = o.Price
 	}
-	if o.PartnerId.IsSet() {
-		toSerialize["partnerId"] = o.PartnerId.Get()
+	if !IsNil(o.PartnerId) {
+		toSerialize["partnerId"] = o.PartnerId
 	}
 	if !IsNil(o.OperationCredentialId) {
 		toSerialize["operationCredentialId"] = o.OperationCredentialId
 	}
-	if o.OrganizationId != nil {
+	if !IsNil(o.OrganizationId) {
 		toSerialize["organizationId"] = o.OrganizationId
 	}
-	if o.RuleDiscountRate.IsSet() {
-		toSerialize["ruleDiscountRate"] = o.RuleDiscountRate.Get()
+	if !IsNil(o.RuleDiscountRate) {
+		toSerialize["ruleDiscountRate"] = o.RuleDiscountRate
 	}
 	return toSerialize, nil
 }

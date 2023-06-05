@@ -20,21 +20,22 @@ var _ MappedNullable = &ProjectForUpdateDto{}
 
 // ProjectForUpdateDto struct for ProjectForUpdateDto
 type ProjectForUpdateDto struct {
-	KubeConfig NullableString `json:"kubeConfig,omitempty"`
-	KubesprayCurrentVersion NullableString `json:"kubesprayCurrentVersion,omitempty"`
-	AccessIp NullableString `json:"accessIp,omitempty"`
-	ImageName NullableString `json:"imageName,omitempty"`
-	TanzuReleaseCurrentVersion NullableString `json:"tanzuReleaseCurrentVersion,omitempty"`
+	KubeConfig *string `json:"kubeConfig,omitempty"`
+	KubesprayCurrentVersion *string `json:"kubesprayCurrentVersion,omitempty"`
+	AccessIp *string `json:"accessIp,omitempty"`
+	ImageName *string `json:"imageName,omitempty"`
+	MonitoringIp *string `json:"monitoringIp,omitempty"`
+	TanzuReleaseCurrentVersion *string `json:"tanzuReleaseCurrentVersion,omitempty"`
 	Status *ProjectStatus `json:"status,omitempty"`
 	Health *ProjectHealth `json:"health,omitempty"`
-	IsBackupEnabled NullableBool `json:"isBackupEnabled,omitempty"`
-	IsMonitoringEnabled NullableBool `json:"isMonitoringEnabled,omitempty"`
-	IsOpaEnabled NullableBool `json:"isOpaEnabled,omitempty"`
-	IsAutoUpgrade NullableBool `json:"isAutoUpgrade,omitempty"`
-	AppEnabled NullableBool `json:"appEnabled,omitempty"`
-	IsKubevapEnabled NullableBool `json:"isKubevapEnabled,omitempty"`
-	KubernetesCurrentVersion NullableString `json:"kubernetesCurrentVersion,omitempty"`
-	FailureReason NullableString `json:"failureReason,omitempty"`
+	IsBackupEnabled *bool `json:"isBackupEnabled,omitempty"`
+	IsMonitoringEnabled *bool `json:"isMonitoringEnabled,omitempty"`
+	IsOpaEnabled *bool `json:"isOpaEnabled,omitempty"`
+	IsAutoUpgrade *bool `json:"isAutoUpgrade,omitempty"`
+	AppEnabled *bool `json:"appEnabled,omitempty"`
+	IsKubevapEnabled *bool `json:"isKubevapEnabled,omitempty"`
+	KubernetesCurrentVersion *string `json:"kubernetesCurrentVersion,omitempty"`
+	FailureReason *string `json:"failureReason,omitempty"`
 }
 
 // NewProjectForUpdateDto instantiates a new ProjectForUpdateDto object
@@ -54,214 +55,196 @@ func NewProjectForUpdateDtoWithDefaults() *ProjectForUpdateDto {
 	return &this
 }
 
-// GetKubeConfig returns the KubeConfig field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetKubeConfig returns the KubeConfig field value if set, zero value otherwise.
 func (o *ProjectForUpdateDto) GetKubeConfig() string {
-	if o == nil || IsNil(o.KubeConfig.Get()) {
+	if o == nil || IsNil(o.KubeConfig) {
 		var ret string
 		return ret
 	}
-	return *o.KubeConfig.Get()
+	return *o.KubeConfig
 }
 
 // GetKubeConfigOk returns a tuple with the KubeConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProjectForUpdateDto) GetKubeConfigOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.KubeConfig) {
 		return nil, false
 	}
-	return o.KubeConfig.Get(), o.KubeConfig.IsSet()
+	return o.KubeConfig, true
 }
 
 // HasKubeConfig returns a boolean if a field has been set.
 func (o *ProjectForUpdateDto) HasKubeConfig() bool {
-	if o != nil && o.KubeConfig.IsSet() {
+	if o != nil && !IsNil(o.KubeConfig) {
 		return true
 	}
 
 	return false
 }
 
-// SetKubeConfig gets a reference to the given NullableString and assigns it to the KubeConfig field.
+// SetKubeConfig gets a reference to the given string and assigns it to the KubeConfig field.
 func (o *ProjectForUpdateDto) SetKubeConfig(v string) {
-	o.KubeConfig.Set(&v)
-}
-// SetKubeConfigNil sets the value for KubeConfig to be an explicit nil
-func (o *ProjectForUpdateDto) SetKubeConfigNil() {
-	o.KubeConfig.Set(nil)
+	o.KubeConfig = &v
 }
 
-// UnsetKubeConfig ensures that no value is present for KubeConfig, not even an explicit nil
-func (o *ProjectForUpdateDto) UnsetKubeConfig() {
-	o.KubeConfig.Unset()
-}
-
-// GetKubesprayCurrentVersion returns the KubesprayCurrentVersion field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetKubesprayCurrentVersion returns the KubesprayCurrentVersion field value if set, zero value otherwise.
 func (o *ProjectForUpdateDto) GetKubesprayCurrentVersion() string {
-	if o == nil || IsNil(o.KubesprayCurrentVersion.Get()) {
+	if o == nil || IsNil(o.KubesprayCurrentVersion) {
 		var ret string
 		return ret
 	}
-	return *o.KubesprayCurrentVersion.Get()
+	return *o.KubesprayCurrentVersion
 }
 
 // GetKubesprayCurrentVersionOk returns a tuple with the KubesprayCurrentVersion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProjectForUpdateDto) GetKubesprayCurrentVersionOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.KubesprayCurrentVersion) {
 		return nil, false
 	}
-	return o.KubesprayCurrentVersion.Get(), o.KubesprayCurrentVersion.IsSet()
+	return o.KubesprayCurrentVersion, true
 }
 
 // HasKubesprayCurrentVersion returns a boolean if a field has been set.
 func (o *ProjectForUpdateDto) HasKubesprayCurrentVersion() bool {
-	if o != nil && o.KubesprayCurrentVersion.IsSet() {
+	if o != nil && !IsNil(o.KubesprayCurrentVersion) {
 		return true
 	}
 
 	return false
 }
 
-// SetKubesprayCurrentVersion gets a reference to the given NullableString and assigns it to the KubesprayCurrentVersion field.
+// SetKubesprayCurrentVersion gets a reference to the given string and assigns it to the KubesprayCurrentVersion field.
 func (o *ProjectForUpdateDto) SetKubesprayCurrentVersion(v string) {
-	o.KubesprayCurrentVersion.Set(&v)
-}
-// SetKubesprayCurrentVersionNil sets the value for KubesprayCurrentVersion to be an explicit nil
-func (o *ProjectForUpdateDto) SetKubesprayCurrentVersionNil() {
-	o.KubesprayCurrentVersion.Set(nil)
+	o.KubesprayCurrentVersion = &v
 }
 
-// UnsetKubesprayCurrentVersion ensures that no value is present for KubesprayCurrentVersion, not even an explicit nil
-func (o *ProjectForUpdateDto) UnsetKubesprayCurrentVersion() {
-	o.KubesprayCurrentVersion.Unset()
-}
-
-// GetAccessIp returns the AccessIp field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetAccessIp returns the AccessIp field value if set, zero value otherwise.
 func (o *ProjectForUpdateDto) GetAccessIp() string {
-	if o == nil || IsNil(o.AccessIp.Get()) {
+	if o == nil || IsNil(o.AccessIp) {
 		var ret string
 		return ret
 	}
-	return *o.AccessIp.Get()
+	return *o.AccessIp
 }
 
 // GetAccessIpOk returns a tuple with the AccessIp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProjectForUpdateDto) GetAccessIpOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.AccessIp) {
 		return nil, false
 	}
-	return o.AccessIp.Get(), o.AccessIp.IsSet()
+	return o.AccessIp, true
 }
 
 // HasAccessIp returns a boolean if a field has been set.
 func (o *ProjectForUpdateDto) HasAccessIp() bool {
-	if o != nil && o.AccessIp.IsSet() {
+	if o != nil && !IsNil(o.AccessIp) {
 		return true
 	}
 
 	return false
 }
 
-// SetAccessIp gets a reference to the given NullableString and assigns it to the AccessIp field.
+// SetAccessIp gets a reference to the given string and assigns it to the AccessIp field.
 func (o *ProjectForUpdateDto) SetAccessIp(v string) {
-	o.AccessIp.Set(&v)
-}
-// SetAccessIpNil sets the value for AccessIp to be an explicit nil
-func (o *ProjectForUpdateDto) SetAccessIpNil() {
-	o.AccessIp.Set(nil)
+	o.AccessIp = &v
 }
 
-// UnsetAccessIp ensures that no value is present for AccessIp, not even an explicit nil
-func (o *ProjectForUpdateDto) UnsetAccessIp() {
-	o.AccessIp.Unset()
-}
-
-// GetImageName returns the ImageName field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetImageName returns the ImageName field value if set, zero value otherwise.
 func (o *ProjectForUpdateDto) GetImageName() string {
-	if o == nil || IsNil(o.ImageName.Get()) {
+	if o == nil || IsNil(o.ImageName) {
 		var ret string
 		return ret
 	}
-	return *o.ImageName.Get()
+	return *o.ImageName
 }
 
 // GetImageNameOk returns a tuple with the ImageName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProjectForUpdateDto) GetImageNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ImageName) {
 		return nil, false
 	}
-	return o.ImageName.Get(), o.ImageName.IsSet()
+	return o.ImageName, true
 }
 
 // HasImageName returns a boolean if a field has been set.
 func (o *ProjectForUpdateDto) HasImageName() bool {
-	if o != nil && o.ImageName.IsSet() {
+	if o != nil && !IsNil(o.ImageName) {
 		return true
 	}
 
 	return false
 }
 
-// SetImageName gets a reference to the given NullableString and assigns it to the ImageName field.
+// SetImageName gets a reference to the given string and assigns it to the ImageName field.
 func (o *ProjectForUpdateDto) SetImageName(v string) {
-	o.ImageName.Set(&v)
-}
-// SetImageNameNil sets the value for ImageName to be an explicit nil
-func (o *ProjectForUpdateDto) SetImageNameNil() {
-	o.ImageName.Set(nil)
+	o.ImageName = &v
 }
 
-// UnsetImageName ensures that no value is present for ImageName, not even an explicit nil
-func (o *ProjectForUpdateDto) UnsetImageName() {
-	o.ImageName.Unset()
-}
-
-// GetTanzuReleaseCurrentVersion returns the TanzuReleaseCurrentVersion field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ProjectForUpdateDto) GetTanzuReleaseCurrentVersion() string {
-	if o == nil || IsNil(o.TanzuReleaseCurrentVersion.Get()) {
+// GetMonitoringIp returns the MonitoringIp field value if set, zero value otherwise.
+func (o *ProjectForUpdateDto) GetMonitoringIp() string {
+	if o == nil || IsNil(o.MonitoringIp) {
 		var ret string
 		return ret
 	}
-	return *o.TanzuReleaseCurrentVersion.Get()
+	return *o.MonitoringIp
+}
+
+// GetMonitoringIpOk returns a tuple with the MonitoringIp field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ProjectForUpdateDto) GetMonitoringIpOk() (*string, bool) {
+	if o == nil || IsNil(o.MonitoringIp) {
+		return nil, false
+	}
+	return o.MonitoringIp, true
+}
+
+// HasMonitoringIp returns a boolean if a field has been set.
+func (o *ProjectForUpdateDto) HasMonitoringIp() bool {
+	if o != nil && !IsNil(o.MonitoringIp) {
+		return true
+	}
+
+	return false
+}
+
+// SetMonitoringIp gets a reference to the given string and assigns it to the MonitoringIp field.
+func (o *ProjectForUpdateDto) SetMonitoringIp(v string) {
+	o.MonitoringIp = &v
+}
+
+// GetTanzuReleaseCurrentVersion returns the TanzuReleaseCurrentVersion field value if set, zero value otherwise.
+func (o *ProjectForUpdateDto) GetTanzuReleaseCurrentVersion() string {
+	if o == nil || IsNil(o.TanzuReleaseCurrentVersion) {
+		var ret string
+		return ret
+	}
+	return *o.TanzuReleaseCurrentVersion
 }
 
 // GetTanzuReleaseCurrentVersionOk returns a tuple with the TanzuReleaseCurrentVersion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProjectForUpdateDto) GetTanzuReleaseCurrentVersionOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.TanzuReleaseCurrentVersion) {
 		return nil, false
 	}
-	return o.TanzuReleaseCurrentVersion.Get(), o.TanzuReleaseCurrentVersion.IsSet()
+	return o.TanzuReleaseCurrentVersion, true
 }
 
 // HasTanzuReleaseCurrentVersion returns a boolean if a field has been set.
 func (o *ProjectForUpdateDto) HasTanzuReleaseCurrentVersion() bool {
-	if o != nil && o.TanzuReleaseCurrentVersion.IsSet() {
+	if o != nil && !IsNil(o.TanzuReleaseCurrentVersion) {
 		return true
 	}
 
 	return false
 }
 
-// SetTanzuReleaseCurrentVersion gets a reference to the given NullableString and assigns it to the TanzuReleaseCurrentVersion field.
+// SetTanzuReleaseCurrentVersion gets a reference to the given string and assigns it to the TanzuReleaseCurrentVersion field.
 func (o *ProjectForUpdateDto) SetTanzuReleaseCurrentVersion(v string) {
-	o.TanzuReleaseCurrentVersion.Set(&v)
-}
-// SetTanzuReleaseCurrentVersionNil sets the value for TanzuReleaseCurrentVersion to be an explicit nil
-func (o *ProjectForUpdateDto) SetTanzuReleaseCurrentVersionNil() {
-	o.TanzuReleaseCurrentVersion.Set(nil)
-}
-
-// UnsetTanzuReleaseCurrentVersion ensures that no value is present for TanzuReleaseCurrentVersion, not even an explicit nil
-func (o *ProjectForUpdateDto) UnsetTanzuReleaseCurrentVersion() {
-	o.TanzuReleaseCurrentVersion.Unset()
+	o.TanzuReleaseCurrentVersion = &v
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
@@ -328,340 +311,260 @@ func (o *ProjectForUpdateDto) SetHealth(v ProjectHealth) {
 	o.Health = &v
 }
 
-// GetIsBackupEnabled returns the IsBackupEnabled field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetIsBackupEnabled returns the IsBackupEnabled field value if set, zero value otherwise.
 func (o *ProjectForUpdateDto) GetIsBackupEnabled() bool {
-	if o == nil || IsNil(o.IsBackupEnabled.Get()) {
+	if o == nil || IsNil(o.IsBackupEnabled) {
 		var ret bool
 		return ret
 	}
-	return *o.IsBackupEnabled.Get()
+	return *o.IsBackupEnabled
 }
 
 // GetIsBackupEnabledOk returns a tuple with the IsBackupEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProjectForUpdateDto) GetIsBackupEnabledOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IsBackupEnabled) {
 		return nil, false
 	}
-	return o.IsBackupEnabled.Get(), o.IsBackupEnabled.IsSet()
+	return o.IsBackupEnabled, true
 }
 
 // HasIsBackupEnabled returns a boolean if a field has been set.
 func (o *ProjectForUpdateDto) HasIsBackupEnabled() bool {
-	if o != nil && o.IsBackupEnabled.IsSet() {
+	if o != nil && !IsNil(o.IsBackupEnabled) {
 		return true
 	}
 
 	return false
 }
 
-// SetIsBackupEnabled gets a reference to the given NullableBool and assigns it to the IsBackupEnabled field.
+// SetIsBackupEnabled gets a reference to the given bool and assigns it to the IsBackupEnabled field.
 func (o *ProjectForUpdateDto) SetIsBackupEnabled(v bool) {
-	o.IsBackupEnabled.Set(&v)
-}
-// SetIsBackupEnabledNil sets the value for IsBackupEnabled to be an explicit nil
-func (o *ProjectForUpdateDto) SetIsBackupEnabledNil() {
-	o.IsBackupEnabled.Set(nil)
+	o.IsBackupEnabled = &v
 }
 
-// UnsetIsBackupEnabled ensures that no value is present for IsBackupEnabled, not even an explicit nil
-func (o *ProjectForUpdateDto) UnsetIsBackupEnabled() {
-	o.IsBackupEnabled.Unset()
-}
-
-// GetIsMonitoringEnabled returns the IsMonitoringEnabled field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetIsMonitoringEnabled returns the IsMonitoringEnabled field value if set, zero value otherwise.
 func (o *ProjectForUpdateDto) GetIsMonitoringEnabled() bool {
-	if o == nil || IsNil(o.IsMonitoringEnabled.Get()) {
+	if o == nil || IsNil(o.IsMonitoringEnabled) {
 		var ret bool
 		return ret
 	}
-	return *o.IsMonitoringEnabled.Get()
+	return *o.IsMonitoringEnabled
 }
 
 // GetIsMonitoringEnabledOk returns a tuple with the IsMonitoringEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProjectForUpdateDto) GetIsMonitoringEnabledOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IsMonitoringEnabled) {
 		return nil, false
 	}
-	return o.IsMonitoringEnabled.Get(), o.IsMonitoringEnabled.IsSet()
+	return o.IsMonitoringEnabled, true
 }
 
 // HasIsMonitoringEnabled returns a boolean if a field has been set.
 func (o *ProjectForUpdateDto) HasIsMonitoringEnabled() bool {
-	if o != nil && o.IsMonitoringEnabled.IsSet() {
+	if o != nil && !IsNil(o.IsMonitoringEnabled) {
 		return true
 	}
 
 	return false
 }
 
-// SetIsMonitoringEnabled gets a reference to the given NullableBool and assigns it to the IsMonitoringEnabled field.
+// SetIsMonitoringEnabled gets a reference to the given bool and assigns it to the IsMonitoringEnabled field.
 func (o *ProjectForUpdateDto) SetIsMonitoringEnabled(v bool) {
-	o.IsMonitoringEnabled.Set(&v)
-}
-// SetIsMonitoringEnabledNil sets the value for IsMonitoringEnabled to be an explicit nil
-func (o *ProjectForUpdateDto) SetIsMonitoringEnabledNil() {
-	o.IsMonitoringEnabled.Set(nil)
+	o.IsMonitoringEnabled = &v
 }
 
-// UnsetIsMonitoringEnabled ensures that no value is present for IsMonitoringEnabled, not even an explicit nil
-func (o *ProjectForUpdateDto) UnsetIsMonitoringEnabled() {
-	o.IsMonitoringEnabled.Unset()
-}
-
-// GetIsOpaEnabled returns the IsOpaEnabled field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetIsOpaEnabled returns the IsOpaEnabled field value if set, zero value otherwise.
 func (o *ProjectForUpdateDto) GetIsOpaEnabled() bool {
-	if o == nil || IsNil(o.IsOpaEnabled.Get()) {
+	if o == nil || IsNil(o.IsOpaEnabled) {
 		var ret bool
 		return ret
 	}
-	return *o.IsOpaEnabled.Get()
+	return *o.IsOpaEnabled
 }
 
 // GetIsOpaEnabledOk returns a tuple with the IsOpaEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProjectForUpdateDto) GetIsOpaEnabledOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IsOpaEnabled) {
 		return nil, false
 	}
-	return o.IsOpaEnabled.Get(), o.IsOpaEnabled.IsSet()
+	return o.IsOpaEnabled, true
 }
 
 // HasIsOpaEnabled returns a boolean if a field has been set.
 func (o *ProjectForUpdateDto) HasIsOpaEnabled() bool {
-	if o != nil && o.IsOpaEnabled.IsSet() {
+	if o != nil && !IsNil(o.IsOpaEnabled) {
 		return true
 	}
 
 	return false
 }
 
-// SetIsOpaEnabled gets a reference to the given NullableBool and assigns it to the IsOpaEnabled field.
+// SetIsOpaEnabled gets a reference to the given bool and assigns it to the IsOpaEnabled field.
 func (o *ProjectForUpdateDto) SetIsOpaEnabled(v bool) {
-	o.IsOpaEnabled.Set(&v)
-}
-// SetIsOpaEnabledNil sets the value for IsOpaEnabled to be an explicit nil
-func (o *ProjectForUpdateDto) SetIsOpaEnabledNil() {
-	o.IsOpaEnabled.Set(nil)
+	o.IsOpaEnabled = &v
 }
 
-// UnsetIsOpaEnabled ensures that no value is present for IsOpaEnabled, not even an explicit nil
-func (o *ProjectForUpdateDto) UnsetIsOpaEnabled() {
-	o.IsOpaEnabled.Unset()
-}
-
-// GetIsAutoUpgrade returns the IsAutoUpgrade field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetIsAutoUpgrade returns the IsAutoUpgrade field value if set, zero value otherwise.
 func (o *ProjectForUpdateDto) GetIsAutoUpgrade() bool {
-	if o == nil || IsNil(o.IsAutoUpgrade.Get()) {
+	if o == nil || IsNil(o.IsAutoUpgrade) {
 		var ret bool
 		return ret
 	}
-	return *o.IsAutoUpgrade.Get()
+	return *o.IsAutoUpgrade
 }
 
 // GetIsAutoUpgradeOk returns a tuple with the IsAutoUpgrade field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProjectForUpdateDto) GetIsAutoUpgradeOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IsAutoUpgrade) {
 		return nil, false
 	}
-	return o.IsAutoUpgrade.Get(), o.IsAutoUpgrade.IsSet()
+	return o.IsAutoUpgrade, true
 }
 
 // HasIsAutoUpgrade returns a boolean if a field has been set.
 func (o *ProjectForUpdateDto) HasIsAutoUpgrade() bool {
-	if o != nil && o.IsAutoUpgrade.IsSet() {
+	if o != nil && !IsNil(o.IsAutoUpgrade) {
 		return true
 	}
 
 	return false
 }
 
-// SetIsAutoUpgrade gets a reference to the given NullableBool and assigns it to the IsAutoUpgrade field.
+// SetIsAutoUpgrade gets a reference to the given bool and assigns it to the IsAutoUpgrade field.
 func (o *ProjectForUpdateDto) SetIsAutoUpgrade(v bool) {
-	o.IsAutoUpgrade.Set(&v)
-}
-// SetIsAutoUpgradeNil sets the value for IsAutoUpgrade to be an explicit nil
-func (o *ProjectForUpdateDto) SetIsAutoUpgradeNil() {
-	o.IsAutoUpgrade.Set(nil)
+	o.IsAutoUpgrade = &v
 }
 
-// UnsetIsAutoUpgrade ensures that no value is present for IsAutoUpgrade, not even an explicit nil
-func (o *ProjectForUpdateDto) UnsetIsAutoUpgrade() {
-	o.IsAutoUpgrade.Unset()
-}
-
-// GetAppEnabled returns the AppEnabled field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetAppEnabled returns the AppEnabled field value if set, zero value otherwise.
 func (o *ProjectForUpdateDto) GetAppEnabled() bool {
-	if o == nil || IsNil(o.AppEnabled.Get()) {
+	if o == nil || IsNil(o.AppEnabled) {
 		var ret bool
 		return ret
 	}
-	return *o.AppEnabled.Get()
+	return *o.AppEnabled
 }
 
 // GetAppEnabledOk returns a tuple with the AppEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProjectForUpdateDto) GetAppEnabledOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.AppEnabled) {
 		return nil, false
 	}
-	return o.AppEnabled.Get(), o.AppEnabled.IsSet()
+	return o.AppEnabled, true
 }
 
 // HasAppEnabled returns a boolean if a field has been set.
 func (o *ProjectForUpdateDto) HasAppEnabled() bool {
-	if o != nil && o.AppEnabled.IsSet() {
+	if o != nil && !IsNil(o.AppEnabled) {
 		return true
 	}
 
 	return false
 }
 
-// SetAppEnabled gets a reference to the given NullableBool and assigns it to the AppEnabled field.
+// SetAppEnabled gets a reference to the given bool and assigns it to the AppEnabled field.
 func (o *ProjectForUpdateDto) SetAppEnabled(v bool) {
-	o.AppEnabled.Set(&v)
-}
-// SetAppEnabledNil sets the value for AppEnabled to be an explicit nil
-func (o *ProjectForUpdateDto) SetAppEnabledNil() {
-	o.AppEnabled.Set(nil)
+	o.AppEnabled = &v
 }
 
-// UnsetAppEnabled ensures that no value is present for AppEnabled, not even an explicit nil
-func (o *ProjectForUpdateDto) UnsetAppEnabled() {
-	o.AppEnabled.Unset()
-}
-
-// GetIsKubevapEnabled returns the IsKubevapEnabled field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetIsKubevapEnabled returns the IsKubevapEnabled field value if set, zero value otherwise.
 func (o *ProjectForUpdateDto) GetIsKubevapEnabled() bool {
-	if o == nil || IsNil(o.IsKubevapEnabled.Get()) {
+	if o == nil || IsNil(o.IsKubevapEnabled) {
 		var ret bool
 		return ret
 	}
-	return *o.IsKubevapEnabled.Get()
+	return *o.IsKubevapEnabled
 }
 
 // GetIsKubevapEnabledOk returns a tuple with the IsKubevapEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProjectForUpdateDto) GetIsKubevapEnabledOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IsKubevapEnabled) {
 		return nil, false
 	}
-	return o.IsKubevapEnabled.Get(), o.IsKubevapEnabled.IsSet()
+	return o.IsKubevapEnabled, true
 }
 
 // HasIsKubevapEnabled returns a boolean if a field has been set.
 func (o *ProjectForUpdateDto) HasIsKubevapEnabled() bool {
-	if o != nil && o.IsKubevapEnabled.IsSet() {
+	if o != nil && !IsNil(o.IsKubevapEnabled) {
 		return true
 	}
 
 	return false
 }
 
-// SetIsKubevapEnabled gets a reference to the given NullableBool and assigns it to the IsKubevapEnabled field.
+// SetIsKubevapEnabled gets a reference to the given bool and assigns it to the IsKubevapEnabled field.
 func (o *ProjectForUpdateDto) SetIsKubevapEnabled(v bool) {
-	o.IsKubevapEnabled.Set(&v)
-}
-// SetIsKubevapEnabledNil sets the value for IsKubevapEnabled to be an explicit nil
-func (o *ProjectForUpdateDto) SetIsKubevapEnabledNil() {
-	o.IsKubevapEnabled.Set(nil)
+	o.IsKubevapEnabled = &v
 }
 
-// UnsetIsKubevapEnabled ensures that no value is present for IsKubevapEnabled, not even an explicit nil
-func (o *ProjectForUpdateDto) UnsetIsKubevapEnabled() {
-	o.IsKubevapEnabled.Unset()
-}
-
-// GetKubernetesCurrentVersion returns the KubernetesCurrentVersion field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetKubernetesCurrentVersion returns the KubernetesCurrentVersion field value if set, zero value otherwise.
 func (o *ProjectForUpdateDto) GetKubernetesCurrentVersion() string {
-	if o == nil || IsNil(o.KubernetesCurrentVersion.Get()) {
+	if o == nil || IsNil(o.KubernetesCurrentVersion) {
 		var ret string
 		return ret
 	}
-	return *o.KubernetesCurrentVersion.Get()
+	return *o.KubernetesCurrentVersion
 }
 
 // GetKubernetesCurrentVersionOk returns a tuple with the KubernetesCurrentVersion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProjectForUpdateDto) GetKubernetesCurrentVersionOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.KubernetesCurrentVersion) {
 		return nil, false
 	}
-	return o.KubernetesCurrentVersion.Get(), o.KubernetesCurrentVersion.IsSet()
+	return o.KubernetesCurrentVersion, true
 }
 
 // HasKubernetesCurrentVersion returns a boolean if a field has been set.
 func (o *ProjectForUpdateDto) HasKubernetesCurrentVersion() bool {
-	if o != nil && o.KubernetesCurrentVersion.IsSet() {
+	if o != nil && !IsNil(o.KubernetesCurrentVersion) {
 		return true
 	}
 
 	return false
 }
 
-// SetKubernetesCurrentVersion gets a reference to the given NullableString and assigns it to the KubernetesCurrentVersion field.
+// SetKubernetesCurrentVersion gets a reference to the given string and assigns it to the KubernetesCurrentVersion field.
 func (o *ProjectForUpdateDto) SetKubernetesCurrentVersion(v string) {
-	o.KubernetesCurrentVersion.Set(&v)
-}
-// SetKubernetesCurrentVersionNil sets the value for KubernetesCurrentVersion to be an explicit nil
-func (o *ProjectForUpdateDto) SetKubernetesCurrentVersionNil() {
-	o.KubernetesCurrentVersion.Set(nil)
+	o.KubernetesCurrentVersion = &v
 }
 
-// UnsetKubernetesCurrentVersion ensures that no value is present for KubernetesCurrentVersion, not even an explicit nil
-func (o *ProjectForUpdateDto) UnsetKubernetesCurrentVersion() {
-	o.KubernetesCurrentVersion.Unset()
-}
-
-// GetFailureReason returns the FailureReason field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetFailureReason returns the FailureReason field value if set, zero value otherwise.
 func (o *ProjectForUpdateDto) GetFailureReason() string {
-	if o == nil || IsNil(o.FailureReason.Get()) {
+	if o == nil || IsNil(o.FailureReason) {
 		var ret string
 		return ret
 	}
-	return *o.FailureReason.Get()
+	return *o.FailureReason
 }
 
 // GetFailureReasonOk returns a tuple with the FailureReason field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProjectForUpdateDto) GetFailureReasonOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.FailureReason) {
 		return nil, false
 	}
-	return o.FailureReason.Get(), o.FailureReason.IsSet()
+	return o.FailureReason, true
 }
 
 // HasFailureReason returns a boolean if a field has been set.
 func (o *ProjectForUpdateDto) HasFailureReason() bool {
-	if o != nil && o.FailureReason.IsSet() {
+	if o != nil && !IsNil(o.FailureReason) {
 		return true
 	}
 
 	return false
 }
 
-// SetFailureReason gets a reference to the given NullableString and assigns it to the FailureReason field.
+// SetFailureReason gets a reference to the given string and assigns it to the FailureReason field.
 func (o *ProjectForUpdateDto) SetFailureReason(v string) {
-	o.FailureReason.Set(&v)
-}
-// SetFailureReasonNil sets the value for FailureReason to be an explicit nil
-func (o *ProjectForUpdateDto) SetFailureReasonNil() {
-	o.FailureReason.Set(nil)
-}
-
-// UnsetFailureReason ensures that no value is present for FailureReason, not even an explicit nil
-func (o *ProjectForUpdateDto) UnsetFailureReason() {
-	o.FailureReason.Unset()
+	o.FailureReason = &v
 }
 
 func (o ProjectForUpdateDto) MarshalJSON() ([]byte, error) {
@@ -674,20 +577,23 @@ func (o ProjectForUpdateDto) MarshalJSON() ([]byte, error) {
 
 func (o ProjectForUpdateDto) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.KubeConfig.IsSet() {
-		toSerialize["kubeConfig"] = o.KubeConfig.Get()
+	if !IsNil(o.KubeConfig) {
+		toSerialize["kubeConfig"] = o.KubeConfig
 	}
-	if o.KubesprayCurrentVersion.IsSet() {
-		toSerialize["kubesprayCurrentVersion"] = o.KubesprayCurrentVersion.Get()
+	if !IsNil(o.KubesprayCurrentVersion) {
+		toSerialize["kubesprayCurrentVersion"] = o.KubesprayCurrentVersion
 	}
-	if o.AccessIp.IsSet() {
-		toSerialize["accessIp"] = o.AccessIp.Get()
+	if !IsNil(o.AccessIp) {
+		toSerialize["accessIp"] = o.AccessIp
 	}
-	if o.ImageName.IsSet() {
-		toSerialize["imageName"] = o.ImageName.Get()
+	if !IsNil(o.ImageName) {
+		toSerialize["imageName"] = o.ImageName
 	}
-	if o.TanzuReleaseCurrentVersion.IsSet() {
-		toSerialize["tanzuReleaseCurrentVersion"] = o.TanzuReleaseCurrentVersion.Get()
+	if !IsNil(o.MonitoringIp) {
+		toSerialize["monitoringIp"] = o.MonitoringIp
+	}
+	if !IsNil(o.TanzuReleaseCurrentVersion) {
+		toSerialize["tanzuReleaseCurrentVersion"] = o.TanzuReleaseCurrentVersion
 	}
 	if !IsNil(o.Status) {
 		toSerialize["status"] = o.Status
@@ -695,29 +601,29 @@ func (o ProjectForUpdateDto) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Health) {
 		toSerialize["health"] = o.Health
 	}
-	if o.IsBackupEnabled.IsSet() {
-		toSerialize["isBackupEnabled"] = o.IsBackupEnabled.Get()
+	if !IsNil(o.IsBackupEnabled) {
+		toSerialize["isBackupEnabled"] = o.IsBackupEnabled
 	}
-	if o.IsMonitoringEnabled.IsSet() {
-		toSerialize["isMonitoringEnabled"] = o.IsMonitoringEnabled.Get()
+	if !IsNil(o.IsMonitoringEnabled) {
+		toSerialize["isMonitoringEnabled"] = o.IsMonitoringEnabled
 	}
-	if o.IsOpaEnabled.IsSet() {
-		toSerialize["isOpaEnabled"] = o.IsOpaEnabled.Get()
+	if !IsNil(o.IsOpaEnabled) {
+		toSerialize["isOpaEnabled"] = o.IsOpaEnabled
 	}
-	if o.IsAutoUpgrade.IsSet() {
-		toSerialize["isAutoUpgrade"] = o.IsAutoUpgrade.Get()
+	if !IsNil(o.IsAutoUpgrade) {
+		toSerialize["isAutoUpgrade"] = o.IsAutoUpgrade
 	}
-	if o.AppEnabled.IsSet() {
-		toSerialize["appEnabled"] = o.AppEnabled.Get()
+	if !IsNil(o.AppEnabled) {
+		toSerialize["appEnabled"] = o.AppEnabled
 	}
-	if o.IsKubevapEnabled.IsSet() {
-		toSerialize["isKubevapEnabled"] = o.IsKubevapEnabled.Get()
+	if !IsNil(o.IsKubevapEnabled) {
+		toSerialize["isKubevapEnabled"] = o.IsKubevapEnabled
 	}
-	if o.KubernetesCurrentVersion.IsSet() {
-		toSerialize["kubernetesCurrentVersion"] = o.KubernetesCurrentVersion.Get()
+	if !IsNil(o.KubernetesCurrentVersion) {
+		toSerialize["kubernetesCurrentVersion"] = o.KubernetesCurrentVersion
 	}
-	if o.FailureReason.IsSet() {
-		toSerialize["failureReason"] = o.FailureReason.Get()
+	if !IsNil(o.FailureReason) {
+		toSerialize["failureReason"] = o.FailureReason
 	}
 	return toSerialize, nil
 }

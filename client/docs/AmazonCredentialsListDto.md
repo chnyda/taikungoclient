@@ -7,18 +7,19 @@ Name | Type | Description | Notes
 **Id** | Pointer to **int32** |  | [optional] 
 **ProjectCount** | Pointer to **int32** |  | [optional] 
 **IsLocked** | Pointer to **bool** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
-**Region** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**Region** | Pointer to **string** |  | [optional] 
 **AvailabilityZones** | Pointer to **[]string** |  | [optional] 
+**AvailabilityZonesCount** | Pointer to **int32** |  | [optional] 
 **Projects** | Pointer to [**[]CommonDropdownDto**](CommonDropdownDto.md) |  | [optional] 
-**CreatedBy** | Pointer to **NullableString** |  | [optional] 
-**LastModified** | Pointer to **NullableString** |  | [optional] 
-**LastModifiedBy** | Pointer to **NullableString** |  | [optional] 
+**CreatedBy** | Pointer to **string** |  | [optional] 
+**LastModified** | Pointer to **string** |  | [optional] 
+**LastModifiedBy** | Pointer to **string** |  | [optional] 
 **IsDefault** | Pointer to **bool** |  | [optional] 
 **OrganizationId** | Pointer to **int32** |  | [optional] 
-**OrganizationName** | Pointer to **NullableString** |  | [optional] 
-**CreatedAt** | Pointer to **NullableString** |  | [optional] 
-**ContinentName** | Pointer to **NullableString** |  | [optional] 
+**OrganizationName** | Pointer to **string** |  | [optional] 
+**CreatedAt** | Pointer to **string** |  | [optional] 
+**ContinentName** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -139,16 +140,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *AmazonCredentialsListDto) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *AmazonCredentialsListDto) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetRegion
 
 `func (o *AmazonCredentialsListDto) GetRegion() string`
@@ -174,16 +165,6 @@ SetRegion sets Region field to given value.
 
 HasRegion returns a boolean if a field has been set.
 
-### SetRegionNil
-
-`func (o *AmazonCredentialsListDto) SetRegionNil(b bool)`
-
- SetRegionNil sets the value for Region to be an explicit nil
-
-### UnsetRegion
-`func (o *AmazonCredentialsListDto) UnsetRegion()`
-
-UnsetRegion ensures that no value is present for Region, not even an explicit nil
 ### GetAvailabilityZones
 
 `func (o *AmazonCredentialsListDto) GetAvailabilityZones() []string`
@@ -209,16 +190,31 @@ SetAvailabilityZones sets AvailabilityZones field to given value.
 
 HasAvailabilityZones returns a boolean if a field has been set.
 
-### SetAvailabilityZonesNil
+### GetAvailabilityZonesCount
 
-`func (o *AmazonCredentialsListDto) SetAvailabilityZonesNil(b bool)`
+`func (o *AmazonCredentialsListDto) GetAvailabilityZonesCount() int32`
 
- SetAvailabilityZonesNil sets the value for AvailabilityZones to be an explicit nil
+GetAvailabilityZonesCount returns the AvailabilityZonesCount field if non-nil, zero value otherwise.
 
-### UnsetAvailabilityZones
-`func (o *AmazonCredentialsListDto) UnsetAvailabilityZones()`
+### GetAvailabilityZonesCountOk
 
-UnsetAvailabilityZones ensures that no value is present for AvailabilityZones, not even an explicit nil
+`func (o *AmazonCredentialsListDto) GetAvailabilityZonesCountOk() (*int32, bool)`
+
+GetAvailabilityZonesCountOk returns a tuple with the AvailabilityZonesCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAvailabilityZonesCount
+
+`func (o *AmazonCredentialsListDto) SetAvailabilityZonesCount(v int32)`
+
+SetAvailabilityZonesCount sets AvailabilityZonesCount field to given value.
+
+### HasAvailabilityZonesCount
+
+`func (o *AmazonCredentialsListDto) HasAvailabilityZonesCount() bool`
+
+HasAvailabilityZonesCount returns a boolean if a field has been set.
+
 ### GetProjects
 
 `func (o *AmazonCredentialsListDto) GetProjects() []CommonDropdownDto`
@@ -244,16 +240,6 @@ SetProjects sets Projects field to given value.
 
 HasProjects returns a boolean if a field has been set.
 
-### SetProjectsNil
-
-`func (o *AmazonCredentialsListDto) SetProjectsNil(b bool)`
-
- SetProjectsNil sets the value for Projects to be an explicit nil
-
-### UnsetProjects
-`func (o *AmazonCredentialsListDto) UnsetProjects()`
-
-UnsetProjects ensures that no value is present for Projects, not even an explicit nil
 ### GetCreatedBy
 
 `func (o *AmazonCredentialsListDto) GetCreatedBy() string`
@@ -279,16 +265,6 @@ SetCreatedBy sets CreatedBy field to given value.
 
 HasCreatedBy returns a boolean if a field has been set.
 
-### SetCreatedByNil
-
-`func (o *AmazonCredentialsListDto) SetCreatedByNil(b bool)`
-
- SetCreatedByNil sets the value for CreatedBy to be an explicit nil
-
-### UnsetCreatedBy
-`func (o *AmazonCredentialsListDto) UnsetCreatedBy()`
-
-UnsetCreatedBy ensures that no value is present for CreatedBy, not even an explicit nil
 ### GetLastModified
 
 `func (o *AmazonCredentialsListDto) GetLastModified() string`
@@ -314,16 +290,6 @@ SetLastModified sets LastModified field to given value.
 
 HasLastModified returns a boolean if a field has been set.
 
-### SetLastModifiedNil
-
-`func (o *AmazonCredentialsListDto) SetLastModifiedNil(b bool)`
-
- SetLastModifiedNil sets the value for LastModified to be an explicit nil
-
-### UnsetLastModified
-`func (o *AmazonCredentialsListDto) UnsetLastModified()`
-
-UnsetLastModified ensures that no value is present for LastModified, not even an explicit nil
 ### GetLastModifiedBy
 
 `func (o *AmazonCredentialsListDto) GetLastModifiedBy() string`
@@ -349,16 +315,6 @@ SetLastModifiedBy sets LastModifiedBy field to given value.
 
 HasLastModifiedBy returns a boolean if a field has been set.
 
-### SetLastModifiedByNil
-
-`func (o *AmazonCredentialsListDto) SetLastModifiedByNil(b bool)`
-
- SetLastModifiedByNil sets the value for LastModifiedBy to be an explicit nil
-
-### UnsetLastModifiedBy
-`func (o *AmazonCredentialsListDto) UnsetLastModifiedBy()`
-
-UnsetLastModifiedBy ensures that no value is present for LastModifiedBy, not even an explicit nil
 ### GetIsDefault
 
 `func (o *AmazonCredentialsListDto) GetIsDefault() bool`
@@ -434,16 +390,6 @@ SetOrganizationName sets OrganizationName field to given value.
 
 HasOrganizationName returns a boolean if a field has been set.
 
-### SetOrganizationNameNil
-
-`func (o *AmazonCredentialsListDto) SetOrganizationNameNil(b bool)`
-
- SetOrganizationNameNil sets the value for OrganizationName to be an explicit nil
-
-### UnsetOrganizationName
-`func (o *AmazonCredentialsListDto) UnsetOrganizationName()`
-
-UnsetOrganizationName ensures that no value is present for OrganizationName, not even an explicit nil
 ### GetCreatedAt
 
 `func (o *AmazonCredentialsListDto) GetCreatedAt() string`
@@ -469,16 +415,6 @@ SetCreatedAt sets CreatedAt field to given value.
 
 HasCreatedAt returns a boolean if a field has been set.
 
-### SetCreatedAtNil
-
-`func (o *AmazonCredentialsListDto) SetCreatedAtNil(b bool)`
-
- SetCreatedAtNil sets the value for CreatedAt to be an explicit nil
-
-### UnsetCreatedAt
-`func (o *AmazonCredentialsListDto) UnsetCreatedAt()`
-
-UnsetCreatedAt ensures that no value is present for CreatedAt, not even an explicit nil
 ### GetContinentName
 
 `func (o *AmazonCredentialsListDto) GetContinentName() string`
@@ -504,16 +440,6 @@ SetContinentName sets ContinentName field to given value.
 
 HasContinentName returns a boolean if a field has been set.
 
-### SetContinentNameNil
-
-`func (o *AmazonCredentialsListDto) SetContinentNameNil(b bool)`
-
- SetContinentNameNil sets the value for ContinentName to be an explicit nil
-
-### UnsetContinentName
-`func (o *AmazonCredentialsListDto) UnsetContinentName()`
-
-UnsetContinentName ensures that no value is present for ContinentName, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

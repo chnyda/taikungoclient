@@ -5,9 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **int32** |  | 
-**Name** | Pointer to **NullableString** |  | [optional] 
-**SlackConfigurationId** | Pointer to **NullableInt32** |  | [optional] 
-**OrganizationId** | Pointer to **NullableInt32** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**SlackConfigurationId** | Pointer to **int32** |  | [optional] 
+**OrganizationId** | Pointer to **int32** |  | [optional] 
 **Reminder** | Pointer to [**AlertingReminder**](AlertingReminder.md) |  | [optional] 
 
 ## Methods
@@ -74,16 +74,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *UpdateAlertingProfileCommand) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *UpdateAlertingProfileCommand) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetSlackConfigurationId
 
 `func (o *UpdateAlertingProfileCommand) GetSlackConfigurationId() int32`
@@ -109,16 +99,6 @@ SetSlackConfigurationId sets SlackConfigurationId field to given value.
 
 HasSlackConfigurationId returns a boolean if a field has been set.
 
-### SetSlackConfigurationIdNil
-
-`func (o *UpdateAlertingProfileCommand) SetSlackConfigurationIdNil(b bool)`
-
- SetSlackConfigurationIdNil sets the value for SlackConfigurationId to be an explicit nil
-
-### UnsetSlackConfigurationId
-`func (o *UpdateAlertingProfileCommand) UnsetSlackConfigurationId()`
-
-UnsetSlackConfigurationId ensures that no value is present for SlackConfigurationId, not even an explicit nil
 ### GetOrganizationId
 
 `func (o *UpdateAlertingProfileCommand) GetOrganizationId() int32`
@@ -144,16 +124,6 @@ SetOrganizationId sets OrganizationId field to given value.
 
 HasOrganizationId returns a boolean if a field has been set.
 
-### SetOrganizationIdNil
-
-`func (o *UpdateAlertingProfileCommand) SetOrganizationIdNil(b bool)`
-
- SetOrganizationIdNil sets the value for OrganizationId to be an explicit nil
-
-### UnsetOrganizationId
-`func (o *UpdateAlertingProfileCommand) UnsetOrganizationId()`
-
-UnsetOrganizationId ensures that no value is present for OrganizationId, not even an explicit nil
 ### GetReminder
 
 `func (o *UpdateAlertingProfileCommand) GetReminder() AlertingReminder`

@@ -6,15 +6,15 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Email** | **string** |  | 
 **Username** | **string** |  | 
-**Password** | **interface{}** |  | 
+**Password** | [**AdminUserCreateCommandPassword**](AdminUserCreateCommandPassword.md) |  | 
 **Role** | Pointer to [**UserRole**](UserRole.md) |  | [optional] 
-**OrganizationId** | Pointer to **NullableInt32** |  | [optional] 
+**OrganizationId** | Pointer to **int32** |  | [optional] 
 
 ## Methods
 
 ### NewAdminUserCreateCommand
 
-`func NewAdminUserCreateCommand(email string, username string, password interface{}, ) *AdminUserCreateCommand`
+`func NewAdminUserCreateCommand(email string, username string, password AdminUserCreateCommandPassword, ) *AdminUserCreateCommand`
 
 NewAdminUserCreateCommand instantiates a new AdminUserCreateCommand object
 This constructor will assign default values to properties that have it defined,
@@ -71,20 +71,20 @@ SetUsername sets Username field to given value.
 
 ### GetPassword
 
-`func (o *AdminUserCreateCommand) GetPassword() interface{}`
+`func (o *AdminUserCreateCommand) GetPassword() AdminUserCreateCommandPassword`
 
 GetPassword returns the Password field if non-nil, zero value otherwise.
 
 ### GetPasswordOk
 
-`func (o *AdminUserCreateCommand) GetPasswordOk() (*interface{}, bool)`
+`func (o *AdminUserCreateCommand) GetPasswordOk() (*AdminUserCreateCommandPassword, bool)`
 
 GetPasswordOk returns a tuple with the Password field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPassword
 
-`func (o *AdminUserCreateCommand) SetPassword(v interface{})`
+`func (o *AdminUserCreateCommand) SetPassword(v AdminUserCreateCommandPassword)`
 
 SetPassword sets Password field to given value.
 
@@ -139,16 +139,6 @@ SetOrganizationId sets OrganizationId field to given value.
 
 HasOrganizationId returns a boolean if a field has been set.
 
-### SetOrganizationIdNil
-
-`func (o *AdminUserCreateCommand) SetOrganizationIdNil(b bool)`
-
- SetOrganizationIdNil sets the value for OrganizationId to be an explicit nil
-
-### UnsetOrganizationId
-`func (o *AdminUserCreateCommand) UnsetOrganizationId()`
-
-UnsetOrganizationId ensures that no value is present for OrganizationId, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

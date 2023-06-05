@@ -26,7 +26,9 @@ func Test_taikuncore_NotificationsApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.NotificationsApi.NotificationsCreate(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.NotificationsApi.NotificationsCreate(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -37,9 +39,39 @@ func Test_taikuncore_NotificationsApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.NotificationsApi.NotificationsExportCsv(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.NotificationsApi.NotificationsExportCsv(context.Background(), v).Execute()
 
 		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test NotificationsApiService NotificationsGetProjectOperationMessages", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var v string
+
+		resp, httpRes, err := apiClient.NotificationsApi.NotificationsGetProjectOperationMessages(context.Background(), v).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test NotificationsApiService NotificationsList", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var v string
+
+		resp, httpRes, err := apiClient.NotificationsApi.NotificationsList(context.Background(), v).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
@@ -48,21 +80,11 @@ func Test_taikuncore_NotificationsApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.NotificationsApi.NotificationsNotifyOwner(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.NotificationsApi.NotificationsNotifyOwner(context.Background(), v).Execute()
 
 		require.Nil(t, err)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test NotificationsApiService NotificationsOperationMessages", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		resp, httpRes, err := apiClient.NotificationsApi.NotificationsOperationMessages(context.Background()).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})

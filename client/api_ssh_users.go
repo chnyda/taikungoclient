@@ -24,37 +24,40 @@ import (
 // SshUsersApiService SshUsersApi service
 type SshUsersApiService service
 
-type ApiSshusersCreateRequest struct {
+type ApiSshUsersCreateRequest struct {
 	ctx context.Context
 	ApiService *SshUsersApiService
-	createSshUserCommand *CreateSshUserCommand
+	v string
+	body *CreateSshUserCommand
 }
 
-func (r ApiSshusersCreateRequest) CreateSshUserCommand(createSshUserCommand CreateSshUserCommand) ApiSshusersCreateRequest {
-	r.createSshUserCommand = &createSshUserCommand
+func (r ApiSshUsersCreateRequest) Body(body CreateSshUserCommand) ApiSshUsersCreateRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiSshusersCreateRequest) Execute() (*ApiResponse, *http.Response, error) {
-	return r.ApiService.SshusersCreateExecute(r)
+func (r ApiSshUsersCreateRequest) Execute() (*ApiResponse, *http.Response, error) {
+	return r.ApiService.SshUsersCreateExecute(r)
 }
 
 /*
-SshusersCreate Create access profile ssh user
+SshUsersCreate Create access profile ssh user
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSshusersCreateRequest
+ @param v
+ @return ApiSshUsersCreateRequest
 */
-func (a *SshUsersApiService) SshusersCreate(ctx context.Context) ApiSshusersCreateRequest {
-	return ApiSshusersCreateRequest{
+func (a *SshUsersApiService) SshUsersCreate(ctx context.Context, v string) ApiSshUsersCreateRequest {
+	return ApiSshUsersCreateRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
 //  @return ApiResponse
-func (a *SshUsersApiService) SshusersCreateExecute(r ApiSshusersCreateRequest) (*ApiResponse, *http.Response, error) {
+func (a *SshUsersApiService) SshUsersCreateExecute(r ApiSshUsersCreateRequest) (*ApiResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -62,22 +65,20 @@ func (a *SshUsersApiService) SshusersCreateExecute(r ApiSshusersCreateRequest) (
 		localVarReturnValue  *ApiResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SshUsersApiService.SshusersCreate")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SshUsersApiService.SshUsersCreate")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/sshusers/create"
+	localVarPath := localBasePath + "/api/v{v}/SshUsers/create"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createSshUserCommand == nil {
-		return localVarReturnValue, nil, reportError("createSshUserCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -86,7 +87,7 @@ func (a *SshUsersApiService) SshusersCreateExecute(r ApiSshusersCreateRequest) (
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -94,7 +95,7 @@ func (a *SshUsersApiService) SshusersCreateExecute(r ApiSshusersCreateRequest) (
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createSshUserCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -131,17 +132,6 @@ func (a *SshUsersApiService) SshusersCreateExecute(r ApiSshusersCreateRequest) (
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -175,7 +165,7 @@ func (a *SshUsersApiService) SshusersCreateExecute(r ApiSshusersCreateRequest) (
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -200,58 +190,59 @@ func (a *SshUsersApiService) SshusersCreateExecute(r ApiSshusersCreateRequest) (
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSshusersDeleteRequest struct {
+type ApiSshUsersDeleteRequest struct {
 	ctx context.Context
 	ApiService *SshUsersApiService
-	deleteSshUserCommand *DeleteSshUserCommand
+	v string
+	body *DeleteSshUserCommand
 }
 
-func (r ApiSshusersDeleteRequest) DeleteSshUserCommand(deleteSshUserCommand DeleteSshUserCommand) ApiSshusersDeleteRequest {
-	r.deleteSshUserCommand = &deleteSshUserCommand
+func (r ApiSshUsersDeleteRequest) Body(body DeleteSshUserCommand) ApiSshUsersDeleteRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiSshusersDeleteRequest) Execute() (*http.Response, error) {
-	return r.ApiService.SshusersDeleteExecute(r)
+func (r ApiSshUsersDeleteRequest) Execute() (*http.Response, error) {
+	return r.ApiService.SshUsersDeleteExecute(r)
 }
 
 /*
-SshusersDelete Delete access profile ssh user
+SshUsersDelete Delete access profile ssh user
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSshusersDeleteRequest
+ @param v
+ @return ApiSshUsersDeleteRequest
 */
-func (a *SshUsersApiService) SshusersDelete(ctx context.Context) ApiSshusersDeleteRequest {
-	return ApiSshusersDeleteRequest{
+func (a *SshUsersApiService) SshUsersDelete(ctx context.Context, v string) ApiSshUsersDeleteRequest {
+	return ApiSshUsersDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
-func (a *SshUsersApiService) SshusersDeleteExecute(r ApiSshusersDeleteRequest) (*http.Response, error) {
+func (a *SshUsersApiService) SshUsersDeleteExecute(r ApiSshUsersDeleteRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SshUsersApiService.SshusersDelete")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SshUsersApiService.SshUsersDelete")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/sshusers/delete"
+	localVarPath := localBasePath + "/api/v{v}/SshUsers/delete"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.deleteSshUserCommand == nil {
-		return nil, reportError("deleteSshUserCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -260,7 +251,7 @@ func (a *SshUsersApiService) SshusersDeleteExecute(r ApiSshusersDeleteRequest) (
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -268,7 +259,7 @@ func (a *SshUsersApiService) SshusersDeleteExecute(r ApiSshusersDeleteRequest) (
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.deleteSshUserCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -305,17 +296,6 @@ func (a *SshUsersApiService) SshusersDeleteExecute(r ApiSshusersDeleteRequest) (
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -349,7 +329,7 @@ func (a *SshUsersApiService) SshusersDeleteExecute(r ApiSshusersDeleteRequest) (
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -365,55 +345,59 @@ func (a *SshUsersApiService) SshusersDeleteExecute(r ApiSshusersDeleteRequest) (
 	return localVarHTTPResponse, nil
 }
 
-type ApiSshusersEditRequest struct {
+type ApiSshUsersEditRequest struct {
 	ctx context.Context
 	ApiService *SshUsersApiService
-	editSshUserCommand *EditSshUserCommand
+	v string
+	body *EditSshUserCommand
 }
 
-func (r ApiSshusersEditRequest) EditSshUserCommand(editSshUserCommand EditSshUserCommand) ApiSshusersEditRequest {
-	r.editSshUserCommand = &editSshUserCommand
+func (r ApiSshUsersEditRequest) Body(body EditSshUserCommand) ApiSshUsersEditRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiSshusersEditRequest) Execute() (*http.Response, error) {
-	return r.ApiService.SshusersEditExecute(r)
+func (r ApiSshUsersEditRequest) Execute() (*http.Response, error) {
+	return r.ApiService.SshUsersEditExecute(r)
 }
 
 /*
-SshusersEdit Edit access profile ssh user
+SshUsersEdit Edit access profile ssh user
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSshusersEditRequest
+ @param v
+ @return ApiSshUsersEditRequest
 */
-func (a *SshUsersApiService) SshusersEdit(ctx context.Context) ApiSshusersEditRequest {
-	return ApiSshusersEditRequest{
+func (a *SshUsersApiService) SshUsersEdit(ctx context.Context, v string) ApiSshUsersEditRequest {
+	return ApiSshUsersEditRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
-func (a *SshUsersApiService) SshusersEditExecute(r ApiSshusersEditRequest) (*http.Response, error) {
+func (a *SshUsersApiService) SshUsersEditExecute(r ApiSshUsersEditRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SshUsersApiService.SshusersEdit")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SshUsersApiService.SshUsersEdit")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/sshusers/edit"
+	localVarPath := localBasePath + "/api/v{v}/SshUsers/edit"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -422,7 +406,7 @@ func (a *SshUsersApiService) SshusersEditExecute(r ApiSshusersEditRequest) (*htt
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -430,7 +414,7 @@ func (a *SshUsersApiService) SshusersEditExecute(r ApiSshusersEditRequest) (*htt
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.editSshUserCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -467,17 +451,6 @@ func (a *SshUsersApiService) SshusersEditExecute(r ApiSshusersEditRequest) (*htt
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -511,7 +484,7 @@ func (a *SshUsersApiService) SshusersEditExecute(r ApiSshusersEditRequest) (*htt
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -527,40 +500,43 @@ func (a *SshUsersApiService) SshusersEditExecute(r ApiSshusersEditRequest) (*htt
 	return localVarHTTPResponse, nil
 }
 
-type ApiSshusersListRequest struct {
+type ApiSshUsersListRequest struct {
 	ctx context.Context
 	ApiService *SshUsersApiService
 	accessProfileId int32
+	v string
 	search *string
 }
 
-func (r ApiSshusersListRequest) Search(search string) ApiSshusersListRequest {
+func (r ApiSshUsersListRequest) Search(search string) ApiSshUsersListRequest {
 	r.search = &search
 	return r
 }
 
-func (r ApiSshusersListRequest) Execute() ([]SshUsersListDto, *http.Response, error) {
-	return r.ApiService.SshusersListExecute(r)
+func (r ApiSshUsersListRequest) Execute() ([]SshUsersListDto, *http.Response, error) {
+	return r.ApiService.SshUsersListExecute(r)
 }
 
 /*
-SshusersList List ssh user by access profile id
+SshUsersList List ssh users by profile id
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param accessProfileId
- @return ApiSshusersListRequest
+ @param v
+ @return ApiSshUsersListRequest
 */
-func (a *SshUsersApiService) SshusersList(ctx context.Context, accessProfileId int32) ApiSshusersListRequest {
-	return ApiSshusersListRequest{
+func (a *SshUsersApiService) SshUsersList(ctx context.Context, accessProfileId int32, v string) ApiSshUsersListRequest {
+	return ApiSshUsersListRequest{
 		ApiService: a,
 		ctx: ctx,
 		accessProfileId: accessProfileId,
+		v: v,
 	}
 }
 
 // Execute executes the request
 //  @return []SshUsersListDto
-func (a *SshUsersApiService) SshusersListExecute(r ApiSshusersListRequest) ([]SshUsersListDto, *http.Response, error) {
+func (a *SshUsersApiService) SshUsersListExecute(r ApiSshUsersListRequest) ([]SshUsersListDto, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -568,20 +544,21 @@ func (a *SshUsersApiService) SshusersListExecute(r ApiSshusersListRequest) ([]Ss
 		localVarReturnValue  []SshUsersListDto
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SshUsersApiService.SshusersList")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SshUsersApiService.SshUsersList")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/sshusers/list/{accessProfileId}"
+	localVarPath := localBasePath + "/api/v{v}/SshUsers/list/{accessProfileId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"accessProfileId"+"}", url.PathEscape(parameterValueToString(r.accessProfileId, "accessProfileId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.search != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Search", r.search, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -593,7 +570,7 @@ func (a *SshUsersApiService) SshusersListExecute(r ApiSshusersListRequest) ([]Ss
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -636,17 +613,6 @@ func (a *SshUsersApiService) SshusersListExecute(r ApiSshusersListRequest) ([]Ss
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -680,7 +646,7 @@ func (a *SshUsersApiService) SshusersListExecute(r ApiSshusersListRequest) ([]Ss
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

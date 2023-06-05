@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**MetadataName** | Pointer to **NullableString** |  | [optional] 
+**MetadataName** | Pointer to **string** |  | [optional] 
 **PodSelector** | Pointer to **map[string]string** |  | [optional] 
-**Namespace** | Pointer to **NullableString** |  | [optional] 
-**Age** | Pointer to **NullableString** |  | [optional] 
+**Namespace** | Pointer to **string** |  | [optional] 
+**Age** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -53,16 +53,6 @@ SetMetadataName sets MetadataName field to given value.
 
 HasMetadataName returns a boolean if a field has been set.
 
-### SetMetadataNameNil
-
-`func (o *NetworkPolicyDto) SetMetadataNameNil(b bool)`
-
- SetMetadataNameNil sets the value for MetadataName to be an explicit nil
-
-### UnsetMetadataName
-`func (o *NetworkPolicyDto) UnsetMetadataName()`
-
-UnsetMetadataName ensures that no value is present for MetadataName, not even an explicit nil
 ### GetPodSelector
 
 `func (o *NetworkPolicyDto) GetPodSelector() map[string]string`
@@ -88,16 +78,6 @@ SetPodSelector sets PodSelector field to given value.
 
 HasPodSelector returns a boolean if a field has been set.
 
-### SetPodSelectorNil
-
-`func (o *NetworkPolicyDto) SetPodSelectorNil(b bool)`
-
- SetPodSelectorNil sets the value for PodSelector to be an explicit nil
-
-### UnsetPodSelector
-`func (o *NetworkPolicyDto) UnsetPodSelector()`
-
-UnsetPodSelector ensures that no value is present for PodSelector, not even an explicit nil
 ### GetNamespace
 
 `func (o *NetworkPolicyDto) GetNamespace() string`
@@ -123,16 +103,6 @@ SetNamespace sets Namespace field to given value.
 
 HasNamespace returns a boolean if a field has been set.
 
-### SetNamespaceNil
-
-`func (o *NetworkPolicyDto) SetNamespaceNil(b bool)`
-
- SetNamespaceNil sets the value for Namespace to be an explicit nil
-
-### UnsetNamespace
-`func (o *NetworkPolicyDto) UnsetNamespace()`
-
-UnsetNamespace ensures that no value is present for Namespace, not even an explicit nil
 ### GetAge
 
 `func (o *NetworkPolicyDto) GetAge() string`
@@ -158,16 +128,6 @@ SetAge sets Age field to given value.
 
 HasAge returns a boolean if a field has been set.
 
-### SetAgeNil
-
-`func (o *NetworkPolicyDto) SetAgeNil(b bool)`
-
- SetAgeNil sets the value for Age to be an explicit nil
-
-### UnsetAge
-`func (o *NetworkPolicyDto) UnsetAge()`
-
-UnsetAge ensures that no value is present for Age, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

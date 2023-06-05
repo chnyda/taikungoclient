@@ -5,9 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ProjectId** | Pointer to **int32** |  | [optional] 
-**ProjectName** | Pointer to **NullableString** |  | [optional] 
+**ProjectName** | Pointer to **string** |  | [optional] 
 **StartDate** | Pointer to **time.Time** |  | [optional] 
-**EndDate** | Pointer to **NullableTime** |  | [optional] 
+**EndDate** | Pointer to **time.Time** |  | [optional] 
 **Tcu** | Pointer to **float64** |  | [optional] 
 **IsDeleted** | Pointer to **bool** |  | [optional] 
 
@@ -80,16 +80,6 @@ SetProjectName sets ProjectName field to given value.
 
 HasProjectName returns a boolean if a field has been set.
 
-### SetProjectNameNil
-
-`func (o *BillingSummaryDto) SetProjectNameNil(b bool)`
-
- SetProjectNameNil sets the value for ProjectName to be an explicit nil
-
-### UnsetProjectName
-`func (o *BillingSummaryDto) UnsetProjectName()`
-
-UnsetProjectName ensures that no value is present for ProjectName, not even an explicit nil
 ### GetStartDate
 
 `func (o *BillingSummaryDto) GetStartDate() time.Time`
@@ -140,16 +130,6 @@ SetEndDate sets EndDate field to given value.
 
 HasEndDate returns a boolean if a field has been set.
 
-### SetEndDateNil
-
-`func (o *BillingSummaryDto) SetEndDateNil(b bool)`
-
- SetEndDateNil sets the value for EndDate to be an explicit nil
-
-### UnsetEndDate
-`func (o *BillingSummaryDto) UnsetEndDate()`
-
-UnsetEndDate ensures that no value is present for EndDate, not even an explicit nil
 ### GetTcu
 
 `func (o *BillingSummaryDto) GetTcu() float64`

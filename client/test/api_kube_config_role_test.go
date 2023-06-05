@@ -22,11 +22,13 @@ func Test_taikuncore_KubeConfigRoleApiService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test KubeConfigRoleApiService KubeconfigroleList", func(t *testing.T) {
+	t.Run("Test KubeConfigRoleApiService KubeConfigRoleList", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.KubeConfigRoleApi.KubeconfigroleList(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.KubeConfigRoleApi.KubeConfigRoleList(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

@@ -24,37 +24,40 @@ import (
 // AlertingIntegrationsApiService AlertingIntegrationsApi service
 type AlertingIntegrationsApiService service
 
-type ApiAlertingintegrationsCreateRequest struct {
+type ApiAlertingIntegrationsCreateRequest struct {
 	ctx context.Context
 	ApiService *AlertingIntegrationsApiService
-	createAlertingIntegrationCommand *CreateAlertingIntegrationCommand
+	v string
+	body *CreateAlertingIntegrationCommand
 }
 
-func (r ApiAlertingintegrationsCreateRequest) CreateAlertingIntegrationCommand(createAlertingIntegrationCommand CreateAlertingIntegrationCommand) ApiAlertingintegrationsCreateRequest {
-	r.createAlertingIntegrationCommand = &createAlertingIntegrationCommand
+func (r ApiAlertingIntegrationsCreateRequest) Body(body CreateAlertingIntegrationCommand) ApiAlertingIntegrationsCreateRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiAlertingintegrationsCreateRequest) Execute() (*ApiResponse, *http.Response, error) {
-	return r.ApiService.AlertingintegrationsCreateExecute(r)
+func (r ApiAlertingIntegrationsCreateRequest) Execute() (*ApiResponse, *http.Response, error) {
+	return r.ApiService.AlertingIntegrationsCreateExecute(r)
 }
 
 /*
-AlertingintegrationsCreate Create alerting profile alerting integration
+AlertingIntegrationsCreate Create alerting profile alerting integration
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiAlertingintegrationsCreateRequest
+ @param v
+ @return ApiAlertingIntegrationsCreateRequest
 */
-func (a *AlertingIntegrationsApiService) AlertingintegrationsCreate(ctx context.Context) ApiAlertingintegrationsCreateRequest {
-	return ApiAlertingintegrationsCreateRequest{
+func (a *AlertingIntegrationsApiService) AlertingIntegrationsCreate(ctx context.Context, v string) ApiAlertingIntegrationsCreateRequest {
+	return ApiAlertingIntegrationsCreateRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
 //  @return ApiResponse
-func (a *AlertingIntegrationsApiService) AlertingintegrationsCreateExecute(r ApiAlertingintegrationsCreateRequest) (*ApiResponse, *http.Response, error) {
+func (a *AlertingIntegrationsApiService) AlertingIntegrationsCreateExecute(r ApiAlertingIntegrationsCreateRequest) (*ApiResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -62,22 +65,20 @@ func (a *AlertingIntegrationsApiService) AlertingintegrationsCreateExecute(r Api
 		localVarReturnValue  *ApiResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlertingIntegrationsApiService.AlertingintegrationsCreate")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlertingIntegrationsApiService.AlertingIntegrationsCreate")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/alertingintegrations/create"
+	localVarPath := localBasePath + "/api/v{v}/AlertingIntegrations/create"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createAlertingIntegrationCommand == nil {
-		return localVarReturnValue, nil, reportError("createAlertingIntegrationCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -86,7 +87,7 @@ func (a *AlertingIntegrationsApiService) AlertingintegrationsCreateExecute(r Api
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -94,7 +95,7 @@ func (a *AlertingIntegrationsApiService) AlertingintegrationsCreateExecute(r Api
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createAlertingIntegrationCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -131,17 +132,6 @@ func (a *AlertingIntegrationsApiService) AlertingintegrationsCreateExecute(r Api
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -175,7 +165,7 @@ func (a *AlertingIntegrationsApiService) AlertingintegrationsCreateExecute(r Api
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -200,46 +190,50 @@ func (a *AlertingIntegrationsApiService) AlertingintegrationsCreateExecute(r Api
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiAlertingintegrationsDeleteRequest struct {
+type ApiAlertingIntegrationsDeleteRequest struct {
 	ctx context.Context
 	ApiService *AlertingIntegrationsApiService
 	id int32
+	v string
 }
 
-func (r ApiAlertingintegrationsDeleteRequest) Execute() (*http.Response, error) {
-	return r.ApiService.AlertingintegrationsDeleteExecute(r)
+func (r ApiAlertingIntegrationsDeleteRequest) Execute() (*http.Response, error) {
+	return r.ApiService.AlertingIntegrationsDeleteExecute(r)
 }
 
 /*
-AlertingintegrationsDelete Delete alerting profile alerting integration
+AlertingIntegrationsDelete Delete alerting profile alerting integration
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
- @return ApiAlertingintegrationsDeleteRequest
+ @param v
+ @return ApiAlertingIntegrationsDeleteRequest
 */
-func (a *AlertingIntegrationsApiService) AlertingintegrationsDelete(ctx context.Context, id int32) ApiAlertingintegrationsDeleteRequest {
-	return ApiAlertingintegrationsDeleteRequest{
+func (a *AlertingIntegrationsApiService) AlertingIntegrationsDelete(ctx context.Context, id int32, v string) ApiAlertingIntegrationsDeleteRequest {
+	return ApiAlertingIntegrationsDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
+		v: v,
 	}
 }
 
 // Execute executes the request
-func (a *AlertingIntegrationsApiService) AlertingintegrationsDeleteExecute(r ApiAlertingintegrationsDeleteRequest) (*http.Response, error) {
+func (a *AlertingIntegrationsApiService) AlertingIntegrationsDeleteExecute(r ApiAlertingIntegrationsDeleteRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlertingIntegrationsApiService.AlertingintegrationsDelete")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlertingIntegrationsApiService.AlertingIntegrationsDelete")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/alertingintegrations/{id}"
+	localVarPath := localBasePath + "/api/v{v}/AlertingIntegrations/{id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -255,7 +249,7 @@ func (a *AlertingIntegrationsApiService) AlertingintegrationsDeleteExecute(r Api
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -298,17 +292,6 @@ func (a *AlertingIntegrationsApiService) AlertingintegrationsDeleteExecute(r Api
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -342,7 +325,7 @@ func (a *AlertingIntegrationsApiService) AlertingintegrationsDeleteExecute(r Api
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -351,6 +334,7 @@ func (a *AlertingIntegrationsApiService) AlertingintegrationsDeleteExecute(r Api
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
+			return localVarHTTPResponse, newErr
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -358,55 +342,59 @@ func (a *AlertingIntegrationsApiService) AlertingintegrationsDeleteExecute(r Api
 	return localVarHTTPResponse, nil
 }
 
-type ApiAlertingintegrationsEditRequest struct {
+type ApiAlertingIntegrationsEditRequest struct {
 	ctx context.Context
 	ApiService *AlertingIntegrationsApiService
-	editAlertingIntegrationCommand *EditAlertingIntegrationCommand
+	v string
+	body *EditAlertingIntegrationCommand
 }
 
-func (r ApiAlertingintegrationsEditRequest) EditAlertingIntegrationCommand(editAlertingIntegrationCommand EditAlertingIntegrationCommand) ApiAlertingintegrationsEditRequest {
-	r.editAlertingIntegrationCommand = &editAlertingIntegrationCommand
+func (r ApiAlertingIntegrationsEditRequest) Body(body EditAlertingIntegrationCommand) ApiAlertingIntegrationsEditRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiAlertingintegrationsEditRequest) Execute() (*http.Response, error) {
-	return r.ApiService.AlertingintegrationsEditExecute(r)
+func (r ApiAlertingIntegrationsEditRequest) Execute() (*http.Response, error) {
+	return r.ApiService.AlertingIntegrationsEditExecute(r)
 }
 
 /*
-AlertingintegrationsEdit Edit alerting profile alerting integration
+AlertingIntegrationsEdit Edit alerting profile alerting integration
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiAlertingintegrationsEditRequest
+ @param v
+ @return ApiAlertingIntegrationsEditRequest
 */
-func (a *AlertingIntegrationsApiService) AlertingintegrationsEdit(ctx context.Context) ApiAlertingintegrationsEditRequest {
-	return ApiAlertingintegrationsEditRequest{
+func (a *AlertingIntegrationsApiService) AlertingIntegrationsEdit(ctx context.Context, v string) ApiAlertingIntegrationsEditRequest {
+	return ApiAlertingIntegrationsEditRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
-func (a *AlertingIntegrationsApiService) AlertingintegrationsEditExecute(r ApiAlertingintegrationsEditRequest) (*http.Response, error) {
+func (a *AlertingIntegrationsApiService) AlertingIntegrationsEditExecute(r ApiAlertingIntegrationsEditRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlertingIntegrationsApiService.AlertingintegrationsEdit")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlertingIntegrationsApiService.AlertingIntegrationsEdit")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/alertingintegrations/edit"
+	localVarPath := localBasePath + "/api/v{v}/AlertingIntegrations/edit"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -415,7 +403,7 @@ func (a *AlertingIntegrationsApiService) AlertingintegrationsEditExecute(r ApiAl
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -423,7 +411,7 @@ func (a *AlertingIntegrationsApiService) AlertingintegrationsEditExecute(r ApiAl
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.editAlertingIntegrationCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -460,17 +448,6 @@ func (a *AlertingIntegrationsApiService) AlertingintegrationsEditExecute(r ApiAl
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -504,7 +481,7 @@ func (a *AlertingIntegrationsApiService) AlertingintegrationsEditExecute(r ApiAl
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -520,40 +497,43 @@ func (a *AlertingIntegrationsApiService) AlertingintegrationsEditExecute(r ApiAl
 	return localVarHTTPResponse, nil
 }
 
-type ApiAlertingintegrationsListRequest struct {
+type ApiAlertingIntegrationsListRequest struct {
 	ctx context.Context
 	ApiService *AlertingIntegrationsApiService
 	alertingProfileId int32
+	v string
 	search *string
 }
 
-func (r ApiAlertingintegrationsListRequest) Search(search string) ApiAlertingintegrationsListRequest {
+func (r ApiAlertingIntegrationsListRequest) Search(search string) ApiAlertingIntegrationsListRequest {
 	r.search = &search
 	return r
 }
 
-func (r ApiAlertingintegrationsListRequest) Execute() ([]AlertingIntegrationsListDto, *http.Response, error) {
-	return r.ApiService.AlertingintegrationsListExecute(r)
+func (r ApiAlertingIntegrationsListRequest) Execute() ([]AlertingIntegrationsListDto, *http.Response, error) {
+	return r.ApiService.AlertingIntegrationsListExecute(r)
 }
 
 /*
-AlertingintegrationsList Method for AlertingintegrationsList
+AlertingIntegrationsList List alerting integrations by profile id
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param alertingProfileId
- @return ApiAlertingintegrationsListRequest
+ @param v
+ @return ApiAlertingIntegrationsListRequest
 */
-func (a *AlertingIntegrationsApiService) AlertingintegrationsList(ctx context.Context, alertingProfileId int32) ApiAlertingintegrationsListRequest {
-	return ApiAlertingintegrationsListRequest{
+func (a *AlertingIntegrationsApiService) AlertingIntegrationsList(ctx context.Context, alertingProfileId int32, v string) ApiAlertingIntegrationsListRequest {
+	return ApiAlertingIntegrationsListRequest{
 		ApiService: a,
 		ctx: ctx,
 		alertingProfileId: alertingProfileId,
+		v: v,
 	}
 }
 
 // Execute executes the request
 //  @return []AlertingIntegrationsListDto
-func (a *AlertingIntegrationsApiService) AlertingintegrationsListExecute(r ApiAlertingintegrationsListRequest) ([]AlertingIntegrationsListDto, *http.Response, error) {
+func (a *AlertingIntegrationsApiService) AlertingIntegrationsListExecute(r ApiAlertingIntegrationsListRequest) ([]AlertingIntegrationsListDto, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -561,20 +541,21 @@ func (a *AlertingIntegrationsApiService) AlertingintegrationsListExecute(r ApiAl
 		localVarReturnValue  []AlertingIntegrationsListDto
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlertingIntegrationsApiService.AlertingintegrationsList")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlertingIntegrationsApiService.AlertingIntegrationsList")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/alertingintegrations/{alertingProfileId}"
+	localVarPath := localBasePath + "/api/v{v}/AlertingIntegrations/{alertingProfileId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"alertingProfileId"+"}", url.PathEscape(parameterValueToString(r.alertingProfileId, "alertingProfileId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.search != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Search", r.search, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -586,7 +567,7 @@ func (a *AlertingIntegrationsApiService) AlertingintegrationsListExecute(r ApiAl
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -629,17 +610,6 @@ func (a *AlertingIntegrationsApiService) AlertingintegrationsListExecute(r ApiAl
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -673,226 +643,7 @@ func (a *AlertingIntegrationsApiService) AlertingintegrationsListExecute(r ApiAl
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiDocumentationListRequest struct {
-	ctx context.Context
-	ApiService *AlertingIntegrationsApiService
-	limit *int32
-	offset *int32
-	sortBy *string
-	sortDirection *string
-	search *string
-	key *string
-}
-
-func (r ApiDocumentationListRequest) Limit(limit int32) ApiDocumentationListRequest {
-	r.limit = &limit
-	return r
-}
-
-func (r ApiDocumentationListRequest) Offset(offset int32) ApiDocumentationListRequest {
-	r.offset = &offset
-	return r
-}
-
-func (r ApiDocumentationListRequest) SortBy(sortBy string) ApiDocumentationListRequest {
-	r.sortBy = &sortBy
-	return r
-}
-
-func (r ApiDocumentationListRequest) SortDirection(sortDirection string) ApiDocumentationListRequest {
-	r.sortDirection = &sortDirection
-	return r
-}
-
-func (r ApiDocumentationListRequest) Search(search string) ApiDocumentationListRequest {
-	r.search = &search
-	return r
-}
-
-func (r ApiDocumentationListRequest) Key(key string) ApiDocumentationListRequest {
-	r.key = &key
-	return r
-}
-
-func (r ApiDocumentationListRequest) Execute() (*DocumentationsList, *http.Response, error) {
-	return r.ApiService.DocumentationListExecute(r)
-}
-
-/*
-DocumentationList Method for DocumentationList
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiDocumentationListRequest
-*/
-func (a *AlertingIntegrationsApiService) DocumentationList(ctx context.Context) ApiDocumentationListRequest {
-	return ApiDocumentationListRequest{
-		ApiService: a,
-		ctx: ctx,
-	}
-}
-
-// Execute executes the request
-//  @return DocumentationsList
-func (a *AlertingIntegrationsApiService) DocumentationListExecute(r ApiDocumentationListRequest) (*DocumentationsList, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *DocumentationsList
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlertingIntegrationsApiService.DocumentationList")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v1/documentation"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Limit", r.limit, "")
-	}
-	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Offset", r.offset, "")
-	}
-	if r.sortBy != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "SortBy", r.sortBy, "")
-	}
-	if r.sortDirection != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "SortDirection", r.sortDirection, "")
-	}
-	if r.search != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Search", r.search, "")
-	}
-	if r.key != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Key", r.key, "")
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["Bearer"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

@@ -4,13 +4,13 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ProjectrevisionsEdit**](ProjectRevisionsApi.md#ProjectrevisionsEdit) | **Put** /api/v1/projectrevisions/edit/{projectId} | Update project revision by ProjectId for poller
+[**ProjectRevisionsEdit**](ProjectRevisionsApi.md#ProjectRevisionsEdit) | **Post** /api/v{v}/ProjectRevisions/update/{projectId} | Update project revision by ProjectId for poller
 
 
 
-## ProjectrevisionsEdit
+## ProjectRevisionsEdit
 
-> ProjectrevisionsEdit(ctx, projectId).ProjectRevisionUpdateDto(projectRevisionUpdateDto).Execute()
+> ProjectRevisionsEdit(ctx, projectId, v).Body(body).Execute()
 
 Update project revision by ProjectId for poller
 
@@ -28,13 +28,14 @@ import (
 
 func main() {
     projectId := int32(56) // int32 | 
-    projectRevisionUpdateDto := *openapiclient.NewProjectRevisionUpdateDto() // ProjectRevisionUpdateDto |  (optional)
+    v := "v_example" // string | 
+    body := *openapiclient.NewProjectRevisionUpdateDto() // ProjectRevisionUpdateDto |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.ProjectRevisionsApi.ProjectrevisionsEdit(context.Background(), projectId).ProjectRevisionUpdateDto(projectRevisionUpdateDto).Execute()
+    r, err := apiClient.ProjectRevisionsApi.ProjectRevisionsEdit(context.Background(), projectId, v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ProjectRevisionsApi.ProjectrevisionsEdit``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ProjectRevisionsApi.ProjectRevisionsEdit``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -47,16 +48,18 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **projectId** | **int32** |  | 
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiProjectrevisionsEditRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiProjectRevisionsEditRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **projectRevisionUpdateDto** | [**ProjectRevisionUpdateDto**](ProjectRevisionUpdateDto.md) |  | 
+
+ **body** | [**ProjectRevisionUpdateDto**](ProjectRevisionUpdateDto.md) |  | 
 
 ### Return type
 
@@ -68,8 +71,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

@@ -4,18 +4,18 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**KubeconfigCreate**](KubeConfigApi.md#KubeconfigCreate) | **Post** /api/v1/kubeconfig | Create kube config
-[**KubeconfigDelete**](KubeConfigApi.md#KubeconfigDelete) | **Post** /api/v1/kubeconfig/delete | Delete kube config
-[**KubeconfigDeleteByProjectId**](KubeConfigApi.md#KubeconfigDeleteByProjectId) | **Post** /api/v1/kubeconfig/delete-by-project-id | Delete kube config by project id
-[**KubeconfigDownload**](KubeConfigApi.md#KubeconfigDownload) | **Post** /api/v1/kubeconfig/download | Download kube config file for user by project Id
-[**KubeconfigInteractiveShell**](KubeConfigApi.md#KubeconfigInteractiveShell) | **Post** /api/v1/kubeconfig/interactive-shell | Interactive shell for user kube config
-[**KubeconfigList**](KubeConfigApi.md#KubeconfigList) | **Get** /api/v1/kubeconfig | Retrieve a list of kube configs for project
+[**KubeConfigCreate**](KubeConfigApi.md#KubeConfigCreate) | **Post** /api/v{v}/KubeConfig | Create kube config
+[**KubeConfigDelete**](KubeConfigApi.md#KubeConfigDelete) | **Post** /api/v{v}/KubeConfig/delete | Delete kube config
+[**KubeConfigDeleteByProjectId**](KubeConfigApi.md#KubeConfigDeleteByProjectId) | **Post** /api/v{v}/KubeConfig/delete-by-project-id | Delete kube config by project id
+[**KubeConfigDownload**](KubeConfigApi.md#KubeConfigDownload) | **Post** /api/v{v}/KubeConfig/download | Download kube config file for user by project Id
+[**KubeConfigInteractiveShell**](KubeConfigApi.md#KubeConfigInteractiveShell) | **Post** /api/v{v}/KubeConfig/interactive-shell | Interactive shell for user kube config
+[**KubeConfigList**](KubeConfigApi.md#KubeConfigList) | **Get** /api/v{v}/KubeConfig | Retrieve a list of kube configs for project. It&#39;s possible to filter and select kube configs by project
 
 
 
-## KubeconfigCreate
+## KubeConfigCreate
 
-> ApiResponse KubeconfigCreate(ctx).CreateKubeConfigCommand(createKubeConfigCommand).Execute()
+> ApiResponse KubeConfigCreate(ctx, v).Body(body).Execute()
 
 Create kube config
 
@@ -32,32 +32,38 @@ import (
 )
 
 func main() {
-    createKubeConfigCommand := *openapiclient.NewCreateKubeConfigCommand("Name_example", int32(123)) // CreateKubeConfigCommand |  (optional)
+    v := "v_example" // string | 
+    body := *openapiclient.NewCreateKubeConfigCommand("Name_example", int32(123)) // CreateKubeConfigCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.KubeConfigApi.KubeconfigCreate(context.Background()).CreateKubeConfigCommand(createKubeConfigCommand).Execute()
+    resp, r, err := apiClient.KubeConfigApi.KubeConfigCreate(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `KubeConfigApi.KubeconfigCreate``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `KubeConfigApi.KubeConfigCreate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `KubeconfigCreate`: ApiResponse
-    fmt.Fprintf(os.Stdout, "Response from `KubeConfigApi.KubeconfigCreate`: %v\n", resp)
+    // response from `KubeConfigCreate`: ApiResponse
+    fmt.Fprintf(os.Stdout, "Response from `KubeConfigApi.KubeConfigCreate`: %v\n", resp)
 }
 ```
 
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiKubeconfigCreateRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiKubeConfigCreateRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createKubeConfigCommand** | [**CreateKubeConfigCommand**](CreateKubeConfigCommand.md) |  | 
+
+ **body** | [**CreateKubeConfigCommand**](CreateKubeConfigCommand.md) |  | 
 
 ### Return type
 
@@ -69,17 +75,17 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## KubeconfigDelete
+## KubeConfigDelete
 
-> KubeconfigDelete(ctx).DeleteKubeConfigCommand(deleteKubeConfigCommand).Execute()
+> KubeConfigDelete(ctx, v).Body(body).Execute()
 
 Delete kube config
 
@@ -96,13 +102,14 @@ import (
 )
 
 func main() {
-    deleteKubeConfigCommand := *openapiclient.NewDeleteKubeConfigCommand() // DeleteKubeConfigCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewDeleteKubeConfigCommand() // DeleteKubeConfigCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.KubeConfigApi.KubeconfigDelete(context.Background()).DeleteKubeConfigCommand(deleteKubeConfigCommand).Execute()
+    r, err := apiClient.KubeConfigApi.KubeConfigDelete(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `KubeConfigApi.KubeconfigDelete``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `KubeConfigApi.KubeConfigDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -111,15 +118,20 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiKubeconfigDeleteRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiKubeConfigDeleteRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **deleteKubeConfigCommand** | [**DeleteKubeConfigCommand**](DeleteKubeConfigCommand.md) |  | 
+
+ **body** | [**DeleteKubeConfigCommand**](DeleteKubeConfigCommand.md) |  | 
 
 ### Return type
 
@@ -131,17 +143,17 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## KubeconfigDeleteByProjectId
+## KubeConfigDeleteByProjectId
 
-> KubeconfigDeleteByProjectId(ctx).DeleteKubeConfigByProjectIdCommand(deleteKubeConfigByProjectIdCommand).Execute()
+> KubeConfigDeleteByProjectId(ctx, v).Body(body).Execute()
 
 Delete kube config by project id
 
@@ -158,13 +170,14 @@ import (
 )
 
 func main() {
-    deleteKubeConfigByProjectIdCommand := *openapiclient.NewDeleteKubeConfigByProjectIdCommand() // DeleteKubeConfigByProjectIdCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewDeleteKubeConfigByProjectIdCommand() // DeleteKubeConfigByProjectIdCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.KubeConfigApi.KubeconfigDeleteByProjectId(context.Background()).DeleteKubeConfigByProjectIdCommand(deleteKubeConfigByProjectIdCommand).Execute()
+    r, err := apiClient.KubeConfigApi.KubeConfigDeleteByProjectId(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `KubeConfigApi.KubeconfigDeleteByProjectId``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `KubeConfigApi.KubeConfigDeleteByProjectId``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -173,15 +186,20 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiKubeconfigDeleteByProjectIdRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiKubeConfigDeleteByProjectIdRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **deleteKubeConfigByProjectIdCommand** | [**DeleteKubeConfigByProjectIdCommand**](DeleteKubeConfigByProjectIdCommand.md) |  | 
+
+ **body** | [**DeleteKubeConfigByProjectIdCommand**](DeleteKubeConfigByProjectIdCommand.md) |  | 
 
 ### Return type
 
@@ -193,17 +211,17 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## KubeconfigDownload
+## KubeConfigDownload
 
-> string KubeconfigDownload(ctx).DownloadKubeConfigCommand(downloadKubeConfigCommand).Execute()
+> string KubeConfigDownload(ctx, v).Body(body).Execute()
 
 Download kube config file for user by project Id
 
@@ -220,32 +238,38 @@ import (
 )
 
 func main() {
-    downloadKubeConfigCommand := *openapiclient.NewDownloadKubeConfigCommand() // DownloadKubeConfigCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewDownloadKubeConfigCommand() // DownloadKubeConfigCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.KubeConfigApi.KubeconfigDownload(context.Background()).DownloadKubeConfigCommand(downloadKubeConfigCommand).Execute()
+    resp, r, err := apiClient.KubeConfigApi.KubeConfigDownload(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `KubeConfigApi.KubeconfigDownload``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `KubeConfigApi.KubeConfigDownload``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `KubeconfigDownload`: string
-    fmt.Fprintf(os.Stdout, "Response from `KubeConfigApi.KubeconfigDownload`: %v\n", resp)
+    // response from `KubeConfigDownload`: string
+    fmt.Fprintf(os.Stdout, "Response from `KubeConfigApi.KubeConfigDownload`: %v\n", resp)
 }
 ```
 
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiKubeconfigDownloadRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiKubeConfigDownloadRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **downloadKubeConfigCommand** | [**DownloadKubeConfigCommand**](DownloadKubeConfigCommand.md) |  | 
+
+ **body** | [**DownloadKubeConfigCommand**](DownloadKubeConfigCommand.md) |  | 
 
 ### Return type
 
@@ -257,17 +281,17 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## KubeconfigInteractiveShell
+## KubeConfigInteractiveShell
 
-> string KubeconfigInteractiveShell(ctx).KubeConfigInteractiveShellCommand(kubeConfigInteractiveShellCommand).Execute()
+> string KubeConfigInteractiveShell(ctx, v).Body(body).Execute()
 
 Interactive shell for user kube config
 
@@ -284,32 +308,38 @@ import (
 )
 
 func main() {
-    kubeConfigInteractiveShellCommand := *openapiclient.NewKubeConfigInteractiveShellCommand(int32(123), "Token_example", int32(123)) // KubeConfigInteractiveShellCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewKubeConfigInteractiveShellCommand(int32(123), "Token_example", int32(123)) // KubeConfigInteractiveShellCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.KubeConfigApi.KubeconfigInteractiveShell(context.Background()).KubeConfigInteractiveShellCommand(kubeConfigInteractiveShellCommand).Execute()
+    resp, r, err := apiClient.KubeConfigApi.KubeConfigInteractiveShell(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `KubeConfigApi.KubeconfigInteractiveShell``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `KubeConfigApi.KubeConfigInteractiveShell``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `KubeconfigInteractiveShell`: string
-    fmt.Fprintf(os.Stdout, "Response from `KubeConfigApi.KubeconfigInteractiveShell`: %v\n", resp)
+    // response from `KubeConfigInteractiveShell`: string
+    fmt.Fprintf(os.Stdout, "Response from `KubeConfigApi.KubeConfigInteractiveShell`: %v\n", resp)
 }
 ```
 
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiKubeconfigInteractiveShellRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiKubeConfigInteractiveShellRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **kubeConfigInteractiveShellCommand** | [**KubeConfigInteractiveShellCommand**](KubeConfigInteractiveShellCommand.md) |  | 
+
+ **body** | [**KubeConfigInteractiveShellCommand**](KubeConfigInteractiveShellCommand.md) |  | 
 
 ### Return type
 
@@ -321,19 +351,19 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## KubeconfigList
+## KubeConfigList
 
-> KubeConfigForUserList KubeconfigList(ctx).ProjectId(projectId).OrganizationId(organizationId).Limit(limit).Offset(offset).SortBy(sortBy).SortDirection(sortDirection).Search(search).Id(id).Execute()
+> KubeConfigForUserList KubeConfigList(ctx, v).OrganizationId(organizationId).ProjectId(projectId).Limit(limit).Offset(offset).SortBy(sortBy).SortDirection(sortDirection).Search(search).Id(id).Execute()
 
-Retrieve a list of kube configs for project
+Retrieve a list of kube configs for project. It's possible to filter and select kube configs by project
 
 ### Example
 
@@ -348,45 +378,51 @@ import (
 )
 
 func main() {
-    projectId := int32(56) // int32 | 
-    organizationId := int32(56) // int32 |  (optional)
-    limit := int32(56) // int32 |  (optional)
-    offset := int32(56) // int32 |  (optional)
+    v := "v_example" // string | 
+    organizationId := int32(56) // int32 | Only for admin sort by org id (optional)
+    projectId := int32(56) // int32 | Get kube configs by projectId (optional)
+    limit := int32(56) // int32 | Limits user size (by default 50) (optional)
+    offset := int32(56) // int32 | Skip elements (optional)
     sortBy := "sortBy_example" // string |  (optional)
     sortDirection := "sortDirection_example" // string |  (optional)
-    search := "search_example" // string |  (optional)
+    search := "search_example" // string | Keyword for searching (optional)
     id := int32(56) // int32 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.KubeConfigApi.KubeconfigList(context.Background()).ProjectId(projectId).OrganizationId(organizationId).Limit(limit).Offset(offset).SortBy(sortBy).SortDirection(sortDirection).Search(search).Id(id).Execute()
+    resp, r, err := apiClient.KubeConfigApi.KubeConfigList(context.Background(), v).OrganizationId(organizationId).ProjectId(projectId).Limit(limit).Offset(offset).SortBy(sortBy).SortDirection(sortDirection).Search(search).Id(id).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `KubeConfigApi.KubeconfigList``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `KubeConfigApi.KubeConfigList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `KubeconfigList`: KubeConfigForUserList
-    fmt.Fprintf(os.Stdout, "Response from `KubeConfigApi.KubeconfigList`: %v\n", resp)
+    // response from `KubeConfigList`: KubeConfigForUserList
+    fmt.Fprintf(os.Stdout, "Response from `KubeConfigApi.KubeConfigList`: %v\n", resp)
 }
 ```
 
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiKubeconfigListRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiKubeConfigListRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **projectId** | **int32** |  | 
- **organizationId** | **int32** |  | 
- **limit** | **int32** |  | 
- **offset** | **int32** |  | 
+
+ **organizationId** | **int32** | Only for admin sort by org id | 
+ **projectId** | **int32** | Get kube configs by projectId | 
+ **limit** | **int32** | Limits user size (by default 50) | 
+ **offset** | **int32** | Skip elements | 
  **sortBy** | **string** |  | 
  **sortDirection** | **string** |  | 
- **search** | **string** |  | 
+ **search** | **string** | Keyword for searching | 
  **id** | **int32** |  | 
 
 ### Return type
@@ -400,7 +436,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

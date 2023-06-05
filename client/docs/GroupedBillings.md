@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**StartDate** | Pointer to **NullableString** |  | [optional] 
+**StartDate** | Pointer to **string** |  | [optional] 
 **Tcu** | Pointer to **int64** |  | [optional] 
 
 ## Methods
@@ -51,16 +51,6 @@ SetStartDate sets StartDate field to given value.
 
 HasStartDate returns a boolean if a field has been set.
 
-### SetStartDateNil
-
-`func (o *GroupedBillings) SetStartDateNil(b bool)`
-
- SetStartDateNil sets the value for StartDate to be an explicit nil
-
-### UnsetStartDate
-`func (o *GroupedBillings) UnsetStartDate()`
-
-UnsetStartDate ensures that no value is present for StartDate, not even an explicit nil
 ### GetTcu
 
 `func (o *GroupedBillings) GetTcu() int64`

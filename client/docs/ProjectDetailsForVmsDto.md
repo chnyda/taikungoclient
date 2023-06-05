@@ -4,24 +4,26 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ProjectStatus** | Pointer to **NullableString** |  | [optional] 
-**ProjectName** | Pointer to **NullableString** |  | [optional] 
+**ProjectStatus** | Pointer to **string** |  | [optional] 
+**ProjectName** | Pointer to **string** |  | [optional] 
 **ProjectId** | Pointer to **int32** |  | [optional] 
-**CloudType** | Pointer to **NullableString** |  | [optional] 
-**CloudName** | Pointer to **NullableString** |  | [optional] 
-**CloudId** | Pointer to **NullableInt32** |  | [optional] 
-**OrganizationName** | Pointer to **NullableString** |  | [optional] 
+**CloudType** | Pointer to **string** |  | [optional] 
+**CloudName** | Pointer to **string** |  | [optional] 
+**CloudId** | Pointer to **int32** |  | [optional] 
+**OrganizationName** | Pointer to **string** |  | [optional] 
 **OrganizationId** | Pointer to **int32** |  | [optional] 
 **IsLocked** | Pointer to **bool** |  | [optional] 
-**HasSelectedFlavors** | Pointer to **NullableBool** |  | [optional] 
+**HasSelectedFlavors** | Pointer to **bool** |  | [optional] 
 **IsMaintenanceModeEnabled** | Pointer to **bool** |  | [optional] 
-**ProjectCloudRevision** | Pointer to **NullableInt32** |  | [optional] 
-**CloudCredentialRevision** | Pointer to **NullableInt32** |  | [optional] 
+**ProjectCloudRevision** | Pointer to **int32** |  | [optional] 
+**CloudCredentialRevision** | Pointer to **int32** |  | [optional] 
 **AllowFullSpotKubernetes** | Pointer to **bool** |  | [optional] 
 **AllowSpotWorkers** | Pointer to **bool** |  | [optional] 
 **AllowSpotVMs** | Pointer to **bool** |  | [optional] 
-**MaxSpotPrice** | Pointer to **NullableFloat64** |  | [optional] 
+**MaxSpotPrice** | Pointer to **float64** |  | [optional] 
 **TotalHourlyCost** | Pointer to **float64** |  | [optional] 
+**AvailabilityZones** | Pointer to **[]string** |  | [optional] 
+**Hypervisors** | Pointer to **[]string** |  | [optional] 
 
 ## Methods
 
@@ -67,16 +69,6 @@ SetProjectStatus sets ProjectStatus field to given value.
 
 HasProjectStatus returns a boolean if a field has been set.
 
-### SetProjectStatusNil
-
-`func (o *ProjectDetailsForVmsDto) SetProjectStatusNil(b bool)`
-
- SetProjectStatusNil sets the value for ProjectStatus to be an explicit nil
-
-### UnsetProjectStatus
-`func (o *ProjectDetailsForVmsDto) UnsetProjectStatus()`
-
-UnsetProjectStatus ensures that no value is present for ProjectStatus, not even an explicit nil
 ### GetProjectName
 
 `func (o *ProjectDetailsForVmsDto) GetProjectName() string`
@@ -102,16 +94,6 @@ SetProjectName sets ProjectName field to given value.
 
 HasProjectName returns a boolean if a field has been set.
 
-### SetProjectNameNil
-
-`func (o *ProjectDetailsForVmsDto) SetProjectNameNil(b bool)`
-
- SetProjectNameNil sets the value for ProjectName to be an explicit nil
-
-### UnsetProjectName
-`func (o *ProjectDetailsForVmsDto) UnsetProjectName()`
-
-UnsetProjectName ensures that no value is present for ProjectName, not even an explicit nil
 ### GetProjectId
 
 `func (o *ProjectDetailsForVmsDto) GetProjectId() int32`
@@ -162,16 +144,6 @@ SetCloudType sets CloudType field to given value.
 
 HasCloudType returns a boolean if a field has been set.
 
-### SetCloudTypeNil
-
-`func (o *ProjectDetailsForVmsDto) SetCloudTypeNil(b bool)`
-
- SetCloudTypeNil sets the value for CloudType to be an explicit nil
-
-### UnsetCloudType
-`func (o *ProjectDetailsForVmsDto) UnsetCloudType()`
-
-UnsetCloudType ensures that no value is present for CloudType, not even an explicit nil
 ### GetCloudName
 
 `func (o *ProjectDetailsForVmsDto) GetCloudName() string`
@@ -197,16 +169,6 @@ SetCloudName sets CloudName field to given value.
 
 HasCloudName returns a boolean if a field has been set.
 
-### SetCloudNameNil
-
-`func (o *ProjectDetailsForVmsDto) SetCloudNameNil(b bool)`
-
- SetCloudNameNil sets the value for CloudName to be an explicit nil
-
-### UnsetCloudName
-`func (o *ProjectDetailsForVmsDto) UnsetCloudName()`
-
-UnsetCloudName ensures that no value is present for CloudName, not even an explicit nil
 ### GetCloudId
 
 `func (o *ProjectDetailsForVmsDto) GetCloudId() int32`
@@ -232,16 +194,6 @@ SetCloudId sets CloudId field to given value.
 
 HasCloudId returns a boolean if a field has been set.
 
-### SetCloudIdNil
-
-`func (o *ProjectDetailsForVmsDto) SetCloudIdNil(b bool)`
-
- SetCloudIdNil sets the value for CloudId to be an explicit nil
-
-### UnsetCloudId
-`func (o *ProjectDetailsForVmsDto) UnsetCloudId()`
-
-UnsetCloudId ensures that no value is present for CloudId, not even an explicit nil
 ### GetOrganizationName
 
 `func (o *ProjectDetailsForVmsDto) GetOrganizationName() string`
@@ -267,16 +219,6 @@ SetOrganizationName sets OrganizationName field to given value.
 
 HasOrganizationName returns a boolean if a field has been set.
 
-### SetOrganizationNameNil
-
-`func (o *ProjectDetailsForVmsDto) SetOrganizationNameNil(b bool)`
-
- SetOrganizationNameNil sets the value for OrganizationName to be an explicit nil
-
-### UnsetOrganizationName
-`func (o *ProjectDetailsForVmsDto) UnsetOrganizationName()`
-
-UnsetOrganizationName ensures that no value is present for OrganizationName, not even an explicit nil
 ### GetOrganizationId
 
 `func (o *ProjectDetailsForVmsDto) GetOrganizationId() int32`
@@ -352,16 +294,6 @@ SetHasSelectedFlavors sets HasSelectedFlavors field to given value.
 
 HasHasSelectedFlavors returns a boolean if a field has been set.
 
-### SetHasSelectedFlavorsNil
-
-`func (o *ProjectDetailsForVmsDto) SetHasSelectedFlavorsNil(b bool)`
-
- SetHasSelectedFlavorsNil sets the value for HasSelectedFlavors to be an explicit nil
-
-### UnsetHasSelectedFlavors
-`func (o *ProjectDetailsForVmsDto) UnsetHasSelectedFlavors()`
-
-UnsetHasSelectedFlavors ensures that no value is present for HasSelectedFlavors, not even an explicit nil
 ### GetIsMaintenanceModeEnabled
 
 `func (o *ProjectDetailsForVmsDto) GetIsMaintenanceModeEnabled() bool`
@@ -412,16 +344,6 @@ SetProjectCloudRevision sets ProjectCloudRevision field to given value.
 
 HasProjectCloudRevision returns a boolean if a field has been set.
 
-### SetProjectCloudRevisionNil
-
-`func (o *ProjectDetailsForVmsDto) SetProjectCloudRevisionNil(b bool)`
-
- SetProjectCloudRevisionNil sets the value for ProjectCloudRevision to be an explicit nil
-
-### UnsetProjectCloudRevision
-`func (o *ProjectDetailsForVmsDto) UnsetProjectCloudRevision()`
-
-UnsetProjectCloudRevision ensures that no value is present for ProjectCloudRevision, not even an explicit nil
 ### GetCloudCredentialRevision
 
 `func (o *ProjectDetailsForVmsDto) GetCloudCredentialRevision() int32`
@@ -447,16 +369,6 @@ SetCloudCredentialRevision sets CloudCredentialRevision field to given value.
 
 HasCloudCredentialRevision returns a boolean if a field has been set.
 
-### SetCloudCredentialRevisionNil
-
-`func (o *ProjectDetailsForVmsDto) SetCloudCredentialRevisionNil(b bool)`
-
- SetCloudCredentialRevisionNil sets the value for CloudCredentialRevision to be an explicit nil
-
-### UnsetCloudCredentialRevision
-`func (o *ProjectDetailsForVmsDto) UnsetCloudCredentialRevision()`
-
-UnsetCloudCredentialRevision ensures that no value is present for CloudCredentialRevision, not even an explicit nil
 ### GetAllowFullSpotKubernetes
 
 `func (o *ProjectDetailsForVmsDto) GetAllowFullSpotKubernetes() bool`
@@ -557,16 +469,6 @@ SetMaxSpotPrice sets MaxSpotPrice field to given value.
 
 HasMaxSpotPrice returns a boolean if a field has been set.
 
-### SetMaxSpotPriceNil
-
-`func (o *ProjectDetailsForVmsDto) SetMaxSpotPriceNil(b bool)`
-
- SetMaxSpotPriceNil sets the value for MaxSpotPrice to be an explicit nil
-
-### UnsetMaxSpotPrice
-`func (o *ProjectDetailsForVmsDto) UnsetMaxSpotPrice()`
-
-UnsetMaxSpotPrice ensures that no value is present for MaxSpotPrice, not even an explicit nil
 ### GetTotalHourlyCost
 
 `func (o *ProjectDetailsForVmsDto) GetTotalHourlyCost() float64`
@@ -591,6 +493,56 @@ SetTotalHourlyCost sets TotalHourlyCost field to given value.
 `func (o *ProjectDetailsForVmsDto) HasTotalHourlyCost() bool`
 
 HasTotalHourlyCost returns a boolean if a field has been set.
+
+### GetAvailabilityZones
+
+`func (o *ProjectDetailsForVmsDto) GetAvailabilityZones() []string`
+
+GetAvailabilityZones returns the AvailabilityZones field if non-nil, zero value otherwise.
+
+### GetAvailabilityZonesOk
+
+`func (o *ProjectDetailsForVmsDto) GetAvailabilityZonesOk() (*[]string, bool)`
+
+GetAvailabilityZonesOk returns a tuple with the AvailabilityZones field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAvailabilityZones
+
+`func (o *ProjectDetailsForVmsDto) SetAvailabilityZones(v []string)`
+
+SetAvailabilityZones sets AvailabilityZones field to given value.
+
+### HasAvailabilityZones
+
+`func (o *ProjectDetailsForVmsDto) HasAvailabilityZones() bool`
+
+HasAvailabilityZones returns a boolean if a field has been set.
+
+### GetHypervisors
+
+`func (o *ProjectDetailsForVmsDto) GetHypervisors() []string`
+
+GetHypervisors returns the Hypervisors field if non-nil, zero value otherwise.
+
+### GetHypervisorsOk
+
+`func (o *ProjectDetailsForVmsDto) GetHypervisorsOk() (*[]string, bool)`
+
+GetHypervisorsOk returns a tuple with the Hypervisors field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHypervisors
+
+`func (o *ProjectDetailsForVmsDto) SetHypervisors(v []string)`
+
+SetHypervisors sets Hypervisors field to given value.
+
+### HasHypervisors
+
+`func (o *ProjectDetailsForVmsDto) HasHypervisors() bool`
+
+HasHypervisors returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

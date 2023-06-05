@@ -20,7 +20,7 @@ var _ MappedNullable = &GoogleOwnerDetails{}
 
 // GoogleOwnerDetails struct for GoogleOwnerDetails
 type GoogleOwnerDetails struct {
-	Owner NullableString `json:"owner,omitempty"`
+	Owner *string `json:"owner,omitempty"`
 	Image *GoogleCommonImages `json:"image,omitempty"`
 }
 
@@ -41,46 +41,36 @@ func NewGoogleOwnerDetailsWithDefaults() *GoogleOwnerDetails {
 	return &this
 }
 
-// GetOwner returns the Owner field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetOwner returns the Owner field value if set, zero value otherwise.
 func (o *GoogleOwnerDetails) GetOwner() string {
-	if o == nil || IsNil(o.Owner.Get()) {
+	if o == nil || IsNil(o.Owner) {
 		var ret string
 		return ret
 	}
-	return *o.Owner.Get()
+	return *o.Owner
 }
 
 // GetOwnerOk returns a tuple with the Owner field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *GoogleOwnerDetails) GetOwnerOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Owner) {
 		return nil, false
 	}
-	return o.Owner.Get(), o.Owner.IsSet()
+	return o.Owner, true
 }
 
 // HasOwner returns a boolean if a field has been set.
 func (o *GoogleOwnerDetails) HasOwner() bool {
-	if o != nil && o.Owner.IsSet() {
+	if o != nil && !IsNil(o.Owner) {
 		return true
 	}
 
 	return false
 }
 
-// SetOwner gets a reference to the given NullableString and assigns it to the Owner field.
+// SetOwner gets a reference to the given string and assigns it to the Owner field.
 func (o *GoogleOwnerDetails) SetOwner(v string) {
-	o.Owner.Set(&v)
-}
-// SetOwnerNil sets the value for Owner to be an explicit nil
-func (o *GoogleOwnerDetails) SetOwnerNil() {
-	o.Owner.Set(nil)
-}
-
-// UnsetOwner ensures that no value is present for Owner, not even an explicit nil
-func (o *GoogleOwnerDetails) UnsetOwner() {
-	o.Owner.Unset()
+	o.Owner = &v
 }
 
 // GetImage returns the Image field value if set, zero value otherwise.
@@ -125,8 +115,8 @@ func (o GoogleOwnerDetails) MarshalJSON() ([]byte, error) {
 
 func (o GoogleOwnerDetails) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Owner.IsSet() {
-		toSerialize["owner"] = o.Owner.Get()
+	if !IsNil(o.Owner) {
+		toSerialize["owner"] = o.Owner
 	}
 	if !IsNil(o.Image) {
 		toSerialize["image"] = o.Image

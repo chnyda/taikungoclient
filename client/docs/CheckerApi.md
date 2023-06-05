@@ -4,35 +4,35 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CheckerArtifact**](CheckerApi.md#CheckerArtifact) | **Post** /api/v1/checker/artifact | Check artifact url
-[**CheckerAws**](CheckerApi.md#CheckerAws) | **Post** /api/v1/checker/aws | Check aws credential
-[**CheckerAzure**](CheckerApi.md#CheckerAzure) | **Post** /api/v1/checker/azure | Check azure credentials
-[**CheckerAzureQuota**](CheckerApi.md#CheckerAzureQuota) | **Post** /api/v1/checker/azure/quota/cpu | Check azure cpu quota
-[**CheckerCidr**](CheckerApi.md#CheckerCidr) | **Post** /api/v1/checker/cidr | Check valid cidr format
-[**CheckerCron**](CheckerApi.md#CheckerCron) | **Post** /api/v1/checker/cron | Check valid cron job format
-[**CheckerDns**](CheckerApi.md#CheckerDns) | **Post** /api/v1/checker/dns | Check valid dns format
-[**CheckerDuplicateName**](CheckerApi.md#CheckerDuplicateName) | **Post** /api/v1/checker/duplicate | Duplicate name
-[**CheckerGoogle**](CheckerApi.md#CheckerGoogle) | **Post** /api/v1/checker/google | Check google credentials
-[**CheckerKeycloak**](CheckerApi.md#CheckerKeycloak) | **Post** /api/v1/checker/keycloak | Check keycloak credential
-[**CheckerNode**](CheckerApi.md#CheckerNode) | **Post** /api/v1/checker/node | Duplicate server name checker
-[**CheckerNtp**](CheckerApi.md#CheckerNtp) | **Post** /api/v1/checker/ntp | Check valid ntp format
-[**CheckerOpenstack**](CheckerApi.md#CheckerOpenstack) | **Post** /api/v1/checker/openstack | Check openstack credential
-[**CheckerOpenstackTaikunImage**](CheckerApi.md#CheckerOpenstackTaikunImage) | **Post** /api/v1/checker/openstack-image/{id} | Check openstack taikun image
-[**CheckerOpenstackTaikunLbImage**](CheckerApi.md#CheckerOpenstackTaikunLbImage) | **Post** /api/v1/checker/taikun-lb-image/{id} | Check openstack taikun lb image
-[**CheckerOrganization**](CheckerApi.md#CheckerOrganization) | **Post** /api/v1/checker/organization | Check duplicate org name
-[**CheckerPrometheus**](CheckerApi.md#CheckerPrometheus) | **Post** /api/v1/checker/prometheus | Check prometheus credentials
-[**CheckerProxmox**](CheckerApi.md#CheckerProxmox) | **Post** /api/v1/checker/proxmox | Check proxmox credential
-[**CheckerS3**](CheckerApi.md#CheckerS3) | **Post** /api/v1/checker/s3 | Check s3 credential
-[**CheckerSsh**](CheckerApi.md#CheckerSsh) | **Post** /api/v1/checker/ssh | Check valid ssh key format
-[**CheckerTanzu**](CheckerApi.md#CheckerTanzu) | **Post** /api/v1/checker/tanzu | Check tanzu credential
-[**CheckerUser**](CheckerApi.md#CheckerUser) | **Post** /api/v1/checker/user | Check duplicate username
-[**CheckerYaml**](CheckerApi.md#CheckerYaml) | **Post** /api/v1/checker/yaml | Check yaml file
+[**CheckerArtifact**](CheckerApi.md#CheckerArtifact) | **Post** /api/v{v}/Checker/artifact | Check artifact url
+[**CheckerAws**](CheckerApi.md#CheckerAws) | **Post** /api/v{v}/Checker/aws | Check aws credentials
+[**CheckerAzure**](CheckerApi.md#CheckerAzure) | **Post** /api/v{v}/Checker/azure | Check valid azure credentials
+[**CheckerAzureCpuQuota**](CheckerApi.md#CheckerAzureCpuQuota) | **Post** /api/v{v}/Checker/azure/quota/cpu | Check azure cpu quota limit
+[**CheckerCidr**](CheckerApi.md#CheckerCidr) | **Post** /api/v{v}/Checker/cidr | Check valid cidr format
+[**CheckerCron**](CheckerApi.md#CheckerCron) | **Post** /api/v{v}/Checker/cron | Check valid cron job format
+[**CheckerDns**](CheckerApi.md#CheckerDns) | **Post** /api/v{v}/Checker/dns | Check valid dns format
+[**CheckerDuplicate**](CheckerApi.md#CheckerDuplicate) | **Post** /api/v{v}/Checker/duplicate | Duplicate name
+[**CheckerGoogle**](CheckerApi.md#CheckerGoogle) | **Post** /api/v{v}/Checker/google | Check aws credentials
+[**CheckerKeycloak**](CheckerApi.md#CheckerKeycloak) | **Post** /api/v{v}/Checker/keycloak | Check keycloak credentials
+[**CheckerNode**](CheckerApi.md#CheckerNode) | **Post** /api/v{v}/Checker/node | Duplicate server name checker
+[**CheckerNtp**](CheckerApi.md#CheckerNtp) | **Post** /api/v{v}/Checker/ntp | Check valid ntp format
+[**CheckerOpenstack**](CheckerApi.md#CheckerOpenstack) | **Post** /api/v{v}/Checker/openstack | Check openstack credentials
+[**CheckerOpenstackImage**](CheckerApi.md#CheckerOpenstackImage) | **Post** /api/v{v}/Checker/openstack-image/{id} | Check openstack Taikun image
+[**CheckerOpenstackTaikunLbImage**](CheckerApi.md#CheckerOpenstackTaikunLbImage) | **Post** /api/v{v}/Checker/taikun-lb-image/{id} | Check openstack Taikun lb image
+[**CheckerOrganization**](CheckerApi.md#CheckerOrganization) | **Post** /api/v{v}/Checker/organization | Check duplicate org name
+[**CheckerPrometheus**](CheckerApi.md#CheckerPrometheus) | **Post** /api/v{v}/Checker/prometheus | Check prometheus credentials
+[**CheckerProxmox**](CheckerApi.md#CheckerProxmox) | **Post** /api/v{v}/Checker/proxmox | Check proxmox credentials
+[**CheckerS3**](CheckerApi.md#CheckerS3) | **Post** /api/v{v}/Checker/s3 | Check s3 credentials
+[**CheckerSsh**](CheckerApi.md#CheckerSsh) | **Post** /api/v{v}/Checker/ssh | Check valid ssh key format
+[**CheckerTanzu**](CheckerApi.md#CheckerTanzu) | **Post** /api/v{v}/Checker/tanzu | Check tanzu credentials
+[**CheckerUserChecker**](CheckerApi.md#CheckerUserChecker) | **Post** /api/v{v}/Checker/user | Check duplicate username
+[**CheckerYaml**](CheckerApi.md#CheckerYaml) | **Post** /api/v{v}/Checker/yaml | Check yaml file
 
 
 
 ## CheckerArtifact
 
-> CheckerArtifact(ctx).ArtifactUrlCheckerCommand(artifactUrlCheckerCommand).Execute()
+> CheckerArtifact(ctx, v).Body(body).Execute()
 
 Check artifact url
 
@@ -49,11 +49,12 @@ import (
 )
 
 func main() {
-    artifactUrlCheckerCommand := *openapiclient.NewArtifactUrlCheckerCommand("Name_example") // ArtifactUrlCheckerCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewArtifactUrlCheckerCommand("Name_example") // ArtifactUrlCheckerCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.CheckerApi.CheckerArtifact(context.Background()).ArtifactUrlCheckerCommand(artifactUrlCheckerCommand).Execute()
+    r, err := apiClient.CheckerApi.CheckerArtifact(context.Background(), v).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CheckerApi.CheckerArtifact``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -64,6 +65,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -72,7 +77,8 @@ Other parameters are passed through a pointer to a apiCheckerArtifactRequest str
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **artifactUrlCheckerCommand** | [**ArtifactUrlCheckerCommand**](ArtifactUrlCheckerCommand.md) |  | 
+
+ **body** | [**ArtifactUrlCheckerCommand**](ArtifactUrlCheckerCommand.md) |  | 
 
 ### Return type
 
@@ -84,8 +90,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -94,9 +100,9 @@ Name | Type | Description  | Notes
 
 ## CheckerAws
 
-> CheckerAws(ctx).CheckAwsCommand(checkAwsCommand).Execute()
+> CheckerAws(ctx, v).Body(body).Execute()
 
-Check aws credential
+Check aws credentials
 
 ### Example
 
@@ -111,11 +117,12 @@ import (
 )
 
 func main() {
-    checkAwsCommand := *openapiclient.NewCheckAwsCommand("AwsAccessKeyId_example", "AwsSecretAccessKey_example", "Region_example") // CheckAwsCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewCheckAwsCommand("AwsAccessKeyId_example", "AwsSecretAccessKey_example", "Region_example") // CheckAwsCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.CheckerApi.CheckerAws(context.Background()).CheckAwsCommand(checkAwsCommand).Execute()
+    r, err := apiClient.CheckerApi.CheckerAws(context.Background(), v).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CheckerApi.CheckerAws``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -126,6 +133,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -134,7 +145,8 @@ Other parameters are passed through a pointer to a apiCheckerAwsRequest struct v
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **checkAwsCommand** | [**CheckAwsCommand**](CheckAwsCommand.md) |  | 
+
+ **body** | [**CheckAwsCommand**](CheckAwsCommand.md) |  | 
 
 ### Return type
 
@@ -146,8 +158,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -156,9 +168,9 @@ Name | Type | Description  | Notes
 
 ## CheckerAzure
 
-> CheckerAzure(ctx).CheckAzureCommand(checkAzureCommand).Execute()
+> CheckerAzure(ctx, v).Body(body).Execute()
 
-Check azure credentials
+Check valid azure credentials
 
 ### Example
 
@@ -173,11 +185,12 @@ import (
 )
 
 func main() {
-    checkAzureCommand := *openapiclient.NewCheckAzureCommand("AzureClientId_example", "AzureClientSecret_example", "AzureTenantId_example") // CheckAzureCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewCheckAzureCommand("AzureClientId_example", "AzureClientSecret_example", "AzureTenantId_example") // CheckAzureCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.CheckerApi.CheckerAzure(context.Background()).CheckAzureCommand(checkAzureCommand).Execute()
+    r, err := apiClient.CheckerApi.CheckerAzure(context.Background(), v).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CheckerApi.CheckerAzure``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -188,6 +201,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -196,7 +213,8 @@ Other parameters are passed through a pointer to a apiCheckerAzureRequest struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **checkAzureCommand** | [**CheckAzureCommand**](CheckAzureCommand.md) |  | 
+
+ **body** | [**CheckAzureCommand**](CheckAzureCommand.md) |  | 
 
 ### Return type
 
@@ -208,19 +226,19 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## CheckerAzureQuota
+## CheckerAzureCpuQuota
 
-> CheckerAzureQuota(ctx).CheckAzureCpuQuotaCommand(checkAzureCpuQuotaCommand).Execute()
+> CheckerAzureCpuQuota(ctx, v).Body(body).Execute()
 
-Check azure cpu quota
+Check azure cpu quota limit
 
 ### Example
 
@@ -235,13 +253,14 @@ import (
 )
 
 func main() {
-    checkAzureCpuQuotaCommand := *openapiclient.NewCheckAzureCpuQuotaCommand(int32(123)) // CheckAzureCpuQuotaCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewCheckAzureCpuQuotaCommand(int32(123)) // CheckAzureCpuQuotaCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.CheckerApi.CheckerAzureQuota(context.Background()).CheckAzureCpuQuotaCommand(checkAzureCpuQuotaCommand).Execute()
+    r, err := apiClient.CheckerApi.CheckerAzureCpuQuota(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CheckerApi.CheckerAzureQuota``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CheckerApi.CheckerAzureCpuQuota``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -250,15 +269,20 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCheckerAzureQuotaRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiCheckerAzureCpuQuotaRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **checkAzureCpuQuotaCommand** | [**CheckAzureCpuQuotaCommand**](CheckAzureCpuQuotaCommand.md) |  | 
+
+ **body** | [**CheckAzureCpuQuotaCommand**](CheckAzureCpuQuotaCommand.md) |  | 
 
 ### Return type
 
@@ -270,8 +294,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -280,7 +304,7 @@ Name | Type | Description  | Notes
 
 ## CheckerCidr
 
-> CheckerCidr(ctx).CidrCommand(cidrCommand).Execute()
+> CheckerCidr(ctx, v).Body(body).Execute()
 
 Check valid cidr format
 
@@ -297,11 +321,12 @@ import (
 )
 
 func main() {
-    cidrCommand := *openapiclient.NewCidrCommand("Cidr_example") // CidrCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewCidrCommand("Cidr_example") // CidrCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.CheckerApi.CheckerCidr(context.Background()).CidrCommand(cidrCommand).Execute()
+    r, err := apiClient.CheckerApi.CheckerCidr(context.Background(), v).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CheckerApi.CheckerCidr``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -312,6 +337,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -320,7 +349,8 @@ Other parameters are passed through a pointer to a apiCheckerCidrRequest struct 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **cidrCommand** | [**CidrCommand**](CidrCommand.md) |  | 
+
+ **body** | [**CidrCommand**](CidrCommand.md) |  | 
 
 ### Return type
 
@@ -332,8 +362,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -342,7 +372,7 @@ Name | Type | Description  | Notes
 
 ## CheckerCron
 
-> CheckerCron(ctx).CronJobCommand(cronJobCommand).Execute()
+> CheckerCron(ctx, v).Body(body).Execute()
 
 Check valid cron job format
 
@@ -359,11 +389,12 @@ import (
 )
 
 func main() {
-    cronJobCommand := *openapiclient.NewCronJobCommand("CronPeriod_example") // CronJobCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewCronJobCommand("CronPeriod_example") // CronJobCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.CheckerApi.CheckerCron(context.Background()).CronJobCommand(cronJobCommand).Execute()
+    r, err := apiClient.CheckerApi.CheckerCron(context.Background(), v).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CheckerApi.CheckerCron``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -374,6 +405,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -382,7 +417,8 @@ Other parameters are passed through a pointer to a apiCheckerCronRequest struct 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **cronJobCommand** | [**CronJobCommand**](CronJobCommand.md) |  | 
+
+ **body** | [**CronJobCommand**](CronJobCommand.md) |  | 
 
 ### Return type
 
@@ -394,8 +430,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -404,7 +440,7 @@ Name | Type | Description  | Notes
 
 ## CheckerDns
 
-> CheckerDns(ctx).DnsCommand(dnsCommand).Execute()
+> CheckerDns(ctx, v).Body(body).Execute()
 
 Check valid dns format
 
@@ -421,11 +457,12 @@ import (
 )
 
 func main() {
-    dnsCommand := *openapiclient.NewDnsCommand("Address_example") // DnsCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewDnsCommand("Address_example") // DnsCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.CheckerApi.CheckerDns(context.Background()).DnsCommand(dnsCommand).Execute()
+    r, err := apiClient.CheckerApi.CheckerDns(context.Background(), v).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CheckerApi.CheckerDns``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -436,6 +473,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -444,7 +485,8 @@ Other parameters are passed through a pointer to a apiCheckerDnsRequest struct v
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **dnsCommand** | [**DnsCommand**](DnsCommand.md) |  | 
+
+ **body** | [**DnsCommand**](DnsCommand.md) |  | 
 
 ### Return type
 
@@ -456,17 +498,17 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## CheckerDuplicateName
+## CheckerDuplicate
 
-> bool CheckerDuplicateName(ctx).DuplicateNameCheckerCommand(duplicateNameCheckerCommand).Execute()
+> bool CheckerDuplicate(ctx, v).Body(body).Execute()
 
 Duplicate name
 
@@ -483,32 +525,38 @@ import (
 )
 
 func main() {
-    duplicateNameCheckerCommand := *openapiclient.NewDuplicateNameCheckerCommand("Type_example", "Name_example") // DuplicateNameCheckerCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewDuplicateNameCheckerCommand("Type_example", "Name_example") // DuplicateNameCheckerCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CheckerApi.CheckerDuplicateName(context.Background()).DuplicateNameCheckerCommand(duplicateNameCheckerCommand).Execute()
+    resp, r, err := apiClient.CheckerApi.CheckerDuplicate(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CheckerApi.CheckerDuplicateName``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CheckerApi.CheckerDuplicate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CheckerDuplicateName`: bool
-    fmt.Fprintf(os.Stdout, "Response from `CheckerApi.CheckerDuplicateName`: %v\n", resp)
+    // response from `CheckerDuplicate`: bool
+    fmt.Fprintf(os.Stdout, "Response from `CheckerApi.CheckerDuplicate`: %v\n", resp)
 }
 ```
 
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCheckerDuplicateNameRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiCheckerDuplicateRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **duplicateNameCheckerCommand** | [**DuplicateNameCheckerCommand**](DuplicateNameCheckerCommand.md) |  | 
+
+ **body** | [**DuplicateNameCheckerCommand**](DuplicateNameCheckerCommand.md) |  | 
 
 ### Return type
 
@@ -520,8 +568,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -530,9 +578,9 @@ Name | Type | Description  | Notes
 
 ## CheckerGoogle
 
-> CheckerGoogle(ctx).Execute()
+> CheckerGoogle(ctx, v).Config(config).Execute()
 
-Check google credentials
+Check aws credentials
 
 ### Example
 
@@ -547,10 +595,12 @@ import (
 )
 
 func main() {
+    v := "v_example" // string | 
+    config := os.NewFile(1234, "some_file") // *os.File |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.CheckerApi.CheckerGoogle(context.Background()).Execute()
+    r, err := apiClient.CheckerApi.CheckerGoogle(context.Background(), v).Config(config).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CheckerApi.CheckerGoogle``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -560,12 +610,21 @@ func main() {
 
 ### Path Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiCheckerGoogleRequest struct via the builder pattern
 
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **config** | ***os.File** |  | 
 
 ### Return type
 
@@ -578,7 +637,7 @@ Other parameters are passed through a pointer to a apiCheckerGoogleRequest struc
 ### HTTP request headers
 
 - **Content-Type**: multipart/form-data
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -587,9 +646,9 @@ Other parameters are passed through a pointer to a apiCheckerGoogleRequest struc
 
 ## CheckerKeycloak
 
-> CheckerKeycloak(ctx).KeycloakCheckerCommand(keycloakCheckerCommand).Execute()
+> CheckerKeycloak(ctx, v).Body(body).Execute()
 
-Check keycloak credential
+Check keycloak credentials
 
 ### Example
 
@@ -604,11 +663,12 @@ import (
 )
 
 func main() {
-    keycloakCheckerCommand := *openapiclient.NewKeycloakCheckerCommand("Name_example", "Url_example", "RealmsName_example", "ClientId_example", "ClientSecret_example") // KeycloakCheckerCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewKeycloakCheckerCommand("Name_example", "Url_example", "RealmsName_example", "ClientId_example", "ClientSecret_example") // KeycloakCheckerCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.CheckerApi.CheckerKeycloak(context.Background()).KeycloakCheckerCommand(keycloakCheckerCommand).Execute()
+    r, err := apiClient.CheckerApi.CheckerKeycloak(context.Background(), v).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CheckerApi.CheckerKeycloak``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -619,6 +679,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -627,7 +691,8 @@ Other parameters are passed through a pointer to a apiCheckerKeycloakRequest str
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **keycloakCheckerCommand** | [**KeycloakCheckerCommand**](KeycloakCheckerCommand.md) |  | 
+
+ **body** | [**KeycloakCheckerCommand**](KeycloakCheckerCommand.md) |  | 
 
 ### Return type
 
@@ -639,8 +704,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -649,7 +714,7 @@ Name | Type | Description  | Notes
 
 ## CheckerNode
 
-> CheckerNode(ctx).NodeCommand(nodeCommand).Execute()
+> CheckerNode(ctx, v).Body(body).Execute()
 
 Duplicate server name checker
 
@@ -666,11 +731,12 @@ import (
 )
 
 func main() {
-    nodeCommand := *openapiclient.NewNodeCommand(int32(123), "Name_example") // NodeCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewNodeCommand(int32(123), "Name_example") // NodeCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.CheckerApi.CheckerNode(context.Background()).NodeCommand(nodeCommand).Execute()
+    r, err := apiClient.CheckerApi.CheckerNode(context.Background(), v).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CheckerApi.CheckerNode``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -681,6 +747,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -689,7 +759,8 @@ Other parameters are passed through a pointer to a apiCheckerNodeRequest struct 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **nodeCommand** | [**NodeCommand**](NodeCommand.md) |  | 
+
+ **body** | [**NodeCommand**](NodeCommand.md) |  | 
 
 ### Return type
 
@@ -701,8 +772,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -711,7 +782,7 @@ Name | Type | Description  | Notes
 
 ## CheckerNtp
 
-> CheckerNtp(ctx).NtpCommand(ntpCommand).Execute()
+> CheckerNtp(ctx, v).Body(body).Execute()
 
 Check valid ntp format
 
@@ -728,11 +799,12 @@ import (
 )
 
 func main() {
-    ntpCommand := *openapiclient.NewNtpCommand("Address_example") // NtpCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewNtpCommand("Address_example") // NtpCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.CheckerApi.CheckerNtp(context.Background()).NtpCommand(ntpCommand).Execute()
+    r, err := apiClient.CheckerApi.CheckerNtp(context.Background(), v).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CheckerApi.CheckerNtp``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -743,6 +815,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -751,7 +827,8 @@ Other parameters are passed through a pointer to a apiCheckerNtpRequest struct v
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ntpCommand** | [**NtpCommand**](NtpCommand.md) |  | 
+
+ **body** | [**NtpCommand**](NtpCommand.md) |  | 
 
 ### Return type
 
@@ -763,8 +840,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -773,9 +850,9 @@ Name | Type | Description  | Notes
 
 ## CheckerOpenstack
 
-> CheckerOpenstack(ctx).CheckOpenstackCommand(checkOpenstackCommand).Execute()
+> CheckerOpenstack(ctx, v).Body(body).Execute()
 
-Check openstack credential
+Check openstack credentials
 
 ### Example
 
@@ -790,11 +867,12 @@ import (
 )
 
 func main() {
-    checkOpenstackCommand := *openapiclient.NewCheckOpenstackCommand("OpenStackUser_example", "OpenStackPassword_example", "OpenStackUrl_example", "OpenStackDomain_example") // CheckOpenstackCommand |  (optional)
+    v := "v_example" // string | 
+    body := *openapiclient.NewCheckOpenstackCommand("OpenStackUser_example", "OpenStackPassword_example", "OpenStackUrl_example", "OpenStackDomain_example") // CheckOpenstackCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.CheckerApi.CheckerOpenstack(context.Background()).CheckOpenstackCommand(checkOpenstackCommand).Execute()
+    r, err := apiClient.CheckerApi.CheckerOpenstack(context.Background(), v).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CheckerApi.CheckerOpenstack``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -805,6 +883,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -813,7 +895,8 @@ Other parameters are passed through a pointer to a apiCheckerOpenstackRequest st
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **checkOpenstackCommand** | [**CheckOpenstackCommand**](CheckOpenstackCommand.md) |  | 
+
+ **body** | [**CheckOpenstackCommand**](CheckOpenstackCommand.md) |  | 
 
 ### Return type
 
@@ -825,19 +908,19 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## CheckerOpenstackTaikunImage
+## CheckerOpenstackImage
 
-> CheckerOpenstackTaikunImage(ctx, id).Execute()
+> CheckerOpenstackImage(ctx, id, v).Execute()
 
-Check openstack taikun image
+Check openstack Taikun image
 
 ### Example
 
@@ -853,12 +936,13 @@ import (
 
 func main() {
     id := int32(56) // int32 | 
+    v := "v_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.CheckerApi.CheckerOpenstackTaikunImage(context.Background(), id).Execute()
+    r, err := apiClient.CheckerApi.CheckerOpenstackImage(context.Background(), id, v).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CheckerApi.CheckerOpenstackTaikunImage``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CheckerApi.CheckerOpenstackImage``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -871,14 +955,16 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **id** | **int32** |  | 
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCheckerOpenstackTaikunImageRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiCheckerOpenstackImageRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
 
 
 ### Return type
@@ -892,7 +978,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -901,9 +987,9 @@ Name | Type | Description  | Notes
 
 ## CheckerOpenstackTaikunLbImage
 
-> CheckerOpenstackTaikunLbImage(ctx, id).Execute()
+> CheckerOpenstackTaikunLbImage(ctx, id, v).Execute()
 
-Check openstack taikun lb image
+Check openstack Taikun lb image
 
 ### Example
 
@@ -919,10 +1005,11 @@ import (
 
 func main() {
     id := int32(56) // int32 | 
+    v := "v_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.CheckerApi.CheckerOpenstackTaikunLbImage(context.Background(), id).Execute()
+    r, err := apiClient.CheckerApi.CheckerOpenstackTaikunLbImage(context.Background(), id, v).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CheckerApi.CheckerOpenstackTaikunLbImage``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -937,6 +1024,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **id** | **int32** |  | 
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -945,6 +1033,7 @@ Other parameters are passed through a pointer to a apiCheckerOpenstackTaikunLbIm
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
 
 
 ### Return type
@@ -958,7 +1047,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -967,7 +1056,7 @@ Name | Type | Description  | Notes
 
 ## CheckerOrganization
 
-> CheckerOrganization(ctx).OrganizationNameCheckerCommand(organizationNameCheckerCommand).Execute()
+> CheckerOrganization(ctx, v).Body(body).Execute()
 
 Check duplicate org name
 
@@ -984,11 +1073,12 @@ import (
 )
 
 func main() {
-    organizationNameCheckerCommand := *openapiclient.NewOrganizationNameCheckerCommand("Name_example") // OrganizationNameCheckerCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewOrganizationNameCheckerCommand("Name_example") // OrganizationNameCheckerCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.CheckerApi.CheckerOrganization(context.Background()).OrganizationNameCheckerCommand(organizationNameCheckerCommand).Execute()
+    r, err := apiClient.CheckerApi.CheckerOrganization(context.Background(), v).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CheckerApi.CheckerOrganization``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -999,6 +1089,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -1007,7 +1101,8 @@ Other parameters are passed through a pointer to a apiCheckerOrganizationRequest
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organizationNameCheckerCommand** | [**OrganizationNameCheckerCommand**](OrganizationNameCheckerCommand.md) |  | 
+
+ **body** | [**OrganizationNameCheckerCommand**](OrganizationNameCheckerCommand.md) |  | 
 
 ### Return type
 
@@ -1019,8 +1114,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1029,7 +1124,7 @@ Name | Type | Description  | Notes
 
 ## CheckerPrometheus
 
-> CheckerPrometheus(ctx).CheckPrometheusCommand(checkPrometheusCommand).Execute()
+> CheckerPrometheus(ctx, v).Body(body).Execute()
 
 Check prometheus credentials
 
@@ -1046,11 +1141,12 @@ import (
 )
 
 func main() {
-    checkPrometheusCommand := *openapiclient.NewCheckPrometheusCommand("Password_example", "UserName_example", "Url_example") // CheckPrometheusCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewCheckPrometheusCommand("Password_example", "UserName_example", "Url_example") // CheckPrometheusCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.CheckerApi.CheckerPrometheus(context.Background()).CheckPrometheusCommand(checkPrometheusCommand).Execute()
+    r, err := apiClient.CheckerApi.CheckerPrometheus(context.Background(), v).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CheckerApi.CheckerPrometheus``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1061,6 +1157,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -1069,7 +1169,8 @@ Other parameters are passed through a pointer to a apiCheckerPrometheusRequest s
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **checkPrometheusCommand** | [**CheckPrometheusCommand**](CheckPrometheusCommand.md) |  | 
+
+ **body** | [**CheckPrometheusCommand**](CheckPrometheusCommand.md) |  | 
 
 ### Return type
 
@@ -1081,8 +1182,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1091,9 +1192,9 @@ Name | Type | Description  | Notes
 
 ## CheckerProxmox
 
-> CheckerProxmox(ctx).ProxmoxCheckerCommand(proxmoxCheckerCommand).Execute()
+> CheckerProxmox(ctx, v).Body(body).Execute()
 
-Check proxmox credential
+Check proxmox credentials
 
 ### Example
 
@@ -1108,11 +1209,12 @@ import (
 )
 
 func main() {
-    proxmoxCheckerCommand := *openapiclient.NewProxmoxCheckerCommand("Url_example", "Username_example", "Password_example") // ProxmoxCheckerCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewProxmoxCheckerCommand("Url_example", "TokenId_example", "TokenSecret_example") // ProxmoxCheckerCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.CheckerApi.CheckerProxmox(context.Background()).ProxmoxCheckerCommand(proxmoxCheckerCommand).Execute()
+    r, err := apiClient.CheckerApi.CheckerProxmox(context.Background(), v).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CheckerApi.CheckerProxmox``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1123,6 +1225,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -1131,7 +1237,8 @@ Other parameters are passed through a pointer to a apiCheckerProxmoxRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **proxmoxCheckerCommand** | [**ProxmoxCheckerCommand**](ProxmoxCheckerCommand.md) |  | 
+
+ **body** | [**ProxmoxCheckerCommand**](ProxmoxCheckerCommand.md) |  | 
 
 ### Return type
 
@@ -1143,8 +1250,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1153,9 +1260,9 @@ Name | Type | Description  | Notes
 
 ## CheckerS3
 
-> CheckerS3(ctx).CheckS3Command(checkS3Command).Execute()
+> CheckerS3(ctx, v).Body(body).Execute()
 
-Check s3 credential
+Check s3 credentials
 
 ### Example
 
@@ -1170,11 +1277,12 @@ import (
 )
 
 func main() {
-    checkS3Command := *openapiclient.NewCheckS3Command("S3AccessKeyId_example", "S3SecretKey_example", "S3Endpoint_example", "S3Region_example") // CheckS3Command | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewCheckS3Command("S3AccessKeyId_example", "S3SecretKey_example", "S3Endpoint_example", "S3Region_example") // CheckS3Command |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.CheckerApi.CheckerS3(context.Background()).CheckS3Command(checkS3Command).Execute()
+    r, err := apiClient.CheckerApi.CheckerS3(context.Background(), v).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CheckerApi.CheckerS3``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1185,6 +1293,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -1193,7 +1305,8 @@ Other parameters are passed through a pointer to a apiCheckerS3Request struct vi
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **checkS3Command** | [**CheckS3Command**](CheckS3Command.md) |  | 
+
+ **body** | [**CheckS3Command**](CheckS3Command.md) |  | 
 
 ### Return type
 
@@ -1205,8 +1318,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1215,7 +1328,7 @@ Name | Type | Description  | Notes
 
 ## CheckerSsh
 
-> CheckerSsh(ctx).SshKeyCommand(sshKeyCommand).Execute()
+> CheckerSsh(ctx, v).Body(body).Execute()
 
 Check valid ssh key format
 
@@ -1232,11 +1345,12 @@ import (
 )
 
 func main() {
-    sshKeyCommand := *openapiclient.NewSshKeyCommand("SshPublicKey_example") // SshKeyCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewSshKeyCommand("SshPublicKey_example") // SshKeyCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.CheckerApi.CheckerSsh(context.Background()).SshKeyCommand(sshKeyCommand).Execute()
+    r, err := apiClient.CheckerApi.CheckerSsh(context.Background(), v).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CheckerApi.CheckerSsh``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1247,6 +1361,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -1255,7 +1373,8 @@ Other parameters are passed through a pointer to a apiCheckerSshRequest struct v
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **sshKeyCommand** | [**SshKeyCommand**](SshKeyCommand.md) |  | 
+
+ **body** | [**SshKeyCommand**](SshKeyCommand.md) |  | 
 
 ### Return type
 
@@ -1267,8 +1386,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1277,9 +1396,9 @@ Name | Type | Description  | Notes
 
 ## CheckerTanzu
 
-> CheckerTanzu(ctx).CheckTanzuCommand(checkTanzuCommand).Execute()
+> CheckerTanzu(ctx, v).Body(body).Execute()
 
-Check tanzu credential
+Check tanzu credentials
 
 ### Example
 
@@ -1294,11 +1413,12 @@ import (
 )
 
 func main() {
-    checkTanzuCommand := *openapiclient.NewCheckTanzuCommand("Username_example", "Url_example", "Password_example", "Namespace_example", "VolumeType_example") // CheckTanzuCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewCheckTanzuCommand("Username_example", "Url_example", "Password_example", "Namespace_example", "VolumeType_example") // CheckTanzuCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.CheckerApi.CheckerTanzu(context.Background()).CheckTanzuCommand(checkTanzuCommand).Execute()
+    r, err := apiClient.CheckerApi.CheckerTanzu(context.Background(), v).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CheckerApi.CheckerTanzu``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1309,6 +1429,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -1317,7 +1441,8 @@ Other parameters are passed through a pointer to a apiCheckerTanzuRequest struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **checkTanzuCommand** | [**CheckTanzuCommand**](CheckTanzuCommand.md) |  | 
+
+ **body** | [**CheckTanzuCommand**](CheckTanzuCommand.md) |  | 
 
 ### Return type
 
@@ -1329,17 +1454,17 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## CheckerUser
+## CheckerUserChecker
 
-> CheckerUser(ctx).UserExistCommand(userExistCommand).Execute()
+> CheckerUserChecker(ctx, v).Body(body).Execute()
 
 Check duplicate username
 
@@ -1356,13 +1481,14 @@ import (
 )
 
 func main() {
-    userExistCommand := *openapiclient.NewUserExistCommand() // UserExistCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewUserExistCommand() // UserExistCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.CheckerApi.CheckerUser(context.Background()).UserExistCommand(userExistCommand).Execute()
+    r, err := apiClient.CheckerApi.CheckerUserChecker(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CheckerApi.CheckerUser``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CheckerApi.CheckerUserChecker``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -1371,15 +1497,20 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCheckerUserRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiCheckerUserCheckerRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userExistCommand** | [**UserExistCommand**](UserExistCommand.md) |  | 
+
+ **body** | [**UserExistCommand**](UserExistCommand.md) |  | 
 
 ### Return type
 
@@ -1391,8 +1522,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1401,7 +1532,7 @@ Name | Type | Description  | Notes
 
 ## CheckerYaml
 
-> CheckerYaml(ctx).YamlValidatorCommand(yamlValidatorCommand).Execute()
+> CheckerYaml(ctx, v).Body(body).Execute()
 
 Check yaml file
 
@@ -1418,11 +1549,12 @@ import (
 )
 
 func main() {
-    yamlValidatorCommand := *openapiclient.NewYamlValidatorCommand() // YamlValidatorCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewYamlValidatorCommand() // YamlValidatorCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.CheckerApi.CheckerYaml(context.Background()).YamlValidatorCommand(yamlValidatorCommand).Execute()
+    r, err := apiClient.CheckerApi.CheckerYaml(context.Background(), v).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CheckerApi.CheckerYaml``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1433,6 +1565,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -1441,7 +1577,8 @@ Other parameters are passed through a pointer to a apiCheckerYamlRequest struct 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **yamlValidatorCommand** | [**YamlValidatorCommand**](YamlValidatorCommand.md) |  | 
+
+ **body** | [**YamlValidatorCommand**](YamlValidatorCommand.md) |  | 
 
 ### Return type
 
@@ -1453,8 +1590,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

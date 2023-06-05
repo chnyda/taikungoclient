@@ -4,10 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Bridge** | Pointer to **NullableString** |  | [optional] 
-**Gateway** | Pointer to **NullableString** |  | [optional] 
-**IpAddress** | Pointer to **NullableString** |  | [optional] 
+**Bridge** | Pointer to **string** |  | [optional] 
+**Gateway** | Pointer to **string** |  | [optional] 
+**IpAddress** | Pointer to **string** |  | [optional] 
 **NetMask** | Pointer to **int32** |  | [optional] 
+**BeginAllocationRange** | Pointer to **string** |  | [optional] 
+**EndAllocationRange** | Pointer to **string** |  | [optional] 
 **IsPrivate** | Pointer to **bool** |  | [optional] 
 
 ## Methods
@@ -54,16 +56,6 @@ SetBridge sets Bridge field to given value.
 
 HasBridge returns a boolean if a field has been set.
 
-### SetBridgeNil
-
-`func (o *ProxmoxNetworkListDto) SetBridgeNil(b bool)`
-
- SetBridgeNil sets the value for Bridge to be an explicit nil
-
-### UnsetBridge
-`func (o *ProxmoxNetworkListDto) UnsetBridge()`
-
-UnsetBridge ensures that no value is present for Bridge, not even an explicit nil
 ### GetGateway
 
 `func (o *ProxmoxNetworkListDto) GetGateway() string`
@@ -89,16 +81,6 @@ SetGateway sets Gateway field to given value.
 
 HasGateway returns a boolean if a field has been set.
 
-### SetGatewayNil
-
-`func (o *ProxmoxNetworkListDto) SetGatewayNil(b bool)`
-
- SetGatewayNil sets the value for Gateway to be an explicit nil
-
-### UnsetGateway
-`func (o *ProxmoxNetworkListDto) UnsetGateway()`
-
-UnsetGateway ensures that no value is present for Gateway, not even an explicit nil
 ### GetIpAddress
 
 `func (o *ProxmoxNetworkListDto) GetIpAddress() string`
@@ -124,16 +106,6 @@ SetIpAddress sets IpAddress field to given value.
 
 HasIpAddress returns a boolean if a field has been set.
 
-### SetIpAddressNil
-
-`func (o *ProxmoxNetworkListDto) SetIpAddressNil(b bool)`
-
- SetIpAddressNil sets the value for IpAddress to be an explicit nil
-
-### UnsetIpAddress
-`func (o *ProxmoxNetworkListDto) UnsetIpAddress()`
-
-UnsetIpAddress ensures that no value is present for IpAddress, not even an explicit nil
 ### GetNetMask
 
 `func (o *ProxmoxNetworkListDto) GetNetMask() int32`
@@ -158,6 +130,56 @@ SetNetMask sets NetMask field to given value.
 `func (o *ProxmoxNetworkListDto) HasNetMask() bool`
 
 HasNetMask returns a boolean if a field has been set.
+
+### GetBeginAllocationRange
+
+`func (o *ProxmoxNetworkListDto) GetBeginAllocationRange() string`
+
+GetBeginAllocationRange returns the BeginAllocationRange field if non-nil, zero value otherwise.
+
+### GetBeginAllocationRangeOk
+
+`func (o *ProxmoxNetworkListDto) GetBeginAllocationRangeOk() (*string, bool)`
+
+GetBeginAllocationRangeOk returns a tuple with the BeginAllocationRange field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBeginAllocationRange
+
+`func (o *ProxmoxNetworkListDto) SetBeginAllocationRange(v string)`
+
+SetBeginAllocationRange sets BeginAllocationRange field to given value.
+
+### HasBeginAllocationRange
+
+`func (o *ProxmoxNetworkListDto) HasBeginAllocationRange() bool`
+
+HasBeginAllocationRange returns a boolean if a field has been set.
+
+### GetEndAllocationRange
+
+`func (o *ProxmoxNetworkListDto) GetEndAllocationRange() string`
+
+GetEndAllocationRange returns the EndAllocationRange field if non-nil, zero value otherwise.
+
+### GetEndAllocationRangeOk
+
+`func (o *ProxmoxNetworkListDto) GetEndAllocationRangeOk() (*string, bool)`
+
+GetEndAllocationRangeOk returns a tuple with the EndAllocationRange field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEndAllocationRange
+
+`func (o *ProxmoxNetworkListDto) SetEndAllocationRange(v string)`
+
+SetEndAllocationRange sets EndAllocationRange field to given value.
+
+### HasEndAllocationRange
+
+`func (o *ProxmoxNetworkListDto) HasEndAllocationRange() bool`
+
+HasEndAllocationRange returns a boolean if a field has been set.
 
 ### GetIsPrivate
 

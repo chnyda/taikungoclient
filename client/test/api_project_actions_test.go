@@ -22,26 +22,27 @@ func Test_taikuncore_ProjectActionsApiService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test ProjectActionsApiService ProjectactionsDelete", func(t *testing.T) {
+	t.Run("Test ProjectActionsApiService ProjectActionsDelete", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var projectId int32
+		var v string
 
-		httpRes, err := apiClient.ProjectActionsApi.ProjectactionsDelete(context.Background(), projectId).Execute()
+		httpRes, err := apiClient.ProjectActionsApi.ProjectActionsDelete(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test ProjectActionsApiService ProjectactionsEdit", func(t *testing.T) {
+	t.Run("Test ProjectActionsApiService ProjectActionsEdit", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var projectId int32
+		var v string
 
-		httpRes, err := apiClient.ProjectActionsApi.ProjectactionsEdit(context.Background(), projectId).Execute()
+		httpRes, err := apiClient.ProjectActionsApi.ProjectActionsEdit(context.Background(), projectId, v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)

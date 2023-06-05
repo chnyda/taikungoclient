@@ -22,11 +22,13 @@ func Test_taikuncore_CommonApiService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test CommonApiService CommonCountries", func(t *testing.T) {
+	t.Run("Test CommonApiService CommonGetCountryList", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.CommonApi.CommonCountries(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.CommonApi.CommonGetCountryList(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -34,11 +36,28 @@ func Test_taikuncore_CommonApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test CommonApiService CommonEnumValues", func(t *testing.T) {
+	t.Run("Test CommonApiService CommonGetEnumValues", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.CommonApi.CommonEnumValues(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.CommonApi.CommonGetEnumValues(context.Background(), v).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test CommonApiService CommonGetSortingElements", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var type_ string
+		var v string
+
+		resp, httpRes, err := apiClient.CommonApi.CommonGetSortingElements(context.Background(), type_, v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -50,7 +69,9 @@ func Test_taikuncore_CommonApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.CommonApi.CommonIpRangeCount(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.CommonApi.CommonIpRangeCount(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -62,7 +83,9 @@ func Test_taikuncore_CommonApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.CommonApi.CommonIpRangeList(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.CommonApi.CommonIpRangeList(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -70,13 +93,13 @@ func Test_taikuncore_CommonApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test CommonApiService CommonSortingElements", func(t *testing.T) {
+	t.Run("Test CommonApiService CommonIpUsableList", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var type_ string
+		var v string
 
-		resp, httpRes, err := apiClient.CommonApi.CommonSortingElements(context.Background(), type_).Execute()
+		resp, httpRes, err := apiClient.CommonApi.CommonIpUsableList(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

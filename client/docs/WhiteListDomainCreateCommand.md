@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **WhiteListDomains** | Pointer to [**[]WhiteListDomainCreateDto**](WhiteListDomainCreateDto.md) |  | [optional] 
-**PartnerId** | Pointer to **NullableInt32** |  | [optional] 
+**PartnerId** | Pointer to **int32** |  | [optional] 
 
 ## Methods
 
@@ -51,16 +51,6 @@ SetWhiteListDomains sets WhiteListDomains field to given value.
 
 HasWhiteListDomains returns a boolean if a field has been set.
 
-### SetWhiteListDomainsNil
-
-`func (o *WhiteListDomainCreateCommand) SetWhiteListDomainsNil(b bool)`
-
- SetWhiteListDomainsNil sets the value for WhiteListDomains to be an explicit nil
-
-### UnsetWhiteListDomains
-`func (o *WhiteListDomainCreateCommand) UnsetWhiteListDomains()`
-
-UnsetWhiteListDomains ensures that no value is present for WhiteListDomains, not even an explicit nil
 ### GetPartnerId
 
 `func (o *WhiteListDomainCreateCommand) GetPartnerId() int32`
@@ -86,16 +76,6 @@ SetPartnerId sets PartnerId field to given value.
 
 HasPartnerId returns a boolean if a field has been set.
 
-### SetPartnerIdNil
-
-`func (o *WhiteListDomainCreateCommand) SetPartnerIdNil(b bool)`
-
- SetPartnerIdNil sets the value for PartnerId to be an explicit nil
-
-### UnsetPartnerId
-`func (o *WhiteListDomainCreateCommand) UnsetPartnerId()`
-
-UnsetPartnerId ensures that no value is present for PartnerId, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

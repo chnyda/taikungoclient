@@ -17,43 +17,47 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+	"strings"
 )
 
 
 // KubeConfigRoleApiService KubeConfigRoleApi service
 type KubeConfigRoleApiService service
 
-type ApiKubeconfigroleListRequest struct {
+type ApiKubeConfigRoleListRequest struct {
 	ctx context.Context
 	ApiService *KubeConfigRoleApiService
+	v string
 	search *string
 }
 
-func (r ApiKubeconfigroleListRequest) Search(search string) ApiKubeconfigroleListRequest {
+func (r ApiKubeConfigRoleListRequest) Search(search string) ApiKubeConfigRoleListRequest {
 	r.search = &search
 	return r
 }
 
-func (r ApiKubeconfigroleListRequest) Execute() (*KubeConfigRoleResponse, *http.Response, error) {
-	return r.ApiService.KubeconfigroleListExecute(r)
+func (r ApiKubeConfigRoleListRequest) Execute() (*KubeConfigRoleResponse, *http.Response, error) {
+	return r.ApiService.KubeConfigRoleListExecute(r)
 }
 
 /*
-KubeconfigroleList Retrieve list of kube config role
+KubeConfigRoleList Retrieve list of kubeconfig role
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiKubeconfigroleListRequest
+ @param v
+ @return ApiKubeConfigRoleListRequest
 */
-func (a *KubeConfigRoleApiService) KubeconfigroleList(ctx context.Context) ApiKubeconfigroleListRequest {
-	return ApiKubeconfigroleListRequest{
+func (a *KubeConfigRoleApiService) KubeConfigRoleList(ctx context.Context, v string) ApiKubeConfigRoleListRequest {
+	return ApiKubeConfigRoleListRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
 //  @return KubeConfigRoleResponse
-func (a *KubeConfigRoleApiService) KubeconfigroleListExecute(r ApiKubeconfigroleListRequest) (*KubeConfigRoleResponse, *http.Response, error) {
+func (a *KubeConfigRoleApiService) KubeConfigRoleListExecute(r ApiKubeConfigRoleListRequest) (*KubeConfigRoleResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -61,19 +65,20 @@ func (a *KubeConfigRoleApiService) KubeconfigroleListExecute(r ApiKubeconfigrole
 		localVarReturnValue  *KubeConfigRoleResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "KubeConfigRoleApiService.KubeconfigroleList")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "KubeConfigRoleApiService.KubeConfigRoleList")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/kubeconfigrole"
+	localVarPath := localBasePath + "/api/v{v}/KubeConfigRole"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.search != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Search", r.search, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -85,7 +90,7 @@ func (a *KubeConfigRoleApiService) KubeconfigroleListExecute(r ApiKubeconfigrole
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -128,17 +133,6 @@ func (a *KubeConfigRoleApiService) KubeconfigroleListExecute(r ApiKubeconfigrole
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -172,7 +166,7 @@ func (a *KubeConfigRoleApiService) KubeconfigroleListExecute(r ApiKubeconfigrole
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

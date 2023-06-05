@@ -20,9 +20,9 @@ var _ MappedNullable = &UpdateStandAloneVmDiskDto{}
 
 // UpdateStandAloneVmDiskDto struct for UpdateStandAloneVmDiskDto
 type UpdateStandAloneVmDiskDto struct {
-	Name NullableString `json:"name,omitempty"`
-	DeviceName NullableString `json:"deviceName,omitempty"`
-	Id NullableString `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+	DeviceName *string `json:"deviceName,omitempty"`
+	Id *string `json:"id,omitempty"`
 }
 
 // NewUpdateStandAloneVmDiskDto instantiates a new UpdateStandAloneVmDiskDto object
@@ -42,130 +42,100 @@ func NewUpdateStandAloneVmDiskDtoWithDefaults() *UpdateStandAloneVmDiskDto {
 	return &this
 }
 
-// GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetName returns the Name field value if set, zero value otherwise.
 func (o *UpdateStandAloneVmDiskDto) GetName() string {
-	if o == nil || IsNil(o.Name.Get()) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
-	return *o.Name.Get()
+	return *o.Name
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateStandAloneVmDiskDto) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
-	return o.Name.Get(), o.Name.IsSet()
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *UpdateStandAloneVmDiskDto) HasName() bool {
-	if o != nil && o.Name.IsSet() {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
 	return false
 }
 
-// SetName gets a reference to the given NullableString and assigns it to the Name field.
+// SetName gets a reference to the given string and assigns it to the Name field.
 func (o *UpdateStandAloneVmDiskDto) SetName(v string) {
-	o.Name.Set(&v)
-}
-// SetNameNil sets the value for Name to be an explicit nil
-func (o *UpdateStandAloneVmDiskDto) SetNameNil() {
-	o.Name.Set(nil)
+	o.Name = &v
 }
 
-// UnsetName ensures that no value is present for Name, not even an explicit nil
-func (o *UpdateStandAloneVmDiskDto) UnsetName() {
-	o.Name.Unset()
-}
-
-// GetDeviceName returns the DeviceName field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetDeviceName returns the DeviceName field value if set, zero value otherwise.
 func (o *UpdateStandAloneVmDiskDto) GetDeviceName() string {
-	if o == nil || IsNil(o.DeviceName.Get()) {
+	if o == nil || IsNil(o.DeviceName) {
 		var ret string
 		return ret
 	}
-	return *o.DeviceName.Get()
+	return *o.DeviceName
 }
 
 // GetDeviceNameOk returns a tuple with the DeviceName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateStandAloneVmDiskDto) GetDeviceNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.DeviceName) {
 		return nil, false
 	}
-	return o.DeviceName.Get(), o.DeviceName.IsSet()
+	return o.DeviceName, true
 }
 
 // HasDeviceName returns a boolean if a field has been set.
 func (o *UpdateStandAloneVmDiskDto) HasDeviceName() bool {
-	if o != nil && o.DeviceName.IsSet() {
+	if o != nil && !IsNil(o.DeviceName) {
 		return true
 	}
 
 	return false
 }
 
-// SetDeviceName gets a reference to the given NullableString and assigns it to the DeviceName field.
+// SetDeviceName gets a reference to the given string and assigns it to the DeviceName field.
 func (o *UpdateStandAloneVmDiskDto) SetDeviceName(v string) {
-	o.DeviceName.Set(&v)
-}
-// SetDeviceNameNil sets the value for DeviceName to be an explicit nil
-func (o *UpdateStandAloneVmDiskDto) SetDeviceNameNil() {
-	o.DeviceName.Set(nil)
+	o.DeviceName = &v
 }
 
-// UnsetDeviceName ensures that no value is present for DeviceName, not even an explicit nil
-func (o *UpdateStandAloneVmDiskDto) UnsetDeviceName() {
-	o.DeviceName.Unset()
-}
-
-// GetId returns the Id field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetId returns the Id field value if set, zero value otherwise.
 func (o *UpdateStandAloneVmDiskDto) GetId() string {
-	if o == nil || IsNil(o.Id.Get()) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
-	return *o.Id.Get()
+	return *o.Id
 }
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateStandAloneVmDiskDto) GetIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
-	return o.Id.Get(), o.Id.IsSet()
+	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *UpdateStandAloneVmDiskDto) HasId() bool {
-	if o != nil && o.Id.IsSet() {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
 	return false
 }
 
-// SetId gets a reference to the given NullableString and assigns it to the Id field.
+// SetId gets a reference to the given string and assigns it to the Id field.
 func (o *UpdateStandAloneVmDiskDto) SetId(v string) {
-	o.Id.Set(&v)
-}
-// SetIdNil sets the value for Id to be an explicit nil
-func (o *UpdateStandAloneVmDiskDto) SetIdNil() {
-	o.Id.Set(nil)
-}
-
-// UnsetId ensures that no value is present for Id, not even an explicit nil
-func (o *UpdateStandAloneVmDiskDto) UnsetId() {
-	o.Id.Unset()
+	o.Id = &v
 }
 
 func (o UpdateStandAloneVmDiskDto) MarshalJSON() ([]byte, error) {
@@ -178,14 +148,14 @@ func (o UpdateStandAloneVmDiskDto) MarshalJSON() ([]byte, error) {
 
 func (o UpdateStandAloneVmDiskDto) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Name.IsSet() {
-		toSerialize["name"] = o.Name.Get()
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
 	}
-	if o.DeviceName.IsSet() {
-		toSerialize["deviceName"] = o.DeviceName.Get()
+	if !IsNil(o.DeviceName) {
+		toSerialize["deviceName"] = o.DeviceName
 	}
-	if o.Id.IsSet() {
-		toSerialize["id"] = o.Id.Get()
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
 	}
 	return toSerialize, nil
 }

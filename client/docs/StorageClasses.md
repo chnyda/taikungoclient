@@ -51,16 +51,6 @@ SetData sets Data field to given value.
 
 HasData returns a boolean if a field has been set.
 
-### SetDataNil
-
-`func (o *StorageClasses) SetDataNil(b bool)`
-
- SetDataNil sets the value for Data to be an explicit nil
-
-### UnsetData
-`func (o *StorageClasses) UnsetData()`
-
-UnsetData ensures that no value is present for Data, not even an explicit nil
 ### GetTotalCount
 
 `func (o *StorageClasses) GetTotalCount() int32`

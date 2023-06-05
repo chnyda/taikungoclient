@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **NullableString** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
-**Cidr** | Pointer to **NullableString** |  | [optional] 
+**Id** | Pointer to **string** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**Cidr** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -52,16 +52,6 @@ SetId sets Id field to given value.
 
 HasId returns a boolean if a field has been set.
 
-### SetIdNil
-
-`func (o *Subnet) SetIdNil(b bool)`
-
- SetIdNil sets the value for Id to be an explicit nil
-
-### UnsetId
-`func (o *Subnet) UnsetId()`
-
-UnsetId ensures that no value is present for Id, not even an explicit nil
 ### GetName
 
 `func (o *Subnet) GetName() string`
@@ -87,16 +77,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *Subnet) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *Subnet) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetCidr
 
 `func (o *Subnet) GetCidr() string`
@@ -122,16 +102,6 @@ SetCidr sets Cidr field to given value.
 
 HasCidr returns a boolean if a field has been set.
 
-### SetCidrNil
-
-`func (o *Subnet) SetCidrNil(b bool)`
-
- SetCidrNil sets the value for Cidr to be an explicit nil
-
-### UnsetCidr
-`func (o *Subnet) UnsetCidr()`
-
-UnsetCidr ensures that no value is present for Cidr, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

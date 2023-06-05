@@ -51,16 +51,6 @@ SetRules sets Rules field to given value.
 
 HasRules returns a boolean if a field has been set.
 
-### SetRulesNil
-
-`func (o *BindRulesCommand) SetRulesNil(b bool)`
-
- SetRulesNil sets the value for Rules to be an explicit nil
-
-### UnsetRules
-`func (o *BindRulesCommand) UnsetRules()`
-
-UnsetRules ensures that no value is present for Rules, not even an explicit nil
 ### GetOrganizationId
 
 `func (o *BindRulesCommand) GetOrganizationId() int32`

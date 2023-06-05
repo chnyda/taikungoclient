@@ -5,31 +5,31 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
-**FlavorId** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**FlavorId** | Pointer to **string** |  | [optional] 
 **VolumeSize** | Pointer to **int64** |  | [optional] 
 **Ram** | Pointer to **int64** |  | [optional] 
 **Cpu** | Pointer to **int32** |  | [optional] 
-**VolumeType** | Pointer to **NullableString** |  | [optional] 
-**SshPublicKey** | Pointer to **NullableString** |  | [optional] 
+**VolumeType** | Pointer to **string** |  | [optional] 
+**SshPublicKey** | Pointer to **string** |  | [optional] 
 **PublicIpEnabled** | Pointer to **bool** |  | [optional] 
-**ImageId** | Pointer to **NullableString** |  | [optional] 
-**ImageName** | Pointer to **NullableString** |  | [optional] 
-**Status** | Pointer to **NullableString** |  | [optional] 
+**ImageId** | Pointer to **string** |  | [optional] 
+**ImageName** | Pointer to **string** |  | [optional] 
+**Status** | Pointer to **string** |  | [optional] 
 **Revision** | Pointer to **int32** |  | [optional] 
 **ShutOff** | Pointer to **bool** |  | [optional] 
-**PublicIp** | Pointer to **NullableString** |  | [optional] 
-**IpAddress** | Pointer to **NullableString** |  | [optional] 
-**CloudInit** | Pointer to **NullableString** |  | [optional] 
+**PublicIp** | Pointer to **string** |  | [optional] 
+**IpAddress** | Pointer to **string** |  | [optional] 
+**CloudInit** | Pointer to **string** |  | [optional] 
 **IsWindows** | Pointer to **bool** |  | [optional] 
 **StandAloneProfile** | Pointer to [**StandAloneProfileFullDto**](StandAloneProfileFullDto.md) |  | [optional] 
 **StandAloneVmDisks** | Pointer to [**[]StandAloneVmDiskFullDto**](StandAloneVmDiskFullDto.md) |  | [optional] 
-**Username** | Pointer to **NullableString** |  | [optional] 
-**Password** | Pointer to **NullableString** |  | [optional] 
-**SpotPrice** | Pointer to **NullableString** |  | [optional] 
-**Hypervisor** | Pointer to **NullableString** |  | [optional] 
+**Username** | Pointer to **string** |  | [optional] 
+**Password** | Pointer to **string** |  | [optional] 
+**SpotPrice** | Pointer to **string** |  | [optional] 
+**Hypervisor** | Pointer to **string** |  | [optional] 
 **SpotInstance** | Pointer to **bool** |  | [optional] 
-**AvailabilityZone** | Pointer to **NullableString** |  | [optional] 
+**AvailabilityZone** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -100,16 +100,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *StandAloneVmFullDto) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *StandAloneVmFullDto) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetFlavorId
 
 `func (o *StandAloneVmFullDto) GetFlavorId() string`
@@ -135,16 +125,6 @@ SetFlavorId sets FlavorId field to given value.
 
 HasFlavorId returns a boolean if a field has been set.
 
-### SetFlavorIdNil
-
-`func (o *StandAloneVmFullDto) SetFlavorIdNil(b bool)`
-
- SetFlavorIdNil sets the value for FlavorId to be an explicit nil
-
-### UnsetFlavorId
-`func (o *StandAloneVmFullDto) UnsetFlavorId()`
-
-UnsetFlavorId ensures that no value is present for FlavorId, not even an explicit nil
 ### GetVolumeSize
 
 `func (o *StandAloneVmFullDto) GetVolumeSize() int64`
@@ -245,16 +225,6 @@ SetVolumeType sets VolumeType field to given value.
 
 HasVolumeType returns a boolean if a field has been set.
 
-### SetVolumeTypeNil
-
-`func (o *StandAloneVmFullDto) SetVolumeTypeNil(b bool)`
-
- SetVolumeTypeNil sets the value for VolumeType to be an explicit nil
-
-### UnsetVolumeType
-`func (o *StandAloneVmFullDto) UnsetVolumeType()`
-
-UnsetVolumeType ensures that no value is present for VolumeType, not even an explicit nil
 ### GetSshPublicKey
 
 `func (o *StandAloneVmFullDto) GetSshPublicKey() string`
@@ -280,16 +250,6 @@ SetSshPublicKey sets SshPublicKey field to given value.
 
 HasSshPublicKey returns a boolean if a field has been set.
 
-### SetSshPublicKeyNil
-
-`func (o *StandAloneVmFullDto) SetSshPublicKeyNil(b bool)`
-
- SetSshPublicKeyNil sets the value for SshPublicKey to be an explicit nil
-
-### UnsetSshPublicKey
-`func (o *StandAloneVmFullDto) UnsetSshPublicKey()`
-
-UnsetSshPublicKey ensures that no value is present for SshPublicKey, not even an explicit nil
 ### GetPublicIpEnabled
 
 `func (o *StandAloneVmFullDto) GetPublicIpEnabled() bool`
@@ -340,16 +300,6 @@ SetImageId sets ImageId field to given value.
 
 HasImageId returns a boolean if a field has been set.
 
-### SetImageIdNil
-
-`func (o *StandAloneVmFullDto) SetImageIdNil(b bool)`
-
- SetImageIdNil sets the value for ImageId to be an explicit nil
-
-### UnsetImageId
-`func (o *StandAloneVmFullDto) UnsetImageId()`
-
-UnsetImageId ensures that no value is present for ImageId, not even an explicit nil
 ### GetImageName
 
 `func (o *StandAloneVmFullDto) GetImageName() string`
@@ -375,16 +325,6 @@ SetImageName sets ImageName field to given value.
 
 HasImageName returns a boolean if a field has been set.
 
-### SetImageNameNil
-
-`func (o *StandAloneVmFullDto) SetImageNameNil(b bool)`
-
- SetImageNameNil sets the value for ImageName to be an explicit nil
-
-### UnsetImageName
-`func (o *StandAloneVmFullDto) UnsetImageName()`
-
-UnsetImageName ensures that no value is present for ImageName, not even an explicit nil
 ### GetStatus
 
 `func (o *StandAloneVmFullDto) GetStatus() string`
@@ -410,16 +350,6 @@ SetStatus sets Status field to given value.
 
 HasStatus returns a boolean if a field has been set.
 
-### SetStatusNil
-
-`func (o *StandAloneVmFullDto) SetStatusNil(b bool)`
-
- SetStatusNil sets the value for Status to be an explicit nil
-
-### UnsetStatus
-`func (o *StandAloneVmFullDto) UnsetStatus()`
-
-UnsetStatus ensures that no value is present for Status, not even an explicit nil
 ### GetRevision
 
 `func (o *StandAloneVmFullDto) GetRevision() int32`
@@ -495,16 +425,6 @@ SetPublicIp sets PublicIp field to given value.
 
 HasPublicIp returns a boolean if a field has been set.
 
-### SetPublicIpNil
-
-`func (o *StandAloneVmFullDto) SetPublicIpNil(b bool)`
-
- SetPublicIpNil sets the value for PublicIp to be an explicit nil
-
-### UnsetPublicIp
-`func (o *StandAloneVmFullDto) UnsetPublicIp()`
-
-UnsetPublicIp ensures that no value is present for PublicIp, not even an explicit nil
 ### GetIpAddress
 
 `func (o *StandAloneVmFullDto) GetIpAddress() string`
@@ -530,16 +450,6 @@ SetIpAddress sets IpAddress field to given value.
 
 HasIpAddress returns a boolean if a field has been set.
 
-### SetIpAddressNil
-
-`func (o *StandAloneVmFullDto) SetIpAddressNil(b bool)`
-
- SetIpAddressNil sets the value for IpAddress to be an explicit nil
-
-### UnsetIpAddress
-`func (o *StandAloneVmFullDto) UnsetIpAddress()`
-
-UnsetIpAddress ensures that no value is present for IpAddress, not even an explicit nil
 ### GetCloudInit
 
 `func (o *StandAloneVmFullDto) GetCloudInit() string`
@@ -565,16 +475,6 @@ SetCloudInit sets CloudInit field to given value.
 
 HasCloudInit returns a boolean if a field has been set.
 
-### SetCloudInitNil
-
-`func (o *StandAloneVmFullDto) SetCloudInitNil(b bool)`
-
- SetCloudInitNil sets the value for CloudInit to be an explicit nil
-
-### UnsetCloudInit
-`func (o *StandAloneVmFullDto) UnsetCloudInit()`
-
-UnsetCloudInit ensures that no value is present for CloudInit, not even an explicit nil
 ### GetIsWindows
 
 `func (o *StandAloneVmFullDto) GetIsWindows() bool`
@@ -650,16 +550,6 @@ SetStandAloneVmDisks sets StandAloneVmDisks field to given value.
 
 HasStandAloneVmDisks returns a boolean if a field has been set.
 
-### SetStandAloneVmDisksNil
-
-`func (o *StandAloneVmFullDto) SetStandAloneVmDisksNil(b bool)`
-
- SetStandAloneVmDisksNil sets the value for StandAloneVmDisks to be an explicit nil
-
-### UnsetStandAloneVmDisks
-`func (o *StandAloneVmFullDto) UnsetStandAloneVmDisks()`
-
-UnsetStandAloneVmDisks ensures that no value is present for StandAloneVmDisks, not even an explicit nil
 ### GetUsername
 
 `func (o *StandAloneVmFullDto) GetUsername() string`
@@ -685,16 +575,6 @@ SetUsername sets Username field to given value.
 
 HasUsername returns a boolean if a field has been set.
 
-### SetUsernameNil
-
-`func (o *StandAloneVmFullDto) SetUsernameNil(b bool)`
-
- SetUsernameNil sets the value for Username to be an explicit nil
-
-### UnsetUsername
-`func (o *StandAloneVmFullDto) UnsetUsername()`
-
-UnsetUsername ensures that no value is present for Username, not even an explicit nil
 ### GetPassword
 
 `func (o *StandAloneVmFullDto) GetPassword() string`
@@ -720,16 +600,6 @@ SetPassword sets Password field to given value.
 
 HasPassword returns a boolean if a field has been set.
 
-### SetPasswordNil
-
-`func (o *StandAloneVmFullDto) SetPasswordNil(b bool)`
-
- SetPasswordNil sets the value for Password to be an explicit nil
-
-### UnsetPassword
-`func (o *StandAloneVmFullDto) UnsetPassword()`
-
-UnsetPassword ensures that no value is present for Password, not even an explicit nil
 ### GetSpotPrice
 
 `func (o *StandAloneVmFullDto) GetSpotPrice() string`
@@ -755,16 +625,6 @@ SetSpotPrice sets SpotPrice field to given value.
 
 HasSpotPrice returns a boolean if a field has been set.
 
-### SetSpotPriceNil
-
-`func (o *StandAloneVmFullDto) SetSpotPriceNil(b bool)`
-
- SetSpotPriceNil sets the value for SpotPrice to be an explicit nil
-
-### UnsetSpotPrice
-`func (o *StandAloneVmFullDto) UnsetSpotPrice()`
-
-UnsetSpotPrice ensures that no value is present for SpotPrice, not even an explicit nil
 ### GetHypervisor
 
 `func (o *StandAloneVmFullDto) GetHypervisor() string`
@@ -790,16 +650,6 @@ SetHypervisor sets Hypervisor field to given value.
 
 HasHypervisor returns a boolean if a field has been set.
 
-### SetHypervisorNil
-
-`func (o *StandAloneVmFullDto) SetHypervisorNil(b bool)`
-
- SetHypervisorNil sets the value for Hypervisor to be an explicit nil
-
-### UnsetHypervisor
-`func (o *StandAloneVmFullDto) UnsetHypervisor()`
-
-UnsetHypervisor ensures that no value is present for Hypervisor, not even an explicit nil
 ### GetSpotInstance
 
 `func (o *StandAloneVmFullDto) GetSpotInstance() bool`
@@ -850,16 +700,6 @@ SetAvailabilityZone sets AvailabilityZone field to given value.
 
 HasAvailabilityZone returns a boolean if a field has been set.
 
-### SetAvailabilityZoneNil
-
-`func (o *StandAloneVmFullDto) SetAvailabilityZoneNil(b bool)`
-
- SetAvailabilityZoneNil sets the value for AvailabilityZone to be an explicit nil
-
-### UnsetAvailabilityZone
-`func (o *StandAloneVmFullDto) UnsetAvailabilityZone()`
-
-UnsetAvailabilityZone ensures that no value is present for AvailabilityZone, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

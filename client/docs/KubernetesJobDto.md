@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**MetadataName** | Pointer to **NullableString** |  | [optional] 
-**Namespace** | Pointer to **NullableString** |  | [optional] 
-**Age** | Pointer to **NullableString** |  | [optional] 
-**Completions** | Pointer to **NullableInt32** |  | [optional] 
-**Conditions** | Pointer to **NullableString** |  | [optional] 
+**MetadataName** | Pointer to **string** |  | [optional] 
+**Namespace** | Pointer to **string** |  | [optional] 
+**Age** | Pointer to **string** |  | [optional] 
+**Completions** | Pointer to **int32** |  | [optional] 
+**Conditions** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -54,16 +54,6 @@ SetMetadataName sets MetadataName field to given value.
 
 HasMetadataName returns a boolean if a field has been set.
 
-### SetMetadataNameNil
-
-`func (o *KubernetesJobDto) SetMetadataNameNil(b bool)`
-
- SetMetadataNameNil sets the value for MetadataName to be an explicit nil
-
-### UnsetMetadataName
-`func (o *KubernetesJobDto) UnsetMetadataName()`
-
-UnsetMetadataName ensures that no value is present for MetadataName, not even an explicit nil
 ### GetNamespace
 
 `func (o *KubernetesJobDto) GetNamespace() string`
@@ -89,16 +79,6 @@ SetNamespace sets Namespace field to given value.
 
 HasNamespace returns a boolean if a field has been set.
 
-### SetNamespaceNil
-
-`func (o *KubernetesJobDto) SetNamespaceNil(b bool)`
-
- SetNamespaceNil sets the value for Namespace to be an explicit nil
-
-### UnsetNamespace
-`func (o *KubernetesJobDto) UnsetNamespace()`
-
-UnsetNamespace ensures that no value is present for Namespace, not even an explicit nil
 ### GetAge
 
 `func (o *KubernetesJobDto) GetAge() string`
@@ -124,16 +104,6 @@ SetAge sets Age field to given value.
 
 HasAge returns a boolean if a field has been set.
 
-### SetAgeNil
-
-`func (o *KubernetesJobDto) SetAgeNil(b bool)`
-
- SetAgeNil sets the value for Age to be an explicit nil
-
-### UnsetAge
-`func (o *KubernetesJobDto) UnsetAge()`
-
-UnsetAge ensures that no value is present for Age, not even an explicit nil
 ### GetCompletions
 
 `func (o *KubernetesJobDto) GetCompletions() int32`
@@ -159,16 +129,6 @@ SetCompletions sets Completions field to given value.
 
 HasCompletions returns a boolean if a field has been set.
 
-### SetCompletionsNil
-
-`func (o *KubernetesJobDto) SetCompletionsNil(b bool)`
-
- SetCompletionsNil sets the value for Completions to be an explicit nil
-
-### UnsetCompletions
-`func (o *KubernetesJobDto) UnsetCompletions()`
-
-UnsetCompletions ensures that no value is present for Completions, not even an explicit nil
 ### GetConditions
 
 `func (o *KubernetesJobDto) GetConditions() string`
@@ -194,16 +154,6 @@ SetConditions sets Conditions field to given value.
 
 HasConditions returns a boolean if a field has been set.
 
-### SetConditionsNil
-
-`func (o *KubernetesJobDto) SetConditionsNil(b bool)`
-
- SetConditionsNil sets the value for Conditions to be an explicit nil
-
-### UnsetConditions
-`func (o *KubernetesJobDto) UnsetConditions()`
-
-UnsetConditions ensures that no value is present for Conditions, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

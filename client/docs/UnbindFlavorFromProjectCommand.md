@@ -50,16 +50,6 @@ SetIds sets Ids field to given value.
 
 HasIds returns a boolean if a field has been set.
 
-### SetIdsNil
-
-`func (o *UnbindFlavorFromProjectCommand) SetIdsNil(b bool)`
-
- SetIdsNil sets the value for Ids to be an explicit nil
-
-### UnsetIds
-`func (o *UnbindFlavorFromProjectCommand) UnsetIds()`
-
-UnsetIds ensures that no value is present for Ids, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

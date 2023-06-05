@@ -24,8 +24,8 @@ type BackupCredentialsCreateCommand struct {
 	S3AccessKeyId string `json:"s3AccessKeyId"`
 	S3SecretKey string `json:"s3SecretKey"`
 	S3Endpoint string `json:"s3Endpoint"`
-	S3Region NullableString `json:"s3Region,omitempty"`
-	OrganizationId NullableInt32 `json:"organizationId,omitempty"`
+	S3Region *string `json:"s3Region,omitempty"`
+	OrganizationId *int32 `json:"organizationId,omitempty"`
 }
 
 // NewBackupCredentialsCreateCommand instantiates a new BackupCredentialsCreateCommand object
@@ -145,88 +145,68 @@ func (o *BackupCredentialsCreateCommand) SetS3Endpoint(v string) {
 	o.S3Endpoint = v
 }
 
-// GetS3Region returns the S3Region field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetS3Region returns the S3Region field value if set, zero value otherwise.
 func (o *BackupCredentialsCreateCommand) GetS3Region() string {
-	if o == nil || IsNil(o.S3Region.Get()) {
+	if o == nil || IsNil(o.S3Region) {
 		var ret string
 		return ret
 	}
-	return *o.S3Region.Get()
+	return *o.S3Region
 }
 
 // GetS3RegionOk returns a tuple with the S3Region field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *BackupCredentialsCreateCommand) GetS3RegionOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.S3Region) {
 		return nil, false
 	}
-	return o.S3Region.Get(), o.S3Region.IsSet()
+	return o.S3Region, true
 }
 
 // HasS3Region returns a boolean if a field has been set.
 func (o *BackupCredentialsCreateCommand) HasS3Region() bool {
-	if o != nil && o.S3Region.IsSet() {
+	if o != nil && !IsNil(o.S3Region) {
 		return true
 	}
 
 	return false
 }
 
-// SetS3Region gets a reference to the given NullableString and assigns it to the S3Region field.
+// SetS3Region gets a reference to the given string and assigns it to the S3Region field.
 func (o *BackupCredentialsCreateCommand) SetS3Region(v string) {
-	o.S3Region.Set(&v)
-}
-// SetS3RegionNil sets the value for S3Region to be an explicit nil
-func (o *BackupCredentialsCreateCommand) SetS3RegionNil() {
-	o.S3Region.Set(nil)
+	o.S3Region = &v
 }
 
-// UnsetS3Region ensures that no value is present for S3Region, not even an explicit nil
-func (o *BackupCredentialsCreateCommand) UnsetS3Region() {
-	o.S3Region.Unset()
-}
-
-// GetOrganizationId returns the OrganizationId field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetOrganizationId returns the OrganizationId field value if set, zero value otherwise.
 func (o *BackupCredentialsCreateCommand) GetOrganizationId() int32 {
-	if o == nil || IsNil(o.OrganizationId.Get()) {
+	if o == nil || IsNil(o.OrganizationId) {
 		var ret int32
 		return ret
 	}
-	return *o.OrganizationId.Get()
+	return *o.OrganizationId
 }
 
 // GetOrganizationIdOk returns a tuple with the OrganizationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *BackupCredentialsCreateCommand) GetOrganizationIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.OrganizationId) {
 		return nil, false
 	}
-	return o.OrganizationId.Get(), o.OrganizationId.IsSet()
+	return o.OrganizationId, true
 }
 
 // HasOrganizationId returns a boolean if a field has been set.
 func (o *BackupCredentialsCreateCommand) HasOrganizationId() bool {
-	if o != nil && o.OrganizationId.IsSet() {
+	if o != nil && !IsNil(o.OrganizationId) {
 		return true
 	}
 
 	return false
 }
 
-// SetOrganizationId gets a reference to the given NullableInt32 and assigns it to the OrganizationId field.
+// SetOrganizationId gets a reference to the given int32 and assigns it to the OrganizationId field.
 func (o *BackupCredentialsCreateCommand) SetOrganizationId(v int32) {
-	o.OrganizationId.Set(&v)
-}
-// SetOrganizationIdNil sets the value for OrganizationId to be an explicit nil
-func (o *BackupCredentialsCreateCommand) SetOrganizationIdNil() {
-	o.OrganizationId.Set(nil)
-}
-
-// UnsetOrganizationId ensures that no value is present for OrganizationId, not even an explicit nil
-func (o *BackupCredentialsCreateCommand) UnsetOrganizationId() {
-	o.OrganizationId.Unset()
+	o.OrganizationId = &v
 }
 
 func (o BackupCredentialsCreateCommand) MarshalJSON() ([]byte, error) {
@@ -243,11 +223,11 @@ func (o BackupCredentialsCreateCommand) ToMap() (map[string]interface{}, error) 
 	toSerialize["s3AccessKeyId"] = o.S3AccessKeyId
 	toSerialize["s3SecretKey"] = o.S3SecretKey
 	toSerialize["s3Endpoint"] = o.S3Endpoint
-	if o.S3Region.IsSet() {
-		toSerialize["s3Region"] = o.S3Region.Get()
+	if !IsNil(o.S3Region) {
+		toSerialize["s3Region"] = o.S3Region
 	}
-	if o.OrganizationId.IsSet() {
-		toSerialize["organizationId"] = o.OrganizationId.Get()
+	if !IsNil(o.OrganizationId) {
+		toSerialize["organizationId"] = o.OrganizationId
 	}
 	return toSerialize, nil
 }

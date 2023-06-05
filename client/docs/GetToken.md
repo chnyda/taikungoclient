@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Token** | Pointer to **NullableString** |  | [optional] 
-**RefreshToken** | Pointer to **NullableString** |  | [optional] 
+**Token** | Pointer to **string** |  | [optional] 
+**RefreshToken** | Pointer to **string** |  | [optional] 
 **RefreshTokenExpireTime** | Pointer to **time.Time** |  | [optional] 
 
 ## Methods
@@ -52,16 +52,6 @@ SetToken sets Token field to given value.
 
 HasToken returns a boolean if a field has been set.
 
-### SetTokenNil
-
-`func (o *GetToken) SetTokenNil(b bool)`
-
- SetTokenNil sets the value for Token to be an explicit nil
-
-### UnsetToken
-`func (o *GetToken) UnsetToken()`
-
-UnsetToken ensures that no value is present for Token, not even an explicit nil
 ### GetRefreshToken
 
 `func (o *GetToken) GetRefreshToken() string`
@@ -87,16 +77,6 @@ SetRefreshToken sets RefreshToken field to given value.
 
 HasRefreshToken returns a boolean if a field has been set.
 
-### SetRefreshTokenNil
-
-`func (o *GetToken) SetRefreshTokenNil(b bool)`
-
- SetRefreshTokenNil sets the value for RefreshToken to be an explicit nil
-
-### UnsetRefreshToken
-`func (o *GetToken) UnsetRefreshToken()`
-
-UnsetRefreshToken ensures that no value is present for RefreshToken, not even an explicit nil
 ### GetRefreshTokenExpireTime
 
 `func (o *GetToken) GetRefreshTokenExpireTime() time.Time`

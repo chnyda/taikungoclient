@@ -4,17 +4,18 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CommonCountries**](CommonApi.md#CommonCountries) | **Get** /api/v1/common/countries | Retrieve country list
-[**CommonEnumValues**](CommonApi.md#CommonEnumValues) | **Get** /api/v1/common/enumvalues | Retrieve enum values
-[**CommonIpRangeCount**](CommonApi.md#CommonIpRangeCount) | **Post** /api/v1/common/ip-range-count | Retrieve ip address range count
-[**CommonIpRangeList**](CommonApi.md#CommonIpRangeList) | **Post** /api/v1/common/ip-range-list | Retrieve ip address range list
-[**CommonSortingElements**](CommonApi.md#CommonSortingElements) | **Get** /api/v1/common/sorting-elements/{type} | 
+[**CommonGetCountryList**](CommonApi.md#CommonGetCountryList) | **Get** /api/v{v}/Common/countries | Retrieve country list
+[**CommonGetEnumValues**](CommonApi.md#CommonGetEnumValues) | **Get** /api/v{v}/Common/enumvalues | Retrieve enum values
+[**CommonGetSortingElements**](CommonApi.md#CommonGetSortingElements) | **Get** /api/v{v}/Common/sorting-elements/{type} | Retrieve country list
+[**CommonIpRangeCount**](CommonApi.md#CommonIpRangeCount) | **Post** /api/v{v}/Common/ip-range-count | Retrieve ip address range count
+[**CommonIpRangeList**](CommonApi.md#CommonIpRangeList) | **Post** /api/v{v}/Common/ip-range-list | Retrieve ip address range list
+[**CommonIpUsableList**](CommonApi.md#CommonIpUsableList) | **Post** /api/v{v}/Common/ip-usable-list | Retrieve ip address usable list
 
 
 
-## CommonCountries
+## CommonGetCountryList
 
-> []CountryListDto CommonCountries(ctx).Search(search).Execute()
+> []CountryListDto CommonGetCountryList(ctx, v).Search(search).Execute()
 
 Retrieve country list
 
@@ -31,31 +32,37 @@ import (
 )
 
 func main() {
+    v := "v_example" // string | 
     search := "search_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CommonApi.CommonCountries(context.Background()).Search(search).Execute()
+    resp, r, err := apiClient.CommonApi.CommonGetCountryList(context.Background(), v).Search(search).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CommonApi.CommonCountries``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CommonApi.CommonGetCountryList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CommonCountries`: []CountryListDto
-    fmt.Fprintf(os.Stdout, "Response from `CommonApi.CommonCountries`: %v\n", resp)
+    // response from `CommonGetCountryList`: []CountryListDto
+    fmt.Fprintf(os.Stdout, "Response from `CommonApi.CommonGetCountryList`: %v\n", resp)
 }
 ```
 
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCommonCountriesRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiCommonGetCountryListRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
  **search** | **string** |  | 
 
 ### Return type
@@ -69,16 +76,16 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## CommonEnumValues
+## CommonGetEnumValues
 
-> EnumList CommonEnumValues(ctx).Execute()
+> EnumList CommonGetEnumValues(ctx, v).Execute()
 
 Retrieve enum values
 
@@ -95,26 +102,35 @@ import (
 )
 
 func main() {
+    v := "v_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CommonApi.CommonEnumValues(context.Background()).Execute()
+    resp, r, err := apiClient.CommonApi.CommonGetEnumValues(context.Background(), v).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CommonApi.CommonEnumValues``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CommonApi.CommonGetEnumValues``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CommonEnumValues`: EnumList
-    fmt.Fprintf(os.Stdout, "Response from `CommonApi.CommonEnumValues`: %v\n", resp)
+    // response from `CommonGetEnumValues`: EnumList
+    fmt.Fprintf(os.Stdout, "Response from `CommonApi.CommonGetEnumValues`: %v\n", resp)
 }
 ```
 
 ### Path Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCommonEnumValuesRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiCommonGetEnumValuesRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
 
 
 ### Return type
@@ -128,7 +144,78 @@ Other parameters are passed through a pointer to a apiCommonEnumValuesRequest st
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CommonGetSortingElements
+
+> []string CommonGetSortingElements(ctx, type_, v).Execute()
+
+Retrieve country list
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/chnyda/taikungoclient"
+)
+
+func main() {
+    type_ := "type__example" // string | 
+    v := "v_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.CommonApi.CommonGetSortingElements(context.Background(), type_, v).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `CommonApi.CommonGetSortingElements``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CommonGetSortingElements`: []string
+    fmt.Fprintf(os.Stdout, "Response from `CommonApi.CommonGetSortingElements`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**type_** | **string** |  | 
+**v** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCommonGetSortingElementsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+**[]string**
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -137,7 +224,7 @@ Other parameters are passed through a pointer to a apiCommonEnumValuesRequest st
 
 ## CommonIpRangeCount
 
-> int32 CommonIpRangeCount(ctx).IpAddressRangeCountCommand(ipAddressRangeCountCommand).Execute()
+> int32 CommonIpRangeCount(ctx, v).Body(body).Execute()
 
 Retrieve ip address range count
 
@@ -154,11 +241,12 @@ import (
 )
 
 func main() {
-    ipAddressRangeCountCommand := *openapiclient.NewIpAddressRangeCountCommand() // IpAddressRangeCountCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewIpAddressRangeCountCommand() // IpAddressRangeCountCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CommonApi.CommonIpRangeCount(context.Background()).IpAddressRangeCountCommand(ipAddressRangeCountCommand).Execute()
+    resp, r, err := apiClient.CommonApi.CommonIpRangeCount(context.Background(), v).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CommonApi.CommonIpRangeCount``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -171,6 +259,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -179,7 +271,8 @@ Other parameters are passed through a pointer to a apiCommonIpRangeCountRequest 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ipAddressRangeCountCommand** | [**IpAddressRangeCountCommand**](IpAddressRangeCountCommand.md) |  | 
+
+ **body** | [**IpAddressRangeCountCommand**](IpAddressRangeCountCommand.md) |  | 
 
 ### Return type
 
@@ -191,8 +284,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -201,7 +294,7 @@ Name | Type | Description  | Notes
 
 ## CommonIpRangeList
 
-> []string CommonIpRangeList(ctx).IpAddressRangeListCommand(ipAddressRangeListCommand).Execute()
+> []string CommonIpRangeList(ctx, v).Body(body).Execute()
 
 Retrieve ip address range list
 
@@ -218,11 +311,12 @@ import (
 )
 
 func main() {
-    ipAddressRangeListCommand := *openapiclient.NewIpAddressRangeListCommand() // IpAddressRangeListCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewIpAddressRangeListCommand() // IpAddressRangeListCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CommonApi.CommonIpRangeList(context.Background()).IpAddressRangeListCommand(ipAddressRangeListCommand).Execute()
+    resp, r, err := apiClient.CommonApi.CommonIpRangeList(context.Background(), v).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CommonApi.CommonIpRangeList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -235,6 +329,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -243,7 +341,8 @@ Other parameters are passed through a pointer to a apiCommonIpRangeListRequest s
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ipAddressRangeListCommand** | [**IpAddressRangeListCommand**](IpAddressRangeListCommand.md) |  | 
+
+ **body** | [**IpAddressRangeListCommand**](IpAddressRangeListCommand.md) |  | 
 
 ### Return type
 
@@ -255,19 +354,19 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## CommonSortingElements
+## CommonIpUsableList
 
-> []string CommonSortingElements(ctx, type_).Execute()
+> []string CommonIpUsableList(ctx, v).Body(body).Execute()
 
-
+Retrieve ip address usable list
 
 ### Example
 
@@ -282,17 +381,18 @@ import (
 )
 
 func main() {
-    type_ := "type__example" // string | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewIpListCommand() // IpListCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CommonApi.CommonSortingElements(context.Background(), type_).Execute()
+    resp, r, err := apiClient.CommonApi.CommonIpUsableList(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CommonApi.CommonSortingElements``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CommonApi.CommonIpUsableList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CommonSortingElements`: []string
-    fmt.Fprintf(os.Stdout, "Response from `CommonApi.CommonSortingElements`: %v\n", resp)
+    // response from `CommonIpUsableList`: []string
+    fmt.Fprintf(os.Stdout, "Response from `CommonApi.CommonIpUsableList`: %v\n", resp)
 }
 ```
 
@@ -302,16 +402,17 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**type_** | **string** |  | 
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCommonSortingElementsRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiCommonIpUsableListRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **body** | [**IpListCommand**](IpListCommand.md) |  | 
 
 ### Return type
 
@@ -323,8 +424,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

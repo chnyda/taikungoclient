@@ -41,9 +41,9 @@ func NewBindPrometheusOrganizationsCommandWithDefaults() *BindPrometheusOrganiza
 	return &this
 }
 
-// GetOrganizations returns the Organizations field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetOrganizations returns the Organizations field value if set, zero value otherwise.
 func (o *BindPrometheusOrganizationsCommand) GetOrganizations() []BindOrganizationsToRuleDto {
-	if o == nil {
+	if o == nil || IsNil(o.Organizations) {
 		var ret []BindOrganizationsToRuleDto
 		return ret
 	}
@@ -52,7 +52,6 @@ func (o *BindPrometheusOrganizationsCommand) GetOrganizations() []BindOrganizati
 
 // GetOrganizationsOk returns a tuple with the Organizations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *BindPrometheusOrganizationsCommand) GetOrganizationsOk() ([]BindOrganizationsToRuleDto, bool) {
 	if o == nil || IsNil(o.Organizations) {
 		return nil, false
@@ -62,7 +61,7 @@ func (o *BindPrometheusOrganizationsCommand) GetOrganizationsOk() ([]BindOrganiz
 
 // HasOrganizations returns a boolean if a field has been set.
 func (o *BindPrometheusOrganizationsCommand) HasOrganizations() bool {
-	if o != nil && IsNil(o.Organizations) {
+	if o != nil && !IsNil(o.Organizations) {
 		return true
 	}
 
@@ -116,7 +115,7 @@ func (o BindPrometheusOrganizationsCommand) MarshalJSON() ([]byte, error) {
 
 func (o BindPrometheusOrganizationsCommand) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Organizations != nil {
+	if !IsNil(o.Organizations) {
 		toSerialize["organizations"] = o.Organizations
 	}
 	if !IsNil(o.PrometheusRuleId) {

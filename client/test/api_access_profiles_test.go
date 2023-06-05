@@ -22,11 +22,13 @@ func Test_taikuncore_AccessProfilesApiService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test AccessProfilesApiService AccessprofilesCreate", func(t *testing.T) {
+	t.Run("Test AccessProfilesApiService AccessProfilesAccessProfilesForOrganizationList", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.AccessProfilesApi.AccessprofilesCreate(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.AccessProfilesApi.AccessProfilesAccessProfilesForOrganizationList(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -34,24 +36,41 @@ func Test_taikuncore_AccessProfilesApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test AccessProfilesApiService AccessprofilesDelete", func(t *testing.T) {
+	t.Run("Test AccessProfilesApiService AccessProfilesCreate", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var v string
+
+		resp, httpRes, err := apiClient.AccessProfilesApi.AccessProfilesCreate(context.Background(), v).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test AccessProfilesApiService AccessProfilesDelete", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id int32
+		var v string
 
-		httpRes, err := apiClient.AccessProfilesApi.AccessprofilesDelete(context.Background(), id).Execute()
+		httpRes, err := apiClient.AccessProfilesApi.AccessProfilesDelete(context.Background(), id, v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test AccessProfilesApiService AccessprofilesDropdown", func(t *testing.T) {
+	t.Run("Test AccessProfilesApiService AccessProfilesList", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.AccessProfilesApi.AccessprofilesDropdown(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.AccessProfilesApi.AccessProfilesList(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -59,36 +78,27 @@ func Test_taikuncore_AccessProfilesApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test AccessProfilesApiService AccessprofilesList", func(t *testing.T) {
+	t.Run("Test AccessProfilesApiService AccessProfilesLockManager", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.AccessProfilesApi.AccessprofilesList(context.Background()).Execute()
+		var v string
 
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test AccessProfilesApiService AccessprofilesLockManager", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		httpRes, err := apiClient.AccessProfilesApi.AccessprofilesLockManager(context.Background()).Execute()
+		httpRes, err := apiClient.AccessProfilesApi.AccessProfilesLockManager(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test AccessProfilesApiService AccessprofilesUpdate", func(t *testing.T) {
+	t.Run("Test AccessProfilesApiService AccessProfilesUpdate", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id int32
+		var v string
 
-		httpRes, err := apiClient.AccessProfilesApi.AccessprofilesUpdate(context.Background(), id).Execute()
+		httpRes, err := apiClient.AccessProfilesApi.AccessProfilesUpdate(context.Background(), id, v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)

@@ -5,10 +5,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** |  | [optional] 
-**Url** | Pointer to **NullableString** |  | [optional] 
-**Token** | Pointer to **NullableString** |  | [optional] 
-**AlertingIntegrationType** | Pointer to **NullableString** |  | [optional] 
-**AlertingProfileName** | Pointer to **NullableString** |  | [optional] 
+**Url** | Pointer to **string** |  | [optional] 
+**Token** | Pointer to **string** |  | [optional] 
+**AlertingIntegrationType** | Pointer to **string** |  | [optional] 
+**AlertingProfileName** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -79,16 +79,6 @@ SetUrl sets Url field to given value.
 
 HasUrl returns a boolean if a field has been set.
 
-### SetUrlNil
-
-`func (o *AlertingIntegrationsListDto) SetUrlNil(b bool)`
-
- SetUrlNil sets the value for Url to be an explicit nil
-
-### UnsetUrl
-`func (o *AlertingIntegrationsListDto) UnsetUrl()`
-
-UnsetUrl ensures that no value is present for Url, not even an explicit nil
 ### GetToken
 
 `func (o *AlertingIntegrationsListDto) GetToken() string`
@@ -114,16 +104,6 @@ SetToken sets Token field to given value.
 
 HasToken returns a boolean if a field has been set.
 
-### SetTokenNil
-
-`func (o *AlertingIntegrationsListDto) SetTokenNil(b bool)`
-
- SetTokenNil sets the value for Token to be an explicit nil
-
-### UnsetToken
-`func (o *AlertingIntegrationsListDto) UnsetToken()`
-
-UnsetToken ensures that no value is present for Token, not even an explicit nil
 ### GetAlertingIntegrationType
 
 `func (o *AlertingIntegrationsListDto) GetAlertingIntegrationType() string`
@@ -149,16 +129,6 @@ SetAlertingIntegrationType sets AlertingIntegrationType field to given value.
 
 HasAlertingIntegrationType returns a boolean if a field has been set.
 
-### SetAlertingIntegrationTypeNil
-
-`func (o *AlertingIntegrationsListDto) SetAlertingIntegrationTypeNil(b bool)`
-
- SetAlertingIntegrationTypeNil sets the value for AlertingIntegrationType to be an explicit nil
-
-### UnsetAlertingIntegrationType
-`func (o *AlertingIntegrationsListDto) UnsetAlertingIntegrationType()`
-
-UnsetAlertingIntegrationType ensures that no value is present for AlertingIntegrationType, not even an explicit nil
 ### GetAlertingProfileName
 
 `func (o *AlertingIntegrationsListDto) GetAlertingProfileName() string`
@@ -184,16 +154,6 @@ SetAlertingProfileName sets AlertingProfileName field to given value.
 
 HasAlertingProfileName returns a boolean if a field has been set.
 
-### SetAlertingProfileNameNil
-
-`func (o *AlertingIntegrationsListDto) SetAlertingProfileNameNil(b bool)`
-
- SetAlertingProfileNameNil sets the value for AlertingProfileName to be an explicit nil
-
-### UnsetAlertingProfileName
-`func (o *AlertingIntegrationsListDto) UnsetAlertingProfileName()`
-
-UnsetAlertingProfileName ensures that no value is present for AlertingProfileName, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

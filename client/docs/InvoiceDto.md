@@ -5,12 +5,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
-**DocumentNumber** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**DocumentNumber** | Pointer to **string** |  | [optional] 
 **OrganizationSubscriptionId** | Pointer to **int32** |  | [optional] 
 **IsPaid** | Pointer to **bool** |  | [optional] 
 **RequiredPaymentAction** | Pointer to **bool** |  | [optional] 
-**StripeInvoiceId** | Pointer to **NullableString** |  | [optional] 
+**StripeInvoiceId** | Pointer to **string** |  | [optional] 
 **Price** | Pointer to **float64** |  | [optional] 
 **StartDate** | Pointer to **time.Time** |  | [optional] 
 **EndDate** | Pointer to **time.Time** |  | [optional] 
@@ -85,16 +85,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *InvoiceDto) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *InvoiceDto) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetDocumentNumber
 
 `func (o *InvoiceDto) GetDocumentNumber() string`
@@ -120,16 +110,6 @@ SetDocumentNumber sets DocumentNumber field to given value.
 
 HasDocumentNumber returns a boolean if a field has been set.
 
-### SetDocumentNumberNil
-
-`func (o *InvoiceDto) SetDocumentNumberNil(b bool)`
-
- SetDocumentNumberNil sets the value for DocumentNumber to be an explicit nil
-
-### UnsetDocumentNumber
-`func (o *InvoiceDto) UnsetDocumentNumber()`
-
-UnsetDocumentNumber ensures that no value is present for DocumentNumber, not even an explicit nil
 ### GetOrganizationSubscriptionId
 
 `func (o *InvoiceDto) GetOrganizationSubscriptionId() int32`
@@ -230,16 +210,6 @@ SetStripeInvoiceId sets StripeInvoiceId field to given value.
 
 HasStripeInvoiceId returns a boolean if a field has been set.
 
-### SetStripeInvoiceIdNil
-
-`func (o *InvoiceDto) SetStripeInvoiceIdNil(b bool)`
-
- SetStripeInvoiceIdNil sets the value for StripeInvoiceId to be an explicit nil
-
-### UnsetStripeInvoiceId
-`func (o *InvoiceDto) UnsetStripeInvoiceId()`
-
-UnsetStripeInvoiceId ensures that no value is present for StripeInvoiceId, not even an explicit nil
 ### GetPrice
 
 `func (o *InvoiceDto) GetPrice() float64`

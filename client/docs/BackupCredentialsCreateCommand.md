@@ -8,8 +8,8 @@ Name | Type | Description | Notes
 **S3AccessKeyId** | **string** |  | 
 **S3SecretKey** | **string** |  | 
 **S3Endpoint** | **string** |  | 
-**S3Region** | Pointer to **NullableString** |  | [optional] 
-**OrganizationId** | Pointer to **NullableInt32** |  | [optional] 
+**S3Region** | Pointer to **string** |  | [optional] 
+**OrganizationId** | Pointer to **int32** |  | [optional] 
 
 ## Methods
 
@@ -135,16 +135,6 @@ SetS3Region sets S3Region field to given value.
 
 HasS3Region returns a boolean if a field has been set.
 
-### SetS3RegionNil
-
-`func (o *BackupCredentialsCreateCommand) SetS3RegionNil(b bool)`
-
- SetS3RegionNil sets the value for S3Region to be an explicit nil
-
-### UnsetS3Region
-`func (o *BackupCredentialsCreateCommand) UnsetS3Region()`
-
-UnsetS3Region ensures that no value is present for S3Region, not even an explicit nil
 ### GetOrganizationId
 
 `func (o *BackupCredentialsCreateCommand) GetOrganizationId() int32`
@@ -170,16 +160,6 @@ SetOrganizationId sets OrganizationId field to given value.
 
 HasOrganizationId returns a boolean if a field has been set.
 
-### SetOrganizationIdNil
-
-`func (o *BackupCredentialsCreateCommand) SetOrganizationIdNil(b bool)`
-
- SetOrganizationIdNil sets the value for OrganizationId to be an explicit nil
-
-### UnsetOrganizationId
-`func (o *BackupCredentialsCreateCommand) UnsetOrganizationId()`
-
-UnsetOrganizationId ensures that no value is present for OrganizationId, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

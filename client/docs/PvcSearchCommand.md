@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Limit** | Pointer to **NullableInt32** |  | [optional] 
-**Offset** | Pointer to **NullableInt32** |  | [optional] 
-**SearchTerm** | Pointer to **NullableString** |  | [optional] 
+**Limit** | Pointer to **int32** |  | [optional] 
+**Offset** | Pointer to **int32** |  | [optional] 
+**SearchTerm** | **string** |  | 
 
 ## Methods
 
 ### NewPvcSearchCommand
 
-`func NewPvcSearchCommand() *PvcSearchCommand`
+`func NewPvcSearchCommand(searchTerm string, ) *PvcSearchCommand`
 
 NewPvcSearchCommand instantiates a new PvcSearchCommand object
 This constructor will assign default values to properties that have it defined,
@@ -52,16 +52,6 @@ SetLimit sets Limit field to given value.
 
 HasLimit returns a boolean if a field has been set.
 
-### SetLimitNil
-
-`func (o *PvcSearchCommand) SetLimitNil(b bool)`
-
- SetLimitNil sets the value for Limit to be an explicit nil
-
-### UnsetLimit
-`func (o *PvcSearchCommand) UnsetLimit()`
-
-UnsetLimit ensures that no value is present for Limit, not even an explicit nil
 ### GetOffset
 
 `func (o *PvcSearchCommand) GetOffset() int32`
@@ -87,16 +77,6 @@ SetOffset sets Offset field to given value.
 
 HasOffset returns a boolean if a field has been set.
 
-### SetOffsetNil
-
-`func (o *PvcSearchCommand) SetOffsetNil(b bool)`
-
- SetOffsetNil sets the value for Offset to be an explicit nil
-
-### UnsetOffset
-`func (o *PvcSearchCommand) UnsetOffset()`
-
-UnsetOffset ensures that no value is present for Offset, not even an explicit nil
 ### GetSearchTerm
 
 `func (o *PvcSearchCommand) GetSearchTerm() string`
@@ -116,22 +96,7 @@ and a boolean to check if the value has been set.
 
 SetSearchTerm sets SearchTerm field to given value.
 
-### HasSearchTerm
 
-`func (o *PvcSearchCommand) HasSearchTerm() bool`
-
-HasSearchTerm returns a boolean if a field has been set.
-
-### SetSearchTermNil
-
-`func (o *PvcSearchCommand) SetSearchTermNil(b bool)`
-
- SetSearchTermNil sets the value for SearchTerm to be an explicit nil
-
-### UnsetSearchTerm
-`func (o *PvcSearchCommand) UnsetSearchTerm()`
-
-UnsetSearchTerm ensures that no value is present for SearchTerm, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

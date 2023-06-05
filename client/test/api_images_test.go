@@ -22,39 +22,13 @@ func Test_taikuncore_ImagesApiService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test ImagesApiService ImagesAwsCommonImages", func(t *testing.T) {
+	t.Run("Test ImagesApiService ImagesAwsImagesAsPost", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var cloudId int32
+		var v string
 
-		resp, httpRes, err := apiClient.ImagesApi.ImagesAwsCommonImages(context.Background(), cloudId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test ImagesApiService ImagesAwsImages", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		resp, httpRes, err := apiClient.ImagesApi.ImagesAwsImages(context.Background()).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test ImagesApiService ImagesAwsPersonalImages", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var cloudId int32
-
-		resp, httpRes, err := apiClient.ImagesApi.ImagesAwsPersonalImages(context.Background(), cloudId).Execute()
+		resp, httpRes, err := apiClient.ImagesApi.ImagesAwsImagesAsPost(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -70,22 +44,9 @@ func Test_taikuncore_ImagesApiService(t *testing.T) {
 		var publisherName string
 		var offer string
 		var sku string
+		var v string
 
-		resp, httpRes, err := apiClient.ImagesApi.ImagesAzureImages(context.Background(), cloudId, publisherName, offer, sku).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test ImagesApiService ImagesAzurePersonalImages", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var cloudId int32
-
-		resp, httpRes, err := apiClient.ImagesApi.ImagesAzurePersonalImages(context.Background(), cloudId).Execute()
+		resp, httpRes, err := apiClient.ImagesApi.ImagesAzureImages(context.Background(), cloudId, publisherName, offer, sku, v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -97,9 +58,41 @@ func Test_taikuncore_ImagesApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.ImagesApi.ImagesBindImagesToProject(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.ImagesApi.ImagesBindImagesToProject(context.Background(), v).Execute()
 
 		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ImagesApiService ImagesCommonAwsImages", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var cloudId int32
+		var v string
+
+		resp, httpRes, err := apiClient.ImagesApi.ImagesCommonAwsImages(context.Background(), cloudId, v).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ImagesApiService ImagesCommonAzureImages", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var cloudId int32
+		var v string
+
+		resp, httpRes, err := apiClient.ImagesApi.ImagesCommonAzureImages(context.Background(), cloudId, v).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
@@ -109,8 +102,37 @@ func Test_taikuncore_ImagesApiService(t *testing.T) {
 		t.Skip("skip test")  // remove to run test
 
 		var cloudId int32
+		var v string
 
-		resp, httpRes, err := apiClient.ImagesApi.ImagesCommonGoogleImages(context.Background(), cloudId).Execute()
+		resp, httpRes, err := apiClient.ImagesApi.ImagesCommonGoogleImages(context.Background(), cloudId, v).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ImagesApiService ImagesGetImageDetailsById", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var v string
+
+		resp, httpRes, err := apiClient.ImagesApi.ImagesGetImageDetailsById(context.Background(), v).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ImagesApiService ImagesGetSelectedImagesForProject", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var v string
+
+		resp, httpRes, err := apiClient.ImagesApi.ImagesGetSelectedImagesForProject(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -124,22 +146,12 @@ func Test_taikuncore_ImagesApiService(t *testing.T) {
 
 		var cloudId int32
 		var type_ string
+		var v string
 
-		resp, httpRes, err := apiClient.ImagesApi.ImagesGoogleImages(context.Background(), cloudId, type_).Execute()
+		resp, httpRes, err := apiClient.ImagesApi.ImagesGoogleImages(context.Background(), cloudId, type_, v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test ImagesApiService ImagesImageDetails", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		httpRes, err := apiClient.ImagesApi.ImagesImageDetails(context.Background()).Execute()
-
-		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
@@ -149,8 +161,9 @@ func Test_taikuncore_ImagesApiService(t *testing.T) {
 		t.Skip("skip test")  // remove to run test
 
 		var cloudId int32
+		var v string
 
-		resp, httpRes, err := apiClient.ImagesApi.ImagesOpenstackImages(context.Background(), cloudId).Execute()
+		resp, httpRes, err := apiClient.ImagesApi.ImagesOpenstackImages(context.Background(), cloudId, v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -158,11 +171,44 @@ func Test_taikuncore_ImagesApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test ImagesApiService ImagesSelectedImagesForProject", func(t *testing.T) {
+	t.Run("Test ImagesApiService ImagesPersonalAwsImages", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.ImagesApi.ImagesSelectedImagesForProject(context.Background()).Execute()
+		var cloudId int32
+		var v string
+
+		resp, httpRes, err := apiClient.ImagesApi.ImagesPersonalAwsImages(context.Background(), cloudId, v).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ImagesApiService ImagesPersonalAzureImages", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var cloudId int32
+		var v string
+
+		resp, httpRes, err := apiClient.ImagesApi.ImagesPersonalAzureImages(context.Background(), cloudId, v).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ImagesApiService ImagesProxmoxImages", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var cloudId int32
+		var v string
+
+		resp, httpRes, err := apiClient.ImagesApi.ImagesProxmoxImages(context.Background(), cloudId, v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -175,8 +221,9 @@ func Test_taikuncore_ImagesApiService(t *testing.T) {
 		t.Skip("skip test")  // remove to run test
 
 		var cloudId int32
+		var v string
 
-		resp, httpRes, err := apiClient.ImagesApi.ImagesTanzuImages(context.Background(), cloudId).Execute()
+		resp, httpRes, err := apiClient.ImagesApi.ImagesTanzuImages(context.Background(), cloudId, v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -188,7 +235,9 @@ func Test_taikuncore_ImagesApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.ImagesApi.ImagesUnbindImagesFromProject(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.ImagesApi.ImagesUnbindImagesFromProject(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)

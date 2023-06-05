@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ApiVersion** | Pointer to **NullableString** |  | [optional] 
-**Kind** | Pointer to **NullableString** |  | [optional] 
+**ApiVersion** | Pointer to **string** |  | [optional] 
+**Kind** | Pointer to **string** |  | [optional] 
 **Metadata** | Pointer to [**HelmMetadata**](HelmMetadata.md) |  | [optional] 
 **Spec** | Pointer to [**HelmSpec**](HelmSpec.md) |  | [optional] 
 **Status** | Pointer to [**HelmStatus**](HelmStatus.md) |  | [optional] 
@@ -54,16 +54,6 @@ SetApiVersion sets ApiVersion field to given value.
 
 HasApiVersion returns a boolean if a field has been set.
 
-### SetApiVersionNil
-
-`func (o *HelmReleaseDto) SetApiVersionNil(b bool)`
-
- SetApiVersionNil sets the value for ApiVersion to be an explicit nil
-
-### UnsetApiVersion
-`func (o *HelmReleaseDto) UnsetApiVersion()`
-
-UnsetApiVersion ensures that no value is present for ApiVersion, not even an explicit nil
 ### GetKind
 
 `func (o *HelmReleaseDto) GetKind() string`
@@ -89,16 +79,6 @@ SetKind sets Kind field to given value.
 
 HasKind returns a boolean if a field has been set.
 
-### SetKindNil
-
-`func (o *HelmReleaseDto) SetKindNil(b bool)`
-
- SetKindNil sets the value for Kind to be an explicit nil
-
-### UnsetKind
-`func (o *HelmReleaseDto) UnsetKind()`
-
-UnsetKind ensures that no value is present for Kind, not even an explicit nil
 ### GetMetadata
 
 `func (o *HelmReleaseDto) GetMetadata() HelmMetadata`

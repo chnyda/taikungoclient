@@ -17,43 +17,47 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+	"strings"
 )
 
 
 // KubeConfigApiService KubeConfigApi service
 type KubeConfigApiService service
 
-type ApiKubeconfigCreateRequest struct {
+type ApiKubeConfigCreateRequest struct {
 	ctx context.Context
 	ApiService *KubeConfigApiService
-	createKubeConfigCommand *CreateKubeConfigCommand
+	v string
+	body *CreateKubeConfigCommand
 }
 
-func (r ApiKubeconfigCreateRequest) CreateKubeConfigCommand(createKubeConfigCommand CreateKubeConfigCommand) ApiKubeconfigCreateRequest {
-	r.createKubeConfigCommand = &createKubeConfigCommand
+func (r ApiKubeConfigCreateRequest) Body(body CreateKubeConfigCommand) ApiKubeConfigCreateRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiKubeconfigCreateRequest) Execute() (*ApiResponse, *http.Response, error) {
-	return r.ApiService.KubeconfigCreateExecute(r)
+func (r ApiKubeConfigCreateRequest) Execute() (*ApiResponse, *http.Response, error) {
+	return r.ApiService.KubeConfigCreateExecute(r)
 }
 
 /*
-KubeconfigCreate Create kube config
+KubeConfigCreate Create kube config
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiKubeconfigCreateRequest
+ @param v
+ @return ApiKubeConfigCreateRequest
 */
-func (a *KubeConfigApiService) KubeconfigCreate(ctx context.Context) ApiKubeconfigCreateRequest {
-	return ApiKubeconfigCreateRequest{
+func (a *KubeConfigApiService) KubeConfigCreate(ctx context.Context, v string) ApiKubeConfigCreateRequest {
+	return ApiKubeConfigCreateRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
 //  @return ApiResponse
-func (a *KubeConfigApiService) KubeconfigCreateExecute(r ApiKubeconfigCreateRequest) (*ApiResponse, *http.Response, error) {
+func (a *KubeConfigApiService) KubeConfigCreateExecute(r ApiKubeConfigCreateRequest) (*ApiResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -61,19 +65,20 @@ func (a *KubeConfigApiService) KubeconfigCreateExecute(r ApiKubeconfigCreateRequ
 		localVarReturnValue  *ApiResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "KubeConfigApiService.KubeconfigCreate")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "KubeConfigApiService.KubeConfigCreate")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/kubeconfig"
+	localVarPath := localBasePath + "/api/v{v}/KubeConfig"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -82,7 +87,7 @@ func (a *KubeConfigApiService) KubeconfigCreateExecute(r ApiKubeconfigCreateRequ
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -90,7 +95,7 @@ func (a *KubeConfigApiService) KubeconfigCreateExecute(r ApiKubeconfigCreateRequ
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createKubeConfigCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -127,17 +132,6 @@ func (a *KubeConfigApiService) KubeconfigCreateExecute(r ApiKubeconfigCreateRequ
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -171,7 +165,7 @@ func (a *KubeConfigApiService) KubeconfigCreateExecute(r ApiKubeconfigCreateRequ
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -196,58 +190,59 @@ func (a *KubeConfigApiService) KubeconfigCreateExecute(r ApiKubeconfigCreateRequ
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiKubeconfigDeleteRequest struct {
+type ApiKubeConfigDeleteRequest struct {
 	ctx context.Context
 	ApiService *KubeConfigApiService
-	deleteKubeConfigCommand *DeleteKubeConfigCommand
+	v string
+	body *DeleteKubeConfigCommand
 }
 
-func (r ApiKubeconfigDeleteRequest) DeleteKubeConfigCommand(deleteKubeConfigCommand DeleteKubeConfigCommand) ApiKubeconfigDeleteRequest {
-	r.deleteKubeConfigCommand = &deleteKubeConfigCommand
+func (r ApiKubeConfigDeleteRequest) Body(body DeleteKubeConfigCommand) ApiKubeConfigDeleteRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiKubeconfigDeleteRequest) Execute() (*http.Response, error) {
-	return r.ApiService.KubeconfigDeleteExecute(r)
+func (r ApiKubeConfigDeleteRequest) Execute() (*http.Response, error) {
+	return r.ApiService.KubeConfigDeleteExecute(r)
 }
 
 /*
-KubeconfigDelete Delete kube config
+KubeConfigDelete Delete kube config
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiKubeconfigDeleteRequest
+ @param v
+ @return ApiKubeConfigDeleteRequest
 */
-func (a *KubeConfigApiService) KubeconfigDelete(ctx context.Context) ApiKubeconfigDeleteRequest {
-	return ApiKubeconfigDeleteRequest{
+func (a *KubeConfigApiService) KubeConfigDelete(ctx context.Context, v string) ApiKubeConfigDeleteRequest {
+	return ApiKubeConfigDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
-func (a *KubeConfigApiService) KubeconfigDeleteExecute(r ApiKubeconfigDeleteRequest) (*http.Response, error) {
+func (a *KubeConfigApiService) KubeConfigDeleteExecute(r ApiKubeConfigDeleteRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "KubeConfigApiService.KubeconfigDelete")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "KubeConfigApiService.KubeConfigDelete")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/kubeconfig/delete"
+	localVarPath := localBasePath + "/api/v{v}/KubeConfig/delete"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.deleteKubeConfigCommand == nil {
-		return nil, reportError("deleteKubeConfigCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -256,7 +251,7 @@ func (a *KubeConfigApiService) KubeconfigDeleteExecute(r ApiKubeconfigDeleteRequ
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -264,7 +259,7 @@ func (a *KubeConfigApiService) KubeconfigDeleteExecute(r ApiKubeconfigDeleteRequ
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.deleteKubeConfigCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -301,17 +296,6 @@ func (a *KubeConfigApiService) KubeconfigDeleteExecute(r ApiKubeconfigDeleteRequ
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -345,7 +329,7 @@ func (a *KubeConfigApiService) KubeconfigDeleteExecute(r ApiKubeconfigDeleteRequ
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -361,58 +345,59 @@ func (a *KubeConfigApiService) KubeconfigDeleteExecute(r ApiKubeconfigDeleteRequ
 	return localVarHTTPResponse, nil
 }
 
-type ApiKubeconfigDeleteByProjectIdRequest struct {
+type ApiKubeConfigDeleteByProjectIdRequest struct {
 	ctx context.Context
 	ApiService *KubeConfigApiService
-	deleteKubeConfigByProjectIdCommand *DeleteKubeConfigByProjectIdCommand
+	v string
+	body *DeleteKubeConfigByProjectIdCommand
 }
 
-func (r ApiKubeconfigDeleteByProjectIdRequest) DeleteKubeConfigByProjectIdCommand(deleteKubeConfigByProjectIdCommand DeleteKubeConfigByProjectIdCommand) ApiKubeconfigDeleteByProjectIdRequest {
-	r.deleteKubeConfigByProjectIdCommand = &deleteKubeConfigByProjectIdCommand
+func (r ApiKubeConfigDeleteByProjectIdRequest) Body(body DeleteKubeConfigByProjectIdCommand) ApiKubeConfigDeleteByProjectIdRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiKubeconfigDeleteByProjectIdRequest) Execute() (*http.Response, error) {
-	return r.ApiService.KubeconfigDeleteByProjectIdExecute(r)
+func (r ApiKubeConfigDeleteByProjectIdRequest) Execute() (*http.Response, error) {
+	return r.ApiService.KubeConfigDeleteByProjectIdExecute(r)
 }
 
 /*
-KubeconfigDeleteByProjectId Delete kube config by project id
+KubeConfigDeleteByProjectId Delete kube config by project id
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiKubeconfigDeleteByProjectIdRequest
+ @param v
+ @return ApiKubeConfigDeleteByProjectIdRequest
 */
-func (a *KubeConfigApiService) KubeconfigDeleteByProjectId(ctx context.Context) ApiKubeconfigDeleteByProjectIdRequest {
-	return ApiKubeconfigDeleteByProjectIdRequest{
+func (a *KubeConfigApiService) KubeConfigDeleteByProjectId(ctx context.Context, v string) ApiKubeConfigDeleteByProjectIdRequest {
+	return ApiKubeConfigDeleteByProjectIdRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
-func (a *KubeConfigApiService) KubeconfigDeleteByProjectIdExecute(r ApiKubeconfigDeleteByProjectIdRequest) (*http.Response, error) {
+func (a *KubeConfigApiService) KubeConfigDeleteByProjectIdExecute(r ApiKubeConfigDeleteByProjectIdRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "KubeConfigApiService.KubeconfigDeleteByProjectId")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "KubeConfigApiService.KubeConfigDeleteByProjectId")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/kubeconfig/delete-by-project-id"
+	localVarPath := localBasePath + "/api/v{v}/KubeConfig/delete-by-project-id"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.deleteKubeConfigByProjectIdCommand == nil {
-		return nil, reportError("deleteKubeConfigByProjectIdCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -421,7 +406,7 @@ func (a *KubeConfigApiService) KubeconfigDeleteByProjectIdExecute(r ApiKubeconfi
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -429,7 +414,7 @@ func (a *KubeConfigApiService) KubeconfigDeleteByProjectIdExecute(r ApiKubeconfi
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.deleteKubeConfigByProjectIdCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -466,17 +451,6 @@ func (a *KubeConfigApiService) KubeconfigDeleteByProjectIdExecute(r ApiKubeconfi
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -510,7 +484,7 @@ func (a *KubeConfigApiService) KubeconfigDeleteByProjectIdExecute(r ApiKubeconfi
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -526,37 +500,40 @@ func (a *KubeConfigApiService) KubeconfigDeleteByProjectIdExecute(r ApiKubeconfi
 	return localVarHTTPResponse, nil
 }
 
-type ApiKubeconfigDownloadRequest struct {
+type ApiKubeConfigDownloadRequest struct {
 	ctx context.Context
 	ApiService *KubeConfigApiService
-	downloadKubeConfigCommand *DownloadKubeConfigCommand
+	v string
+	body *DownloadKubeConfigCommand
 }
 
-func (r ApiKubeconfigDownloadRequest) DownloadKubeConfigCommand(downloadKubeConfigCommand DownloadKubeConfigCommand) ApiKubeconfigDownloadRequest {
-	r.downloadKubeConfigCommand = &downloadKubeConfigCommand
+func (r ApiKubeConfigDownloadRequest) Body(body DownloadKubeConfigCommand) ApiKubeConfigDownloadRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiKubeconfigDownloadRequest) Execute() (string, *http.Response, error) {
-	return r.ApiService.KubeconfigDownloadExecute(r)
+func (r ApiKubeConfigDownloadRequest) Execute() (string, *http.Response, error) {
+	return r.ApiService.KubeConfigDownloadExecute(r)
 }
 
 /*
-KubeconfigDownload Download kube config file for user by project Id
+KubeConfigDownload Download kube config file for user by project Id
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiKubeconfigDownloadRequest
+ @param v
+ @return ApiKubeConfigDownloadRequest
 */
-func (a *KubeConfigApiService) KubeconfigDownload(ctx context.Context) ApiKubeconfigDownloadRequest {
-	return ApiKubeconfigDownloadRequest{
+func (a *KubeConfigApiService) KubeConfigDownload(ctx context.Context, v string) ApiKubeConfigDownloadRequest {
+	return ApiKubeConfigDownloadRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
 //  @return string
-func (a *KubeConfigApiService) KubeconfigDownloadExecute(r ApiKubeconfigDownloadRequest) (string, *http.Response, error) {
+func (a *KubeConfigApiService) KubeConfigDownloadExecute(r ApiKubeConfigDownloadRequest) (string, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -564,22 +541,20 @@ func (a *KubeConfigApiService) KubeconfigDownloadExecute(r ApiKubeconfigDownload
 		localVarReturnValue  string
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "KubeConfigApiService.KubeconfigDownload")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "KubeConfigApiService.KubeConfigDownload")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/kubeconfig/download"
+	localVarPath := localBasePath + "/api/v{v}/KubeConfig/download"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.downloadKubeConfigCommand == nil {
-		return localVarReturnValue, nil, reportError("downloadKubeConfigCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -588,7 +563,7 @@ func (a *KubeConfigApiService) KubeconfigDownloadExecute(r ApiKubeconfigDownload
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -596,7 +571,7 @@ func (a *KubeConfigApiService) KubeconfigDownloadExecute(r ApiKubeconfigDownload
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.downloadKubeConfigCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -633,17 +608,6 @@ func (a *KubeConfigApiService) KubeconfigDownloadExecute(r ApiKubeconfigDownload
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -677,7 +641,7 @@ func (a *KubeConfigApiService) KubeconfigDownloadExecute(r ApiKubeconfigDownload
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -702,37 +666,40 @@ func (a *KubeConfigApiService) KubeconfigDownloadExecute(r ApiKubeconfigDownload
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiKubeconfigInteractiveShellRequest struct {
+type ApiKubeConfigInteractiveShellRequest struct {
 	ctx context.Context
 	ApiService *KubeConfigApiService
-	kubeConfigInteractiveShellCommand *KubeConfigInteractiveShellCommand
+	v string
+	body *KubeConfigInteractiveShellCommand
 }
 
-func (r ApiKubeconfigInteractiveShellRequest) KubeConfigInteractiveShellCommand(kubeConfigInteractiveShellCommand KubeConfigInteractiveShellCommand) ApiKubeconfigInteractiveShellRequest {
-	r.kubeConfigInteractiveShellCommand = &kubeConfigInteractiveShellCommand
+func (r ApiKubeConfigInteractiveShellRequest) Body(body KubeConfigInteractiveShellCommand) ApiKubeConfigInteractiveShellRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiKubeconfigInteractiveShellRequest) Execute() (string, *http.Response, error) {
-	return r.ApiService.KubeconfigInteractiveShellExecute(r)
+func (r ApiKubeConfigInteractiveShellRequest) Execute() (string, *http.Response, error) {
+	return r.ApiService.KubeConfigInteractiveShellExecute(r)
 }
 
 /*
-KubeconfigInteractiveShell Interactive shell for user kube config
+KubeConfigInteractiveShell Interactive shell for user kube config
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiKubeconfigInteractiveShellRequest
+ @param v
+ @return ApiKubeConfigInteractiveShellRequest
 */
-func (a *KubeConfigApiService) KubeconfigInteractiveShell(ctx context.Context) ApiKubeconfigInteractiveShellRequest {
-	return ApiKubeconfigInteractiveShellRequest{
+func (a *KubeConfigApiService) KubeConfigInteractiveShell(ctx context.Context, v string) ApiKubeConfigInteractiveShellRequest {
+	return ApiKubeConfigInteractiveShellRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
 //  @return string
-func (a *KubeConfigApiService) KubeconfigInteractiveShellExecute(r ApiKubeconfigInteractiveShellRequest) (string, *http.Response, error) {
+func (a *KubeConfigApiService) KubeConfigInteractiveShellExecute(r ApiKubeConfigInteractiveShellRequest) (string, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -740,22 +707,20 @@ func (a *KubeConfigApiService) KubeconfigInteractiveShellExecute(r ApiKubeconfig
 		localVarReturnValue  string
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "KubeConfigApiService.KubeconfigInteractiveShell")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "KubeConfigApiService.KubeConfigInteractiveShell")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/kubeconfig/interactive-shell"
+	localVarPath := localBasePath + "/api/v{v}/KubeConfig/interactive-shell"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.kubeConfigInteractiveShellCommand == nil {
-		return localVarReturnValue, nil, reportError("kubeConfigInteractiveShellCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -764,7 +729,7 @@ func (a *KubeConfigApiService) KubeconfigInteractiveShellExecute(r ApiKubeconfig
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -772,7 +737,7 @@ func (a *KubeConfigApiService) KubeconfigInteractiveShellExecute(r ApiKubeconfig
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.kubeConfigInteractiveShellCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -809,17 +774,6 @@ func (a *KubeConfigApiService) KubeconfigInteractiveShellExecute(r ApiKubeconfig
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -853,7 +807,7 @@ func (a *KubeConfigApiService) KubeconfigInteractiveShellExecute(r ApiKubeconfig
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -878,11 +832,12 @@ func (a *KubeConfigApiService) KubeconfigInteractiveShellExecute(r ApiKubeconfig
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiKubeconfigListRequest struct {
+type ApiKubeConfigListRequest struct {
 	ctx context.Context
 	ApiService *KubeConfigApiService
-	projectId *int32
+	v string
 	organizationId *int32
+	projectId *int32
 	limit *int32
 	offset *int32
 	sortBy *string
@@ -891,66 +846,73 @@ type ApiKubeconfigListRequest struct {
 	id *int32
 }
 
-func (r ApiKubeconfigListRequest) ProjectId(projectId int32) ApiKubeconfigListRequest {
-	r.projectId = &projectId
-	return r
-}
-
-func (r ApiKubeconfigListRequest) OrganizationId(organizationId int32) ApiKubeconfigListRequest {
+// Only for admin sort by org id
+func (r ApiKubeConfigListRequest) OrganizationId(organizationId int32) ApiKubeConfigListRequest {
 	r.organizationId = &organizationId
 	return r
 }
 
-func (r ApiKubeconfigListRequest) Limit(limit int32) ApiKubeconfigListRequest {
+// Get kube configs by projectId
+func (r ApiKubeConfigListRequest) ProjectId(projectId int32) ApiKubeConfigListRequest {
+	r.projectId = &projectId
+	return r
+}
+
+// Limits user size (by default 50)
+func (r ApiKubeConfigListRequest) Limit(limit int32) ApiKubeConfigListRequest {
 	r.limit = &limit
 	return r
 }
 
-func (r ApiKubeconfigListRequest) Offset(offset int32) ApiKubeconfigListRequest {
+// Skip elements
+func (r ApiKubeConfigListRequest) Offset(offset int32) ApiKubeConfigListRequest {
 	r.offset = &offset
 	return r
 }
 
-func (r ApiKubeconfigListRequest) SortBy(sortBy string) ApiKubeconfigListRequest {
+func (r ApiKubeConfigListRequest) SortBy(sortBy string) ApiKubeConfigListRequest {
 	r.sortBy = &sortBy
 	return r
 }
 
-func (r ApiKubeconfigListRequest) SortDirection(sortDirection string) ApiKubeconfigListRequest {
+func (r ApiKubeConfigListRequest) SortDirection(sortDirection string) ApiKubeConfigListRequest {
 	r.sortDirection = &sortDirection
 	return r
 }
 
-func (r ApiKubeconfigListRequest) Search(search string) ApiKubeconfigListRequest {
+// Keyword for searching
+func (r ApiKubeConfigListRequest) Search(search string) ApiKubeConfigListRequest {
 	r.search = &search
 	return r
 }
 
-func (r ApiKubeconfigListRequest) Id(id int32) ApiKubeconfigListRequest {
+func (r ApiKubeConfigListRequest) Id(id int32) ApiKubeConfigListRequest {
 	r.id = &id
 	return r
 }
 
-func (r ApiKubeconfigListRequest) Execute() (*KubeConfigForUserList, *http.Response, error) {
-	return r.ApiService.KubeconfigListExecute(r)
+func (r ApiKubeConfigListRequest) Execute() (*KubeConfigForUserList, *http.Response, error) {
+	return r.ApiService.KubeConfigListExecute(r)
 }
 
 /*
-KubeconfigList Retrieve a list of kube configs for project
+KubeConfigList Retrieve a list of kube configs for project. It's possible to filter and select kube configs by project
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiKubeconfigListRequest
+ @param v
+ @return ApiKubeConfigListRequest
 */
-func (a *KubeConfigApiService) KubeconfigList(ctx context.Context) ApiKubeconfigListRequest {
-	return ApiKubeconfigListRequest{
+func (a *KubeConfigApiService) KubeConfigList(ctx context.Context, v string) ApiKubeConfigListRequest {
+	return ApiKubeConfigListRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
 //  @return KubeConfigForUserList
-func (a *KubeConfigApiService) KubeconfigListExecute(r ApiKubeconfigListRequest) (*KubeConfigForUserList, *http.Response, error) {
+func (a *KubeConfigApiService) KubeConfigListExecute(r ApiKubeConfigListRequest) (*KubeConfigForUserList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -958,41 +920,41 @@ func (a *KubeConfigApiService) KubeconfigListExecute(r ApiKubeconfigListRequest)
 		localVarReturnValue  *KubeConfigForUserList
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "KubeConfigApiService.KubeconfigList")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "KubeConfigApiService.KubeConfigList")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/kubeconfig"
+	localVarPath := localBasePath + "/api/v{v}/KubeConfig"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.projectId == nil {
-		return localVarReturnValue, nil, reportError("projectId is required and must be specified")
-	}
 
 	if r.organizationId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "OrganizationId", r.organizationId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "organizationId", r.organizationId, "")
 	}
-	parameterAddToHeaderOrQuery(localVarQueryParams, "ProjectId", r.projectId, "")
+	if r.projectId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "projectId", r.projectId, "")
+	}
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
 	}
 	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Offset", r.offset, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
 	}
 	if r.sortBy != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "SortBy", r.sortBy, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", r.sortBy, "")
 	}
 	if r.sortDirection != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "SortDirection", r.sortDirection, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "sortDirection", r.sortDirection, "")
 	}
 	if r.search != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Search", r.search, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "")
 	}
 	if r.id != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Id", r.id, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1004,7 +966,7 @@ func (a *KubeConfigApiService) KubeconfigListExecute(r ApiKubeconfigListRequest)
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1047,17 +1009,6 @@ func (a *KubeConfigApiService) KubeconfigListExecute(r ApiKubeconfigListRequest)
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1091,7 +1042,7 @@ func (a *KubeConfigApiService) KubeconfigListExecute(r ApiKubeconfigListRequest)
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

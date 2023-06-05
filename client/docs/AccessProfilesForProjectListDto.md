@@ -5,10 +5,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
-**HttpProxy** | Pointer to **NullableString** |  | [optional] 
-**OrganizationId** | Pointer to **NullableInt32** |  | [optional] 
-**OrganizationName** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**HttpProxy** | Pointer to **string** |  | [optional] 
+**OrganizationId** | Pointer to **int32** |  | [optional] 
+**OrganizationName** | Pointer to **string** |  | [optional] 
 **Revision** | Pointer to **int32** |  | [optional] 
 **SshUsers** | Pointer to [**[]SshUserListDto**](SshUserListDto.md) |  | [optional] 
 **DnsServers** | Pointer to [**[]DnsServerListDto**](DnsServerListDto.md) |  | [optional] 
@@ -84,16 +84,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *AccessProfilesForProjectListDto) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *AccessProfilesForProjectListDto) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetHttpProxy
 
 `func (o *AccessProfilesForProjectListDto) GetHttpProxy() string`
@@ -119,16 +109,6 @@ SetHttpProxy sets HttpProxy field to given value.
 
 HasHttpProxy returns a boolean if a field has been set.
 
-### SetHttpProxyNil
-
-`func (o *AccessProfilesForProjectListDto) SetHttpProxyNil(b bool)`
-
- SetHttpProxyNil sets the value for HttpProxy to be an explicit nil
-
-### UnsetHttpProxy
-`func (o *AccessProfilesForProjectListDto) UnsetHttpProxy()`
-
-UnsetHttpProxy ensures that no value is present for HttpProxy, not even an explicit nil
 ### GetOrganizationId
 
 `func (o *AccessProfilesForProjectListDto) GetOrganizationId() int32`
@@ -154,16 +134,6 @@ SetOrganizationId sets OrganizationId field to given value.
 
 HasOrganizationId returns a boolean if a field has been set.
 
-### SetOrganizationIdNil
-
-`func (o *AccessProfilesForProjectListDto) SetOrganizationIdNil(b bool)`
-
- SetOrganizationIdNil sets the value for OrganizationId to be an explicit nil
-
-### UnsetOrganizationId
-`func (o *AccessProfilesForProjectListDto) UnsetOrganizationId()`
-
-UnsetOrganizationId ensures that no value is present for OrganizationId, not even an explicit nil
 ### GetOrganizationName
 
 `func (o *AccessProfilesForProjectListDto) GetOrganizationName() string`
@@ -189,16 +159,6 @@ SetOrganizationName sets OrganizationName field to given value.
 
 HasOrganizationName returns a boolean if a field has been set.
 
-### SetOrganizationNameNil
-
-`func (o *AccessProfilesForProjectListDto) SetOrganizationNameNil(b bool)`
-
- SetOrganizationNameNil sets the value for OrganizationName to be an explicit nil
-
-### UnsetOrganizationName
-`func (o *AccessProfilesForProjectListDto) UnsetOrganizationName()`
-
-UnsetOrganizationName ensures that no value is present for OrganizationName, not even an explicit nil
 ### GetRevision
 
 `func (o *AccessProfilesForProjectListDto) GetRevision() int32`
@@ -249,16 +209,6 @@ SetSshUsers sets SshUsers field to given value.
 
 HasSshUsers returns a boolean if a field has been set.
 
-### SetSshUsersNil
-
-`func (o *AccessProfilesForProjectListDto) SetSshUsersNil(b bool)`
-
- SetSshUsersNil sets the value for SshUsers to be an explicit nil
-
-### UnsetSshUsers
-`func (o *AccessProfilesForProjectListDto) UnsetSshUsers()`
-
-UnsetSshUsers ensures that no value is present for SshUsers, not even an explicit nil
 ### GetDnsServers
 
 `func (o *AccessProfilesForProjectListDto) GetDnsServers() []DnsServerListDto`
@@ -284,16 +234,6 @@ SetDnsServers sets DnsServers field to given value.
 
 HasDnsServers returns a boolean if a field has been set.
 
-### SetDnsServersNil
-
-`func (o *AccessProfilesForProjectListDto) SetDnsServersNil(b bool)`
-
- SetDnsServersNil sets the value for DnsServers to be an explicit nil
-
-### UnsetDnsServers
-`func (o *AccessProfilesForProjectListDto) UnsetDnsServers()`
-
-UnsetDnsServers ensures that no value is present for DnsServers, not even an explicit nil
 ### GetNtpServers
 
 `func (o *AccessProfilesForProjectListDto) GetNtpServers() []NtpServerListDto`
@@ -319,16 +259,6 @@ SetNtpServers sets NtpServers field to given value.
 
 HasNtpServers returns a boolean if a field has been set.
 
-### SetNtpServersNil
-
-`func (o *AccessProfilesForProjectListDto) SetNtpServersNil(b bool)`
-
- SetNtpServersNil sets the value for NtpServers to be an explicit nil
-
-### UnsetNtpServers
-`func (o *AccessProfilesForProjectListDto) UnsetNtpServers()`
-
-UnsetNtpServers ensures that no value is present for NtpServers, not even an explicit nil
 ### GetAllowedHosts
 
 `func (o *AccessProfilesForProjectListDto) GetAllowedHosts() []AllowedHostListDto`
@@ -354,16 +284,6 @@ SetAllowedHosts sets AllowedHosts field to given value.
 
 HasAllowedHosts returns a boolean if a field has been set.
 
-### SetAllowedHostsNil
-
-`func (o *AccessProfilesForProjectListDto) SetAllowedHostsNil(b bool)`
-
- SetAllowedHostsNil sets the value for AllowedHosts to be an explicit nil
-
-### UnsetAllowedHosts
-`func (o *AccessProfilesForProjectListDto) UnsetAllowedHosts()`
-
-UnsetAllowedHosts ensures that no value is present for AllowedHosts, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

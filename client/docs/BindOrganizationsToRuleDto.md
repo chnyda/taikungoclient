@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **OrganizationId** | Pointer to **int32** |  | [optional] 
-**OrganizationName** | Pointer to **NullableString** |  | [optional] 
-**RuleDiscountRate** | Pointer to **NullableFloat64** |  | [optional] 
+**OrganizationName** | Pointer to **string** |  | [optional] 
+**RuleDiscountRate** | Pointer to **float64** |  | [optional] 
 **IsBound** | Pointer to **bool** |  | [optional] 
 
 ## Methods
@@ -78,16 +78,6 @@ SetOrganizationName sets OrganizationName field to given value.
 
 HasOrganizationName returns a boolean if a field has been set.
 
-### SetOrganizationNameNil
-
-`func (o *BindOrganizationsToRuleDto) SetOrganizationNameNil(b bool)`
-
- SetOrganizationNameNil sets the value for OrganizationName to be an explicit nil
-
-### UnsetOrganizationName
-`func (o *BindOrganizationsToRuleDto) UnsetOrganizationName()`
-
-UnsetOrganizationName ensures that no value is present for OrganizationName, not even an explicit nil
 ### GetRuleDiscountRate
 
 `func (o *BindOrganizationsToRuleDto) GetRuleDiscountRate() float64`
@@ -113,16 +103,6 @@ SetRuleDiscountRate sets RuleDiscountRate field to given value.
 
 HasRuleDiscountRate returns a boolean if a field has been set.
 
-### SetRuleDiscountRateNil
-
-`func (o *BindOrganizationsToRuleDto) SetRuleDiscountRateNil(b bool)`
-
- SetRuleDiscountRateNil sets the value for RuleDiscountRate to be an explicit nil
-
-### UnsetRuleDiscountRate
-`func (o *BindOrganizationsToRuleDto) UnsetRuleDiscountRate()`
-
-UnsetRuleDiscountRate ensures that no value is present for RuleDiscountRate, not even an explicit nil
 ### GetIsBound
 
 `func (o *BindOrganizationsToRuleDto) GetIsBound() bool`

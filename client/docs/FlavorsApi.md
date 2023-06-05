@@ -4,24 +4,24 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**FlavorsAwsInstanceTypes**](FlavorsApi.md#FlavorsAwsInstanceTypes) | **Get** /api/v1/flavors/aws/{cloudId} | 
-[**FlavorsAzureVmSizes**](FlavorsApi.md#FlavorsAzureVmSizes) | **Get** /api/v1/flavors/azure/{cloudId} | 
-[**FlavorsBindToProject**](FlavorsApi.md#FlavorsBindToProject) | **Get** /api/v1/flavors/bind | 
-[**FlavorsDropdownFlavors**](FlavorsApi.md#FlavorsDropdownFlavors) | **Get** /api/v1/flavors/credentials/dropdown/list | 
-[**FlavorsGoogleMachineTypes**](FlavorsApi.md#FlavorsGoogleMachineTypes) | **Get** /api/v1/flavors/google/{cloudId} | 
-[**FlavorsOpenstackFlavors**](FlavorsApi.md#FlavorsOpenstackFlavors) | **Get** /api/v1/flavors/openstack/{cloudId} | 
-[**FlavorsProxmoxFlavors**](FlavorsApi.md#FlavorsProxmoxFlavors) | **Get** /api/v1/flavors/proxmox/{cloudId} | 
-[**FlavorsSelectedFlavorsForProject**](FlavorsApi.md#FlavorsSelectedFlavorsForProject) | **Get** /api/v1/flavors/projects/list | 
-[**FlavorsTanzuFlavors**](FlavorsApi.md#FlavorsTanzuFlavors) | **Get** /api/v1/flavors/tanzu/{cloudId} | 
-[**FlavorsUnbindFromProject**](FlavorsApi.md#FlavorsUnbindFromProject) | **Get** /api/v1/flavors/unbind | 
+[**FlavorsAwsFlavors**](FlavorsApi.md#FlavorsAwsFlavors) | **Get** /api/v{v}/Flavors/aws/{cloudId} | Retrieve aws flavors
+[**FlavorsAzureFlavors**](FlavorsApi.md#FlavorsAzureFlavors) | **Get** /api/v{v}/Flavors/azure/{cloudId} | Retrieve azure flavors
+[**FlavorsBindToProject**](FlavorsApi.md#FlavorsBindToProject) | **Post** /api/v{v}/Flavors/bind | Bind flavors to project
+[**FlavorsDropdownRecordDtos**](FlavorsApi.md#FlavorsDropdownRecordDtos) | **Get** /api/v{v}/Flavors/credentials/dropdown/list | Retrieve cloud credentials dropdown list
+[**FlavorsGetSelectedFlavorsForProject**](FlavorsApi.md#FlavorsGetSelectedFlavorsForProject) | **Get** /api/v{v}/Flavors/projects/list | Retrieve selected flavors for projects
+[**FlavorsGoogleFlavors**](FlavorsApi.md#FlavorsGoogleFlavors) | **Get** /api/v{v}/Flavors/google/{cloudId} | Retrieve google flavors
+[**FlavorsOpenstackFlavors**](FlavorsApi.md#FlavorsOpenstackFlavors) | **Get** /api/v{v}/Flavors/openstack/{cloudId} | Retrieve openstack flavors
+[**FlavorsProxmoxFlavors**](FlavorsApi.md#FlavorsProxmoxFlavors) | **Get** /api/v{v}/Flavors/proxmox/{cloudId} | Retrieve proxmox flavors
+[**FlavorsTanzuFlavors**](FlavorsApi.md#FlavorsTanzuFlavors) | **Get** /api/v{v}/Flavors/tanzu/{cloudId} | Retrieve tanzu flavors
+[**FlavorsUnbindFromProject**](FlavorsApi.md#FlavorsUnbindFromProject) | **Post** /api/v{v}/Flavors/unbind | Unbind flavors from project
 
 
 
-## FlavorsAwsInstanceTypes
+## FlavorsAwsFlavors
 
-> AwsFlavorList FlavorsAwsInstanceTypes(ctx, cloudId).Limit(limit).Offset(offset).StartRam(startRam).EndRam(endRam).StartCpu(startCpu).EndCpu(endCpu).Search(search).SortBy(sortBy).SortDirection(sortDirection).Execute()
+> AwsFlavorList FlavorsAwsFlavors(ctx, cloudId, v).Offset(offset).Limit(limit).StartRam(startRam).EndRam(endRam).StartCpu(startCpu).EndCpu(endCpu).Search(search).SortBy(sortBy).SortDirection(sortDirection).Execute()
 
-
+Retrieve aws flavors
 
 ### Example
 
@@ -37,10 +37,11 @@ import (
 
 func main() {
     cloudId := int32(56) // int32 | 
-    limit := int32(56) // int32 |  (optional)
-    offset := int32(56) // int32 |  (optional)
-    startRam := "startRam_example" // string |  (optional)
-    endRam := "endRam_example" // string |  (optional)
+    v := "v_example" // string | 
+    offset := int32(56) // int32 | Skip elements (optional)
+    limit := int32(56) // int32 | Limits size (by default 50) (optional)
+    startRam := float64(1.2) // float64 |  (optional)
+    endRam := float64(1.2) // float64 |  (optional)
     startCpu := int32(56) // int32 |  (optional)
     endCpu := int32(56) // int32 |  (optional)
     search := "search_example" // string |  (optional)
@@ -49,13 +50,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FlavorsApi.FlavorsAwsInstanceTypes(context.Background(), cloudId).Limit(limit).Offset(offset).StartRam(startRam).EndRam(endRam).StartCpu(startCpu).EndCpu(endCpu).Search(search).SortBy(sortBy).SortDirection(sortDirection).Execute()
+    resp, r, err := apiClient.FlavorsApi.FlavorsAwsFlavors(context.Background(), cloudId, v).Offset(offset).Limit(limit).StartRam(startRam).EndRam(endRam).StartCpu(startCpu).EndCpu(endCpu).Search(search).SortBy(sortBy).SortDirection(sortDirection).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `FlavorsApi.FlavorsAwsInstanceTypes``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `FlavorsApi.FlavorsAwsFlavors``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FlavorsAwsInstanceTypes`: AwsFlavorList
-    fmt.Fprintf(os.Stdout, "Response from `FlavorsApi.FlavorsAwsInstanceTypes`: %v\n", resp)
+    // response from `FlavorsAwsFlavors`: AwsFlavorList
+    fmt.Fprintf(os.Stdout, "Response from `FlavorsApi.FlavorsAwsFlavors`: %v\n", resp)
 }
 ```
 
@@ -66,19 +67,21 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **cloudId** | **int32** |  | 
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiFlavorsAwsInstanceTypesRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiFlavorsAwsFlavorsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **limit** | **int32** |  | 
- **offset** | **int32** |  | 
- **startRam** | **string** |  | 
- **endRam** | **string** |  | 
+
+ **offset** | **int32** | Skip elements | 
+ **limit** | **int32** | Limits size (by default 50) | 
+ **startRam** | **float64** |  | 
+ **endRam** | **float64** |  | 
  **startCpu** | **int32** |  | 
  **endCpu** | **int32** |  | 
  **search** | **string** |  | 
@@ -96,18 +99,18 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## FlavorsAzureVmSizes
+## FlavorsAzureFlavors
 
-> AzureFlavorList FlavorsAzureVmSizes(ctx, cloudId).Limit(limit).Offset(offset).StartRam(startRam).EndRam(endRam).StartCpu(startCpu).EndCpu(endCpu).Search(search).SortBy(sortBy).SortDirection(sortDirection).Execute()
+> AzureFlavorList FlavorsAzureFlavors(ctx, cloudId, v).Offset(offset).Limit(limit).StartRam(startRam).EndRam(endRam).StartCpu(startCpu).EndCpu(endCpu).Search(search).SortBy(sortBy).SortDirection(sortDirection).Execute()
 
-
+Retrieve azure flavors
 
 ### Example
 
@@ -123,8 +126,9 @@ import (
 
 func main() {
     cloudId := int32(56) // int32 | 
-    limit := int32(56) // int32 |  (optional)
-    offset := int32(56) // int32 |  (optional)
+    v := "v_example" // string | 
+    offset := int32(56) // int32 | Skip elements (optional)
+    limit := int32(56) // int32 | Limits size (by default 50) (optional)
     startRam := int32(56) // int32 |  (optional)
     endRam := int32(56) // int32 |  (optional)
     startCpu := int32(56) // int32 |  (optional)
@@ -135,13 +139,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FlavorsApi.FlavorsAzureVmSizes(context.Background(), cloudId).Limit(limit).Offset(offset).StartRam(startRam).EndRam(endRam).StartCpu(startCpu).EndCpu(endCpu).Search(search).SortBy(sortBy).SortDirection(sortDirection).Execute()
+    resp, r, err := apiClient.FlavorsApi.FlavorsAzureFlavors(context.Background(), cloudId, v).Offset(offset).Limit(limit).StartRam(startRam).EndRam(endRam).StartCpu(startCpu).EndCpu(endCpu).Search(search).SortBy(sortBy).SortDirection(sortDirection).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `FlavorsApi.FlavorsAzureVmSizes``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `FlavorsApi.FlavorsAzureFlavors``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FlavorsAzureVmSizes`: AzureFlavorList
-    fmt.Fprintf(os.Stdout, "Response from `FlavorsApi.FlavorsAzureVmSizes`: %v\n", resp)
+    // response from `FlavorsAzureFlavors`: AzureFlavorList
+    fmt.Fprintf(os.Stdout, "Response from `FlavorsApi.FlavorsAzureFlavors`: %v\n", resp)
 }
 ```
 
@@ -152,17 +156,19 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **cloudId** | **int32** |  | 
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiFlavorsAzureVmSizesRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiFlavorsAzureFlavorsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **limit** | **int32** |  | 
- **offset** | **int32** |  | 
+
+ **offset** | **int32** | Skip elements | 
+ **limit** | **int32** | Limits size (by default 50) | 
  **startRam** | **int32** |  | 
  **endRam** | **int32** |  | 
  **startCpu** | **int32** |  | 
@@ -182,7 +188,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -191,9 +197,9 @@ Name | Type | Description  | Notes
 
 ## FlavorsBindToProject
 
-> FlavorsBindToProject(ctx).BindFlavorToProjectCommand(bindFlavorToProjectCommand).Execute()
+> FlavorsBindToProject(ctx, v).Body(body).Execute()
 
-
+Bind flavors to project
 
 ### Example
 
@@ -208,11 +214,12 @@ import (
 )
 
 func main() {
-    bindFlavorToProjectCommand := *openapiclient.NewBindFlavorToProjectCommand() // BindFlavorToProjectCommand |  (optional)
+    v := "v_example" // string | 
+    body := *openapiclient.NewBindFlavorToProjectCommand() // BindFlavorToProjectCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.FlavorsApi.FlavorsBindToProject(context.Background()).BindFlavorToProjectCommand(bindFlavorToProjectCommand).Execute()
+    r, err := apiClient.FlavorsApi.FlavorsBindToProject(context.Background(), v).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `FlavorsApi.FlavorsBindToProject``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -223,6 +230,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -231,7 +242,8 @@ Other parameters are passed through a pointer to a apiFlavorsBindToProjectReques
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **bindFlavorToProjectCommand** | [**BindFlavorToProjectCommand**](BindFlavorToProjectCommand.md) |  | 
+
+ **body** | [**BindFlavorToProjectCommand**](BindFlavorToProjectCommand.md) |  | 
 
 ### Return type
 
@@ -243,19 +255,19 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## FlavorsDropdownFlavors
+## FlavorsDropdownRecordDtos
 
-> []CloudCredentialsDropdownRecordDto FlavorsDropdownFlavors(ctx).OrganizationId(organizationId).FilterBy(filterBy).Search(search).Execute()
+> []CloudCredentialsDropdownRecordDto FlavorsDropdownRecordDtos(ctx, v).OrganizationId(organizationId).FilterBy(filterBy).Search(search).Execute()
 
-
+Retrieve cloud credentials dropdown list
 
 ### Example
 
@@ -270,33 +282,39 @@ import (
 )
 
 func main() {
+    v := "v_example" // string | 
     organizationId := int32(56) // int32 |  (optional)
     filterBy := "filterBy_example" // string |  (optional)
     search := "search_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FlavorsApi.FlavorsDropdownFlavors(context.Background()).OrganizationId(organizationId).FilterBy(filterBy).Search(search).Execute()
+    resp, r, err := apiClient.FlavorsApi.FlavorsDropdownRecordDtos(context.Background(), v).OrganizationId(organizationId).FilterBy(filterBy).Search(search).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `FlavorsApi.FlavorsDropdownFlavors``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `FlavorsApi.FlavorsDropdownRecordDtos``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FlavorsDropdownFlavors`: []CloudCredentialsDropdownRecordDto
-    fmt.Fprintf(os.Stdout, "Response from `FlavorsApi.FlavorsDropdownFlavors`: %v\n", resp)
+    // response from `FlavorsDropdownRecordDtos`: []CloudCredentialsDropdownRecordDto
+    fmt.Fprintf(os.Stdout, "Response from `FlavorsApi.FlavorsDropdownRecordDtos`: %v\n", resp)
 }
 ```
 
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiFlavorsDropdownFlavorsRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiFlavorsDropdownRecordDtosRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
  **organizationId** | **int32** |  | 
  **filterBy** | **string** |  | 
  **search** | **string** |  | 
@@ -312,18 +330,106 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## FlavorsGoogleMachineTypes
+## FlavorsGetSelectedFlavorsForProject
 
-> GoogleFlavorList FlavorsGoogleMachineTypes(ctx, cloudId).Limit(limit).Offset(offset).StartRam(startRam).EndRam(endRam).StartCpu(startCpu).EndCpu(endCpu).Search(search).SortBy(sortBy).SortDirection(sortDirection).Execute()
+> BoundFlavorsForProjectsList FlavorsGetSelectedFlavorsForProject(ctx, v).Limit(limit).Offset(offset).ProjectId(projectId).SortBy(sortBy).SortDirection(sortDirection).Search(search).FilterBy(filterBy).OrganizationId(organizationId).FlavorName(flavorName).WithPrice(withPrice).Execute()
+
+Retrieve selected flavors for projects
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/chnyda/taikungoclient"
+)
+
+func main() {
+    v := "v_example" // string | 
+    limit := int32(56) // int32 |  (optional)
+    offset := int32(56) // int32 |  (optional)
+    projectId := int32(56) // int32 |  (optional)
+    sortBy := "sortBy_example" // string |  (optional)
+    sortDirection := "sortDirection_example" // string |  (optional)
+    search := "search_example" // string |  (optional)
+    filterBy := "filterBy_example" // string |  (optional)
+    organizationId := int32(56) // int32 |  (optional)
+    flavorName := "flavorName_example" // string |  (optional)
+    withPrice := true // bool |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.FlavorsApi.FlavorsGetSelectedFlavorsForProject(context.Background(), v).Limit(limit).Offset(offset).ProjectId(projectId).SortBy(sortBy).SortDirection(sortDirection).Search(search).FilterBy(filterBy).OrganizationId(organizationId).FlavorName(flavorName).WithPrice(withPrice).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `FlavorsApi.FlavorsGetSelectedFlavorsForProject``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `FlavorsGetSelectedFlavorsForProject`: BoundFlavorsForProjectsList
+    fmt.Fprintf(os.Stdout, "Response from `FlavorsApi.FlavorsGetSelectedFlavorsForProject`: %v\n", resp)
+}
+```
+
+### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiFlavorsGetSelectedFlavorsForProjectRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **limit** | **int32** |  | 
+ **offset** | **int32** |  | 
+ **projectId** | **int32** |  | 
+ **sortBy** | **string** |  | 
+ **sortDirection** | **string** |  | 
+ **search** | **string** |  | 
+ **filterBy** | **string** |  | 
+ **organizationId** | **int32** |  | 
+ **flavorName** | **string** |  | 
+ **withPrice** | **bool** |  | 
+
+### Return type
+
+[**BoundFlavorsForProjectsList**](BoundFlavorsForProjectsList.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: text/plain, application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## FlavorsGoogleFlavors
+
+> GoogleFlavorList FlavorsGoogleFlavors(ctx, cloudId, v).Offset(offset).Limit(limit).StartRam(startRam).EndRam(endRam).StartCpu(startCpu).EndCpu(endCpu).Search(search).SortBy(sortBy).SortDirection(sortDirection).Execute()
+
+Retrieve google flavors
 
 ### Example
 
@@ -339,10 +445,11 @@ import (
 
 func main() {
     cloudId := int32(56) // int32 | 
-    limit := int32(56) // int32 |  (optional)
-    offset := int32(56) // int32 |  (optional)
-    startRam := "startRam_example" // string |  (optional)
-    endRam := "endRam_example" // string |  (optional)
+    v := "v_example" // string | 
+    offset := int32(56) // int32 | Skip elements (optional)
+    limit := int32(56) // int32 | Limits size (by default 50) (optional)
+    startRam := float64(1.2) // float64 |  (optional)
+    endRam := float64(1.2) // float64 |  (optional)
     startCpu := int32(56) // int32 |  (optional)
     endCpu := int32(56) // int32 |  (optional)
     search := "search_example" // string |  (optional)
@@ -351,13 +458,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FlavorsApi.FlavorsGoogleMachineTypes(context.Background(), cloudId).Limit(limit).Offset(offset).StartRam(startRam).EndRam(endRam).StartCpu(startCpu).EndCpu(endCpu).Search(search).SortBy(sortBy).SortDirection(sortDirection).Execute()
+    resp, r, err := apiClient.FlavorsApi.FlavorsGoogleFlavors(context.Background(), cloudId, v).Offset(offset).Limit(limit).StartRam(startRam).EndRam(endRam).StartCpu(startCpu).EndCpu(endCpu).Search(search).SortBy(sortBy).SortDirection(sortDirection).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `FlavorsApi.FlavorsGoogleMachineTypes``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `FlavorsApi.FlavorsGoogleFlavors``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FlavorsGoogleMachineTypes`: GoogleFlavorList
-    fmt.Fprintf(os.Stdout, "Response from `FlavorsApi.FlavorsGoogleMachineTypes`: %v\n", resp)
+    // response from `FlavorsGoogleFlavors`: GoogleFlavorList
+    fmt.Fprintf(os.Stdout, "Response from `FlavorsApi.FlavorsGoogleFlavors`: %v\n", resp)
 }
 ```
 
@@ -368,19 +475,21 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **cloudId** | **int32** |  | 
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiFlavorsGoogleMachineTypesRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiFlavorsGoogleFlavorsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **limit** | **int32** |  | 
- **offset** | **int32** |  | 
- **startRam** | **string** |  | 
- **endRam** | **string** |  | 
+
+ **offset** | **int32** | Skip elements | 
+ **limit** | **int32** | Limits size (by default 50) | 
+ **startRam** | **float64** |  | 
+ **endRam** | **float64** |  | 
  **startCpu** | **int32** |  | 
  **endCpu** | **int32** |  | 
  **search** | **string** |  | 
@@ -398,7 +507,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -407,9 +516,9 @@ Name | Type | Description  | Notes
 
 ## FlavorsOpenstackFlavors
 
-> OpenstackFlavorList FlavorsOpenstackFlavors(ctx, cloudId).Limit(limit).Offset(offset).StartRam(startRam).EndRam(endRam).StartCpu(startCpu).EndCpu(endCpu).Search(search).SortBy(sortBy).SortDirection(sortDirection).Execute()
+> OpenstackFlavorList FlavorsOpenstackFlavors(ctx, cloudId, v).Offset(offset).Limit(limit).StartRam(startRam).EndRam(endRam).StartCpu(startCpu).EndCpu(endCpu).Search(search).SortBy(sortBy).SortDirection(sortDirection).Execute()
 
-
+Retrieve openstack flavors
 
 ### Example
 
@@ -425,10 +534,11 @@ import (
 
 func main() {
     cloudId := int32(56) // int32 | 
-    limit := int32(56) // int32 |  (optional)
-    offset := int32(56) // int32 |  (optional)
-    startRam := "startRam_example" // string |  (optional)
-    endRam := "endRam_example" // string |  (optional)
+    v := "v_example" // string | 
+    offset := int32(56) // int32 | Skip elements (optional)
+    limit := int32(56) // int32 | Limits size (by default 50) (optional)
+    startRam := float64(1.2) // float64 |  (optional)
+    endRam := float64(1.2) // float64 |  (optional)
     startCpu := int32(56) // int32 |  (optional)
     endCpu := int32(56) // int32 |  (optional)
     search := "search_example" // string |  (optional)
@@ -437,7 +547,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FlavorsApi.FlavorsOpenstackFlavors(context.Background(), cloudId).Limit(limit).Offset(offset).StartRam(startRam).EndRam(endRam).StartCpu(startCpu).EndCpu(endCpu).Search(search).SortBy(sortBy).SortDirection(sortDirection).Execute()
+    resp, r, err := apiClient.FlavorsApi.FlavorsOpenstackFlavors(context.Background(), cloudId, v).Offset(offset).Limit(limit).StartRam(startRam).EndRam(endRam).StartCpu(startCpu).EndCpu(endCpu).Search(search).SortBy(sortBy).SortDirection(sortDirection).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `FlavorsApi.FlavorsOpenstackFlavors``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -454,6 +564,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **cloudId** | **int32** |  | 
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -463,10 +574,11 @@ Other parameters are passed through a pointer to a apiFlavorsOpenstackFlavorsReq
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **limit** | **int32** |  | 
- **offset** | **int32** |  | 
- **startRam** | **string** |  | 
- **endRam** | **string** |  | 
+
+ **offset** | **int32** | Skip elements | 
+ **limit** | **int32** | Limits size (by default 50) | 
+ **startRam** | **float64** |  | 
+ **endRam** | **float64** |  | 
  **startCpu** | **int32** |  | 
  **endCpu** | **int32** |  | 
  **search** | **string** |  | 
@@ -484,7 +596,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -493,9 +605,9 @@ Name | Type | Description  | Notes
 
 ## FlavorsProxmoxFlavors
 
-> ProxmoxFlavorList FlavorsProxmoxFlavors(ctx, cloudId).Limit(limit).Offset(offset).StartRam(startRam).EndRam(endRam).StartCpu(startCpu).EndCpu(endCpu).Search(search).SortBy(sortBy).SortDirection(sortDirection).Execute()
+> ProxmoxFlavorList FlavorsProxmoxFlavors(ctx, cloudId, v).Limit(limit).Offset(offset).StartRam(startRam).EndRam(endRam).StartCpu(startCpu).EndCpu(endCpu).Search(search).SortBy(sortBy).SortDirection(sortDirection).Execute()
 
-
+Retrieve proxmox flavors
 
 ### Example
 
@@ -511,10 +623,11 @@ import (
 
 func main() {
     cloudId := int32(56) // int32 | 
-    limit := int32(56) // int32 |  (optional)
-    offset := int32(56) // int32 |  (optional)
-    startRam := int32(56) // int32 |  (optional)
-    endRam := int32(56) // int32 |  (optional)
+    v := "v_example" // string | 
+    limit := int32(56) // int32 | Limits size (by default 50) (optional)
+    offset := int32(56) // int32 | Skip elements (optional)
+    startRam := int64(789) // int64 |  (optional)
+    endRam := int64(789) // int64 |  (optional)
     startCpu := int32(56) // int32 |  (optional)
     endCpu := int32(56) // int32 |  (optional)
     search := "search_example" // string |  (optional)
@@ -523,7 +636,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FlavorsApi.FlavorsProxmoxFlavors(context.Background(), cloudId).Limit(limit).Offset(offset).StartRam(startRam).EndRam(endRam).StartCpu(startCpu).EndCpu(endCpu).Search(search).SortBy(sortBy).SortDirection(sortDirection).Execute()
+    resp, r, err := apiClient.FlavorsApi.FlavorsProxmoxFlavors(context.Background(), cloudId, v).Limit(limit).Offset(offset).StartRam(startRam).EndRam(endRam).StartCpu(startCpu).EndCpu(endCpu).Search(search).SortBy(sortBy).SortDirection(sortDirection).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `FlavorsApi.FlavorsProxmoxFlavors``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -540,6 +653,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **cloudId** | **int32** |  | 
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -549,10 +663,11 @@ Other parameters are passed through a pointer to a apiFlavorsProxmoxFlavorsReque
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **limit** | **int32** |  | 
- **offset** | **int32** |  | 
- **startRam** | **int32** |  | 
- **endRam** | **int32** |  | 
+
+ **limit** | **int32** | Limits size (by default 50) | 
+ **offset** | **int32** | Skip elements | 
+ **startRam** | **int64** |  | 
+ **endRam** | **int64** |  | 
  **startCpu** | **int32** |  | 
  **endCpu** | **int32** |  | 
  **search** | **string** |  | 
@@ -570,89 +685,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## FlavorsSelectedFlavorsForProject
-
-> BoundFlavorsForProjectsList FlavorsSelectedFlavorsForProject(ctx).WithPrice(withPrice).Limit(limit).Offset(offset).ProjectId(projectId).SortBy(sortBy).SortDirection(sortDirection).Search(search).FilterBy(filterBy).OrganizationId(organizationId).FlavorName(flavorName).Execute()
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/chnyda/taikungoclient"
-)
-
-func main() {
-    withPrice := true // bool | 
-    limit := int32(56) // int32 |  (optional)
-    offset := int32(56) // int32 |  (optional)
-    projectId := int32(56) // int32 |  (optional)
-    sortBy := "sortBy_example" // string |  (optional)
-    sortDirection := "sortDirection_example" // string |  (optional)
-    search := "search_example" // string |  (optional)
-    filterBy := "filterBy_example" // string |  (optional)
-    organizationId := int32(56) // int32 |  (optional)
-    flavorName := "flavorName_example" // string |  (optional)
-
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FlavorsApi.FlavorsSelectedFlavorsForProject(context.Background()).WithPrice(withPrice).Limit(limit).Offset(offset).ProjectId(projectId).SortBy(sortBy).SortDirection(sortDirection).Search(search).FilterBy(filterBy).OrganizationId(organizationId).FlavorName(flavorName).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `FlavorsApi.FlavorsSelectedFlavorsForProject``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `FlavorsSelectedFlavorsForProject`: BoundFlavorsForProjectsList
-    fmt.Fprintf(os.Stdout, "Response from `FlavorsApi.FlavorsSelectedFlavorsForProject`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiFlavorsSelectedFlavorsForProjectRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **withPrice** | **bool** |  | 
- **limit** | **int32** |  | 
- **offset** | **int32** |  | 
- **projectId** | **int32** |  | 
- **sortBy** | **string** |  | 
- **sortDirection** | **string** |  | 
- **search** | **string** |  | 
- **filterBy** | **string** |  | 
- **organizationId** | **int32** |  | 
- **flavorName** | **string** |  | 
-
-### Return type
-
-[**BoundFlavorsForProjectsList**](BoundFlavorsForProjectsList.md)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -661,9 +694,9 @@ Name | Type | Description  | Notes
 
 ## FlavorsTanzuFlavors
 
-> TanzuFlavorList FlavorsTanzuFlavors(ctx, cloudId).Limit(limit).Offset(offset).StartRam(startRam).EndRam(endRam).StartCpu(startCpu).EndCpu(endCpu).Search(search).SortBy(sortBy).SortDirection(sortDirection).Execute()
+> TanzuFlavorList FlavorsTanzuFlavors(ctx, cloudId, v).Offset(offset).Limit(limit).StartRam(startRam).EndRam(endRam).StartCpu(startCpu).EndCpu(endCpu).Search(search).SortBy(sortBy).SortDirection(sortDirection).Execute()
 
-
+Retrieve tanzu flavors
 
 ### Example
 
@@ -679,10 +712,11 @@ import (
 
 func main() {
     cloudId := int32(56) // int32 | 
-    limit := int32(56) // int32 |  (optional)
-    offset := int32(56) // int32 |  (optional)
-    startRam := int64(789) // int64 |  (optional)
-    endRam := int64(789) // int64 |  (optional)
+    v := "v_example" // string | 
+    offset := int32(56) // int32 | Skip elements (optional)
+    limit := int32(56) // int32 | Limits size (by default 50) (optional)
+    startRam := int32(56) // int32 |  (optional)
+    endRam := int32(56) // int32 |  (optional)
     startCpu := int32(56) // int32 |  (optional)
     endCpu := int32(56) // int32 |  (optional)
     search := "search_example" // string |  (optional)
@@ -691,7 +725,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FlavorsApi.FlavorsTanzuFlavors(context.Background(), cloudId).Limit(limit).Offset(offset).StartRam(startRam).EndRam(endRam).StartCpu(startCpu).EndCpu(endCpu).Search(search).SortBy(sortBy).SortDirection(sortDirection).Execute()
+    resp, r, err := apiClient.FlavorsApi.FlavorsTanzuFlavors(context.Background(), cloudId, v).Offset(offset).Limit(limit).StartRam(startRam).EndRam(endRam).StartCpu(startCpu).EndCpu(endCpu).Search(search).SortBy(sortBy).SortDirection(sortDirection).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `FlavorsApi.FlavorsTanzuFlavors``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -708,6 +742,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **cloudId** | **int32** |  | 
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -717,10 +752,11 @@ Other parameters are passed through a pointer to a apiFlavorsTanzuFlavorsRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **limit** | **int32** |  | 
- **offset** | **int32** |  | 
- **startRam** | **int64** |  | 
- **endRam** | **int64** |  | 
+
+ **offset** | **int32** | Skip elements | 
+ **limit** | **int32** | Limits size (by default 50) | 
+ **startRam** | **int32** |  | 
+ **endRam** | **int32** |  | 
  **startCpu** | **int32** |  | 
  **endCpu** | **int32** |  | 
  **search** | **string** |  | 
@@ -738,7 +774,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -747,9 +783,9 @@ Name | Type | Description  | Notes
 
 ## FlavorsUnbindFromProject
 
-> FlavorsUnbindFromProject(ctx).UnbindFlavorFromProjectCommand(unbindFlavorFromProjectCommand).Execute()
+> FlavorsUnbindFromProject(ctx, v).Body(body).Execute()
 
-
+Unbind flavors from project
 
 ### Example
 
@@ -764,11 +800,12 @@ import (
 )
 
 func main() {
-    unbindFlavorFromProjectCommand := *openapiclient.NewUnbindFlavorFromProjectCommand() // UnbindFlavorFromProjectCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewUnbindFlavorFromProjectCommand() // UnbindFlavorFromProjectCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.FlavorsApi.FlavorsUnbindFromProject(context.Background()).UnbindFlavorFromProjectCommand(unbindFlavorFromProjectCommand).Execute()
+    r, err := apiClient.FlavorsApi.FlavorsUnbindFromProject(context.Background(), v).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `FlavorsApi.FlavorsUnbindFromProject``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -779,6 +816,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -787,7 +828,8 @@ Other parameters are passed through a pointer to a apiFlavorsUnbindFromProjectRe
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **unbindFlavorFromProjectCommand** | [**UnbindFlavorFromProjectCommand**](UnbindFlavorFromProjectCommand.md) |  | 
+
+ **body** | [**UnbindFlavorFromProjectCommand**](UnbindFlavorFromProjectCommand.md) |  | 
 
 ### Return type
 
@@ -799,8 +841,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

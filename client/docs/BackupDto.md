@@ -51,16 +51,6 @@ SetIncludedNamespace sets IncludedNamespace field to given value.
 
 HasIncludedNamespace returns a boolean if a field has been set.
 
-### SetIncludedNamespaceNil
-
-`func (o *BackupDto) SetIncludedNamespaceNil(b bool)`
-
- SetIncludedNamespaceNil sets the value for IncludedNamespace to be an explicit nil
-
-### UnsetIncludedNamespace
-`func (o *BackupDto) UnsetIncludedNamespace()`
-
-UnsetIncludedNamespace ensures that no value is present for IncludedNamespace, not even an explicit nil
 ### GetExcludedNamespace
 
 `func (o *BackupDto) GetExcludedNamespace() []string`
@@ -86,16 +76,6 @@ SetExcludedNamespace sets ExcludedNamespace field to given value.
 
 HasExcludedNamespace returns a boolean if a field has been set.
 
-### SetExcludedNamespaceNil
-
-`func (o *BackupDto) SetExcludedNamespaceNil(b bool)`
-
- SetExcludedNamespaceNil sets the value for ExcludedNamespace to be an explicit nil
-
-### UnsetExcludedNamespace
-`func (o *BackupDto) UnsetExcludedNamespace()`
-
-UnsetExcludedNamespace ensures that no value is present for ExcludedNamespace, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

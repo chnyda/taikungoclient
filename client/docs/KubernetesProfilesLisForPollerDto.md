@@ -5,17 +5,17 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
-**OrganizationId** | Pointer to **NullableInt32** |  | [optional] 
-**OrganizationName** | Pointer to **NullableString** |  | [optional] 
-**Cni** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**OrganizationId** | Pointer to **int32** |  | [optional] 
+**OrganizationName** | Pointer to **string** |  | [optional] 
+**Cni** | Pointer to **string** |  | [optional] 
 **OctaviaEnabled** | Pointer to **bool** |  | [optional] 
 **ExposeNodePortOnBastion** | Pointer to **bool** |  | [optional] 
 **IsLocked** | Pointer to **bool** |  | [optional] 
 **TaikunLBEnabled** | Pointer to **bool** |  | [optional] 
 **AllowSchedulingOnMaster** | Pointer to **bool** |  | [optional] 
 **UniqueClusterName** | Pointer to **bool** |  | [optional] 
-**ProxmoxStorage** | Pointer to **NullableString** |  | [optional] 
+**ProxmoxStorage** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -86,16 +86,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *KubernetesProfilesLisForPollerDto) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *KubernetesProfilesLisForPollerDto) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetOrganizationId
 
 `func (o *KubernetesProfilesLisForPollerDto) GetOrganizationId() int32`
@@ -121,16 +111,6 @@ SetOrganizationId sets OrganizationId field to given value.
 
 HasOrganizationId returns a boolean if a field has been set.
 
-### SetOrganizationIdNil
-
-`func (o *KubernetesProfilesLisForPollerDto) SetOrganizationIdNil(b bool)`
-
- SetOrganizationIdNil sets the value for OrganizationId to be an explicit nil
-
-### UnsetOrganizationId
-`func (o *KubernetesProfilesLisForPollerDto) UnsetOrganizationId()`
-
-UnsetOrganizationId ensures that no value is present for OrganizationId, not even an explicit nil
 ### GetOrganizationName
 
 `func (o *KubernetesProfilesLisForPollerDto) GetOrganizationName() string`
@@ -156,16 +136,6 @@ SetOrganizationName sets OrganizationName field to given value.
 
 HasOrganizationName returns a boolean if a field has been set.
 
-### SetOrganizationNameNil
-
-`func (o *KubernetesProfilesLisForPollerDto) SetOrganizationNameNil(b bool)`
-
- SetOrganizationNameNil sets the value for OrganizationName to be an explicit nil
-
-### UnsetOrganizationName
-`func (o *KubernetesProfilesLisForPollerDto) UnsetOrganizationName()`
-
-UnsetOrganizationName ensures that no value is present for OrganizationName, not even an explicit nil
 ### GetCni
 
 `func (o *KubernetesProfilesLisForPollerDto) GetCni() string`
@@ -191,16 +161,6 @@ SetCni sets Cni field to given value.
 
 HasCni returns a boolean if a field has been set.
 
-### SetCniNil
-
-`func (o *KubernetesProfilesLisForPollerDto) SetCniNil(b bool)`
-
- SetCniNil sets the value for Cni to be an explicit nil
-
-### UnsetCni
-`func (o *KubernetesProfilesLisForPollerDto) UnsetCni()`
-
-UnsetCni ensures that no value is present for Cni, not even an explicit nil
 ### GetOctaviaEnabled
 
 `func (o *KubernetesProfilesLisForPollerDto) GetOctaviaEnabled() bool`
@@ -376,16 +336,6 @@ SetProxmoxStorage sets ProxmoxStorage field to given value.
 
 HasProxmoxStorage returns a boolean if a field has been set.
 
-### SetProxmoxStorageNil
-
-`func (o *KubernetesProfilesLisForPollerDto) SetProxmoxStorageNil(b bool)`
-
- SetProxmoxStorageNil sets the value for ProxmoxStorage to be an explicit nil
-
-### UnsetProxmoxStorage
-`func (o *KubernetesProfilesLisForPollerDto) UnsetProxmoxStorage()`
-
-UnsetProxmoxStorage ensures that no value is present for ProxmoxStorage, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -20,22 +20,22 @@ var _ MappedNullable = &CreateStandAloneVmCommand{}
 
 // CreateStandAloneVmCommand struct for CreateStandAloneVmCommand
 type CreateStandAloneVmCommand struct {
-	Name string `json:"name"`
+	Name *string `json:"name,omitempty"`
 	FlavorName string `json:"flavorName"`
 	VolumeSize *int64 `json:"volumeSize,omitempty"`
-	VolumeType NullableString `json:"volumeType,omitempty"`
-	Username NullableString `json:"username,omitempty"`
-	Password NullableString `json:"password,omitempty"`
+	VolumeType *string `json:"volumeType,omitempty"`
+	Username *string `json:"username,omitempty"`
+	Password *string `json:"password,omitempty"`
 	PublicIpEnabled *bool `json:"publicIpEnabled,omitempty"`
 	Image string `json:"image"`
-	CloudInit NullableString `json:"cloudInit,omitempty"`
+	CloudInit *string `json:"cloudInit,omitempty"`
 	StandAloneProfileId int32 `json:"standAloneProfileId"`
 	ProjectId int32 `json:"projectId"`
 	Count *int32 `json:"count,omitempty"`
-	SpotPrice NullableFloat64 `json:"spotPrice,omitempty"`
+	SpotPrice *float64 `json:"spotPrice,omitempty"`
 	SpotInstance *bool `json:"spotInstance,omitempty"`
-	AvailabilityZone NullableString `json:"availabilityZone,omitempty"`
-	Hypervisor NullableString `json:"hypervisor,omitempty"`
+	AvailabilityZone *string `json:"availabilityZone,omitempty"`
+	Hypervisor *string `json:"hypervisor,omitempty"`
 	StandAloneVmDisks []StandAloneVmDiskDto `json:"standAloneVmDisks,omitempty"`
 	StandAloneMetaDatas []StandAloneMetaDataDto `json:"standAloneMetaDatas,omitempty"`
 }
@@ -44,9 +44,8 @@ type CreateStandAloneVmCommand struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateStandAloneVmCommand(name string, flavorName string, image string, standAloneProfileId int32, projectId int32) *CreateStandAloneVmCommand {
+func NewCreateStandAloneVmCommand(flavorName string, image string, standAloneProfileId int32, projectId int32) *CreateStandAloneVmCommand {
 	this := CreateStandAloneVmCommand{}
-	this.Name = name
 	this.FlavorName = flavorName
 	this.Image = image
 	this.StandAloneProfileId = standAloneProfileId
@@ -62,28 +61,36 @@ func NewCreateStandAloneVmCommandWithDefaults() *CreateStandAloneVmCommand {
 	return &this
 }
 
-// GetName returns the Name field value
+// GetName returns the Name field value if set, zero value otherwise.
 func (o *CreateStandAloneVmCommand) GetName() string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
-
-	return o.Name
+	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateStandAloneVmCommand) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
-	return &o.Name, true
+	return o.Name, true
 }
 
-// SetName sets field value
+// HasName returns a boolean if a field has been set.
+func (o *CreateStandAloneVmCommand) HasName() bool {
+	if o != nil && !IsNil(o.Name) {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
 func (o *CreateStandAloneVmCommand) SetName(v string) {
-	o.Name = v
+	o.Name = &v
 }
 
 // GetFlavorName returns the FlavorName field value
@@ -142,130 +149,100 @@ func (o *CreateStandAloneVmCommand) SetVolumeSize(v int64) {
 	o.VolumeSize = &v
 }
 
-// GetVolumeType returns the VolumeType field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetVolumeType returns the VolumeType field value if set, zero value otherwise.
 func (o *CreateStandAloneVmCommand) GetVolumeType() string {
-	if o == nil || IsNil(o.VolumeType.Get()) {
+	if o == nil || IsNil(o.VolumeType) {
 		var ret string
 		return ret
 	}
-	return *o.VolumeType.Get()
+	return *o.VolumeType
 }
 
 // GetVolumeTypeOk returns a tuple with the VolumeType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateStandAloneVmCommand) GetVolumeTypeOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.VolumeType) {
 		return nil, false
 	}
-	return o.VolumeType.Get(), o.VolumeType.IsSet()
+	return o.VolumeType, true
 }
 
 // HasVolumeType returns a boolean if a field has been set.
 func (o *CreateStandAloneVmCommand) HasVolumeType() bool {
-	if o != nil && o.VolumeType.IsSet() {
+	if o != nil && !IsNil(o.VolumeType) {
 		return true
 	}
 
 	return false
 }
 
-// SetVolumeType gets a reference to the given NullableString and assigns it to the VolumeType field.
+// SetVolumeType gets a reference to the given string and assigns it to the VolumeType field.
 func (o *CreateStandAloneVmCommand) SetVolumeType(v string) {
-	o.VolumeType.Set(&v)
-}
-// SetVolumeTypeNil sets the value for VolumeType to be an explicit nil
-func (o *CreateStandAloneVmCommand) SetVolumeTypeNil() {
-	o.VolumeType.Set(nil)
+	o.VolumeType = &v
 }
 
-// UnsetVolumeType ensures that no value is present for VolumeType, not even an explicit nil
-func (o *CreateStandAloneVmCommand) UnsetVolumeType() {
-	o.VolumeType.Unset()
-}
-
-// GetUsername returns the Username field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetUsername returns the Username field value if set, zero value otherwise.
 func (o *CreateStandAloneVmCommand) GetUsername() string {
-	if o == nil || IsNil(o.Username.Get()) {
+	if o == nil || IsNil(o.Username) {
 		var ret string
 		return ret
 	}
-	return *o.Username.Get()
+	return *o.Username
 }
 
 // GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateStandAloneVmCommand) GetUsernameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Username) {
 		return nil, false
 	}
-	return o.Username.Get(), o.Username.IsSet()
+	return o.Username, true
 }
 
 // HasUsername returns a boolean if a field has been set.
 func (o *CreateStandAloneVmCommand) HasUsername() bool {
-	if o != nil && o.Username.IsSet() {
+	if o != nil && !IsNil(o.Username) {
 		return true
 	}
 
 	return false
 }
 
-// SetUsername gets a reference to the given NullableString and assigns it to the Username field.
+// SetUsername gets a reference to the given string and assigns it to the Username field.
 func (o *CreateStandAloneVmCommand) SetUsername(v string) {
-	o.Username.Set(&v)
-}
-// SetUsernameNil sets the value for Username to be an explicit nil
-func (o *CreateStandAloneVmCommand) SetUsernameNil() {
-	o.Username.Set(nil)
+	o.Username = &v
 }
 
-// UnsetUsername ensures that no value is present for Username, not even an explicit nil
-func (o *CreateStandAloneVmCommand) UnsetUsername() {
-	o.Username.Unset()
-}
-
-// GetPassword returns the Password field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetPassword returns the Password field value if set, zero value otherwise.
 func (o *CreateStandAloneVmCommand) GetPassword() string {
-	if o == nil || IsNil(o.Password.Get()) {
+	if o == nil || IsNil(o.Password) {
 		var ret string
 		return ret
 	}
-	return *o.Password.Get()
+	return *o.Password
 }
 
 // GetPasswordOk returns a tuple with the Password field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateStandAloneVmCommand) GetPasswordOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Password) {
 		return nil, false
 	}
-	return o.Password.Get(), o.Password.IsSet()
+	return o.Password, true
 }
 
 // HasPassword returns a boolean if a field has been set.
 func (o *CreateStandAloneVmCommand) HasPassword() bool {
-	if o != nil && o.Password.IsSet() {
+	if o != nil && !IsNil(o.Password) {
 		return true
 	}
 
 	return false
 }
 
-// SetPassword gets a reference to the given NullableString and assigns it to the Password field.
+// SetPassword gets a reference to the given string and assigns it to the Password field.
 func (o *CreateStandAloneVmCommand) SetPassword(v string) {
-	o.Password.Set(&v)
-}
-// SetPasswordNil sets the value for Password to be an explicit nil
-func (o *CreateStandAloneVmCommand) SetPasswordNil() {
-	o.Password.Set(nil)
-}
-
-// UnsetPassword ensures that no value is present for Password, not even an explicit nil
-func (o *CreateStandAloneVmCommand) UnsetPassword() {
-	o.Password.Unset()
+	o.Password = &v
 }
 
 // GetPublicIpEnabled returns the PublicIpEnabled field value if set, zero value otherwise.
@@ -324,46 +301,36 @@ func (o *CreateStandAloneVmCommand) SetImage(v string) {
 	o.Image = v
 }
 
-// GetCloudInit returns the CloudInit field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetCloudInit returns the CloudInit field value if set, zero value otherwise.
 func (o *CreateStandAloneVmCommand) GetCloudInit() string {
-	if o == nil || IsNil(o.CloudInit.Get()) {
+	if o == nil || IsNil(o.CloudInit) {
 		var ret string
 		return ret
 	}
-	return *o.CloudInit.Get()
+	return *o.CloudInit
 }
 
 // GetCloudInitOk returns a tuple with the CloudInit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateStandAloneVmCommand) GetCloudInitOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CloudInit) {
 		return nil, false
 	}
-	return o.CloudInit.Get(), o.CloudInit.IsSet()
+	return o.CloudInit, true
 }
 
 // HasCloudInit returns a boolean if a field has been set.
 func (o *CreateStandAloneVmCommand) HasCloudInit() bool {
-	if o != nil && o.CloudInit.IsSet() {
+	if o != nil && !IsNil(o.CloudInit) {
 		return true
 	}
 
 	return false
 }
 
-// SetCloudInit gets a reference to the given NullableString and assigns it to the CloudInit field.
+// SetCloudInit gets a reference to the given string and assigns it to the CloudInit field.
 func (o *CreateStandAloneVmCommand) SetCloudInit(v string) {
-	o.CloudInit.Set(&v)
-}
-// SetCloudInitNil sets the value for CloudInit to be an explicit nil
-func (o *CreateStandAloneVmCommand) SetCloudInitNil() {
-	o.CloudInit.Set(nil)
-}
-
-// UnsetCloudInit ensures that no value is present for CloudInit, not even an explicit nil
-func (o *CreateStandAloneVmCommand) UnsetCloudInit() {
-	o.CloudInit.Unset()
+	o.CloudInit = &v
 }
 
 // GetStandAloneProfileId returns the StandAloneProfileId field value
@@ -446,46 +413,36 @@ func (o *CreateStandAloneVmCommand) SetCount(v int32) {
 	o.Count = &v
 }
 
-// GetSpotPrice returns the SpotPrice field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetSpotPrice returns the SpotPrice field value if set, zero value otherwise.
 func (o *CreateStandAloneVmCommand) GetSpotPrice() float64 {
-	if o == nil || IsNil(o.SpotPrice.Get()) {
+	if o == nil || IsNil(o.SpotPrice) {
 		var ret float64
 		return ret
 	}
-	return *o.SpotPrice.Get()
+	return *o.SpotPrice
 }
 
 // GetSpotPriceOk returns a tuple with the SpotPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateStandAloneVmCommand) GetSpotPriceOk() (*float64, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.SpotPrice) {
 		return nil, false
 	}
-	return o.SpotPrice.Get(), o.SpotPrice.IsSet()
+	return o.SpotPrice, true
 }
 
 // HasSpotPrice returns a boolean if a field has been set.
 func (o *CreateStandAloneVmCommand) HasSpotPrice() bool {
-	if o != nil && o.SpotPrice.IsSet() {
+	if o != nil && !IsNil(o.SpotPrice) {
 		return true
 	}
 
 	return false
 }
 
-// SetSpotPrice gets a reference to the given NullableFloat64 and assigns it to the SpotPrice field.
+// SetSpotPrice gets a reference to the given float64 and assigns it to the SpotPrice field.
 func (o *CreateStandAloneVmCommand) SetSpotPrice(v float64) {
-	o.SpotPrice.Set(&v)
-}
-// SetSpotPriceNil sets the value for SpotPrice to be an explicit nil
-func (o *CreateStandAloneVmCommand) SetSpotPriceNil() {
-	o.SpotPrice.Set(nil)
-}
-
-// UnsetSpotPrice ensures that no value is present for SpotPrice, not even an explicit nil
-func (o *CreateStandAloneVmCommand) UnsetSpotPrice() {
-	o.SpotPrice.Unset()
+	o.SpotPrice = &v
 }
 
 // GetSpotInstance returns the SpotInstance field value if set, zero value otherwise.
@@ -520,93 +477,73 @@ func (o *CreateStandAloneVmCommand) SetSpotInstance(v bool) {
 	o.SpotInstance = &v
 }
 
-// GetAvailabilityZone returns the AvailabilityZone field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetAvailabilityZone returns the AvailabilityZone field value if set, zero value otherwise.
 func (o *CreateStandAloneVmCommand) GetAvailabilityZone() string {
-	if o == nil || IsNil(o.AvailabilityZone.Get()) {
+	if o == nil || IsNil(o.AvailabilityZone) {
 		var ret string
 		return ret
 	}
-	return *o.AvailabilityZone.Get()
+	return *o.AvailabilityZone
 }
 
 // GetAvailabilityZoneOk returns a tuple with the AvailabilityZone field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateStandAloneVmCommand) GetAvailabilityZoneOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.AvailabilityZone) {
 		return nil, false
 	}
-	return o.AvailabilityZone.Get(), o.AvailabilityZone.IsSet()
+	return o.AvailabilityZone, true
 }
 
 // HasAvailabilityZone returns a boolean if a field has been set.
 func (o *CreateStandAloneVmCommand) HasAvailabilityZone() bool {
-	if o != nil && o.AvailabilityZone.IsSet() {
+	if o != nil && !IsNil(o.AvailabilityZone) {
 		return true
 	}
 
 	return false
 }
 
-// SetAvailabilityZone gets a reference to the given NullableString and assigns it to the AvailabilityZone field.
+// SetAvailabilityZone gets a reference to the given string and assigns it to the AvailabilityZone field.
 func (o *CreateStandAloneVmCommand) SetAvailabilityZone(v string) {
-	o.AvailabilityZone.Set(&v)
-}
-// SetAvailabilityZoneNil sets the value for AvailabilityZone to be an explicit nil
-func (o *CreateStandAloneVmCommand) SetAvailabilityZoneNil() {
-	o.AvailabilityZone.Set(nil)
+	o.AvailabilityZone = &v
 }
 
-// UnsetAvailabilityZone ensures that no value is present for AvailabilityZone, not even an explicit nil
-func (o *CreateStandAloneVmCommand) UnsetAvailabilityZone() {
-	o.AvailabilityZone.Unset()
-}
-
-// GetHypervisor returns the Hypervisor field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetHypervisor returns the Hypervisor field value if set, zero value otherwise.
 func (o *CreateStandAloneVmCommand) GetHypervisor() string {
-	if o == nil || IsNil(o.Hypervisor.Get()) {
+	if o == nil || IsNil(o.Hypervisor) {
 		var ret string
 		return ret
 	}
-	return *o.Hypervisor.Get()
+	return *o.Hypervisor
 }
 
 // GetHypervisorOk returns a tuple with the Hypervisor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateStandAloneVmCommand) GetHypervisorOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Hypervisor) {
 		return nil, false
 	}
-	return o.Hypervisor.Get(), o.Hypervisor.IsSet()
+	return o.Hypervisor, true
 }
 
 // HasHypervisor returns a boolean if a field has been set.
 func (o *CreateStandAloneVmCommand) HasHypervisor() bool {
-	if o != nil && o.Hypervisor.IsSet() {
+	if o != nil && !IsNil(o.Hypervisor) {
 		return true
 	}
 
 	return false
 }
 
-// SetHypervisor gets a reference to the given NullableString and assigns it to the Hypervisor field.
+// SetHypervisor gets a reference to the given string and assigns it to the Hypervisor field.
 func (o *CreateStandAloneVmCommand) SetHypervisor(v string) {
-	o.Hypervisor.Set(&v)
-}
-// SetHypervisorNil sets the value for Hypervisor to be an explicit nil
-func (o *CreateStandAloneVmCommand) SetHypervisorNil() {
-	o.Hypervisor.Set(nil)
+	o.Hypervisor = &v
 }
 
-// UnsetHypervisor ensures that no value is present for Hypervisor, not even an explicit nil
-func (o *CreateStandAloneVmCommand) UnsetHypervisor() {
-	o.Hypervisor.Unset()
-}
-
-// GetStandAloneVmDisks returns the StandAloneVmDisks field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetStandAloneVmDisks returns the StandAloneVmDisks field value if set, zero value otherwise.
 func (o *CreateStandAloneVmCommand) GetStandAloneVmDisks() []StandAloneVmDiskDto {
-	if o == nil {
+	if o == nil || IsNil(o.StandAloneVmDisks) {
 		var ret []StandAloneVmDiskDto
 		return ret
 	}
@@ -615,7 +552,6 @@ func (o *CreateStandAloneVmCommand) GetStandAloneVmDisks() []StandAloneVmDiskDto
 
 // GetStandAloneVmDisksOk returns a tuple with the StandAloneVmDisks field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateStandAloneVmCommand) GetStandAloneVmDisksOk() ([]StandAloneVmDiskDto, bool) {
 	if o == nil || IsNil(o.StandAloneVmDisks) {
 		return nil, false
@@ -625,7 +561,7 @@ func (o *CreateStandAloneVmCommand) GetStandAloneVmDisksOk() ([]StandAloneVmDisk
 
 // HasStandAloneVmDisks returns a boolean if a field has been set.
 func (o *CreateStandAloneVmCommand) HasStandAloneVmDisks() bool {
-	if o != nil && IsNil(o.StandAloneVmDisks) {
+	if o != nil && !IsNil(o.StandAloneVmDisks) {
 		return true
 	}
 
@@ -637,9 +573,9 @@ func (o *CreateStandAloneVmCommand) SetStandAloneVmDisks(v []StandAloneVmDiskDto
 	o.StandAloneVmDisks = v
 }
 
-// GetStandAloneMetaDatas returns the StandAloneMetaDatas field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetStandAloneMetaDatas returns the StandAloneMetaDatas field value if set, zero value otherwise.
 func (o *CreateStandAloneVmCommand) GetStandAloneMetaDatas() []StandAloneMetaDataDto {
-	if o == nil {
+	if o == nil || IsNil(o.StandAloneMetaDatas) {
 		var ret []StandAloneMetaDataDto
 		return ret
 	}
@@ -648,7 +584,6 @@ func (o *CreateStandAloneVmCommand) GetStandAloneMetaDatas() []StandAloneMetaDat
 
 // GetStandAloneMetaDatasOk returns a tuple with the StandAloneMetaDatas field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateStandAloneVmCommand) GetStandAloneMetaDatasOk() ([]StandAloneMetaDataDto, bool) {
 	if o == nil || IsNil(o.StandAloneMetaDatas) {
 		return nil, false
@@ -658,7 +593,7 @@ func (o *CreateStandAloneVmCommand) GetStandAloneMetaDatasOk() ([]StandAloneMeta
 
 // HasStandAloneMetaDatas returns a boolean if a field has been set.
 func (o *CreateStandAloneVmCommand) HasStandAloneMetaDatas() bool {
-	if o != nil && IsNil(o.StandAloneMetaDatas) {
+	if o != nil && !IsNil(o.StandAloneMetaDatas) {
 		return true
 	}
 
@@ -680,48 +615,50 @@ func (o CreateStandAloneVmCommand) MarshalJSON() ([]byte, error) {
 
 func (o CreateStandAloneVmCommand) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["name"] = o.Name
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
 	toSerialize["flavorName"] = o.FlavorName
 	if !IsNil(o.VolumeSize) {
 		toSerialize["volumeSize"] = o.VolumeSize
 	}
-	if o.VolumeType.IsSet() {
-		toSerialize["volumeType"] = o.VolumeType.Get()
+	if !IsNil(o.VolumeType) {
+		toSerialize["volumeType"] = o.VolumeType
 	}
-	if o.Username.IsSet() {
-		toSerialize["username"] = o.Username.Get()
+	if !IsNil(o.Username) {
+		toSerialize["username"] = o.Username
 	}
-	if o.Password.IsSet() {
-		toSerialize["password"] = o.Password.Get()
+	if !IsNil(o.Password) {
+		toSerialize["password"] = o.Password
 	}
 	if !IsNil(o.PublicIpEnabled) {
 		toSerialize["publicIpEnabled"] = o.PublicIpEnabled
 	}
 	toSerialize["image"] = o.Image
-	if o.CloudInit.IsSet() {
-		toSerialize["cloudInit"] = o.CloudInit.Get()
+	if !IsNil(o.CloudInit) {
+		toSerialize["cloudInit"] = o.CloudInit
 	}
 	toSerialize["standAloneProfileId"] = o.StandAloneProfileId
 	toSerialize["projectId"] = o.ProjectId
 	if !IsNil(o.Count) {
 		toSerialize["count"] = o.Count
 	}
-	if o.SpotPrice.IsSet() {
-		toSerialize["spotPrice"] = o.SpotPrice.Get()
+	if !IsNil(o.SpotPrice) {
+		toSerialize["spotPrice"] = o.SpotPrice
 	}
 	if !IsNil(o.SpotInstance) {
 		toSerialize["spotInstance"] = o.SpotInstance
 	}
-	if o.AvailabilityZone.IsSet() {
-		toSerialize["availabilityZone"] = o.AvailabilityZone.Get()
+	if !IsNil(o.AvailabilityZone) {
+		toSerialize["availabilityZone"] = o.AvailabilityZone
 	}
-	if o.Hypervisor.IsSet() {
-		toSerialize["hypervisor"] = o.Hypervisor.Get()
+	if !IsNil(o.Hypervisor) {
+		toSerialize["hypervisor"] = o.Hypervisor
 	}
-	if o.StandAloneVmDisks != nil {
+	if !IsNil(o.StandAloneVmDisks) {
 		toSerialize["standAloneVmDisks"] = o.StandAloneVmDisks
 	}
-	if o.StandAloneMetaDatas != nil {
+	if !IsNil(o.StandAloneMetaDatas) {
 		toSerialize["standAloneMetaDatas"] = o.StandAloneMetaDatas
 	}
 	return toSerialize, nil

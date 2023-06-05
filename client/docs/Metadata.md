@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**InfracostCommand** | Pointer to **NullableString** |  | [optional] 
-**VcsBranch** | Pointer to **NullableString** |  | [optional] 
-**VcsCommitSha** | Pointer to **NullableString** |  | [optional] 
-**VcsCommitAuthorName** | Pointer to **NullableString** |  | [optional] 
-**VcsCommitAuthorEmail** | Pointer to **NullableString** |  | [optional] 
+**InfracostCommand** | Pointer to **string** |  | [optional] 
+**VcsBranch** | Pointer to **string** |  | [optional] 
+**VcsCommitSha** | Pointer to **string** |  | [optional] 
+**VcsCommitAuthorName** | Pointer to **string** |  | [optional] 
+**VcsCommitAuthorEmail** | Pointer to **string** |  | [optional] 
 **VcsCommitTimestamp** | Pointer to **time.Time** |  | [optional] 
-**VcsCommitMessage** | Pointer to **NullableString** |  | [optional] 
-**VcsRepositoryUrl** | Pointer to **NullableString** |  | [optional] 
-**Path** | Pointer to **NullableString** |  | [optional] 
-**Type** | Pointer to **NullableString** |  | [optional] 
-**VcsSubPath** | Pointer to **NullableString** |  | [optional] 
+**VcsCommitMessage** | Pointer to **string** |  | [optional] 
+**VcsRepositoryUrl** | Pointer to **string** |  | [optional] 
+**Path** | Pointer to **string** |  | [optional] 
+**Type** | Pointer to **string** |  | [optional] 
+**VcsSubPath** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -60,16 +60,6 @@ SetInfracostCommand sets InfracostCommand field to given value.
 
 HasInfracostCommand returns a boolean if a field has been set.
 
-### SetInfracostCommandNil
-
-`func (o *Metadata) SetInfracostCommandNil(b bool)`
-
- SetInfracostCommandNil sets the value for InfracostCommand to be an explicit nil
-
-### UnsetInfracostCommand
-`func (o *Metadata) UnsetInfracostCommand()`
-
-UnsetInfracostCommand ensures that no value is present for InfracostCommand, not even an explicit nil
 ### GetVcsBranch
 
 `func (o *Metadata) GetVcsBranch() string`
@@ -95,16 +85,6 @@ SetVcsBranch sets VcsBranch field to given value.
 
 HasVcsBranch returns a boolean if a field has been set.
 
-### SetVcsBranchNil
-
-`func (o *Metadata) SetVcsBranchNil(b bool)`
-
- SetVcsBranchNil sets the value for VcsBranch to be an explicit nil
-
-### UnsetVcsBranch
-`func (o *Metadata) UnsetVcsBranch()`
-
-UnsetVcsBranch ensures that no value is present for VcsBranch, not even an explicit nil
 ### GetVcsCommitSha
 
 `func (o *Metadata) GetVcsCommitSha() string`
@@ -130,16 +110,6 @@ SetVcsCommitSha sets VcsCommitSha field to given value.
 
 HasVcsCommitSha returns a boolean if a field has been set.
 
-### SetVcsCommitShaNil
-
-`func (o *Metadata) SetVcsCommitShaNil(b bool)`
-
- SetVcsCommitShaNil sets the value for VcsCommitSha to be an explicit nil
-
-### UnsetVcsCommitSha
-`func (o *Metadata) UnsetVcsCommitSha()`
-
-UnsetVcsCommitSha ensures that no value is present for VcsCommitSha, not even an explicit nil
 ### GetVcsCommitAuthorName
 
 `func (o *Metadata) GetVcsCommitAuthorName() string`
@@ -165,16 +135,6 @@ SetVcsCommitAuthorName sets VcsCommitAuthorName field to given value.
 
 HasVcsCommitAuthorName returns a boolean if a field has been set.
 
-### SetVcsCommitAuthorNameNil
-
-`func (o *Metadata) SetVcsCommitAuthorNameNil(b bool)`
-
- SetVcsCommitAuthorNameNil sets the value for VcsCommitAuthorName to be an explicit nil
-
-### UnsetVcsCommitAuthorName
-`func (o *Metadata) UnsetVcsCommitAuthorName()`
-
-UnsetVcsCommitAuthorName ensures that no value is present for VcsCommitAuthorName, not even an explicit nil
 ### GetVcsCommitAuthorEmail
 
 `func (o *Metadata) GetVcsCommitAuthorEmail() string`
@@ -200,16 +160,6 @@ SetVcsCommitAuthorEmail sets VcsCommitAuthorEmail field to given value.
 
 HasVcsCommitAuthorEmail returns a boolean if a field has been set.
 
-### SetVcsCommitAuthorEmailNil
-
-`func (o *Metadata) SetVcsCommitAuthorEmailNil(b bool)`
-
- SetVcsCommitAuthorEmailNil sets the value for VcsCommitAuthorEmail to be an explicit nil
-
-### UnsetVcsCommitAuthorEmail
-`func (o *Metadata) UnsetVcsCommitAuthorEmail()`
-
-UnsetVcsCommitAuthorEmail ensures that no value is present for VcsCommitAuthorEmail, not even an explicit nil
 ### GetVcsCommitTimestamp
 
 `func (o *Metadata) GetVcsCommitTimestamp() time.Time`
@@ -260,16 +210,6 @@ SetVcsCommitMessage sets VcsCommitMessage field to given value.
 
 HasVcsCommitMessage returns a boolean if a field has been set.
 
-### SetVcsCommitMessageNil
-
-`func (o *Metadata) SetVcsCommitMessageNil(b bool)`
-
- SetVcsCommitMessageNil sets the value for VcsCommitMessage to be an explicit nil
-
-### UnsetVcsCommitMessage
-`func (o *Metadata) UnsetVcsCommitMessage()`
-
-UnsetVcsCommitMessage ensures that no value is present for VcsCommitMessage, not even an explicit nil
 ### GetVcsRepositoryUrl
 
 `func (o *Metadata) GetVcsRepositoryUrl() string`
@@ -295,16 +235,6 @@ SetVcsRepositoryUrl sets VcsRepositoryUrl field to given value.
 
 HasVcsRepositoryUrl returns a boolean if a field has been set.
 
-### SetVcsRepositoryUrlNil
-
-`func (o *Metadata) SetVcsRepositoryUrlNil(b bool)`
-
- SetVcsRepositoryUrlNil sets the value for VcsRepositoryUrl to be an explicit nil
-
-### UnsetVcsRepositoryUrl
-`func (o *Metadata) UnsetVcsRepositoryUrl()`
-
-UnsetVcsRepositoryUrl ensures that no value is present for VcsRepositoryUrl, not even an explicit nil
 ### GetPath
 
 `func (o *Metadata) GetPath() string`
@@ -330,16 +260,6 @@ SetPath sets Path field to given value.
 
 HasPath returns a boolean if a field has been set.
 
-### SetPathNil
-
-`func (o *Metadata) SetPathNil(b bool)`
-
- SetPathNil sets the value for Path to be an explicit nil
-
-### UnsetPath
-`func (o *Metadata) UnsetPath()`
-
-UnsetPath ensures that no value is present for Path, not even an explicit nil
 ### GetType
 
 `func (o *Metadata) GetType() string`
@@ -365,16 +285,6 @@ SetType sets Type field to given value.
 
 HasType returns a boolean if a field has been set.
 
-### SetTypeNil
-
-`func (o *Metadata) SetTypeNil(b bool)`
-
- SetTypeNil sets the value for Type to be an explicit nil
-
-### UnsetType
-`func (o *Metadata) UnsetType()`
-
-UnsetType ensures that no value is present for Type, not even an explicit nil
 ### GetVcsSubPath
 
 `func (o *Metadata) GetVcsSubPath() string`
@@ -400,16 +310,6 @@ SetVcsSubPath sets VcsSubPath field to given value.
 
 HasVcsSubPath returns a boolean if a field has been set.
 
-### SetVcsSubPathNil
-
-`func (o *Metadata) SetVcsSubPathNil(b bool)`
-
- SetVcsSubPathNil sets the value for VcsSubPath to be an explicit nil
-
-### UnsetVcsSubPath
-`func (o *Metadata) UnsetVcsSubPath()`
-
-UnsetVcsSubPath ensures that no value is present for VcsSubPath, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

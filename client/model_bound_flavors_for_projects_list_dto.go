@@ -21,22 +21,22 @@ var _ MappedNullable = &BoundFlavorsForProjectsListDto{}
 // BoundFlavorsForProjectsListDto struct for BoundFlavorsForProjectsListDto
 type BoundFlavorsForProjectsListDto struct {
 	Id *int32 `json:"id,omitempty"`
-	Name NullableString `json:"name,omitempty"`
+	Name *string `json:"name,omitempty"`
 	Cpu *int32 `json:"cpu,omitempty"`
 	Ram *int64 `json:"ram,omitempty"`
-	ProjectId NullableInt32 `json:"projectId,omitempty"`
+	ProjectId *int32 `json:"projectId,omitempty"`
 	IsAzure *bool `json:"isAzure,omitempty"`
 	IsAws *bool `json:"isAws,omitempty"`
 	IsOpenstack *bool `json:"isOpenstack,omitempty"`
 	IsGoogle *bool `json:"isGoogle,omitempty"`
-	ProjectName NullableString `json:"projectName,omitempty"`
-	MaxDataDiskCount NullableInt32 `json:"maxDataDiskCount,omitempty"`
-	IsLinuxSpotPrice *bool `json:"isLinuxSpotPrice,omitempty"`
-	IsWindowsSpotPrice *bool `json:"isWindowsSpotPrice,omitempty"`
-	LinuxSpotPrice NullableString `json:"linuxSpotPrice,omitempty"`
-	LinuxPrice NullableString `json:"linuxPrice,omitempty"`
-	WindowsSpotPrice NullableString `json:"windowsSpotPrice,omitempty"`
-	WindowsPrice NullableString `json:"windowsPrice,omitempty"`
+	ProjectName *string `json:"projectName,omitempty"`
+	MaxDataDiskCount *int32 `json:"maxDataDiskCount,omitempty"`
+	HasLinuxSpotPrice *bool `json:"hasLinuxSpotPrice,omitempty"`
+	HasWindowsSpotPrice *bool `json:"hasWindowsSpotPrice,omitempty"`
+	LinuxSpotPrice *string `json:"linuxSpotPrice,omitempty"`
+	LinuxPrice *string `json:"linuxPrice,omitempty"`
+	WindowsSpotPrice *string `json:"windowsSpotPrice,omitempty"`
+	WindowsPrice *string `json:"windowsPrice,omitempty"`
 }
 
 // NewBoundFlavorsForProjectsListDto instantiates a new BoundFlavorsForProjectsListDto object
@@ -88,46 +88,36 @@ func (o *BoundFlavorsForProjectsListDto) SetId(v int32) {
 	o.Id = &v
 }
 
-// GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetName returns the Name field value if set, zero value otherwise.
 func (o *BoundFlavorsForProjectsListDto) GetName() string {
-	if o == nil || IsNil(o.Name.Get()) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
-	return *o.Name.Get()
+	return *o.Name
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *BoundFlavorsForProjectsListDto) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
-	return o.Name.Get(), o.Name.IsSet()
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *BoundFlavorsForProjectsListDto) HasName() bool {
-	if o != nil && o.Name.IsSet() {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
 	return false
 }
 
-// SetName gets a reference to the given NullableString and assigns it to the Name field.
+// SetName gets a reference to the given string and assigns it to the Name field.
 func (o *BoundFlavorsForProjectsListDto) SetName(v string) {
-	o.Name.Set(&v)
-}
-// SetNameNil sets the value for Name to be an explicit nil
-func (o *BoundFlavorsForProjectsListDto) SetNameNil() {
-	o.Name.Set(nil)
-}
-
-// UnsetName ensures that no value is present for Name, not even an explicit nil
-func (o *BoundFlavorsForProjectsListDto) UnsetName() {
-	o.Name.Unset()
+	o.Name = &v
 }
 
 // GetCpu returns the Cpu field value if set, zero value otherwise.
@@ -194,46 +184,36 @@ func (o *BoundFlavorsForProjectsListDto) SetRam(v int64) {
 	o.Ram = &v
 }
 
-// GetProjectId returns the ProjectId field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetProjectId returns the ProjectId field value if set, zero value otherwise.
 func (o *BoundFlavorsForProjectsListDto) GetProjectId() int32 {
-	if o == nil || IsNil(o.ProjectId.Get()) {
+	if o == nil || IsNil(o.ProjectId) {
 		var ret int32
 		return ret
 	}
-	return *o.ProjectId.Get()
+	return *o.ProjectId
 }
 
 // GetProjectIdOk returns a tuple with the ProjectId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *BoundFlavorsForProjectsListDto) GetProjectIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ProjectId) {
 		return nil, false
 	}
-	return o.ProjectId.Get(), o.ProjectId.IsSet()
+	return o.ProjectId, true
 }
 
 // HasProjectId returns a boolean if a field has been set.
 func (o *BoundFlavorsForProjectsListDto) HasProjectId() bool {
-	if o != nil && o.ProjectId.IsSet() {
+	if o != nil && !IsNil(o.ProjectId) {
 		return true
 	}
 
 	return false
 }
 
-// SetProjectId gets a reference to the given NullableInt32 and assigns it to the ProjectId field.
+// SetProjectId gets a reference to the given int32 and assigns it to the ProjectId field.
 func (o *BoundFlavorsForProjectsListDto) SetProjectId(v int32) {
-	o.ProjectId.Set(&v)
-}
-// SetProjectIdNil sets the value for ProjectId to be an explicit nil
-func (o *BoundFlavorsForProjectsListDto) SetProjectIdNil() {
-	o.ProjectId.Set(nil)
-}
-
-// UnsetProjectId ensures that no value is present for ProjectId, not even an explicit nil
-func (o *BoundFlavorsForProjectsListDto) UnsetProjectId() {
-	o.ProjectId.Unset()
+	o.ProjectId = &v
 }
 
 // GetIsAzure returns the IsAzure field value if set, zero value otherwise.
@@ -364,320 +344,260 @@ func (o *BoundFlavorsForProjectsListDto) SetIsGoogle(v bool) {
 	o.IsGoogle = &v
 }
 
-// GetProjectName returns the ProjectName field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetProjectName returns the ProjectName field value if set, zero value otherwise.
 func (o *BoundFlavorsForProjectsListDto) GetProjectName() string {
-	if o == nil || IsNil(o.ProjectName.Get()) {
+	if o == nil || IsNil(o.ProjectName) {
 		var ret string
 		return ret
 	}
-	return *o.ProjectName.Get()
+	return *o.ProjectName
 }
 
 // GetProjectNameOk returns a tuple with the ProjectName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *BoundFlavorsForProjectsListDto) GetProjectNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ProjectName) {
 		return nil, false
 	}
-	return o.ProjectName.Get(), o.ProjectName.IsSet()
+	return o.ProjectName, true
 }
 
 // HasProjectName returns a boolean if a field has been set.
 func (o *BoundFlavorsForProjectsListDto) HasProjectName() bool {
-	if o != nil && o.ProjectName.IsSet() {
+	if o != nil && !IsNil(o.ProjectName) {
 		return true
 	}
 
 	return false
 }
 
-// SetProjectName gets a reference to the given NullableString and assigns it to the ProjectName field.
+// SetProjectName gets a reference to the given string and assigns it to the ProjectName field.
 func (o *BoundFlavorsForProjectsListDto) SetProjectName(v string) {
-	o.ProjectName.Set(&v)
-}
-// SetProjectNameNil sets the value for ProjectName to be an explicit nil
-func (o *BoundFlavorsForProjectsListDto) SetProjectNameNil() {
-	o.ProjectName.Set(nil)
+	o.ProjectName = &v
 }
 
-// UnsetProjectName ensures that no value is present for ProjectName, not even an explicit nil
-func (o *BoundFlavorsForProjectsListDto) UnsetProjectName() {
-	o.ProjectName.Unset()
-}
-
-// GetMaxDataDiskCount returns the MaxDataDiskCount field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetMaxDataDiskCount returns the MaxDataDiskCount field value if set, zero value otherwise.
 func (o *BoundFlavorsForProjectsListDto) GetMaxDataDiskCount() int32 {
-	if o == nil || IsNil(o.MaxDataDiskCount.Get()) {
+	if o == nil || IsNil(o.MaxDataDiskCount) {
 		var ret int32
 		return ret
 	}
-	return *o.MaxDataDiskCount.Get()
+	return *o.MaxDataDiskCount
 }
 
 // GetMaxDataDiskCountOk returns a tuple with the MaxDataDiskCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *BoundFlavorsForProjectsListDto) GetMaxDataDiskCountOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.MaxDataDiskCount) {
 		return nil, false
 	}
-	return o.MaxDataDiskCount.Get(), o.MaxDataDiskCount.IsSet()
+	return o.MaxDataDiskCount, true
 }
 
 // HasMaxDataDiskCount returns a boolean if a field has been set.
 func (o *BoundFlavorsForProjectsListDto) HasMaxDataDiskCount() bool {
-	if o != nil && o.MaxDataDiskCount.IsSet() {
+	if o != nil && !IsNil(o.MaxDataDiskCount) {
 		return true
 	}
 
 	return false
 }
 
-// SetMaxDataDiskCount gets a reference to the given NullableInt32 and assigns it to the MaxDataDiskCount field.
+// SetMaxDataDiskCount gets a reference to the given int32 and assigns it to the MaxDataDiskCount field.
 func (o *BoundFlavorsForProjectsListDto) SetMaxDataDiskCount(v int32) {
-	o.MaxDataDiskCount.Set(&v)
-}
-// SetMaxDataDiskCountNil sets the value for MaxDataDiskCount to be an explicit nil
-func (o *BoundFlavorsForProjectsListDto) SetMaxDataDiskCountNil() {
-	o.MaxDataDiskCount.Set(nil)
+	o.MaxDataDiskCount = &v
 }
 
-// UnsetMaxDataDiskCount ensures that no value is present for MaxDataDiskCount, not even an explicit nil
-func (o *BoundFlavorsForProjectsListDto) UnsetMaxDataDiskCount() {
-	o.MaxDataDiskCount.Unset()
-}
-
-// GetIsLinuxSpotPrice returns the IsLinuxSpotPrice field value if set, zero value otherwise.
-func (o *BoundFlavorsForProjectsListDto) GetIsLinuxSpotPrice() bool {
-	if o == nil || IsNil(o.IsLinuxSpotPrice) {
+// GetHasLinuxSpotPrice returns the HasLinuxSpotPrice field value if set, zero value otherwise.
+func (o *BoundFlavorsForProjectsListDto) GetHasLinuxSpotPrice() bool {
+	if o == nil || IsNil(o.HasLinuxSpotPrice) {
 		var ret bool
 		return ret
 	}
-	return *o.IsLinuxSpotPrice
+	return *o.HasLinuxSpotPrice
 }
 
-// GetIsLinuxSpotPriceOk returns a tuple with the IsLinuxSpotPrice field value if set, nil otherwise
+// GetHasLinuxSpotPriceOk returns a tuple with the HasLinuxSpotPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BoundFlavorsForProjectsListDto) GetIsLinuxSpotPriceOk() (*bool, bool) {
-	if o == nil || IsNil(o.IsLinuxSpotPrice) {
+func (o *BoundFlavorsForProjectsListDto) GetHasLinuxSpotPriceOk() (*bool, bool) {
+	if o == nil || IsNil(o.HasLinuxSpotPrice) {
 		return nil, false
 	}
-	return o.IsLinuxSpotPrice, true
+	return o.HasLinuxSpotPrice, true
 }
 
-// HasIsLinuxSpotPrice returns a boolean if a field has been set.
-func (o *BoundFlavorsForProjectsListDto) HasIsLinuxSpotPrice() bool {
-	if o != nil && !IsNil(o.IsLinuxSpotPrice) {
+// HasHasLinuxSpotPrice returns a boolean if a field has been set.
+func (o *BoundFlavorsForProjectsListDto) HasHasLinuxSpotPrice() bool {
+	if o != nil && !IsNil(o.HasLinuxSpotPrice) {
 		return true
 	}
 
 	return false
 }
 
-// SetIsLinuxSpotPrice gets a reference to the given bool and assigns it to the IsLinuxSpotPrice field.
-func (o *BoundFlavorsForProjectsListDto) SetIsLinuxSpotPrice(v bool) {
-	o.IsLinuxSpotPrice = &v
+// SetHasLinuxSpotPrice gets a reference to the given bool and assigns it to the HasLinuxSpotPrice field.
+func (o *BoundFlavorsForProjectsListDto) SetHasLinuxSpotPrice(v bool) {
+	o.HasLinuxSpotPrice = &v
 }
 
-// GetIsWindowsSpotPrice returns the IsWindowsSpotPrice field value if set, zero value otherwise.
-func (o *BoundFlavorsForProjectsListDto) GetIsWindowsSpotPrice() bool {
-	if o == nil || IsNil(o.IsWindowsSpotPrice) {
+// GetHasWindowsSpotPrice returns the HasWindowsSpotPrice field value if set, zero value otherwise.
+func (o *BoundFlavorsForProjectsListDto) GetHasWindowsSpotPrice() bool {
+	if o == nil || IsNil(o.HasWindowsSpotPrice) {
 		var ret bool
 		return ret
 	}
-	return *o.IsWindowsSpotPrice
+	return *o.HasWindowsSpotPrice
 }
 
-// GetIsWindowsSpotPriceOk returns a tuple with the IsWindowsSpotPrice field value if set, nil otherwise
+// GetHasWindowsSpotPriceOk returns a tuple with the HasWindowsSpotPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BoundFlavorsForProjectsListDto) GetIsWindowsSpotPriceOk() (*bool, bool) {
-	if o == nil || IsNil(o.IsWindowsSpotPrice) {
+func (o *BoundFlavorsForProjectsListDto) GetHasWindowsSpotPriceOk() (*bool, bool) {
+	if o == nil || IsNil(o.HasWindowsSpotPrice) {
 		return nil, false
 	}
-	return o.IsWindowsSpotPrice, true
+	return o.HasWindowsSpotPrice, true
 }
 
-// HasIsWindowsSpotPrice returns a boolean if a field has been set.
-func (o *BoundFlavorsForProjectsListDto) HasIsWindowsSpotPrice() bool {
-	if o != nil && !IsNil(o.IsWindowsSpotPrice) {
+// HasHasWindowsSpotPrice returns a boolean if a field has been set.
+func (o *BoundFlavorsForProjectsListDto) HasHasWindowsSpotPrice() bool {
+	if o != nil && !IsNil(o.HasWindowsSpotPrice) {
 		return true
 	}
 
 	return false
 }
 
-// SetIsWindowsSpotPrice gets a reference to the given bool and assigns it to the IsWindowsSpotPrice field.
-func (o *BoundFlavorsForProjectsListDto) SetIsWindowsSpotPrice(v bool) {
-	o.IsWindowsSpotPrice = &v
+// SetHasWindowsSpotPrice gets a reference to the given bool and assigns it to the HasWindowsSpotPrice field.
+func (o *BoundFlavorsForProjectsListDto) SetHasWindowsSpotPrice(v bool) {
+	o.HasWindowsSpotPrice = &v
 }
 
-// GetLinuxSpotPrice returns the LinuxSpotPrice field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetLinuxSpotPrice returns the LinuxSpotPrice field value if set, zero value otherwise.
 func (o *BoundFlavorsForProjectsListDto) GetLinuxSpotPrice() string {
-	if o == nil || IsNil(o.LinuxSpotPrice.Get()) {
+	if o == nil || IsNil(o.LinuxSpotPrice) {
 		var ret string
 		return ret
 	}
-	return *o.LinuxSpotPrice.Get()
+	return *o.LinuxSpotPrice
 }
 
 // GetLinuxSpotPriceOk returns a tuple with the LinuxSpotPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *BoundFlavorsForProjectsListDto) GetLinuxSpotPriceOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.LinuxSpotPrice) {
 		return nil, false
 	}
-	return o.LinuxSpotPrice.Get(), o.LinuxSpotPrice.IsSet()
+	return o.LinuxSpotPrice, true
 }
 
 // HasLinuxSpotPrice returns a boolean if a field has been set.
 func (o *BoundFlavorsForProjectsListDto) HasLinuxSpotPrice() bool {
-	if o != nil && o.LinuxSpotPrice.IsSet() {
+	if o != nil && !IsNil(o.LinuxSpotPrice) {
 		return true
 	}
 
 	return false
 }
 
-// SetLinuxSpotPrice gets a reference to the given NullableString and assigns it to the LinuxSpotPrice field.
+// SetLinuxSpotPrice gets a reference to the given string and assigns it to the LinuxSpotPrice field.
 func (o *BoundFlavorsForProjectsListDto) SetLinuxSpotPrice(v string) {
-	o.LinuxSpotPrice.Set(&v)
-}
-// SetLinuxSpotPriceNil sets the value for LinuxSpotPrice to be an explicit nil
-func (o *BoundFlavorsForProjectsListDto) SetLinuxSpotPriceNil() {
-	o.LinuxSpotPrice.Set(nil)
+	o.LinuxSpotPrice = &v
 }
 
-// UnsetLinuxSpotPrice ensures that no value is present for LinuxSpotPrice, not even an explicit nil
-func (o *BoundFlavorsForProjectsListDto) UnsetLinuxSpotPrice() {
-	o.LinuxSpotPrice.Unset()
-}
-
-// GetLinuxPrice returns the LinuxPrice field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetLinuxPrice returns the LinuxPrice field value if set, zero value otherwise.
 func (o *BoundFlavorsForProjectsListDto) GetLinuxPrice() string {
-	if o == nil || IsNil(o.LinuxPrice.Get()) {
+	if o == nil || IsNil(o.LinuxPrice) {
 		var ret string
 		return ret
 	}
-	return *o.LinuxPrice.Get()
+	return *o.LinuxPrice
 }
 
 // GetLinuxPriceOk returns a tuple with the LinuxPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *BoundFlavorsForProjectsListDto) GetLinuxPriceOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.LinuxPrice) {
 		return nil, false
 	}
-	return o.LinuxPrice.Get(), o.LinuxPrice.IsSet()
+	return o.LinuxPrice, true
 }
 
 // HasLinuxPrice returns a boolean if a field has been set.
 func (o *BoundFlavorsForProjectsListDto) HasLinuxPrice() bool {
-	if o != nil && o.LinuxPrice.IsSet() {
+	if o != nil && !IsNil(o.LinuxPrice) {
 		return true
 	}
 
 	return false
 }
 
-// SetLinuxPrice gets a reference to the given NullableString and assigns it to the LinuxPrice field.
+// SetLinuxPrice gets a reference to the given string and assigns it to the LinuxPrice field.
 func (o *BoundFlavorsForProjectsListDto) SetLinuxPrice(v string) {
-	o.LinuxPrice.Set(&v)
-}
-// SetLinuxPriceNil sets the value for LinuxPrice to be an explicit nil
-func (o *BoundFlavorsForProjectsListDto) SetLinuxPriceNil() {
-	o.LinuxPrice.Set(nil)
+	o.LinuxPrice = &v
 }
 
-// UnsetLinuxPrice ensures that no value is present for LinuxPrice, not even an explicit nil
-func (o *BoundFlavorsForProjectsListDto) UnsetLinuxPrice() {
-	o.LinuxPrice.Unset()
-}
-
-// GetWindowsSpotPrice returns the WindowsSpotPrice field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetWindowsSpotPrice returns the WindowsSpotPrice field value if set, zero value otherwise.
 func (o *BoundFlavorsForProjectsListDto) GetWindowsSpotPrice() string {
-	if o == nil || IsNil(o.WindowsSpotPrice.Get()) {
+	if o == nil || IsNil(o.WindowsSpotPrice) {
 		var ret string
 		return ret
 	}
-	return *o.WindowsSpotPrice.Get()
+	return *o.WindowsSpotPrice
 }
 
 // GetWindowsSpotPriceOk returns a tuple with the WindowsSpotPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *BoundFlavorsForProjectsListDto) GetWindowsSpotPriceOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.WindowsSpotPrice) {
 		return nil, false
 	}
-	return o.WindowsSpotPrice.Get(), o.WindowsSpotPrice.IsSet()
+	return o.WindowsSpotPrice, true
 }
 
 // HasWindowsSpotPrice returns a boolean if a field has been set.
 func (o *BoundFlavorsForProjectsListDto) HasWindowsSpotPrice() bool {
-	if o != nil && o.WindowsSpotPrice.IsSet() {
+	if o != nil && !IsNil(o.WindowsSpotPrice) {
 		return true
 	}
 
 	return false
 }
 
-// SetWindowsSpotPrice gets a reference to the given NullableString and assigns it to the WindowsSpotPrice field.
+// SetWindowsSpotPrice gets a reference to the given string and assigns it to the WindowsSpotPrice field.
 func (o *BoundFlavorsForProjectsListDto) SetWindowsSpotPrice(v string) {
-	o.WindowsSpotPrice.Set(&v)
-}
-// SetWindowsSpotPriceNil sets the value for WindowsSpotPrice to be an explicit nil
-func (o *BoundFlavorsForProjectsListDto) SetWindowsSpotPriceNil() {
-	o.WindowsSpotPrice.Set(nil)
+	o.WindowsSpotPrice = &v
 }
 
-// UnsetWindowsSpotPrice ensures that no value is present for WindowsSpotPrice, not even an explicit nil
-func (o *BoundFlavorsForProjectsListDto) UnsetWindowsSpotPrice() {
-	o.WindowsSpotPrice.Unset()
-}
-
-// GetWindowsPrice returns the WindowsPrice field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetWindowsPrice returns the WindowsPrice field value if set, zero value otherwise.
 func (o *BoundFlavorsForProjectsListDto) GetWindowsPrice() string {
-	if o == nil || IsNil(o.WindowsPrice.Get()) {
+	if o == nil || IsNil(o.WindowsPrice) {
 		var ret string
 		return ret
 	}
-	return *o.WindowsPrice.Get()
+	return *o.WindowsPrice
 }
 
 // GetWindowsPriceOk returns a tuple with the WindowsPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *BoundFlavorsForProjectsListDto) GetWindowsPriceOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.WindowsPrice) {
 		return nil, false
 	}
-	return o.WindowsPrice.Get(), o.WindowsPrice.IsSet()
+	return o.WindowsPrice, true
 }
 
 // HasWindowsPrice returns a boolean if a field has been set.
 func (o *BoundFlavorsForProjectsListDto) HasWindowsPrice() bool {
-	if o != nil && o.WindowsPrice.IsSet() {
+	if o != nil && !IsNil(o.WindowsPrice) {
 		return true
 	}
 
 	return false
 }
 
-// SetWindowsPrice gets a reference to the given NullableString and assigns it to the WindowsPrice field.
+// SetWindowsPrice gets a reference to the given string and assigns it to the WindowsPrice field.
 func (o *BoundFlavorsForProjectsListDto) SetWindowsPrice(v string) {
-	o.WindowsPrice.Set(&v)
-}
-// SetWindowsPriceNil sets the value for WindowsPrice to be an explicit nil
-func (o *BoundFlavorsForProjectsListDto) SetWindowsPriceNil() {
-	o.WindowsPrice.Set(nil)
-}
-
-// UnsetWindowsPrice ensures that no value is present for WindowsPrice, not even an explicit nil
-func (o *BoundFlavorsForProjectsListDto) UnsetWindowsPrice() {
-	o.WindowsPrice.Unset()
+	o.WindowsPrice = &v
 }
 
 func (o BoundFlavorsForProjectsListDto) MarshalJSON() ([]byte, error) {
@@ -693,8 +613,8 @@ func (o BoundFlavorsForProjectsListDto) ToMap() (map[string]interface{}, error) 
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if o.Name.IsSet() {
-		toSerialize["name"] = o.Name.Get()
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
 	}
 	if !IsNil(o.Cpu) {
 		toSerialize["cpu"] = o.Cpu
@@ -702,8 +622,8 @@ func (o BoundFlavorsForProjectsListDto) ToMap() (map[string]interface{}, error) 
 	if !IsNil(o.Ram) {
 		toSerialize["ram"] = o.Ram
 	}
-	if o.ProjectId.IsSet() {
-		toSerialize["projectId"] = o.ProjectId.Get()
+	if !IsNil(o.ProjectId) {
+		toSerialize["projectId"] = o.ProjectId
 	}
 	if !IsNil(o.IsAzure) {
 		toSerialize["isAzure"] = o.IsAzure
@@ -717,29 +637,29 @@ func (o BoundFlavorsForProjectsListDto) ToMap() (map[string]interface{}, error) 
 	if !IsNil(o.IsGoogle) {
 		toSerialize["isGoogle"] = o.IsGoogle
 	}
-	if o.ProjectName.IsSet() {
-		toSerialize["projectName"] = o.ProjectName.Get()
+	if !IsNil(o.ProjectName) {
+		toSerialize["projectName"] = o.ProjectName
 	}
-	if o.MaxDataDiskCount.IsSet() {
-		toSerialize["maxDataDiskCount"] = o.MaxDataDiskCount.Get()
+	if !IsNil(o.MaxDataDiskCount) {
+		toSerialize["maxDataDiskCount"] = o.MaxDataDiskCount
 	}
-	if !IsNil(o.IsLinuxSpotPrice) {
-		toSerialize["isLinuxSpotPrice"] = o.IsLinuxSpotPrice
+	if !IsNil(o.HasLinuxSpotPrice) {
+		toSerialize["hasLinuxSpotPrice"] = o.HasLinuxSpotPrice
 	}
-	if !IsNil(o.IsWindowsSpotPrice) {
-		toSerialize["isWindowsSpotPrice"] = o.IsWindowsSpotPrice
+	if !IsNil(o.HasWindowsSpotPrice) {
+		toSerialize["hasWindowsSpotPrice"] = o.HasWindowsSpotPrice
 	}
-	if o.LinuxSpotPrice.IsSet() {
-		toSerialize["linuxSpotPrice"] = o.LinuxSpotPrice.Get()
+	if !IsNil(o.LinuxSpotPrice) {
+		toSerialize["linuxSpotPrice"] = o.LinuxSpotPrice
 	}
-	if o.LinuxPrice.IsSet() {
-		toSerialize["linuxPrice"] = o.LinuxPrice.Get()
+	if !IsNil(o.LinuxPrice) {
+		toSerialize["linuxPrice"] = o.LinuxPrice
 	}
-	if o.WindowsSpotPrice.IsSet() {
-		toSerialize["windowsSpotPrice"] = o.WindowsSpotPrice.Get()
+	if !IsNil(o.WindowsSpotPrice) {
+		toSerialize["windowsSpotPrice"] = o.WindowsSpotPrice
 	}
-	if o.WindowsPrice.IsSet() {
-		toSerialize["windowsPrice"] = o.WindowsPrice.Get()
+	if !IsNil(o.WindowsPrice) {
+		toSerialize["windowsPrice"] = o.WindowsPrice
 	}
 	return toSerialize, nil
 }

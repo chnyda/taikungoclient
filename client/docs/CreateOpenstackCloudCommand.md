@@ -8,16 +8,16 @@ Name | Type | Description | Notes
 **OpenStackUser** | **string** |  | 
 **OpenStackPassword** | **string** |  | 
 **OpenStackUrl** | **string** |  | 
-**OpenStackProject** | Pointer to **NullableString** |  | [optional] 
+**OpenStackProject** | Pointer to **string** |  | [optional] 
 **OpenStackPublicNetwork** | **string** |  | 
-**OpenStackAvailabilityZone** | Pointer to **NullableString** |  | [optional] 
-**OpenStackDomain** | Pointer to **NullableString** |  | [optional] 
+**OpenStackAvailabilityZone** | Pointer to **string** |  | [optional] 
+**OpenStackDomain** | Pointer to **string** |  | [optional] 
 **OpenStackRegion** | **string** |  | 
-**OpenStackContinent** | Pointer to **NullableString** |  | [optional] 
-**OpenStackVolumeType** | Pointer to **NullableString** |  | [optional] 
+**OpenStackContinent** | Pointer to **string** |  | [optional] 
+**OpenStackVolumeType** | Pointer to **string** |  | [optional] 
 **OpenStackImportNetwork** | Pointer to **bool** |  | [optional] 
-**OpenStackInternalSubnetId** | Pointer to **NullableString** |  | [optional] 
-**OrganizationId** | Pointer to **NullableInt32** |  | [optional] 
+**OpenStackInternalSubnetId** | Pointer to **string** |  | [optional] 
+**OrganizationId** | Pointer to **int32** |  | [optional] 
 **ApplicationCredEnabled** | Pointer to **bool** |  | [optional] 
 **IsAdmin** | Pointer to **bool** |  | [optional] 
 
@@ -145,16 +145,6 @@ SetOpenStackProject sets OpenStackProject field to given value.
 
 HasOpenStackProject returns a boolean if a field has been set.
 
-### SetOpenStackProjectNil
-
-`func (o *CreateOpenstackCloudCommand) SetOpenStackProjectNil(b bool)`
-
- SetOpenStackProjectNil sets the value for OpenStackProject to be an explicit nil
-
-### UnsetOpenStackProject
-`func (o *CreateOpenstackCloudCommand) UnsetOpenStackProject()`
-
-UnsetOpenStackProject ensures that no value is present for OpenStackProject, not even an explicit nil
 ### GetOpenStackPublicNetwork
 
 `func (o *CreateOpenstackCloudCommand) GetOpenStackPublicNetwork() string`
@@ -200,16 +190,6 @@ SetOpenStackAvailabilityZone sets OpenStackAvailabilityZone field to given value
 
 HasOpenStackAvailabilityZone returns a boolean if a field has been set.
 
-### SetOpenStackAvailabilityZoneNil
-
-`func (o *CreateOpenstackCloudCommand) SetOpenStackAvailabilityZoneNil(b bool)`
-
- SetOpenStackAvailabilityZoneNil sets the value for OpenStackAvailabilityZone to be an explicit nil
-
-### UnsetOpenStackAvailabilityZone
-`func (o *CreateOpenstackCloudCommand) UnsetOpenStackAvailabilityZone()`
-
-UnsetOpenStackAvailabilityZone ensures that no value is present for OpenStackAvailabilityZone, not even an explicit nil
 ### GetOpenStackDomain
 
 `func (o *CreateOpenstackCloudCommand) GetOpenStackDomain() string`
@@ -235,16 +215,6 @@ SetOpenStackDomain sets OpenStackDomain field to given value.
 
 HasOpenStackDomain returns a boolean if a field has been set.
 
-### SetOpenStackDomainNil
-
-`func (o *CreateOpenstackCloudCommand) SetOpenStackDomainNil(b bool)`
-
- SetOpenStackDomainNil sets the value for OpenStackDomain to be an explicit nil
-
-### UnsetOpenStackDomain
-`func (o *CreateOpenstackCloudCommand) UnsetOpenStackDomain()`
-
-UnsetOpenStackDomain ensures that no value is present for OpenStackDomain, not even an explicit nil
 ### GetOpenStackRegion
 
 `func (o *CreateOpenstackCloudCommand) GetOpenStackRegion() string`
@@ -290,16 +260,6 @@ SetOpenStackContinent sets OpenStackContinent field to given value.
 
 HasOpenStackContinent returns a boolean if a field has been set.
 
-### SetOpenStackContinentNil
-
-`func (o *CreateOpenstackCloudCommand) SetOpenStackContinentNil(b bool)`
-
- SetOpenStackContinentNil sets the value for OpenStackContinent to be an explicit nil
-
-### UnsetOpenStackContinent
-`func (o *CreateOpenstackCloudCommand) UnsetOpenStackContinent()`
-
-UnsetOpenStackContinent ensures that no value is present for OpenStackContinent, not even an explicit nil
 ### GetOpenStackVolumeType
 
 `func (o *CreateOpenstackCloudCommand) GetOpenStackVolumeType() string`
@@ -325,16 +285,6 @@ SetOpenStackVolumeType sets OpenStackVolumeType field to given value.
 
 HasOpenStackVolumeType returns a boolean if a field has been set.
 
-### SetOpenStackVolumeTypeNil
-
-`func (o *CreateOpenstackCloudCommand) SetOpenStackVolumeTypeNil(b bool)`
-
- SetOpenStackVolumeTypeNil sets the value for OpenStackVolumeType to be an explicit nil
-
-### UnsetOpenStackVolumeType
-`func (o *CreateOpenstackCloudCommand) UnsetOpenStackVolumeType()`
-
-UnsetOpenStackVolumeType ensures that no value is present for OpenStackVolumeType, not even an explicit nil
 ### GetOpenStackImportNetwork
 
 `func (o *CreateOpenstackCloudCommand) GetOpenStackImportNetwork() bool`
@@ -385,16 +335,6 @@ SetOpenStackInternalSubnetId sets OpenStackInternalSubnetId field to given value
 
 HasOpenStackInternalSubnetId returns a boolean if a field has been set.
 
-### SetOpenStackInternalSubnetIdNil
-
-`func (o *CreateOpenstackCloudCommand) SetOpenStackInternalSubnetIdNil(b bool)`
-
- SetOpenStackInternalSubnetIdNil sets the value for OpenStackInternalSubnetId to be an explicit nil
-
-### UnsetOpenStackInternalSubnetId
-`func (o *CreateOpenstackCloudCommand) UnsetOpenStackInternalSubnetId()`
-
-UnsetOpenStackInternalSubnetId ensures that no value is present for OpenStackInternalSubnetId, not even an explicit nil
 ### GetOrganizationId
 
 `func (o *CreateOpenstackCloudCommand) GetOrganizationId() int32`
@@ -420,16 +360,6 @@ SetOrganizationId sets OrganizationId field to given value.
 
 HasOrganizationId returns a boolean if a field has been set.
 
-### SetOrganizationIdNil
-
-`func (o *CreateOpenstackCloudCommand) SetOrganizationIdNil(b bool)`
-
- SetOrganizationIdNil sets the value for OrganizationId to be an explicit nil
-
-### UnsetOrganizationId
-`func (o *CreateOpenstackCloudCommand) UnsetOrganizationId()`
-
-UnsetOrganizationId ensures that no value is present for OrganizationId, not even an explicit nil
 ### GetApplicationCredEnabled
 
 `func (o *CreateOpenstackCloudCommand) GetApplicationCredEnabled() bool`

@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **NullableString** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
-**Email** | Pointer to **NullableString** |  | [optional] 
-**Role** | Pointer to **NullableString** |  | [optional] 
-**OrganizationName** | Pointer to **NullableString** |  | [optional] 
+**Id** | Pointer to **string** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**Email** | Pointer to **string** |  | [optional] 
+**Role** | Pointer to **string** |  | [optional] 
+**OrganizationName** | Pointer to **string** |  | [optional] 
 **Owner** | Pointer to **bool** |  | [optional] 
 **Csm** | Pointer to **bool** |  | [optional] 
 
@@ -56,16 +56,6 @@ SetId sets Id field to given value.
 
 HasId returns a boolean if a field has been set.
 
-### SetIdNil
-
-`func (o *AdminUsersResponseData) SetIdNil(b bool)`
-
- SetIdNil sets the value for Id to be an explicit nil
-
-### UnsetId
-`func (o *AdminUsersResponseData) UnsetId()`
-
-UnsetId ensures that no value is present for Id, not even an explicit nil
 ### GetName
 
 `func (o *AdminUsersResponseData) GetName() string`
@@ -91,16 +81,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *AdminUsersResponseData) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *AdminUsersResponseData) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetEmail
 
 `func (o *AdminUsersResponseData) GetEmail() string`
@@ -126,16 +106,6 @@ SetEmail sets Email field to given value.
 
 HasEmail returns a boolean if a field has been set.
 
-### SetEmailNil
-
-`func (o *AdminUsersResponseData) SetEmailNil(b bool)`
-
- SetEmailNil sets the value for Email to be an explicit nil
-
-### UnsetEmail
-`func (o *AdminUsersResponseData) UnsetEmail()`
-
-UnsetEmail ensures that no value is present for Email, not even an explicit nil
 ### GetRole
 
 `func (o *AdminUsersResponseData) GetRole() string`
@@ -161,16 +131,6 @@ SetRole sets Role field to given value.
 
 HasRole returns a boolean if a field has been set.
 
-### SetRoleNil
-
-`func (o *AdminUsersResponseData) SetRoleNil(b bool)`
-
- SetRoleNil sets the value for Role to be an explicit nil
-
-### UnsetRole
-`func (o *AdminUsersResponseData) UnsetRole()`
-
-UnsetRole ensures that no value is present for Role, not even an explicit nil
 ### GetOrganizationName
 
 `func (o *AdminUsersResponseData) GetOrganizationName() string`
@@ -196,16 +156,6 @@ SetOrganizationName sets OrganizationName field to given value.
 
 HasOrganizationName returns a boolean if a field has been set.
 
-### SetOrganizationNameNil
-
-`func (o *AdminUsersResponseData) SetOrganizationNameNil(b bool)`
-
- SetOrganizationNameNil sets the value for OrganizationName to be an explicit nil
-
-### UnsetOrganizationName
-`func (o *AdminUsersResponseData) UnsetOrganizationName()`
-
-UnsetOrganizationName ensures that no value is present for OrganizationName, not even an explicit nil
 ### GetOwner
 
 `func (o *AdminUsersResponseData) GetOwner() bool`

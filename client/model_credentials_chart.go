@@ -49,9 +49,9 @@ func NewCredentialsChartWithDefaults() *CredentialsChart {
 	return &this
 }
 
-// GetAmazon returns the Amazon field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetAmazon returns the Amazon field value if set, zero value otherwise.
 func (o *CredentialsChart) GetAmazon() []AmazonCredentialsListDto {
-	if o == nil {
+	if o == nil || IsNil(o.Amazon) {
 		var ret []AmazonCredentialsListDto
 		return ret
 	}
@@ -60,7 +60,6 @@ func (o *CredentialsChart) GetAmazon() []AmazonCredentialsListDto {
 
 // GetAmazonOk returns a tuple with the Amazon field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CredentialsChart) GetAmazonOk() ([]AmazonCredentialsListDto, bool) {
 	if o == nil || IsNil(o.Amazon) {
 		return nil, false
@@ -70,7 +69,7 @@ func (o *CredentialsChart) GetAmazonOk() ([]AmazonCredentialsListDto, bool) {
 
 // HasAmazon returns a boolean if a field has been set.
 func (o *CredentialsChart) HasAmazon() bool {
-	if o != nil && IsNil(o.Amazon) {
+	if o != nil && !IsNil(o.Amazon) {
 		return true
 	}
 
@@ -82,9 +81,9 @@ func (o *CredentialsChart) SetAmazon(v []AmazonCredentialsListDto) {
 	o.Amazon = v
 }
 
-// GetOpenstack returns the Openstack field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetOpenstack returns the Openstack field value if set, zero value otherwise.
 func (o *CredentialsChart) GetOpenstack() []OpenstackCredentialsListDto {
-	if o == nil {
+	if o == nil || IsNil(o.Openstack) {
 		var ret []OpenstackCredentialsListDto
 		return ret
 	}
@@ -93,7 +92,6 @@ func (o *CredentialsChart) GetOpenstack() []OpenstackCredentialsListDto {
 
 // GetOpenstackOk returns a tuple with the Openstack field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CredentialsChart) GetOpenstackOk() ([]OpenstackCredentialsListDto, bool) {
 	if o == nil || IsNil(o.Openstack) {
 		return nil, false
@@ -103,7 +101,7 @@ func (o *CredentialsChart) GetOpenstackOk() ([]OpenstackCredentialsListDto, bool
 
 // HasOpenstack returns a boolean if a field has been set.
 func (o *CredentialsChart) HasOpenstack() bool {
-	if o != nil && IsNil(o.Openstack) {
+	if o != nil && !IsNil(o.Openstack) {
 		return true
 	}
 
@@ -115,9 +113,9 @@ func (o *CredentialsChart) SetOpenstack(v []OpenstackCredentialsListDto) {
 	o.Openstack = v
 }
 
-// GetAzure returns the Azure field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetAzure returns the Azure field value if set, zero value otherwise.
 func (o *CredentialsChart) GetAzure() []AzureCredentialsListDto {
-	if o == nil {
+	if o == nil || IsNil(o.Azure) {
 		var ret []AzureCredentialsListDto
 		return ret
 	}
@@ -126,7 +124,6 @@ func (o *CredentialsChart) GetAzure() []AzureCredentialsListDto {
 
 // GetAzureOk returns a tuple with the Azure field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CredentialsChart) GetAzureOk() ([]AzureCredentialsListDto, bool) {
 	if o == nil || IsNil(o.Azure) {
 		return nil, false
@@ -136,7 +133,7 @@ func (o *CredentialsChart) GetAzureOk() ([]AzureCredentialsListDto, bool) {
 
 // HasAzure returns a boolean if a field has been set.
 func (o *CredentialsChart) HasAzure() bool {
-	if o != nil && IsNil(o.Azure) {
+	if o != nil && !IsNil(o.Azure) {
 		return true
 	}
 
@@ -148,9 +145,9 @@ func (o *CredentialsChart) SetAzure(v []AzureCredentialsListDto) {
 	o.Azure = v
 }
 
-// GetGoogle returns the Google field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetGoogle returns the Google field value if set, zero value otherwise.
 func (o *CredentialsChart) GetGoogle() []GoogleCredentialsListDto {
-	if o == nil {
+	if o == nil || IsNil(o.Google) {
 		var ret []GoogleCredentialsListDto
 		return ret
 	}
@@ -159,7 +156,6 @@ func (o *CredentialsChart) GetGoogle() []GoogleCredentialsListDto {
 
 // GetGoogleOk returns a tuple with the Google field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CredentialsChart) GetGoogleOk() ([]GoogleCredentialsListDto, bool) {
 	if o == nil || IsNil(o.Google) {
 		return nil, false
@@ -169,7 +165,7 @@ func (o *CredentialsChart) GetGoogleOk() ([]GoogleCredentialsListDto, bool) {
 
 // HasGoogle returns a boolean if a field has been set.
 func (o *CredentialsChart) HasGoogle() bool {
-	if o != nil && IsNil(o.Google) {
+	if o != nil && !IsNil(o.Google) {
 		return true
 	}
 
@@ -181,9 +177,9 @@ func (o *CredentialsChart) SetGoogle(v []GoogleCredentialsListDto) {
 	o.Google = v
 }
 
-// GetTanzu returns the Tanzu field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetTanzu returns the Tanzu field value if set, zero value otherwise.
 func (o *CredentialsChart) GetTanzu() []TanzuCredentialsListDto {
-	if o == nil {
+	if o == nil || IsNil(o.Tanzu) {
 		var ret []TanzuCredentialsListDto
 		return ret
 	}
@@ -192,7 +188,6 @@ func (o *CredentialsChart) GetTanzu() []TanzuCredentialsListDto {
 
 // GetTanzuOk returns a tuple with the Tanzu field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CredentialsChart) GetTanzuOk() ([]TanzuCredentialsListDto, bool) {
 	if o == nil || IsNil(o.Tanzu) {
 		return nil, false
@@ -202,7 +197,7 @@ func (o *CredentialsChart) GetTanzuOk() ([]TanzuCredentialsListDto, bool) {
 
 // HasTanzu returns a boolean if a field has been set.
 func (o *CredentialsChart) HasTanzu() bool {
-	if o != nil && IsNil(o.Tanzu) {
+	if o != nil && !IsNil(o.Tanzu) {
 		return true
 	}
 
@@ -384,19 +379,19 @@ func (o CredentialsChart) MarshalJSON() ([]byte, error) {
 
 func (o CredentialsChart) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Amazon != nil {
+	if !IsNil(o.Amazon) {
 		toSerialize["amazon"] = o.Amazon
 	}
-	if o.Openstack != nil {
+	if !IsNil(o.Openstack) {
 		toSerialize["openstack"] = o.Openstack
 	}
-	if o.Azure != nil {
+	if !IsNil(o.Azure) {
 		toSerialize["azure"] = o.Azure
 	}
-	if o.Google != nil {
+	if !IsNil(o.Google) {
 		toSerialize["google"] = o.Google
 	}
-	if o.Tanzu != nil {
+	if !IsNil(o.Tanzu) {
 		toSerialize["tanzu"] = o.Tanzu
 	}
 	if !IsNil(o.TotalCountOpenstack) {

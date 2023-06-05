@@ -5,10 +5,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
-**Link** | Pointer to **NullableString** |  | [optional] 
-**Domain** | Pointer to **NullableString** |  | [optional] 
-**Logo** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**Link** | Pointer to **string** |  | [optional] 
+**Domain** | Pointer to **string** |  | [optional] 
+**Logo** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -79,16 +79,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *PartnerDetailsForOrganizationsDto) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *PartnerDetailsForOrganizationsDto) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetLink
 
 `func (o *PartnerDetailsForOrganizationsDto) GetLink() string`
@@ -114,16 +104,6 @@ SetLink sets Link field to given value.
 
 HasLink returns a boolean if a field has been set.
 
-### SetLinkNil
-
-`func (o *PartnerDetailsForOrganizationsDto) SetLinkNil(b bool)`
-
- SetLinkNil sets the value for Link to be an explicit nil
-
-### UnsetLink
-`func (o *PartnerDetailsForOrganizationsDto) UnsetLink()`
-
-UnsetLink ensures that no value is present for Link, not even an explicit nil
 ### GetDomain
 
 `func (o *PartnerDetailsForOrganizationsDto) GetDomain() string`
@@ -149,16 +129,6 @@ SetDomain sets Domain field to given value.
 
 HasDomain returns a boolean if a field has been set.
 
-### SetDomainNil
-
-`func (o *PartnerDetailsForOrganizationsDto) SetDomainNil(b bool)`
-
- SetDomainNil sets the value for Domain to be an explicit nil
-
-### UnsetDomain
-`func (o *PartnerDetailsForOrganizationsDto) UnsetDomain()`
-
-UnsetDomain ensures that no value is present for Domain, not even an explicit nil
 ### GetLogo
 
 `func (o *PartnerDetailsForOrganizationsDto) GetLogo() string`
@@ -184,16 +154,6 @@ SetLogo sets Logo field to given value.
 
 HasLogo returns a boolean if a field has been set.
 
-### SetLogoNil
-
-`func (o *PartnerDetailsForOrganizationsDto) SetLogoNil(b bool)`
-
- SetLogoNil sets the value for Logo to be an explicit nil
-
-### UnsetLogo
-`func (o *PartnerDetailsForOrganizationsDto) UnsetLogo()`
-
-UnsetLogo ensures that no value is present for Logo, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

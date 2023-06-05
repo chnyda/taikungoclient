@@ -42,9 +42,9 @@ func NewBindRulesCommandWithDefaults() *BindRulesCommand {
 	return &this
 }
 
-// GetRules returns the Rules field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetRules returns the Rules field value if set, zero value otherwise.
 func (o *BindRulesCommand) GetRules() []BindRulesToOrganizationDto {
-	if o == nil {
+	if o == nil || IsNil(o.Rules) {
 		var ret []BindRulesToOrganizationDto
 		return ret
 	}
@@ -53,7 +53,6 @@ func (o *BindRulesCommand) GetRules() []BindRulesToOrganizationDto {
 
 // GetRulesOk returns a tuple with the Rules field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *BindRulesCommand) GetRulesOk() ([]BindRulesToOrganizationDto, bool) {
 	if o == nil || IsNil(o.Rules) {
 		return nil, false
@@ -63,7 +62,7 @@ func (o *BindRulesCommand) GetRulesOk() ([]BindRulesToOrganizationDto, bool) {
 
 // HasRules returns a boolean if a field has been set.
 func (o *BindRulesCommand) HasRules() bool {
-	if o != nil && IsNil(o.Rules) {
+	if o != nil && !IsNil(o.Rules) {
 		return true
 	}
 
@@ -109,7 +108,7 @@ func (o BindRulesCommand) MarshalJSON() ([]byte, error) {
 
 func (o BindRulesCommand) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Rules != nil {
+	if !IsNil(o.Rules) {
 		toSerialize["rules"] = o.Rules
 	}
 	toSerialize["organizationId"] = o.OrganizationId

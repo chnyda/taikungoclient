@@ -76,16 +76,6 @@ SetServerIds sets ServerIds field to given value.
 
 HasServerIds returns a boolean if a field has been set.
 
-### SetServerIdsNil
-
-`func (o *PurgeCommand) SetServerIdsNil(b bool)`
-
- SetServerIdsNil sets the value for ServerIds to be an explicit nil
-
-### UnsetServerIds
-`func (o *PurgeCommand) UnsetServerIds()`
-
-UnsetServerIds ensures that no value is present for ServerIds, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

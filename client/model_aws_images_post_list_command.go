@@ -21,11 +21,11 @@ var _ MappedNullable = &AwsImagesPostListCommand{}
 // AwsImagesPostListCommand struct for AwsImagesPostListCommand
 type AwsImagesPostListCommand struct {
 	CloudId *int32 `json:"cloudId,omitempty"`
-	Limit NullableInt32 `json:"limit,omitempty"`
-	Offset NullableInt32 `json:"offset,omitempty"`
-	SortBy NullableString `json:"sortBy,omitempty"`
-	SortDirection NullableString `json:"sortDirection,omitempty"`
-	Search NullableString `json:"search,omitempty"`
+	Limit *int32 `json:"limit,omitempty"`
+	Offset *int32 `json:"offset,omitempty"`
+	SortBy *string `json:"sortBy,omitempty"`
+	SortDirection *string `json:"sortDirection,omitempty"`
+	Search *string `json:"search,omitempty"`
 	Latest *bool `json:"latest,omitempty"`
 	Owners []string `json:"owners,omitempty"`
 }
@@ -79,214 +79,164 @@ func (o *AwsImagesPostListCommand) SetCloudId(v int32) {
 	o.CloudId = &v
 }
 
-// GetLimit returns the Limit field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetLimit returns the Limit field value if set, zero value otherwise.
 func (o *AwsImagesPostListCommand) GetLimit() int32 {
-	if o == nil || IsNil(o.Limit.Get()) {
+	if o == nil || IsNil(o.Limit) {
 		var ret int32
 		return ret
 	}
-	return *o.Limit.Get()
+	return *o.Limit
 }
 
 // GetLimitOk returns a tuple with the Limit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AwsImagesPostListCommand) GetLimitOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Limit) {
 		return nil, false
 	}
-	return o.Limit.Get(), o.Limit.IsSet()
+	return o.Limit, true
 }
 
 // HasLimit returns a boolean if a field has been set.
 func (o *AwsImagesPostListCommand) HasLimit() bool {
-	if o != nil && o.Limit.IsSet() {
+	if o != nil && !IsNil(o.Limit) {
 		return true
 	}
 
 	return false
 }
 
-// SetLimit gets a reference to the given NullableInt32 and assigns it to the Limit field.
+// SetLimit gets a reference to the given int32 and assigns it to the Limit field.
 func (o *AwsImagesPostListCommand) SetLimit(v int32) {
-	o.Limit.Set(&v)
-}
-// SetLimitNil sets the value for Limit to be an explicit nil
-func (o *AwsImagesPostListCommand) SetLimitNil() {
-	o.Limit.Set(nil)
+	o.Limit = &v
 }
 
-// UnsetLimit ensures that no value is present for Limit, not even an explicit nil
-func (o *AwsImagesPostListCommand) UnsetLimit() {
-	o.Limit.Unset()
-}
-
-// GetOffset returns the Offset field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetOffset returns the Offset field value if set, zero value otherwise.
 func (o *AwsImagesPostListCommand) GetOffset() int32 {
-	if o == nil || IsNil(o.Offset.Get()) {
+	if o == nil || IsNil(o.Offset) {
 		var ret int32
 		return ret
 	}
-	return *o.Offset.Get()
+	return *o.Offset
 }
 
 // GetOffsetOk returns a tuple with the Offset field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AwsImagesPostListCommand) GetOffsetOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Offset) {
 		return nil, false
 	}
-	return o.Offset.Get(), o.Offset.IsSet()
+	return o.Offset, true
 }
 
 // HasOffset returns a boolean if a field has been set.
 func (o *AwsImagesPostListCommand) HasOffset() bool {
-	if o != nil && o.Offset.IsSet() {
+	if o != nil && !IsNil(o.Offset) {
 		return true
 	}
 
 	return false
 }
 
-// SetOffset gets a reference to the given NullableInt32 and assigns it to the Offset field.
+// SetOffset gets a reference to the given int32 and assigns it to the Offset field.
 func (o *AwsImagesPostListCommand) SetOffset(v int32) {
-	o.Offset.Set(&v)
-}
-// SetOffsetNil sets the value for Offset to be an explicit nil
-func (o *AwsImagesPostListCommand) SetOffsetNil() {
-	o.Offset.Set(nil)
+	o.Offset = &v
 }
 
-// UnsetOffset ensures that no value is present for Offset, not even an explicit nil
-func (o *AwsImagesPostListCommand) UnsetOffset() {
-	o.Offset.Unset()
-}
-
-// GetSortBy returns the SortBy field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetSortBy returns the SortBy field value if set, zero value otherwise.
 func (o *AwsImagesPostListCommand) GetSortBy() string {
-	if o == nil || IsNil(o.SortBy.Get()) {
+	if o == nil || IsNil(o.SortBy) {
 		var ret string
 		return ret
 	}
-	return *o.SortBy.Get()
+	return *o.SortBy
 }
 
 // GetSortByOk returns a tuple with the SortBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AwsImagesPostListCommand) GetSortByOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.SortBy) {
 		return nil, false
 	}
-	return o.SortBy.Get(), o.SortBy.IsSet()
+	return o.SortBy, true
 }
 
 // HasSortBy returns a boolean if a field has been set.
 func (o *AwsImagesPostListCommand) HasSortBy() bool {
-	if o != nil && o.SortBy.IsSet() {
+	if o != nil && !IsNil(o.SortBy) {
 		return true
 	}
 
 	return false
 }
 
-// SetSortBy gets a reference to the given NullableString and assigns it to the SortBy field.
+// SetSortBy gets a reference to the given string and assigns it to the SortBy field.
 func (o *AwsImagesPostListCommand) SetSortBy(v string) {
-	o.SortBy.Set(&v)
-}
-// SetSortByNil sets the value for SortBy to be an explicit nil
-func (o *AwsImagesPostListCommand) SetSortByNil() {
-	o.SortBy.Set(nil)
+	o.SortBy = &v
 }
 
-// UnsetSortBy ensures that no value is present for SortBy, not even an explicit nil
-func (o *AwsImagesPostListCommand) UnsetSortBy() {
-	o.SortBy.Unset()
-}
-
-// GetSortDirection returns the SortDirection field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetSortDirection returns the SortDirection field value if set, zero value otherwise.
 func (o *AwsImagesPostListCommand) GetSortDirection() string {
-	if o == nil || IsNil(o.SortDirection.Get()) {
+	if o == nil || IsNil(o.SortDirection) {
 		var ret string
 		return ret
 	}
-	return *o.SortDirection.Get()
+	return *o.SortDirection
 }
 
 // GetSortDirectionOk returns a tuple with the SortDirection field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AwsImagesPostListCommand) GetSortDirectionOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.SortDirection) {
 		return nil, false
 	}
-	return o.SortDirection.Get(), o.SortDirection.IsSet()
+	return o.SortDirection, true
 }
 
 // HasSortDirection returns a boolean if a field has been set.
 func (o *AwsImagesPostListCommand) HasSortDirection() bool {
-	if o != nil && o.SortDirection.IsSet() {
+	if o != nil && !IsNil(o.SortDirection) {
 		return true
 	}
 
 	return false
 }
 
-// SetSortDirection gets a reference to the given NullableString and assigns it to the SortDirection field.
+// SetSortDirection gets a reference to the given string and assigns it to the SortDirection field.
 func (o *AwsImagesPostListCommand) SetSortDirection(v string) {
-	o.SortDirection.Set(&v)
-}
-// SetSortDirectionNil sets the value for SortDirection to be an explicit nil
-func (o *AwsImagesPostListCommand) SetSortDirectionNil() {
-	o.SortDirection.Set(nil)
+	o.SortDirection = &v
 }
 
-// UnsetSortDirection ensures that no value is present for SortDirection, not even an explicit nil
-func (o *AwsImagesPostListCommand) UnsetSortDirection() {
-	o.SortDirection.Unset()
-}
-
-// GetSearch returns the Search field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetSearch returns the Search field value if set, zero value otherwise.
 func (o *AwsImagesPostListCommand) GetSearch() string {
-	if o == nil || IsNil(o.Search.Get()) {
+	if o == nil || IsNil(o.Search) {
 		var ret string
 		return ret
 	}
-	return *o.Search.Get()
+	return *o.Search
 }
 
 // GetSearchOk returns a tuple with the Search field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AwsImagesPostListCommand) GetSearchOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Search) {
 		return nil, false
 	}
-	return o.Search.Get(), o.Search.IsSet()
+	return o.Search, true
 }
 
 // HasSearch returns a boolean if a field has been set.
 func (o *AwsImagesPostListCommand) HasSearch() bool {
-	if o != nil && o.Search.IsSet() {
+	if o != nil && !IsNil(o.Search) {
 		return true
 	}
 
 	return false
 }
 
-// SetSearch gets a reference to the given NullableString and assigns it to the Search field.
+// SetSearch gets a reference to the given string and assigns it to the Search field.
 func (o *AwsImagesPostListCommand) SetSearch(v string) {
-	o.Search.Set(&v)
-}
-// SetSearchNil sets the value for Search to be an explicit nil
-func (o *AwsImagesPostListCommand) SetSearchNil() {
-	o.Search.Set(nil)
-}
-
-// UnsetSearch ensures that no value is present for Search, not even an explicit nil
-func (o *AwsImagesPostListCommand) UnsetSearch() {
-	o.Search.Unset()
+	o.Search = &v
 }
 
 // GetLatest returns the Latest field value if set, zero value otherwise.
@@ -321,9 +271,9 @@ func (o *AwsImagesPostListCommand) SetLatest(v bool) {
 	o.Latest = &v
 }
 
-// GetOwners returns the Owners field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetOwners returns the Owners field value if set, zero value otherwise.
 func (o *AwsImagesPostListCommand) GetOwners() []string {
-	if o == nil {
+	if o == nil || IsNil(o.Owners) {
 		var ret []string
 		return ret
 	}
@@ -332,7 +282,6 @@ func (o *AwsImagesPostListCommand) GetOwners() []string {
 
 // GetOwnersOk returns a tuple with the Owners field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AwsImagesPostListCommand) GetOwnersOk() ([]string, bool) {
 	if o == nil || IsNil(o.Owners) {
 		return nil, false
@@ -342,7 +291,7 @@ func (o *AwsImagesPostListCommand) GetOwnersOk() ([]string, bool) {
 
 // HasOwners returns a boolean if a field has been set.
 func (o *AwsImagesPostListCommand) HasOwners() bool {
-	if o != nil && IsNil(o.Owners) {
+	if o != nil && !IsNil(o.Owners) {
 		return true
 	}
 
@@ -367,25 +316,25 @@ func (o AwsImagesPostListCommand) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.CloudId) {
 		toSerialize["cloudId"] = o.CloudId
 	}
-	if o.Limit.IsSet() {
-		toSerialize["limit"] = o.Limit.Get()
+	if !IsNil(o.Limit) {
+		toSerialize["limit"] = o.Limit
 	}
-	if o.Offset.IsSet() {
-		toSerialize["offset"] = o.Offset.Get()
+	if !IsNil(o.Offset) {
+		toSerialize["offset"] = o.Offset
 	}
-	if o.SortBy.IsSet() {
-		toSerialize["sortBy"] = o.SortBy.Get()
+	if !IsNil(o.SortBy) {
+		toSerialize["sortBy"] = o.SortBy
 	}
-	if o.SortDirection.IsSet() {
-		toSerialize["sortDirection"] = o.SortDirection.Get()
+	if !IsNil(o.SortDirection) {
+		toSerialize["sortDirection"] = o.SortDirection
 	}
-	if o.Search.IsSet() {
-		toSerialize["search"] = o.Search.Get()
+	if !IsNil(o.Search) {
+		toSerialize["search"] = o.Search
 	}
 	if !IsNil(o.Latest) {
 		toSerialize["latest"] = o.Latest
 	}
-	if o.Owners != nil {
+	if !IsNil(o.Owners) {
 		toSerialize["owners"] = o.Owners
 	}
 	return toSerialize, nil

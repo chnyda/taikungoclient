@@ -5,36 +5,36 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
 **IsKubernetes** | Pointer to **bool** |  | [optional] 
 **IsLocked** | Pointer to **bool** |  | [optional] 
 **HasKubeConfigFile** | Pointer to **bool** |  | [optional] 
-**CloudCredentialName** | Pointer to **NullableString** |  | [optional] 
-**OrganizationName** | Pointer to **NullableString** |  | [optional] 
+**CloudCredentialName** | Pointer to **string** |  | [optional] 
+**OrganizationName** | Pointer to **string** |  | [optional] 
 **OrganizationId** | Pointer to **int32** |  | [optional] 
-**Status** | Pointer to **NullableString** |  | [optional] 
-**Health** | Pointer to **NullableString** |  | [optional] 
-**CloudType** | Pointer to **NullableString** |  | [optional] 
-**KubesprayCurrentVersion** | Pointer to **NullableString** |  | [optional] 
-**KubesprayTargetVersion** | Pointer to **NullableString** |  | [optional] 
-**KubernetesCurrentVersion** | Pointer to **NullableString** |  | [optional] 
-**KubernetesTargetVersion** | Pointer to **NullableString** |  | [optional] 
-**CreatedAt** | Pointer to **NullableString** |  | [optional] 
+**Status** | Pointer to **string** |  | [optional] 
+**Health** | Pointer to **string** |  | [optional] 
+**CloudType** | Pointer to **string** |  | [optional] 
+**KubesprayCurrentVersion** | Pointer to **string** |  | [optional] 
+**KubesprayTargetVersion** | Pointer to **string** |  | [optional] 
+**KubernetesCurrentVersion** | Pointer to **string** |  | [optional] 
+**KubernetesTargetVersion** | Pointer to **string** |  | [optional] 
+**CreatedAt** | Pointer to **string** |  | [optional] 
 **AlertsCount** | Pointer to **int32** |  | [optional] 
 **TotalServersCount** | Pointer to **int32** |  | [optional] 
 **TotalStandaloneVmsCount** | Pointer to **int32** |  | [optional] 
 **BoundUsers** | Pointer to [**[]UserDto**](UserDto.md) |  | [optional] 
-**CreatedBy** | Pointer to **NullableString** |  | [optional] 
-**LastModified** | Pointer to **NullableString** |  | [optional] 
-**ExpiredAt** | Pointer to **NullableString** |  | [optional] 
+**CreatedBy** | Pointer to **string** |  | [optional] 
+**LastModified** | Pointer to **string** |  | [optional] 
+**ExpiredAt** | Pointer to **string** |  | [optional] 
 **DeleteOnExpiration** | Pointer to **bool** |  | [optional] 
-**CertificateExpiredAt** | Pointer to **NullableString** |  | [optional] 
-**LastModifiedBy** | Pointer to **NullableString** |  | [optional] 
+**CertificateExpiredAt** | Pointer to **string** |  | [optional] 
+**LastModifiedBy** | Pointer to **string** |  | [optional] 
 **QuotaId** | Pointer to **int32** |  | [optional] 
 **AllowFullSpotKubernetes** | Pointer to **bool** |  | [optional] 
 **AllowSpotWorkers** | Pointer to **bool** |  | [optional] 
 **AllowSpotVMs** | Pointer to **bool** |  | [optional] 
-**MaxSpotPrice** | Pointer to **NullableFloat64** |  | [optional] 
+**MaxSpotPrice** | Pointer to **float64** |  | [optional] 
 **ProjectAction** | Pointer to **bool** |  | [optional] 
 **HasExpirationWarning** | Pointer to **bool** |  | [optional] 
 **TotalHourlyCost** | Pointer to **float64** |  | [optional] 
@@ -109,16 +109,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *ProjectListDetailDto) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *ProjectListDetailDto) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetIsKubernetes
 
 `func (o *ProjectListDetailDto) GetIsKubernetes() bool`
@@ -219,16 +209,6 @@ SetCloudCredentialName sets CloudCredentialName field to given value.
 
 HasCloudCredentialName returns a boolean if a field has been set.
 
-### SetCloudCredentialNameNil
-
-`func (o *ProjectListDetailDto) SetCloudCredentialNameNil(b bool)`
-
- SetCloudCredentialNameNil sets the value for CloudCredentialName to be an explicit nil
-
-### UnsetCloudCredentialName
-`func (o *ProjectListDetailDto) UnsetCloudCredentialName()`
-
-UnsetCloudCredentialName ensures that no value is present for CloudCredentialName, not even an explicit nil
 ### GetOrganizationName
 
 `func (o *ProjectListDetailDto) GetOrganizationName() string`
@@ -254,16 +234,6 @@ SetOrganizationName sets OrganizationName field to given value.
 
 HasOrganizationName returns a boolean if a field has been set.
 
-### SetOrganizationNameNil
-
-`func (o *ProjectListDetailDto) SetOrganizationNameNil(b bool)`
-
- SetOrganizationNameNil sets the value for OrganizationName to be an explicit nil
-
-### UnsetOrganizationName
-`func (o *ProjectListDetailDto) UnsetOrganizationName()`
-
-UnsetOrganizationName ensures that no value is present for OrganizationName, not even an explicit nil
 ### GetOrganizationId
 
 `func (o *ProjectListDetailDto) GetOrganizationId() int32`
@@ -314,16 +284,6 @@ SetStatus sets Status field to given value.
 
 HasStatus returns a boolean if a field has been set.
 
-### SetStatusNil
-
-`func (o *ProjectListDetailDto) SetStatusNil(b bool)`
-
- SetStatusNil sets the value for Status to be an explicit nil
-
-### UnsetStatus
-`func (o *ProjectListDetailDto) UnsetStatus()`
-
-UnsetStatus ensures that no value is present for Status, not even an explicit nil
 ### GetHealth
 
 `func (o *ProjectListDetailDto) GetHealth() string`
@@ -349,16 +309,6 @@ SetHealth sets Health field to given value.
 
 HasHealth returns a boolean if a field has been set.
 
-### SetHealthNil
-
-`func (o *ProjectListDetailDto) SetHealthNil(b bool)`
-
- SetHealthNil sets the value for Health to be an explicit nil
-
-### UnsetHealth
-`func (o *ProjectListDetailDto) UnsetHealth()`
-
-UnsetHealth ensures that no value is present for Health, not even an explicit nil
 ### GetCloudType
 
 `func (o *ProjectListDetailDto) GetCloudType() string`
@@ -384,16 +334,6 @@ SetCloudType sets CloudType field to given value.
 
 HasCloudType returns a boolean if a field has been set.
 
-### SetCloudTypeNil
-
-`func (o *ProjectListDetailDto) SetCloudTypeNil(b bool)`
-
- SetCloudTypeNil sets the value for CloudType to be an explicit nil
-
-### UnsetCloudType
-`func (o *ProjectListDetailDto) UnsetCloudType()`
-
-UnsetCloudType ensures that no value is present for CloudType, not even an explicit nil
 ### GetKubesprayCurrentVersion
 
 `func (o *ProjectListDetailDto) GetKubesprayCurrentVersion() string`
@@ -419,16 +359,6 @@ SetKubesprayCurrentVersion sets KubesprayCurrentVersion field to given value.
 
 HasKubesprayCurrentVersion returns a boolean if a field has been set.
 
-### SetKubesprayCurrentVersionNil
-
-`func (o *ProjectListDetailDto) SetKubesprayCurrentVersionNil(b bool)`
-
- SetKubesprayCurrentVersionNil sets the value for KubesprayCurrentVersion to be an explicit nil
-
-### UnsetKubesprayCurrentVersion
-`func (o *ProjectListDetailDto) UnsetKubesprayCurrentVersion()`
-
-UnsetKubesprayCurrentVersion ensures that no value is present for KubesprayCurrentVersion, not even an explicit nil
 ### GetKubesprayTargetVersion
 
 `func (o *ProjectListDetailDto) GetKubesprayTargetVersion() string`
@@ -454,16 +384,6 @@ SetKubesprayTargetVersion sets KubesprayTargetVersion field to given value.
 
 HasKubesprayTargetVersion returns a boolean if a field has been set.
 
-### SetKubesprayTargetVersionNil
-
-`func (o *ProjectListDetailDto) SetKubesprayTargetVersionNil(b bool)`
-
- SetKubesprayTargetVersionNil sets the value for KubesprayTargetVersion to be an explicit nil
-
-### UnsetKubesprayTargetVersion
-`func (o *ProjectListDetailDto) UnsetKubesprayTargetVersion()`
-
-UnsetKubesprayTargetVersion ensures that no value is present for KubesprayTargetVersion, not even an explicit nil
 ### GetKubernetesCurrentVersion
 
 `func (o *ProjectListDetailDto) GetKubernetesCurrentVersion() string`
@@ -489,16 +409,6 @@ SetKubernetesCurrentVersion sets KubernetesCurrentVersion field to given value.
 
 HasKubernetesCurrentVersion returns a boolean if a field has been set.
 
-### SetKubernetesCurrentVersionNil
-
-`func (o *ProjectListDetailDto) SetKubernetesCurrentVersionNil(b bool)`
-
- SetKubernetesCurrentVersionNil sets the value for KubernetesCurrentVersion to be an explicit nil
-
-### UnsetKubernetesCurrentVersion
-`func (o *ProjectListDetailDto) UnsetKubernetesCurrentVersion()`
-
-UnsetKubernetesCurrentVersion ensures that no value is present for KubernetesCurrentVersion, not even an explicit nil
 ### GetKubernetesTargetVersion
 
 `func (o *ProjectListDetailDto) GetKubernetesTargetVersion() string`
@@ -524,16 +434,6 @@ SetKubernetesTargetVersion sets KubernetesTargetVersion field to given value.
 
 HasKubernetesTargetVersion returns a boolean if a field has been set.
 
-### SetKubernetesTargetVersionNil
-
-`func (o *ProjectListDetailDto) SetKubernetesTargetVersionNil(b bool)`
-
- SetKubernetesTargetVersionNil sets the value for KubernetesTargetVersion to be an explicit nil
-
-### UnsetKubernetesTargetVersion
-`func (o *ProjectListDetailDto) UnsetKubernetesTargetVersion()`
-
-UnsetKubernetesTargetVersion ensures that no value is present for KubernetesTargetVersion, not even an explicit nil
 ### GetCreatedAt
 
 `func (o *ProjectListDetailDto) GetCreatedAt() string`
@@ -559,16 +459,6 @@ SetCreatedAt sets CreatedAt field to given value.
 
 HasCreatedAt returns a boolean if a field has been set.
 
-### SetCreatedAtNil
-
-`func (o *ProjectListDetailDto) SetCreatedAtNil(b bool)`
-
- SetCreatedAtNil sets the value for CreatedAt to be an explicit nil
-
-### UnsetCreatedAt
-`func (o *ProjectListDetailDto) UnsetCreatedAt()`
-
-UnsetCreatedAt ensures that no value is present for CreatedAt, not even an explicit nil
 ### GetAlertsCount
 
 `func (o *ProjectListDetailDto) GetAlertsCount() int32`
@@ -669,16 +559,6 @@ SetBoundUsers sets BoundUsers field to given value.
 
 HasBoundUsers returns a boolean if a field has been set.
 
-### SetBoundUsersNil
-
-`func (o *ProjectListDetailDto) SetBoundUsersNil(b bool)`
-
- SetBoundUsersNil sets the value for BoundUsers to be an explicit nil
-
-### UnsetBoundUsers
-`func (o *ProjectListDetailDto) UnsetBoundUsers()`
-
-UnsetBoundUsers ensures that no value is present for BoundUsers, not even an explicit nil
 ### GetCreatedBy
 
 `func (o *ProjectListDetailDto) GetCreatedBy() string`
@@ -704,16 +584,6 @@ SetCreatedBy sets CreatedBy field to given value.
 
 HasCreatedBy returns a boolean if a field has been set.
 
-### SetCreatedByNil
-
-`func (o *ProjectListDetailDto) SetCreatedByNil(b bool)`
-
- SetCreatedByNil sets the value for CreatedBy to be an explicit nil
-
-### UnsetCreatedBy
-`func (o *ProjectListDetailDto) UnsetCreatedBy()`
-
-UnsetCreatedBy ensures that no value is present for CreatedBy, not even an explicit nil
 ### GetLastModified
 
 `func (o *ProjectListDetailDto) GetLastModified() string`
@@ -739,16 +609,6 @@ SetLastModified sets LastModified field to given value.
 
 HasLastModified returns a boolean if a field has been set.
 
-### SetLastModifiedNil
-
-`func (o *ProjectListDetailDto) SetLastModifiedNil(b bool)`
-
- SetLastModifiedNil sets the value for LastModified to be an explicit nil
-
-### UnsetLastModified
-`func (o *ProjectListDetailDto) UnsetLastModified()`
-
-UnsetLastModified ensures that no value is present for LastModified, not even an explicit nil
 ### GetExpiredAt
 
 `func (o *ProjectListDetailDto) GetExpiredAt() string`
@@ -774,16 +634,6 @@ SetExpiredAt sets ExpiredAt field to given value.
 
 HasExpiredAt returns a boolean if a field has been set.
 
-### SetExpiredAtNil
-
-`func (o *ProjectListDetailDto) SetExpiredAtNil(b bool)`
-
- SetExpiredAtNil sets the value for ExpiredAt to be an explicit nil
-
-### UnsetExpiredAt
-`func (o *ProjectListDetailDto) UnsetExpiredAt()`
-
-UnsetExpiredAt ensures that no value is present for ExpiredAt, not even an explicit nil
 ### GetDeleteOnExpiration
 
 `func (o *ProjectListDetailDto) GetDeleteOnExpiration() bool`
@@ -834,16 +684,6 @@ SetCertificateExpiredAt sets CertificateExpiredAt field to given value.
 
 HasCertificateExpiredAt returns a boolean if a field has been set.
 
-### SetCertificateExpiredAtNil
-
-`func (o *ProjectListDetailDto) SetCertificateExpiredAtNil(b bool)`
-
- SetCertificateExpiredAtNil sets the value for CertificateExpiredAt to be an explicit nil
-
-### UnsetCertificateExpiredAt
-`func (o *ProjectListDetailDto) UnsetCertificateExpiredAt()`
-
-UnsetCertificateExpiredAt ensures that no value is present for CertificateExpiredAt, not even an explicit nil
 ### GetLastModifiedBy
 
 `func (o *ProjectListDetailDto) GetLastModifiedBy() string`
@@ -869,16 +709,6 @@ SetLastModifiedBy sets LastModifiedBy field to given value.
 
 HasLastModifiedBy returns a boolean if a field has been set.
 
-### SetLastModifiedByNil
-
-`func (o *ProjectListDetailDto) SetLastModifiedByNil(b bool)`
-
- SetLastModifiedByNil sets the value for LastModifiedBy to be an explicit nil
-
-### UnsetLastModifiedBy
-`func (o *ProjectListDetailDto) UnsetLastModifiedBy()`
-
-UnsetLastModifiedBy ensures that no value is present for LastModifiedBy, not even an explicit nil
 ### GetQuotaId
 
 `func (o *ProjectListDetailDto) GetQuotaId() int32`
@@ -1004,16 +834,6 @@ SetMaxSpotPrice sets MaxSpotPrice field to given value.
 
 HasMaxSpotPrice returns a boolean if a field has been set.
 
-### SetMaxSpotPriceNil
-
-`func (o *ProjectListDetailDto) SetMaxSpotPriceNil(b bool)`
-
- SetMaxSpotPriceNil sets the value for MaxSpotPrice to be an explicit nil
-
-### UnsetMaxSpotPrice
-`func (o *ProjectListDetailDto) UnsetMaxSpotPrice()`
-
-UnsetMaxSpotPrice ensures that no value is present for MaxSpotPrice, not even an explicit nil
 ### GetProjectAction
 
 `func (o *ProjectListDetailDto) GetProjectAction() bool`

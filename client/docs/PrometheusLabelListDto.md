@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Label** | Pointer to **NullableString** |  | [optional] 
+**Label** | Pointer to **string** |  | [optional] 
 **Value** | **string** |  | 
 
 ## Methods
@@ -51,16 +51,6 @@ SetLabel sets Label field to given value.
 
 HasLabel returns a boolean if a field has been set.
 
-### SetLabelNil
-
-`func (o *PrometheusLabelListDto) SetLabelNil(b bool)`
-
- SetLabelNil sets the value for Label to be an explicit nil
-
-### UnsetLabel
-`func (o *PrometheusLabelListDto) UnsetLabel()`
-
-UnsetLabel ensures that no value is present for Label, not even an explicit nil
 ### GetValue
 
 `func (o *PrometheusLabelListDto) GetValue() string`

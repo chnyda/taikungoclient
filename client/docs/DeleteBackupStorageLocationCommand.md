@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ProjectId** | Pointer to **int32** |  | [optional] 
-**StorageLocation** | Pointer to **NullableString** |  | [optional] 
+**StorageLocation** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -76,16 +76,6 @@ SetStorageLocation sets StorageLocation field to given value.
 
 HasStorageLocation returns a boolean if a field has been set.
 
-### SetStorageLocationNil
-
-`func (o *DeleteBackupStorageLocationCommand) SetStorageLocationNil(b bool)`
-
- SetStorageLocationNil sets the value for StorageLocation to be an explicit nil
-
-### UnsetStorageLocation
-`func (o *DeleteBackupStorageLocationCommand) UnsetStorageLocation()`
-
-UnsetStorageLocation ensures that no value is present for StorageLocation, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

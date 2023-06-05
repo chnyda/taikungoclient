@@ -51,16 +51,6 @@ SetData sets Data field to given value.
 
 HasData returns a boolean if a field has been set.
 
-### SetDataNil
-
-`func (o *StandAloneVmListForDetails) SetDataNil(b bool)`
-
- SetDataNil sets the value for Data to be an explicit nil
-
-### UnsetData
-`func (o *StandAloneVmListForDetails) UnsetData()`
-
-UnsetData ensures that no value is present for Data, not even an explicit nil
 ### GetProject
 
 `func (o *StandAloneVmListForDetails) GetProject() ProjectDetailsForVmsDto`

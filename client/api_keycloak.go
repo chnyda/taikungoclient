@@ -17,6 +17,7 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+	"strings"
 )
 
 
@@ -26,11 +27,12 @@ type KeycloakApiService service
 type ApiKeycloakCreateRequest struct {
 	ctx context.Context
 	ApiService *KeycloakApiService
-	keycloakCreateCommand *KeycloakCreateCommand
+	v string
+	body *KeycloakCreateCommand
 }
 
-func (r ApiKeycloakCreateRequest) KeycloakCreateCommand(keycloakCreateCommand KeycloakCreateCommand) ApiKeycloakCreateRequest {
-	r.keycloakCreateCommand = &keycloakCreateCommand
+func (r ApiKeycloakCreateRequest) Body(body KeycloakCreateCommand) ApiKeycloakCreateRequest {
+	r.body = &body
 	return r
 }
 
@@ -42,12 +44,14 @@ func (r ApiKeycloakCreateRequest) Execute() (*http.Response, error) {
 KeycloakCreate Create keycloak configuration for organization
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param v
  @return ApiKeycloakCreateRequest
 */
-func (a *KeycloakApiService) KeycloakCreate(ctx context.Context) ApiKeycloakCreateRequest {
+func (a *KeycloakApiService) KeycloakCreate(ctx context.Context, v string) ApiKeycloakCreateRequest {
 	return ApiKeycloakCreateRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
@@ -64,17 +68,15 @@ func (a *KeycloakApiService) KeycloakCreateExecute(r ApiKeycloakCreateRequest) (
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/keycloak/create"
+	localVarPath := localBasePath + "/api/v{v}/Keycloak/create"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.keycloakCreateCommand == nil {
-		return nil, reportError("keycloakCreateCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -83,7 +85,7 @@ func (a *KeycloakApiService) KeycloakCreateExecute(r ApiKeycloakCreateRequest) (
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -91,7 +93,7 @@ func (a *KeycloakApiService) KeycloakCreateExecute(r ApiKeycloakCreateRequest) (
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.keycloakCreateCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -128,17 +130,6 @@ func (a *KeycloakApiService) KeycloakCreateExecute(r ApiKeycloakCreateRequest) (
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -172,7 +163,7 @@ func (a *KeycloakApiService) KeycloakCreateExecute(r ApiKeycloakCreateRequest) (
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -191,11 +182,12 @@ func (a *KeycloakApiService) KeycloakCreateExecute(r ApiKeycloakCreateRequest) (
 type ApiKeycloakDeleteRequest struct {
 	ctx context.Context
 	ApiService *KeycloakApiService
-	keycloakDeleteCommand *KeycloakDeleteCommand
+	v string
+	body *KeycloakDeleteCommand
 }
 
-func (r ApiKeycloakDeleteRequest) KeycloakDeleteCommand(keycloakDeleteCommand KeycloakDeleteCommand) ApiKeycloakDeleteRequest {
-	r.keycloakDeleteCommand = &keycloakDeleteCommand
+func (r ApiKeycloakDeleteRequest) Body(body KeycloakDeleteCommand) ApiKeycloakDeleteRequest {
+	r.body = &body
 	return r
 }
 
@@ -207,12 +199,14 @@ func (r ApiKeycloakDeleteRequest) Execute() (*http.Response, error) {
 KeycloakDelete Delete keycloak configuration
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param v
  @return ApiKeycloakDeleteRequest
 */
-func (a *KeycloakApiService) KeycloakDelete(ctx context.Context) ApiKeycloakDeleteRequest {
+func (a *KeycloakApiService) KeycloakDelete(ctx context.Context, v string) ApiKeycloakDeleteRequest {
 	return ApiKeycloakDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
@@ -229,17 +223,15 @@ func (a *KeycloakApiService) KeycloakDeleteExecute(r ApiKeycloakDeleteRequest) (
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/keycloak/delete"
+	localVarPath := localBasePath + "/api/v{v}/Keycloak/delete"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.keycloakDeleteCommand == nil {
-		return nil, reportError("keycloakDeleteCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -248,7 +240,7 @@ func (a *KeycloakApiService) KeycloakDeleteExecute(r ApiKeycloakDeleteRequest) (
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -256,7 +248,7 @@ func (a *KeycloakApiService) KeycloakDeleteExecute(r ApiKeycloakDeleteRequest) (
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.keycloakDeleteCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -293,17 +285,6 @@ func (a *KeycloakApiService) KeycloakDeleteExecute(r ApiKeycloakDeleteRequest) (
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -337,7 +318,7 @@ func (a *KeycloakApiService) KeycloakDeleteExecute(r ApiKeycloakDeleteRequest) (
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -356,11 +337,12 @@ func (a *KeycloakApiService) KeycloakDeleteExecute(r ApiKeycloakDeleteRequest) (
 type ApiKeycloakEditRequest struct {
 	ctx context.Context
 	ApiService *KeycloakApiService
-	keycloakEditCommand *KeycloakEditCommand
+	v string
+	body *KeycloakEditCommand
 }
 
-func (r ApiKeycloakEditRequest) KeycloakEditCommand(keycloakEditCommand KeycloakEditCommand) ApiKeycloakEditRequest {
-	r.keycloakEditCommand = &keycloakEditCommand
+func (r ApiKeycloakEditRequest) Body(body KeycloakEditCommand) ApiKeycloakEditRequest {
+	r.body = &body
 	return r
 }
 
@@ -372,19 +354,21 @@ func (r ApiKeycloakEditRequest) Execute() (*http.Response, error) {
 KeycloakEdit Edit keycloak configuration for organization
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param v
  @return ApiKeycloakEditRequest
 */
-func (a *KeycloakApiService) KeycloakEdit(ctx context.Context) ApiKeycloakEditRequest {
+func (a *KeycloakApiService) KeycloakEdit(ctx context.Context, v string) ApiKeycloakEditRequest {
 	return ApiKeycloakEditRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
 func (a *KeycloakApiService) KeycloakEditExecute(r ApiKeycloakEditRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
+		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
@@ -394,17 +378,15 @@ func (a *KeycloakApiService) KeycloakEditExecute(r ApiKeycloakEditRequest) (*htt
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/keycloak/edit"
+	localVarPath := localBasePath + "/api/v{v}/Keycloak/edit"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.keycloakEditCommand == nil {
-		return nil, reportError("keycloakEditCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -413,7 +395,7 @@ func (a *KeycloakApiService) KeycloakEditExecute(r ApiKeycloakEditRequest) (*htt
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -421,7 +403,7 @@ func (a *KeycloakApiService) KeycloakEditExecute(r ApiKeycloakEditRequest) (*htt
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.keycloakEditCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -458,17 +440,6 @@ func (a *KeycloakApiService) KeycloakEditExecute(r ApiKeycloakEditRequest) (*htt
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -502,7 +473,7 @@ func (a *KeycloakApiService) KeycloakEditExecute(r ApiKeycloakEditRequest) (*htt
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -518,31 +489,34 @@ func (a *KeycloakApiService) KeycloakEditExecute(r ApiKeycloakEditRequest) (*htt
 	return localVarHTTPResponse, nil
 }
 
-type ApiKeycloakListRequest struct {
+type ApiKeycloakGetRequest struct {
 	ctx context.Context
 	ApiService *KeycloakApiService
+	v string
 }
 
-func (r ApiKeycloakListRequest) Execute() (*KeycloakListDto, *http.Response, error) {
-	return r.ApiService.KeycloakListExecute(r)
+func (r ApiKeycloakGetRequest) Execute() (*KeycloakListDto, *http.Response, error) {
+	return r.ApiService.KeycloakGetExecute(r)
 }
 
 /*
-KeycloakList Get keycloak configuration
+KeycloakGet Get keycloak configuration
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiKeycloakListRequest
+ @param v
+ @return ApiKeycloakGetRequest
 */
-func (a *KeycloakApiService) KeycloakList(ctx context.Context) ApiKeycloakListRequest {
-	return ApiKeycloakListRequest{
+func (a *KeycloakApiService) KeycloakGet(ctx context.Context, v string) ApiKeycloakGetRequest {
+	return ApiKeycloakGetRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
 //  @return KeycloakListDto
-func (a *KeycloakApiService) KeycloakListExecute(r ApiKeycloakListRequest) (*KeycloakListDto, *http.Response, error) {
+func (a *KeycloakApiService) KeycloakGetExecute(r ApiKeycloakGetRequest) (*KeycloakListDto, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -550,12 +524,13 @@ func (a *KeycloakApiService) KeycloakListExecute(r ApiKeycloakListRequest) (*Key
 		localVarReturnValue  *KeycloakListDto
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "KeycloakApiService.KeycloakList")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "KeycloakApiService.KeycloakGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/keycloak"
+	localVarPath := localBasePath + "/api/v{v}/Keycloak"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -571,7 +546,7 @@ func (a *KeycloakApiService) KeycloakListExecute(r ApiKeycloakListRequest) (*Key
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -614,17 +589,6 @@ func (a *KeycloakApiService) KeycloakListExecute(r ApiKeycloakListRequest) (*Key
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -658,7 +622,7 @@ func (a *KeycloakApiService) KeycloakListExecute(r ApiKeycloakListRequest) (*Key
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **RepoName** | **string** |  | 
 **PackageName** | **string** |  | 
 **CatalogId** | **int32** |  | 
-**Version** | Pointer to **NullableString** |  | [optional] 
+**Version** | Pointer to **string** |  | [optional] 
 **Parameters** | Pointer to [**[]CatalogAppParamsDto**](CatalogAppParamsDto.md) |  | [optional] 
 
 ## Methods
@@ -114,16 +114,6 @@ SetVersion sets Version field to given value.
 
 HasVersion returns a boolean if a field has been set.
 
-### SetVersionNil
-
-`func (o *CreateCatalogAppCommand) SetVersionNil(b bool)`
-
- SetVersionNil sets the value for Version to be an explicit nil
-
-### UnsetVersion
-`func (o *CreateCatalogAppCommand) UnsetVersion()`
-
-UnsetVersion ensures that no value is present for Version, not even an explicit nil
 ### GetParameters
 
 `func (o *CreateCatalogAppCommand) GetParameters() []CatalogAppParamsDto`
@@ -149,16 +139,6 @@ SetParameters sets Parameters field to given value.
 
 HasParameters returns a boolean if a field has been set.
 
-### SetParametersNil
-
-`func (o *CreateCatalogAppCommand) SetParametersNil(b bool)`
-
- SetParametersNil sets the value for Parameters to be an explicit nil
-
-### UnsetParameters
-`func (o *CreateCatalogAppCommand) UnsetParameters()`
-
-UnsetParameters ensures that no value is present for Parameters, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

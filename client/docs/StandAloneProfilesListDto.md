@@ -5,14 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
-**PublicKey** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**PublicKey** | Pointer to **string** |  | [optional] 
 **IsLocked** | Pointer to **bool** |  | [optional] 
 **StandaloneVms** | Pointer to [**[]StandAloneVmSmallDetailDto**](StandAloneVmSmallDetailDto.md) |  | [optional] 
 **OrganizationId** | Pointer to **int32** |  | [optional] 
-**OrganizationName** | Pointer to **NullableString** |  | [optional] 
-**PartnerLogo** | Pointer to **NullableString** |  | [optional] 
-**CreatedAt** | Pointer to **NullableString** |  | [optional] 
+**OrganizationName** | Pointer to **string** |  | [optional] 
+**PartnerLogo** | Pointer to **string** |  | [optional] 
+**CreatedAt** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -83,16 +83,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *StandAloneProfilesListDto) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *StandAloneProfilesListDto) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetPublicKey
 
 `func (o *StandAloneProfilesListDto) GetPublicKey() string`
@@ -118,16 +108,6 @@ SetPublicKey sets PublicKey field to given value.
 
 HasPublicKey returns a boolean if a field has been set.
 
-### SetPublicKeyNil
-
-`func (o *StandAloneProfilesListDto) SetPublicKeyNil(b bool)`
-
- SetPublicKeyNil sets the value for PublicKey to be an explicit nil
-
-### UnsetPublicKey
-`func (o *StandAloneProfilesListDto) UnsetPublicKey()`
-
-UnsetPublicKey ensures that no value is present for PublicKey, not even an explicit nil
 ### GetIsLocked
 
 `func (o *StandAloneProfilesListDto) GetIsLocked() bool`
@@ -178,16 +158,6 @@ SetStandaloneVms sets StandaloneVms field to given value.
 
 HasStandaloneVms returns a boolean if a field has been set.
 
-### SetStandaloneVmsNil
-
-`func (o *StandAloneProfilesListDto) SetStandaloneVmsNil(b bool)`
-
- SetStandaloneVmsNil sets the value for StandaloneVms to be an explicit nil
-
-### UnsetStandaloneVms
-`func (o *StandAloneProfilesListDto) UnsetStandaloneVms()`
-
-UnsetStandaloneVms ensures that no value is present for StandaloneVms, not even an explicit nil
 ### GetOrganizationId
 
 `func (o *StandAloneProfilesListDto) GetOrganizationId() int32`
@@ -238,16 +208,6 @@ SetOrganizationName sets OrganizationName field to given value.
 
 HasOrganizationName returns a boolean if a field has been set.
 
-### SetOrganizationNameNil
-
-`func (o *StandAloneProfilesListDto) SetOrganizationNameNil(b bool)`
-
- SetOrganizationNameNil sets the value for OrganizationName to be an explicit nil
-
-### UnsetOrganizationName
-`func (o *StandAloneProfilesListDto) UnsetOrganizationName()`
-
-UnsetOrganizationName ensures that no value is present for OrganizationName, not even an explicit nil
 ### GetPartnerLogo
 
 `func (o *StandAloneProfilesListDto) GetPartnerLogo() string`
@@ -273,16 +233,6 @@ SetPartnerLogo sets PartnerLogo field to given value.
 
 HasPartnerLogo returns a boolean if a field has been set.
 
-### SetPartnerLogoNil
-
-`func (o *StandAloneProfilesListDto) SetPartnerLogoNil(b bool)`
-
- SetPartnerLogoNil sets the value for PartnerLogo to be an explicit nil
-
-### UnsetPartnerLogo
-`func (o *StandAloneProfilesListDto) UnsetPartnerLogo()`
-
-UnsetPartnerLogo ensures that no value is present for PartnerLogo, not even an explicit nil
 ### GetCreatedAt
 
 `func (o *StandAloneProfilesListDto) GetCreatedAt() string`
@@ -308,16 +258,6 @@ SetCreatedAt sets CreatedAt field to given value.
 
 HasCreatedAt returns a boolean if a field has been set.
 
-### SetCreatedAtNil
-
-`func (o *StandAloneProfilesListDto) SetCreatedAtNil(b bool)`
-
- SetCreatedAtNil sets the value for CreatedAt to be an explicit nil
-
-### UnsetCreatedAt
-`func (o *StandAloneProfilesListDto) UnsetCreatedAt()`
-
-UnsetCreatedAt ensures that no value is present for CreatedAt, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

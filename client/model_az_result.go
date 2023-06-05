@@ -41,9 +41,9 @@ func NewAzResultWithDefaults() *AzResult {
 	return &this
 }
 
-// GetList returns the List field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetList returns the List field value if set, zero value otherwise.
 func (o *AzResult) GetList() []string {
-	if o == nil {
+	if o == nil || IsNil(o.List) {
 		var ret []string
 		return ret
 	}
@@ -52,7 +52,6 @@ func (o *AzResult) GetList() []string {
 
 // GetListOk returns a tuple with the List field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AzResult) GetListOk() ([]string, bool) {
 	if o == nil || IsNil(o.List) {
 		return nil, false
@@ -62,7 +61,7 @@ func (o *AzResult) GetListOk() ([]string, bool) {
 
 // HasList returns a boolean if a field has been set.
 func (o *AzResult) HasList() bool {
-	if o != nil && IsNil(o.List) {
+	if o != nil && !IsNil(o.List) {
 		return true
 	}
 
@@ -116,7 +115,7 @@ func (o AzResult) MarshalJSON() ([]byte, error) {
 
 func (o AzResult) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.List != nil {
+	if !IsNil(o.List) {
 		toSerialize["list"] = o.List
 	}
 	if !IsNil(o.TotalCount) {

@@ -21,7 +21,7 @@ var _ MappedNullable = &CreateAlertingIntegrationCommand{}
 // CreateAlertingIntegrationCommand struct for CreateAlertingIntegrationCommand
 type CreateAlertingIntegrationCommand struct {
 	Url string `json:"url"`
-	Token NullableString `json:"token,omitempty"`
+	Token *string `json:"token,omitempty"`
 	AlertingIntegrationType AlertingIntegrationType `json:"alertingIntegrationType"`
 	AlertingProfileId int32 `json:"alertingProfileId"`
 }
@@ -70,46 +70,36 @@ func (o *CreateAlertingIntegrationCommand) SetUrl(v string) {
 	o.Url = v
 }
 
-// GetToken returns the Token field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetToken returns the Token field value if set, zero value otherwise.
 func (o *CreateAlertingIntegrationCommand) GetToken() string {
-	if o == nil || IsNil(o.Token.Get()) {
+	if o == nil || IsNil(o.Token) {
 		var ret string
 		return ret
 	}
-	return *o.Token.Get()
+	return *o.Token
 }
 
 // GetTokenOk returns a tuple with the Token field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateAlertingIntegrationCommand) GetTokenOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Token) {
 		return nil, false
 	}
-	return o.Token.Get(), o.Token.IsSet()
+	return o.Token, true
 }
 
 // HasToken returns a boolean if a field has been set.
 func (o *CreateAlertingIntegrationCommand) HasToken() bool {
-	if o != nil && o.Token.IsSet() {
+	if o != nil && !IsNil(o.Token) {
 		return true
 	}
 
 	return false
 }
 
-// SetToken gets a reference to the given NullableString and assigns it to the Token field.
+// SetToken gets a reference to the given string and assigns it to the Token field.
 func (o *CreateAlertingIntegrationCommand) SetToken(v string) {
-	o.Token.Set(&v)
-}
-// SetTokenNil sets the value for Token to be an explicit nil
-func (o *CreateAlertingIntegrationCommand) SetTokenNil() {
-	o.Token.Set(nil)
-}
-
-// UnsetToken ensures that no value is present for Token, not even an explicit nil
-func (o *CreateAlertingIntegrationCommand) UnsetToken() {
-	o.Token.Unset()
+	o.Token = &v
 }
 
 // GetAlertingIntegrationType returns the AlertingIntegrationType field value
@@ -171,8 +161,8 @@ func (o CreateAlertingIntegrationCommand) MarshalJSON() ([]byte, error) {
 func (o CreateAlertingIntegrationCommand) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["url"] = o.Url
-	if o.Token.IsSet() {
-		toSerialize["token"] = o.Token.Get()
+	if !IsNil(o.Token) {
+		toSerialize["token"] = o.Token
 	}
 	toSerialize["alertingIntegrationType"] = o.AlertingIntegrationType
 	toSerialize["alertingProfileId"] = o.AlertingProfileId

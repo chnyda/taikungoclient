@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Operation** | Pointer to **NullableString** |  | [optional] 
-**JobUrl** | Pointer to **NullableString** |  | [optional] 
-**EstimatedTime** | Pointer to **NullableString** |  | [optional] 
+**Operation** | Pointer to **string** |  | [optional] 
+**JobUrl** | Pointer to **string** |  | [optional] 
+**EstimatedTime** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -52,16 +52,6 @@ SetOperation sets Operation field to given value.
 
 HasOperation returns a boolean if a field has been set.
 
-### SetOperationNil
-
-`func (o *ProjectActionUpdateDto) SetOperationNil(b bool)`
-
- SetOperationNil sets the value for Operation to be an explicit nil
-
-### UnsetOperation
-`func (o *ProjectActionUpdateDto) UnsetOperation()`
-
-UnsetOperation ensures that no value is present for Operation, not even an explicit nil
 ### GetJobUrl
 
 `func (o *ProjectActionUpdateDto) GetJobUrl() string`
@@ -87,16 +77,6 @@ SetJobUrl sets JobUrl field to given value.
 
 HasJobUrl returns a boolean if a field has been set.
 
-### SetJobUrlNil
-
-`func (o *ProjectActionUpdateDto) SetJobUrlNil(b bool)`
-
- SetJobUrlNil sets the value for JobUrl to be an explicit nil
-
-### UnsetJobUrl
-`func (o *ProjectActionUpdateDto) UnsetJobUrl()`
-
-UnsetJobUrl ensures that no value is present for JobUrl, not even an explicit nil
 ### GetEstimatedTime
 
 `func (o *ProjectActionUpdateDto) GetEstimatedTime() string`
@@ -122,16 +102,6 @@ SetEstimatedTime sets EstimatedTime field to given value.
 
 HasEstimatedTime returns a boolean if a field has been set.
 
-### SetEstimatedTimeNil
-
-`func (o *ProjectActionUpdateDto) SetEstimatedTimeNil(b bool)`
-
- SetEstimatedTimeNil sets the value for EstimatedTime to be an explicit nil
-
-### UnsetEstimatedTime
-`func (o *ProjectActionUpdateDto) UnsetEstimatedTime()`
-
-UnsetEstimatedTime ensures that no value is present for EstimatedTime, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

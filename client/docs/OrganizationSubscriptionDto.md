@@ -6,13 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** |  | [optional] 
 **OrganizationId** | Pointer to **int32** |  | [optional] 
-**OrganizationName** | Pointer to **NullableString** |  | [optional] 
+**OrganizationName** | Pointer to **string** |  | [optional] 
 **SubscriptionId** | Pointer to **int32** |  | [optional] 
-**StripeSubscriptionId** | Pointer to **NullableString** |  | [optional] 
-**SubscriptionType** | Pointer to **NullableString** |  | [optional] 
-**SubscriptionName** | Pointer to **NullableString** |  | [optional] 
+**StripeSubscriptionId** | Pointer to **string** |  | [optional] 
+**SubscriptionType** | Pointer to **string** |  | [optional] 
+**SubscriptionName** | Pointer to **string** |  | [optional] 
 **StartDate** | Pointer to **time.Time** |  | [optional] 
-**EndDate** | Pointer to **NullableTime** |  | [optional] 
+**EndDate** | Pointer to **time.Time** |  | [optional] 
 **Invoices** | Pointer to [**[]InvoiceDto**](InvoiceDto.md) |  | [optional] 
 
 ## Methods
@@ -109,16 +109,6 @@ SetOrganizationName sets OrganizationName field to given value.
 
 HasOrganizationName returns a boolean if a field has been set.
 
-### SetOrganizationNameNil
-
-`func (o *OrganizationSubscriptionDto) SetOrganizationNameNil(b bool)`
-
- SetOrganizationNameNil sets the value for OrganizationName to be an explicit nil
-
-### UnsetOrganizationName
-`func (o *OrganizationSubscriptionDto) UnsetOrganizationName()`
-
-UnsetOrganizationName ensures that no value is present for OrganizationName, not even an explicit nil
 ### GetSubscriptionId
 
 `func (o *OrganizationSubscriptionDto) GetSubscriptionId() int32`
@@ -169,16 +159,6 @@ SetStripeSubscriptionId sets StripeSubscriptionId field to given value.
 
 HasStripeSubscriptionId returns a boolean if a field has been set.
 
-### SetStripeSubscriptionIdNil
-
-`func (o *OrganizationSubscriptionDto) SetStripeSubscriptionIdNil(b bool)`
-
- SetStripeSubscriptionIdNil sets the value for StripeSubscriptionId to be an explicit nil
-
-### UnsetStripeSubscriptionId
-`func (o *OrganizationSubscriptionDto) UnsetStripeSubscriptionId()`
-
-UnsetStripeSubscriptionId ensures that no value is present for StripeSubscriptionId, not even an explicit nil
 ### GetSubscriptionType
 
 `func (o *OrganizationSubscriptionDto) GetSubscriptionType() string`
@@ -204,16 +184,6 @@ SetSubscriptionType sets SubscriptionType field to given value.
 
 HasSubscriptionType returns a boolean if a field has been set.
 
-### SetSubscriptionTypeNil
-
-`func (o *OrganizationSubscriptionDto) SetSubscriptionTypeNil(b bool)`
-
- SetSubscriptionTypeNil sets the value for SubscriptionType to be an explicit nil
-
-### UnsetSubscriptionType
-`func (o *OrganizationSubscriptionDto) UnsetSubscriptionType()`
-
-UnsetSubscriptionType ensures that no value is present for SubscriptionType, not even an explicit nil
 ### GetSubscriptionName
 
 `func (o *OrganizationSubscriptionDto) GetSubscriptionName() string`
@@ -239,16 +209,6 @@ SetSubscriptionName sets SubscriptionName field to given value.
 
 HasSubscriptionName returns a boolean if a field has been set.
 
-### SetSubscriptionNameNil
-
-`func (o *OrganizationSubscriptionDto) SetSubscriptionNameNil(b bool)`
-
- SetSubscriptionNameNil sets the value for SubscriptionName to be an explicit nil
-
-### UnsetSubscriptionName
-`func (o *OrganizationSubscriptionDto) UnsetSubscriptionName()`
-
-UnsetSubscriptionName ensures that no value is present for SubscriptionName, not even an explicit nil
 ### GetStartDate
 
 `func (o *OrganizationSubscriptionDto) GetStartDate() time.Time`
@@ -299,16 +259,6 @@ SetEndDate sets EndDate field to given value.
 
 HasEndDate returns a boolean if a field has been set.
 
-### SetEndDateNil
-
-`func (o *OrganizationSubscriptionDto) SetEndDateNil(b bool)`
-
- SetEndDateNil sets the value for EndDate to be an explicit nil
-
-### UnsetEndDate
-`func (o *OrganizationSubscriptionDto) UnsetEndDate()`
-
-UnsetEndDate ensures that no value is present for EndDate, not even an explicit nil
 ### GetInvoices
 
 `func (o *OrganizationSubscriptionDto) GetInvoices() []InvoiceDto`
@@ -334,16 +284,6 @@ SetInvoices sets Invoices field to given value.
 
 HasInvoices returns a boolean if a field has been set.
 
-### SetInvoicesNil
-
-`func (o *OrganizationSubscriptionDto) SetInvoicesNil(b bool)`
-
- SetInvoicesNil sets the value for Invoices to be an explicit nil
-
-### UnsetInvoices
-`func (o *OrganizationSubscriptionDto) UnsetInvoices()`
-
-UnsetInvoices ensures that no value is present for Invoices, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

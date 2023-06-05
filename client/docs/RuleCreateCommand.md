@@ -9,10 +9,10 @@ Name | Type | Description | Notes
 **Labels** | [**[]PrometheusLabelListDto**](PrometheusLabelListDto.md) |  | 
 **Type** | [**PrometheusType**](PrometheusType.md) |  | 
 **Price** | Pointer to **float64** |  | [optional] 
-**PartnerId** | Pointer to **NullableInt32** |  | [optional] 
+**PartnerId** | Pointer to **int32** |  | [optional] 
 **OperationCredentialId** | Pointer to **int32** |  | [optional] 
 **OrganizationId** | Pointer to **[]int32** |  | [optional] 
-**RuleDiscountRate** | Pointer to **NullableInt32** |  | [optional] 
+**RuleDiscountRate** | Pointer to **int32** |  | [optional] 
 
 ## Methods
 
@@ -163,16 +163,6 @@ SetPartnerId sets PartnerId field to given value.
 
 HasPartnerId returns a boolean if a field has been set.
 
-### SetPartnerIdNil
-
-`func (o *RuleCreateCommand) SetPartnerIdNil(b bool)`
-
- SetPartnerIdNil sets the value for PartnerId to be an explicit nil
-
-### UnsetPartnerId
-`func (o *RuleCreateCommand) UnsetPartnerId()`
-
-UnsetPartnerId ensures that no value is present for PartnerId, not even an explicit nil
 ### GetOperationCredentialId
 
 `func (o *RuleCreateCommand) GetOperationCredentialId() int32`
@@ -223,16 +213,6 @@ SetOrganizationId sets OrganizationId field to given value.
 
 HasOrganizationId returns a boolean if a field has been set.
 
-### SetOrganizationIdNil
-
-`func (o *RuleCreateCommand) SetOrganizationIdNil(b bool)`
-
- SetOrganizationIdNil sets the value for OrganizationId to be an explicit nil
-
-### UnsetOrganizationId
-`func (o *RuleCreateCommand) UnsetOrganizationId()`
-
-UnsetOrganizationId ensures that no value is present for OrganizationId, not even an explicit nil
 ### GetRuleDiscountRate
 
 `func (o *RuleCreateCommand) GetRuleDiscountRate() int32`
@@ -258,16 +238,6 @@ SetRuleDiscountRate sets RuleDiscountRate field to given value.
 
 HasRuleDiscountRate returns a boolean if a field has been set.
 
-### SetRuleDiscountRateNil
-
-`func (o *RuleCreateCommand) SetRuleDiscountRateNil(b bool)`
-
- SetRuleDiscountRateNil sets the value for RuleDiscountRate to be an explicit nil
-
-### UnsetRuleDiscountRate
-`func (o *RuleCreateCommand) UnsetRuleDiscountRate()`
-
-UnsetRuleDiscountRate ensures that no value is present for RuleDiscountRate, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

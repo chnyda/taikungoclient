@@ -17,43 +17,47 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+	"strings"
 )
 
 
 // SearchApiService SearchApi service
 type SearchApiService service
 
-type ApiSearchAccessProfilesRequest struct {
+type ApiSearchAccessProfilesListRequest struct {
 	ctx context.Context
 	ApiService *SearchApiService
-	accessProfilesSearchCommand *AccessProfilesSearchCommand
+	v string
+	body *AccessProfilesSearchCommand
 }
 
-func (r ApiSearchAccessProfilesRequest) AccessProfilesSearchCommand(accessProfilesSearchCommand AccessProfilesSearchCommand) ApiSearchAccessProfilesRequest {
-	r.accessProfilesSearchCommand = &accessProfilesSearchCommand
+func (r ApiSearchAccessProfilesListRequest) Body(body AccessProfilesSearchCommand) ApiSearchAccessProfilesListRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiSearchAccessProfilesRequest) Execute() (*AccessProfilesSearchList, *http.Response, error) {
-	return r.ApiService.SearchAccessProfilesExecute(r)
+func (r ApiSearchAccessProfilesListRequest) Execute() (*AccessProfilesSearchList, *http.Response, error) {
+	return r.ApiService.SearchAccessProfilesListExecute(r)
 }
 
 /*
-SearchAccessProfiles Global search for access-profiles
+SearchAccessProfilesList Global search for access profiles
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSearchAccessProfilesRequest
+ @param v
+ @return ApiSearchAccessProfilesListRequest
 */
-func (a *SearchApiService) SearchAccessProfiles(ctx context.Context) ApiSearchAccessProfilesRequest {
-	return ApiSearchAccessProfilesRequest{
+func (a *SearchApiService) SearchAccessProfilesList(ctx context.Context, v string) ApiSearchAccessProfilesListRequest {
+	return ApiSearchAccessProfilesListRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
 //  @return AccessProfilesSearchList
-func (a *SearchApiService) SearchAccessProfilesExecute(r ApiSearchAccessProfilesRequest) (*AccessProfilesSearchList, *http.Response, error) {
+func (a *SearchApiService) SearchAccessProfilesListExecute(r ApiSearchAccessProfilesListRequest) (*AccessProfilesSearchList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -61,22 +65,20 @@ func (a *SearchApiService) SearchAccessProfilesExecute(r ApiSearchAccessProfiles
 		localVarReturnValue  *AccessProfilesSearchList
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SearchApiService.SearchAccessProfiles")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SearchApiService.SearchAccessProfilesList")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/search/access-profiles"
+	localVarPath := localBasePath + "/api/v{v}/Search/access-profiles"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.accessProfilesSearchCommand == nil {
-		return localVarReturnValue, nil, reportError("accessProfilesSearchCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -85,7 +87,7 @@ func (a *SearchApiService) SearchAccessProfilesExecute(r ApiSearchAccessProfiles
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -93,7 +95,7 @@ func (a *SearchApiService) SearchAccessProfilesExecute(r ApiSearchAccessProfiles
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.accessProfilesSearchCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -130,17 +132,6 @@ func (a *SearchApiService) SearchAccessProfilesExecute(r ApiSearchAccessProfiles
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -174,7 +165,7 @@ func (a *SearchApiService) SearchAccessProfilesExecute(r ApiSearchAccessProfiles
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -199,37 +190,40 @@ func (a *SearchApiService) SearchAccessProfilesExecute(r ApiSearchAccessProfiles
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSearchBackupCredentialsRequest struct {
+type ApiSearchBackupCredentialsListRequest struct {
 	ctx context.Context
 	ApiService *SearchApiService
-	backupCredentialsSearchCommand *BackupCredentialsSearchCommand
+	v string
+	body *BackupCredentialsSearchCommand
 }
 
-func (r ApiSearchBackupCredentialsRequest) BackupCredentialsSearchCommand(backupCredentialsSearchCommand BackupCredentialsSearchCommand) ApiSearchBackupCredentialsRequest {
-	r.backupCredentialsSearchCommand = &backupCredentialsSearchCommand
+func (r ApiSearchBackupCredentialsListRequest) Body(body BackupCredentialsSearchCommand) ApiSearchBackupCredentialsListRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiSearchBackupCredentialsRequest) Execute() (*BackupCredentialsSearchList, *http.Response, error) {
-	return r.ApiService.SearchBackupCredentialsExecute(r)
+func (r ApiSearchBackupCredentialsListRequest) Execute() (*BackupCredentialsSearchList, *http.Response, error) {
+	return r.ApiService.SearchBackupCredentialsListExecute(r)
 }
 
 /*
-SearchBackupCredentials Global search for backup-credentials
+SearchBackupCredentialsList Global search for backup credentials
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSearchBackupCredentialsRequest
+ @param v
+ @return ApiSearchBackupCredentialsListRequest
 */
-func (a *SearchApiService) SearchBackupCredentials(ctx context.Context) ApiSearchBackupCredentialsRequest {
-	return ApiSearchBackupCredentialsRequest{
+func (a *SearchApiService) SearchBackupCredentialsList(ctx context.Context, v string) ApiSearchBackupCredentialsListRequest {
+	return ApiSearchBackupCredentialsListRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
 //  @return BackupCredentialsSearchList
-func (a *SearchApiService) SearchBackupCredentialsExecute(r ApiSearchBackupCredentialsRequest) (*BackupCredentialsSearchList, *http.Response, error) {
+func (a *SearchApiService) SearchBackupCredentialsListExecute(r ApiSearchBackupCredentialsListRequest) (*BackupCredentialsSearchList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -237,22 +231,20 @@ func (a *SearchApiService) SearchBackupCredentialsExecute(r ApiSearchBackupCrede
 		localVarReturnValue  *BackupCredentialsSearchList
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SearchApiService.SearchBackupCredentials")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SearchApiService.SearchBackupCredentialsList")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/search/backup-credentials"
+	localVarPath := localBasePath + "/api/v{v}/Search/backup-credentials"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.backupCredentialsSearchCommand == nil {
-		return localVarReturnValue, nil, reportError("backupCredentialsSearchCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -261,7 +253,7 @@ func (a *SearchApiService) SearchBackupCredentialsExecute(r ApiSearchBackupCrede
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -269,7 +261,7 @@ func (a *SearchApiService) SearchBackupCredentialsExecute(r ApiSearchBackupCrede
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.backupCredentialsSearchCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -306,17 +298,6 @@ func (a *SearchApiService) SearchBackupCredentialsExecute(r ApiSearchBackupCrede
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -350,7 +331,7 @@ func (a *SearchApiService) SearchBackupCredentialsExecute(r ApiSearchBackupCrede
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -375,37 +356,40 @@ func (a *SearchApiService) SearchBackupCredentialsExecute(r ApiSearchBackupCrede
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSearchBillingCredentialsRequest struct {
+type ApiSearchBillingCredentialsListRequest struct {
 	ctx context.Context
 	ApiService *SearchApiService
-	billingCredentialsSearchCommand *BillingCredentialsSearchCommand
+	v string
+	body *BillingCredentialsSearchCommand
 }
 
-func (r ApiSearchBillingCredentialsRequest) BillingCredentialsSearchCommand(billingCredentialsSearchCommand BillingCredentialsSearchCommand) ApiSearchBillingCredentialsRequest {
-	r.billingCredentialsSearchCommand = &billingCredentialsSearchCommand
+func (r ApiSearchBillingCredentialsListRequest) Body(body BillingCredentialsSearchCommand) ApiSearchBillingCredentialsListRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiSearchBillingCredentialsRequest) Execute() (*BillingCredentialsSearchList, *http.Response, error) {
-	return r.ApiService.SearchBillingCredentialsExecute(r)
+func (r ApiSearchBillingCredentialsListRequest) Execute() (*BillingCredentialsSearchList, *http.Response, error) {
+	return r.ApiService.SearchBillingCredentialsListExecute(r)
 }
 
 /*
-SearchBillingCredentials Global search for billing-credentials
+SearchBillingCredentialsList Global search for billing credentials
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSearchBillingCredentialsRequest
+ @param v
+ @return ApiSearchBillingCredentialsListRequest
 */
-func (a *SearchApiService) SearchBillingCredentials(ctx context.Context) ApiSearchBillingCredentialsRequest {
-	return ApiSearchBillingCredentialsRequest{
+func (a *SearchApiService) SearchBillingCredentialsList(ctx context.Context, v string) ApiSearchBillingCredentialsListRequest {
+	return ApiSearchBillingCredentialsListRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
 //  @return BillingCredentialsSearchList
-func (a *SearchApiService) SearchBillingCredentialsExecute(r ApiSearchBillingCredentialsRequest) (*BillingCredentialsSearchList, *http.Response, error) {
+func (a *SearchApiService) SearchBillingCredentialsListExecute(r ApiSearchBillingCredentialsListRequest) (*BillingCredentialsSearchList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -413,22 +397,20 @@ func (a *SearchApiService) SearchBillingCredentialsExecute(r ApiSearchBillingCre
 		localVarReturnValue  *BillingCredentialsSearchList
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SearchApiService.SearchBillingCredentials")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SearchApiService.SearchBillingCredentialsList")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/search/billing-credentials"
+	localVarPath := localBasePath + "/api/v{v}/Search/billing-credentials"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.billingCredentialsSearchCommand == nil {
-		return localVarReturnValue, nil, reportError("billingCredentialsSearchCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -437,7 +419,7 @@ func (a *SearchApiService) SearchBillingCredentialsExecute(r ApiSearchBillingCre
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -445,7 +427,7 @@ func (a *SearchApiService) SearchBillingCredentialsExecute(r ApiSearchBillingCre
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.billingCredentialsSearchCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -482,17 +464,6 @@ func (a *SearchApiService) SearchBillingCredentialsExecute(r ApiSearchBillingCre
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -526,7 +497,7 @@ func (a *SearchApiService) SearchBillingCredentialsExecute(r ApiSearchBillingCre
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -551,37 +522,40 @@ func (a *SearchApiService) SearchBillingCredentialsExecute(r ApiSearchBillingCre
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSearchCloudCredentialsRequest struct {
+type ApiSearchCloudCredentialsListRequest struct {
 	ctx context.Context
 	ApiService *SearchApiService
-	cloudCredentialsSearchCommand *CloudCredentialsSearchCommand
+	v string
+	body *CloudCredentialsSearchCommand
 }
 
-func (r ApiSearchCloudCredentialsRequest) CloudCredentialsSearchCommand(cloudCredentialsSearchCommand CloudCredentialsSearchCommand) ApiSearchCloudCredentialsRequest {
-	r.cloudCredentialsSearchCommand = &cloudCredentialsSearchCommand
+func (r ApiSearchCloudCredentialsListRequest) Body(body CloudCredentialsSearchCommand) ApiSearchCloudCredentialsListRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiSearchCloudCredentialsRequest) Execute() (*CloudCredentialsSearchList, *http.Response, error) {
-	return r.ApiService.SearchCloudCredentialsExecute(r)
+func (r ApiSearchCloudCredentialsListRequest) Execute() (*CloudCredentialsSearchList, *http.Response, error) {
+	return r.ApiService.SearchCloudCredentialsListExecute(r)
 }
 
 /*
-SearchCloudCredentials Global search for cloud-credentials
+SearchCloudCredentialsList Global search for cloud credentials
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSearchCloudCredentialsRequest
+ @param v
+ @return ApiSearchCloudCredentialsListRequest
 */
-func (a *SearchApiService) SearchCloudCredentials(ctx context.Context) ApiSearchCloudCredentialsRequest {
-	return ApiSearchCloudCredentialsRequest{
+func (a *SearchApiService) SearchCloudCredentialsList(ctx context.Context, v string) ApiSearchCloudCredentialsListRequest {
+	return ApiSearchCloudCredentialsListRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
 //  @return CloudCredentialsSearchList
-func (a *SearchApiService) SearchCloudCredentialsExecute(r ApiSearchCloudCredentialsRequest) (*CloudCredentialsSearchList, *http.Response, error) {
+func (a *SearchApiService) SearchCloudCredentialsListExecute(r ApiSearchCloudCredentialsListRequest) (*CloudCredentialsSearchList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -589,22 +563,20 @@ func (a *SearchApiService) SearchCloudCredentialsExecute(r ApiSearchCloudCredent
 		localVarReturnValue  *CloudCredentialsSearchList
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SearchApiService.SearchCloudCredentials")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SearchApiService.SearchCloudCredentialsList")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/search/cloud-credentials"
+	localVarPath := localBasePath + "/api/v{v}/Search/cloud-credentials"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.cloudCredentialsSearchCommand == nil {
-		return localVarReturnValue, nil, reportError("cloudCredentialsSearchCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -613,7 +585,7 @@ func (a *SearchApiService) SearchCloudCredentialsExecute(r ApiSearchCloudCredent
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -621,7 +593,7 @@ func (a *SearchApiService) SearchCloudCredentialsExecute(r ApiSearchCloudCredent
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.cloudCredentialsSearchCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -658,17 +630,6 @@ func (a *SearchApiService) SearchCloudCredentialsExecute(r ApiSearchCloudCredent
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -702,7 +663,7 @@ func (a *SearchApiService) SearchCloudCredentialsExecute(r ApiSearchCloudCredent
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -727,37 +688,40 @@ func (a *SearchApiService) SearchCloudCredentialsExecute(r ApiSearchCloudCredent
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSearchConfigMapsRequest struct {
+type ApiSearchConfigMapListRequest struct {
 	ctx context.Context
 	ApiService *SearchApiService
-	configMapSearchCommand *ConfigMapSearchCommand
+	v string
+	body *ConfigMapSearchCommand
 }
 
-func (r ApiSearchConfigMapsRequest) ConfigMapSearchCommand(configMapSearchCommand ConfigMapSearchCommand) ApiSearchConfigMapsRequest {
-	r.configMapSearchCommand = &configMapSearchCommand
+func (r ApiSearchConfigMapListRequest) Body(body ConfigMapSearchCommand) ApiSearchConfigMapListRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiSearchConfigMapsRequest) Execute() (*ConfigMapSearchList, *http.Response, error) {
-	return r.ApiService.SearchConfigMapsExecute(r)
+func (r ApiSearchConfigMapListRequest) Execute() (*ConfigMapSearchList, *http.Response, error) {
+	return r.ApiService.SearchConfigMapListExecute(r)
 }
 
 /*
-SearchConfigMaps Global search for config-maps
+SearchConfigMapList Global search for kubernetes config maps
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSearchConfigMapsRequest
+ @param v
+ @return ApiSearchConfigMapListRequest
 */
-func (a *SearchApiService) SearchConfigMaps(ctx context.Context) ApiSearchConfigMapsRequest {
-	return ApiSearchConfigMapsRequest{
+func (a *SearchApiService) SearchConfigMapList(ctx context.Context, v string) ApiSearchConfigMapListRequest {
+	return ApiSearchConfigMapListRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
 //  @return ConfigMapSearchList
-func (a *SearchApiService) SearchConfigMapsExecute(r ApiSearchConfigMapsRequest) (*ConfigMapSearchList, *http.Response, error) {
+func (a *SearchApiService) SearchConfigMapListExecute(r ApiSearchConfigMapListRequest) (*ConfigMapSearchList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -765,22 +729,20 @@ func (a *SearchApiService) SearchConfigMapsExecute(r ApiSearchConfigMapsRequest)
 		localVarReturnValue  *ConfigMapSearchList
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SearchApiService.SearchConfigMaps")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SearchApiService.SearchConfigMapList")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/search/config-maps"
+	localVarPath := localBasePath + "/api/v{v}/Search/config-maps"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.configMapSearchCommand == nil {
-		return localVarReturnValue, nil, reportError("configMapSearchCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -789,7 +751,7 @@ func (a *SearchApiService) SearchConfigMapsExecute(r ApiSearchConfigMapsRequest)
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -797,7 +759,7 @@ func (a *SearchApiService) SearchConfigMapsExecute(r ApiSearchConfigMapsRequest)
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.configMapSearchCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -834,17 +796,6 @@ func (a *SearchApiService) SearchConfigMapsExecute(r ApiSearchConfigMapsRequest)
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -878,7 +829,7 @@ func (a *SearchApiService) SearchConfigMapsExecute(r ApiSearchConfigMapsRequest)
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -903,37 +854,40 @@ func (a *SearchApiService) SearchConfigMapsExecute(r ApiSearchConfigMapsRequest)
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSearchDaemonSetsRequest struct {
+type ApiSearchDaemonSetListRequest struct {
 	ctx context.Context
 	ApiService *SearchApiService
-	daemonSetSearchCommand *DaemonSetSearchCommand
+	v string
+	body *DaemonSetSearchCommand
 }
 
-func (r ApiSearchDaemonSetsRequest) DaemonSetSearchCommand(daemonSetSearchCommand DaemonSetSearchCommand) ApiSearchDaemonSetsRequest {
-	r.daemonSetSearchCommand = &daemonSetSearchCommand
+func (r ApiSearchDaemonSetListRequest) Body(body DaemonSetSearchCommand) ApiSearchDaemonSetListRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiSearchDaemonSetsRequest) Execute() (*DaemonSetSearchList, *http.Response, error) {
-	return r.ApiService.SearchDaemonSetsExecute(r)
+func (r ApiSearchDaemonSetListRequest) Execute() (*DaemonSetSearchList, *http.Response, error) {
+	return r.ApiService.SearchDaemonSetListExecute(r)
 }
 
 /*
-SearchDaemonSets Global search for daemon-sets
+SearchDaemonSetList Global search for kubernetes daemon sets
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSearchDaemonSetsRequest
+ @param v
+ @return ApiSearchDaemonSetListRequest
 */
-func (a *SearchApiService) SearchDaemonSets(ctx context.Context) ApiSearchDaemonSetsRequest {
-	return ApiSearchDaemonSetsRequest{
+func (a *SearchApiService) SearchDaemonSetList(ctx context.Context, v string) ApiSearchDaemonSetListRequest {
+	return ApiSearchDaemonSetListRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
 //  @return DaemonSetSearchList
-func (a *SearchApiService) SearchDaemonSetsExecute(r ApiSearchDaemonSetsRequest) (*DaemonSetSearchList, *http.Response, error) {
+func (a *SearchApiService) SearchDaemonSetListExecute(r ApiSearchDaemonSetListRequest) (*DaemonSetSearchList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -941,22 +895,20 @@ func (a *SearchApiService) SearchDaemonSetsExecute(r ApiSearchDaemonSetsRequest)
 		localVarReturnValue  *DaemonSetSearchList
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SearchApiService.SearchDaemonSets")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SearchApiService.SearchDaemonSetList")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/search/daemon-sets"
+	localVarPath := localBasePath + "/api/v{v}/Search/daemon-sets"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.daemonSetSearchCommand == nil {
-		return localVarReturnValue, nil, reportError("daemonSetSearchCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -965,7 +917,7 @@ func (a *SearchApiService) SearchDaemonSetsExecute(r ApiSearchDaemonSetsRequest)
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -973,7 +925,7 @@ func (a *SearchApiService) SearchDaemonSetsExecute(r ApiSearchDaemonSetsRequest)
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.daemonSetSearchCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1010,17 +962,6 @@ func (a *SearchApiService) SearchDaemonSetsExecute(r ApiSearchDaemonSetsRequest)
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1054,7 +995,7 @@ func (a *SearchApiService) SearchDaemonSetsExecute(r ApiSearchDaemonSetsRequest)
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1079,37 +1020,40 @@ func (a *SearchApiService) SearchDaemonSetsExecute(r ApiSearchDaemonSetsRequest)
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSearchDeploymentsRequest struct {
+type ApiSearchDeploymentListRequest struct {
 	ctx context.Context
 	ApiService *SearchApiService
-	deploymentSearchCommand *DeploymentSearchCommand
+	v string
+	body *DeploymentSearchCommand
 }
 
-func (r ApiSearchDeploymentsRequest) DeploymentSearchCommand(deploymentSearchCommand DeploymentSearchCommand) ApiSearchDeploymentsRequest {
-	r.deploymentSearchCommand = &deploymentSearchCommand
+func (r ApiSearchDeploymentListRequest) Body(body DeploymentSearchCommand) ApiSearchDeploymentListRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiSearchDeploymentsRequest) Execute() (*DeploymentSearchList, *http.Response, error) {
-	return r.ApiService.SearchDeploymentsExecute(r)
+func (r ApiSearchDeploymentListRequest) Execute() (*DeploymentSearchList, *http.Response, error) {
+	return r.ApiService.SearchDeploymentListExecute(r)
 }
 
 /*
-SearchDeployments Global search for deployments
+SearchDeploymentList Global search for kubernetes deployments
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSearchDeploymentsRequest
+ @param v
+ @return ApiSearchDeploymentListRequest
 */
-func (a *SearchApiService) SearchDeployments(ctx context.Context) ApiSearchDeploymentsRequest {
-	return ApiSearchDeploymentsRequest{
+func (a *SearchApiService) SearchDeploymentList(ctx context.Context, v string) ApiSearchDeploymentListRequest {
+	return ApiSearchDeploymentListRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
 //  @return DeploymentSearchList
-func (a *SearchApiService) SearchDeploymentsExecute(r ApiSearchDeploymentsRequest) (*DeploymentSearchList, *http.Response, error) {
+func (a *SearchApiService) SearchDeploymentListExecute(r ApiSearchDeploymentListRequest) (*DeploymentSearchList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -1117,22 +1061,20 @@ func (a *SearchApiService) SearchDeploymentsExecute(r ApiSearchDeploymentsReques
 		localVarReturnValue  *DeploymentSearchList
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SearchApiService.SearchDeployments")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SearchApiService.SearchDeploymentList")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/search/deployments"
+	localVarPath := localBasePath + "/api/v{v}/Search/deployments"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.deploymentSearchCommand == nil {
-		return localVarReturnValue, nil, reportError("deploymentSearchCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -1141,7 +1083,7 @@ func (a *SearchApiService) SearchDeploymentsExecute(r ApiSearchDeploymentsReques
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1149,7 +1091,7 @@ func (a *SearchApiService) SearchDeploymentsExecute(r ApiSearchDeploymentsReques
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.deploymentSearchCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1186,17 +1128,6 @@ func (a *SearchApiService) SearchDeploymentsExecute(r ApiSearchDeploymentsReques
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1230,7 +1161,7 @@ func (a *SearchApiService) SearchDeploymentsExecute(r ApiSearchDeploymentsReques
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1255,37 +1186,40 @@ func (a *SearchApiService) SearchDeploymentsExecute(r ApiSearchDeploymentsReques
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSearchIngressRequest struct {
+type ApiSearchIngressListRequest struct {
 	ctx context.Context
 	ApiService *SearchApiService
-	ingressSearchCommand *IngressSearchCommand
+	v string
+	body *IngressSearchCommand
 }
 
-func (r ApiSearchIngressRequest) IngressSearchCommand(ingressSearchCommand IngressSearchCommand) ApiSearchIngressRequest {
-	r.ingressSearchCommand = &ingressSearchCommand
+func (r ApiSearchIngressListRequest) Body(body IngressSearchCommand) ApiSearchIngressListRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiSearchIngressRequest) Execute() (*IngressSearchList, *http.Response, error) {
-	return r.ApiService.SearchIngressExecute(r)
+func (r ApiSearchIngressListRequest) Execute() (*IngressSearchList, *http.Response, error) {
+	return r.ApiService.SearchIngressListExecute(r)
 }
 
 /*
-SearchIngress Global search for ingress
+SearchIngressList Global search for kubernetes ingress
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSearchIngressRequest
+ @param v
+ @return ApiSearchIngressListRequest
 */
-func (a *SearchApiService) SearchIngress(ctx context.Context) ApiSearchIngressRequest {
-	return ApiSearchIngressRequest{
+func (a *SearchApiService) SearchIngressList(ctx context.Context, v string) ApiSearchIngressListRequest {
+	return ApiSearchIngressListRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
 //  @return IngressSearchList
-func (a *SearchApiService) SearchIngressExecute(r ApiSearchIngressRequest) (*IngressSearchList, *http.Response, error) {
+func (a *SearchApiService) SearchIngressListExecute(r ApiSearchIngressListRequest) (*IngressSearchList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -1293,22 +1227,20 @@ func (a *SearchApiService) SearchIngressExecute(r ApiSearchIngressRequest) (*Ing
 		localVarReturnValue  *IngressSearchList
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SearchApiService.SearchIngress")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SearchApiService.SearchIngressList")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/search/ingress"
+	localVarPath := localBasePath + "/api/v{v}/Search/ingress"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.ingressSearchCommand == nil {
-		return localVarReturnValue, nil, reportError("ingressSearchCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -1317,7 +1249,7 @@ func (a *SearchApiService) SearchIngressExecute(r ApiSearchIngressRequest) (*Ing
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1325,7 +1257,7 @@ func (a *SearchApiService) SearchIngressExecute(r ApiSearchIngressRequest) (*Ing
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.ingressSearchCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1362,17 +1294,6 @@ func (a *SearchApiService) SearchIngressExecute(r ApiSearchIngressRequest) (*Ing
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1406,7 +1327,7 @@ func (a *SearchApiService) SearchIngressExecute(r ApiSearchIngressRequest) (*Ing
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1431,37 +1352,40 @@ func (a *SearchApiService) SearchIngressExecute(r ApiSearchIngressRequest) (*Ing
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSearchKubernetesProfilesRequest struct {
+type ApiSearchKubernetesProfilesListRequest struct {
 	ctx context.Context
 	ApiService *SearchApiService
-	kubernetesProfilesSearchCommand *KubernetesProfilesSearchCommand
+	v string
+	body *KubernetesProfilesSearchCommand
 }
 
-func (r ApiSearchKubernetesProfilesRequest) KubernetesProfilesSearchCommand(kubernetesProfilesSearchCommand KubernetesProfilesSearchCommand) ApiSearchKubernetesProfilesRequest {
-	r.kubernetesProfilesSearchCommand = &kubernetesProfilesSearchCommand
+func (r ApiSearchKubernetesProfilesListRequest) Body(body KubernetesProfilesSearchCommand) ApiSearchKubernetesProfilesListRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiSearchKubernetesProfilesRequest) Execute() (*KubernetesProfilesSearchList, *http.Response, error) {
-	return r.ApiService.SearchKubernetesProfilesExecute(r)
+func (r ApiSearchKubernetesProfilesListRequest) Execute() (*KubernetesProfilesSearchList, *http.Response, error) {
+	return r.ApiService.SearchKubernetesProfilesListExecute(r)
 }
 
 /*
-SearchKubernetesProfiles Global search for kubernetes-profiles
+SearchKubernetesProfilesList Global search for kubernetes profiles
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSearchKubernetesProfilesRequest
+ @param v
+ @return ApiSearchKubernetesProfilesListRequest
 */
-func (a *SearchApiService) SearchKubernetesProfiles(ctx context.Context) ApiSearchKubernetesProfilesRequest {
-	return ApiSearchKubernetesProfilesRequest{
+func (a *SearchApiService) SearchKubernetesProfilesList(ctx context.Context, v string) ApiSearchKubernetesProfilesListRequest {
+	return ApiSearchKubernetesProfilesListRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
 //  @return KubernetesProfilesSearchList
-func (a *SearchApiService) SearchKubernetesProfilesExecute(r ApiSearchKubernetesProfilesRequest) (*KubernetesProfilesSearchList, *http.Response, error) {
+func (a *SearchApiService) SearchKubernetesProfilesListExecute(r ApiSearchKubernetesProfilesListRequest) (*KubernetesProfilesSearchList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -1469,22 +1393,20 @@ func (a *SearchApiService) SearchKubernetesProfilesExecute(r ApiSearchKubernetes
 		localVarReturnValue  *KubernetesProfilesSearchList
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SearchApiService.SearchKubernetesProfiles")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SearchApiService.SearchKubernetesProfilesList")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/search/kubernetes-profiles"
+	localVarPath := localBasePath + "/api/v{v}/Search/kubernetes-profiles"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.kubernetesProfilesSearchCommand == nil {
-		return localVarReturnValue, nil, reportError("kubernetesProfilesSearchCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -1493,7 +1415,7 @@ func (a *SearchApiService) SearchKubernetesProfilesExecute(r ApiSearchKubernetes
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1501,7 +1423,7 @@ func (a *SearchApiService) SearchKubernetesProfilesExecute(r ApiSearchKubernetes
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.kubernetesProfilesSearchCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1538,17 +1460,6 @@ func (a *SearchApiService) SearchKubernetesProfilesExecute(r ApiSearchKubernetes
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1582,7 +1493,7 @@ func (a *SearchApiService) SearchKubernetesProfilesExecute(r ApiSearchKubernetes
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1607,37 +1518,40 @@ func (a *SearchApiService) SearchKubernetesProfilesExecute(r ApiSearchKubernetes
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSearchNodesRequest struct {
+type ApiSearchNodesListRequest struct {
 	ctx context.Context
 	ApiService *SearchApiService
-	nodesSearchCommand *NodesSearchCommand
+	v string
+	body *NodesSearchCommand
 }
 
-func (r ApiSearchNodesRequest) NodesSearchCommand(nodesSearchCommand NodesSearchCommand) ApiSearchNodesRequest {
-	r.nodesSearchCommand = &nodesSearchCommand
+func (r ApiSearchNodesListRequest) Body(body NodesSearchCommand) ApiSearchNodesListRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiSearchNodesRequest) Execute() (*NodesSearchList, *http.Response, error) {
-	return r.ApiService.SearchNodesExecute(r)
+func (r ApiSearchNodesListRequest) Execute() (*NodesSearchList, *http.Response, error) {
+	return r.ApiService.SearchNodesListExecute(r)
 }
 
 /*
-SearchNodes Global search for nodes
+SearchNodesList Global search for kubernetes nodes
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSearchNodesRequest
+ @param v
+ @return ApiSearchNodesListRequest
 */
-func (a *SearchApiService) SearchNodes(ctx context.Context) ApiSearchNodesRequest {
-	return ApiSearchNodesRequest{
+func (a *SearchApiService) SearchNodesList(ctx context.Context, v string) ApiSearchNodesListRequest {
+	return ApiSearchNodesListRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
 //  @return NodesSearchList
-func (a *SearchApiService) SearchNodesExecute(r ApiSearchNodesRequest) (*NodesSearchList, *http.Response, error) {
+func (a *SearchApiService) SearchNodesListExecute(r ApiSearchNodesListRequest) (*NodesSearchList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -1645,22 +1559,20 @@ func (a *SearchApiService) SearchNodesExecute(r ApiSearchNodesRequest) (*NodesSe
 		localVarReturnValue  *NodesSearchList
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SearchApiService.SearchNodes")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SearchApiService.SearchNodesList")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/search/nodes"
+	localVarPath := localBasePath + "/api/v{v}/Search/nodes"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.nodesSearchCommand == nil {
-		return localVarReturnValue, nil, reportError("nodesSearchCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -1669,7 +1581,7 @@ func (a *SearchApiService) SearchNodesExecute(r ApiSearchNodesRequest) (*NodesSe
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1677,7 +1589,7 @@ func (a *SearchApiService) SearchNodesExecute(r ApiSearchNodesRequest) (*NodesSe
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.nodesSearchCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1714,17 +1626,6 @@ func (a *SearchApiService) SearchNodesExecute(r ApiSearchNodesRequest) (*NodesSe
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1758,7 +1659,7 @@ func (a *SearchApiService) SearchNodesExecute(r ApiSearchNodesRequest) (*NodesSe
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1783,37 +1684,40 @@ func (a *SearchApiService) SearchNodesExecute(r ApiSearchNodesRequest) (*NodesSe
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSearchOrganizationsRequest struct {
+type ApiSearchOrganizationsListRequest struct {
 	ctx context.Context
 	ApiService *SearchApiService
-	organizationSearchCommand *OrganizationSearchCommand
+	v string
+	body *OrganizationSearchCommand
 }
 
-func (r ApiSearchOrganizationsRequest) OrganizationSearchCommand(organizationSearchCommand OrganizationSearchCommand) ApiSearchOrganizationsRequest {
-	r.organizationSearchCommand = &organizationSearchCommand
+func (r ApiSearchOrganizationsListRequest) Body(body OrganizationSearchCommand) ApiSearchOrganizationsListRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiSearchOrganizationsRequest) Execute() (*OrganizationSearchList, *http.Response, error) {
-	return r.ApiService.SearchOrganizationsExecute(r)
+func (r ApiSearchOrganizationsListRequest) Execute() (*OrganizationSearchList, *http.Response, error) {
+	return r.ApiService.SearchOrganizationsListExecute(r)
 }
 
 /*
-SearchOrganizations Global search for organizations
+SearchOrganizationsList Global search for organizations
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSearchOrganizationsRequest
+ @param v
+ @return ApiSearchOrganizationsListRequest
 */
-func (a *SearchApiService) SearchOrganizations(ctx context.Context) ApiSearchOrganizationsRequest {
-	return ApiSearchOrganizationsRequest{
+func (a *SearchApiService) SearchOrganizationsList(ctx context.Context, v string) ApiSearchOrganizationsListRequest {
+	return ApiSearchOrganizationsListRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
 //  @return OrganizationSearchList
-func (a *SearchApiService) SearchOrganizationsExecute(r ApiSearchOrganizationsRequest) (*OrganizationSearchList, *http.Response, error) {
+func (a *SearchApiService) SearchOrganizationsListExecute(r ApiSearchOrganizationsListRequest) (*OrganizationSearchList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -1821,22 +1725,20 @@ func (a *SearchApiService) SearchOrganizationsExecute(r ApiSearchOrganizationsRe
 		localVarReturnValue  *OrganizationSearchList
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SearchApiService.SearchOrganizations")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SearchApiService.SearchOrganizationsList")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/search/organizations"
+	localVarPath := localBasePath + "/api/v{v}/Search/organizations"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.organizationSearchCommand == nil {
-		return localVarReturnValue, nil, reportError("organizationSearchCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -1845,7 +1747,7 @@ func (a *SearchApiService) SearchOrganizationsExecute(r ApiSearchOrganizationsRe
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1853,7 +1755,7 @@ func (a *SearchApiService) SearchOrganizationsExecute(r ApiSearchOrganizationsRe
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.organizationSearchCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1890,17 +1792,6 @@ func (a *SearchApiService) SearchOrganizationsExecute(r ApiSearchOrganizationsRe
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1934,7 +1825,7 @@ func (a *SearchApiService) SearchOrganizationsExecute(r ApiSearchOrganizationsRe
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1959,37 +1850,40 @@ func (a *SearchApiService) SearchOrganizationsExecute(r ApiSearchOrganizationsRe
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSearchPartnersRequest struct {
+type ApiSearchPartnersListRequest struct {
 	ctx context.Context
 	ApiService *SearchApiService
-	partnersSearchCommand *PartnersSearchCommand
+	v string
+	body *PartnersSearchCommand
 }
 
-func (r ApiSearchPartnersRequest) PartnersSearchCommand(partnersSearchCommand PartnersSearchCommand) ApiSearchPartnersRequest {
-	r.partnersSearchCommand = &partnersSearchCommand
+func (r ApiSearchPartnersListRequest) Body(body PartnersSearchCommand) ApiSearchPartnersListRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiSearchPartnersRequest) Execute() (*PartnersSearchList, *http.Response, error) {
-	return r.ApiService.SearchPartnersExecute(r)
+func (r ApiSearchPartnersListRequest) Execute() (*PartnersSearchList, *http.Response, error) {
+	return r.ApiService.SearchPartnersListExecute(r)
 }
 
 /*
-SearchPartners Global search for partners
+SearchPartnersList Global search for partners
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSearchPartnersRequest
+ @param v
+ @return ApiSearchPartnersListRequest
 */
-func (a *SearchApiService) SearchPartners(ctx context.Context) ApiSearchPartnersRequest {
-	return ApiSearchPartnersRequest{
+func (a *SearchApiService) SearchPartnersList(ctx context.Context, v string) ApiSearchPartnersListRequest {
+	return ApiSearchPartnersListRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
 //  @return PartnersSearchList
-func (a *SearchApiService) SearchPartnersExecute(r ApiSearchPartnersRequest) (*PartnersSearchList, *http.Response, error) {
+func (a *SearchApiService) SearchPartnersListExecute(r ApiSearchPartnersListRequest) (*PartnersSearchList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -1997,19 +1891,20 @@ func (a *SearchApiService) SearchPartnersExecute(r ApiSearchPartnersRequest) (*P
 		localVarReturnValue  *PartnersSearchList
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SearchApiService.SearchPartners")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SearchApiService.SearchPartnersList")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/search/partners"
+	localVarPath := localBasePath + "/api/v{v}/Search/partners"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -2018,7 +1913,7 @@ func (a *SearchApiService) SearchPartnersExecute(r ApiSearchPartnersRequest) (*P
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -2026,7 +1921,7 @@ func (a *SearchApiService) SearchPartnersExecute(r ApiSearchPartnersRequest) (*P
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.partnersSearchCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -2063,17 +1958,6 @@ func (a *SearchApiService) SearchPartnersExecute(r ApiSearchPartnersRequest) (*P
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -2107,138 +1991,6 @@ func (a *SearchApiService) SearchPartnersExecute(r ApiSearchPartnersRequest) (*P
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiSearchPodsRequest struct {
-	ctx context.Context
-	ApiService *SearchApiService
-	podsSearchCommand *PodsSearchCommand
-}
-
-func (r ApiSearchPodsRequest) PodsSearchCommand(podsSearchCommand PodsSearchCommand) ApiSearchPodsRequest {
-	r.podsSearchCommand = &podsSearchCommand
-	return r
-}
-
-func (r ApiSearchPodsRequest) Execute() (*PodsSearchList, *http.Response, error) {
-	return r.ApiService.SearchPodsExecute(r)
-}
-
-/*
-SearchPods Global search for pods
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSearchPodsRequest
-*/
-func (a *SearchApiService) SearchPods(ctx context.Context) ApiSearchPodsRequest {
-	return ApiSearchPodsRequest{
-		ApiService: a,
-		ctx: ctx,
-	}
-}
-
-// Execute executes the request
-//  @return PodsSearchList
-func (a *SearchApiService) SearchPodsExecute(r ApiSearchPodsRequest) (*PodsSearchList, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *PodsSearchList
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SearchApiService.SearchPods")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v1/search/pods"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.podsSearchCommand == nil {
-		return localVarReturnValue, nil, reportError("podsSearchCommand is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.podsSearchCommand
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["Bearer"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -2248,50 +2000,6 @@ func (a *SearchApiService) SearchPodsExecute(r ApiSearchPodsRequest) (*PodsSearc
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -2308,389 +2016,40 @@ func (a *SearchApiService) SearchPodsExecute(r ApiSearchPodsRequest) (*PodsSearc
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSearchProjectsRequest struct {
+type ApiSearchPersistenceVolumeClaimListRequest struct {
 	ctx context.Context
 	ApiService *SearchApiService
-	projectsSearchCommand *ProjectsSearchCommand
+	v string
+	body *PvcSearchCommand
 }
 
-func (r ApiSearchProjectsRequest) ProjectsSearchCommand(projectsSearchCommand ProjectsSearchCommand) ApiSearchProjectsRequest {
-	r.projectsSearchCommand = &projectsSearchCommand
+func (r ApiSearchPersistenceVolumeClaimListRequest) Body(body PvcSearchCommand) ApiSearchPersistenceVolumeClaimListRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiSearchProjectsRequest) Execute() (*ProjectsSearchList, *http.Response, error) {
-	return r.ApiService.SearchProjectsExecute(r)
+func (r ApiSearchPersistenceVolumeClaimListRequest) Execute() (*PvcSearchList, *http.Response, error) {
+	return r.ApiService.SearchPersistenceVolumeClaimListExecute(r)
 }
 
 /*
-SearchProjects Global search for projects
+SearchPersistenceVolumeClaimList Global search for kubernetes persistent volume claims
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSearchProjectsRequest
+ @param v
+ @return ApiSearchPersistenceVolumeClaimListRequest
 */
-func (a *SearchApiService) SearchProjects(ctx context.Context) ApiSearchProjectsRequest {
-	return ApiSearchProjectsRequest{
+func (a *SearchApiService) SearchPersistenceVolumeClaimList(ctx context.Context, v string) ApiSearchPersistenceVolumeClaimListRequest {
+	return ApiSearchPersistenceVolumeClaimListRequest{
 		ApiService: a,
 		ctx: ctx,
-	}
-}
-
-// Execute executes the request
-//  @return ProjectsSearchList
-func (a *SearchApiService) SearchProjectsExecute(r ApiSearchProjectsRequest) (*ProjectsSearchList, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ProjectsSearchList
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SearchApiService.SearchProjects")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v1/search/projects"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.projectsSearchCommand == nil {
-		return localVarReturnValue, nil, reportError("projectsSearchCommand is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.projectsSearchCommand
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["Bearer"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiSearchPrometheusRulesRequest struct {
-	ctx context.Context
-	ApiService *SearchApiService
-	prometheusRulesSearchCommand *PrometheusRulesSearchCommand
-}
-
-func (r ApiSearchPrometheusRulesRequest) PrometheusRulesSearchCommand(prometheusRulesSearchCommand PrometheusRulesSearchCommand) ApiSearchPrometheusRulesRequest {
-	r.prometheusRulesSearchCommand = &prometheusRulesSearchCommand
-	return r
-}
-
-func (r ApiSearchPrometheusRulesRequest) Execute() (*PrometheusRulesSearchList, *http.Response, error) {
-	return r.ApiService.SearchPrometheusRulesExecute(r)
-}
-
-/*
-SearchPrometheusRules Global search for prometheus-rules
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSearchPrometheusRulesRequest
-*/
-func (a *SearchApiService) SearchPrometheusRules(ctx context.Context) ApiSearchPrometheusRulesRequest {
-	return ApiSearchPrometheusRulesRequest{
-		ApiService: a,
-		ctx: ctx,
-	}
-}
-
-// Execute executes the request
-//  @return PrometheusRulesSearchList
-func (a *SearchApiService) SearchPrometheusRulesExecute(r ApiSearchPrometheusRulesRequest) (*PrometheusRulesSearchList, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *PrometheusRulesSearchList
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SearchApiService.SearchPrometheusRules")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v1/search/prometheus-rules"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.prometheusRulesSearchCommand == nil {
-		return localVarReturnValue, nil, reportError("prometheusRulesSearchCommand is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.prometheusRulesSearchCommand
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["Bearer"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiSearchPvcsRequest struct {
-	ctx context.Context
-	ApiService *SearchApiService
-	pvcSearchCommand *PvcSearchCommand
-}
-
-func (r ApiSearchPvcsRequest) PvcSearchCommand(pvcSearchCommand PvcSearchCommand) ApiSearchPvcsRequest {
-	r.pvcSearchCommand = &pvcSearchCommand
-	return r
-}
-
-func (r ApiSearchPvcsRequest) Execute() (*PvcSearchList, *http.Response, error) {
-	return r.ApiService.SearchPvcsExecute(r)
-}
-
-/*
-SearchPvcs Global search for pvcs
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSearchPvcsRequest
-*/
-func (a *SearchApiService) SearchPvcs(ctx context.Context) ApiSearchPvcsRequest {
-	return ApiSearchPvcsRequest{
-		ApiService: a,
-		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
 //  @return PvcSearchList
-func (a *SearchApiService) SearchPvcsExecute(r ApiSearchPvcsRequest) (*PvcSearchList, *http.Response, error) {
+func (a *SearchApiService) SearchPersistenceVolumeClaimListExecute(r ApiSearchPersistenceVolumeClaimListRequest) (*PvcSearchList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -2698,22 +2057,20 @@ func (a *SearchApiService) SearchPvcsExecute(r ApiSearchPvcsRequest) (*PvcSearch
 		localVarReturnValue  *PvcSearchList
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SearchApiService.SearchPvcs")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SearchApiService.SearchPersistenceVolumeClaimList")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/search/pvcs"
+	localVarPath := localBasePath + "/api/v{v}/Search/pvcs"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.pvcSearchCommand == nil {
-		return localVarReturnValue, nil, reportError("pvcSearchCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -2722,7 +2079,7 @@ func (a *SearchApiService) SearchPvcsExecute(r ApiSearchPvcsRequest) (*PvcSearch
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -2730,7 +2087,7 @@ func (a *SearchApiService) SearchPvcsExecute(r ApiSearchPvcsRequest) (*PvcSearch
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.pvcSearchCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -2767,7 +2124,7 @@ func (a *SearchApiService) SearchPvcsExecute(r ApiSearchPvcsRequest) (*PvcSearch
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
+		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2777,6 +2134,161 @@ func (a *SearchApiService) SearchPvcsExecute(r ApiSearchPvcsRequest) (*PvcSearch
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiSearchPodsListRequest struct {
+	ctx context.Context
+	ApiService *SearchApiService
+	v string
+	body *PodsSearchCommand
+}
+
+func (r ApiSearchPodsListRequest) Body(body PodsSearchCommand) ApiSearchPodsListRequest {
+	r.body = &body
+	return r
+}
+
+func (r ApiSearchPodsListRequest) Execute() (*PodsSearchList, *http.Response, error) {
+	return r.ApiService.SearchPodsListExecute(r)
+}
+
+/*
+SearchPodsList Global search for kubernetes pods
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param v
+ @return ApiSearchPodsListRequest
+*/
+func (a *SearchApiService) SearchPodsList(ctx context.Context, v string) ApiSearchPodsListRequest {
+	return ApiSearchPodsListRequest{
+		ApiService: a,
+		ctx: ctx,
+		v: v,
+	}
+}
+
+// Execute executes the request
+//  @return PodsSearchList
+func (a *SearchApiService) SearchPodsListExecute(r ApiSearchPodsListRequest) (*PodsSearchList, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *PodsSearchList
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SearchApiService.SearchPodsList")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v{v}/Search/pods"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.body
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["Bearer"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
@@ -2811,7 +2323,7 @@ func (a *SearchApiService) SearchPvcsExecute(r ApiSearchPvcsRequest) (*PvcSearch
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2836,37 +2348,372 @@ func (a *SearchApiService) SearchPvcsExecute(r ApiSearchPvcsRequest) (*PvcSearch
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSearchSecretsRequest struct {
+type ApiSearchProjectsListRequest struct {
 	ctx context.Context
 	ApiService *SearchApiService
-	secretSearchCommand *SecretSearchCommand
+	v string
+	body *ProjectsSearchCommand
 }
 
-func (r ApiSearchSecretsRequest) SecretSearchCommand(secretSearchCommand SecretSearchCommand) ApiSearchSecretsRequest {
-	r.secretSearchCommand = &secretSearchCommand
+func (r ApiSearchProjectsListRequest) Body(body ProjectsSearchCommand) ApiSearchProjectsListRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiSearchSecretsRequest) Execute() (*SecretSearchList, *http.Response, error) {
-	return r.ApiService.SearchSecretsExecute(r)
+func (r ApiSearchProjectsListRequest) Execute() (*ProjectsSearchList, *http.Response, error) {
+	return r.ApiService.SearchProjectsListExecute(r)
 }
 
 /*
-SearchSecrets Global search for secrets
+SearchProjectsList Global search for projects
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSearchSecretsRequest
+ @param v
+ @return ApiSearchProjectsListRequest
 */
-func (a *SearchApiService) SearchSecrets(ctx context.Context) ApiSearchSecretsRequest {
-	return ApiSearchSecretsRequest{
+func (a *SearchApiService) SearchProjectsList(ctx context.Context, v string) ApiSearchProjectsListRequest {
+	return ApiSearchProjectsListRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
+	}
+}
+
+// Execute executes the request
+//  @return ProjectsSearchList
+func (a *SearchApiService) SearchProjectsListExecute(r ApiSearchProjectsListRequest) (*ProjectsSearchList, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ProjectsSearchList
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SearchApiService.SearchProjectsList")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v{v}/Search/projects"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.body
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["Bearer"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiSearchPrometheusRulesListRequest struct {
+	ctx context.Context
+	ApiService *SearchApiService
+	v string
+	body *PrometheusRulesSearchCommand
+}
+
+func (r ApiSearchPrometheusRulesListRequest) Body(body PrometheusRulesSearchCommand) ApiSearchPrometheusRulesListRequest {
+	r.body = &body
+	return r
+}
+
+func (r ApiSearchPrometheusRulesListRequest) Execute() (*PrometheusRulesSearchList, *http.Response, error) {
+	return r.ApiService.SearchPrometheusRulesListExecute(r)
+}
+
+/*
+SearchPrometheusRulesList Global search for prometheus rules
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param v
+ @return ApiSearchPrometheusRulesListRequest
+*/
+func (a *SearchApiService) SearchPrometheusRulesList(ctx context.Context, v string) ApiSearchPrometheusRulesListRequest {
+	return ApiSearchPrometheusRulesListRequest{
+		ApiService: a,
+		ctx: ctx,
+		v: v,
+	}
+}
+
+// Execute executes the request
+//  @return PrometheusRulesSearchList
+func (a *SearchApiService) SearchPrometheusRulesListExecute(r ApiSearchPrometheusRulesListRequest) (*PrometheusRulesSearchList, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *PrometheusRulesSearchList
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SearchApiService.SearchPrometheusRulesList")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v{v}/Search/prometheus-rules"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.body
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["Bearer"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiSearchSecretListRequest struct {
+	ctx context.Context
+	ApiService *SearchApiService
+	v string
+	body *SecretSearchCommand
+}
+
+func (r ApiSearchSecretListRequest) Body(body SecretSearchCommand) ApiSearchSecretListRequest {
+	r.body = &body
+	return r
+}
+
+func (r ApiSearchSecretListRequest) Execute() (*SecretSearchList, *http.Response, error) {
+	return r.ApiService.SearchSecretListExecute(r)
+}
+
+/*
+SearchSecretList Global search for kubernetes secrets
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param v
+ @return ApiSearchSecretListRequest
+*/
+func (a *SearchApiService) SearchSecretList(ctx context.Context, v string) ApiSearchSecretListRequest {
+	return ApiSearchSecretListRequest{
+		ApiService: a,
+		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
 //  @return SecretSearchList
-func (a *SearchApiService) SearchSecretsExecute(r ApiSearchSecretsRequest) (*SecretSearchList, *http.Response, error) {
+func (a *SearchApiService) SearchSecretListExecute(r ApiSearchSecretListRequest) (*SecretSearchList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -2874,22 +2721,20 @@ func (a *SearchApiService) SearchSecretsExecute(r ApiSearchSecretsRequest) (*Sec
 		localVarReturnValue  *SecretSearchList
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SearchApiService.SearchSecrets")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SearchApiService.SearchSecretList")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/search/secrets"
+	localVarPath := localBasePath + "/api/v{v}/Search/secrets"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.secretSearchCommand == nil {
-		return localVarReturnValue, nil, reportError("secretSearchCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -2898,7 +2743,7 @@ func (a *SearchApiService) SearchSecretsExecute(r ApiSearchSecretsRequest) (*Sec
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -2906,7 +2751,7 @@ func (a *SearchApiService) SearchSecretsExecute(r ApiSearchSecretsRequest) (*Sec
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.secretSearchCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -2943,17 +2788,6 @@ func (a *SearchApiService) SearchSecretsExecute(r ApiSearchSecretsRequest) (*Sec
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -2987,7 +2821,7 @@ func (a *SearchApiService) SearchSecretsExecute(r ApiSearchSecretsRequest) (*Sec
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -3012,37 +2846,40 @@ func (a *SearchApiService) SearchSecretsExecute(r ApiSearchSecretsRequest) (*Sec
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSearchServersRequest struct {
+type ApiSearchServersListRequest struct {
 	ctx context.Context
 	ApiService *SearchApiService
-	serversSearchCommand *ServersSearchCommand
+	v string
+	body *ServersSearchCommand
 }
 
-func (r ApiSearchServersRequest) ServersSearchCommand(serversSearchCommand ServersSearchCommand) ApiSearchServersRequest {
-	r.serversSearchCommand = &serversSearchCommand
+func (r ApiSearchServersListRequest) Body(body ServersSearchCommand) ApiSearchServersListRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiSearchServersRequest) Execute() (*ServersSearchList, *http.Response, error) {
-	return r.ApiService.SearchServersExecute(r)
+func (r ApiSearchServersListRequest) Execute() (*ServersSearchList, *http.Response, error) {
+	return r.ApiService.SearchServersListExecute(r)
 }
 
 /*
-SearchServers Global search for servers
+SearchServersList Global search for servers
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSearchServersRequest
+ @param v
+ @return ApiSearchServersListRequest
 */
-func (a *SearchApiService) SearchServers(ctx context.Context) ApiSearchServersRequest {
-	return ApiSearchServersRequest{
+func (a *SearchApiService) SearchServersList(ctx context.Context, v string) ApiSearchServersListRequest {
+	return ApiSearchServersListRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
 //  @return ServersSearchList
-func (a *SearchApiService) SearchServersExecute(r ApiSearchServersRequest) (*ServersSearchList, *http.Response, error) {
+func (a *SearchApiService) SearchServersListExecute(r ApiSearchServersListRequest) (*ServersSearchList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -3050,22 +2887,20 @@ func (a *SearchApiService) SearchServersExecute(r ApiSearchServersRequest) (*Ser
 		localVarReturnValue  *ServersSearchList
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SearchApiService.SearchServers")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SearchApiService.SearchServersList")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/search/servers"
+	localVarPath := localBasePath + "/api/v{v}/Search/servers"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.serversSearchCommand == nil {
-		return localVarReturnValue, nil, reportError("serversSearchCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -3074,7 +2909,7 @@ func (a *SearchApiService) SearchServersExecute(r ApiSearchServersRequest) (*Ser
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -3082,7 +2917,7 @@ func (a *SearchApiService) SearchServersExecute(r ApiSearchServersRequest) (*Ser
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.serversSearchCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -3119,17 +2954,6 @@ func (a *SearchApiService) SearchServersExecute(r ApiSearchServersRequest) (*Ser
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -3163,7 +2987,7 @@ func (a *SearchApiService) SearchServersExecute(r ApiSearchServersRequest) (*Ser
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -3188,37 +3012,40 @@ func (a *SearchApiService) SearchServersExecute(r ApiSearchServersRequest) (*Ser
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSearchServicesRequest struct {
+type ApiSearchServiceListRequest struct {
 	ctx context.Context
 	ApiService *SearchApiService
-	serviceSearchCommand *ServiceSearchCommand
+	v string
+	body *ServiceSearchCommand
 }
 
-func (r ApiSearchServicesRequest) ServiceSearchCommand(serviceSearchCommand ServiceSearchCommand) ApiSearchServicesRequest {
-	r.serviceSearchCommand = &serviceSearchCommand
+func (r ApiSearchServiceListRequest) Body(body ServiceSearchCommand) ApiSearchServiceListRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiSearchServicesRequest) Execute() (*ServiceSearchList, *http.Response, error) {
-	return r.ApiService.SearchServicesExecute(r)
+func (r ApiSearchServiceListRequest) Execute() (*ServiceSearchList, *http.Response, error) {
+	return r.ApiService.SearchServiceListExecute(r)
 }
 
 /*
-SearchServices Global search for services
+SearchServiceList Global search for kubernetes services
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSearchServicesRequest
+ @param v
+ @return ApiSearchServiceListRequest
 */
-func (a *SearchApiService) SearchServices(ctx context.Context) ApiSearchServicesRequest {
-	return ApiSearchServicesRequest{
+func (a *SearchApiService) SearchServiceList(ctx context.Context, v string) ApiSearchServiceListRequest {
+	return ApiSearchServiceListRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
 //  @return ServiceSearchList
-func (a *SearchApiService) SearchServicesExecute(r ApiSearchServicesRequest) (*ServiceSearchList, *http.Response, error) {
+func (a *SearchApiService) SearchServiceListExecute(r ApiSearchServiceListRequest) (*ServiceSearchList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -3226,22 +3053,20 @@ func (a *SearchApiService) SearchServicesExecute(r ApiSearchServicesRequest) (*S
 		localVarReturnValue  *ServiceSearchList
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SearchApiService.SearchServices")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SearchApiService.SearchServiceList")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/search/services"
+	localVarPath := localBasePath + "/api/v{v}/Search/services"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.serviceSearchCommand == nil {
-		return localVarReturnValue, nil, reportError("serviceSearchCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -3250,7 +3075,7 @@ func (a *SearchApiService) SearchServicesExecute(r ApiSearchServicesRequest) (*S
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -3258,7 +3083,7 @@ func (a *SearchApiService) SearchServicesExecute(r ApiSearchServicesRequest) (*S
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.serviceSearchCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -3295,17 +3120,6 @@ func (a *SearchApiService) SearchServicesExecute(r ApiSearchServicesRequest) (*S
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -3339,7 +3153,7 @@ func (a *SearchApiService) SearchServicesExecute(r ApiSearchServicesRequest) (*S
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -3364,37 +3178,40 @@ func (a *SearchApiService) SearchServicesExecute(r ApiSearchServicesRequest) (*S
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSearchStandAloneProfilesRequest struct {
+type ApiSearchStandAloneProfilesListRequest struct {
 	ctx context.Context
 	ApiService *SearchApiService
-	standAloneProfilesSearchCommand *StandAloneProfilesSearchCommand
+	v string
+	body *StandAloneProfilesSearchCommand
 }
 
-func (r ApiSearchStandAloneProfilesRequest) StandAloneProfilesSearchCommand(standAloneProfilesSearchCommand StandAloneProfilesSearchCommand) ApiSearchStandAloneProfilesRequest {
-	r.standAloneProfilesSearchCommand = &standAloneProfilesSearchCommand
+func (r ApiSearchStandAloneProfilesListRequest) Body(body StandAloneProfilesSearchCommand) ApiSearchStandAloneProfilesListRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiSearchStandAloneProfilesRequest) Execute() (*StandAloneProfilesSearchList, *http.Response, error) {
-	return r.ApiService.SearchStandAloneProfilesExecute(r)
+func (r ApiSearchStandAloneProfilesListRequest) Execute() (*StandAloneProfilesSearchList, *http.Response, error) {
+	return r.ApiService.SearchStandAloneProfilesListExecute(r)
 }
 
 /*
-SearchStandAloneProfiles Global search for stand-alone-profiles
+SearchStandAloneProfilesList Global search for stand alone profiles
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSearchStandAloneProfilesRequest
+ @param v
+ @return ApiSearchStandAloneProfilesListRequest
 */
-func (a *SearchApiService) SearchStandAloneProfiles(ctx context.Context) ApiSearchStandAloneProfilesRequest {
-	return ApiSearchStandAloneProfilesRequest{
+func (a *SearchApiService) SearchStandAloneProfilesList(ctx context.Context, v string) ApiSearchStandAloneProfilesListRequest {
+	return ApiSearchStandAloneProfilesListRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
 //  @return StandAloneProfilesSearchList
-func (a *SearchApiService) SearchStandAloneProfilesExecute(r ApiSearchStandAloneProfilesRequest) (*StandAloneProfilesSearchList, *http.Response, error) {
+func (a *SearchApiService) SearchStandAloneProfilesListExecute(r ApiSearchStandAloneProfilesListRequest) (*StandAloneProfilesSearchList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -3402,22 +3219,20 @@ func (a *SearchApiService) SearchStandAloneProfilesExecute(r ApiSearchStandAlone
 		localVarReturnValue  *StandAloneProfilesSearchList
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SearchApiService.SearchStandAloneProfiles")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SearchApiService.SearchStandAloneProfilesList")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/search/stand-alone-profiles"
+	localVarPath := localBasePath + "/api/v{v}/Search/stand-alone-profiles"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.standAloneProfilesSearchCommand == nil {
-		return localVarReturnValue, nil, reportError("standAloneProfilesSearchCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -3426,7 +3241,7 @@ func (a *SearchApiService) SearchStandAloneProfilesExecute(r ApiSearchStandAlone
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -3434,7 +3249,7 @@ func (a *SearchApiService) SearchStandAloneProfilesExecute(r ApiSearchStandAlone
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.standAloneProfilesSearchCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -3471,17 +3286,6 @@ func (a *SearchApiService) SearchStandAloneProfilesExecute(r ApiSearchStandAlone
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -3515,7 +3319,7 @@ func (a *SearchApiService) SearchStandAloneProfilesExecute(r ApiSearchStandAlone
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -3540,37 +3344,40 @@ func (a *SearchApiService) SearchStandAloneProfilesExecute(r ApiSearchStandAlone
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSearchStsRequest struct {
+type ApiSearchStsListRequest struct {
 	ctx context.Context
 	ApiService *SearchApiService
-	stsSearchCommand *StsSearchCommand
+	v string
+	body *StsSearchCommand
 }
 
-func (r ApiSearchStsRequest) StsSearchCommand(stsSearchCommand StsSearchCommand) ApiSearchStsRequest {
-	r.stsSearchCommand = &stsSearchCommand
+func (r ApiSearchStsListRequest) Body(body StsSearchCommand) ApiSearchStsListRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiSearchStsRequest) Execute() (*StsSearchList, *http.Response, error) {
-	return r.ApiService.SearchStsExecute(r)
+func (r ApiSearchStsListRequest) Execute() (*StsSearchList, *http.Response, error) {
+	return r.ApiService.SearchStsListExecute(r)
 }
 
 /*
-SearchSts Global search for sts
+SearchStsList Global search for kubernetes stateful sets
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSearchStsRequest
+ @param v
+ @return ApiSearchStsListRequest
 */
-func (a *SearchApiService) SearchSts(ctx context.Context) ApiSearchStsRequest {
-	return ApiSearchStsRequest{
+func (a *SearchApiService) SearchStsList(ctx context.Context, v string) ApiSearchStsListRequest {
+	return ApiSearchStsListRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
 //  @return StsSearchList
-func (a *SearchApiService) SearchStsExecute(r ApiSearchStsRequest) (*StsSearchList, *http.Response, error) {
+func (a *SearchApiService) SearchStsListExecute(r ApiSearchStsListRequest) (*StsSearchList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -3578,22 +3385,20 @@ func (a *SearchApiService) SearchStsExecute(r ApiSearchStsRequest) (*StsSearchLi
 		localVarReturnValue  *StsSearchList
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SearchApiService.SearchSts")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SearchApiService.SearchStsList")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/search/sts"
+	localVarPath := localBasePath + "/api/v{v}/Search/sts"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.stsSearchCommand == nil {
-		return localVarReturnValue, nil, reportError("stsSearchCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -3602,7 +3407,7 @@ func (a *SearchApiService) SearchStsExecute(r ApiSearchStsRequest) (*StsSearchLi
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -3610,7 +3415,7 @@ func (a *SearchApiService) SearchStsExecute(r ApiSearchStsRequest) (*StsSearchLi
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.stsSearchCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -3647,17 +3452,6 @@ func (a *SearchApiService) SearchStsExecute(r ApiSearchStsRequest) (*StsSearchLi
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -3691,7 +3485,7 @@ func (a *SearchApiService) SearchStsExecute(r ApiSearchStsRequest) (*StsSearchLi
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -3716,37 +3510,40 @@ func (a *SearchApiService) SearchStsExecute(r ApiSearchStsRequest) (*StsSearchLi
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSearchUsersRequest struct {
+type ApiSearchUsersListRequest struct {
 	ctx context.Context
 	ApiService *SearchApiService
-	usersSearchCommand *UsersSearchCommand
+	v string
+	body *UsersSearchCommand
 }
 
-func (r ApiSearchUsersRequest) UsersSearchCommand(usersSearchCommand UsersSearchCommand) ApiSearchUsersRequest {
-	r.usersSearchCommand = &usersSearchCommand
+func (r ApiSearchUsersListRequest) Body(body UsersSearchCommand) ApiSearchUsersListRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiSearchUsersRequest) Execute() (*UsersSearchList, *http.Response, error) {
-	return r.ApiService.SearchUsersExecute(r)
+func (r ApiSearchUsersListRequest) Execute() (*UsersSearchList, *http.Response, error) {
+	return r.ApiService.SearchUsersListExecute(r)
 }
 
 /*
-SearchUsers Global search for users
+SearchUsersList Global search for users
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSearchUsersRequest
+ @param v
+ @return ApiSearchUsersListRequest
 */
-func (a *SearchApiService) SearchUsers(ctx context.Context) ApiSearchUsersRequest {
-	return ApiSearchUsersRequest{
+func (a *SearchApiService) SearchUsersList(ctx context.Context, v string) ApiSearchUsersListRequest {
+	return ApiSearchUsersListRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
 //  @return UsersSearchList
-func (a *SearchApiService) SearchUsersExecute(r ApiSearchUsersRequest) (*UsersSearchList, *http.Response, error) {
+func (a *SearchApiService) SearchUsersListExecute(r ApiSearchUsersListRequest) (*UsersSearchList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -3754,22 +3551,20 @@ func (a *SearchApiService) SearchUsersExecute(r ApiSearchUsersRequest) (*UsersSe
 		localVarReturnValue  *UsersSearchList
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SearchApiService.SearchUsers")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SearchApiService.SearchUsersList")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/search/users"
+	localVarPath := localBasePath + "/api/v{v}/Search/users"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.usersSearchCommand == nil {
-		return localVarReturnValue, nil, reportError("usersSearchCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -3778,7 +3573,7 @@ func (a *SearchApiService) SearchUsersExecute(r ApiSearchUsersRequest) (*UsersSe
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -3786,7 +3581,7 @@ func (a *SearchApiService) SearchUsersExecute(r ApiSearchUsersRequest) (*UsersSe
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.usersSearchCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -3823,17 +3618,6 @@ func (a *SearchApiService) SearchUsersExecute(r ApiSearchUsersRequest) (*UsersSe
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -3867,7 +3651,7 @@ func (a *SearchApiService) SearchUsersExecute(r ApiSearchUsersRequest) (*UsersSe
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

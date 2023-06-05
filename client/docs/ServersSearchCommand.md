@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Limit** | Pointer to **NullableInt32** |  | [optional] 
-**Offset** | Pointer to **NullableInt32** |  | [optional] 
-**SearchTerm** | Pointer to **NullableString** |  | [optional] 
+**Limit** | Pointer to **int32** |  | [optional] 
+**Offset** | Pointer to **int32** |  | [optional] 
+**SearchTerm** | **string** |  | 
 
 ## Methods
 
 ### NewServersSearchCommand
 
-`func NewServersSearchCommand() *ServersSearchCommand`
+`func NewServersSearchCommand(searchTerm string, ) *ServersSearchCommand`
 
 NewServersSearchCommand instantiates a new ServersSearchCommand object
 This constructor will assign default values to properties that have it defined,
@@ -52,16 +52,6 @@ SetLimit sets Limit field to given value.
 
 HasLimit returns a boolean if a field has been set.
 
-### SetLimitNil
-
-`func (o *ServersSearchCommand) SetLimitNil(b bool)`
-
- SetLimitNil sets the value for Limit to be an explicit nil
-
-### UnsetLimit
-`func (o *ServersSearchCommand) UnsetLimit()`
-
-UnsetLimit ensures that no value is present for Limit, not even an explicit nil
 ### GetOffset
 
 `func (o *ServersSearchCommand) GetOffset() int32`
@@ -87,16 +77,6 @@ SetOffset sets Offset field to given value.
 
 HasOffset returns a boolean if a field has been set.
 
-### SetOffsetNil
-
-`func (o *ServersSearchCommand) SetOffsetNil(b bool)`
-
- SetOffsetNil sets the value for Offset to be an explicit nil
-
-### UnsetOffset
-`func (o *ServersSearchCommand) UnsetOffset()`
-
-UnsetOffset ensures that no value is present for Offset, not even an explicit nil
 ### GetSearchTerm
 
 `func (o *ServersSearchCommand) GetSearchTerm() string`
@@ -116,22 +96,7 @@ and a boolean to check if the value has been set.
 
 SetSearchTerm sets SearchTerm field to given value.
 
-### HasSearchTerm
 
-`func (o *ServersSearchCommand) HasSearchTerm() bool`
-
-HasSearchTerm returns a boolean if a field has been set.
-
-### SetSearchTermNil
-
-`func (o *ServersSearchCommand) SetSearchTermNil(b bool)`
-
- SetSearchTermNil sets the value for SearchTerm to be an explicit nil
-
-### UnsetSearchTerm
-`func (o *ServersSearchCommand) UnsetSearchTerm()`
-
-UnsetSearchTerm ensures that no value is present for SearchTerm, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

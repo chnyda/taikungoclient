@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** |  | 
-**SlackConfigurationId** | Pointer to **NullableInt32** |  | [optional] 
-**OrganizationId** | Pointer to **NullableInt32** |  | [optional] 
+**SlackConfigurationId** | Pointer to **int32** |  | [optional] 
+**OrganizationId** | Pointer to **int32** |  | [optional] 
 **Emails** | Pointer to [**[]AlertingEmailDto**](AlertingEmailDto.md) |  | [optional] 
 **Webhooks** | Pointer to [**[]AlertingWebhookDto**](AlertingWebhookDto.md) |  | [optional] 
 **AlertingIntegrations** | Pointer to [**[]AlertingIntegrationDto**](AlertingIntegrationDto.md) |  | [optional] 
@@ -76,16 +76,6 @@ SetSlackConfigurationId sets SlackConfigurationId field to given value.
 
 HasSlackConfigurationId returns a boolean if a field has been set.
 
-### SetSlackConfigurationIdNil
-
-`func (o *CreateAlertingProfileCommand) SetSlackConfigurationIdNil(b bool)`
-
- SetSlackConfigurationIdNil sets the value for SlackConfigurationId to be an explicit nil
-
-### UnsetSlackConfigurationId
-`func (o *CreateAlertingProfileCommand) UnsetSlackConfigurationId()`
-
-UnsetSlackConfigurationId ensures that no value is present for SlackConfigurationId, not even an explicit nil
 ### GetOrganizationId
 
 `func (o *CreateAlertingProfileCommand) GetOrganizationId() int32`
@@ -111,16 +101,6 @@ SetOrganizationId sets OrganizationId field to given value.
 
 HasOrganizationId returns a boolean if a field has been set.
 
-### SetOrganizationIdNil
-
-`func (o *CreateAlertingProfileCommand) SetOrganizationIdNil(b bool)`
-
- SetOrganizationIdNil sets the value for OrganizationId to be an explicit nil
-
-### UnsetOrganizationId
-`func (o *CreateAlertingProfileCommand) UnsetOrganizationId()`
-
-UnsetOrganizationId ensures that no value is present for OrganizationId, not even an explicit nil
 ### GetEmails
 
 `func (o *CreateAlertingProfileCommand) GetEmails() []AlertingEmailDto`
@@ -146,16 +126,6 @@ SetEmails sets Emails field to given value.
 
 HasEmails returns a boolean if a field has been set.
 
-### SetEmailsNil
-
-`func (o *CreateAlertingProfileCommand) SetEmailsNil(b bool)`
-
- SetEmailsNil sets the value for Emails to be an explicit nil
-
-### UnsetEmails
-`func (o *CreateAlertingProfileCommand) UnsetEmails()`
-
-UnsetEmails ensures that no value is present for Emails, not even an explicit nil
 ### GetWebhooks
 
 `func (o *CreateAlertingProfileCommand) GetWebhooks() []AlertingWebhookDto`
@@ -181,16 +151,6 @@ SetWebhooks sets Webhooks field to given value.
 
 HasWebhooks returns a boolean if a field has been set.
 
-### SetWebhooksNil
-
-`func (o *CreateAlertingProfileCommand) SetWebhooksNil(b bool)`
-
- SetWebhooksNil sets the value for Webhooks to be an explicit nil
-
-### UnsetWebhooks
-`func (o *CreateAlertingProfileCommand) UnsetWebhooks()`
-
-UnsetWebhooks ensures that no value is present for Webhooks, not even an explicit nil
 ### GetAlertingIntegrations
 
 `func (o *CreateAlertingProfileCommand) GetAlertingIntegrations() []AlertingIntegrationDto`
@@ -216,16 +176,6 @@ SetAlertingIntegrations sets AlertingIntegrations field to given value.
 
 HasAlertingIntegrations returns a boolean if a field has been set.
 
-### SetAlertingIntegrationsNil
-
-`func (o *CreateAlertingProfileCommand) SetAlertingIntegrationsNil(b bool)`
-
- SetAlertingIntegrationsNil sets the value for AlertingIntegrations to be an explicit nil
-
-### UnsetAlertingIntegrations
-`func (o *CreateAlertingProfileCommand) UnsetAlertingIntegrations()`
-
-UnsetAlertingIntegrations ensures that no value is present for AlertingIntegrations, not even an explicit nil
 ### GetReminder
 
 `func (o *CreateAlertingProfileCommand) GetReminder() AlertingReminder`

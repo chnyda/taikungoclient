@@ -27,11 +27,12 @@ type SlackApiService service
 type ApiSlackCreateRequest struct {
 	ctx context.Context
 	ApiService *SlackApiService
-	createSlackConfigurationCommand *CreateSlackConfigurationCommand
+	v string
+	body *CreateSlackConfigurationCommand
 }
 
-func (r ApiSlackCreateRequest) CreateSlackConfigurationCommand(createSlackConfigurationCommand CreateSlackConfigurationCommand) ApiSlackCreateRequest {
-	r.createSlackConfigurationCommand = &createSlackConfigurationCommand
+func (r ApiSlackCreateRequest) Body(body CreateSlackConfigurationCommand) ApiSlackCreateRequest {
+	r.body = &body
 	return r
 }
 
@@ -43,12 +44,14 @@ func (r ApiSlackCreateRequest) Execute() (*ApiResponse, *http.Response, error) {
 SlackCreate Create slack configuration
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param v
  @return ApiSlackCreateRequest
 */
-func (a *SlackApiService) SlackCreate(ctx context.Context) ApiSlackCreateRequest {
+func (a *SlackApiService) SlackCreate(ctx context.Context, v string) ApiSlackCreateRequest {
 	return ApiSlackCreateRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
@@ -67,17 +70,15 @@ func (a *SlackApiService) SlackCreateExecute(r ApiSlackCreateRequest) (*ApiRespo
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/slack/create"
+	localVarPath := localBasePath + "/api/v{v}/Slack/create"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createSlackConfigurationCommand == nil {
-		return localVarReturnValue, nil, reportError("createSlackConfigurationCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -86,7 +87,7 @@ func (a *SlackApiService) SlackCreateExecute(r ApiSlackCreateRequest) (*ApiRespo
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -94,7 +95,7 @@ func (a *SlackApiService) SlackCreateExecute(r ApiSlackCreateRequest) (*ApiRespo
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createSlackConfigurationCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -131,17 +132,6 @@ func (a *SlackApiService) SlackCreateExecute(r ApiSlackCreateRequest) (*ApiRespo
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -175,7 +165,7 @@ func (a *SlackApiService) SlackCreateExecute(r ApiSlackCreateRequest) (*ApiRespo
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -203,11 +193,12 @@ func (a *SlackApiService) SlackCreateExecute(r ApiSlackCreateRequest) (*ApiRespo
 type ApiSlackDeleteMultipleRequest struct {
 	ctx context.Context
 	ApiService *SlackApiService
-	deleteSlackConfigCommand *DeleteSlackConfigCommand
+	v string
+	body *DeleteSlackConfigCommand
 }
 
-func (r ApiSlackDeleteMultipleRequest) DeleteSlackConfigCommand(deleteSlackConfigCommand DeleteSlackConfigCommand) ApiSlackDeleteMultipleRequest {
-	r.deleteSlackConfigCommand = &deleteSlackConfigCommand
+func (r ApiSlackDeleteMultipleRequest) Body(body DeleteSlackConfigCommand) ApiSlackDeleteMultipleRequest {
+	r.body = &body
 	return r
 }
 
@@ -216,15 +207,17 @@ func (r ApiSlackDeleteMultipleRequest) Execute() (*http.Response, error) {
 }
 
 /*
-SlackDeleteMultiple Delete slack configuration(s)
+SlackDeleteMultiple Delete slack configurations (s)
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param v
  @return ApiSlackDeleteMultipleRequest
 */
-func (a *SlackApiService) SlackDeleteMultiple(ctx context.Context) ApiSlackDeleteMultipleRequest {
+func (a *SlackApiService) SlackDeleteMultiple(ctx context.Context, v string) ApiSlackDeleteMultipleRequest {
 	return ApiSlackDeleteMultipleRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
@@ -241,17 +234,15 @@ func (a *SlackApiService) SlackDeleteMultipleExecute(r ApiSlackDeleteMultipleReq
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/slack/delete-multiple"
+	localVarPath := localBasePath + "/api/v{v}/Slack/delete-multiple"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.deleteSlackConfigCommand == nil {
-		return nil, reportError("deleteSlackConfigCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -260,7 +251,7 @@ func (a *SlackApiService) SlackDeleteMultipleExecute(r ApiSlackDeleteMultipleReq
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -268,7 +259,7 @@ func (a *SlackApiService) SlackDeleteMultipleExecute(r ApiSlackDeleteMultipleReq
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.deleteSlackConfigCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -305,17 +296,6 @@ func (a *SlackApiService) SlackDeleteMultipleExecute(r ApiSlackDeleteMultipleReq
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -349,7 +329,7 @@ func (a *SlackApiService) SlackDeleteMultipleExecute(r ApiSlackDeleteMultipleReq
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -365,66 +345,119 @@ func (a *SlackApiService) SlackDeleteMultipleExecute(r ApiSlackDeleteMultipleReq
 	return localVarHTTPResponse, nil
 }
 
-type ApiSlackDropdownRequest struct {
+type ApiSlackListRequest struct {
 	ctx context.Context
 	ApiService *SlackApiService
+	v string
 	organizationId *int32
+	limit *int32
+	offset *int32
+	sortBy *string
+	sortDirection *string
 	search *string
+	id *int32
 }
 
-func (r ApiSlackDropdownRequest) OrganizationId(organizationId int32) ApiSlackDropdownRequest {
+// Only for admin sort by org id
+func (r ApiSlackListRequest) OrganizationId(organizationId int32) ApiSlackListRequest {
 	r.organizationId = &organizationId
 	return r
 }
 
-func (r ApiSlackDropdownRequest) Search(search string) ApiSlackDropdownRequest {
+// Limits user size (by default 50)
+func (r ApiSlackListRequest) Limit(limit int32) ApiSlackListRequest {
+	r.limit = &limit
+	return r
+}
+
+// Skip elements
+func (r ApiSlackListRequest) Offset(offset int32) ApiSlackListRequest {
+	r.offset = &offset
+	return r
+}
+
+func (r ApiSlackListRequest) SortBy(sortBy string) ApiSlackListRequest {
+	r.sortBy = &sortBy
+	return r
+}
+
+func (r ApiSlackListRequest) SortDirection(sortDirection string) ApiSlackListRequest {
+	r.sortDirection = &sortDirection
+	return r
+}
+
+// Keyword for searching
+func (r ApiSlackListRequest) Search(search string) ApiSlackListRequest {
 	r.search = &search
 	return r
 }
 
-func (r ApiSlackDropdownRequest) Execute() ([]CommonDropdownDto, *http.Response, error) {
-	return r.ApiService.SlackDropdownExecute(r)
+func (r ApiSlackListRequest) Id(id int32) ApiSlackListRequest {
+	r.id = &id
+	return r
+}
+
+func (r ApiSlackListRequest) Execute() (*SlackConfigurationList, *http.Response, error) {
+	return r.ApiService.SlackListExecute(r)
 }
 
 /*
-SlackDropdown Retrieve all slack configs for organization
+SlackList Retrieve a list of slack configs.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSlackDropdownRequest
+ @param v
+ @return ApiSlackListRequest
 */
-func (a *SlackApiService) SlackDropdown(ctx context.Context) ApiSlackDropdownRequest {
-	return ApiSlackDropdownRequest{
+func (a *SlackApiService) SlackList(ctx context.Context, v string) ApiSlackListRequest {
+	return ApiSlackListRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
-//  @return []CommonDropdownDto
-func (a *SlackApiService) SlackDropdownExecute(r ApiSlackDropdownRequest) ([]CommonDropdownDto, *http.Response, error) {
+//  @return SlackConfigurationList
+func (a *SlackApiService) SlackListExecute(r ApiSlackListRequest) (*SlackConfigurationList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []CommonDropdownDto
+		localVarReturnValue  *SlackConfigurationList
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SlackApiService.SlackDropdown")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SlackApiService.SlackList")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/slack/list"
+	localVarPath := localBasePath + "/api/v{v}/Slack"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.organizationId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "OrganizationId", r.organizationId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "organizationId", r.organizationId, "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+	}
+	if r.offset != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
+	}
+	if r.sortBy != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", r.sortBy, "")
+	}
+	if r.sortDirection != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "sortDirection", r.sortDirection, "")
 	}
 	if r.search != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Search", r.search, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "")
+	}
+	if r.id != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -436,7 +469,7 @@ func (a *SlackApiService) SlackDropdownExecute(r ApiSlackDropdownRequest) ([]Com
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -479,17 +512,6 @@ func (a *SlackApiService) SlackDropdownExecute(r ApiSlackDropdownRequest) ([]Com
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -523,7 +545,7 @@ func (a *SlackApiService) SlackDropdownExecute(r ApiSlackDropdownRequest) ([]Com
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -548,111 +570,70 @@ func (a *SlackApiService) SlackDropdownExecute(r ApiSlackDropdownRequest) ([]Com
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSlackListRequest struct {
+type ApiSlackSlackConfigurationForOrganizationListRequest struct {
 	ctx context.Context
 	ApiService *SlackApiService
+	v string
 	organizationId *int32
-	limit *int32
-	offset *int32
-	sortBy *string
-	sortDirection *string
 	search *string
-	id *int32
 }
 
-func (r ApiSlackListRequest) OrganizationId(organizationId int32) ApiSlackListRequest {
+func (r ApiSlackSlackConfigurationForOrganizationListRequest) OrganizationId(organizationId int32) ApiSlackSlackConfigurationForOrganizationListRequest {
 	r.organizationId = &organizationId
 	return r
 }
 
-func (r ApiSlackListRequest) Limit(limit int32) ApiSlackListRequest {
-	r.limit = &limit
-	return r
-}
-
-func (r ApiSlackListRequest) Offset(offset int32) ApiSlackListRequest {
-	r.offset = &offset
-	return r
-}
-
-func (r ApiSlackListRequest) SortBy(sortBy string) ApiSlackListRequest {
-	r.sortBy = &sortBy
-	return r
-}
-
-func (r ApiSlackListRequest) SortDirection(sortDirection string) ApiSlackListRequest {
-	r.sortDirection = &sortDirection
-	return r
-}
-
-func (r ApiSlackListRequest) Search(search string) ApiSlackListRequest {
+func (r ApiSlackSlackConfigurationForOrganizationListRequest) Search(search string) ApiSlackSlackConfigurationForOrganizationListRequest {
 	r.search = &search
 	return r
 }
 
-func (r ApiSlackListRequest) Id(id int32) ApiSlackListRequest {
-	r.id = &id
-	return r
-}
-
-func (r ApiSlackListRequest) Execute() (*SlackConfigurationList, *http.Response, error) {
-	return r.ApiService.SlackListExecute(r)
+func (r ApiSlackSlackConfigurationForOrganizationListRequest) Execute() ([]CommonDropdownDto, *http.Response, error) {
+	return r.ApiService.SlackSlackConfigurationForOrganizationListExecute(r)
 }
 
 /*
-SlackList Retrieve all slack configs
+SlackSlackConfigurationForOrganizationList Retrieve all slack configs for organization
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSlackListRequest
+ @param v
+ @return ApiSlackSlackConfigurationForOrganizationListRequest
 */
-func (a *SlackApiService) SlackList(ctx context.Context) ApiSlackListRequest {
-	return ApiSlackListRequest{
+func (a *SlackApiService) SlackSlackConfigurationForOrganizationList(ctx context.Context, v string) ApiSlackSlackConfigurationForOrganizationListRequest {
+	return ApiSlackSlackConfigurationForOrganizationListRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
-//  @return SlackConfigurationList
-func (a *SlackApiService) SlackListExecute(r ApiSlackListRequest) (*SlackConfigurationList, *http.Response, error) {
+//  @return []CommonDropdownDto
+func (a *SlackApiService) SlackSlackConfigurationForOrganizationListExecute(r ApiSlackSlackConfigurationForOrganizationListRequest) ([]CommonDropdownDto, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *SlackConfigurationList
+		localVarReturnValue  []CommonDropdownDto
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SlackApiService.SlackList")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SlackApiService.SlackSlackConfigurationForOrganizationList")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/slack"
+	localVarPath := localBasePath + "/api/v{v}/Slack/list"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.organizationId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "OrganizationId", r.organizationId, "")
-	}
-	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Limit", r.limit, "")
-	}
-	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Offset", r.offset, "")
-	}
-	if r.sortBy != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "SortBy", r.sortBy, "")
-	}
-	if r.sortDirection != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "SortDirection", r.sortDirection, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "organizationId", r.organizationId, "")
 	}
 	if r.search != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Search", r.search, "")
-	}
-	if r.id != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Id", r.id, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -664,7 +645,7 @@ func (a *SlackApiService) SlackListExecute(r ApiSlackListRequest) (*SlackConfigu
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -707,17 +688,6 @@ func (a *SlackApiService) SlackListExecute(r ApiSlackListRequest) (*SlackConfigu
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -751,7 +721,7 @@ func (a *SlackApiService) SlackListExecute(r ApiSlackListRequest) (*SlackConfigu
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -780,11 +750,12 @@ type ApiSlackUpdateRequest struct {
 	ctx context.Context
 	ApiService *SlackApiService
 	id int32
-	updateSlackConfigurationDto *UpdateSlackConfigurationDto
+	v string
+	body *UpdateSlackConfigurationDto
 }
 
-func (r ApiSlackUpdateRequest) UpdateSlackConfigurationDto(updateSlackConfigurationDto UpdateSlackConfigurationDto) ApiSlackUpdateRequest {
-	r.updateSlackConfigurationDto = &updateSlackConfigurationDto
+func (r ApiSlackUpdateRequest) Body(body UpdateSlackConfigurationDto) ApiSlackUpdateRequest {
+	r.body = &body
 	return r
 }
 
@@ -797,13 +768,15 @@ SlackUpdate Update slack configuration
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
+ @param v
  @return ApiSlackUpdateRequest
 */
-func (a *SlackApiService) SlackUpdate(ctx context.Context, id int32) ApiSlackUpdateRequest {
+func (a *SlackApiService) SlackUpdate(ctx context.Context, id int32, v string) ApiSlackUpdateRequest {
 	return ApiSlackUpdateRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
+		v: v,
 	}
 }
 
@@ -820,15 +793,16 @@ func (a *SlackApiService) SlackUpdateExecute(r ApiSlackUpdateRequest) (*http.Res
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/slack/update/{id}"
+	localVarPath := localBasePath + "/api/v{v}/Slack/update/{id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -837,7 +811,7 @@ func (a *SlackApiService) SlackUpdateExecute(r ApiSlackUpdateRequest) (*http.Res
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -845,7 +819,7 @@ func (a *SlackApiService) SlackUpdateExecute(r ApiSlackUpdateRequest) (*http.Res
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateSlackConfigurationDto
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -882,17 +856,6 @@ func (a *SlackApiService) SlackUpdateExecute(r ApiSlackUpdateRequest) (*http.Res
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -926,7 +889,7 @@ func (a *SlackApiService) SlackUpdateExecute(r ApiSlackUpdateRequest) (*http.Res
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -942,58 +905,59 @@ func (a *SlackApiService) SlackUpdateExecute(r ApiSlackUpdateRequest) (*http.Res
 	return localVarHTTPResponse, nil
 }
 
-type ApiSlackVerifyRequest struct {
+type ApiSlackVerifySlackCredentialsRequest struct {
 	ctx context.Context
 	ApiService *SlackApiService
-	verifySlackCredentialsCommand *VerifySlackCredentialsCommand
+	v string
+	body *VerifySlackCredentialsCommand
 }
 
-func (r ApiSlackVerifyRequest) VerifySlackCredentialsCommand(verifySlackCredentialsCommand VerifySlackCredentialsCommand) ApiSlackVerifyRequest {
-	r.verifySlackCredentialsCommand = &verifySlackCredentialsCommand
+func (r ApiSlackVerifySlackCredentialsRequest) Body(body VerifySlackCredentialsCommand) ApiSlackVerifySlackCredentialsRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiSlackVerifyRequest) Execute() (*http.Response, error) {
-	return r.ApiService.SlackVerifyExecute(r)
+func (r ApiSlackVerifySlackCredentialsRequest) Execute() (*http.Response, error) {
+	return r.ApiService.SlackVerifySlackCredentialsExecute(r)
 }
 
 /*
-SlackVerify Verify slack configuration
+SlackVerifySlackCredentials Verify slack credentials
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSlackVerifyRequest
+ @param v
+ @return ApiSlackVerifySlackCredentialsRequest
 */
-func (a *SlackApiService) SlackVerify(ctx context.Context) ApiSlackVerifyRequest {
-	return ApiSlackVerifyRequest{
+func (a *SlackApiService) SlackVerifySlackCredentials(ctx context.Context, v string) ApiSlackVerifySlackCredentialsRequest {
+	return ApiSlackVerifySlackCredentialsRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
-func (a *SlackApiService) SlackVerifyExecute(r ApiSlackVerifyRequest) (*http.Response, error) {
+func (a *SlackApiService) SlackVerifySlackCredentialsExecute(r ApiSlackVerifySlackCredentialsRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SlackApiService.SlackVerify")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SlackApiService.SlackVerifySlackCredentials")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/slack/verify"
+	localVarPath := localBasePath + "/api/v{v}/Slack/verify"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.verifySlackCredentialsCommand == nil {
-		return nil, reportError("verifySlackCredentialsCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -1002,7 +966,7 @@ func (a *SlackApiService) SlackVerifyExecute(r ApiSlackVerifyRequest) (*http.Res
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1010,7 +974,7 @@ func (a *SlackApiService) SlackVerifyExecute(r ApiSlackVerifyRequest) (*http.Res
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.verifySlackCredentialsCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1047,17 +1011,6 @@ func (a *SlackApiService) SlackVerifyExecute(r ApiSlackVerifyRequest) (*http.Res
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1091,7 +1044,7 @@ func (a *SlackApiService) SlackVerifyExecute(r ApiSlackVerifyRequest) (*http.Res
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

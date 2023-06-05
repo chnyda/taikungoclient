@@ -5,10 +5,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
-**CustomerId** | Pointer to **NullableString** |  | [optional] 
-**PartnerName** | Pointer to **NullableString** |  | [optional] 
-**PartnerLogo** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**CustomerId** | Pointer to **string** |  | [optional] 
+**PartnerName** | Pointer to **string** |  | [optional] 
+**PartnerLogo** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -79,16 +79,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *AdminOrganizationsListDto) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *AdminOrganizationsListDto) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetCustomerId
 
 `func (o *AdminOrganizationsListDto) GetCustomerId() string`
@@ -114,16 +104,6 @@ SetCustomerId sets CustomerId field to given value.
 
 HasCustomerId returns a boolean if a field has been set.
 
-### SetCustomerIdNil
-
-`func (o *AdminOrganizationsListDto) SetCustomerIdNil(b bool)`
-
- SetCustomerIdNil sets the value for CustomerId to be an explicit nil
-
-### UnsetCustomerId
-`func (o *AdminOrganizationsListDto) UnsetCustomerId()`
-
-UnsetCustomerId ensures that no value is present for CustomerId, not even an explicit nil
 ### GetPartnerName
 
 `func (o *AdminOrganizationsListDto) GetPartnerName() string`
@@ -149,16 +129,6 @@ SetPartnerName sets PartnerName field to given value.
 
 HasPartnerName returns a boolean if a field has been set.
 
-### SetPartnerNameNil
-
-`func (o *AdminOrganizationsListDto) SetPartnerNameNil(b bool)`
-
- SetPartnerNameNil sets the value for PartnerName to be an explicit nil
-
-### UnsetPartnerName
-`func (o *AdminOrganizationsListDto) UnsetPartnerName()`
-
-UnsetPartnerName ensures that no value is present for PartnerName, not even an explicit nil
 ### GetPartnerLogo
 
 `func (o *AdminOrganizationsListDto) GetPartnerLogo() string`
@@ -184,16 +154,6 @@ SetPartnerLogo sets PartnerLogo field to given value.
 
 HasPartnerLogo returns a boolean if a field has been set.
 
-### SetPartnerLogoNil
-
-`func (o *AdminOrganizationsListDto) SetPartnerLogoNil(b bool)`
-
- SetPartnerLogoNil sets the value for PartnerLogo to be an explicit nil
-
-### UnsetPartnerLogo
-`func (o *AdminOrganizationsListDto) UnsetPartnerLogo()`
-
-UnsetPartnerLogo ensures that no value is present for PartnerLogo, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

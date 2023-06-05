@@ -6,12 +6,12 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Ram** | Pointer to **int64** |  | [optional] 
 **Cpu** | Pointer to **int32** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
-**Description** | Pointer to **interface{}** |  | [optional] 
-**LinuxPrice** | Pointer to **NullableString** |  | [optional] 
-**WindowsPrice** | Pointer to **NullableString** |  | [optional] 
-**WindowsSpotPrice** | Pointer to **NullableString** |  | [optional] 
-**LinuxSpotPrice** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**Description** | Pointer to **map[string]interface{}** |  | [optional] 
+**LinuxPrice** | Pointer to **string** |  | [optional] 
+**WindowsPrice** | Pointer to **string** |  | [optional] 
+**WindowsSpotPrice** | Pointer to **string** |  | [optional] 
+**LinuxSpotPrice** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -107,32 +107,22 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *AwsFlavorListDto) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *AwsFlavorListDto) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetDescription
 
-`func (o *AwsFlavorListDto) GetDescription() interface{}`
+`func (o *AwsFlavorListDto) GetDescription() map[string]interface{}`
 
 GetDescription returns the Description field if non-nil, zero value otherwise.
 
 ### GetDescriptionOk
 
-`func (o *AwsFlavorListDto) GetDescriptionOk() (*interface{}, bool)`
+`func (o *AwsFlavorListDto) GetDescriptionOk() (*map[string]interface{}, bool)`
 
 GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDescription
 
-`func (o *AwsFlavorListDto) SetDescription(v interface{})`
+`func (o *AwsFlavorListDto) SetDescription(v map[string]interface{})`
 
 SetDescription sets Description field to given value.
 
@@ -142,16 +132,6 @@ SetDescription sets Description field to given value.
 
 HasDescription returns a boolean if a field has been set.
 
-### SetDescriptionNil
-
-`func (o *AwsFlavorListDto) SetDescriptionNil(b bool)`
-
- SetDescriptionNil sets the value for Description to be an explicit nil
-
-### UnsetDescription
-`func (o *AwsFlavorListDto) UnsetDescription()`
-
-UnsetDescription ensures that no value is present for Description, not even an explicit nil
 ### GetLinuxPrice
 
 `func (o *AwsFlavorListDto) GetLinuxPrice() string`
@@ -177,16 +157,6 @@ SetLinuxPrice sets LinuxPrice field to given value.
 
 HasLinuxPrice returns a boolean if a field has been set.
 
-### SetLinuxPriceNil
-
-`func (o *AwsFlavorListDto) SetLinuxPriceNil(b bool)`
-
- SetLinuxPriceNil sets the value for LinuxPrice to be an explicit nil
-
-### UnsetLinuxPrice
-`func (o *AwsFlavorListDto) UnsetLinuxPrice()`
-
-UnsetLinuxPrice ensures that no value is present for LinuxPrice, not even an explicit nil
 ### GetWindowsPrice
 
 `func (o *AwsFlavorListDto) GetWindowsPrice() string`
@@ -212,16 +182,6 @@ SetWindowsPrice sets WindowsPrice field to given value.
 
 HasWindowsPrice returns a boolean if a field has been set.
 
-### SetWindowsPriceNil
-
-`func (o *AwsFlavorListDto) SetWindowsPriceNil(b bool)`
-
- SetWindowsPriceNil sets the value for WindowsPrice to be an explicit nil
-
-### UnsetWindowsPrice
-`func (o *AwsFlavorListDto) UnsetWindowsPrice()`
-
-UnsetWindowsPrice ensures that no value is present for WindowsPrice, not even an explicit nil
 ### GetWindowsSpotPrice
 
 `func (o *AwsFlavorListDto) GetWindowsSpotPrice() string`
@@ -247,16 +207,6 @@ SetWindowsSpotPrice sets WindowsSpotPrice field to given value.
 
 HasWindowsSpotPrice returns a boolean if a field has been set.
 
-### SetWindowsSpotPriceNil
-
-`func (o *AwsFlavorListDto) SetWindowsSpotPriceNil(b bool)`
-
- SetWindowsSpotPriceNil sets the value for WindowsSpotPrice to be an explicit nil
-
-### UnsetWindowsSpotPrice
-`func (o *AwsFlavorListDto) UnsetWindowsSpotPrice()`
-
-UnsetWindowsSpotPrice ensures that no value is present for WindowsSpotPrice, not even an explicit nil
 ### GetLinuxSpotPrice
 
 `func (o *AwsFlavorListDto) GetLinuxSpotPrice() string`
@@ -282,16 +232,6 @@ SetLinuxSpotPrice sets LinuxSpotPrice field to given value.
 
 HasLinuxSpotPrice returns a boolean if a field has been set.
 
-### SetLinuxSpotPriceNil
-
-`func (o *AwsFlavorListDto) SetLinuxSpotPriceNil(b bool)`
-
- SetLinuxSpotPriceNil sets the value for LinuxSpotPrice to be an explicit nil
-
-### UnsetLinuxSpotPrice
-`func (o *AwsFlavorListDto) UnsetLinuxSpotPrice()`
-
-UnsetLinuxSpotPrice ensures that no value is present for LinuxSpotPrice, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

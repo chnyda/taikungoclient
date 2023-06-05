@@ -5,9 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Username** | **string** |  | 
-**DisplayName** | Pointer to **NullableString** |  | [optional] 
+**DisplayName** | Pointer to **string** |  | [optional] 
 **Email** | **string** |  | 
-**OrganizationId** | Pointer to **NullableInt32** |  | [optional] 
+**OrganizationId** | Pointer to **int32** |  | [optional] 
 **Role** | Pointer to [**UserRole**](UserRole.md) |  | [optional] 
 
 ## Methods
@@ -74,16 +74,6 @@ SetDisplayName sets DisplayName field to given value.
 
 HasDisplayName returns a boolean if a field has been set.
 
-### SetDisplayNameNil
-
-`func (o *CreateUserCommand) SetDisplayNameNil(b bool)`
-
- SetDisplayNameNil sets the value for DisplayName to be an explicit nil
-
-### UnsetDisplayName
-`func (o *CreateUserCommand) UnsetDisplayName()`
-
-UnsetDisplayName ensures that no value is present for DisplayName, not even an explicit nil
 ### GetEmail
 
 `func (o *CreateUserCommand) GetEmail() string`
@@ -129,16 +119,6 @@ SetOrganizationId sets OrganizationId field to given value.
 
 HasOrganizationId returns a boolean if a field has been set.
 
-### SetOrganizationIdNil
-
-`func (o *CreateUserCommand) SetOrganizationIdNil(b bool)`
-
- SetOrganizationIdNil sets the value for OrganizationId to be an explicit nil
-
-### UnsetOrganizationId
-`func (o *CreateUserCommand) UnsetOrganizationId()`
-
-UnsetOrganizationId ensures that no value is present for OrganizationId, not even an explicit nil
 ### GetRole
 
 `func (o *CreateUserCommand) GetRole() UserRole`

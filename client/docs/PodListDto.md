@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**MetadataName** | Pointer to **NullableString** |  | [optional] 
+**MetadataName** | Pointer to **string** |  | [optional] 
 **RestartCount** | Pointer to **int32** |  | [optional] 
-**Namespace** | Pointer to **NullableString** |  | [optional] 
-**Node** | Pointer to **NullableString** |  | [optional] 
-**Age** | Pointer to **NullableString** |  | [optional] 
-**Status** | Pointer to **NullableString** |  | [optional] 
-**Phase** | Pointer to **NullableString** |  | [optional] 
+**Namespace** | Pointer to **string** |  | [optional] 
+**Node** | Pointer to **string** |  | [optional] 
+**Age** | Pointer to **string** |  | [optional] 
+**Status** | Pointer to **string** |  | [optional] 
+**Phase** | Pointer to **string** |  | [optional] 
 **Container** | Pointer to **[]string** |  | [optional] 
 
 ## Methods
@@ -57,16 +57,6 @@ SetMetadataName sets MetadataName field to given value.
 
 HasMetadataName returns a boolean if a field has been set.
 
-### SetMetadataNameNil
-
-`func (o *PodListDto) SetMetadataNameNil(b bool)`
-
- SetMetadataNameNil sets the value for MetadataName to be an explicit nil
-
-### UnsetMetadataName
-`func (o *PodListDto) UnsetMetadataName()`
-
-UnsetMetadataName ensures that no value is present for MetadataName, not even an explicit nil
 ### GetRestartCount
 
 `func (o *PodListDto) GetRestartCount() int32`
@@ -117,16 +107,6 @@ SetNamespace sets Namespace field to given value.
 
 HasNamespace returns a boolean if a field has been set.
 
-### SetNamespaceNil
-
-`func (o *PodListDto) SetNamespaceNil(b bool)`
-
- SetNamespaceNil sets the value for Namespace to be an explicit nil
-
-### UnsetNamespace
-`func (o *PodListDto) UnsetNamespace()`
-
-UnsetNamespace ensures that no value is present for Namespace, not even an explicit nil
 ### GetNode
 
 `func (o *PodListDto) GetNode() string`
@@ -152,16 +132,6 @@ SetNode sets Node field to given value.
 
 HasNode returns a boolean if a field has been set.
 
-### SetNodeNil
-
-`func (o *PodListDto) SetNodeNil(b bool)`
-
- SetNodeNil sets the value for Node to be an explicit nil
-
-### UnsetNode
-`func (o *PodListDto) UnsetNode()`
-
-UnsetNode ensures that no value is present for Node, not even an explicit nil
 ### GetAge
 
 `func (o *PodListDto) GetAge() string`
@@ -187,16 +157,6 @@ SetAge sets Age field to given value.
 
 HasAge returns a boolean if a field has been set.
 
-### SetAgeNil
-
-`func (o *PodListDto) SetAgeNil(b bool)`
-
- SetAgeNil sets the value for Age to be an explicit nil
-
-### UnsetAge
-`func (o *PodListDto) UnsetAge()`
-
-UnsetAge ensures that no value is present for Age, not even an explicit nil
 ### GetStatus
 
 `func (o *PodListDto) GetStatus() string`
@@ -222,16 +182,6 @@ SetStatus sets Status field to given value.
 
 HasStatus returns a boolean if a field has been set.
 
-### SetStatusNil
-
-`func (o *PodListDto) SetStatusNil(b bool)`
-
- SetStatusNil sets the value for Status to be an explicit nil
-
-### UnsetStatus
-`func (o *PodListDto) UnsetStatus()`
-
-UnsetStatus ensures that no value is present for Status, not even an explicit nil
 ### GetPhase
 
 `func (o *PodListDto) GetPhase() string`
@@ -257,16 +207,6 @@ SetPhase sets Phase field to given value.
 
 HasPhase returns a boolean if a field has been set.
 
-### SetPhaseNil
-
-`func (o *PodListDto) SetPhaseNil(b bool)`
-
- SetPhaseNil sets the value for Phase to be an explicit nil
-
-### UnsetPhase
-`func (o *PodListDto) UnsetPhase()`
-
-UnsetPhase ensures that no value is present for Phase, not even an explicit nil
 ### GetContainer
 
 `func (o *PodListDto) GetContainer() []string`
@@ -292,16 +232,6 @@ SetContainer sets Container field to given value.
 
 HasContainer returns a boolean if a field has been set.
 
-### SetContainerNil
-
-`func (o *PodListDto) SetContainerNil(b bool)`
-
- SetContainerNil sets the value for Container to be an explicit nil
-
-### UnsetContainer
-`func (o *PodListDto) UnsetContainer()`
-
-UnsetContainer ensures that no value is present for Container, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

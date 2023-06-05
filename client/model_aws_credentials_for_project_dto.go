@@ -20,9 +20,9 @@ var _ MappedNullable = &AwsCredentialsForProjectDto{}
 
 // AwsCredentialsForProjectDto struct for AwsCredentialsForProjectDto
 type AwsCredentialsForProjectDto struct {
-	AwsAccessKeyId NullableString `json:"awsAccessKeyId,omitempty"`
-	AwsSecretAccessKey NullableString `json:"awsSecretAccessKey,omitempty"`
-	AwsRegion NullableString `json:"awsRegion,omitempty"`
+	AwsAccessKeyId *string `json:"awsAccessKeyId,omitempty"`
+	AwsSecretAccessKey *string `json:"awsSecretAccessKey,omitempty"`
+	AwsRegion *string `json:"awsRegion,omitempty"`
 }
 
 // NewAwsCredentialsForProjectDto instantiates a new AwsCredentialsForProjectDto object
@@ -42,130 +42,100 @@ func NewAwsCredentialsForProjectDtoWithDefaults() *AwsCredentialsForProjectDto {
 	return &this
 }
 
-// GetAwsAccessKeyId returns the AwsAccessKeyId field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetAwsAccessKeyId returns the AwsAccessKeyId field value if set, zero value otherwise.
 func (o *AwsCredentialsForProjectDto) GetAwsAccessKeyId() string {
-	if o == nil || IsNil(o.AwsAccessKeyId.Get()) {
+	if o == nil || IsNil(o.AwsAccessKeyId) {
 		var ret string
 		return ret
 	}
-	return *o.AwsAccessKeyId.Get()
+	return *o.AwsAccessKeyId
 }
 
 // GetAwsAccessKeyIdOk returns a tuple with the AwsAccessKeyId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AwsCredentialsForProjectDto) GetAwsAccessKeyIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.AwsAccessKeyId) {
 		return nil, false
 	}
-	return o.AwsAccessKeyId.Get(), o.AwsAccessKeyId.IsSet()
+	return o.AwsAccessKeyId, true
 }
 
 // HasAwsAccessKeyId returns a boolean if a field has been set.
 func (o *AwsCredentialsForProjectDto) HasAwsAccessKeyId() bool {
-	if o != nil && o.AwsAccessKeyId.IsSet() {
+	if o != nil && !IsNil(o.AwsAccessKeyId) {
 		return true
 	}
 
 	return false
 }
 
-// SetAwsAccessKeyId gets a reference to the given NullableString and assigns it to the AwsAccessKeyId field.
+// SetAwsAccessKeyId gets a reference to the given string and assigns it to the AwsAccessKeyId field.
 func (o *AwsCredentialsForProjectDto) SetAwsAccessKeyId(v string) {
-	o.AwsAccessKeyId.Set(&v)
-}
-// SetAwsAccessKeyIdNil sets the value for AwsAccessKeyId to be an explicit nil
-func (o *AwsCredentialsForProjectDto) SetAwsAccessKeyIdNil() {
-	o.AwsAccessKeyId.Set(nil)
+	o.AwsAccessKeyId = &v
 }
 
-// UnsetAwsAccessKeyId ensures that no value is present for AwsAccessKeyId, not even an explicit nil
-func (o *AwsCredentialsForProjectDto) UnsetAwsAccessKeyId() {
-	o.AwsAccessKeyId.Unset()
-}
-
-// GetAwsSecretAccessKey returns the AwsSecretAccessKey field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetAwsSecretAccessKey returns the AwsSecretAccessKey field value if set, zero value otherwise.
 func (o *AwsCredentialsForProjectDto) GetAwsSecretAccessKey() string {
-	if o == nil || IsNil(o.AwsSecretAccessKey.Get()) {
+	if o == nil || IsNil(o.AwsSecretAccessKey) {
 		var ret string
 		return ret
 	}
-	return *o.AwsSecretAccessKey.Get()
+	return *o.AwsSecretAccessKey
 }
 
 // GetAwsSecretAccessKeyOk returns a tuple with the AwsSecretAccessKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AwsCredentialsForProjectDto) GetAwsSecretAccessKeyOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.AwsSecretAccessKey) {
 		return nil, false
 	}
-	return o.AwsSecretAccessKey.Get(), o.AwsSecretAccessKey.IsSet()
+	return o.AwsSecretAccessKey, true
 }
 
 // HasAwsSecretAccessKey returns a boolean if a field has been set.
 func (o *AwsCredentialsForProjectDto) HasAwsSecretAccessKey() bool {
-	if o != nil && o.AwsSecretAccessKey.IsSet() {
+	if o != nil && !IsNil(o.AwsSecretAccessKey) {
 		return true
 	}
 
 	return false
 }
 
-// SetAwsSecretAccessKey gets a reference to the given NullableString and assigns it to the AwsSecretAccessKey field.
+// SetAwsSecretAccessKey gets a reference to the given string and assigns it to the AwsSecretAccessKey field.
 func (o *AwsCredentialsForProjectDto) SetAwsSecretAccessKey(v string) {
-	o.AwsSecretAccessKey.Set(&v)
-}
-// SetAwsSecretAccessKeyNil sets the value for AwsSecretAccessKey to be an explicit nil
-func (o *AwsCredentialsForProjectDto) SetAwsSecretAccessKeyNil() {
-	o.AwsSecretAccessKey.Set(nil)
+	o.AwsSecretAccessKey = &v
 }
 
-// UnsetAwsSecretAccessKey ensures that no value is present for AwsSecretAccessKey, not even an explicit nil
-func (o *AwsCredentialsForProjectDto) UnsetAwsSecretAccessKey() {
-	o.AwsSecretAccessKey.Unset()
-}
-
-// GetAwsRegion returns the AwsRegion field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetAwsRegion returns the AwsRegion field value if set, zero value otherwise.
 func (o *AwsCredentialsForProjectDto) GetAwsRegion() string {
-	if o == nil || IsNil(o.AwsRegion.Get()) {
+	if o == nil || IsNil(o.AwsRegion) {
 		var ret string
 		return ret
 	}
-	return *o.AwsRegion.Get()
+	return *o.AwsRegion
 }
 
 // GetAwsRegionOk returns a tuple with the AwsRegion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AwsCredentialsForProjectDto) GetAwsRegionOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.AwsRegion) {
 		return nil, false
 	}
-	return o.AwsRegion.Get(), o.AwsRegion.IsSet()
+	return o.AwsRegion, true
 }
 
 // HasAwsRegion returns a boolean if a field has been set.
 func (o *AwsCredentialsForProjectDto) HasAwsRegion() bool {
-	if o != nil && o.AwsRegion.IsSet() {
+	if o != nil && !IsNil(o.AwsRegion) {
 		return true
 	}
 
 	return false
 }
 
-// SetAwsRegion gets a reference to the given NullableString and assigns it to the AwsRegion field.
+// SetAwsRegion gets a reference to the given string and assigns it to the AwsRegion field.
 func (o *AwsCredentialsForProjectDto) SetAwsRegion(v string) {
-	o.AwsRegion.Set(&v)
-}
-// SetAwsRegionNil sets the value for AwsRegion to be an explicit nil
-func (o *AwsCredentialsForProjectDto) SetAwsRegionNil() {
-	o.AwsRegion.Set(nil)
-}
-
-// UnsetAwsRegion ensures that no value is present for AwsRegion, not even an explicit nil
-func (o *AwsCredentialsForProjectDto) UnsetAwsRegion() {
-	o.AwsRegion.Unset()
+	o.AwsRegion = &v
 }
 
 func (o AwsCredentialsForProjectDto) MarshalJSON() ([]byte, error) {
@@ -178,14 +148,14 @@ func (o AwsCredentialsForProjectDto) MarshalJSON() ([]byte, error) {
 
 func (o AwsCredentialsForProjectDto) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.AwsAccessKeyId.IsSet() {
-		toSerialize["awsAccessKeyId"] = o.AwsAccessKeyId.Get()
+	if !IsNil(o.AwsAccessKeyId) {
+		toSerialize["awsAccessKeyId"] = o.AwsAccessKeyId
 	}
-	if o.AwsSecretAccessKey.IsSet() {
-		toSerialize["awsSecretAccessKey"] = o.AwsSecretAccessKey.Get()
+	if !IsNil(o.AwsSecretAccessKey) {
+		toSerialize["awsSecretAccessKey"] = o.AwsSecretAccessKey
 	}
-	if o.AwsRegion.IsSet() {
-		toSerialize["awsRegion"] = o.AwsRegion.Get()
+	if !IsNil(o.AwsRegion) {
+		toSerialize["awsRegion"] = o.AwsRegion
 	}
 	return toSerialize, nil
 }

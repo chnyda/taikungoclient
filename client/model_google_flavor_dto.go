@@ -20,14 +20,14 @@ var _ MappedNullable = &GoogleFlavorDto{}
 
 // GoogleFlavorDto struct for GoogleFlavorDto
 type GoogleFlavorDto struct {
-	Name NullableString `json:"name,omitempty"`
-	Cpu NullableInt32 `json:"cpu,omitempty"`
-	Ram NullableInt64 `json:"ram,omitempty"`
-	Description interface{} `json:"description,omitempty"`
-	LinuxPrice NullableString `json:"linuxPrice,omitempty"`
-	WindowsPrice NullableString `json:"windowsPrice,omitempty"`
-	LinuxSpotPrice NullableString `json:"linuxSpotPrice,omitempty"`
-	WindowsSpotPrice NullableString `json:"windowsSpotPrice,omitempty"`
+	Name *string `json:"name,omitempty"`
+	Cpu *int32 `json:"cpu,omitempty"`
+	Ram *int64 `json:"ram,omitempty"`
+	Description map[string]interface{} `json:"description,omitempty"`
+	LinuxPrice *string `json:"linuxPrice,omitempty"`
+	WindowsPrice *string `json:"windowsPrice,omitempty"`
+	LinuxSpotPrice *string `json:"linuxSpotPrice,omitempty"`
+	WindowsSpotPrice *string `json:"windowsSpotPrice,omitempty"`
 }
 
 // NewGoogleFlavorDto instantiates a new GoogleFlavorDto object
@@ -47,136 +47,106 @@ func NewGoogleFlavorDtoWithDefaults() *GoogleFlavorDto {
 	return &this
 }
 
-// GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetName returns the Name field value if set, zero value otherwise.
 func (o *GoogleFlavorDto) GetName() string {
-	if o == nil || IsNil(o.Name.Get()) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
-	return *o.Name.Get()
+	return *o.Name
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *GoogleFlavorDto) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
-	return o.Name.Get(), o.Name.IsSet()
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *GoogleFlavorDto) HasName() bool {
-	if o != nil && o.Name.IsSet() {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
 	return false
 }
 
-// SetName gets a reference to the given NullableString and assigns it to the Name field.
+// SetName gets a reference to the given string and assigns it to the Name field.
 func (o *GoogleFlavorDto) SetName(v string) {
-	o.Name.Set(&v)
-}
-// SetNameNil sets the value for Name to be an explicit nil
-func (o *GoogleFlavorDto) SetNameNil() {
-	o.Name.Set(nil)
+	o.Name = &v
 }
 
-// UnsetName ensures that no value is present for Name, not even an explicit nil
-func (o *GoogleFlavorDto) UnsetName() {
-	o.Name.Unset()
-}
-
-// GetCpu returns the Cpu field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetCpu returns the Cpu field value if set, zero value otherwise.
 func (o *GoogleFlavorDto) GetCpu() int32 {
-	if o == nil || IsNil(o.Cpu.Get()) {
+	if o == nil || IsNil(o.Cpu) {
 		var ret int32
 		return ret
 	}
-	return *o.Cpu.Get()
+	return *o.Cpu
 }
 
 // GetCpuOk returns a tuple with the Cpu field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *GoogleFlavorDto) GetCpuOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Cpu) {
 		return nil, false
 	}
-	return o.Cpu.Get(), o.Cpu.IsSet()
+	return o.Cpu, true
 }
 
 // HasCpu returns a boolean if a field has been set.
 func (o *GoogleFlavorDto) HasCpu() bool {
-	if o != nil && o.Cpu.IsSet() {
+	if o != nil && !IsNil(o.Cpu) {
 		return true
 	}
 
 	return false
 }
 
-// SetCpu gets a reference to the given NullableInt32 and assigns it to the Cpu field.
+// SetCpu gets a reference to the given int32 and assigns it to the Cpu field.
 func (o *GoogleFlavorDto) SetCpu(v int32) {
-	o.Cpu.Set(&v)
-}
-// SetCpuNil sets the value for Cpu to be an explicit nil
-func (o *GoogleFlavorDto) SetCpuNil() {
-	o.Cpu.Set(nil)
+	o.Cpu = &v
 }
 
-// UnsetCpu ensures that no value is present for Cpu, not even an explicit nil
-func (o *GoogleFlavorDto) UnsetCpu() {
-	o.Cpu.Unset()
-}
-
-// GetRam returns the Ram field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetRam returns the Ram field value if set, zero value otherwise.
 func (o *GoogleFlavorDto) GetRam() int64 {
-	if o == nil || IsNil(o.Ram.Get()) {
+	if o == nil || IsNil(o.Ram) {
 		var ret int64
 		return ret
 	}
-	return *o.Ram.Get()
+	return *o.Ram
 }
 
 // GetRamOk returns a tuple with the Ram field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *GoogleFlavorDto) GetRamOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Ram) {
 		return nil, false
 	}
-	return o.Ram.Get(), o.Ram.IsSet()
+	return o.Ram, true
 }
 
 // HasRam returns a boolean if a field has been set.
 func (o *GoogleFlavorDto) HasRam() bool {
-	if o != nil && o.Ram.IsSet() {
+	if o != nil && !IsNil(o.Ram) {
 		return true
 	}
 
 	return false
 }
 
-// SetRam gets a reference to the given NullableInt64 and assigns it to the Ram field.
+// SetRam gets a reference to the given int64 and assigns it to the Ram field.
 func (o *GoogleFlavorDto) SetRam(v int64) {
-	o.Ram.Set(&v)
-}
-// SetRamNil sets the value for Ram to be an explicit nil
-func (o *GoogleFlavorDto) SetRamNil() {
-	o.Ram.Set(nil)
+	o.Ram = &v
 }
 
-// UnsetRam ensures that no value is present for Ram, not even an explicit nil
-func (o *GoogleFlavorDto) UnsetRam() {
-	o.Ram.Unset()
-}
-
-// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GoogleFlavorDto) GetDescription() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetDescription returns the Description field value if set, zero value otherwise.
+func (o *GoogleFlavorDto) GetDescription() map[string]interface{} {
+	if o == nil || IsNil(o.Description) {
+		var ret map[string]interface{}
 		return ret
 	}
 	return o.Description
@@ -184,194 +154,153 @@ func (o *GoogleFlavorDto) GetDescription() interface{} {
 
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GoogleFlavorDto) GetDescriptionOk() (*interface{}, bool) {
+func (o *GoogleFlavorDto) GetDescriptionOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.Description) {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
-	return &o.Description, true
+	return o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
 func (o *GoogleFlavorDto) HasDescription() bool {
-	if o != nil && IsNil(o.Description) {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
 	return false
 }
 
-// SetDescription gets a reference to the given interface{} and assigns it to the Description field.
-func (o *GoogleFlavorDto) SetDescription(v interface{}) {
+// SetDescription gets a reference to the given map[string]interface{} and assigns it to the Description field.
+func (o *GoogleFlavorDto) SetDescription(v map[string]interface{}) {
 	o.Description = v
 }
 
-// GetLinuxPrice returns the LinuxPrice field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetLinuxPrice returns the LinuxPrice field value if set, zero value otherwise.
 func (o *GoogleFlavorDto) GetLinuxPrice() string {
-	if o == nil || IsNil(o.LinuxPrice.Get()) {
+	if o == nil || IsNil(o.LinuxPrice) {
 		var ret string
 		return ret
 	}
-	return *o.LinuxPrice.Get()
+	return *o.LinuxPrice
 }
 
 // GetLinuxPriceOk returns a tuple with the LinuxPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *GoogleFlavorDto) GetLinuxPriceOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.LinuxPrice) {
 		return nil, false
 	}
-	return o.LinuxPrice.Get(), o.LinuxPrice.IsSet()
+	return o.LinuxPrice, true
 }
 
 // HasLinuxPrice returns a boolean if a field has been set.
 func (o *GoogleFlavorDto) HasLinuxPrice() bool {
-	if o != nil && o.LinuxPrice.IsSet() {
+	if o != nil && !IsNil(o.LinuxPrice) {
 		return true
 	}
 
 	return false
 }
 
-// SetLinuxPrice gets a reference to the given NullableString and assigns it to the LinuxPrice field.
+// SetLinuxPrice gets a reference to the given string and assigns it to the LinuxPrice field.
 func (o *GoogleFlavorDto) SetLinuxPrice(v string) {
-	o.LinuxPrice.Set(&v)
-}
-// SetLinuxPriceNil sets the value for LinuxPrice to be an explicit nil
-func (o *GoogleFlavorDto) SetLinuxPriceNil() {
-	o.LinuxPrice.Set(nil)
+	o.LinuxPrice = &v
 }
 
-// UnsetLinuxPrice ensures that no value is present for LinuxPrice, not even an explicit nil
-func (o *GoogleFlavorDto) UnsetLinuxPrice() {
-	o.LinuxPrice.Unset()
-}
-
-// GetWindowsPrice returns the WindowsPrice field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetWindowsPrice returns the WindowsPrice field value if set, zero value otherwise.
 func (o *GoogleFlavorDto) GetWindowsPrice() string {
-	if o == nil || IsNil(o.WindowsPrice.Get()) {
+	if o == nil || IsNil(o.WindowsPrice) {
 		var ret string
 		return ret
 	}
-	return *o.WindowsPrice.Get()
+	return *o.WindowsPrice
 }
 
 // GetWindowsPriceOk returns a tuple with the WindowsPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *GoogleFlavorDto) GetWindowsPriceOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.WindowsPrice) {
 		return nil, false
 	}
-	return o.WindowsPrice.Get(), o.WindowsPrice.IsSet()
+	return o.WindowsPrice, true
 }
 
 // HasWindowsPrice returns a boolean if a field has been set.
 func (o *GoogleFlavorDto) HasWindowsPrice() bool {
-	if o != nil && o.WindowsPrice.IsSet() {
+	if o != nil && !IsNil(o.WindowsPrice) {
 		return true
 	}
 
 	return false
 }
 
-// SetWindowsPrice gets a reference to the given NullableString and assigns it to the WindowsPrice field.
+// SetWindowsPrice gets a reference to the given string and assigns it to the WindowsPrice field.
 func (o *GoogleFlavorDto) SetWindowsPrice(v string) {
-	o.WindowsPrice.Set(&v)
-}
-// SetWindowsPriceNil sets the value for WindowsPrice to be an explicit nil
-func (o *GoogleFlavorDto) SetWindowsPriceNil() {
-	o.WindowsPrice.Set(nil)
+	o.WindowsPrice = &v
 }
 
-// UnsetWindowsPrice ensures that no value is present for WindowsPrice, not even an explicit nil
-func (o *GoogleFlavorDto) UnsetWindowsPrice() {
-	o.WindowsPrice.Unset()
-}
-
-// GetLinuxSpotPrice returns the LinuxSpotPrice field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetLinuxSpotPrice returns the LinuxSpotPrice field value if set, zero value otherwise.
 func (o *GoogleFlavorDto) GetLinuxSpotPrice() string {
-	if o == nil || IsNil(o.LinuxSpotPrice.Get()) {
+	if o == nil || IsNil(o.LinuxSpotPrice) {
 		var ret string
 		return ret
 	}
-	return *o.LinuxSpotPrice.Get()
+	return *o.LinuxSpotPrice
 }
 
 // GetLinuxSpotPriceOk returns a tuple with the LinuxSpotPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *GoogleFlavorDto) GetLinuxSpotPriceOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.LinuxSpotPrice) {
 		return nil, false
 	}
-	return o.LinuxSpotPrice.Get(), o.LinuxSpotPrice.IsSet()
+	return o.LinuxSpotPrice, true
 }
 
 // HasLinuxSpotPrice returns a boolean if a field has been set.
 func (o *GoogleFlavorDto) HasLinuxSpotPrice() bool {
-	if o != nil && o.LinuxSpotPrice.IsSet() {
+	if o != nil && !IsNil(o.LinuxSpotPrice) {
 		return true
 	}
 
 	return false
 }
 
-// SetLinuxSpotPrice gets a reference to the given NullableString and assigns it to the LinuxSpotPrice field.
+// SetLinuxSpotPrice gets a reference to the given string and assigns it to the LinuxSpotPrice field.
 func (o *GoogleFlavorDto) SetLinuxSpotPrice(v string) {
-	o.LinuxSpotPrice.Set(&v)
-}
-// SetLinuxSpotPriceNil sets the value for LinuxSpotPrice to be an explicit nil
-func (o *GoogleFlavorDto) SetLinuxSpotPriceNil() {
-	o.LinuxSpotPrice.Set(nil)
+	o.LinuxSpotPrice = &v
 }
 
-// UnsetLinuxSpotPrice ensures that no value is present for LinuxSpotPrice, not even an explicit nil
-func (o *GoogleFlavorDto) UnsetLinuxSpotPrice() {
-	o.LinuxSpotPrice.Unset()
-}
-
-// GetWindowsSpotPrice returns the WindowsSpotPrice field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetWindowsSpotPrice returns the WindowsSpotPrice field value if set, zero value otherwise.
 func (o *GoogleFlavorDto) GetWindowsSpotPrice() string {
-	if o == nil || IsNil(o.WindowsSpotPrice.Get()) {
+	if o == nil || IsNil(o.WindowsSpotPrice) {
 		var ret string
 		return ret
 	}
-	return *o.WindowsSpotPrice.Get()
+	return *o.WindowsSpotPrice
 }
 
 // GetWindowsSpotPriceOk returns a tuple with the WindowsSpotPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *GoogleFlavorDto) GetWindowsSpotPriceOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.WindowsSpotPrice) {
 		return nil, false
 	}
-	return o.WindowsSpotPrice.Get(), o.WindowsSpotPrice.IsSet()
+	return o.WindowsSpotPrice, true
 }
 
 // HasWindowsSpotPrice returns a boolean if a field has been set.
 func (o *GoogleFlavorDto) HasWindowsSpotPrice() bool {
-	if o != nil && o.WindowsSpotPrice.IsSet() {
+	if o != nil && !IsNil(o.WindowsSpotPrice) {
 		return true
 	}
 
 	return false
 }
 
-// SetWindowsSpotPrice gets a reference to the given NullableString and assigns it to the WindowsSpotPrice field.
+// SetWindowsSpotPrice gets a reference to the given string and assigns it to the WindowsSpotPrice field.
 func (o *GoogleFlavorDto) SetWindowsSpotPrice(v string) {
-	o.WindowsSpotPrice.Set(&v)
-}
-// SetWindowsSpotPriceNil sets the value for WindowsSpotPrice to be an explicit nil
-func (o *GoogleFlavorDto) SetWindowsSpotPriceNil() {
-	o.WindowsSpotPrice.Set(nil)
-}
-
-// UnsetWindowsSpotPrice ensures that no value is present for WindowsSpotPrice, not even an explicit nil
-func (o *GoogleFlavorDto) UnsetWindowsSpotPrice() {
-	o.WindowsSpotPrice.Unset()
+	o.WindowsSpotPrice = &v
 }
 
 func (o GoogleFlavorDto) MarshalJSON() ([]byte, error) {
@@ -384,29 +313,29 @@ func (o GoogleFlavorDto) MarshalJSON() ([]byte, error) {
 
 func (o GoogleFlavorDto) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Name.IsSet() {
-		toSerialize["name"] = o.Name.Get()
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
 	}
-	if o.Cpu.IsSet() {
-		toSerialize["cpu"] = o.Cpu.Get()
+	if !IsNil(o.Cpu) {
+		toSerialize["cpu"] = o.Cpu
 	}
-	if o.Ram.IsSet() {
-		toSerialize["ram"] = o.Ram.Get()
+	if !IsNil(o.Ram) {
+		toSerialize["ram"] = o.Ram
 	}
-	if o.Description != nil {
+	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
-	if o.LinuxPrice.IsSet() {
-		toSerialize["linuxPrice"] = o.LinuxPrice.Get()
+	if !IsNil(o.LinuxPrice) {
+		toSerialize["linuxPrice"] = o.LinuxPrice
 	}
-	if o.WindowsPrice.IsSet() {
-		toSerialize["windowsPrice"] = o.WindowsPrice.Get()
+	if !IsNil(o.WindowsPrice) {
+		toSerialize["windowsPrice"] = o.WindowsPrice
 	}
-	if o.LinuxSpotPrice.IsSet() {
-		toSerialize["linuxSpotPrice"] = o.LinuxSpotPrice.Get()
+	if !IsNil(o.LinuxSpotPrice) {
+		toSerialize["linuxSpotPrice"] = o.LinuxSpotPrice
 	}
-	if o.WindowsSpotPrice.IsSet() {
-		toSerialize["windowsSpotPrice"] = o.WindowsSpotPrice.Get()
+	if !IsNil(o.WindowsSpotPrice) {
+		toSerialize["windowsSpotPrice"] = o.WindowsSpotPrice
 	}
 	return toSerialize, nil
 }

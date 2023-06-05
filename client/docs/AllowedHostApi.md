@@ -4,16 +4,16 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**AllowedhostCreate**](AllowedHostApi.md#AllowedhostCreate) | **Post** /api/v1/allowedhost/create | Create access profile allowed host
-[**AllowedhostDelete**](AllowedHostApi.md#AllowedhostDelete) | **Delete** /api/v1/allowedhost/{id} | Delete access profile allowed host
-[**AllowedhostEdit**](AllowedHostApi.md#AllowedhostEdit) | **Put** /api/v1/allowedhost/edit/{id} | Edit access profile allowed host
-[**AllowedhostList**](AllowedHostApi.md#AllowedhostList) | **Get** /api/v1/allowedhost/list/{accessProfileId} | List allowed hosts by access profile id
+[**AllowedHostCreate**](AllowedHostApi.md#AllowedHostCreate) | **Post** /api/v{v}/AllowedHost/create | Create access profile allowed host
+[**AllowedHostDelete**](AllowedHostApi.md#AllowedHostDelete) | **Delete** /api/v{v}/AllowedHost/{id} | Delete access profile allowed host
+[**AllowedHostEdit**](AllowedHostApi.md#AllowedHostEdit) | **Put** /api/v{v}/AllowedHost/edit/{id} | Edit access profile allowed host
+[**AllowedHostList**](AllowedHostApi.md#AllowedHostList) | **Get** /api/v{v}/AllowedHost/list/{accessProfileId} | List allowed hosts by access profile id
 
 
 
-## AllowedhostCreate
+## AllowedHostCreate
 
-> ApiResponse AllowedhostCreate(ctx).CreateAllowedHostCommand(createAllowedHostCommand).Execute()
+> ApiResponse AllowedHostCreate(ctx, v).Body(body).Execute()
 
 Create access profile allowed host
 
@@ -30,32 +30,38 @@ import (
 )
 
 func main() {
-    createAllowedHostCommand := *openapiclient.NewCreateAllowedHostCommand(int32(123), "IpAddress_example") // CreateAllowedHostCommand |  (optional)
+    v := "v_example" // string | 
+    body := *openapiclient.NewCreateAllowedHostCommand(int32(123), "IpAddress_example") // CreateAllowedHostCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AllowedHostApi.AllowedhostCreate(context.Background()).CreateAllowedHostCommand(createAllowedHostCommand).Execute()
+    resp, r, err := apiClient.AllowedHostApi.AllowedHostCreate(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AllowedHostApi.AllowedhostCreate``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AllowedHostApi.AllowedHostCreate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `AllowedhostCreate`: ApiResponse
-    fmt.Fprintf(os.Stdout, "Response from `AllowedHostApi.AllowedhostCreate`: %v\n", resp)
+    // response from `AllowedHostCreate`: ApiResponse
+    fmt.Fprintf(os.Stdout, "Response from `AllowedHostApi.AllowedHostCreate`: %v\n", resp)
 }
 ```
 
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAllowedhostCreateRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiAllowedHostCreateRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createAllowedHostCommand** | [**CreateAllowedHostCommand**](CreateAllowedHostCommand.md) |  | 
+
+ **body** | [**CreateAllowedHostCommand**](CreateAllowedHostCommand.md) |  | 
 
 ### Return type
 
@@ -67,17 +73,17 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## AllowedhostDelete
+## AllowedHostDelete
 
-> AllowedhostDelete(ctx, id).Execute()
+> AllowedHostDelete(ctx, id, v).Execute()
 
 Delete access profile allowed host
 
@@ -95,12 +101,13 @@ import (
 
 func main() {
     id := int32(56) // int32 | 
+    v := "v_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.AllowedHostApi.AllowedhostDelete(context.Background(), id).Execute()
+    r, err := apiClient.AllowedHostApi.AllowedHostDelete(context.Background(), id, v).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AllowedHostApi.AllowedhostDelete``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AllowedHostApi.AllowedHostDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -113,14 +120,16 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **id** | **int32** |  | 
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAllowedhostDeleteRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiAllowedHostDeleteRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
 
 
 ### Return type
@@ -134,16 +143,16 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## AllowedhostEdit
+## AllowedHostEdit
 
-> AllowedhostEdit(ctx, id).EditAllowedHostDto(editAllowedHostDto).Execute()
+> AllowedHostEdit(ctx, id, v).Body(body).Execute()
 
 Edit access profile allowed host
 
@@ -161,13 +170,14 @@ import (
 
 func main() {
     id := int32(56) // int32 | 
-    editAllowedHostDto := *openapiclient.NewEditAllowedHostDto() // EditAllowedHostDto | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewEditAllowedHostDto() // EditAllowedHostDto |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.AllowedHostApi.AllowedhostEdit(context.Background(), id).EditAllowedHostDto(editAllowedHostDto).Execute()
+    r, err := apiClient.AllowedHostApi.AllowedHostEdit(context.Background(), id, v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AllowedHostApi.AllowedhostEdit``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AllowedHostApi.AllowedHostEdit``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -180,16 +190,18 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **id** | **int32** |  | 
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAllowedhostEditRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiAllowedHostEditRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **editAllowedHostDto** | [**EditAllowedHostDto**](EditAllowedHostDto.md) |  | 
+
+ **body** | [**EditAllowedHostDto**](EditAllowedHostDto.md) |  | 
 
 ### Return type
 
@@ -201,17 +213,17 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## AllowedhostList
+## AllowedHostList
 
-> AllowedHostList AllowedhostList(ctx, accessProfileId).Offset(offset).Limit(limit).Search(search).SortBy(sortBy).SortDirection(sortDirection).Execute()
+> AllowedHostList AllowedHostList(ctx, accessProfileId, v).Offset(offset).Limit(limit).Search(search).SortBy(sortBy).SortDirection(sortDirection).Execute()
 
 List allowed hosts by access profile id
 
@@ -229,6 +241,7 @@ import (
 
 func main() {
     accessProfileId := int32(56) // int32 | 
+    v := "v_example" // string | 
     offset := int32(56) // int32 |  (optional)
     limit := int32(56) // int32 |  (optional)
     search := "search_example" // string |  (optional)
@@ -237,13 +250,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AllowedHostApi.AllowedhostList(context.Background(), accessProfileId).Offset(offset).Limit(limit).Search(search).SortBy(sortBy).SortDirection(sortDirection).Execute()
+    resp, r, err := apiClient.AllowedHostApi.AllowedHostList(context.Background(), accessProfileId, v).Offset(offset).Limit(limit).Search(search).SortBy(sortBy).SortDirection(sortDirection).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AllowedHostApi.AllowedhostList``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AllowedHostApi.AllowedHostList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `AllowedhostList`: AllowedHostList
-    fmt.Fprintf(os.Stdout, "Response from `AllowedHostApi.AllowedhostList`: %v\n", resp)
+    // response from `AllowedHostList`: AllowedHostList
+    fmt.Fprintf(os.Stdout, "Response from `AllowedHostApi.AllowedHostList`: %v\n", resp)
 }
 ```
 
@@ -254,14 +267,16 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **accessProfileId** | **int32** |  | 
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAllowedhostListRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiAllowedHostListRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
 
  **offset** | **int32** |  | 
  **limit** | **int32** |  | 
@@ -280,7 +295,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

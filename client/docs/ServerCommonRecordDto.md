@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ProjectId** | Pointer to **int32** |  | [optional] 
-**ProjectName** | Pointer to **NullableString** |  | [optional] 
+**ProjectName** | Pointer to **string** |  | [optional] 
 **Names** | Pointer to **[]string** |  | [optional] 
 
 ## Methods
@@ -77,16 +77,6 @@ SetProjectName sets ProjectName field to given value.
 
 HasProjectName returns a boolean if a field has been set.
 
-### SetProjectNameNil
-
-`func (o *ServerCommonRecordDto) SetProjectNameNil(b bool)`
-
- SetProjectNameNil sets the value for ProjectName to be an explicit nil
-
-### UnsetProjectName
-`func (o *ServerCommonRecordDto) UnsetProjectName()`
-
-UnsetProjectName ensures that no value is present for ProjectName, not even an explicit nil
 ### GetNames
 
 `func (o *ServerCommonRecordDto) GetNames() []string`
@@ -112,16 +102,6 @@ SetNames sets Names field to given value.
 
 HasNames returns a boolean if a field has been set.
 
-### SetNamesNil
-
-`func (o *ServerCommonRecordDto) SetNamesNil(b bool)`
-
- SetNamesNil sets the value for Names to be an explicit nil
-
-### UnsetNames
-`func (o *ServerCommonRecordDto) UnsetNames()`
-
-UnsetNames ensures that no value is present for Names, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

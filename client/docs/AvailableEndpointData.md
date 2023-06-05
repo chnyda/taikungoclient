@@ -5,10 +5,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** |  | [optional] 
-**Path** | Pointer to **NullableString** |  | [optional] 
-**Method** | Pointer to **NullableString** |  | [optional] 
-**Description** | Pointer to **NullableString** |  | [optional] 
-**Controller** | Pointer to **NullableString** |  | [optional] 
+**Path** | Pointer to **string** |  | [optional] 
+**Method** | Pointer to **string** |  | [optional] 
+**Description** | Pointer to **string** |  | [optional] 
+**Controller** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -79,16 +79,6 @@ SetPath sets Path field to given value.
 
 HasPath returns a boolean if a field has been set.
 
-### SetPathNil
-
-`func (o *AvailableEndpointData) SetPathNil(b bool)`
-
- SetPathNil sets the value for Path to be an explicit nil
-
-### UnsetPath
-`func (o *AvailableEndpointData) UnsetPath()`
-
-UnsetPath ensures that no value is present for Path, not even an explicit nil
 ### GetMethod
 
 `func (o *AvailableEndpointData) GetMethod() string`
@@ -114,16 +104,6 @@ SetMethod sets Method field to given value.
 
 HasMethod returns a boolean if a field has been set.
 
-### SetMethodNil
-
-`func (o *AvailableEndpointData) SetMethodNil(b bool)`
-
- SetMethodNil sets the value for Method to be an explicit nil
-
-### UnsetMethod
-`func (o *AvailableEndpointData) UnsetMethod()`
-
-UnsetMethod ensures that no value is present for Method, not even an explicit nil
 ### GetDescription
 
 `func (o *AvailableEndpointData) GetDescription() string`
@@ -149,16 +129,6 @@ SetDescription sets Description field to given value.
 
 HasDescription returns a boolean if a field has been set.
 
-### SetDescriptionNil
-
-`func (o *AvailableEndpointData) SetDescriptionNil(b bool)`
-
- SetDescriptionNil sets the value for Description to be an explicit nil
-
-### UnsetDescription
-`func (o *AvailableEndpointData) UnsetDescription()`
-
-UnsetDescription ensures that no value is present for Description, not even an explicit nil
 ### GetController
 
 `func (o *AvailableEndpointData) GetController() string`
@@ -184,16 +154,6 @@ SetController sets Controller field to given value.
 
 HasController returns a boolean if a field has been set.
 
-### SetControllerNil
-
-`func (o *AvailableEndpointData) SetControllerNil(b bool)`
-
- SetControllerNil sets the value for Controller to be an explicit nil
-
-### UnsetController
-`func (o *AvailableEndpointData) UnsetController()`
-
-UnsetController ensures that no value is present for Controller, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

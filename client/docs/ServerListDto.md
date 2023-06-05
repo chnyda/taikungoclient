@@ -5,38 +5,38 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
-**ProjectName** | Pointer to **NullableString** |  | [optional] 
-**OrganizationName** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**ProjectName** | Pointer to **string** |  | [optional] 
+**OrganizationName** | Pointer to **string** |  | [optional] 
 **OrganizationId** | Pointer to **int32** |  | [optional] 
 **ProjectId** | Pointer to **int32** |  | [optional] 
-**IpAddress** | Pointer to **NullableString** |  | [optional] 
+**IpAddress** | Pointer to **string** |  | [optional] 
 **DiskSize** | Pointer to **int64** |  | [optional] 
-**KubernetesHealth** | Pointer to **NullableString** |  | [optional] 
-**GoogleMachineType** | Pointer to **NullableString** |  | [optional] 
-**TanzuFlavor** | Pointer to **NullableString** |  | [optional] 
-**ProxmoxFlavor** | Pointer to **NullableString** |  | [optional] 
+**KubernetesHealth** | Pointer to **string** |  | [optional] 
+**GoogleMachineType** | Pointer to **string** |  | [optional] 
+**TanzuFlavor** | Pointer to **string** |  | [optional] 
+**ProxmoxFlavor** | Pointer to **string** |  | [optional] 
 **Cpu** | Pointer to **int32** |  | [optional] 
 **Ram** | Pointer to **int64** |  | [optional] 
-**Role** | Pointer to **NullableString** |  | [optional] 
-**Status** | Pointer to **NullableString** |  | [optional] 
-**CreatedAt** | Pointer to **NullableString** |  | [optional] 
-**OpenstackFlavor** | Pointer to **NullableString** |  | [optional] 
-**AwsInstanceType** | Pointer to **NullableString** |  | [optional] 
-**AzureVmSize** | Pointer to **NullableString** |  | [optional] 
-**CloudType** | Pointer to **NullableString** |  | [optional] 
-**CreatedBy** | Pointer to **NullableString** |  | [optional] 
-**LastModified** | Pointer to **NullableString** |  | [optional] 
-**LastModifiedBy** | Pointer to **NullableString** |  | [optional] 
-**SpotPrice** | Pointer to **NullableString** |  | [optional] 
+**Role** | Pointer to **string** |  | [optional] 
+**Status** | Pointer to **string** |  | [optional] 
+**CreatedAt** | Pointer to **string** |  | [optional] 
+**OpenstackFlavor** | Pointer to **string** |  | [optional] 
+**AwsInstanceType** | Pointer to **string** |  | [optional] 
+**AzureVmSize** | Pointer to **string** |  | [optional] 
+**CloudType** | Pointer to **string** |  | [optional] 
+**CreatedBy** | Pointer to **string** |  | [optional] 
+**LastModified** | Pointer to **string** |  | [optional] 
+**LastModifiedBy** | Pointer to **string** |  | [optional] 
+**SpotPrice** | Pointer to **string** |  | [optional] 
 **SpotInstance** | Pointer to **bool** |  | [optional] 
 **ShutOff** | Pointer to **bool** |  | [optional] 
-**AutoscalingGroup** | Pointer to **NullableString** |  | [optional] 
-**ProviderID** | Pointer to **NullableString** |  | [optional] 
-**AwsHostName** | Pointer to **NullableString** |  | [optional] 
-**AvailabilityZone** | Pointer to **NullableString** |  | [optional] 
-**Hypervisor** | Pointer to **NullableString** |  | [optional] 
-**ProxmoxRole** | Pointer to **NullableString** |  | [optional] 
+**AutoscalingGroup** | Pointer to **string** |  | [optional] 
+**ProviderID** | Pointer to **string** |  | [optional] 
+**AwsHostName** | Pointer to **string** |  | [optional] 
+**AvailabilityZone** | Pointer to **string** |  | [optional] 
+**Hypervisor** | Pointer to **string** |  | [optional] 
+**ProxmoxRole** | Pointer to **string** |  | [optional] 
 **ProxmoxNFSDiskSize** | Pointer to **int32** |  | [optional] 
 **ActionButtons** | Pointer to [**ServerActionButtonVisibilityDto**](ServerActionButtonVisibilityDto.md) |  | [optional] 
 **KubernetesNodeLabels** | Pointer to [**[]KubernetesNodeLabelsDto**](KubernetesNodeLabelsDto.md) |  | [optional] 
@@ -110,16 +110,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *ServerListDto) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *ServerListDto) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetProjectName
 
 `func (o *ServerListDto) GetProjectName() string`
@@ -145,16 +135,6 @@ SetProjectName sets ProjectName field to given value.
 
 HasProjectName returns a boolean if a field has been set.
 
-### SetProjectNameNil
-
-`func (o *ServerListDto) SetProjectNameNil(b bool)`
-
- SetProjectNameNil sets the value for ProjectName to be an explicit nil
-
-### UnsetProjectName
-`func (o *ServerListDto) UnsetProjectName()`
-
-UnsetProjectName ensures that no value is present for ProjectName, not even an explicit nil
 ### GetOrganizationName
 
 `func (o *ServerListDto) GetOrganizationName() string`
@@ -180,16 +160,6 @@ SetOrganizationName sets OrganizationName field to given value.
 
 HasOrganizationName returns a boolean if a field has been set.
 
-### SetOrganizationNameNil
-
-`func (o *ServerListDto) SetOrganizationNameNil(b bool)`
-
- SetOrganizationNameNil sets the value for OrganizationName to be an explicit nil
-
-### UnsetOrganizationName
-`func (o *ServerListDto) UnsetOrganizationName()`
-
-UnsetOrganizationName ensures that no value is present for OrganizationName, not even an explicit nil
 ### GetOrganizationId
 
 `func (o *ServerListDto) GetOrganizationId() int32`
@@ -265,16 +235,6 @@ SetIpAddress sets IpAddress field to given value.
 
 HasIpAddress returns a boolean if a field has been set.
 
-### SetIpAddressNil
-
-`func (o *ServerListDto) SetIpAddressNil(b bool)`
-
- SetIpAddressNil sets the value for IpAddress to be an explicit nil
-
-### UnsetIpAddress
-`func (o *ServerListDto) UnsetIpAddress()`
-
-UnsetIpAddress ensures that no value is present for IpAddress, not even an explicit nil
 ### GetDiskSize
 
 `func (o *ServerListDto) GetDiskSize() int64`
@@ -325,16 +285,6 @@ SetKubernetesHealth sets KubernetesHealth field to given value.
 
 HasKubernetesHealth returns a boolean if a field has been set.
 
-### SetKubernetesHealthNil
-
-`func (o *ServerListDto) SetKubernetesHealthNil(b bool)`
-
- SetKubernetesHealthNil sets the value for KubernetesHealth to be an explicit nil
-
-### UnsetKubernetesHealth
-`func (o *ServerListDto) UnsetKubernetesHealth()`
-
-UnsetKubernetesHealth ensures that no value is present for KubernetesHealth, not even an explicit nil
 ### GetGoogleMachineType
 
 `func (o *ServerListDto) GetGoogleMachineType() string`
@@ -360,16 +310,6 @@ SetGoogleMachineType sets GoogleMachineType field to given value.
 
 HasGoogleMachineType returns a boolean if a field has been set.
 
-### SetGoogleMachineTypeNil
-
-`func (o *ServerListDto) SetGoogleMachineTypeNil(b bool)`
-
- SetGoogleMachineTypeNil sets the value for GoogleMachineType to be an explicit nil
-
-### UnsetGoogleMachineType
-`func (o *ServerListDto) UnsetGoogleMachineType()`
-
-UnsetGoogleMachineType ensures that no value is present for GoogleMachineType, not even an explicit nil
 ### GetTanzuFlavor
 
 `func (o *ServerListDto) GetTanzuFlavor() string`
@@ -395,16 +335,6 @@ SetTanzuFlavor sets TanzuFlavor field to given value.
 
 HasTanzuFlavor returns a boolean if a field has been set.
 
-### SetTanzuFlavorNil
-
-`func (o *ServerListDto) SetTanzuFlavorNil(b bool)`
-
- SetTanzuFlavorNil sets the value for TanzuFlavor to be an explicit nil
-
-### UnsetTanzuFlavor
-`func (o *ServerListDto) UnsetTanzuFlavor()`
-
-UnsetTanzuFlavor ensures that no value is present for TanzuFlavor, not even an explicit nil
 ### GetProxmoxFlavor
 
 `func (o *ServerListDto) GetProxmoxFlavor() string`
@@ -430,16 +360,6 @@ SetProxmoxFlavor sets ProxmoxFlavor field to given value.
 
 HasProxmoxFlavor returns a boolean if a field has been set.
 
-### SetProxmoxFlavorNil
-
-`func (o *ServerListDto) SetProxmoxFlavorNil(b bool)`
-
- SetProxmoxFlavorNil sets the value for ProxmoxFlavor to be an explicit nil
-
-### UnsetProxmoxFlavor
-`func (o *ServerListDto) UnsetProxmoxFlavor()`
-
-UnsetProxmoxFlavor ensures that no value is present for ProxmoxFlavor, not even an explicit nil
 ### GetCpu
 
 `func (o *ServerListDto) GetCpu() int32`
@@ -515,16 +435,6 @@ SetRole sets Role field to given value.
 
 HasRole returns a boolean if a field has been set.
 
-### SetRoleNil
-
-`func (o *ServerListDto) SetRoleNil(b bool)`
-
- SetRoleNil sets the value for Role to be an explicit nil
-
-### UnsetRole
-`func (o *ServerListDto) UnsetRole()`
-
-UnsetRole ensures that no value is present for Role, not even an explicit nil
 ### GetStatus
 
 `func (o *ServerListDto) GetStatus() string`
@@ -550,16 +460,6 @@ SetStatus sets Status field to given value.
 
 HasStatus returns a boolean if a field has been set.
 
-### SetStatusNil
-
-`func (o *ServerListDto) SetStatusNil(b bool)`
-
- SetStatusNil sets the value for Status to be an explicit nil
-
-### UnsetStatus
-`func (o *ServerListDto) UnsetStatus()`
-
-UnsetStatus ensures that no value is present for Status, not even an explicit nil
 ### GetCreatedAt
 
 `func (o *ServerListDto) GetCreatedAt() string`
@@ -585,16 +485,6 @@ SetCreatedAt sets CreatedAt field to given value.
 
 HasCreatedAt returns a boolean if a field has been set.
 
-### SetCreatedAtNil
-
-`func (o *ServerListDto) SetCreatedAtNil(b bool)`
-
- SetCreatedAtNil sets the value for CreatedAt to be an explicit nil
-
-### UnsetCreatedAt
-`func (o *ServerListDto) UnsetCreatedAt()`
-
-UnsetCreatedAt ensures that no value is present for CreatedAt, not even an explicit nil
 ### GetOpenstackFlavor
 
 `func (o *ServerListDto) GetOpenstackFlavor() string`
@@ -620,16 +510,6 @@ SetOpenstackFlavor sets OpenstackFlavor field to given value.
 
 HasOpenstackFlavor returns a boolean if a field has been set.
 
-### SetOpenstackFlavorNil
-
-`func (o *ServerListDto) SetOpenstackFlavorNil(b bool)`
-
- SetOpenstackFlavorNil sets the value for OpenstackFlavor to be an explicit nil
-
-### UnsetOpenstackFlavor
-`func (o *ServerListDto) UnsetOpenstackFlavor()`
-
-UnsetOpenstackFlavor ensures that no value is present for OpenstackFlavor, not even an explicit nil
 ### GetAwsInstanceType
 
 `func (o *ServerListDto) GetAwsInstanceType() string`
@@ -655,16 +535,6 @@ SetAwsInstanceType sets AwsInstanceType field to given value.
 
 HasAwsInstanceType returns a boolean if a field has been set.
 
-### SetAwsInstanceTypeNil
-
-`func (o *ServerListDto) SetAwsInstanceTypeNil(b bool)`
-
- SetAwsInstanceTypeNil sets the value for AwsInstanceType to be an explicit nil
-
-### UnsetAwsInstanceType
-`func (o *ServerListDto) UnsetAwsInstanceType()`
-
-UnsetAwsInstanceType ensures that no value is present for AwsInstanceType, not even an explicit nil
 ### GetAzureVmSize
 
 `func (o *ServerListDto) GetAzureVmSize() string`
@@ -690,16 +560,6 @@ SetAzureVmSize sets AzureVmSize field to given value.
 
 HasAzureVmSize returns a boolean if a field has been set.
 
-### SetAzureVmSizeNil
-
-`func (o *ServerListDto) SetAzureVmSizeNil(b bool)`
-
- SetAzureVmSizeNil sets the value for AzureVmSize to be an explicit nil
-
-### UnsetAzureVmSize
-`func (o *ServerListDto) UnsetAzureVmSize()`
-
-UnsetAzureVmSize ensures that no value is present for AzureVmSize, not even an explicit nil
 ### GetCloudType
 
 `func (o *ServerListDto) GetCloudType() string`
@@ -725,16 +585,6 @@ SetCloudType sets CloudType field to given value.
 
 HasCloudType returns a boolean if a field has been set.
 
-### SetCloudTypeNil
-
-`func (o *ServerListDto) SetCloudTypeNil(b bool)`
-
- SetCloudTypeNil sets the value for CloudType to be an explicit nil
-
-### UnsetCloudType
-`func (o *ServerListDto) UnsetCloudType()`
-
-UnsetCloudType ensures that no value is present for CloudType, not even an explicit nil
 ### GetCreatedBy
 
 `func (o *ServerListDto) GetCreatedBy() string`
@@ -760,16 +610,6 @@ SetCreatedBy sets CreatedBy field to given value.
 
 HasCreatedBy returns a boolean if a field has been set.
 
-### SetCreatedByNil
-
-`func (o *ServerListDto) SetCreatedByNil(b bool)`
-
- SetCreatedByNil sets the value for CreatedBy to be an explicit nil
-
-### UnsetCreatedBy
-`func (o *ServerListDto) UnsetCreatedBy()`
-
-UnsetCreatedBy ensures that no value is present for CreatedBy, not even an explicit nil
 ### GetLastModified
 
 `func (o *ServerListDto) GetLastModified() string`
@@ -795,16 +635,6 @@ SetLastModified sets LastModified field to given value.
 
 HasLastModified returns a boolean if a field has been set.
 
-### SetLastModifiedNil
-
-`func (o *ServerListDto) SetLastModifiedNil(b bool)`
-
- SetLastModifiedNil sets the value for LastModified to be an explicit nil
-
-### UnsetLastModified
-`func (o *ServerListDto) UnsetLastModified()`
-
-UnsetLastModified ensures that no value is present for LastModified, not even an explicit nil
 ### GetLastModifiedBy
 
 `func (o *ServerListDto) GetLastModifiedBy() string`
@@ -830,16 +660,6 @@ SetLastModifiedBy sets LastModifiedBy field to given value.
 
 HasLastModifiedBy returns a boolean if a field has been set.
 
-### SetLastModifiedByNil
-
-`func (o *ServerListDto) SetLastModifiedByNil(b bool)`
-
- SetLastModifiedByNil sets the value for LastModifiedBy to be an explicit nil
-
-### UnsetLastModifiedBy
-`func (o *ServerListDto) UnsetLastModifiedBy()`
-
-UnsetLastModifiedBy ensures that no value is present for LastModifiedBy, not even an explicit nil
 ### GetSpotPrice
 
 `func (o *ServerListDto) GetSpotPrice() string`
@@ -865,16 +685,6 @@ SetSpotPrice sets SpotPrice field to given value.
 
 HasSpotPrice returns a boolean if a field has been set.
 
-### SetSpotPriceNil
-
-`func (o *ServerListDto) SetSpotPriceNil(b bool)`
-
- SetSpotPriceNil sets the value for SpotPrice to be an explicit nil
-
-### UnsetSpotPrice
-`func (o *ServerListDto) UnsetSpotPrice()`
-
-UnsetSpotPrice ensures that no value is present for SpotPrice, not even an explicit nil
 ### GetSpotInstance
 
 `func (o *ServerListDto) GetSpotInstance() bool`
@@ -950,16 +760,6 @@ SetAutoscalingGroup sets AutoscalingGroup field to given value.
 
 HasAutoscalingGroup returns a boolean if a field has been set.
 
-### SetAutoscalingGroupNil
-
-`func (o *ServerListDto) SetAutoscalingGroupNil(b bool)`
-
- SetAutoscalingGroupNil sets the value for AutoscalingGroup to be an explicit nil
-
-### UnsetAutoscalingGroup
-`func (o *ServerListDto) UnsetAutoscalingGroup()`
-
-UnsetAutoscalingGroup ensures that no value is present for AutoscalingGroup, not even an explicit nil
 ### GetProviderID
 
 `func (o *ServerListDto) GetProviderID() string`
@@ -985,16 +785,6 @@ SetProviderID sets ProviderID field to given value.
 
 HasProviderID returns a boolean if a field has been set.
 
-### SetProviderIDNil
-
-`func (o *ServerListDto) SetProviderIDNil(b bool)`
-
- SetProviderIDNil sets the value for ProviderID to be an explicit nil
-
-### UnsetProviderID
-`func (o *ServerListDto) UnsetProviderID()`
-
-UnsetProviderID ensures that no value is present for ProviderID, not even an explicit nil
 ### GetAwsHostName
 
 `func (o *ServerListDto) GetAwsHostName() string`
@@ -1020,16 +810,6 @@ SetAwsHostName sets AwsHostName field to given value.
 
 HasAwsHostName returns a boolean if a field has been set.
 
-### SetAwsHostNameNil
-
-`func (o *ServerListDto) SetAwsHostNameNil(b bool)`
-
- SetAwsHostNameNil sets the value for AwsHostName to be an explicit nil
-
-### UnsetAwsHostName
-`func (o *ServerListDto) UnsetAwsHostName()`
-
-UnsetAwsHostName ensures that no value is present for AwsHostName, not even an explicit nil
 ### GetAvailabilityZone
 
 `func (o *ServerListDto) GetAvailabilityZone() string`
@@ -1055,16 +835,6 @@ SetAvailabilityZone sets AvailabilityZone field to given value.
 
 HasAvailabilityZone returns a boolean if a field has been set.
 
-### SetAvailabilityZoneNil
-
-`func (o *ServerListDto) SetAvailabilityZoneNil(b bool)`
-
- SetAvailabilityZoneNil sets the value for AvailabilityZone to be an explicit nil
-
-### UnsetAvailabilityZone
-`func (o *ServerListDto) UnsetAvailabilityZone()`
-
-UnsetAvailabilityZone ensures that no value is present for AvailabilityZone, not even an explicit nil
 ### GetHypervisor
 
 `func (o *ServerListDto) GetHypervisor() string`
@@ -1090,16 +860,6 @@ SetHypervisor sets Hypervisor field to given value.
 
 HasHypervisor returns a boolean if a field has been set.
 
-### SetHypervisorNil
-
-`func (o *ServerListDto) SetHypervisorNil(b bool)`
-
- SetHypervisorNil sets the value for Hypervisor to be an explicit nil
-
-### UnsetHypervisor
-`func (o *ServerListDto) UnsetHypervisor()`
-
-UnsetHypervisor ensures that no value is present for Hypervisor, not even an explicit nil
 ### GetProxmoxRole
 
 `func (o *ServerListDto) GetProxmoxRole() string`
@@ -1125,16 +885,6 @@ SetProxmoxRole sets ProxmoxRole field to given value.
 
 HasProxmoxRole returns a boolean if a field has been set.
 
-### SetProxmoxRoleNil
-
-`func (o *ServerListDto) SetProxmoxRoleNil(b bool)`
-
- SetProxmoxRoleNil sets the value for ProxmoxRole to be an explicit nil
-
-### UnsetProxmoxRole
-`func (o *ServerListDto) UnsetProxmoxRole()`
-
-UnsetProxmoxRole ensures that no value is present for ProxmoxRole, not even an explicit nil
 ### GetProxmoxNFSDiskSize
 
 `func (o *ServerListDto) GetProxmoxNFSDiskSize() int32`
@@ -1210,16 +960,6 @@ SetKubernetesNodeLabels sets KubernetesNodeLabels field to given value.
 
 HasKubernetesNodeLabels returns a boolean if a field has been set.
 
-### SetKubernetesNodeLabelsNil
-
-`func (o *ServerListDto) SetKubernetesNodeLabelsNil(b bool)`
-
- SetKubernetesNodeLabelsNil sets the value for KubernetesNodeLabels to be an explicit nil
-
-### UnsetKubernetesNodeLabels
-`func (o *ServerListDto) UnsetKubernetesNodeLabels()`
-
-UnsetKubernetesNodeLabels ensures that no value is present for KubernetesNodeLabels, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

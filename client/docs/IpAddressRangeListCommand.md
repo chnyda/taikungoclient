@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**IpAddress** | Pointer to **NullableString** |  | [optional] 
+**IpAddress** | Pointer to **string** |  | [optional] 
 **NetMask** | Pointer to **int32** |  | [optional] 
-**Gateway** | Pointer to **NullableString** |  | [optional] 
+**Gateway** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -52,16 +52,6 @@ SetIpAddress sets IpAddress field to given value.
 
 HasIpAddress returns a boolean if a field has been set.
 
-### SetIpAddressNil
-
-`func (o *IpAddressRangeListCommand) SetIpAddressNil(b bool)`
-
- SetIpAddressNil sets the value for IpAddress to be an explicit nil
-
-### UnsetIpAddress
-`func (o *IpAddressRangeListCommand) UnsetIpAddress()`
-
-UnsetIpAddress ensures that no value is present for IpAddress, not even an explicit nil
 ### GetNetMask
 
 `func (o *IpAddressRangeListCommand) GetNetMask() int32`
@@ -112,16 +102,6 @@ SetGateway sets Gateway field to given value.
 
 HasGateway returns a boolean if a field has been set.
 
-### SetGatewayNil
-
-`func (o *IpAddressRangeListCommand) SetGatewayNil(b bool)`
-
- SetGatewayNil sets the value for Gateway to be an explicit nil
-
-### UnsetGateway
-`func (o *IpAddressRangeListCommand) UnsetGateway()`
-
-UnsetGateway ensures that no value is present for Gateway, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

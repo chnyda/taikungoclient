@@ -26,7 +26,9 @@ func Test_taikuncore_KubesprayApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.KubesprayApi.KubesprayCreate(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.KubesprayApi.KubesprayCreate(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -39,8 +41,9 @@ func Test_taikuncore_KubesprayApiService(t *testing.T) {
 		t.Skip("skip test")  // remove to run test
 
 		var id int32
+		var v string
 
-		httpRes, err := apiClient.KubesprayApi.KubesprayDelete(context.Background(), id).Execute()
+		httpRes, err := apiClient.KubesprayApi.KubesprayDelete(context.Background(), id, v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -51,7 +54,9 @@ func Test_taikuncore_KubesprayApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.KubesprayApi.KubesprayList(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.KubesprayApi.KubesprayList(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

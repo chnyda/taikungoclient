@@ -4,17 +4,17 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ProjectinfracostsDelete**](ProjectInfracostsApi.md#ProjectinfracostsDelete) | **Delete** /api/v1/projectinfracosts/{projectId} | Delete the project infracost
-[**ProjectinfracostsDetails**](ProjectInfracostsApi.md#ProjectinfracostsDetails) | **Get** /api/v1/projectinfracosts/{projectId} | Project Infracost details
-[**ProjectinfracostsUpsert**](ProjectInfracostsApi.md#ProjectinfracostsUpsert) | **Post** /api/v1/projectinfracosts/upsert/{projectId} | Upsert project infracost by ProjectId
+[**ProjectInfracostsDelete**](ProjectInfracostsApi.md#ProjectInfracostsDelete) | **Post** /api/v{v}/ProjectInfracosts/delete | Delete the project infracost.
+[**ProjectInfracostsDetails**](ProjectInfracostsApi.md#ProjectInfracostsDetails) | **Get** /api/v{v}/ProjectInfracosts/{projectId} | Project Infracost details
+[**ProjectInfracostsEdit**](ProjectInfracostsApi.md#ProjectInfracostsEdit) | **Post** /api/v{v}/ProjectInfracosts/upsert/{projectId} | Upsert project infracost by ProjectId
 
 
 
-## ProjectinfracostsDelete
+## ProjectInfracostsDelete
 
-> ProjectinfracostsDelete(ctx, projectId).Execute()
+> ProjectInfracostsDelete(ctx, v).Body(body).Execute()
 
-Delete the project infracost
+Delete the project infracost.
 
 ### Example
 
@@ -29,13 +29,14 @@ import (
 )
 
 func main() {
-    projectId := int32(56) // int32 | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewDeleteProjectInfracostCommand() // DeleteProjectInfracostCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.ProjectInfracostsApi.ProjectinfracostsDelete(context.Background(), projectId).Execute()
+    r, err := apiClient.ProjectInfracostsApi.ProjectInfracostsDelete(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ProjectInfracostsApi.ProjectinfracostsDelete``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ProjectInfracostsApi.ProjectInfracostsDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -47,16 +48,17 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**projectId** | **int32** |  | 
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiProjectinfracostsDeleteRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiProjectInfracostsDeleteRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **body** | [**DeleteProjectInfracostCommand**](DeleteProjectInfracostCommand.md) |  | 
 
 ### Return type
 
@@ -68,17 +70,17 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## ProjectinfracostsDetails
+## ProjectInfracostsDetails
 
-> EstimatedInfracost ProjectinfracostsDetails(ctx, projectId).Execute()
+> EstimatedInfracost ProjectInfracostsDetails(ctx, projectId, v).Execute()
 
 Project Infracost details
 
@@ -95,17 +97,18 @@ import (
 )
 
 func main() {
-    projectId := int32(56) // int32 | 
+    projectId := int32(56) // int32 | Project Id
+    v := "v_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ProjectInfracostsApi.ProjectinfracostsDetails(context.Background(), projectId).Execute()
+    resp, r, err := apiClient.ProjectInfracostsApi.ProjectInfracostsDetails(context.Background(), projectId, v).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ProjectInfracostsApi.ProjectinfracostsDetails``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ProjectInfracostsApi.ProjectInfracostsDetails``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ProjectinfracostsDetails`: EstimatedInfracost
-    fmt.Fprintf(os.Stdout, "Response from `ProjectInfracostsApi.ProjectinfracostsDetails`: %v\n", resp)
+    // response from `ProjectInfracostsDetails`: EstimatedInfracost
+    fmt.Fprintf(os.Stdout, "Response from `ProjectInfracostsApi.ProjectInfracostsDetails`: %v\n", resp)
 }
 ```
 
@@ -115,15 +118,17 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**projectId** | **int32** |  | 
+**projectId** | **int32** | Project Id | 
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiProjectinfracostsDetailsRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiProjectInfracostsDetailsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
 
 
 ### Return type
@@ -137,16 +142,16 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## ProjectinfracostsUpsert
+## ProjectInfracostsEdit
 
-> ProjectinfracostsUpsert(ctx, projectId).ProjectInfracostUpsertDto(projectInfracostUpsertDto).Execute()
+> ProjectInfracostsEdit(ctx, projectId, v).Body(body).Execute()
 
 Upsert project infracost by ProjectId
 
@@ -164,13 +169,14 @@ import (
 
 func main() {
     projectId := int32(56) // int32 | 
-    projectInfracostUpsertDto := *openapiclient.NewProjectInfracostUpsertDto() // ProjectInfracostUpsertDto |  (optional)
+    v := "v_example" // string | 
+    body := *openapiclient.NewProjectInfracostUpsertDto() // ProjectInfracostUpsertDto |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.ProjectInfracostsApi.ProjectinfracostsUpsert(context.Background(), projectId).ProjectInfracostUpsertDto(projectInfracostUpsertDto).Execute()
+    r, err := apiClient.ProjectInfracostsApi.ProjectInfracostsEdit(context.Background(), projectId, v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ProjectInfracostsApi.ProjectinfracostsUpsert``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ProjectInfracostsApi.ProjectInfracostsEdit``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -183,16 +189,18 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **projectId** | **int32** |  | 
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiProjectinfracostsUpsertRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiProjectInfracostsEditRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **projectInfracostUpsertDto** | [**ProjectInfracostUpsertDto**](ProjectInfracostUpsertDto.md) |  | 
+
+ **body** | [**ProjectInfracostUpsertDto**](ProjectInfracostUpsertDto.md) |  | 
 
 ### Return type
 
@@ -204,8 +212,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

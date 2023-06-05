@@ -28,7 +28,7 @@ type CreateInvoiceCommand struct {
 	DueDate *time.Time `json:"dueDate,omitempty"`
 	IsPaid *bool `json:"isPaid,omitempty"`
 	RequiredPaymentAction *bool `json:"requiredPaymentAction,omitempty"`
-	StripeInvoiceId NullableString `json:"stripeInvoiceId,omitempty"`
+	StripeInvoiceId *string `json:"stripeInvoiceId,omitempty"`
 	Price *float64 `json:"price,omitempty"`
 }
 
@@ -259,46 +259,36 @@ func (o *CreateInvoiceCommand) SetRequiredPaymentAction(v bool) {
 	o.RequiredPaymentAction = &v
 }
 
-// GetStripeInvoiceId returns the StripeInvoiceId field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetStripeInvoiceId returns the StripeInvoiceId field value if set, zero value otherwise.
 func (o *CreateInvoiceCommand) GetStripeInvoiceId() string {
-	if o == nil || IsNil(o.StripeInvoiceId.Get()) {
+	if o == nil || IsNil(o.StripeInvoiceId) {
 		var ret string
 		return ret
 	}
-	return *o.StripeInvoiceId.Get()
+	return *o.StripeInvoiceId
 }
 
 // GetStripeInvoiceIdOk returns a tuple with the StripeInvoiceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateInvoiceCommand) GetStripeInvoiceIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.StripeInvoiceId) {
 		return nil, false
 	}
-	return o.StripeInvoiceId.Get(), o.StripeInvoiceId.IsSet()
+	return o.StripeInvoiceId, true
 }
 
 // HasStripeInvoiceId returns a boolean if a field has been set.
 func (o *CreateInvoiceCommand) HasStripeInvoiceId() bool {
-	if o != nil && o.StripeInvoiceId.IsSet() {
+	if o != nil && !IsNil(o.StripeInvoiceId) {
 		return true
 	}
 
 	return false
 }
 
-// SetStripeInvoiceId gets a reference to the given NullableString and assigns it to the StripeInvoiceId field.
+// SetStripeInvoiceId gets a reference to the given string and assigns it to the StripeInvoiceId field.
 func (o *CreateInvoiceCommand) SetStripeInvoiceId(v string) {
-	o.StripeInvoiceId.Set(&v)
-}
-// SetStripeInvoiceIdNil sets the value for StripeInvoiceId to be an explicit nil
-func (o *CreateInvoiceCommand) SetStripeInvoiceIdNil() {
-	o.StripeInvoiceId.Set(nil)
-}
-
-// UnsetStripeInvoiceId ensures that no value is present for StripeInvoiceId, not even an explicit nil
-func (o *CreateInvoiceCommand) UnsetStripeInvoiceId() {
-	o.StripeInvoiceId.Unset()
+	o.StripeInvoiceId = &v
 }
 
 // GetPrice returns the Price field value if set, zero value otherwise.
@@ -360,8 +350,8 @@ func (o CreateInvoiceCommand) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.RequiredPaymentAction) {
 		toSerialize["requiredPaymentAction"] = o.RequiredPaymentAction
 	}
-	if o.StripeInvoiceId.IsSet() {
-		toSerialize["stripeInvoiceId"] = o.StripeInvoiceId.Get()
+	if !IsNil(o.StripeInvoiceId) {
+		toSerialize["stripeInvoiceId"] = o.StripeInvoiceId
 	}
 	if !IsNil(o.Price) {
 		toSerialize["price"] = o.Price

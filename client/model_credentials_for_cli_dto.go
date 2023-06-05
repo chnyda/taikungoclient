@@ -21,11 +21,11 @@ var _ MappedNullable = &CredentialsForCliDto{}
 // CredentialsForCliDto struct for CredentialsForCliDto
 type CredentialsForCliDto struct {
 	Id *int32 `json:"id,omitempty"`
-	CloudCredentialName NullableString `json:"cloudCredentialName,omitempty"`
-	CloudType NullableString `json:"cloudType,omitempty"`
+	CloudCredentialName *string `json:"cloudCredentialName,omitempty"`
+	CloudType *string `json:"cloudType,omitempty"`
 	OrganizationId *int32 `json:"organizationId,omitempty"`
-	OrganizationName NullableString `json:"organizationName,omitempty"`
-	PartnerName NullableString `json:"partnerName,omitempty"`
+	OrganizationName *string `json:"organizationName,omitempty"`
+	PartnerName *string `json:"partnerName,omitempty"`
 }
 
 // NewCredentialsForCliDto instantiates a new CredentialsForCliDto object
@@ -77,88 +77,68 @@ func (o *CredentialsForCliDto) SetId(v int32) {
 	o.Id = &v
 }
 
-// GetCloudCredentialName returns the CloudCredentialName field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetCloudCredentialName returns the CloudCredentialName field value if set, zero value otherwise.
 func (o *CredentialsForCliDto) GetCloudCredentialName() string {
-	if o == nil || IsNil(o.CloudCredentialName.Get()) {
+	if o == nil || IsNil(o.CloudCredentialName) {
 		var ret string
 		return ret
 	}
-	return *o.CloudCredentialName.Get()
+	return *o.CloudCredentialName
 }
 
 // GetCloudCredentialNameOk returns a tuple with the CloudCredentialName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CredentialsForCliDto) GetCloudCredentialNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CloudCredentialName) {
 		return nil, false
 	}
-	return o.CloudCredentialName.Get(), o.CloudCredentialName.IsSet()
+	return o.CloudCredentialName, true
 }
 
 // HasCloudCredentialName returns a boolean if a field has been set.
 func (o *CredentialsForCliDto) HasCloudCredentialName() bool {
-	if o != nil && o.CloudCredentialName.IsSet() {
+	if o != nil && !IsNil(o.CloudCredentialName) {
 		return true
 	}
 
 	return false
 }
 
-// SetCloudCredentialName gets a reference to the given NullableString and assigns it to the CloudCredentialName field.
+// SetCloudCredentialName gets a reference to the given string and assigns it to the CloudCredentialName field.
 func (o *CredentialsForCliDto) SetCloudCredentialName(v string) {
-	o.CloudCredentialName.Set(&v)
-}
-// SetCloudCredentialNameNil sets the value for CloudCredentialName to be an explicit nil
-func (o *CredentialsForCliDto) SetCloudCredentialNameNil() {
-	o.CloudCredentialName.Set(nil)
+	o.CloudCredentialName = &v
 }
 
-// UnsetCloudCredentialName ensures that no value is present for CloudCredentialName, not even an explicit nil
-func (o *CredentialsForCliDto) UnsetCloudCredentialName() {
-	o.CloudCredentialName.Unset()
-}
-
-// GetCloudType returns the CloudType field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetCloudType returns the CloudType field value if set, zero value otherwise.
 func (o *CredentialsForCliDto) GetCloudType() string {
-	if o == nil || IsNil(o.CloudType.Get()) {
+	if o == nil || IsNil(o.CloudType) {
 		var ret string
 		return ret
 	}
-	return *o.CloudType.Get()
+	return *o.CloudType
 }
 
 // GetCloudTypeOk returns a tuple with the CloudType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CredentialsForCliDto) GetCloudTypeOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CloudType) {
 		return nil, false
 	}
-	return o.CloudType.Get(), o.CloudType.IsSet()
+	return o.CloudType, true
 }
 
 // HasCloudType returns a boolean if a field has been set.
 func (o *CredentialsForCliDto) HasCloudType() bool {
-	if o != nil && o.CloudType.IsSet() {
+	if o != nil && !IsNil(o.CloudType) {
 		return true
 	}
 
 	return false
 }
 
-// SetCloudType gets a reference to the given NullableString and assigns it to the CloudType field.
+// SetCloudType gets a reference to the given string and assigns it to the CloudType field.
 func (o *CredentialsForCliDto) SetCloudType(v string) {
-	o.CloudType.Set(&v)
-}
-// SetCloudTypeNil sets the value for CloudType to be an explicit nil
-func (o *CredentialsForCliDto) SetCloudTypeNil() {
-	o.CloudType.Set(nil)
-}
-
-// UnsetCloudType ensures that no value is present for CloudType, not even an explicit nil
-func (o *CredentialsForCliDto) UnsetCloudType() {
-	o.CloudType.Unset()
+	o.CloudType = &v
 }
 
 // GetOrganizationId returns the OrganizationId field value if set, zero value otherwise.
@@ -193,88 +173,68 @@ func (o *CredentialsForCliDto) SetOrganizationId(v int32) {
 	o.OrganizationId = &v
 }
 
-// GetOrganizationName returns the OrganizationName field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetOrganizationName returns the OrganizationName field value if set, zero value otherwise.
 func (o *CredentialsForCliDto) GetOrganizationName() string {
-	if o == nil || IsNil(o.OrganizationName.Get()) {
+	if o == nil || IsNil(o.OrganizationName) {
 		var ret string
 		return ret
 	}
-	return *o.OrganizationName.Get()
+	return *o.OrganizationName
 }
 
 // GetOrganizationNameOk returns a tuple with the OrganizationName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CredentialsForCliDto) GetOrganizationNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.OrganizationName) {
 		return nil, false
 	}
-	return o.OrganizationName.Get(), o.OrganizationName.IsSet()
+	return o.OrganizationName, true
 }
 
 // HasOrganizationName returns a boolean if a field has been set.
 func (o *CredentialsForCliDto) HasOrganizationName() bool {
-	if o != nil && o.OrganizationName.IsSet() {
+	if o != nil && !IsNil(o.OrganizationName) {
 		return true
 	}
 
 	return false
 }
 
-// SetOrganizationName gets a reference to the given NullableString and assigns it to the OrganizationName field.
+// SetOrganizationName gets a reference to the given string and assigns it to the OrganizationName field.
 func (o *CredentialsForCliDto) SetOrganizationName(v string) {
-	o.OrganizationName.Set(&v)
-}
-// SetOrganizationNameNil sets the value for OrganizationName to be an explicit nil
-func (o *CredentialsForCliDto) SetOrganizationNameNil() {
-	o.OrganizationName.Set(nil)
+	o.OrganizationName = &v
 }
 
-// UnsetOrganizationName ensures that no value is present for OrganizationName, not even an explicit nil
-func (o *CredentialsForCliDto) UnsetOrganizationName() {
-	o.OrganizationName.Unset()
-}
-
-// GetPartnerName returns the PartnerName field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetPartnerName returns the PartnerName field value if set, zero value otherwise.
 func (o *CredentialsForCliDto) GetPartnerName() string {
-	if o == nil || IsNil(o.PartnerName.Get()) {
+	if o == nil || IsNil(o.PartnerName) {
 		var ret string
 		return ret
 	}
-	return *o.PartnerName.Get()
+	return *o.PartnerName
 }
 
 // GetPartnerNameOk returns a tuple with the PartnerName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CredentialsForCliDto) GetPartnerNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.PartnerName) {
 		return nil, false
 	}
-	return o.PartnerName.Get(), o.PartnerName.IsSet()
+	return o.PartnerName, true
 }
 
 // HasPartnerName returns a boolean if a field has been set.
 func (o *CredentialsForCliDto) HasPartnerName() bool {
-	if o != nil && o.PartnerName.IsSet() {
+	if o != nil && !IsNil(o.PartnerName) {
 		return true
 	}
 
 	return false
 }
 
-// SetPartnerName gets a reference to the given NullableString and assigns it to the PartnerName field.
+// SetPartnerName gets a reference to the given string and assigns it to the PartnerName field.
 func (o *CredentialsForCliDto) SetPartnerName(v string) {
-	o.PartnerName.Set(&v)
-}
-// SetPartnerNameNil sets the value for PartnerName to be an explicit nil
-func (o *CredentialsForCliDto) SetPartnerNameNil() {
-	o.PartnerName.Set(nil)
-}
-
-// UnsetPartnerName ensures that no value is present for PartnerName, not even an explicit nil
-func (o *CredentialsForCliDto) UnsetPartnerName() {
-	o.PartnerName.Unset()
+	o.PartnerName = &v
 }
 
 func (o CredentialsForCliDto) MarshalJSON() ([]byte, error) {
@@ -290,20 +250,20 @@ func (o CredentialsForCliDto) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if o.CloudCredentialName.IsSet() {
-		toSerialize["cloudCredentialName"] = o.CloudCredentialName.Get()
+	if !IsNil(o.CloudCredentialName) {
+		toSerialize["cloudCredentialName"] = o.CloudCredentialName
 	}
-	if o.CloudType.IsSet() {
-		toSerialize["cloudType"] = o.CloudType.Get()
+	if !IsNil(o.CloudType) {
+		toSerialize["cloudType"] = o.CloudType
 	}
 	if !IsNil(o.OrganizationId) {
 		toSerialize["organizationId"] = o.OrganizationId
 	}
-	if o.OrganizationName.IsSet() {
-		toSerialize["organizationName"] = o.OrganizationName.Get()
+	if !IsNil(o.OrganizationName) {
+		toSerialize["organizationName"] = o.OrganizationName
 	}
-	if o.PartnerName.IsSet() {
-		toSerialize["partnerName"] = o.PartnerName.Get()
+	if !IsNil(o.PartnerName) {
+		toSerialize["partnerName"] = o.PartnerName
 	}
 	return toSerialize, nil
 }

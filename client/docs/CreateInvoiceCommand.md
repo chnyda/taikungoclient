@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **DueDate** | Pointer to **time.Time** |  | [optional] 
 **IsPaid** | Pointer to **bool** |  | [optional] 
 **RequiredPaymentAction** | Pointer to **bool** |  | [optional] 
-**StripeInvoiceId** | Pointer to **NullableString** |  | [optional] 
+**StripeInvoiceId** | Pointer to **string** |  | [optional] 
 **Price** | Pointer to **float64** |  | [optional] 
 
 ## Methods
@@ -223,16 +223,6 @@ SetStripeInvoiceId sets StripeInvoiceId field to given value.
 
 HasStripeInvoiceId returns a boolean if a field has been set.
 
-### SetStripeInvoiceIdNil
-
-`func (o *CreateInvoiceCommand) SetStripeInvoiceIdNil(b bool)`
-
- SetStripeInvoiceIdNil sets the value for StripeInvoiceId to be an explicit nil
-
-### UnsetStripeInvoiceId
-`func (o *CreateInvoiceCommand) UnsetStripeInvoiceId()`
-
-UnsetStripeInvoiceId ensures that no value is present for StripeInvoiceId, not even an explicit nil
 ### GetPrice
 
 `func (o *CreateInvoiceCommand) GetPrice() float64`

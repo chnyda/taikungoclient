@@ -5,17 +5,17 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
-**PrometheusUsername** | Pointer to **NullableString** |  | [optional] 
-**PrometheusPassword** | Pointer to **NullableString** |  | [optional] 
-**PrometheusUrl** | Pointer to **NullableString** |  | [optional] 
-**OrganizationId** | Pointer to **NullableInt32** |  | [optional] 
-**OrganizationName** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**PrometheusUsername** | Pointer to **string** |  | [optional] 
+**PrometheusPassword** | Pointer to **string** |  | [optional] 
+**PrometheusUrl** | Pointer to **string** |  | [optional] 
+**OrganizationId** | Pointer to **int32** |  | [optional] 
+**OrganizationName** | Pointer to **string** |  | [optional] 
 **IsLocked** | Pointer to **bool** |  | [optional] 
 **Rules** | Pointer to [**[]SimplePrometheusEntity**](SimplePrometheusEntity.md) |  | [optional] 
-**CreatedBy** | Pointer to **NullableString** |  | [optional] 
-**LastModified** | Pointer to **NullableString** |  | [optional] 
-**LastModifiedBy** | Pointer to **NullableString** |  | [optional] 
+**CreatedBy** | Pointer to **string** |  | [optional] 
+**LastModified** | Pointer to **string** |  | [optional] 
+**LastModifiedBy** | Pointer to **string** |  | [optional] 
 **IsDefault** | Pointer to **bool** |  | [optional] 
 
 ## Methods
@@ -87,16 +87,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *OperationCredentialsListDto) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *OperationCredentialsListDto) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetPrometheusUsername
 
 `func (o *OperationCredentialsListDto) GetPrometheusUsername() string`
@@ -122,16 +112,6 @@ SetPrometheusUsername sets PrometheusUsername field to given value.
 
 HasPrometheusUsername returns a boolean if a field has been set.
 
-### SetPrometheusUsernameNil
-
-`func (o *OperationCredentialsListDto) SetPrometheusUsernameNil(b bool)`
-
- SetPrometheusUsernameNil sets the value for PrometheusUsername to be an explicit nil
-
-### UnsetPrometheusUsername
-`func (o *OperationCredentialsListDto) UnsetPrometheusUsername()`
-
-UnsetPrometheusUsername ensures that no value is present for PrometheusUsername, not even an explicit nil
 ### GetPrometheusPassword
 
 `func (o *OperationCredentialsListDto) GetPrometheusPassword() string`
@@ -157,16 +137,6 @@ SetPrometheusPassword sets PrometheusPassword field to given value.
 
 HasPrometheusPassword returns a boolean if a field has been set.
 
-### SetPrometheusPasswordNil
-
-`func (o *OperationCredentialsListDto) SetPrometheusPasswordNil(b bool)`
-
- SetPrometheusPasswordNil sets the value for PrometheusPassword to be an explicit nil
-
-### UnsetPrometheusPassword
-`func (o *OperationCredentialsListDto) UnsetPrometheusPassword()`
-
-UnsetPrometheusPassword ensures that no value is present for PrometheusPassword, not even an explicit nil
 ### GetPrometheusUrl
 
 `func (o *OperationCredentialsListDto) GetPrometheusUrl() string`
@@ -192,16 +162,6 @@ SetPrometheusUrl sets PrometheusUrl field to given value.
 
 HasPrometheusUrl returns a boolean if a field has been set.
 
-### SetPrometheusUrlNil
-
-`func (o *OperationCredentialsListDto) SetPrometheusUrlNil(b bool)`
-
- SetPrometheusUrlNil sets the value for PrometheusUrl to be an explicit nil
-
-### UnsetPrometheusUrl
-`func (o *OperationCredentialsListDto) UnsetPrometheusUrl()`
-
-UnsetPrometheusUrl ensures that no value is present for PrometheusUrl, not even an explicit nil
 ### GetOrganizationId
 
 `func (o *OperationCredentialsListDto) GetOrganizationId() int32`
@@ -227,16 +187,6 @@ SetOrganizationId sets OrganizationId field to given value.
 
 HasOrganizationId returns a boolean if a field has been set.
 
-### SetOrganizationIdNil
-
-`func (o *OperationCredentialsListDto) SetOrganizationIdNil(b bool)`
-
- SetOrganizationIdNil sets the value for OrganizationId to be an explicit nil
-
-### UnsetOrganizationId
-`func (o *OperationCredentialsListDto) UnsetOrganizationId()`
-
-UnsetOrganizationId ensures that no value is present for OrganizationId, not even an explicit nil
 ### GetOrganizationName
 
 `func (o *OperationCredentialsListDto) GetOrganizationName() string`
@@ -262,16 +212,6 @@ SetOrganizationName sets OrganizationName field to given value.
 
 HasOrganizationName returns a boolean if a field has been set.
 
-### SetOrganizationNameNil
-
-`func (o *OperationCredentialsListDto) SetOrganizationNameNil(b bool)`
-
- SetOrganizationNameNil sets the value for OrganizationName to be an explicit nil
-
-### UnsetOrganizationName
-`func (o *OperationCredentialsListDto) UnsetOrganizationName()`
-
-UnsetOrganizationName ensures that no value is present for OrganizationName, not even an explicit nil
 ### GetIsLocked
 
 `func (o *OperationCredentialsListDto) GetIsLocked() bool`
@@ -322,16 +262,6 @@ SetRules sets Rules field to given value.
 
 HasRules returns a boolean if a field has been set.
 
-### SetRulesNil
-
-`func (o *OperationCredentialsListDto) SetRulesNil(b bool)`
-
- SetRulesNil sets the value for Rules to be an explicit nil
-
-### UnsetRules
-`func (o *OperationCredentialsListDto) UnsetRules()`
-
-UnsetRules ensures that no value is present for Rules, not even an explicit nil
 ### GetCreatedBy
 
 `func (o *OperationCredentialsListDto) GetCreatedBy() string`
@@ -357,16 +287,6 @@ SetCreatedBy sets CreatedBy field to given value.
 
 HasCreatedBy returns a boolean if a field has been set.
 
-### SetCreatedByNil
-
-`func (o *OperationCredentialsListDto) SetCreatedByNil(b bool)`
-
- SetCreatedByNil sets the value for CreatedBy to be an explicit nil
-
-### UnsetCreatedBy
-`func (o *OperationCredentialsListDto) UnsetCreatedBy()`
-
-UnsetCreatedBy ensures that no value is present for CreatedBy, not even an explicit nil
 ### GetLastModified
 
 `func (o *OperationCredentialsListDto) GetLastModified() string`
@@ -392,16 +312,6 @@ SetLastModified sets LastModified field to given value.
 
 HasLastModified returns a boolean if a field has been set.
 
-### SetLastModifiedNil
-
-`func (o *OperationCredentialsListDto) SetLastModifiedNil(b bool)`
-
- SetLastModifiedNil sets the value for LastModified to be an explicit nil
-
-### UnsetLastModified
-`func (o *OperationCredentialsListDto) UnsetLastModified()`
-
-UnsetLastModified ensures that no value is present for LastModified, not even an explicit nil
 ### GetLastModifiedBy
 
 `func (o *OperationCredentialsListDto) GetLastModifiedBy() string`
@@ -427,16 +337,6 @@ SetLastModifiedBy sets LastModifiedBy field to given value.
 
 HasLastModifiedBy returns a boolean if a field has been set.
 
-### SetLastModifiedByNil
-
-`func (o *OperationCredentialsListDto) SetLastModifiedByNil(b bool)`
-
- SetLastModifiedByNil sets the value for LastModifiedBy to be an explicit nil
-
-### UnsetLastModifiedBy
-`func (o *OperationCredentialsListDto) UnsetLastModifiedBy()`
-
-UnsetLastModifiedBy ensures that no value is present for LastModifiedBy, not even an explicit nil
 ### GetIsDefault
 
 `func (o *OperationCredentialsListDto) GetIsDefault() bool`

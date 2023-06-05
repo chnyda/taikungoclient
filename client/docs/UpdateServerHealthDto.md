@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**IpAddress** | Pointer to **NullableString** |  | [optional] 
-**ServerHealth** | Pointer to **NullableString** |  | [optional] 
+**IpAddress** | Pointer to **string** |  | [optional] 
+**ServerHealth** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -51,16 +51,6 @@ SetIpAddress sets IpAddress field to given value.
 
 HasIpAddress returns a boolean if a field has been set.
 
-### SetIpAddressNil
-
-`func (o *UpdateServerHealthDto) SetIpAddressNil(b bool)`
-
- SetIpAddressNil sets the value for IpAddress to be an explicit nil
-
-### UnsetIpAddress
-`func (o *UpdateServerHealthDto) UnsetIpAddress()`
-
-UnsetIpAddress ensures that no value is present for IpAddress, not even an explicit nil
 ### GetServerHealth
 
 `func (o *UpdateServerHealthDto) GetServerHealth() string`
@@ -86,16 +76,6 @@ SetServerHealth sets ServerHealth field to given value.
 
 HasServerHealth returns a boolean if a field has been set.
 
-### SetServerHealthNil
-
-`func (o *UpdateServerHealthDto) SetServerHealthNil(b bool)`
-
- SetServerHealthNil sets the value for ServerHealth to be an explicit nil
-
-### UnsetServerHealth
-`func (o *UpdateServerHealthDto) UnsetServerHealth()`
-
-UnsetServerHealth ensures that no value is present for ServerHealth, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

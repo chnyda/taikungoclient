@@ -20,11 +20,11 @@ var _ MappedNullable = &GoogleCredentialForProjectDto{}
 
 // GoogleCredentialForProjectDto struct for GoogleCredentialForProjectDto
 type GoogleCredentialForProjectDto struct {
-	Config NullableString `json:"config,omitempty"`
-	FolderId NullableString `json:"folderId,omitempty"`
-	BillingAccountId NullableString `json:"billingAccountId,omitempty"`
-	Zone NullableString `json:"zone,omitempty"`
-	Region NullableString `json:"region,omitempty"`
+	Config *string `json:"config,omitempty"`
+	FolderId *string `json:"folderId,omitempty"`
+	BillingAccountId *string `json:"billingAccountId,omitempty"`
+	Zone *string `json:"zone,omitempty"`
+	Region *string `json:"region,omitempty"`
 }
 
 // NewGoogleCredentialForProjectDto instantiates a new GoogleCredentialForProjectDto object
@@ -44,214 +44,164 @@ func NewGoogleCredentialForProjectDtoWithDefaults() *GoogleCredentialForProjectD
 	return &this
 }
 
-// GetConfig returns the Config field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetConfig returns the Config field value if set, zero value otherwise.
 func (o *GoogleCredentialForProjectDto) GetConfig() string {
-	if o == nil || IsNil(o.Config.Get()) {
+	if o == nil || IsNil(o.Config) {
 		var ret string
 		return ret
 	}
-	return *o.Config.Get()
+	return *o.Config
 }
 
 // GetConfigOk returns a tuple with the Config field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *GoogleCredentialForProjectDto) GetConfigOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Config) {
 		return nil, false
 	}
-	return o.Config.Get(), o.Config.IsSet()
+	return o.Config, true
 }
 
 // HasConfig returns a boolean if a field has been set.
 func (o *GoogleCredentialForProjectDto) HasConfig() bool {
-	if o != nil && o.Config.IsSet() {
+	if o != nil && !IsNil(o.Config) {
 		return true
 	}
 
 	return false
 }
 
-// SetConfig gets a reference to the given NullableString and assigns it to the Config field.
+// SetConfig gets a reference to the given string and assigns it to the Config field.
 func (o *GoogleCredentialForProjectDto) SetConfig(v string) {
-	o.Config.Set(&v)
-}
-// SetConfigNil sets the value for Config to be an explicit nil
-func (o *GoogleCredentialForProjectDto) SetConfigNil() {
-	o.Config.Set(nil)
+	o.Config = &v
 }
 
-// UnsetConfig ensures that no value is present for Config, not even an explicit nil
-func (o *GoogleCredentialForProjectDto) UnsetConfig() {
-	o.Config.Unset()
-}
-
-// GetFolderId returns the FolderId field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetFolderId returns the FolderId field value if set, zero value otherwise.
 func (o *GoogleCredentialForProjectDto) GetFolderId() string {
-	if o == nil || IsNil(o.FolderId.Get()) {
+	if o == nil || IsNil(o.FolderId) {
 		var ret string
 		return ret
 	}
-	return *o.FolderId.Get()
+	return *o.FolderId
 }
 
 // GetFolderIdOk returns a tuple with the FolderId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *GoogleCredentialForProjectDto) GetFolderIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.FolderId) {
 		return nil, false
 	}
-	return o.FolderId.Get(), o.FolderId.IsSet()
+	return o.FolderId, true
 }
 
 // HasFolderId returns a boolean if a field has been set.
 func (o *GoogleCredentialForProjectDto) HasFolderId() bool {
-	if o != nil && o.FolderId.IsSet() {
+	if o != nil && !IsNil(o.FolderId) {
 		return true
 	}
 
 	return false
 }
 
-// SetFolderId gets a reference to the given NullableString and assigns it to the FolderId field.
+// SetFolderId gets a reference to the given string and assigns it to the FolderId field.
 func (o *GoogleCredentialForProjectDto) SetFolderId(v string) {
-	o.FolderId.Set(&v)
-}
-// SetFolderIdNil sets the value for FolderId to be an explicit nil
-func (o *GoogleCredentialForProjectDto) SetFolderIdNil() {
-	o.FolderId.Set(nil)
+	o.FolderId = &v
 }
 
-// UnsetFolderId ensures that no value is present for FolderId, not even an explicit nil
-func (o *GoogleCredentialForProjectDto) UnsetFolderId() {
-	o.FolderId.Unset()
-}
-
-// GetBillingAccountId returns the BillingAccountId field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetBillingAccountId returns the BillingAccountId field value if set, zero value otherwise.
 func (o *GoogleCredentialForProjectDto) GetBillingAccountId() string {
-	if o == nil || IsNil(o.BillingAccountId.Get()) {
+	if o == nil || IsNil(o.BillingAccountId) {
 		var ret string
 		return ret
 	}
-	return *o.BillingAccountId.Get()
+	return *o.BillingAccountId
 }
 
 // GetBillingAccountIdOk returns a tuple with the BillingAccountId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *GoogleCredentialForProjectDto) GetBillingAccountIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.BillingAccountId) {
 		return nil, false
 	}
-	return o.BillingAccountId.Get(), o.BillingAccountId.IsSet()
+	return o.BillingAccountId, true
 }
 
 // HasBillingAccountId returns a boolean if a field has been set.
 func (o *GoogleCredentialForProjectDto) HasBillingAccountId() bool {
-	if o != nil && o.BillingAccountId.IsSet() {
+	if o != nil && !IsNil(o.BillingAccountId) {
 		return true
 	}
 
 	return false
 }
 
-// SetBillingAccountId gets a reference to the given NullableString and assigns it to the BillingAccountId field.
+// SetBillingAccountId gets a reference to the given string and assigns it to the BillingAccountId field.
 func (o *GoogleCredentialForProjectDto) SetBillingAccountId(v string) {
-	o.BillingAccountId.Set(&v)
-}
-// SetBillingAccountIdNil sets the value for BillingAccountId to be an explicit nil
-func (o *GoogleCredentialForProjectDto) SetBillingAccountIdNil() {
-	o.BillingAccountId.Set(nil)
+	o.BillingAccountId = &v
 }
 
-// UnsetBillingAccountId ensures that no value is present for BillingAccountId, not even an explicit nil
-func (o *GoogleCredentialForProjectDto) UnsetBillingAccountId() {
-	o.BillingAccountId.Unset()
-}
-
-// GetZone returns the Zone field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetZone returns the Zone field value if set, zero value otherwise.
 func (o *GoogleCredentialForProjectDto) GetZone() string {
-	if o == nil || IsNil(o.Zone.Get()) {
+	if o == nil || IsNil(o.Zone) {
 		var ret string
 		return ret
 	}
-	return *o.Zone.Get()
+	return *o.Zone
 }
 
 // GetZoneOk returns a tuple with the Zone field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *GoogleCredentialForProjectDto) GetZoneOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Zone) {
 		return nil, false
 	}
-	return o.Zone.Get(), o.Zone.IsSet()
+	return o.Zone, true
 }
 
 // HasZone returns a boolean if a field has been set.
 func (o *GoogleCredentialForProjectDto) HasZone() bool {
-	if o != nil && o.Zone.IsSet() {
+	if o != nil && !IsNil(o.Zone) {
 		return true
 	}
 
 	return false
 }
 
-// SetZone gets a reference to the given NullableString and assigns it to the Zone field.
+// SetZone gets a reference to the given string and assigns it to the Zone field.
 func (o *GoogleCredentialForProjectDto) SetZone(v string) {
-	o.Zone.Set(&v)
-}
-// SetZoneNil sets the value for Zone to be an explicit nil
-func (o *GoogleCredentialForProjectDto) SetZoneNil() {
-	o.Zone.Set(nil)
+	o.Zone = &v
 }
 
-// UnsetZone ensures that no value is present for Zone, not even an explicit nil
-func (o *GoogleCredentialForProjectDto) UnsetZone() {
-	o.Zone.Unset()
-}
-
-// GetRegion returns the Region field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetRegion returns the Region field value if set, zero value otherwise.
 func (o *GoogleCredentialForProjectDto) GetRegion() string {
-	if o == nil || IsNil(o.Region.Get()) {
+	if o == nil || IsNil(o.Region) {
 		var ret string
 		return ret
 	}
-	return *o.Region.Get()
+	return *o.Region
 }
 
 // GetRegionOk returns a tuple with the Region field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *GoogleCredentialForProjectDto) GetRegionOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Region) {
 		return nil, false
 	}
-	return o.Region.Get(), o.Region.IsSet()
+	return o.Region, true
 }
 
 // HasRegion returns a boolean if a field has been set.
 func (o *GoogleCredentialForProjectDto) HasRegion() bool {
-	if o != nil && o.Region.IsSet() {
+	if o != nil && !IsNil(o.Region) {
 		return true
 	}
 
 	return false
 }
 
-// SetRegion gets a reference to the given NullableString and assigns it to the Region field.
+// SetRegion gets a reference to the given string and assigns it to the Region field.
 func (o *GoogleCredentialForProjectDto) SetRegion(v string) {
-	o.Region.Set(&v)
-}
-// SetRegionNil sets the value for Region to be an explicit nil
-func (o *GoogleCredentialForProjectDto) SetRegionNil() {
-	o.Region.Set(nil)
-}
-
-// UnsetRegion ensures that no value is present for Region, not even an explicit nil
-func (o *GoogleCredentialForProjectDto) UnsetRegion() {
-	o.Region.Unset()
+	o.Region = &v
 }
 
 func (o GoogleCredentialForProjectDto) MarshalJSON() ([]byte, error) {
@@ -264,20 +214,20 @@ func (o GoogleCredentialForProjectDto) MarshalJSON() ([]byte, error) {
 
 func (o GoogleCredentialForProjectDto) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Config.IsSet() {
-		toSerialize["config"] = o.Config.Get()
+	if !IsNil(o.Config) {
+		toSerialize["config"] = o.Config
 	}
-	if o.FolderId.IsSet() {
-		toSerialize["folderId"] = o.FolderId.Get()
+	if !IsNil(o.FolderId) {
+		toSerialize["folderId"] = o.FolderId
 	}
-	if o.BillingAccountId.IsSet() {
-		toSerialize["billingAccountId"] = o.BillingAccountId.Get()
+	if !IsNil(o.BillingAccountId) {
+		toSerialize["billingAccountId"] = o.BillingAccountId
 	}
-	if o.Zone.IsSet() {
-		toSerialize["zone"] = o.Zone.Get()
+	if !IsNil(o.Zone) {
+		toSerialize["zone"] = o.Zone
 	}
-	if o.Region.IsSet() {
-		toSerialize["region"] = o.Region.Get()
+	if !IsNil(o.Region) {
+		toSerialize["region"] = o.Region
 	}
 	return toSerialize, nil
 }

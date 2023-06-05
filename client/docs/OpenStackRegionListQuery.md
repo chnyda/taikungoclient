@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**OpenStackUser** | Pointer to **NullableString** |  | [optional] 
-**OpenStackPassword** | Pointer to **NullableString** |  | [optional] 
-**OpenStackUrl** | Pointer to **NullableString** |  | [optional] 
-**OpenStackDomain** | Pointer to **NullableString** |  | [optional] 
+**OpenStackUser** | Pointer to **string** |  | [optional] 
+**OpenStackPassword** | Pointer to **string** |  | [optional] 
+**OpenStackUrl** | Pointer to **string** |  | [optional] 
+**OpenStackDomain** | Pointer to **string** |  | [optional] 
 **ApplicationCredEnabled** | Pointer to **bool** |  | [optional] 
 **IsAdmin** | Pointer to **bool** |  | [optional] 
 
@@ -55,16 +55,6 @@ SetOpenStackUser sets OpenStackUser field to given value.
 
 HasOpenStackUser returns a boolean if a field has been set.
 
-### SetOpenStackUserNil
-
-`func (o *OpenStackRegionListQuery) SetOpenStackUserNil(b bool)`
-
- SetOpenStackUserNil sets the value for OpenStackUser to be an explicit nil
-
-### UnsetOpenStackUser
-`func (o *OpenStackRegionListQuery) UnsetOpenStackUser()`
-
-UnsetOpenStackUser ensures that no value is present for OpenStackUser, not even an explicit nil
 ### GetOpenStackPassword
 
 `func (o *OpenStackRegionListQuery) GetOpenStackPassword() string`
@@ -90,16 +80,6 @@ SetOpenStackPassword sets OpenStackPassword field to given value.
 
 HasOpenStackPassword returns a boolean if a field has been set.
 
-### SetOpenStackPasswordNil
-
-`func (o *OpenStackRegionListQuery) SetOpenStackPasswordNil(b bool)`
-
- SetOpenStackPasswordNil sets the value for OpenStackPassword to be an explicit nil
-
-### UnsetOpenStackPassword
-`func (o *OpenStackRegionListQuery) UnsetOpenStackPassword()`
-
-UnsetOpenStackPassword ensures that no value is present for OpenStackPassword, not even an explicit nil
 ### GetOpenStackUrl
 
 `func (o *OpenStackRegionListQuery) GetOpenStackUrl() string`
@@ -125,16 +105,6 @@ SetOpenStackUrl sets OpenStackUrl field to given value.
 
 HasOpenStackUrl returns a boolean if a field has been set.
 
-### SetOpenStackUrlNil
-
-`func (o *OpenStackRegionListQuery) SetOpenStackUrlNil(b bool)`
-
- SetOpenStackUrlNil sets the value for OpenStackUrl to be an explicit nil
-
-### UnsetOpenStackUrl
-`func (o *OpenStackRegionListQuery) UnsetOpenStackUrl()`
-
-UnsetOpenStackUrl ensures that no value is present for OpenStackUrl, not even an explicit nil
 ### GetOpenStackDomain
 
 `func (o *OpenStackRegionListQuery) GetOpenStackDomain() string`
@@ -160,16 +130,6 @@ SetOpenStackDomain sets OpenStackDomain field to given value.
 
 HasOpenStackDomain returns a boolean if a field has been set.
 
-### SetOpenStackDomainNil
-
-`func (o *OpenStackRegionListQuery) SetOpenStackDomainNil(b bool)`
-
- SetOpenStackDomainNil sets the value for OpenStackDomain to be an explicit nil
-
-### UnsetOpenStackDomain
-`func (o *OpenStackRegionListQuery) UnsetOpenStackDomain()`
-
-UnsetOpenStackDomain ensures that no value is present for OpenStackDomain, not even an explicit nil
 ### GetApplicationCredEnabled
 
 `func (o *OpenStackRegionListQuery) GetApplicationCredEnabled() bool`

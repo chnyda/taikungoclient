@@ -24,7 +24,7 @@ type CreateProjectAppCommand struct {
 	Namespace string `json:"namespace"`
 	ProjectId int32 `json:"projectId"`
 	CatalogAppId int32 `json:"catalogAppId"`
-	ExtraValues NullableString `json:"extraValues,omitempty"`
+	ExtraValues *string `json:"extraValues,omitempty"`
 	AutoSync *bool `json:"autoSync,omitempty"`
 	Parameters []ProjectAppParamsDto `json:"parameters,omitempty"`
 }
@@ -146,46 +146,36 @@ func (o *CreateProjectAppCommand) SetCatalogAppId(v int32) {
 	o.CatalogAppId = v
 }
 
-// GetExtraValues returns the ExtraValues field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetExtraValues returns the ExtraValues field value if set, zero value otherwise.
 func (o *CreateProjectAppCommand) GetExtraValues() string {
-	if o == nil || IsNil(o.ExtraValues.Get()) {
+	if o == nil || IsNil(o.ExtraValues) {
 		var ret string
 		return ret
 	}
-	return *o.ExtraValues.Get()
+	return *o.ExtraValues
 }
 
 // GetExtraValuesOk returns a tuple with the ExtraValues field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateProjectAppCommand) GetExtraValuesOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ExtraValues) {
 		return nil, false
 	}
-	return o.ExtraValues.Get(), o.ExtraValues.IsSet()
+	return o.ExtraValues, true
 }
 
 // HasExtraValues returns a boolean if a field has been set.
 func (o *CreateProjectAppCommand) HasExtraValues() bool {
-	if o != nil && o.ExtraValues.IsSet() {
+	if o != nil && !IsNil(o.ExtraValues) {
 		return true
 	}
 
 	return false
 }
 
-// SetExtraValues gets a reference to the given NullableString and assigns it to the ExtraValues field.
+// SetExtraValues gets a reference to the given string and assigns it to the ExtraValues field.
 func (o *CreateProjectAppCommand) SetExtraValues(v string) {
-	o.ExtraValues.Set(&v)
-}
-// SetExtraValuesNil sets the value for ExtraValues to be an explicit nil
-func (o *CreateProjectAppCommand) SetExtraValuesNil() {
-	o.ExtraValues.Set(nil)
-}
-
-// UnsetExtraValues ensures that no value is present for ExtraValues, not even an explicit nil
-func (o *CreateProjectAppCommand) UnsetExtraValues() {
-	o.ExtraValues.Unset()
+	o.ExtraValues = &v
 }
 
 // GetAutoSync returns the AutoSync field value if set, zero value otherwise.
@@ -220,9 +210,9 @@ func (o *CreateProjectAppCommand) SetAutoSync(v bool) {
 	o.AutoSync = &v
 }
 
-// GetParameters returns the Parameters field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetParameters returns the Parameters field value if set, zero value otherwise.
 func (o *CreateProjectAppCommand) GetParameters() []ProjectAppParamsDto {
-	if o == nil {
+	if o == nil || IsNil(o.Parameters) {
 		var ret []ProjectAppParamsDto
 		return ret
 	}
@@ -231,7 +221,6 @@ func (o *CreateProjectAppCommand) GetParameters() []ProjectAppParamsDto {
 
 // GetParametersOk returns a tuple with the Parameters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateProjectAppCommand) GetParametersOk() ([]ProjectAppParamsDto, bool) {
 	if o == nil || IsNil(o.Parameters) {
 		return nil, false
@@ -241,7 +230,7 @@ func (o *CreateProjectAppCommand) GetParametersOk() ([]ProjectAppParamsDto, bool
 
 // HasParameters returns a boolean if a field has been set.
 func (o *CreateProjectAppCommand) HasParameters() bool {
-	if o != nil && IsNil(o.Parameters) {
+	if o != nil && !IsNil(o.Parameters) {
 		return true
 	}
 
@@ -267,13 +256,13 @@ func (o CreateProjectAppCommand) ToMap() (map[string]interface{}, error) {
 	toSerialize["namespace"] = o.Namespace
 	toSerialize["projectId"] = o.ProjectId
 	toSerialize["catalogAppId"] = o.CatalogAppId
-	if o.ExtraValues.IsSet() {
-		toSerialize["extraValues"] = o.ExtraValues.Get()
+	if !IsNil(o.ExtraValues) {
+		toSerialize["extraValues"] = o.ExtraValues
 	}
 	if !IsNil(o.AutoSync) {
 		toSerialize["autoSync"] = o.AutoSync
 	}
-	if o.Parameters != nil {
+	if !IsNil(o.Parameters) {
 		toSerialize["parameters"] = o.Parameters
 	}
 	return toSerialize, nil

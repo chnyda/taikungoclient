@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Url** | **string** |  | 
 **Password** | **string** |  | 
 **Namespace** | **string** |  | 
-**Port** | Pointer to **NullableInt32** |  | [optional] 
+**Port** | Pointer to **int32** |  | [optional] 
 **VolumeType** | **string** |  | 
 
 ## Methods
@@ -135,16 +135,6 @@ SetPort sets Port field to given value.
 
 HasPort returns a boolean if a field has been set.
 
-### SetPortNil
-
-`func (o *CheckTanzuCommand) SetPortNil(b bool)`
-
- SetPortNil sets the value for Port to be an explicit nil
-
-### UnsetPort
-`func (o *CheckTanzuCommand) UnsetPort()`
-
-UnsetPort ensures that no value is present for Port, not even an explicit nil
 ### GetVolumeType
 
 `func (o *CheckTanzuCommand) GetVolumeType() string`

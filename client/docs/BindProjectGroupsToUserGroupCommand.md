@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ProjectGroups** | Pointer to [**[]UpdateUserProjectGroupDto**](UpdateUserProjectGroupDto.md) |  | [optional] 
 **UserGroupId** | Pointer to **int32** |  | [optional] 
-**UserGroupName** | Pointer to **NullableString** |  | [optional] 
+**UserGroupName** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -52,16 +52,6 @@ SetProjectGroups sets ProjectGroups field to given value.
 
 HasProjectGroups returns a boolean if a field has been set.
 
-### SetProjectGroupsNil
-
-`func (o *BindProjectGroupsToUserGroupCommand) SetProjectGroupsNil(b bool)`
-
- SetProjectGroupsNil sets the value for ProjectGroups to be an explicit nil
-
-### UnsetProjectGroups
-`func (o *BindProjectGroupsToUserGroupCommand) UnsetProjectGroups()`
-
-UnsetProjectGroups ensures that no value is present for ProjectGroups, not even an explicit nil
 ### GetUserGroupId
 
 `func (o *BindProjectGroupsToUserGroupCommand) GetUserGroupId() int32`
@@ -112,16 +102,6 @@ SetUserGroupName sets UserGroupName field to given value.
 
 HasUserGroupName returns a boolean if a field has been set.
 
-### SetUserGroupNameNil
-
-`func (o *BindProjectGroupsToUserGroupCommand) SetUserGroupNameNil(b bool)`
-
- SetUserGroupNameNil sets the value for UserGroupName to be an explicit nil
-
-### UnsetUserGroupName
-`func (o *BindProjectGroupsToUserGroupCommand) UnsetUserGroupName()`
-
-UnsetUserGroupName ensures that no value is present for UserGroupName, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

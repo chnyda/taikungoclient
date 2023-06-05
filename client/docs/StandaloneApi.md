@@ -1,30 +1,30 @@
-# \StandaloneApi
+# \StandAloneApi
 
 All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**StandaloneCommit**](StandaloneApi.md#StandaloneCommit) | **Post** /api/v1/standalone/commit | Commit vm
-[**StandaloneCreate**](StandaloneApi.md#StandaloneCreate) | **Post** /api/v1/standalone/create | Create a new vm in the given project.
-[**StandaloneDelete**](StandaloneApi.md#StandaloneDelete) | **Post** /api/v1/standalone/delete | Delete vm
-[**StandaloneDetails**](StandaloneApi.md#StandaloneDetails) | **Get** /api/v1/standalone/{projectId} | Retrieve a list of standalone vm with detailed info
-[**StandaloneForPoller**](StandaloneApi.md#StandaloneForPoller) | **Get** /api/v1/standalone/forpoller | List all StandaloneVms for poller
-[**StandaloneIpManagement**](StandaloneApi.md#StandaloneIpManagement) | **Post** /api/v1/standalone/ip/management | Enable/Disable stand alone public ip
-[**StandaloneList**](StandaloneApi.md#StandaloneList) | **Get** /api/v1/standalone | Retrieve all vms
-[**StandaloneProjectDetails**](StandaloneApi.md#StandaloneProjectDetails) | **Get** /api/v1/standalone/project/{projectId} | Retrieve details of the project by Id
-[**StandalonePurge**](StandaloneApi.md#StandalonePurge) | **Post** /api/v1/standalone/purge | Purge vm
-[**StandaloneRepair**](StandaloneApi.md#StandaloneRepair) | **Post** /api/v1/standalone/repair | Repair vm
-[**StandaloneReset**](StandaloneApi.md#StandaloneReset) | **Post** /api/v1/standalone/reset | Reset vm status
-[**StandaloneUpdate**](StandaloneApi.md#StandaloneUpdate) | **Post** /api/v1/standalone/update | Update vm
-[**StandaloneUpdateFlavor**](StandaloneApi.md#StandaloneUpdateFlavor) | **Post** /api/v1/standalone/update/flavor | Update standalone vm flavor
+[**StandAloneCommit**](StandAloneApi.md#StandAloneCommit) | **Post** /api/v{v}/StandAlone/commit | Commit stand alone vm
+[**StandAloneCreate**](StandAloneApi.md#StandAloneCreate) | **Post** /api/v{v}/StandAlone/create | Create stand alone vm
+[**StandAloneDelete**](StandAloneApi.md#StandAloneDelete) | **Post** /api/v{v}/StandAlone/delete | Delete/purge stand alone vm
+[**StandAloneDetails**](StandAloneApi.md#StandAloneDetails) | **Get** /api/v{v}/StandAlone/{projectId} | Retrieve a list of standalone vm with detailed info
+[**StandAloneIpManagement**](StandAloneApi.md#StandAloneIpManagement) | **Post** /api/v{v}/StandAlone/ip/management | Enable/Disable stand alone public ip
+[**StandAloneList**](StandAloneApi.md#StandAloneList) | **Get** /api/v{v}/StandAlone | List all StandaloneVms according to roles
+[**StandAloneListForPoller**](StandAloneApi.md#StandAloneListForPoller) | **Get** /api/v{v}/StandAlone/forpoller | List all StandaloneVms for poller
+[**StandAloneProjectDetails**](StandAloneApi.md#StandAloneProjectDetails) | **Get** /api/v{v}/StandAlone/project/{projectId} | Retrieve details of the project by Id
+[**StandAlonePurge**](StandAloneApi.md#StandAlonePurge) | **Post** /api/v{v}/StandAlone/purge | Purge stand alone based project
+[**StandAloneRepair**](StandAloneApi.md#StandAloneRepair) | **Post** /api/v{v}/StandAlone/repair | Repair stand alone vm
+[**StandAloneReset**](StandAloneApi.md#StandAloneReset) | **Post** /api/v{v}/StandAlone/reset | Reset stand alone vm status
+[**StandAloneUpdate**](StandAloneApi.md#StandAloneUpdate) | **Post** /api/v{v}/StandAlone/update | Update stand alone vm
+[**StandAloneUpdateFlavor**](StandAloneApi.md#StandAloneUpdateFlavor) | **Post** /api/v{v}/StandAlone/update/flavor | Update stand alone vm flavor
 
 
 
-## StandaloneCommit
+## StandAloneCommit
 
-> StandaloneCommit(ctx).CommitStandAloneVmCommand(commitStandAloneVmCommand).Execute()
+> StandAloneCommit(ctx, v).Body(body).Execute()
 
-Commit vm
+Commit stand alone vm
 
 ### Example
 
@@ -39,13 +39,14 @@ import (
 )
 
 func main() {
-    commitStandAloneVmCommand := *openapiclient.NewCommitStandAloneVmCommand() // CommitStandAloneVmCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewCommitStandAloneVmCommand() // CommitStandAloneVmCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.StandaloneApi.StandaloneCommit(context.Background()).CommitStandAloneVmCommand(commitStandAloneVmCommand).Execute()
+    r, err := apiClient.StandAloneApi.StandAloneCommit(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `StandaloneApi.StandaloneCommit``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `StandAloneApi.StandAloneCommit``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -54,15 +55,20 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiStandaloneCommitRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiStandAloneCommitRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **commitStandAloneVmCommand** | [**CommitStandAloneVmCommand**](CommitStandAloneVmCommand.md) |  | 
+
+ **body** | [**CommitStandAloneVmCommand**](CommitStandAloneVmCommand.md) |  | 
 
 ### Return type
 
@@ -74,19 +80,19 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## StandaloneCreate
+## StandAloneCreate
 
-> ApiResponse StandaloneCreate(ctx).CreateStandAloneVmCommand(createStandAloneVmCommand).Execute()
+> ApiResponse StandAloneCreate(ctx, v).Body(body).Execute()
 
-Create a new vm in the given project.
+Create stand alone vm
 
 ### Example
 
@@ -101,32 +107,38 @@ import (
 )
 
 func main() {
-    createStandAloneVmCommand := *openapiclient.NewCreateStandAloneVmCommand("Name_example", "FlavorName_example", "Image_example", int32(123), int32(123)) // CreateStandAloneVmCommand |  (optional)
+    v := "v_example" // string | 
+    body := *openapiclient.NewCreateStandAloneVmCommand("FlavorName_example", "Image_example", int32(123), int32(123)) // CreateStandAloneVmCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.StandaloneApi.StandaloneCreate(context.Background()).CreateStandAloneVmCommand(createStandAloneVmCommand).Execute()
+    resp, r, err := apiClient.StandAloneApi.StandAloneCreate(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `StandaloneApi.StandaloneCreate``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `StandAloneApi.StandAloneCreate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `StandaloneCreate`: ApiResponse
-    fmt.Fprintf(os.Stdout, "Response from `StandaloneApi.StandaloneCreate`: %v\n", resp)
+    // response from `StandAloneCreate`: ApiResponse
+    fmt.Fprintf(os.Stdout, "Response from `StandAloneApi.StandAloneCreate`: %v\n", resp)
 }
 ```
 
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiStandaloneCreateRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiStandAloneCreateRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createStandAloneVmCommand** | [**CreateStandAloneVmCommand**](CreateStandAloneVmCommand.md) |  | 
+
+ **body** | [**CreateStandAloneVmCommand**](CreateStandAloneVmCommand.md) |  | 
 
 ### Return type
 
@@ -138,19 +150,19 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## StandaloneDelete
+## StandAloneDelete
 
-> StandaloneDelete(ctx).DeleteStandAloneVmCommand(deleteStandAloneVmCommand).Execute()
+> StandAloneDelete(ctx, v).Body(body).Execute()
 
-Delete vm
+Delete/purge stand alone vm
 
 ### Example
 
@@ -165,13 +177,14 @@ import (
 )
 
 func main() {
-    deleteStandAloneVmCommand := *openapiclient.NewDeleteStandAloneVmCommand() // DeleteStandAloneVmCommand |  (optional)
+    v := "v_example" // string | 
+    body := *openapiclient.NewDeleteStandAloneVmCommand() // DeleteStandAloneVmCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.StandaloneApi.StandaloneDelete(context.Background()).DeleteStandAloneVmCommand(deleteStandAloneVmCommand).Execute()
+    r, err := apiClient.StandAloneApi.StandAloneDelete(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `StandaloneApi.StandaloneDelete``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `StandAloneApi.StandAloneDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -180,15 +193,20 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiStandaloneDeleteRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiStandAloneDeleteRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **deleteStandAloneVmCommand** | [**DeleteStandAloneVmCommand**](DeleteStandAloneVmCommand.md) |  | 
+
+ **body** | [**DeleteStandAloneVmCommand**](DeleteStandAloneVmCommand.md) |  | 
 
 ### Return type
 
@@ -200,17 +218,17 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## StandaloneDetails
+## StandAloneDetails
 
-> StandAloneVmListForDetails StandaloneDetails(ctx, projectId).SortBy(sortBy).SortDirection(sortDirection).Id(id).Execute()
+> StandAloneVmListForDetails StandAloneDetails(ctx, projectId, v).SortBy(sortBy).SortDirection(sortDirection).Id(id).Execute()
 
 Retrieve a list of standalone vm with detailed info
 
@@ -228,19 +246,20 @@ import (
 
 func main() {
     projectId := int32(56) // int32 | 
+    v := "v_example" // string | 
     sortBy := "sortBy_example" // string |  (optional)
     sortDirection := "sortDirection_example" // string |  (optional)
     id := int32(56) // int32 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.StandaloneApi.StandaloneDetails(context.Background(), projectId).SortBy(sortBy).SortDirection(sortDirection).Id(id).Execute()
+    resp, r, err := apiClient.StandAloneApi.StandAloneDetails(context.Background(), projectId, v).SortBy(sortBy).SortDirection(sortDirection).Id(id).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `StandaloneApi.StandaloneDetails``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `StandAloneApi.StandAloneDetails``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `StandaloneDetails`: StandAloneVmListForDetails
-    fmt.Fprintf(os.Stdout, "Response from `StandaloneApi.StandaloneDetails`: %v\n", resp)
+    // response from `StandAloneDetails`: StandAloneVmListForDetails
+    fmt.Fprintf(os.Stdout, "Response from `StandAloneApi.StandAloneDetails`: %v\n", resp)
 }
 ```
 
@@ -251,14 +270,16 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **projectId** | **int32** |  | 
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiStandaloneDetailsRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiStandAloneDetailsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
 
  **sortBy** | **string** |  | 
  **sortDirection** | **string** |  | 
@@ -275,84 +296,16 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## StandaloneForPoller
+## StandAloneIpManagement
 
-> StandaloneVmsListForPoller StandaloneForPoller(ctx).Limit(limit).Offset(offset).ProjectId(projectId).Execute()
-
-List all StandaloneVms for poller
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/chnyda/taikungoclient"
-)
-
-func main() {
-    limit := int32(56) // int32 |  (optional)
-    offset := int32(56) // int32 |  (optional)
-    projectId := int32(56) // int32 |  (optional)
-
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.StandaloneApi.StandaloneForPoller(context.Background()).Limit(limit).Offset(offset).ProjectId(projectId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `StandaloneApi.StandaloneForPoller``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `StandaloneForPoller`: StandaloneVmsListForPoller
-    fmt.Fprintf(os.Stdout, "Response from `StandaloneApi.StandaloneForPoller`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiStandaloneForPollerRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **limit** | **int32** |  | 
- **offset** | **int32** |  | 
- **projectId** | **int32** |  | 
-
-### Return type
-
-[**StandaloneVmsListForPoller**](StandaloneVmsListForPoller.md)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## StandaloneIpManagement
-
-> StandaloneIpManagement(ctx).StandAloneVmIpManagementCommand(standAloneVmIpManagementCommand).Execute()
+> StandAloneIpManagement(ctx, v).Body(body).Execute()
 
 Enable/Disable stand alone public ip
 
@@ -369,13 +322,14 @@ import (
 )
 
 func main() {
-    standAloneVmIpManagementCommand := *openapiclient.NewStandAloneVmIpManagementCommand(int32(123), "Mode_example") // StandAloneVmIpManagementCommand |  (optional)
+    v := "v_example" // string | 
+    body := *openapiclient.NewStandAloneVmIpManagementCommand(int32(123), "Mode_example") // StandAloneVmIpManagementCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.StandaloneApi.StandaloneIpManagement(context.Background()).StandAloneVmIpManagementCommand(standAloneVmIpManagementCommand).Execute()
+    r, err := apiClient.StandAloneApi.StandAloneIpManagement(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `StandaloneApi.StandaloneIpManagement``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `StandAloneApi.StandAloneIpManagement``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -384,15 +338,20 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiStandaloneIpManagementRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiStandAloneIpManagementRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **standAloneVmIpManagementCommand** | [**StandAloneVmIpManagementCommand**](StandAloneVmIpManagementCommand.md) |  | 
+
+ **body** | [**StandAloneVmIpManagementCommand**](StandAloneVmIpManagementCommand.md) |  | 
 
 ### Return type
 
@@ -404,19 +363,19 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## StandaloneList
+## StandAloneList
 
-> StandaloneVmsList StandaloneList(ctx).Limit(limit).Offset(offset).ProjectId(projectId).SortBy(sortBy).SortDirection(sortDirection).Search(search).StartRam(startRam).EndRam(endRam).StartVolumeSize(startVolumeSize).EndVolumeSize(endVolumeSize).StartCpu(startCpu).EndCpu(endCpu).OrganizationId(organizationId).Id(id).SearchId(searchId).FilterBy(filterBy).Execute()
+> StandaloneVmsList StandAloneList(ctx, v).Offset(offset).Limit(limit).ProjectId(projectId).SortBy(sortBy).SortDirection(sortDirection).Search(search).StartRam(startRam).EndRam(endRam).StartDiskSize(startDiskSize).EndDiskSize(endDiskSize).StartCpu(startCpu).EndCpu(endCpu).OrganizationId(organizationId).Id(id).SearchId(searchId).FilterBy(filterBy).Execute()
 
-Retrieve all vms
+List all StandaloneVms according to roles
 
 ### Example
 
@@ -431,16 +390,17 @@ import (
 )
 
 func main() {
-    limit := int32(56) // int32 |  (optional)
-    offset := int32(56) // int32 |  (optional)
+    v := "v_example" // string | 
+    offset := int32(56) // int32 | Skip elements (optional)
+    limit := int32(56) // int32 | Limits user size (by default 50) (optional)
     projectId := int32(56) // int32 |  (optional)
     sortBy := "sortBy_example" // string |  (optional)
     sortDirection := "sortDirection_example" // string |  (optional)
     search := "search_example" // string |  (optional)
-    startRam := "startRam_example" // string |  (optional)
-    endRam := "endRam_example" // string |  (optional)
-    startVolumeSize := int64(789) // int64 |  (optional)
-    endVolumeSize := int64(789) // int64 |  (optional)
+    startRam := float64(1.2) // float64 |  (optional)
+    endRam := float64(1.2) // float64 |  (optional)
+    startDiskSize := int64(789) // int64 |  (optional)
+    endDiskSize := int64(789) // int64 |  (optional)
     startCpu := int32(56) // int32 |  (optional)
     endCpu := int32(56) // int32 |  (optional)
     organizationId := int32(56) // int32 |  (optional)
@@ -450,37 +410,42 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.StandaloneApi.StandaloneList(context.Background()).Limit(limit).Offset(offset).ProjectId(projectId).SortBy(sortBy).SortDirection(sortDirection).Search(search).StartRam(startRam).EndRam(endRam).StartVolumeSize(startVolumeSize).EndVolumeSize(endVolumeSize).StartCpu(startCpu).EndCpu(endCpu).OrganizationId(organizationId).Id(id).SearchId(searchId).FilterBy(filterBy).Execute()
+    resp, r, err := apiClient.StandAloneApi.StandAloneList(context.Background(), v).Offset(offset).Limit(limit).ProjectId(projectId).SortBy(sortBy).SortDirection(sortDirection).Search(search).StartRam(startRam).EndRam(endRam).StartDiskSize(startDiskSize).EndDiskSize(endDiskSize).StartCpu(startCpu).EndCpu(endCpu).OrganizationId(organizationId).Id(id).SearchId(searchId).FilterBy(filterBy).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `StandaloneApi.StandaloneList``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `StandAloneApi.StandAloneList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `StandaloneList`: StandaloneVmsList
-    fmt.Fprintf(os.Stdout, "Response from `StandaloneApi.StandaloneList`: %v\n", resp)
+    // response from `StandAloneList`: StandaloneVmsList
+    fmt.Fprintf(os.Stdout, "Response from `StandAloneApi.StandAloneList`: %v\n", resp)
 }
 ```
 
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiStandaloneListRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiStandAloneListRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **limit** | **int32** |  | 
- **offset** | **int32** |  | 
+
+ **offset** | **int32** | Skip elements | 
+ **limit** | **int32** | Limits user size (by default 50) | 
  **projectId** | **int32** |  | 
  **sortBy** | **string** |  | 
  **sortDirection** | **string** |  | 
  **search** | **string** |  | 
- **startRam** | **string** |  | 
- **endRam** | **string** |  | 
- **startVolumeSize** | **int64** |  | 
- **endVolumeSize** | **int64** |  | 
+ **startRam** | **float64** |  | 
+ **endRam** | **float64** |  | 
+ **startDiskSize** | **int64** |  | 
+ **endDiskSize** | **int64** |  | 
  **startCpu** | **int32** |  | 
  **endCpu** | **int32** |  | 
  **organizationId** | **int32** |  | 
@@ -499,16 +464,90 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## StandaloneProjectDetails
+## StandAloneListForPoller
 
-> ProjectFullListDto StandaloneProjectDetails(ctx, projectId).Execute()
+> StandaloneVmsListForPoller StandAloneListForPoller(ctx, v).Offset(offset).Limit(limit).ProjectId(projectId).Execute()
+
+List all StandaloneVms for poller
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/chnyda/taikungoclient"
+)
+
+func main() {
+    v := "v_example" // string | 
+    offset := int32(56) // int32 | Skip elements (optional)
+    limit := int32(56) // int32 | Limits user size (by default 50) (optional)
+    projectId := int32(56) // int32 |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.StandAloneApi.StandAloneListForPoller(context.Background(), v).Offset(offset).Limit(limit).ProjectId(projectId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `StandAloneApi.StandAloneListForPoller``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `StandAloneListForPoller`: StandaloneVmsListForPoller
+    fmt.Fprintf(os.Stdout, "Response from `StandAloneApi.StandAloneListForPoller`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiStandAloneListForPollerRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **offset** | **int32** | Skip elements | 
+ **limit** | **int32** | Limits user size (by default 50) | 
+ **projectId** | **int32** |  | 
+
+### Return type
+
+[**StandaloneVmsListForPoller**](StandaloneVmsListForPoller.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: text/plain, application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## StandAloneProjectDetails
+
+> ProjectFullListDto StandAloneProjectDetails(ctx, projectId, v).Execute()
 
 Retrieve details of the project by Id
 
@@ -526,16 +565,17 @@ import (
 
 func main() {
     projectId := int32(56) // int32 | 
+    v := "v_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.StandaloneApi.StandaloneProjectDetails(context.Background(), projectId).Execute()
+    resp, r, err := apiClient.StandAloneApi.StandAloneProjectDetails(context.Background(), projectId, v).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `StandaloneApi.StandaloneProjectDetails``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `StandAloneApi.StandAloneProjectDetails``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `StandaloneProjectDetails`: ProjectFullListDto
-    fmt.Fprintf(os.Stdout, "Response from `StandaloneApi.StandaloneProjectDetails`: %v\n", resp)
+    // response from `StandAloneProjectDetails`: ProjectFullListDto
+    fmt.Fprintf(os.Stdout, "Response from `StandAloneApi.StandAloneProjectDetails`: %v\n", resp)
 }
 ```
 
@@ -546,14 +586,16 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **projectId** | **int32** |  | 
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiStandaloneProjectDetailsRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiStandAloneProjectDetailsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
 
 
 ### Return type
@@ -567,18 +609,18 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## StandalonePurge
+## StandAlonePurge
 
-> StandalonePurge(ctx).PurgeStandAloneCommand(purgeStandAloneCommand).Execute()
+> StandAlonePurge(ctx, v).Body(body).Execute()
 
-Purge vm
+Purge stand alone based project
 
 ### Example
 
@@ -593,13 +635,14 @@ import (
 )
 
 func main() {
-    purgeStandAloneCommand := *openapiclient.NewPurgeStandAloneCommand() // PurgeStandAloneCommand |  (optional)
+    v := "v_example" // string | 
+    body := *openapiclient.NewPurgeStandAloneCommand() // PurgeStandAloneCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.StandaloneApi.StandalonePurge(context.Background()).PurgeStandAloneCommand(purgeStandAloneCommand).Execute()
+    r, err := apiClient.StandAloneApi.StandAlonePurge(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `StandaloneApi.StandalonePurge``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `StandAloneApi.StandAlonePurge``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -608,15 +651,20 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiStandalonePurgeRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiStandAlonePurgeRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **purgeStandAloneCommand** | [**PurgeStandAloneCommand**](PurgeStandAloneCommand.md) |  | 
+
+ **body** | [**PurgeStandAloneCommand**](PurgeStandAloneCommand.md) |  | 
 
 ### Return type
 
@@ -628,19 +676,19 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## StandaloneRepair
+## StandAloneRepair
 
-> StandaloneRepair(ctx).RepairStandAloneVmCommand(repairStandAloneVmCommand).Execute()
+> StandAloneRepair(ctx, v).Body(body).Execute()
 
-Repair vm
+Repair stand alone vm
 
 ### Example
 
@@ -655,13 +703,14 @@ import (
 )
 
 func main() {
-    repairStandAloneVmCommand := *openapiclient.NewRepairStandAloneVmCommand() // RepairStandAloneVmCommand |  (optional)
+    v := "v_example" // string | 
+    body := *openapiclient.NewRepairStandAloneVmCommand() // RepairStandAloneVmCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.StandaloneApi.StandaloneRepair(context.Background()).RepairStandAloneVmCommand(repairStandAloneVmCommand).Execute()
+    r, err := apiClient.StandAloneApi.StandAloneRepair(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `StandaloneApi.StandaloneRepair``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `StandAloneApi.StandAloneRepair``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -670,15 +719,20 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiStandaloneRepairRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiStandAloneRepairRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **repairStandAloneVmCommand** | [**RepairStandAloneVmCommand**](RepairStandAloneVmCommand.md) |  | 
+
+ **body** | [**RepairStandAloneVmCommand**](RepairStandAloneVmCommand.md) |  | 
 
 ### Return type
 
@@ -690,19 +744,19 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## StandaloneReset
+## StandAloneReset
 
-> StandaloneReset(ctx).ResetStandAloneVmStatusCommand(resetStandAloneVmStatusCommand).Execute()
+> StandAloneReset(ctx, v).Body(body).Execute()
 
-Reset vm status
+Reset stand alone vm status
 
 ### Example
 
@@ -717,13 +771,14 @@ import (
 )
 
 func main() {
-    resetStandAloneVmStatusCommand := *openapiclient.NewResetStandAloneVmStatusCommand(int32(123)) // ResetStandAloneVmStatusCommand |  (optional)
+    v := "v_example" // string | 
+    body := *openapiclient.NewResetStandAloneVmStatusCommand(int32(123)) // ResetStandAloneVmStatusCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.StandaloneApi.StandaloneReset(context.Background()).ResetStandAloneVmStatusCommand(resetStandAloneVmStatusCommand).Execute()
+    r, err := apiClient.StandAloneApi.StandAloneReset(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `StandaloneApi.StandaloneReset``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `StandAloneApi.StandAloneReset``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -732,15 +787,20 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiStandaloneResetRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiStandAloneResetRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **resetStandAloneVmStatusCommand** | [**ResetStandAloneVmStatusCommand**](ResetStandAloneVmStatusCommand.md) |  | 
+
+ **body** | [**ResetStandAloneVmStatusCommand**](ResetStandAloneVmStatusCommand.md) |  | 
 
 ### Return type
 
@@ -752,19 +812,19 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## StandaloneUpdate
+## StandAloneUpdate
 
-> StandaloneUpdate(ctx).UpdateStandAloneVmCommand(updateStandAloneVmCommand).Execute()
+> StandAloneUpdate(ctx, v).Body(body).Execute()
 
-Update vm
+Update stand alone vm
 
 ### Example
 
@@ -779,13 +839,14 @@ import (
 )
 
 func main() {
-    updateStandAloneVmCommand := *openapiclient.NewUpdateStandAloneVmCommand(int32(123)) // UpdateStandAloneVmCommand |  (optional)
+    v := "v_example" // string | 
+    body := *openapiclient.NewUpdateStandAloneVmCommand(int32(123)) // UpdateStandAloneVmCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.StandaloneApi.StandaloneUpdate(context.Background()).UpdateStandAloneVmCommand(updateStandAloneVmCommand).Execute()
+    r, err := apiClient.StandAloneApi.StandAloneUpdate(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `StandaloneApi.StandaloneUpdate``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `StandAloneApi.StandAloneUpdate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -794,15 +855,20 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiStandaloneUpdateRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiStandAloneUpdateRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **updateStandAloneVmCommand** | [**UpdateStandAloneVmCommand**](UpdateStandAloneVmCommand.md) |  | 
+
+ **body** | [**UpdateStandAloneVmCommand**](UpdateStandAloneVmCommand.md) |  | 
 
 ### Return type
 
@@ -814,19 +880,19 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## StandaloneUpdateFlavor
+## StandAloneUpdateFlavor
 
-> StandaloneUpdateFlavor(ctx).UpdateStandAloneVmFlavorCommand(updateStandAloneVmFlavorCommand).Execute()
+> StandAloneUpdateFlavor(ctx, v).Body(body).Execute()
 
-Update standalone vm flavor
+Update stand alone vm flavor
 
 ### Example
 
@@ -841,13 +907,14 @@ import (
 )
 
 func main() {
-    updateStandAloneVmFlavorCommand := *openapiclient.NewUpdateStandAloneVmFlavorCommand(int32(123), "Flavor_example") // UpdateStandAloneVmFlavorCommand |  (optional)
+    v := "v_example" // string | 
+    body := *openapiclient.NewUpdateStandAloneVmFlavorCommand(int32(123), "Flavor_example") // UpdateStandAloneVmFlavorCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.StandaloneApi.StandaloneUpdateFlavor(context.Background()).UpdateStandAloneVmFlavorCommand(updateStandAloneVmFlavorCommand).Execute()
+    r, err := apiClient.StandAloneApi.StandAloneUpdateFlavor(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `StandaloneApi.StandaloneUpdateFlavor``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `StandAloneApi.StandAloneUpdateFlavor``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -856,15 +923,20 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiStandaloneUpdateFlavorRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiStandAloneUpdateFlavorRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **updateStandAloneVmFlavorCommand** | [**UpdateStandAloneVmFlavorCommand**](UpdateStandAloneVmFlavorCommand.md) |  | 
+
+ **body** | [**UpdateStandAloneVmFlavorCommand**](UpdateStandAloneVmFlavorCommand.md) |  | 
 
 ### Return type
 
@@ -876,8 +948,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

@@ -20,11 +20,12 @@ var _ MappedNullable = &ProxmoxCredentialsForProjectDto{}
 
 // ProxmoxCredentialsForProjectDto struct for ProxmoxCredentialsForProjectDto
 type ProxmoxCredentialsForProjectDto struct {
-	Username NullableString `json:"username,omitempty"`
-	Url NullableString `json:"url,omitempty"`
-	Password NullableString `json:"password,omitempty"`
-	Storage NullableString `json:"storage,omitempty"`
-	VmTemplateName NullableString `json:"vmTemplateName,omitempty"`
+	TokenId *string `json:"tokenId,omitempty"`
+	TokenSecret *string `json:"tokenSecret,omitempty"`
+	Url *string `json:"url,omitempty"`
+	Password *string `json:"password,omitempty"`
+	Storage *string `json:"storage,omitempty"`
+	VmTemplateName *string `json:"vmTemplateName,omitempty"`
 	ProxmoxNetworks []ProxmoxNetworkListDto `json:"proxmoxNetworks,omitempty"`
 }
 
@@ -45,219 +46,201 @@ func NewProxmoxCredentialsForProjectDtoWithDefaults() *ProxmoxCredentialsForProj
 	return &this
 }
 
-// GetUsername returns the Username field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ProxmoxCredentialsForProjectDto) GetUsername() string {
-	if o == nil || IsNil(o.Username.Get()) {
+// GetTokenId returns the TokenId field value if set, zero value otherwise.
+func (o *ProxmoxCredentialsForProjectDto) GetTokenId() string {
+	if o == nil || IsNil(o.TokenId) {
 		var ret string
 		return ret
 	}
-	return *o.Username.Get()
+	return *o.TokenId
 }
 
-// GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
+// GetTokenIdOk returns a tuple with the TokenId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ProxmoxCredentialsForProjectDto) GetUsernameOk() (*string, bool) {
-	if o == nil {
+func (o *ProxmoxCredentialsForProjectDto) GetTokenIdOk() (*string, bool) {
+	if o == nil || IsNil(o.TokenId) {
 		return nil, false
 	}
-	return o.Username.Get(), o.Username.IsSet()
+	return o.TokenId, true
 }
 
-// HasUsername returns a boolean if a field has been set.
-func (o *ProxmoxCredentialsForProjectDto) HasUsername() bool {
-	if o != nil && o.Username.IsSet() {
+// HasTokenId returns a boolean if a field has been set.
+func (o *ProxmoxCredentialsForProjectDto) HasTokenId() bool {
+	if o != nil && !IsNil(o.TokenId) {
 		return true
 	}
 
 	return false
 }
 
-// SetUsername gets a reference to the given NullableString and assigns it to the Username field.
-func (o *ProxmoxCredentialsForProjectDto) SetUsername(v string) {
-	o.Username.Set(&v)
-}
-// SetUsernameNil sets the value for Username to be an explicit nil
-func (o *ProxmoxCredentialsForProjectDto) SetUsernameNil() {
-	o.Username.Set(nil)
+// SetTokenId gets a reference to the given string and assigns it to the TokenId field.
+func (o *ProxmoxCredentialsForProjectDto) SetTokenId(v string) {
+	o.TokenId = &v
 }
 
-// UnsetUsername ensures that no value is present for Username, not even an explicit nil
-func (o *ProxmoxCredentialsForProjectDto) UnsetUsername() {
-	o.Username.Unset()
-}
-
-// GetUrl returns the Url field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ProxmoxCredentialsForProjectDto) GetUrl() string {
-	if o == nil || IsNil(o.Url.Get()) {
+// GetTokenSecret returns the TokenSecret field value if set, zero value otherwise.
+func (o *ProxmoxCredentialsForProjectDto) GetTokenSecret() string {
+	if o == nil || IsNil(o.TokenSecret) {
 		var ret string
 		return ret
 	}
-	return *o.Url.Get()
+	return *o.TokenSecret
+}
+
+// GetTokenSecretOk returns a tuple with the TokenSecret field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ProxmoxCredentialsForProjectDto) GetTokenSecretOk() (*string, bool) {
+	if o == nil || IsNil(o.TokenSecret) {
+		return nil, false
+	}
+	return o.TokenSecret, true
+}
+
+// HasTokenSecret returns a boolean if a field has been set.
+func (o *ProxmoxCredentialsForProjectDto) HasTokenSecret() bool {
+	if o != nil && !IsNil(o.TokenSecret) {
+		return true
+	}
+
+	return false
+}
+
+// SetTokenSecret gets a reference to the given string and assigns it to the TokenSecret field.
+func (o *ProxmoxCredentialsForProjectDto) SetTokenSecret(v string) {
+	o.TokenSecret = &v
+}
+
+// GetUrl returns the Url field value if set, zero value otherwise.
+func (o *ProxmoxCredentialsForProjectDto) GetUrl() string {
+	if o == nil || IsNil(o.Url) {
+		var ret string
+		return ret
+	}
+	return *o.Url
 }
 
 // GetUrlOk returns a tuple with the Url field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProxmoxCredentialsForProjectDto) GetUrlOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Url) {
 		return nil, false
 	}
-	return o.Url.Get(), o.Url.IsSet()
+	return o.Url, true
 }
 
 // HasUrl returns a boolean if a field has been set.
 func (o *ProxmoxCredentialsForProjectDto) HasUrl() bool {
-	if o != nil && o.Url.IsSet() {
+	if o != nil && !IsNil(o.Url) {
 		return true
 	}
 
 	return false
 }
 
-// SetUrl gets a reference to the given NullableString and assigns it to the Url field.
+// SetUrl gets a reference to the given string and assigns it to the Url field.
 func (o *ProxmoxCredentialsForProjectDto) SetUrl(v string) {
-	o.Url.Set(&v)
-}
-// SetUrlNil sets the value for Url to be an explicit nil
-func (o *ProxmoxCredentialsForProjectDto) SetUrlNil() {
-	o.Url.Set(nil)
+	o.Url = &v
 }
 
-// UnsetUrl ensures that no value is present for Url, not even an explicit nil
-func (o *ProxmoxCredentialsForProjectDto) UnsetUrl() {
-	o.Url.Unset()
-}
-
-// GetPassword returns the Password field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetPassword returns the Password field value if set, zero value otherwise.
 func (o *ProxmoxCredentialsForProjectDto) GetPassword() string {
-	if o == nil || IsNil(o.Password.Get()) {
+	if o == nil || IsNil(o.Password) {
 		var ret string
 		return ret
 	}
-	return *o.Password.Get()
+	return *o.Password
 }
 
 // GetPasswordOk returns a tuple with the Password field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProxmoxCredentialsForProjectDto) GetPasswordOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Password) {
 		return nil, false
 	}
-	return o.Password.Get(), o.Password.IsSet()
+	return o.Password, true
 }
 
 // HasPassword returns a boolean if a field has been set.
 func (o *ProxmoxCredentialsForProjectDto) HasPassword() bool {
-	if o != nil && o.Password.IsSet() {
+	if o != nil && !IsNil(o.Password) {
 		return true
 	}
 
 	return false
 }
 
-// SetPassword gets a reference to the given NullableString and assigns it to the Password field.
+// SetPassword gets a reference to the given string and assigns it to the Password field.
 func (o *ProxmoxCredentialsForProjectDto) SetPassword(v string) {
-	o.Password.Set(&v)
-}
-// SetPasswordNil sets the value for Password to be an explicit nil
-func (o *ProxmoxCredentialsForProjectDto) SetPasswordNil() {
-	o.Password.Set(nil)
+	o.Password = &v
 }
 
-// UnsetPassword ensures that no value is present for Password, not even an explicit nil
-func (o *ProxmoxCredentialsForProjectDto) UnsetPassword() {
-	o.Password.Unset()
-}
-
-// GetStorage returns the Storage field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetStorage returns the Storage field value if set, zero value otherwise.
 func (o *ProxmoxCredentialsForProjectDto) GetStorage() string {
-	if o == nil || IsNil(o.Storage.Get()) {
+	if o == nil || IsNil(o.Storage) {
 		var ret string
 		return ret
 	}
-	return *o.Storage.Get()
+	return *o.Storage
 }
 
 // GetStorageOk returns a tuple with the Storage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProxmoxCredentialsForProjectDto) GetStorageOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Storage) {
 		return nil, false
 	}
-	return o.Storage.Get(), o.Storage.IsSet()
+	return o.Storage, true
 }
 
 // HasStorage returns a boolean if a field has been set.
 func (o *ProxmoxCredentialsForProjectDto) HasStorage() bool {
-	if o != nil && o.Storage.IsSet() {
+	if o != nil && !IsNil(o.Storage) {
 		return true
 	}
 
 	return false
 }
 
-// SetStorage gets a reference to the given NullableString and assigns it to the Storage field.
+// SetStorage gets a reference to the given string and assigns it to the Storage field.
 func (o *ProxmoxCredentialsForProjectDto) SetStorage(v string) {
-	o.Storage.Set(&v)
-}
-// SetStorageNil sets the value for Storage to be an explicit nil
-func (o *ProxmoxCredentialsForProjectDto) SetStorageNil() {
-	o.Storage.Set(nil)
+	o.Storage = &v
 }
 
-// UnsetStorage ensures that no value is present for Storage, not even an explicit nil
-func (o *ProxmoxCredentialsForProjectDto) UnsetStorage() {
-	o.Storage.Unset()
-}
-
-// GetVmTemplateName returns the VmTemplateName field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetVmTemplateName returns the VmTemplateName field value if set, zero value otherwise.
 func (o *ProxmoxCredentialsForProjectDto) GetVmTemplateName() string {
-	if o == nil || IsNil(o.VmTemplateName.Get()) {
+	if o == nil || IsNil(o.VmTemplateName) {
 		var ret string
 		return ret
 	}
-	return *o.VmTemplateName.Get()
+	return *o.VmTemplateName
 }
 
 // GetVmTemplateNameOk returns a tuple with the VmTemplateName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProxmoxCredentialsForProjectDto) GetVmTemplateNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.VmTemplateName) {
 		return nil, false
 	}
-	return o.VmTemplateName.Get(), o.VmTemplateName.IsSet()
+	return o.VmTemplateName, true
 }
 
 // HasVmTemplateName returns a boolean if a field has been set.
 func (o *ProxmoxCredentialsForProjectDto) HasVmTemplateName() bool {
-	if o != nil && o.VmTemplateName.IsSet() {
+	if o != nil && !IsNil(o.VmTemplateName) {
 		return true
 	}
 
 	return false
 }
 
-// SetVmTemplateName gets a reference to the given NullableString and assigns it to the VmTemplateName field.
+// SetVmTemplateName gets a reference to the given string and assigns it to the VmTemplateName field.
 func (o *ProxmoxCredentialsForProjectDto) SetVmTemplateName(v string) {
-	o.VmTemplateName.Set(&v)
-}
-// SetVmTemplateNameNil sets the value for VmTemplateName to be an explicit nil
-func (o *ProxmoxCredentialsForProjectDto) SetVmTemplateNameNil() {
-	o.VmTemplateName.Set(nil)
+	o.VmTemplateName = &v
 }
 
-// UnsetVmTemplateName ensures that no value is present for VmTemplateName, not even an explicit nil
-func (o *ProxmoxCredentialsForProjectDto) UnsetVmTemplateName() {
-	o.VmTemplateName.Unset()
-}
-
-// GetProxmoxNetworks returns the ProxmoxNetworks field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetProxmoxNetworks returns the ProxmoxNetworks field value if set, zero value otherwise.
 func (o *ProxmoxCredentialsForProjectDto) GetProxmoxNetworks() []ProxmoxNetworkListDto {
-	if o == nil {
+	if o == nil || IsNil(o.ProxmoxNetworks) {
 		var ret []ProxmoxNetworkListDto
 		return ret
 	}
@@ -266,7 +249,6 @@ func (o *ProxmoxCredentialsForProjectDto) GetProxmoxNetworks() []ProxmoxNetworkL
 
 // GetProxmoxNetworksOk returns a tuple with the ProxmoxNetworks field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProxmoxCredentialsForProjectDto) GetProxmoxNetworksOk() ([]ProxmoxNetworkListDto, bool) {
 	if o == nil || IsNil(o.ProxmoxNetworks) {
 		return nil, false
@@ -276,7 +258,7 @@ func (o *ProxmoxCredentialsForProjectDto) GetProxmoxNetworksOk() ([]ProxmoxNetwo
 
 // HasProxmoxNetworks returns a boolean if a field has been set.
 func (o *ProxmoxCredentialsForProjectDto) HasProxmoxNetworks() bool {
-	if o != nil && IsNil(o.ProxmoxNetworks) {
+	if o != nil && !IsNil(o.ProxmoxNetworks) {
 		return true
 	}
 
@@ -298,22 +280,25 @@ func (o ProxmoxCredentialsForProjectDto) MarshalJSON() ([]byte, error) {
 
 func (o ProxmoxCredentialsForProjectDto) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Username.IsSet() {
-		toSerialize["username"] = o.Username.Get()
+	if !IsNil(o.TokenId) {
+		toSerialize["tokenId"] = o.TokenId
 	}
-	if o.Url.IsSet() {
-		toSerialize["url"] = o.Url.Get()
+	if !IsNil(o.TokenSecret) {
+		toSerialize["tokenSecret"] = o.TokenSecret
 	}
-	if o.Password.IsSet() {
-		toSerialize["password"] = o.Password.Get()
+	if !IsNil(o.Url) {
+		toSerialize["url"] = o.Url
 	}
-	if o.Storage.IsSet() {
-		toSerialize["storage"] = o.Storage.Get()
+	if !IsNil(o.Password) {
+		toSerialize["password"] = o.Password
 	}
-	if o.VmTemplateName.IsSet() {
-		toSerialize["vmTemplateName"] = o.VmTemplateName.Get()
+	if !IsNil(o.Storage) {
+		toSerialize["storage"] = o.Storage
 	}
-	if o.ProxmoxNetworks != nil {
+	if !IsNil(o.VmTemplateName) {
+		toSerialize["vmTemplateName"] = o.VmTemplateName
+	}
+	if !IsNil(o.ProxmoxNetworks) {
 		toSerialize["proxmoxNetworks"] = o.ProxmoxNetworks
 	}
 	return toSerialize, nil

@@ -20,7 +20,7 @@ var _ MappedNullable = &PartnerRecordDto{}
 
 // PartnerRecordDto struct for PartnerRecordDto
 type PartnerRecordDto struct {
-	ImageUrl NullableString `json:"imageUrl,omitempty"`
+	ImageUrl *string `json:"imageUrl,omitempty"`
 	Id *int32 `json:"id,omitempty"`
 	PaymentEnabled *bool `json:"paymentEnabled,omitempty"`
 	AllowRegistration *bool `json:"allowRegistration,omitempty"`
@@ -43,46 +43,36 @@ func NewPartnerRecordDtoWithDefaults() *PartnerRecordDto {
 	return &this
 }
 
-// GetImageUrl returns the ImageUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetImageUrl returns the ImageUrl field value if set, zero value otherwise.
 func (o *PartnerRecordDto) GetImageUrl() string {
-	if o == nil || IsNil(o.ImageUrl.Get()) {
+	if o == nil || IsNil(o.ImageUrl) {
 		var ret string
 		return ret
 	}
-	return *o.ImageUrl.Get()
+	return *o.ImageUrl
 }
 
 // GetImageUrlOk returns a tuple with the ImageUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *PartnerRecordDto) GetImageUrlOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ImageUrl) {
 		return nil, false
 	}
-	return o.ImageUrl.Get(), o.ImageUrl.IsSet()
+	return o.ImageUrl, true
 }
 
 // HasImageUrl returns a boolean if a field has been set.
 func (o *PartnerRecordDto) HasImageUrl() bool {
-	if o != nil && o.ImageUrl.IsSet() {
+	if o != nil && !IsNil(o.ImageUrl) {
 		return true
 	}
 
 	return false
 }
 
-// SetImageUrl gets a reference to the given NullableString and assigns it to the ImageUrl field.
+// SetImageUrl gets a reference to the given string and assigns it to the ImageUrl field.
 func (o *PartnerRecordDto) SetImageUrl(v string) {
-	o.ImageUrl.Set(&v)
-}
-// SetImageUrlNil sets the value for ImageUrl to be an explicit nil
-func (o *PartnerRecordDto) SetImageUrlNil() {
-	o.ImageUrl.Set(nil)
-}
-
-// UnsetImageUrl ensures that no value is present for ImageUrl, not even an explicit nil
-func (o *PartnerRecordDto) UnsetImageUrl() {
-	o.ImageUrl.Unset()
+	o.ImageUrl = &v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -191,8 +181,8 @@ func (o PartnerRecordDto) MarshalJSON() ([]byte, error) {
 
 func (o PartnerRecordDto) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.ImageUrl.IsSet() {
-		toSerialize["imageUrl"] = o.ImageUrl.Get()
+	if !IsNil(o.ImageUrl) {
+		toSerialize["imageUrl"] = o.ImageUrl
 	}
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id

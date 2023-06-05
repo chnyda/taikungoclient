@@ -21,15 +21,15 @@ var _ MappedNullable = &ResetPasswordCommand{}
 // ResetPasswordCommand struct for ResetPasswordCommand
 type ResetPasswordCommand struct {
 	Token string `json:"token"`
-	Email NullableString `json:"email,omitempty"`
-	NewPassword interface{} `json:"newPassword"`
+	Email *string `json:"email,omitempty"`
+	NewPassword AdminUserCreateCommandPassword `json:"newPassword"`
 }
 
 // NewResetPasswordCommand instantiates a new ResetPasswordCommand object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewResetPasswordCommand(token string, newPassword interface{}) *ResetPasswordCommand {
+func NewResetPasswordCommand(token string, newPassword AdminUserCreateCommandPassword) *ResetPasswordCommand {
 	this := ResetPasswordCommand{}
 	this.Token = token
 	this.NewPassword = newPassword
@@ -68,52 +68,42 @@ func (o *ResetPasswordCommand) SetToken(v string) {
 	o.Token = v
 }
 
-// GetEmail returns the Email field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetEmail returns the Email field value if set, zero value otherwise.
 func (o *ResetPasswordCommand) GetEmail() string {
-	if o == nil || IsNil(o.Email.Get()) {
+	if o == nil || IsNil(o.Email) {
 		var ret string
 		return ret
 	}
-	return *o.Email.Get()
+	return *o.Email
 }
 
 // GetEmailOk returns a tuple with the Email field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ResetPasswordCommand) GetEmailOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Email) {
 		return nil, false
 	}
-	return o.Email.Get(), o.Email.IsSet()
+	return o.Email, true
 }
 
 // HasEmail returns a boolean if a field has been set.
 func (o *ResetPasswordCommand) HasEmail() bool {
-	if o != nil && o.Email.IsSet() {
+	if o != nil && !IsNil(o.Email) {
 		return true
 	}
 
 	return false
 }
 
-// SetEmail gets a reference to the given NullableString and assigns it to the Email field.
+// SetEmail gets a reference to the given string and assigns it to the Email field.
 func (o *ResetPasswordCommand) SetEmail(v string) {
-	o.Email.Set(&v)
-}
-// SetEmailNil sets the value for Email to be an explicit nil
-func (o *ResetPasswordCommand) SetEmailNil() {
-	o.Email.Set(nil)
-}
-
-// UnsetEmail ensures that no value is present for Email, not even an explicit nil
-func (o *ResetPasswordCommand) UnsetEmail() {
-	o.Email.Unset()
+	o.Email = &v
 }
 
 // GetNewPassword returns the NewPassword field value
-func (o *ResetPasswordCommand) GetNewPassword() interface{} {
+func (o *ResetPasswordCommand) GetNewPassword() AdminUserCreateCommandPassword {
 	if o == nil {
-		var ret interface{}
+		var ret AdminUserCreateCommandPassword
 		return ret
 	}
 
@@ -122,7 +112,7 @@ func (o *ResetPasswordCommand) GetNewPassword() interface{} {
 
 // GetNewPasswordOk returns a tuple with the NewPassword field value
 // and a boolean to check if the value has been set.
-func (o *ResetPasswordCommand) GetNewPasswordOk() (*interface{}, bool) {
+func (o *ResetPasswordCommand) GetNewPasswordOk() (*AdminUserCreateCommandPassword, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -130,7 +120,7 @@ func (o *ResetPasswordCommand) GetNewPasswordOk() (*interface{}, bool) {
 }
 
 // SetNewPassword sets field value
-func (o *ResetPasswordCommand) SetNewPassword(v interface{}) {
+func (o *ResetPasswordCommand) SetNewPassword(v AdminUserCreateCommandPassword) {
 	o.NewPassword = v
 }
 
@@ -145,8 +135,8 @@ func (o ResetPasswordCommand) MarshalJSON() ([]byte, error) {
 func (o ResetPasswordCommand) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["token"] = o.Token
-	if o.Email.IsSet() {
-		toSerialize["email"] = o.Email.Get()
+	if !IsNil(o.Email) {
+		toSerialize["email"] = o.Email
 	}
 	toSerialize["newPassword"] = o.NewPassword
 	return toSerialize, nil

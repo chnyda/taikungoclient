@@ -72,16 +72,6 @@ SetVmIds sets VmIds field to given value.
 
 HasVmIds returns a boolean if a field has been set.
 
-### SetVmIdsNil
-
-`func (o *ResetStandAloneVmStatusCommand) SetVmIdsNil(b bool)`
-
- SetVmIdsNil sets the value for VmIds to be an explicit nil
-
-### UnsetVmIds
-`func (o *ResetStandAloneVmStatusCommand) UnsetVmIds()`
-
-UnsetVmIds ensures that no value is present for VmIds, not even an explicit nil
 ### GetStatus
 
 `func (o *ResetStandAloneVmStatusCommand) GetStatus() StandAloneVmStatus`

@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ProjectId** | Pointer to **int32** |  | [optional] 
-**ImageId** | Pointer to **NullableString** |  | [optional] 
+**ImageId** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -76,16 +76,6 @@ SetImageId sets ImageId field to given value.
 
 HasImageId returns a boolean if a field has been set.
 
-### SetImageIdNil
-
-`func (o *AwsBlockDeviceMappingsCommand) SetImageIdNil(b bool)`
-
- SetImageIdNil sets the value for ImageId to be an explicit nil
-
-### UnsetImageId
-`func (o *AwsBlockDeviceMappingsCommand) UnsetImageId()`
-
-UnsetImageId ensures that no value is present for ImageId, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

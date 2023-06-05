@@ -6,11 +6,11 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **int32** |  | 
 **Name** | **string** |  | 
-**ForbidNodePort** | Pointer to **NullableBool** |  | [optional] 
-**ForbidHttpIngress** | Pointer to **NullableBool** |  | [optional] 
-**RequireProbe** | Pointer to **NullableBool** |  | [optional] 
-**UniqueIngresses** | Pointer to **NullableBool** |  | [optional] 
-**UniqueServiceSelector** | Pointer to **NullableBool** |  | [optional] 
+**ForbidNodePort** | Pointer to **bool** |  | [optional] 
+**ForbidHttpIngress** | Pointer to **bool** |  | [optional] 
+**RequireProbe** | Pointer to **bool** |  | [optional] 
+**UniqueIngresses** | Pointer to **bool** |  | [optional] 
+**UniqueServiceSelector** | Pointer to **bool** |  | [optional] 
 **AllowedRepo** | Pointer to **[]string** |  | [optional] 
 **ForbidSpecificTags** | Pointer to **[]string** |  | [optional] 
 **IngressWhitelist** | Pointer to **[]string** |  | [optional] 
@@ -99,16 +99,6 @@ SetForbidNodePort sets ForbidNodePort field to given value.
 
 HasForbidNodePort returns a boolean if a field has been set.
 
-### SetForbidNodePortNil
-
-`func (o *OpaProfileUpdateCommand) SetForbidNodePortNil(b bool)`
-
- SetForbidNodePortNil sets the value for ForbidNodePort to be an explicit nil
-
-### UnsetForbidNodePort
-`func (o *OpaProfileUpdateCommand) UnsetForbidNodePort()`
-
-UnsetForbidNodePort ensures that no value is present for ForbidNodePort, not even an explicit nil
 ### GetForbidHttpIngress
 
 `func (o *OpaProfileUpdateCommand) GetForbidHttpIngress() bool`
@@ -134,16 +124,6 @@ SetForbidHttpIngress sets ForbidHttpIngress field to given value.
 
 HasForbidHttpIngress returns a boolean if a field has been set.
 
-### SetForbidHttpIngressNil
-
-`func (o *OpaProfileUpdateCommand) SetForbidHttpIngressNil(b bool)`
-
- SetForbidHttpIngressNil sets the value for ForbidHttpIngress to be an explicit nil
-
-### UnsetForbidHttpIngress
-`func (o *OpaProfileUpdateCommand) UnsetForbidHttpIngress()`
-
-UnsetForbidHttpIngress ensures that no value is present for ForbidHttpIngress, not even an explicit nil
 ### GetRequireProbe
 
 `func (o *OpaProfileUpdateCommand) GetRequireProbe() bool`
@@ -169,16 +149,6 @@ SetRequireProbe sets RequireProbe field to given value.
 
 HasRequireProbe returns a boolean if a field has been set.
 
-### SetRequireProbeNil
-
-`func (o *OpaProfileUpdateCommand) SetRequireProbeNil(b bool)`
-
- SetRequireProbeNil sets the value for RequireProbe to be an explicit nil
-
-### UnsetRequireProbe
-`func (o *OpaProfileUpdateCommand) UnsetRequireProbe()`
-
-UnsetRequireProbe ensures that no value is present for RequireProbe, not even an explicit nil
 ### GetUniqueIngresses
 
 `func (o *OpaProfileUpdateCommand) GetUniqueIngresses() bool`
@@ -204,16 +174,6 @@ SetUniqueIngresses sets UniqueIngresses field to given value.
 
 HasUniqueIngresses returns a boolean if a field has been set.
 
-### SetUniqueIngressesNil
-
-`func (o *OpaProfileUpdateCommand) SetUniqueIngressesNil(b bool)`
-
- SetUniqueIngressesNil sets the value for UniqueIngresses to be an explicit nil
-
-### UnsetUniqueIngresses
-`func (o *OpaProfileUpdateCommand) UnsetUniqueIngresses()`
-
-UnsetUniqueIngresses ensures that no value is present for UniqueIngresses, not even an explicit nil
 ### GetUniqueServiceSelector
 
 `func (o *OpaProfileUpdateCommand) GetUniqueServiceSelector() bool`
@@ -239,16 +199,6 @@ SetUniqueServiceSelector sets UniqueServiceSelector field to given value.
 
 HasUniqueServiceSelector returns a boolean if a field has been set.
 
-### SetUniqueServiceSelectorNil
-
-`func (o *OpaProfileUpdateCommand) SetUniqueServiceSelectorNil(b bool)`
-
- SetUniqueServiceSelectorNil sets the value for UniqueServiceSelector to be an explicit nil
-
-### UnsetUniqueServiceSelector
-`func (o *OpaProfileUpdateCommand) UnsetUniqueServiceSelector()`
-
-UnsetUniqueServiceSelector ensures that no value is present for UniqueServiceSelector, not even an explicit nil
 ### GetAllowedRepo
 
 `func (o *OpaProfileUpdateCommand) GetAllowedRepo() []string`
@@ -274,16 +224,6 @@ SetAllowedRepo sets AllowedRepo field to given value.
 
 HasAllowedRepo returns a boolean if a field has been set.
 
-### SetAllowedRepoNil
-
-`func (o *OpaProfileUpdateCommand) SetAllowedRepoNil(b bool)`
-
- SetAllowedRepoNil sets the value for AllowedRepo to be an explicit nil
-
-### UnsetAllowedRepo
-`func (o *OpaProfileUpdateCommand) UnsetAllowedRepo()`
-
-UnsetAllowedRepo ensures that no value is present for AllowedRepo, not even an explicit nil
 ### GetForbidSpecificTags
 
 `func (o *OpaProfileUpdateCommand) GetForbidSpecificTags() []string`
@@ -309,16 +249,6 @@ SetForbidSpecificTags sets ForbidSpecificTags field to given value.
 
 HasForbidSpecificTags returns a boolean if a field has been set.
 
-### SetForbidSpecificTagsNil
-
-`func (o *OpaProfileUpdateCommand) SetForbidSpecificTagsNil(b bool)`
-
- SetForbidSpecificTagsNil sets the value for ForbidSpecificTags to be an explicit nil
-
-### UnsetForbidSpecificTags
-`func (o *OpaProfileUpdateCommand) UnsetForbidSpecificTags()`
-
-UnsetForbidSpecificTags ensures that no value is present for ForbidSpecificTags, not even an explicit nil
 ### GetIngressWhitelist
 
 `func (o *OpaProfileUpdateCommand) GetIngressWhitelist() []string`
@@ -344,16 +274,6 @@ SetIngressWhitelist sets IngressWhitelist field to given value.
 
 HasIngressWhitelist returns a boolean if a field has been set.
 
-### SetIngressWhitelistNil
-
-`func (o *OpaProfileUpdateCommand) SetIngressWhitelistNil(b bool)`
-
- SetIngressWhitelistNil sets the value for IngressWhitelist to be an explicit nil
-
-### UnsetIngressWhitelist
-`func (o *OpaProfileUpdateCommand) UnsetIngressWhitelist()`
-
-UnsetIngressWhitelist ensures that no value is present for IngressWhitelist, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

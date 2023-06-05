@@ -24,60 +24,73 @@ import (
 // S3CredentialsApiService S3CredentialsApi service
 type S3CredentialsApiService service
 
-type ApiS3credentialsCreateRequest struct {
+type ApiS3CredentialsBackupCredentialsForOrganizationListRequest struct {
 	ctx context.Context
 	ApiService *S3CredentialsApiService
-	backupCredentialsCreateCommand *BackupCredentialsCreateCommand
+	v string
+	organizationId *int32
+	search *string
 }
 
-func (r ApiS3credentialsCreateRequest) BackupCredentialsCreateCommand(backupCredentialsCreateCommand BackupCredentialsCreateCommand) ApiS3credentialsCreateRequest {
-	r.backupCredentialsCreateCommand = &backupCredentialsCreateCommand
+func (r ApiS3CredentialsBackupCredentialsForOrganizationListRequest) OrganizationId(organizationId int32) ApiS3CredentialsBackupCredentialsForOrganizationListRequest {
+	r.organizationId = &organizationId
 	return r
 }
 
-func (r ApiS3credentialsCreateRequest) Execute() (*ApiResponse, *http.Response, error) {
-	return r.ApiService.S3credentialsCreateExecute(r)
+func (r ApiS3CredentialsBackupCredentialsForOrganizationListRequest) Search(search string) ApiS3CredentialsBackupCredentialsForOrganizationListRequest {
+	r.search = &search
+	return r
+}
+
+func (r ApiS3CredentialsBackupCredentialsForOrganizationListRequest) Execute() ([]BackupCredentialsForOrganizationEntity, *http.Response, error) {
+	return r.ApiService.S3CredentialsBackupCredentialsForOrganizationListExecute(r)
 }
 
 /*
-S3credentialsCreate Add s3 credential
+S3CredentialsBackupCredentialsForOrganizationList Retrieve all S3 credentials for organization
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiS3credentialsCreateRequest
+ @param v
+ @return ApiS3CredentialsBackupCredentialsForOrganizationListRequest
 */
-func (a *S3CredentialsApiService) S3credentialsCreate(ctx context.Context) ApiS3credentialsCreateRequest {
-	return ApiS3credentialsCreateRequest{
+func (a *S3CredentialsApiService) S3CredentialsBackupCredentialsForOrganizationList(ctx context.Context, v string) ApiS3CredentialsBackupCredentialsForOrganizationListRequest {
+	return ApiS3CredentialsBackupCredentialsForOrganizationListRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
-//  @return ApiResponse
-func (a *S3CredentialsApiService) S3credentialsCreateExecute(r ApiS3credentialsCreateRequest) (*ApiResponse, *http.Response, error) {
+//  @return []BackupCredentialsForOrganizationEntity
+func (a *S3CredentialsApiService) S3CredentialsBackupCredentialsForOrganizationListExecute(r ApiS3CredentialsBackupCredentialsForOrganizationListRequest) ([]BackupCredentialsForOrganizationEntity, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ApiResponse
+		localVarReturnValue  []BackupCredentialsForOrganizationEntity
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "S3CredentialsApiService.S3credentialsCreate")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "S3CredentialsApiService.S3CredentialsBackupCredentialsForOrganizationList")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/s3credentials"
+	localVarPath := localBasePath + "/api/v{v}/S3Credentials"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.backupCredentialsCreateCommand == nil {
-		return localVarReturnValue, nil, reportError("backupCredentialsCreateCommand is required and must be specified")
-	}
 
+	if r.organizationId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "organizationId", r.organizationId, "")
+	}
+	if r.search != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "")
+	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -86,15 +99,13 @@ func (a *S3CredentialsApiService) S3credentialsCreateExecute(r ApiS3credentialsC
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	// body params
-	localVarPostBody = r.backupCredentialsCreateCommand
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -131,7 +142,7 @@ func (a *S3CredentialsApiService) S3credentialsCreateExecute(r ApiS3credentialsC
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
+		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -141,6 +152,161 @@ func (a *S3CredentialsApiService) S3credentialsCreateExecute(r ApiS3credentialsC
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiS3CredentialsCreateRequest struct {
+	ctx context.Context
+	ApiService *S3CredentialsApiService
+	v string
+	body *BackupCredentialsCreateCommand
+}
+
+func (r ApiS3CredentialsCreateRequest) Body(body BackupCredentialsCreateCommand) ApiS3CredentialsCreateRequest {
+	r.body = &body
+	return r
+}
+
+func (r ApiS3CredentialsCreateRequest) Execute() (*ApiResponse, *http.Response, error) {
+	return r.ApiService.S3CredentialsCreateExecute(r)
+}
+
+/*
+S3CredentialsCreate Add S3 credential
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param v
+ @return ApiS3CredentialsCreateRequest
+*/
+func (a *S3CredentialsApiService) S3CredentialsCreate(ctx context.Context, v string) ApiS3CredentialsCreateRequest {
+	return ApiS3CredentialsCreateRequest{
+		ApiService: a,
+		ctx: ctx,
+		v: v,
+	}
+}
+
+// Execute executes the request
+//  @return ApiResponse
+func (a *S3CredentialsApiService) S3CredentialsCreateExecute(r ApiS3CredentialsCreateRequest) (*ApiResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ApiResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "S3CredentialsApiService.S3CredentialsCreate")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v{v}/S3Credentials"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.body
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["Bearer"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
@@ -175,7 +341,7 @@ func (a *S3CredentialsApiService) S3credentialsCreateExecute(r ApiS3credentialsC
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -200,46 +366,50 @@ func (a *S3CredentialsApiService) S3credentialsCreateExecute(r ApiS3credentialsC
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiS3credentialsDeleteRequest struct {
+type ApiS3CredentialsDeleteRequest struct {
 	ctx context.Context
 	ApiService *S3CredentialsApiService
 	id int32
+	v string
 }
 
-func (r ApiS3credentialsDeleteRequest) Execute() (*http.Response, error) {
-	return r.ApiService.S3credentialsDeleteExecute(r)
+func (r ApiS3CredentialsDeleteRequest) Execute() (*http.Response, error) {
+	return r.ApiService.S3CredentialsDeleteExecute(r)
 }
 
 /*
-S3credentialsDelete Delete s3 credential
+S3CredentialsDelete Remove S3 credentials by Id
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
- @return ApiS3credentialsDeleteRequest
+ @param v
+ @return ApiS3CredentialsDeleteRequest
 */
-func (a *S3CredentialsApiService) S3credentialsDelete(ctx context.Context, id int32) ApiS3credentialsDeleteRequest {
-	return ApiS3credentialsDeleteRequest{
+func (a *S3CredentialsApiService) S3CredentialsDelete(ctx context.Context, id int32, v string) ApiS3CredentialsDeleteRequest {
+	return ApiS3CredentialsDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
+		v: v,
 	}
 }
 
 // Execute executes the request
-func (a *S3CredentialsApiService) S3credentialsDeleteExecute(r ApiS3credentialsDeleteRequest) (*http.Response, error) {
+func (a *S3CredentialsApiService) S3CredentialsDeleteExecute(r ApiS3CredentialsDeleteRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "S3CredentialsApiService.S3credentialsDelete")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "S3CredentialsApiService.S3CredentialsDelete")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/s3credentials/{id}"
+	localVarPath := localBasePath + "/api/v{v}/S3Credentials/{id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -255,7 +425,7 @@ func (a *S3CredentialsApiService) S3credentialsDeleteExecute(r ApiS3credentialsD
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -298,17 +468,6 @@ func (a *S3CredentialsApiService) S3credentialsDeleteExecute(r ApiS3credentialsD
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -342,7 +501,7 @@ func (a *S3CredentialsApiService) S3credentialsDeleteExecute(r ApiS3credentialsD
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -351,6 +510,7 @@ func (a *S3CredentialsApiService) S3credentialsDeleteExecute(r ApiS3credentialsD
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
+			return localVarHTTPResponse, newErr
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -358,194 +518,12 @@ func (a *S3CredentialsApiService) S3credentialsDeleteExecute(r ApiS3credentialsD
 	return localVarHTTPResponse, nil
 }
 
-type ApiS3credentialsDropdownRequest struct {
+type ApiS3CredentialsListRequest struct {
 	ctx context.Context
 	ApiService *S3CredentialsApiService
-	organizationId *int32
-	search *string
-}
-
-func (r ApiS3credentialsDropdownRequest) OrganizationId(organizationId int32) ApiS3credentialsDropdownRequest {
-	r.organizationId = &organizationId
-	return r
-}
-
-func (r ApiS3credentialsDropdownRequest) Search(search string) ApiS3credentialsDropdownRequest {
-	r.search = &search
-	return r
-}
-
-func (r ApiS3credentialsDropdownRequest) Execute() ([]BackupCredentialsForOrganizationEntity, *http.Response, error) {
-	return r.ApiService.S3credentialsDropdownExecute(r)
-}
-
-/*
-S3credentialsDropdown Retrieve all S3 credentials for organization
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiS3credentialsDropdownRequest
-*/
-func (a *S3CredentialsApiService) S3credentialsDropdown(ctx context.Context) ApiS3credentialsDropdownRequest {
-	return ApiS3credentialsDropdownRequest{
-		ApiService: a,
-		ctx: ctx,
-	}
-}
-
-// Execute executes the request
-//  @return []BackupCredentialsForOrganizationEntity
-func (a *S3CredentialsApiService) S3credentialsDropdownExecute(r ApiS3credentialsDropdownRequest) ([]BackupCredentialsForOrganizationEntity, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  []BackupCredentialsForOrganizationEntity
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "S3CredentialsApiService.S3credentialsDropdown")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v1/s3credentials"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	if r.organizationId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "OrganizationId", r.organizationId, "")
-	}
-	if r.search != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Search", r.search, "")
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["Bearer"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiS3credentialsListRequest struct {
-	ctx context.Context
-	ApiService *S3CredentialsApiService
-	limit *int32
+	v string
 	offset *int32
+	limit *int32
 	organizationId *int32
 	search *string
 	searchId *string
@@ -554,66 +532,70 @@ type ApiS3credentialsListRequest struct {
 	sortDirection *string
 }
 
-func (r ApiS3credentialsListRequest) Limit(limit int32) ApiS3credentialsListRequest {
-	r.limit = &limit
-	return r
-}
-
-func (r ApiS3credentialsListRequest) Offset(offset int32) ApiS3credentialsListRequest {
+// Skip elements
+func (r ApiS3CredentialsListRequest) Offset(offset int32) ApiS3CredentialsListRequest {
 	r.offset = &offset
 	return r
 }
 
-func (r ApiS3credentialsListRequest) OrganizationId(organizationId int32) ApiS3credentialsListRequest {
+// Limits user size (by default 50)
+func (r ApiS3CredentialsListRequest) Limit(limit int32) ApiS3CredentialsListRequest {
+	r.limit = &limit
+	return r
+}
+
+func (r ApiS3CredentialsListRequest) OrganizationId(organizationId int32) ApiS3CredentialsListRequest {
 	r.organizationId = &organizationId
 	return r
 }
 
-func (r ApiS3credentialsListRequest) Search(search string) ApiS3credentialsListRequest {
+func (r ApiS3CredentialsListRequest) Search(search string) ApiS3CredentialsListRequest {
 	r.search = &search
 	return r
 }
 
-func (r ApiS3credentialsListRequest) SearchId(searchId string) ApiS3credentialsListRequest {
+func (r ApiS3CredentialsListRequest) SearchId(searchId string) ApiS3CredentialsListRequest {
 	r.searchId = &searchId
 	return r
 }
 
-func (r ApiS3credentialsListRequest) Id(id int32) ApiS3credentialsListRequest {
+func (r ApiS3CredentialsListRequest) Id(id int32) ApiS3CredentialsListRequest {
 	r.id = &id
 	return r
 }
 
-func (r ApiS3credentialsListRequest) SortBy(sortBy string) ApiS3credentialsListRequest {
+func (r ApiS3CredentialsListRequest) SortBy(sortBy string) ApiS3CredentialsListRequest {
 	r.sortBy = &sortBy
 	return r
 }
 
-func (r ApiS3credentialsListRequest) SortDirection(sortDirection string) ApiS3credentialsListRequest {
+func (r ApiS3CredentialsListRequest) SortDirection(sortDirection string) ApiS3CredentialsListRequest {
 	r.sortDirection = &sortDirection
 	return r
 }
 
-func (r ApiS3credentialsListRequest) Execute() (*BackupCredentials, *http.Response, error) {
-	return r.ApiService.S3credentialsListExecute(r)
+func (r ApiS3CredentialsListRequest) Execute() (*BackupCredentials, *http.Response, error) {
+	return r.ApiService.S3CredentialsListExecute(r)
 }
 
 /*
-S3credentialsList Retrieve all S3 credentials
+S3CredentialsList Retrieve all S3 credentials
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiS3credentialsListRequest
+ @param v
+ @return ApiS3CredentialsListRequest
 */
-func (a *S3CredentialsApiService) S3credentialsList(ctx context.Context) ApiS3credentialsListRequest {
-	return ApiS3credentialsListRequest{
+func (a *S3CredentialsApiService) S3CredentialsList(ctx context.Context, v string) ApiS3CredentialsListRequest {
+	return ApiS3CredentialsListRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
 //  @return BackupCredentials
-func (a *S3CredentialsApiService) S3credentialsListExecute(r ApiS3credentialsListRequest) (*BackupCredentials, *http.Response, error) {
+func (a *S3CredentialsApiService) S3CredentialsListExecute(r ApiS3CredentialsListRequest) (*BackupCredentials, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -621,40 +603,41 @@ func (a *S3CredentialsApiService) S3credentialsListExecute(r ApiS3credentialsLis
 		localVarReturnValue  *BackupCredentials
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "S3CredentialsApiService.S3credentialsList")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "S3CredentialsApiService.S3CredentialsList")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/s3credentials/list"
+	localVarPath := localBasePath + "/api/v{v}/S3Credentials/list"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Limit", r.limit, "")
-	}
 	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Offset", r.offset, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
 	}
 	if r.organizationId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "OrganizationId", r.organizationId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "organizationId", r.organizationId, "")
 	}
 	if r.search != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Search", r.search, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "")
 	}
 	if r.searchId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "SearchId", r.searchId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "searchId", r.searchId, "")
 	}
 	if r.id != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Id", r.id, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "")
 	}
 	if r.sortBy != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "SortBy", r.sortBy, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", r.sortBy, "")
 	}
 	if r.sortDirection != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "SortDirection", r.sortDirection, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "sortDirection", r.sortDirection, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -666,7 +649,7 @@ func (a *S3CredentialsApiService) S3credentialsListExecute(r ApiS3credentialsLis
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -709,17 +692,6 @@ func (a *S3CredentialsApiService) S3credentialsListExecute(r ApiS3credentialsLis
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -753,7 +725,7 @@ func (a *S3CredentialsApiService) S3credentialsListExecute(r ApiS3credentialsLis
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -778,58 +750,59 @@ func (a *S3CredentialsApiService) S3credentialsListExecute(r ApiS3credentialsLis
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiS3credentialsLockManagementRequest struct {
+type ApiS3CredentialsLockManagerRequest struct {
 	ctx context.Context
 	ApiService *S3CredentialsApiService
-	backupLockManagerCommand *BackupLockManagerCommand
+	v string
+	body *BackupLockManagerCommand
 }
 
-func (r ApiS3credentialsLockManagementRequest) BackupLockManagerCommand(backupLockManagerCommand BackupLockManagerCommand) ApiS3credentialsLockManagementRequest {
-	r.backupLockManagerCommand = &backupLockManagerCommand
+func (r ApiS3CredentialsLockManagerRequest) Body(body BackupLockManagerCommand) ApiS3CredentialsLockManagerRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiS3credentialsLockManagementRequest) Execute() (*http.Response, error) {
-	return r.ApiService.S3credentialsLockManagementExecute(r)
+func (r ApiS3CredentialsLockManagerRequest) Execute() (*http.Response, error) {
+	return r.ApiService.S3CredentialsLockManagerExecute(r)
 }
 
 /*
-S3credentialsLockManagement Lock/unlock s3 credential
+S3CredentialsLockManager Lock/Unlock S3 credentials
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiS3credentialsLockManagementRequest
+ @param v
+ @return ApiS3CredentialsLockManagerRequest
 */
-func (a *S3CredentialsApiService) S3credentialsLockManagement(ctx context.Context) ApiS3credentialsLockManagementRequest {
-	return ApiS3credentialsLockManagementRequest{
+func (a *S3CredentialsApiService) S3CredentialsLockManager(ctx context.Context, v string) ApiS3CredentialsLockManagerRequest {
+	return ApiS3CredentialsLockManagerRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
-func (a *S3CredentialsApiService) S3credentialsLockManagementExecute(r ApiS3credentialsLockManagementRequest) (*http.Response, error) {
+func (a *S3CredentialsApiService) S3CredentialsLockManagerExecute(r ApiS3CredentialsLockManagerRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "S3CredentialsApiService.S3credentialsLockManagement")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "S3CredentialsApiService.S3CredentialsLockManager")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/s3credentials/lockmanager"
+	localVarPath := localBasePath + "/api/v{v}/S3Credentials/lockmanager"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.backupLockManagerCommand == nil {
-		return nil, reportError("backupLockManagerCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -838,7 +811,7 @@ func (a *S3CredentialsApiService) S3credentialsLockManagementExecute(r ApiS3cred
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -846,7 +819,7 @@ func (a *S3CredentialsApiService) S3credentialsLockManagementExecute(r ApiS3cred
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.backupLockManagerCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -883,17 +856,6 @@ func (a *S3CredentialsApiService) S3credentialsLockManagementExecute(r ApiS3cred
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -927,7 +889,7 @@ func (a *S3CredentialsApiService) S3credentialsLockManagementExecute(r ApiS3cred
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -943,58 +905,59 @@ func (a *S3CredentialsApiService) S3credentialsLockManagementExecute(r ApiS3cred
 	return localVarHTTPResponse, nil
 }
 
-type ApiS3credentialsMakeDeafultRequest struct {
+type ApiS3CredentialsMakeDefaultRequest struct {
 	ctx context.Context
 	ApiService *S3CredentialsApiService
-	backupMakeDefaultCommand *BackupMakeDefaultCommand
+	v string
+	body *BackupMakeDefaultCommand
 }
 
-func (r ApiS3credentialsMakeDeafultRequest) BackupMakeDefaultCommand(backupMakeDefaultCommand BackupMakeDefaultCommand) ApiS3credentialsMakeDeafultRequest {
-	r.backupMakeDefaultCommand = &backupMakeDefaultCommand
+func (r ApiS3CredentialsMakeDefaultRequest) Body(body BackupMakeDefaultCommand) ApiS3CredentialsMakeDefaultRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiS3credentialsMakeDeafultRequest) Execute() (*http.Response, error) {
-	return r.ApiService.S3credentialsMakeDeafultExecute(r)
+func (r ApiS3CredentialsMakeDefaultRequest) Execute() (*http.Response, error) {
+	return r.ApiService.S3CredentialsMakeDefaultExecute(r)
 }
 
 /*
-S3credentialsMakeDeafult Make default s3 credential
+S3CredentialsMakeDefault Make backup credentials default
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiS3credentialsMakeDeafultRequest
+ @param v
+ @return ApiS3CredentialsMakeDefaultRequest
 */
-func (a *S3CredentialsApiService) S3credentialsMakeDeafult(ctx context.Context) ApiS3credentialsMakeDeafultRequest {
-	return ApiS3credentialsMakeDeafultRequest{
+func (a *S3CredentialsApiService) S3CredentialsMakeDefault(ctx context.Context, v string) ApiS3CredentialsMakeDefaultRequest {
+	return ApiS3CredentialsMakeDefaultRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
-func (a *S3CredentialsApiService) S3credentialsMakeDeafultExecute(r ApiS3credentialsMakeDeafultRequest) (*http.Response, error) {
+func (a *S3CredentialsApiService) S3CredentialsMakeDefaultExecute(r ApiS3CredentialsMakeDefaultRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "S3CredentialsApiService.S3credentialsMakeDeafult")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "S3CredentialsApiService.S3CredentialsMakeDefault")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/s3credentials/makedefault"
+	localVarPath := localBasePath + "/api/v{v}/S3Credentials/makedefault"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.backupMakeDefaultCommand == nil {
-		return nil, reportError("backupMakeDefaultCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -1003,7 +966,7 @@ func (a *S3CredentialsApiService) S3credentialsMakeDeafultExecute(r ApiS3credent
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1011,7 +974,7 @@ func (a *S3CredentialsApiService) S3credentialsMakeDeafultExecute(r ApiS3credent
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.backupMakeDefaultCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1048,17 +1011,6 @@ func (a *S3CredentialsApiService) S3credentialsMakeDeafultExecute(r ApiS3credent
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1092,7 +1044,7 @@ func (a *S3CredentialsApiService) S3credentialsMakeDeafultExecute(r ApiS3credent
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1108,55 +1060,59 @@ func (a *S3CredentialsApiService) S3credentialsMakeDeafultExecute(r ApiS3credent
 	return localVarHTTPResponse, nil
 }
 
-type ApiS3credentialsUpdateRequest struct {
+type ApiS3CredentialsUpdateRequest struct {
 	ctx context.Context
 	ApiService *S3CredentialsApiService
-	backupCredentialsUpdateCommand *BackupCredentialsUpdateCommand
+	v string
+	body *BackupCredentialsUpdateCommand
 }
 
-func (r ApiS3credentialsUpdateRequest) BackupCredentialsUpdateCommand(backupCredentialsUpdateCommand BackupCredentialsUpdateCommand) ApiS3credentialsUpdateRequest {
-	r.backupCredentialsUpdateCommand = &backupCredentialsUpdateCommand
+func (r ApiS3CredentialsUpdateRequest) Body(body BackupCredentialsUpdateCommand) ApiS3CredentialsUpdateRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiS3credentialsUpdateRequest) Execute() (*http.Response, error) {
-	return r.ApiService.S3credentialsUpdateExecute(r)
+func (r ApiS3CredentialsUpdateRequest) Execute() (*http.Response, error) {
+	return r.ApiService.S3CredentialsUpdateExecute(r)
 }
 
 /*
-S3credentialsUpdate Update s3 credential
+S3CredentialsUpdate Update S3 credential
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiS3credentialsUpdateRequest
+ @param v
+ @return ApiS3CredentialsUpdateRequest
 */
-func (a *S3CredentialsApiService) S3credentialsUpdate(ctx context.Context) ApiS3credentialsUpdateRequest {
-	return ApiS3credentialsUpdateRequest{
+func (a *S3CredentialsApiService) S3CredentialsUpdate(ctx context.Context, v string) ApiS3CredentialsUpdateRequest {
+	return ApiS3CredentialsUpdateRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
-func (a *S3CredentialsApiService) S3credentialsUpdateExecute(r ApiS3credentialsUpdateRequest) (*http.Response, error) {
+func (a *S3CredentialsApiService) S3CredentialsUpdateExecute(r ApiS3CredentialsUpdateRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "S3CredentialsApiService.S3credentialsUpdate")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "S3CredentialsApiService.S3CredentialsUpdate")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/s3credentials"
+	localVarPath := localBasePath + "/api/v{v}/S3Credentials"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -1165,7 +1121,7 @@ func (a *S3CredentialsApiService) S3credentialsUpdateExecute(r ApiS3credentialsU
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1173,7 +1129,7 @@ func (a *S3CredentialsApiService) S3credentialsUpdateExecute(r ApiS3credentialsU
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.backupCredentialsUpdateCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1210,17 +1166,6 @@ func (a *S3CredentialsApiService) S3credentialsUpdateExecute(r ApiS3credentialsU
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1254,7 +1199,7 @@ func (a *S3CredentialsApiService) S3credentialsUpdateExecute(r ApiS3credentialsU
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

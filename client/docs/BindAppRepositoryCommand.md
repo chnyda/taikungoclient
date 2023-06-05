@@ -50,16 +50,6 @@ SetFilteringElements sets FilteringElements field to given value.
 
 HasFilteringElements returns a boolean if a field has been set.
 
-### SetFilteringElementsNil
-
-`func (o *BindAppRepositoryCommand) SetFilteringElementsNil(b bool)`
-
- SetFilteringElementsNil sets the value for FilteringElements to be an explicit nil
-
-### UnsetFilteringElements
-`func (o *BindAppRepositoryCommand) UnsetFilteringElements()`
-
-UnsetFilteringElements ensures that no value is present for FilteringElements, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

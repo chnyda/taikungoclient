@@ -22,44 +22,52 @@ func Test_taikuncore_AutoscalingApiService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test AutoscalingApiService AutoscalingDisable", func(t *testing.T) {
+	t.Run("Test AutoscalingApiService AutoscalingDisableAutoscaling", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.AutoscalingApi.AutoscalingDisable(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.AutoscalingApi.AutoscalingDisableAutoscaling(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test AutoscalingApiService AutoscalingEdit", func(t *testing.T) {
+	t.Run("Test AutoscalingApiService AutoscalingEditAutoscaling", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.AutoscalingApi.AutoscalingEdit(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.AutoscalingApi.AutoscalingEditAutoscaling(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test AutoscalingApiService AutoscalingEnable", func(t *testing.T) {
+	t.Run("Test AutoscalingApiService AutoscalingEnableAutoscaling", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.AutoscalingApi.AutoscalingEnable(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.AutoscalingApi.AutoscalingEnableAutoscaling(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test AutoscalingApiService AutoscalingSync", func(t *testing.T) {
+	t.Run("Test AutoscalingApiService AutoscalingSyncAutoscaling", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.AutoscalingApi.AutoscalingSync(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.AutoscalingApi.AutoscalingSyncAutoscaling(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)

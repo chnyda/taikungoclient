@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ProjectId** | Pointer to **int32** |  | [optional] 
-**AlertingProfileId** | Pointer to **NullableInt32** |  | [optional] 
+**AlertingProfileId** | Pointer to **int32** |  | [optional] 
 
 ## Methods
 
@@ -76,16 +76,6 @@ SetAlertingProfileId sets AlertingProfileId field to given value.
 
 HasAlertingProfileId returns a boolean if a field has been set.
 
-### SetAlertingProfileIdNil
-
-`func (o *AttachDetachAlertingProfileCommand) SetAlertingProfileIdNil(b bool)`
-
- SetAlertingProfileIdNil sets the value for AlertingProfileId to be an explicit nil
-
-### UnsetAlertingProfileId
-`func (o *AttachDetachAlertingProfileCommand) UnsetAlertingProfileId()`
-
-UnsetAlertingProfileId ensures that no value is present for AlertingProfileId, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

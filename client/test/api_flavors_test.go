@@ -22,13 +22,14 @@ func Test_taikuncore_FlavorsApiService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test FlavorsApiService FlavorsAwsInstanceTypes", func(t *testing.T) {
+	t.Run("Test FlavorsApiService FlavorsAwsFlavors", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var cloudId int32
+		var v string
 
-		resp, httpRes, err := apiClient.FlavorsApi.FlavorsAwsInstanceTypes(context.Background(), cloudId).Execute()
+		resp, httpRes, err := apiClient.FlavorsApi.FlavorsAwsFlavors(context.Background(), cloudId, v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -36,13 +37,14 @@ func Test_taikuncore_FlavorsApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test FlavorsApiService FlavorsAzureVmSizes", func(t *testing.T) {
+	t.Run("Test FlavorsApiService FlavorsAzureFlavors", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var cloudId int32
+		var v string
 
-		resp, httpRes, err := apiClient.FlavorsApi.FlavorsAzureVmSizes(context.Background(), cloudId).Execute()
+		resp, httpRes, err := apiClient.FlavorsApi.FlavorsAzureFlavors(context.Background(), cloudId, v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -54,18 +56,22 @@ func Test_taikuncore_FlavorsApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.FlavorsApi.FlavorsBindToProject(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.FlavorsApi.FlavorsBindToProject(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test FlavorsApiService FlavorsDropdownFlavors", func(t *testing.T) {
+	t.Run("Test FlavorsApiService FlavorsDropdownRecordDtos", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.FlavorsApi.FlavorsDropdownFlavors(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.FlavorsApi.FlavorsDropdownRecordDtos(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -73,13 +79,28 @@ func Test_taikuncore_FlavorsApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test FlavorsApiService FlavorsGoogleMachineTypes", func(t *testing.T) {
+	t.Run("Test FlavorsApiService FlavorsGetSelectedFlavorsForProject", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var v string
+
+		resp, httpRes, err := apiClient.FlavorsApi.FlavorsGetSelectedFlavorsForProject(context.Background(), v).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test FlavorsApiService FlavorsGoogleFlavors", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var cloudId int32
+		var v string
 
-		resp, httpRes, err := apiClient.FlavorsApi.FlavorsGoogleMachineTypes(context.Background(), cloudId).Execute()
+		resp, httpRes, err := apiClient.FlavorsApi.FlavorsGoogleFlavors(context.Background(), cloudId, v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -92,8 +113,9 @@ func Test_taikuncore_FlavorsApiService(t *testing.T) {
 		t.Skip("skip test")  // remove to run test
 
 		var cloudId int32
+		var v string
 
-		resp, httpRes, err := apiClient.FlavorsApi.FlavorsOpenstackFlavors(context.Background(), cloudId).Execute()
+		resp, httpRes, err := apiClient.FlavorsApi.FlavorsOpenstackFlavors(context.Background(), cloudId, v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -106,20 +128,9 @@ func Test_taikuncore_FlavorsApiService(t *testing.T) {
 		t.Skip("skip test")  // remove to run test
 
 		var cloudId int32
+		var v string
 
-		resp, httpRes, err := apiClient.FlavorsApi.FlavorsProxmoxFlavors(context.Background(), cloudId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test FlavorsApiService FlavorsSelectedFlavorsForProject", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		resp, httpRes, err := apiClient.FlavorsApi.FlavorsSelectedFlavorsForProject(context.Background()).Execute()
+		resp, httpRes, err := apiClient.FlavorsApi.FlavorsProxmoxFlavors(context.Background(), cloudId, v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -132,8 +143,9 @@ func Test_taikuncore_FlavorsApiService(t *testing.T) {
 		t.Skip("skip test")  // remove to run test
 
 		var cloudId int32
+		var v string
 
-		resp, httpRes, err := apiClient.FlavorsApi.FlavorsTanzuFlavors(context.Background(), cloudId).Execute()
+		resp, httpRes, err := apiClient.FlavorsApi.FlavorsTanzuFlavors(context.Background(), cloudId, v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -145,7 +157,9 @@ func Test_taikuncore_FlavorsApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.FlavorsApi.FlavorsUnbindFromProject(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.FlavorsApi.FlavorsUnbindFromProject(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)

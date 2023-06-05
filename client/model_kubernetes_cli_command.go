@@ -21,6 +21,7 @@ var _ MappedNullable = &KubernetesCliCommand{}
 // KubernetesCliCommand struct for KubernetesCliCommand
 type KubernetesCliCommand struct {
 	ProjectId *int32 `json:"projectId,omitempty"`
+	KubeConfigId *int32 `json:"kubeConfigId,omitempty"`
 }
 
 // NewKubernetesCliCommand instantiates a new KubernetesCliCommand object
@@ -72,6 +73,38 @@ func (o *KubernetesCliCommand) SetProjectId(v int32) {
 	o.ProjectId = &v
 }
 
+// GetKubeConfigId returns the KubeConfigId field value if set, zero value otherwise.
+func (o *KubernetesCliCommand) GetKubeConfigId() int32 {
+	if o == nil || IsNil(o.KubeConfigId) {
+		var ret int32
+		return ret
+	}
+	return *o.KubeConfigId
+}
+
+// GetKubeConfigIdOk returns a tuple with the KubeConfigId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *KubernetesCliCommand) GetKubeConfigIdOk() (*int32, bool) {
+	if o == nil || IsNil(o.KubeConfigId) {
+		return nil, false
+	}
+	return o.KubeConfigId, true
+}
+
+// HasKubeConfigId returns a boolean if a field has been set.
+func (o *KubernetesCliCommand) HasKubeConfigId() bool {
+	if o != nil && !IsNil(o.KubeConfigId) {
+		return true
+	}
+
+	return false
+}
+
+// SetKubeConfigId gets a reference to the given int32 and assigns it to the KubeConfigId field.
+func (o *KubernetesCliCommand) SetKubeConfigId(v int32) {
+	o.KubeConfigId = &v
+}
+
 func (o KubernetesCliCommand) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -84,6 +117,9 @@ func (o KubernetesCliCommand) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.ProjectId) {
 		toSerialize["projectId"] = o.ProjectId
+	}
+	if !IsNil(o.KubeConfigId) {
+		toSerialize["kubeConfigId"] = o.KubeConfigId
 	}
 	return toSerialize, nil
 }

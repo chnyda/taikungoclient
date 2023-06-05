@@ -22,9 +22,9 @@ var _ MappedNullable = &UpdateServerCommand{}
 type UpdateServerCommand struct {
 	Id int32 `json:"id"`
 	Ip string `json:"ip"`
-	InstanceId NullableString `json:"instanceId,omitempty"`
-	ProviderID NullableString `json:"providerID,omitempty"`
-	AwsHostName NullableString `json:"awsHostName,omitempty"`
+	InstanceId *string `json:"instanceId,omitempty"`
+	ProviderID *string `json:"providerID,omitempty"`
+	AwsHostName *string `json:"awsHostName,omitempty"`
 }
 
 // NewUpdateServerCommand instantiates a new UpdateServerCommand object
@@ -94,130 +94,100 @@ func (o *UpdateServerCommand) SetIp(v string) {
 	o.Ip = v
 }
 
-// GetInstanceId returns the InstanceId field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetInstanceId returns the InstanceId field value if set, zero value otherwise.
 func (o *UpdateServerCommand) GetInstanceId() string {
-	if o == nil || IsNil(o.InstanceId.Get()) {
+	if o == nil || IsNil(o.InstanceId) {
 		var ret string
 		return ret
 	}
-	return *o.InstanceId.Get()
+	return *o.InstanceId
 }
 
 // GetInstanceIdOk returns a tuple with the InstanceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateServerCommand) GetInstanceIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.InstanceId) {
 		return nil, false
 	}
-	return o.InstanceId.Get(), o.InstanceId.IsSet()
+	return o.InstanceId, true
 }
 
 // HasInstanceId returns a boolean if a field has been set.
 func (o *UpdateServerCommand) HasInstanceId() bool {
-	if o != nil && o.InstanceId.IsSet() {
+	if o != nil && !IsNil(o.InstanceId) {
 		return true
 	}
 
 	return false
 }
 
-// SetInstanceId gets a reference to the given NullableString and assigns it to the InstanceId field.
+// SetInstanceId gets a reference to the given string and assigns it to the InstanceId field.
 func (o *UpdateServerCommand) SetInstanceId(v string) {
-	o.InstanceId.Set(&v)
-}
-// SetInstanceIdNil sets the value for InstanceId to be an explicit nil
-func (o *UpdateServerCommand) SetInstanceIdNil() {
-	o.InstanceId.Set(nil)
+	o.InstanceId = &v
 }
 
-// UnsetInstanceId ensures that no value is present for InstanceId, not even an explicit nil
-func (o *UpdateServerCommand) UnsetInstanceId() {
-	o.InstanceId.Unset()
-}
-
-// GetProviderID returns the ProviderID field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetProviderID returns the ProviderID field value if set, zero value otherwise.
 func (o *UpdateServerCommand) GetProviderID() string {
-	if o == nil || IsNil(o.ProviderID.Get()) {
+	if o == nil || IsNil(o.ProviderID) {
 		var ret string
 		return ret
 	}
-	return *o.ProviderID.Get()
+	return *o.ProviderID
 }
 
 // GetProviderIDOk returns a tuple with the ProviderID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateServerCommand) GetProviderIDOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ProviderID) {
 		return nil, false
 	}
-	return o.ProviderID.Get(), o.ProviderID.IsSet()
+	return o.ProviderID, true
 }
 
 // HasProviderID returns a boolean if a field has been set.
 func (o *UpdateServerCommand) HasProviderID() bool {
-	if o != nil && o.ProviderID.IsSet() {
+	if o != nil && !IsNil(o.ProviderID) {
 		return true
 	}
 
 	return false
 }
 
-// SetProviderID gets a reference to the given NullableString and assigns it to the ProviderID field.
+// SetProviderID gets a reference to the given string and assigns it to the ProviderID field.
 func (o *UpdateServerCommand) SetProviderID(v string) {
-	o.ProviderID.Set(&v)
-}
-// SetProviderIDNil sets the value for ProviderID to be an explicit nil
-func (o *UpdateServerCommand) SetProviderIDNil() {
-	o.ProviderID.Set(nil)
+	o.ProviderID = &v
 }
 
-// UnsetProviderID ensures that no value is present for ProviderID, not even an explicit nil
-func (o *UpdateServerCommand) UnsetProviderID() {
-	o.ProviderID.Unset()
-}
-
-// GetAwsHostName returns the AwsHostName field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetAwsHostName returns the AwsHostName field value if set, zero value otherwise.
 func (o *UpdateServerCommand) GetAwsHostName() string {
-	if o == nil || IsNil(o.AwsHostName.Get()) {
+	if o == nil || IsNil(o.AwsHostName) {
 		var ret string
 		return ret
 	}
-	return *o.AwsHostName.Get()
+	return *o.AwsHostName
 }
 
 // GetAwsHostNameOk returns a tuple with the AwsHostName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateServerCommand) GetAwsHostNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.AwsHostName) {
 		return nil, false
 	}
-	return o.AwsHostName.Get(), o.AwsHostName.IsSet()
+	return o.AwsHostName, true
 }
 
 // HasAwsHostName returns a boolean if a field has been set.
 func (o *UpdateServerCommand) HasAwsHostName() bool {
-	if o != nil && o.AwsHostName.IsSet() {
+	if o != nil && !IsNil(o.AwsHostName) {
 		return true
 	}
 
 	return false
 }
 
-// SetAwsHostName gets a reference to the given NullableString and assigns it to the AwsHostName field.
+// SetAwsHostName gets a reference to the given string and assigns it to the AwsHostName field.
 func (o *UpdateServerCommand) SetAwsHostName(v string) {
-	o.AwsHostName.Set(&v)
-}
-// SetAwsHostNameNil sets the value for AwsHostName to be an explicit nil
-func (o *UpdateServerCommand) SetAwsHostNameNil() {
-	o.AwsHostName.Set(nil)
-}
-
-// UnsetAwsHostName ensures that no value is present for AwsHostName, not even an explicit nil
-func (o *UpdateServerCommand) UnsetAwsHostName() {
-	o.AwsHostName.Unset()
+	o.AwsHostName = &v
 }
 
 func (o UpdateServerCommand) MarshalJSON() ([]byte, error) {
@@ -232,14 +202,14 @@ func (o UpdateServerCommand) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["id"] = o.Id
 	toSerialize["ip"] = o.Ip
-	if o.InstanceId.IsSet() {
-		toSerialize["instanceId"] = o.InstanceId.Get()
+	if !IsNil(o.InstanceId) {
+		toSerialize["instanceId"] = o.InstanceId
 	}
-	if o.ProviderID.IsSet() {
-		toSerialize["providerID"] = o.ProviderID.Get()
+	if !IsNil(o.ProviderID) {
+		toSerialize["providerID"] = o.ProviderID
 	}
-	if o.AwsHostName.IsSet() {
-		toSerialize["awsHostName"] = o.AwsHostName.Get()
+	if !IsNil(o.AwsHostName) {
+		toSerialize["awsHostName"] = o.AwsHostName
 	}
 	return toSerialize, nil
 }

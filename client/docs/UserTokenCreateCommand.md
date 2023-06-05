@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ExpireDate** | Pointer to **NullableTime** |  | [optional] 
+**ExpireDate** | Pointer to **time.Time** |  | [optional] 
 **IsReadonly** | Pointer to **bool** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
 **Endpoints** | Pointer to [**[]AvailableEndpointData**](AvailableEndpointData.md) |  | [optional] 
 **BindALL** | Pointer to **bool** |  | [optional] 
 
@@ -54,16 +54,6 @@ SetExpireDate sets ExpireDate field to given value.
 
 HasExpireDate returns a boolean if a field has been set.
 
-### SetExpireDateNil
-
-`func (o *UserTokenCreateCommand) SetExpireDateNil(b bool)`
-
- SetExpireDateNil sets the value for ExpireDate to be an explicit nil
-
-### UnsetExpireDate
-`func (o *UserTokenCreateCommand) UnsetExpireDate()`
-
-UnsetExpireDate ensures that no value is present for ExpireDate, not even an explicit nil
 ### GetIsReadonly
 
 `func (o *UserTokenCreateCommand) GetIsReadonly() bool`
@@ -114,16 +104,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *UserTokenCreateCommand) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *UserTokenCreateCommand) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetEndpoints
 
 `func (o *UserTokenCreateCommand) GetEndpoints() []AvailableEndpointData`
@@ -149,16 +129,6 @@ SetEndpoints sets Endpoints field to given value.
 
 HasEndpoints returns a boolean if a field has been set.
 
-### SetEndpointsNil
-
-`func (o *UserTokenCreateCommand) SetEndpointsNil(b bool)`
-
- SetEndpointsNil sets the value for Endpoints to be an explicit nil
-
-### UnsetEndpoints
-`func (o *UserTokenCreateCommand) UnsetEndpoints()`
-
-UnsetEndpoints ensures that no value is present for Endpoints, not even an explicit nil
 ### GetBindALL
 
 `func (o *UserTokenCreateCommand) GetBindALL() bool`

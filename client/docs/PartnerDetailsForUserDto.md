@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **NullableString** |  | [optional] 
-**Logo** | Pointer to **NullableString** |  | [optional] 
-**Link** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**Logo** | Pointer to **string** |  | [optional] 
+**Link** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **int32** |  | [optional] 
 
 ## Methods
@@ -53,16 +53,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *PartnerDetailsForUserDto) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *PartnerDetailsForUserDto) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetLogo
 
 `func (o *PartnerDetailsForUserDto) GetLogo() string`
@@ -88,16 +78,6 @@ SetLogo sets Logo field to given value.
 
 HasLogo returns a boolean if a field has been set.
 
-### SetLogoNil
-
-`func (o *PartnerDetailsForUserDto) SetLogoNil(b bool)`
-
- SetLogoNil sets the value for Logo to be an explicit nil
-
-### UnsetLogo
-`func (o *PartnerDetailsForUserDto) UnsetLogo()`
-
-UnsetLogo ensures that no value is present for Logo, not even an explicit nil
 ### GetLink
 
 `func (o *PartnerDetailsForUserDto) GetLink() string`
@@ -123,16 +103,6 @@ SetLink sets Link field to given value.
 
 HasLink returns a boolean if a field has been set.
 
-### SetLinkNil
-
-`func (o *PartnerDetailsForUserDto) SetLinkNil(b bool)`
-
- SetLinkNil sets the value for Link to be an explicit nil
-
-### UnsetLink
-`func (o *PartnerDetailsForUserDto) UnsetLink()`
-
-UnsetLink ensures that no value is present for Link, not even an explicit nil
 ### GetId
 
 `func (o *PartnerDetailsForUserDto) GetId() int32`

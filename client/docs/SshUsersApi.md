@@ -4,16 +4,16 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**SshusersCreate**](SshUsersApi.md#SshusersCreate) | **Post** /api/v1/sshusers/create | Create access profile ssh user
-[**SshusersDelete**](SshUsersApi.md#SshusersDelete) | **Post** /api/v1/sshusers/delete | Delete access profile ssh user
-[**SshusersEdit**](SshUsersApi.md#SshusersEdit) | **Post** /api/v1/sshusers/edit | Edit access profile ssh user
-[**SshusersList**](SshUsersApi.md#SshusersList) | **Get** /api/v1/sshusers/list/{accessProfileId} | List ssh user by access profile id
+[**SshUsersCreate**](SshUsersApi.md#SshUsersCreate) | **Post** /api/v{v}/SshUsers/create | Create access profile ssh user
+[**SshUsersDelete**](SshUsersApi.md#SshUsersDelete) | **Post** /api/v{v}/SshUsers/delete | Delete access profile ssh user
+[**SshUsersEdit**](SshUsersApi.md#SshUsersEdit) | **Post** /api/v{v}/SshUsers/edit | Edit access profile ssh user
+[**SshUsersList**](SshUsersApi.md#SshUsersList) | **Get** /api/v{v}/SshUsers/list/{accessProfileId} | List ssh users by profile id
 
 
 
-## SshusersCreate
+## SshUsersCreate
 
-> ApiResponse SshusersCreate(ctx).CreateSshUserCommand(createSshUserCommand).Execute()
+> ApiResponse SshUsersCreate(ctx, v).Body(body).Execute()
 
 Create access profile ssh user
 
@@ -30,32 +30,38 @@ import (
 )
 
 func main() {
-    createSshUserCommand := *openapiclient.NewCreateSshUserCommand("Name_example", "SshPublicKey_example", int32(123)) // CreateSshUserCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewCreateSshUserCommand("Name_example", "SshPublicKey_example", int32(123)) // CreateSshUserCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SshUsersApi.SshusersCreate(context.Background()).CreateSshUserCommand(createSshUserCommand).Execute()
+    resp, r, err := apiClient.SshUsersApi.SshUsersCreate(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SshUsersApi.SshusersCreate``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `SshUsersApi.SshUsersCreate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `SshusersCreate`: ApiResponse
-    fmt.Fprintf(os.Stdout, "Response from `SshUsersApi.SshusersCreate`: %v\n", resp)
+    // response from `SshUsersCreate`: ApiResponse
+    fmt.Fprintf(os.Stdout, "Response from `SshUsersApi.SshUsersCreate`: %v\n", resp)
 }
 ```
 
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiSshusersCreateRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiSshUsersCreateRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createSshUserCommand** | [**CreateSshUserCommand**](CreateSshUserCommand.md) |  | 
+
+ **body** | [**CreateSshUserCommand**](CreateSshUserCommand.md) |  | 
 
 ### Return type
 
@@ -67,17 +73,17 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## SshusersDelete
+## SshUsersDelete
 
-> SshusersDelete(ctx).DeleteSshUserCommand(deleteSshUserCommand).Execute()
+> SshUsersDelete(ctx, v).Body(body).Execute()
 
 Delete access profile ssh user
 
@@ -94,13 +100,14 @@ import (
 )
 
 func main() {
-    deleteSshUserCommand := *openapiclient.NewDeleteSshUserCommand() // DeleteSshUserCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewDeleteSshUserCommand() // DeleteSshUserCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.SshUsersApi.SshusersDelete(context.Background()).DeleteSshUserCommand(deleteSshUserCommand).Execute()
+    r, err := apiClient.SshUsersApi.SshUsersDelete(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SshUsersApi.SshusersDelete``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `SshUsersApi.SshUsersDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -109,15 +116,20 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiSshusersDeleteRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiSshUsersDeleteRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **deleteSshUserCommand** | [**DeleteSshUserCommand**](DeleteSshUserCommand.md) |  | 
+
+ **body** | [**DeleteSshUserCommand**](DeleteSshUserCommand.md) |  | 
 
 ### Return type
 
@@ -129,17 +141,17 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## SshusersEdit
+## SshUsersEdit
 
-> SshusersEdit(ctx).EditSshUserCommand(editSshUserCommand).Execute()
+> SshUsersEdit(ctx, v).Body(body).Execute()
 
 Edit access profile ssh user
 
@@ -156,13 +168,14 @@ import (
 )
 
 func main() {
-    editSshUserCommand := *openapiclient.NewEditSshUserCommand(int32(123), "Name_example", "SshPublicKey_example", int32(123)) // EditSshUserCommand |  (optional)
+    v := "v_example" // string | 
+    body := *openapiclient.NewEditSshUserCommand(int32(123), "Name_example", "SshPublicKey_example", int32(123)) // EditSshUserCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.SshUsersApi.SshusersEdit(context.Background()).EditSshUserCommand(editSshUserCommand).Execute()
+    r, err := apiClient.SshUsersApi.SshUsersEdit(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SshUsersApi.SshusersEdit``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `SshUsersApi.SshUsersEdit``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -171,15 +184,20 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiSshusersEditRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiSshUsersEditRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **editSshUserCommand** | [**EditSshUserCommand**](EditSshUserCommand.md) |  | 
+
+ **body** | [**EditSshUserCommand**](EditSshUserCommand.md) |  | 
 
 ### Return type
 
@@ -191,19 +209,19 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## SshusersList
+## SshUsersList
 
-> []SshUsersListDto SshusersList(ctx, accessProfileId).Search(search).Execute()
+> []SshUsersListDto SshUsersList(ctx, accessProfileId, v).Search(search).Execute()
 
-List ssh user by access profile id
+List ssh users by profile id
 
 ### Example
 
@@ -219,17 +237,18 @@ import (
 
 func main() {
     accessProfileId := int32(56) // int32 | 
+    v := "v_example" // string | 
     search := "search_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SshUsersApi.SshusersList(context.Background(), accessProfileId).Search(search).Execute()
+    resp, r, err := apiClient.SshUsersApi.SshUsersList(context.Background(), accessProfileId, v).Search(search).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SshUsersApi.SshusersList``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `SshUsersApi.SshUsersList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `SshusersList`: []SshUsersListDto
-    fmt.Fprintf(os.Stdout, "Response from `SshUsersApi.SshusersList`: %v\n", resp)
+    // response from `SshUsersList`: []SshUsersListDto
+    fmt.Fprintf(os.Stdout, "Response from `SshUsersApi.SshUsersList`: %v\n", resp)
 }
 ```
 
@@ -240,14 +259,16 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **accessProfileId** | **int32** |  | 
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiSshusersListRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiSshUsersListRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
 
  **search** | **string** |  | 
 
@@ -262,7 +283,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

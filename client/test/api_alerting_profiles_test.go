@@ -22,84 +22,68 @@ func Test_taikuncore_AlertingProfilesApiService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test AlertingProfilesApiService AlertingprofilesAssignEmail", func(t *testing.T) {
+	t.Run("Test AlertingProfilesApiService AlertingProfilesAlertingProfilesForOrganizationList", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var v string
+
+		resp, httpRes, err := apiClient.AlertingProfilesApi.AlertingProfilesAlertingProfilesForOrganizationList(context.Background(), v).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test AlertingProfilesApiService AlertingProfilesAssignEmails", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id int32
+		var v string
 
-		httpRes, err := apiClient.AlertingProfilesApi.AlertingprofilesAssignEmail(context.Background(), id).Execute()
+		httpRes, err := apiClient.AlertingProfilesApi.AlertingProfilesAssignEmails(context.Background(), id, v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test AlertingProfilesApiService AlertingprofilesAssignWebhooks", func(t *testing.T) {
+	t.Run("Test AlertingProfilesApiService AlertingProfilesAssignWebhooks", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id int32
+		var v string
 
-		httpRes, err := apiClient.AlertingProfilesApi.AlertingprofilesAssignWebhooks(context.Background(), id).Execute()
-
-		require.Nil(t, err)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test AlertingProfilesApiService AlertingprofilesAttach", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		httpRes, err := apiClient.AlertingProfilesApi.AlertingprofilesAttach(context.Background()).Execute()
+		httpRes, err := apiClient.AlertingProfilesApi.AlertingProfilesAssignWebhooks(context.Background(), id, v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test AlertingProfilesApiService AlertingprofilesCreate", func(t *testing.T) {
+	t.Run("Test AlertingProfilesApiService AlertingProfilesAttach", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.AlertingProfilesApi.AlertingprofilesCreate(context.Background()).Execute()
+		var v string
 
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test AlertingProfilesApiService AlertingprofilesDelete", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var id int32
-
-		httpRes, err := apiClient.AlertingProfilesApi.AlertingprofilesDelete(context.Background(), id).Execute()
+		httpRes, err := apiClient.AlertingProfilesApi.AlertingProfilesAttach(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test AlertingProfilesApiService AlertingprofilesDetach", func(t *testing.T) {
+	t.Run("Test AlertingProfilesApiService AlertingProfilesCreate", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.AlertingProfilesApi.AlertingprofilesDetach(context.Background()).Execute()
+		var v string
 
-		require.Nil(t, err)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test AlertingProfilesApiService AlertingprofilesDropdown", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		resp, httpRes, err := apiClient.AlertingProfilesApi.AlertingprofilesDropdown(context.Background()).Execute()
+		resp, httpRes, err := apiClient.AlertingProfilesApi.AlertingProfilesCreate(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -107,11 +91,39 @@ func Test_taikuncore_AlertingProfilesApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test AlertingProfilesApiService AlertingprofilesEdit", func(t *testing.T) {
+	t.Run("Test AlertingProfilesApiService AlertingProfilesDelete", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.AlertingProfilesApi.AlertingprofilesEdit(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.AlertingProfilesApi.AlertingProfilesDelete(context.Background(), v).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test AlertingProfilesApiService AlertingProfilesDetach", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var v string
+
+		httpRes, err := apiClient.AlertingProfilesApi.AlertingProfilesDetach(context.Background(), v).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test AlertingProfilesApiService AlertingProfilesEdit", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var v string
+
+		resp, httpRes, err := apiClient.AlertingProfilesApi.AlertingProfilesEdit(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -119,11 +131,13 @@ func Test_taikuncore_AlertingProfilesApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test AlertingProfilesApiService AlertingprofilesList", func(t *testing.T) {
+	t.Run("Test AlertingProfilesApiService AlertingProfilesList", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.AlertingProfilesApi.AlertingprofilesList(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.AlertingProfilesApi.AlertingProfilesList(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -131,22 +145,26 @@ func Test_taikuncore_AlertingProfilesApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test AlertingProfilesApiService AlertingprofilesLockManager", func(t *testing.T) {
+	t.Run("Test AlertingProfilesApiService AlertingProfilesLockManager", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.AlertingProfilesApi.AlertingprofilesLockManager(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.AlertingProfilesApi.AlertingProfilesLockManager(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test AlertingProfilesApiService AlertingprofilesVerify", func(t *testing.T) {
+	t.Run("Test AlertingProfilesApiService AlertingProfilesVerifyWebhook", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.AlertingProfilesApi.AlertingprofilesVerify(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.AlertingProfilesApi.AlertingProfilesVerifyWebhook(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)

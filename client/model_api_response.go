@@ -20,11 +20,11 @@ var _ MappedNullable = &ApiResponse{}
 
 // ApiResponse struct for ApiResponse
 type ApiResponse struct {
-	Id NullableString `json:"id,omitempty"`
+	Id *string `json:"id,omitempty"`
 	Status *int32 `json:"status,omitempty"`
-	Message NullableString `json:"message,omitempty"`
+	Message *string `json:"message,omitempty"`
 	IsError *bool `json:"isError,omitempty"`
-	Result interface{} `json:"result,omitempty"`
+	Result map[string]interface{} `json:"result,omitempty"`
 }
 
 // NewApiResponse instantiates a new ApiResponse object
@@ -44,46 +44,36 @@ func NewApiResponseWithDefaults() *ApiResponse {
 	return &this
 }
 
-// GetId returns the Id field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetId returns the Id field value if set, zero value otherwise.
 func (o *ApiResponse) GetId() string {
-	if o == nil || IsNil(o.Id.Get()) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
-	return *o.Id.Get()
+	return *o.Id
 }
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ApiResponse) GetIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
-	return o.Id.Get(), o.Id.IsSet()
+	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *ApiResponse) HasId() bool {
-	if o != nil && o.Id.IsSet() {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
 	return false
 }
 
-// SetId gets a reference to the given NullableString and assigns it to the Id field.
+// SetId gets a reference to the given string and assigns it to the Id field.
 func (o *ApiResponse) SetId(v string) {
-	o.Id.Set(&v)
-}
-// SetIdNil sets the value for Id to be an explicit nil
-func (o *ApiResponse) SetIdNil() {
-	o.Id.Set(nil)
-}
-
-// UnsetId ensures that no value is present for Id, not even an explicit nil
-func (o *ApiResponse) UnsetId() {
-	o.Id.Unset()
+	o.Id = &v
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
@@ -118,46 +108,36 @@ func (o *ApiResponse) SetStatus(v int32) {
 	o.Status = &v
 }
 
-// GetMessage returns the Message field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetMessage returns the Message field value if set, zero value otherwise.
 func (o *ApiResponse) GetMessage() string {
-	if o == nil || IsNil(o.Message.Get()) {
+	if o == nil || IsNil(o.Message) {
 		var ret string
 		return ret
 	}
-	return *o.Message.Get()
+	return *o.Message
 }
 
 // GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ApiResponse) GetMessageOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Message) {
 		return nil, false
 	}
-	return o.Message.Get(), o.Message.IsSet()
+	return o.Message, true
 }
 
 // HasMessage returns a boolean if a field has been set.
 func (o *ApiResponse) HasMessage() bool {
-	if o != nil && o.Message.IsSet() {
+	if o != nil && !IsNil(o.Message) {
 		return true
 	}
 
 	return false
 }
 
-// SetMessage gets a reference to the given NullableString and assigns it to the Message field.
+// SetMessage gets a reference to the given string and assigns it to the Message field.
 func (o *ApiResponse) SetMessage(v string) {
-	o.Message.Set(&v)
-}
-// SetMessageNil sets the value for Message to be an explicit nil
-func (o *ApiResponse) SetMessageNil() {
-	o.Message.Set(nil)
-}
-
-// UnsetMessage ensures that no value is present for Message, not even an explicit nil
-func (o *ApiResponse) UnsetMessage() {
-	o.Message.Unset()
+	o.Message = &v
 }
 
 // GetIsError returns the IsError field value if set, zero value otherwise.
@@ -192,10 +172,10 @@ func (o *ApiResponse) SetIsError(v bool) {
 	o.IsError = &v
 }
 
-// GetResult returns the Result field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ApiResponse) GetResult() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetResult returns the Result field value if set, zero value otherwise.
+func (o *ApiResponse) GetResult() map[string]interface{} {
+	if o == nil || IsNil(o.Result) {
+		var ret map[string]interface{}
 		return ret
 	}
 	return o.Result
@@ -203,25 +183,24 @@ func (o *ApiResponse) GetResult() interface{} {
 
 // GetResultOk returns a tuple with the Result field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ApiResponse) GetResultOk() (*interface{}, bool) {
+func (o *ApiResponse) GetResultOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.Result) {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
-	return &o.Result, true
+	return o.Result, true
 }
 
 // HasResult returns a boolean if a field has been set.
 func (o *ApiResponse) HasResult() bool {
-	if o != nil && IsNil(o.Result) {
+	if o != nil && !IsNil(o.Result) {
 		return true
 	}
 
 	return false
 }
 
-// SetResult gets a reference to the given interface{} and assigns it to the Result field.
-func (o *ApiResponse) SetResult(v interface{}) {
+// SetResult gets a reference to the given map[string]interface{} and assigns it to the Result field.
+func (o *ApiResponse) SetResult(v map[string]interface{}) {
 	o.Result = v
 }
 
@@ -235,19 +214,19 @@ func (o ApiResponse) MarshalJSON() ([]byte, error) {
 
 func (o ApiResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Id.IsSet() {
-		toSerialize["id"] = o.Id.Get()
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
 	}
 	if !IsNil(o.Status) {
 		toSerialize["status"] = o.Status
 	}
-	if o.Message.IsSet() {
-		toSerialize["message"] = o.Message.Get()
+	if !IsNil(o.Message) {
+		toSerialize["message"] = o.Message
 	}
 	if !IsNil(o.IsError) {
 		toSerialize["isError"] = o.IsError
 	}
-	if o.Result != nil {
+	if !IsNil(o.Result) {
 		toSerialize["result"] = o.Result
 	}
 	return toSerialize, nil

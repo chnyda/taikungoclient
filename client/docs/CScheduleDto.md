@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Status** | Pointer to [**Status**](Status.md) |  | [optional] 
-**MetadataName** | Pointer to **NullableString** |  | [optional] 
-**Namespace** | Pointer to **NullableString** |  | [optional] 
-**CreatedAt** | Pointer to **NullableTime** |  | [optional] 
-**Schedule** | Pointer to **NullableString** |  | [optional] 
-**Ttl** | Pointer to **NullableString** |  | [optional] 
-**LastBackup** | Pointer to **NullableTime** |  | [optional] 
-**Phase** | Pointer to **NullableString** |  | [optional] 
+**MetadataName** | Pointer to **string** |  | [optional] 
+**Namespace** | Pointer to **string** |  | [optional] 
+**CreatedAt** | Pointer to **time.Time** |  | [optional] 
+**Schedule** | Pointer to **string** |  | [optional] 
+**Ttl** | Pointer to **string** |  | [optional] 
+**LastBackup** | Pointer to **time.Time** |  | [optional] 
+**Phase** | Pointer to **string** |  | [optional] 
 **ExcludedNamespaces** | Pointer to **[]string** |  | [optional] 
 **IncludedNamespaces** | Pointer to **[]string** |  | [optional] 
 
@@ -84,16 +84,6 @@ SetMetadataName sets MetadataName field to given value.
 
 HasMetadataName returns a boolean if a field has been set.
 
-### SetMetadataNameNil
-
-`func (o *CScheduleDto) SetMetadataNameNil(b bool)`
-
- SetMetadataNameNil sets the value for MetadataName to be an explicit nil
-
-### UnsetMetadataName
-`func (o *CScheduleDto) UnsetMetadataName()`
-
-UnsetMetadataName ensures that no value is present for MetadataName, not even an explicit nil
 ### GetNamespace
 
 `func (o *CScheduleDto) GetNamespace() string`
@@ -119,16 +109,6 @@ SetNamespace sets Namespace field to given value.
 
 HasNamespace returns a boolean if a field has been set.
 
-### SetNamespaceNil
-
-`func (o *CScheduleDto) SetNamespaceNil(b bool)`
-
- SetNamespaceNil sets the value for Namespace to be an explicit nil
-
-### UnsetNamespace
-`func (o *CScheduleDto) UnsetNamespace()`
-
-UnsetNamespace ensures that no value is present for Namespace, not even an explicit nil
 ### GetCreatedAt
 
 `func (o *CScheduleDto) GetCreatedAt() time.Time`
@@ -154,16 +134,6 @@ SetCreatedAt sets CreatedAt field to given value.
 
 HasCreatedAt returns a boolean if a field has been set.
 
-### SetCreatedAtNil
-
-`func (o *CScheduleDto) SetCreatedAtNil(b bool)`
-
- SetCreatedAtNil sets the value for CreatedAt to be an explicit nil
-
-### UnsetCreatedAt
-`func (o *CScheduleDto) UnsetCreatedAt()`
-
-UnsetCreatedAt ensures that no value is present for CreatedAt, not even an explicit nil
 ### GetSchedule
 
 `func (o *CScheduleDto) GetSchedule() string`
@@ -189,16 +159,6 @@ SetSchedule sets Schedule field to given value.
 
 HasSchedule returns a boolean if a field has been set.
 
-### SetScheduleNil
-
-`func (o *CScheduleDto) SetScheduleNil(b bool)`
-
- SetScheduleNil sets the value for Schedule to be an explicit nil
-
-### UnsetSchedule
-`func (o *CScheduleDto) UnsetSchedule()`
-
-UnsetSchedule ensures that no value is present for Schedule, not even an explicit nil
 ### GetTtl
 
 `func (o *CScheduleDto) GetTtl() string`
@@ -224,16 +184,6 @@ SetTtl sets Ttl field to given value.
 
 HasTtl returns a boolean if a field has been set.
 
-### SetTtlNil
-
-`func (o *CScheduleDto) SetTtlNil(b bool)`
-
- SetTtlNil sets the value for Ttl to be an explicit nil
-
-### UnsetTtl
-`func (o *CScheduleDto) UnsetTtl()`
-
-UnsetTtl ensures that no value is present for Ttl, not even an explicit nil
 ### GetLastBackup
 
 `func (o *CScheduleDto) GetLastBackup() time.Time`
@@ -259,16 +209,6 @@ SetLastBackup sets LastBackup field to given value.
 
 HasLastBackup returns a boolean if a field has been set.
 
-### SetLastBackupNil
-
-`func (o *CScheduleDto) SetLastBackupNil(b bool)`
-
- SetLastBackupNil sets the value for LastBackup to be an explicit nil
-
-### UnsetLastBackup
-`func (o *CScheduleDto) UnsetLastBackup()`
-
-UnsetLastBackup ensures that no value is present for LastBackup, not even an explicit nil
 ### GetPhase
 
 `func (o *CScheduleDto) GetPhase() string`
@@ -294,16 +234,6 @@ SetPhase sets Phase field to given value.
 
 HasPhase returns a boolean if a field has been set.
 
-### SetPhaseNil
-
-`func (o *CScheduleDto) SetPhaseNil(b bool)`
-
- SetPhaseNil sets the value for Phase to be an explicit nil
-
-### UnsetPhase
-`func (o *CScheduleDto) UnsetPhase()`
-
-UnsetPhase ensures that no value is present for Phase, not even an explicit nil
 ### GetExcludedNamespaces
 
 `func (o *CScheduleDto) GetExcludedNamespaces() []string`
@@ -329,16 +259,6 @@ SetExcludedNamespaces sets ExcludedNamespaces field to given value.
 
 HasExcludedNamespaces returns a boolean if a field has been set.
 
-### SetExcludedNamespacesNil
-
-`func (o *CScheduleDto) SetExcludedNamespacesNil(b bool)`
-
- SetExcludedNamespacesNil sets the value for ExcludedNamespaces to be an explicit nil
-
-### UnsetExcludedNamespaces
-`func (o *CScheduleDto) UnsetExcludedNamespaces()`
-
-UnsetExcludedNamespaces ensures that no value is present for ExcludedNamespaces, not even an explicit nil
 ### GetIncludedNamespaces
 
 `func (o *CScheduleDto) GetIncludedNamespaces() []string`
@@ -364,16 +284,6 @@ SetIncludedNamespaces sets IncludedNamespaces field to given value.
 
 HasIncludedNamespaces returns a boolean if a field has been set.
 
-### SetIncludedNamespacesNil
-
-`func (o *CScheduleDto) SetIncludedNamespacesNil(b bool)`
-
- SetIncludedNamespacesNil sets the value for IncludedNamespaces to be an explicit nil
-
-### UnsetIncludedNamespaces
-`func (o *CScheduleDto) UnsetIncludedNamespaces()`
-
-UnsetIncludedNamespaces ensures that no value is present for IncludedNamespaces, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

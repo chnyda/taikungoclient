@@ -73,9 +73,9 @@ func (o *PurgeCommand) SetProjectId(v int32) {
 	o.ProjectId = &v
 }
 
-// GetServerIds returns the ServerIds field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetServerIds returns the ServerIds field value if set, zero value otherwise.
 func (o *PurgeCommand) GetServerIds() []int32 {
-	if o == nil {
+	if o == nil || IsNil(o.ServerIds) {
 		var ret []int32
 		return ret
 	}
@@ -84,7 +84,6 @@ func (o *PurgeCommand) GetServerIds() []int32 {
 
 // GetServerIdsOk returns a tuple with the ServerIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *PurgeCommand) GetServerIdsOk() ([]int32, bool) {
 	if o == nil || IsNil(o.ServerIds) {
 		return nil, false
@@ -94,7 +93,7 @@ func (o *PurgeCommand) GetServerIdsOk() ([]int32, bool) {
 
 // HasServerIds returns a boolean if a field has been set.
 func (o *PurgeCommand) HasServerIds() bool {
-	if o != nil && IsNil(o.ServerIds) {
+	if o != nil && !IsNil(o.ServerIds) {
 		return true
 	}
 
@@ -119,7 +118,7 @@ func (o PurgeCommand) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ProjectId) {
 		toSerialize["projectId"] = o.ProjectId
 	}
-	if o.ServerIds != nil {
+	if !IsNil(o.ServerIds) {
 		toSerialize["serverIds"] = o.ServerIds
 	}
 	return toSerialize, nil

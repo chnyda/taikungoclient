@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
-**PublicKey** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**PublicKey** | Pointer to **string** |  | [optional] 
 **Revision** | Pointer to **int32** |  | [optional] 
 **StandAloneProfileSecurityGroups** | Pointer to [**[]StandAloneProfileSecurityGroupFullDto**](StandAloneProfileSecurityGroupFullDto.md) |  | [optional] 
 
@@ -79,16 +79,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *StandAloneProfileFullDto) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *StandAloneProfileFullDto) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetPublicKey
 
 `func (o *StandAloneProfileFullDto) GetPublicKey() string`
@@ -114,16 +104,6 @@ SetPublicKey sets PublicKey field to given value.
 
 HasPublicKey returns a boolean if a field has been set.
 
-### SetPublicKeyNil
-
-`func (o *StandAloneProfileFullDto) SetPublicKeyNil(b bool)`
-
- SetPublicKeyNil sets the value for PublicKey to be an explicit nil
-
-### UnsetPublicKey
-`func (o *StandAloneProfileFullDto) UnsetPublicKey()`
-
-UnsetPublicKey ensures that no value is present for PublicKey, not even an explicit nil
 ### GetRevision
 
 `func (o *StandAloneProfileFullDto) GetRevision() int32`
@@ -174,16 +154,6 @@ SetStandAloneProfileSecurityGroups sets StandAloneProfileSecurityGroups field to
 
 HasStandAloneProfileSecurityGroups returns a boolean if a field has been set.
 
-### SetStandAloneProfileSecurityGroupsNil
-
-`func (o *StandAloneProfileFullDto) SetStandAloneProfileSecurityGroupsNil(b bool)`
-
- SetStandAloneProfileSecurityGroupsNil sets the value for StandAloneProfileSecurityGroups to be an explicit nil
-
-### UnsetStandAloneProfileSecurityGroups
-`func (o *StandAloneProfileFullDto) UnsetStandAloneProfileSecurityGroups()`
-
-UnsetStandAloneProfileSecurityGroups ensures that no value is present for StandAloneProfileSecurityGroups, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

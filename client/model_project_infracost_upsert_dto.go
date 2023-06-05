@@ -20,7 +20,7 @@ var _ MappedNullable = &ProjectInfracostUpsertDto{}
 
 // ProjectInfracostUpsertDto struct for ProjectInfracostUpsertDto
 type ProjectInfracostUpsertDto struct {
-	Details NullableString `json:"details,omitempty"`
+	Details *string `json:"details,omitempty"`
 }
 
 // NewProjectInfracostUpsertDto instantiates a new ProjectInfracostUpsertDto object
@@ -40,46 +40,36 @@ func NewProjectInfracostUpsertDtoWithDefaults() *ProjectInfracostUpsertDto {
 	return &this
 }
 
-// GetDetails returns the Details field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetDetails returns the Details field value if set, zero value otherwise.
 func (o *ProjectInfracostUpsertDto) GetDetails() string {
-	if o == nil || IsNil(o.Details.Get()) {
+	if o == nil || IsNil(o.Details) {
 		var ret string
 		return ret
 	}
-	return *o.Details.Get()
+	return *o.Details
 }
 
 // GetDetailsOk returns a tuple with the Details field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProjectInfracostUpsertDto) GetDetailsOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Details) {
 		return nil, false
 	}
-	return o.Details.Get(), o.Details.IsSet()
+	return o.Details, true
 }
 
 // HasDetails returns a boolean if a field has been set.
 func (o *ProjectInfracostUpsertDto) HasDetails() bool {
-	if o != nil && o.Details.IsSet() {
+	if o != nil && !IsNil(o.Details) {
 		return true
 	}
 
 	return false
 }
 
-// SetDetails gets a reference to the given NullableString and assigns it to the Details field.
+// SetDetails gets a reference to the given string and assigns it to the Details field.
 func (o *ProjectInfracostUpsertDto) SetDetails(v string) {
-	o.Details.Set(&v)
-}
-// SetDetailsNil sets the value for Details to be an explicit nil
-func (o *ProjectInfracostUpsertDto) SetDetailsNil() {
-	o.Details.Set(nil)
-}
-
-// UnsetDetails ensures that no value is present for Details, not even an explicit nil
-func (o *ProjectInfracostUpsertDto) UnsetDetails() {
-	o.Details.Unset()
+	o.Details = &v
 }
 
 func (o ProjectInfracostUpsertDto) MarshalJSON() ([]byte, error) {
@@ -92,8 +82,8 @@ func (o ProjectInfracostUpsertDto) MarshalJSON() ([]byte, error) {
 
 func (o ProjectInfracostUpsertDto) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Details.IsSet() {
-		toSerialize["details"] = o.Details.Get()
+	if !IsNil(o.Details) {
+		toSerialize["details"] = o.Details
 	}
 	return toSerialize, nil
 }

@@ -4,20 +4,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **NullableString** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
-**Status** | Pointer to **NullableString** |  | [optional] 
-**CreatedAt** | Pointer to **NullableString** |  | [optional] 
+**Id** | Pointer to **string** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**Status** | Pointer to **string** |  | [optional] 
+**CreatedAt** | Pointer to **string** |  | [optional] 
 **OrganizationId** | Pointer to **int32** |  | [optional] 
-**OrganizationName** | Pointer to **NullableString** |  | [optional] 
-**CreatedBy** | Pointer to **NullableString** |  | [optional] 
-**CurrentStatusDate** | Pointer to **NullableString** |  | [optional] 
-**LastModifier** | Pointer to **NullableString** |  | [optional] 
+**OrganizationName** | Pointer to **string** |  | [optional] 
+**CreatedBy** | Pointer to **string** |  | [optional] 
+**CurrentStatusDate** | Pointer to **string** |  | [optional] 
+**LastModifier** | Pointer to **string** |  | [optional] 
 **Number** | Pointer to **int32** |  | [optional] 
-**PartnerLogo** | Pointer to **NullableString** |  | [optional] 
-**Description** | Pointer to **NullableString** |  | [optional] 
-**PartnerName** | Pointer to **NullableString** |  | [optional] 
-**UserId** | Pointer to **NullableString** |  | [optional] 
+**PartnerLogo** | Pointer to **string** |  | [optional] 
+**Description** | Pointer to **string** |  | [optional] 
+**PartnerName** | Pointer to **string** |  | [optional] 
+**UserId** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -63,16 +63,6 @@ SetId sets Id field to given value.
 
 HasId returns a boolean if a field has been set.
 
-### SetIdNil
-
-`func (o *AllTicketsDto) SetIdNil(b bool)`
-
- SetIdNil sets the value for Id to be an explicit nil
-
-### UnsetId
-`func (o *AllTicketsDto) UnsetId()`
-
-UnsetId ensures that no value is present for Id, not even an explicit nil
 ### GetName
 
 `func (o *AllTicketsDto) GetName() string`
@@ -98,16 +88,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *AllTicketsDto) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *AllTicketsDto) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetStatus
 
 `func (o *AllTicketsDto) GetStatus() string`
@@ -133,16 +113,6 @@ SetStatus sets Status field to given value.
 
 HasStatus returns a boolean if a field has been set.
 
-### SetStatusNil
-
-`func (o *AllTicketsDto) SetStatusNil(b bool)`
-
- SetStatusNil sets the value for Status to be an explicit nil
-
-### UnsetStatus
-`func (o *AllTicketsDto) UnsetStatus()`
-
-UnsetStatus ensures that no value is present for Status, not even an explicit nil
 ### GetCreatedAt
 
 `func (o *AllTicketsDto) GetCreatedAt() string`
@@ -168,16 +138,6 @@ SetCreatedAt sets CreatedAt field to given value.
 
 HasCreatedAt returns a boolean if a field has been set.
 
-### SetCreatedAtNil
-
-`func (o *AllTicketsDto) SetCreatedAtNil(b bool)`
-
- SetCreatedAtNil sets the value for CreatedAt to be an explicit nil
-
-### UnsetCreatedAt
-`func (o *AllTicketsDto) UnsetCreatedAt()`
-
-UnsetCreatedAt ensures that no value is present for CreatedAt, not even an explicit nil
 ### GetOrganizationId
 
 `func (o *AllTicketsDto) GetOrganizationId() int32`
@@ -228,16 +188,6 @@ SetOrganizationName sets OrganizationName field to given value.
 
 HasOrganizationName returns a boolean if a field has been set.
 
-### SetOrganizationNameNil
-
-`func (o *AllTicketsDto) SetOrganizationNameNil(b bool)`
-
- SetOrganizationNameNil sets the value for OrganizationName to be an explicit nil
-
-### UnsetOrganizationName
-`func (o *AllTicketsDto) UnsetOrganizationName()`
-
-UnsetOrganizationName ensures that no value is present for OrganizationName, not even an explicit nil
 ### GetCreatedBy
 
 `func (o *AllTicketsDto) GetCreatedBy() string`
@@ -263,16 +213,6 @@ SetCreatedBy sets CreatedBy field to given value.
 
 HasCreatedBy returns a boolean if a field has been set.
 
-### SetCreatedByNil
-
-`func (o *AllTicketsDto) SetCreatedByNil(b bool)`
-
- SetCreatedByNil sets the value for CreatedBy to be an explicit nil
-
-### UnsetCreatedBy
-`func (o *AllTicketsDto) UnsetCreatedBy()`
-
-UnsetCreatedBy ensures that no value is present for CreatedBy, not even an explicit nil
 ### GetCurrentStatusDate
 
 `func (o *AllTicketsDto) GetCurrentStatusDate() string`
@@ -298,16 +238,6 @@ SetCurrentStatusDate sets CurrentStatusDate field to given value.
 
 HasCurrentStatusDate returns a boolean if a field has been set.
 
-### SetCurrentStatusDateNil
-
-`func (o *AllTicketsDto) SetCurrentStatusDateNil(b bool)`
-
- SetCurrentStatusDateNil sets the value for CurrentStatusDate to be an explicit nil
-
-### UnsetCurrentStatusDate
-`func (o *AllTicketsDto) UnsetCurrentStatusDate()`
-
-UnsetCurrentStatusDate ensures that no value is present for CurrentStatusDate, not even an explicit nil
 ### GetLastModifier
 
 `func (o *AllTicketsDto) GetLastModifier() string`
@@ -333,16 +263,6 @@ SetLastModifier sets LastModifier field to given value.
 
 HasLastModifier returns a boolean if a field has been set.
 
-### SetLastModifierNil
-
-`func (o *AllTicketsDto) SetLastModifierNil(b bool)`
-
- SetLastModifierNil sets the value for LastModifier to be an explicit nil
-
-### UnsetLastModifier
-`func (o *AllTicketsDto) UnsetLastModifier()`
-
-UnsetLastModifier ensures that no value is present for LastModifier, not even an explicit nil
 ### GetNumber
 
 `func (o *AllTicketsDto) GetNumber() int32`
@@ -393,16 +313,6 @@ SetPartnerLogo sets PartnerLogo field to given value.
 
 HasPartnerLogo returns a boolean if a field has been set.
 
-### SetPartnerLogoNil
-
-`func (o *AllTicketsDto) SetPartnerLogoNil(b bool)`
-
- SetPartnerLogoNil sets the value for PartnerLogo to be an explicit nil
-
-### UnsetPartnerLogo
-`func (o *AllTicketsDto) UnsetPartnerLogo()`
-
-UnsetPartnerLogo ensures that no value is present for PartnerLogo, not even an explicit nil
 ### GetDescription
 
 `func (o *AllTicketsDto) GetDescription() string`
@@ -428,16 +338,6 @@ SetDescription sets Description field to given value.
 
 HasDescription returns a boolean if a field has been set.
 
-### SetDescriptionNil
-
-`func (o *AllTicketsDto) SetDescriptionNil(b bool)`
-
- SetDescriptionNil sets the value for Description to be an explicit nil
-
-### UnsetDescription
-`func (o *AllTicketsDto) UnsetDescription()`
-
-UnsetDescription ensures that no value is present for Description, not even an explicit nil
 ### GetPartnerName
 
 `func (o *AllTicketsDto) GetPartnerName() string`
@@ -463,16 +363,6 @@ SetPartnerName sets PartnerName field to given value.
 
 HasPartnerName returns a boolean if a field has been set.
 
-### SetPartnerNameNil
-
-`func (o *AllTicketsDto) SetPartnerNameNil(b bool)`
-
- SetPartnerNameNil sets the value for PartnerName to be an explicit nil
-
-### UnsetPartnerName
-`func (o *AllTicketsDto) UnsetPartnerName()`
-
-UnsetPartnerName ensures that no value is present for PartnerName, not even an explicit nil
 ### GetUserId
 
 `func (o *AllTicketsDto) GetUserId() string`
@@ -498,16 +388,6 @@ SetUserId sets UserId field to given value.
 
 HasUserId returns a boolean if a field has been set.
 
-### SetUserIdNil
-
-`func (o *AllTicketsDto) SetUserIdNil(b bool)`
-
- SetUserIdNil sets the value for UserId to be an explicit nil
-
-### UnsetUserId
-`func (o *AllTicketsDto) UnsetUserId()`
-
-UnsetUserId ensures that no value is present for UserId, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

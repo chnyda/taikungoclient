@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Region** | Pointer to **NullableString** |  | [optional] 
-**AwsAccessKeyId** | Pointer to **NullableString** |  | [optional] 
-**AwsSecretAccessKey** | Pointer to **NullableString** |  | [optional] 
-**CloudId** | Pointer to **NullableInt32** |  | [optional] 
+**Region** | Pointer to **string** |  | [optional] 
+**AwsAccessKeyId** | Pointer to **string** |  | [optional] 
+**AwsSecretAccessKey** | Pointer to **string** |  | [optional] 
+**CloudId** | Pointer to **int32** |  | [optional] 
 
 ## Methods
 
@@ -53,16 +53,6 @@ SetRegion sets Region field to given value.
 
 HasRegion returns a boolean if a field has been set.
 
-### SetRegionNil
-
-`func (o *AmazonAvailabilityZonesCommand) SetRegionNil(b bool)`
-
- SetRegionNil sets the value for Region to be an explicit nil
-
-### UnsetRegion
-`func (o *AmazonAvailabilityZonesCommand) UnsetRegion()`
-
-UnsetRegion ensures that no value is present for Region, not even an explicit nil
 ### GetAwsAccessKeyId
 
 `func (o *AmazonAvailabilityZonesCommand) GetAwsAccessKeyId() string`
@@ -88,16 +78,6 @@ SetAwsAccessKeyId sets AwsAccessKeyId field to given value.
 
 HasAwsAccessKeyId returns a boolean if a field has been set.
 
-### SetAwsAccessKeyIdNil
-
-`func (o *AmazonAvailabilityZonesCommand) SetAwsAccessKeyIdNil(b bool)`
-
- SetAwsAccessKeyIdNil sets the value for AwsAccessKeyId to be an explicit nil
-
-### UnsetAwsAccessKeyId
-`func (o *AmazonAvailabilityZonesCommand) UnsetAwsAccessKeyId()`
-
-UnsetAwsAccessKeyId ensures that no value is present for AwsAccessKeyId, not even an explicit nil
 ### GetAwsSecretAccessKey
 
 `func (o *AmazonAvailabilityZonesCommand) GetAwsSecretAccessKey() string`
@@ -123,16 +103,6 @@ SetAwsSecretAccessKey sets AwsSecretAccessKey field to given value.
 
 HasAwsSecretAccessKey returns a boolean if a field has been set.
 
-### SetAwsSecretAccessKeyNil
-
-`func (o *AmazonAvailabilityZonesCommand) SetAwsSecretAccessKeyNil(b bool)`
-
- SetAwsSecretAccessKeyNil sets the value for AwsSecretAccessKey to be an explicit nil
-
-### UnsetAwsSecretAccessKey
-`func (o *AmazonAvailabilityZonesCommand) UnsetAwsSecretAccessKey()`
-
-UnsetAwsSecretAccessKey ensures that no value is present for AwsSecretAccessKey, not even an explicit nil
 ### GetCloudId
 
 `func (o *AmazonAvailabilityZonesCommand) GetCloudId() int32`
@@ -158,16 +128,6 @@ SetCloudId sets CloudId field to given value.
 
 HasCloudId returns a boolean if a field has been set.
 
-### SetCloudIdNil
-
-`func (o *AmazonAvailabilityZonesCommand) SetCloudIdNil(b bool)`
-
- SetCloudIdNil sets the value for CloudId to be an explicit nil
-
-### UnsetCloudId
-`func (o *AmazonAvailabilityZonesCommand) UnsetCloudId()`
-
-UnsetCloudId ensures that no value is present for CloudId, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

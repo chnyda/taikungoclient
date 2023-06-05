@@ -4,21 +4,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**PackageId** | Pointer to **NullableString** |  | [optional] 
-**CatalogAppId** | Pointer to **NullableInt32** |  | [optional] 
-**InstalledInstanceCount** | Pointer to **NullableInt32** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
-**NormalizedName** | Pointer to **NullableString** |  | [optional] 
-**LogoImageId** | Pointer to **NullableString** |  | [optional] 
+**PackageId** | Pointer to **string** |  | [optional] 
+**CatalogAppId** | Pointer to **int32** |  | [optional] 
+**InstalledInstanceCount** | Pointer to **int32** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**NormalizedName** | Pointer to **string** |  | [optional] 
+**LogoImageId** | Pointer to **string** |  | [optional] 
 **Stars** | Pointer to **int64** |  | [optional] 
-**Description** | Pointer to **NullableString** |  | [optional] 
-**Version** | Pointer to **NullableString** |  | [optional] 
-**AppVersion** | Pointer to **NullableString** |  | [optional] 
+**Description** | Pointer to **string** |  | [optional] 
+**Version** | Pointer to **string** |  | [optional] 
+**AppVersion** | Pointer to **string** |  | [optional] 
 **Deprecated** | Pointer to **bool** |  | [optional] 
 **Signed** | Pointer to **bool** |  | [optional] 
 **IsLocked** | Pointer to **bool** |  | [optional] 
 **SecurityReportSummary** | Pointer to [**SecurityReportSummary**](SecurityReportSummary.md) |  | [optional] 
-**Ts** | Pointer to **NullableString** |  | [optional] 
+**Ts** | Pointer to **string** |  | [optional] 
 **Repository** | Pointer to [**Repository**](Repository.md) |  | [optional] 
 
 ## Methods
@@ -65,16 +65,6 @@ SetPackageId sets PackageId field to given value.
 
 HasPackageId returns a boolean if a field has been set.
 
-### SetPackageIdNil
-
-`func (o *AvailablePackagesDto) SetPackageIdNil(b bool)`
-
- SetPackageIdNil sets the value for PackageId to be an explicit nil
-
-### UnsetPackageId
-`func (o *AvailablePackagesDto) UnsetPackageId()`
-
-UnsetPackageId ensures that no value is present for PackageId, not even an explicit nil
 ### GetCatalogAppId
 
 `func (o *AvailablePackagesDto) GetCatalogAppId() int32`
@@ -100,16 +90,6 @@ SetCatalogAppId sets CatalogAppId field to given value.
 
 HasCatalogAppId returns a boolean if a field has been set.
 
-### SetCatalogAppIdNil
-
-`func (o *AvailablePackagesDto) SetCatalogAppIdNil(b bool)`
-
- SetCatalogAppIdNil sets the value for CatalogAppId to be an explicit nil
-
-### UnsetCatalogAppId
-`func (o *AvailablePackagesDto) UnsetCatalogAppId()`
-
-UnsetCatalogAppId ensures that no value is present for CatalogAppId, not even an explicit nil
 ### GetInstalledInstanceCount
 
 `func (o *AvailablePackagesDto) GetInstalledInstanceCount() int32`
@@ -135,16 +115,6 @@ SetInstalledInstanceCount sets InstalledInstanceCount field to given value.
 
 HasInstalledInstanceCount returns a boolean if a field has been set.
 
-### SetInstalledInstanceCountNil
-
-`func (o *AvailablePackagesDto) SetInstalledInstanceCountNil(b bool)`
-
- SetInstalledInstanceCountNil sets the value for InstalledInstanceCount to be an explicit nil
-
-### UnsetInstalledInstanceCount
-`func (o *AvailablePackagesDto) UnsetInstalledInstanceCount()`
-
-UnsetInstalledInstanceCount ensures that no value is present for InstalledInstanceCount, not even an explicit nil
 ### GetName
 
 `func (o *AvailablePackagesDto) GetName() string`
@@ -170,16 +140,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *AvailablePackagesDto) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *AvailablePackagesDto) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetNormalizedName
 
 `func (o *AvailablePackagesDto) GetNormalizedName() string`
@@ -205,16 +165,6 @@ SetNormalizedName sets NormalizedName field to given value.
 
 HasNormalizedName returns a boolean if a field has been set.
 
-### SetNormalizedNameNil
-
-`func (o *AvailablePackagesDto) SetNormalizedNameNil(b bool)`
-
- SetNormalizedNameNil sets the value for NormalizedName to be an explicit nil
-
-### UnsetNormalizedName
-`func (o *AvailablePackagesDto) UnsetNormalizedName()`
-
-UnsetNormalizedName ensures that no value is present for NormalizedName, not even an explicit nil
 ### GetLogoImageId
 
 `func (o *AvailablePackagesDto) GetLogoImageId() string`
@@ -240,16 +190,6 @@ SetLogoImageId sets LogoImageId field to given value.
 
 HasLogoImageId returns a boolean if a field has been set.
 
-### SetLogoImageIdNil
-
-`func (o *AvailablePackagesDto) SetLogoImageIdNil(b bool)`
-
- SetLogoImageIdNil sets the value for LogoImageId to be an explicit nil
-
-### UnsetLogoImageId
-`func (o *AvailablePackagesDto) UnsetLogoImageId()`
-
-UnsetLogoImageId ensures that no value is present for LogoImageId, not even an explicit nil
 ### GetStars
 
 `func (o *AvailablePackagesDto) GetStars() int64`
@@ -300,16 +240,6 @@ SetDescription sets Description field to given value.
 
 HasDescription returns a boolean if a field has been set.
 
-### SetDescriptionNil
-
-`func (o *AvailablePackagesDto) SetDescriptionNil(b bool)`
-
- SetDescriptionNil sets the value for Description to be an explicit nil
-
-### UnsetDescription
-`func (o *AvailablePackagesDto) UnsetDescription()`
-
-UnsetDescription ensures that no value is present for Description, not even an explicit nil
 ### GetVersion
 
 `func (o *AvailablePackagesDto) GetVersion() string`
@@ -335,16 +265,6 @@ SetVersion sets Version field to given value.
 
 HasVersion returns a boolean if a field has been set.
 
-### SetVersionNil
-
-`func (o *AvailablePackagesDto) SetVersionNil(b bool)`
-
- SetVersionNil sets the value for Version to be an explicit nil
-
-### UnsetVersion
-`func (o *AvailablePackagesDto) UnsetVersion()`
-
-UnsetVersion ensures that no value is present for Version, not even an explicit nil
 ### GetAppVersion
 
 `func (o *AvailablePackagesDto) GetAppVersion() string`
@@ -370,16 +290,6 @@ SetAppVersion sets AppVersion field to given value.
 
 HasAppVersion returns a boolean if a field has been set.
 
-### SetAppVersionNil
-
-`func (o *AvailablePackagesDto) SetAppVersionNil(b bool)`
-
- SetAppVersionNil sets the value for AppVersion to be an explicit nil
-
-### UnsetAppVersion
-`func (o *AvailablePackagesDto) UnsetAppVersion()`
-
-UnsetAppVersion ensures that no value is present for AppVersion, not even an explicit nil
 ### GetDeprecated
 
 `func (o *AvailablePackagesDto) GetDeprecated() bool`
@@ -505,16 +415,6 @@ SetTs sets Ts field to given value.
 
 HasTs returns a boolean if a field has been set.
 
-### SetTsNil
-
-`func (o *AvailablePackagesDto) SetTsNil(b bool)`
-
- SetTsNil sets the value for Ts to be an explicit nil
-
-### UnsetTs
-`func (o *AvailablePackagesDto) UnsetTs()`
-
-UnsetTs ensures that no value is present for Ts, not even an explicit nil
 ### GetRepository
 
 `func (o *AvailablePackagesDto) GetRepository() Repository`

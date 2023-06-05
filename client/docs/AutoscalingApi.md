@@ -4,16 +4,16 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**AutoscalingDisable**](AutoscalingApi.md#AutoscalingDisable) | **Post** /api/v1/autoscaling/disable | Disable autoscaling
-[**AutoscalingEdit**](AutoscalingApi.md#AutoscalingEdit) | **Post** /api/v1/autoscaling/edit | Edit autoscaling
-[**AutoscalingEnable**](AutoscalingApi.md#AutoscalingEnable) | **Post** /api/v1/autoscaling/enable | Enable autoscaling
-[**AutoscalingSync**](AutoscalingApi.md#AutoscalingSync) | **Post** /api/v1/autoscaling/sync | Sync autoscaling
+[**AutoscalingDisableAutoscaling**](AutoscalingApi.md#AutoscalingDisableAutoscaling) | **Post** /api/v{v}/Autoscaling/disable | Disable autoscaling
+[**AutoscalingEditAutoscaling**](AutoscalingApi.md#AutoscalingEditAutoscaling) | **Post** /api/v{v}/Autoscaling/edit | Edit autoscaling
+[**AutoscalingEnableAutoscaling**](AutoscalingApi.md#AutoscalingEnableAutoscaling) | **Post** /api/v{v}/Autoscaling/enable | Enable autoscaling
+[**AutoscalingSyncAutoscaling**](AutoscalingApi.md#AutoscalingSyncAutoscaling) | **Post** /api/v{v}/Autoscaling/sync | Sync autoscaling
 
 
 
-## AutoscalingDisable
+## AutoscalingDisableAutoscaling
 
-> AutoscalingDisable(ctx).DisableAutoscalingCommand(disableAutoscalingCommand).Execute()
+> AutoscalingDisableAutoscaling(ctx, v).Body(body).Execute()
 
 Disable autoscaling
 
@@ -30,13 +30,14 @@ import (
 )
 
 func main() {
-    disableAutoscalingCommand := *openapiclient.NewDisableAutoscalingCommand() // DisableAutoscalingCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewDisableAutoscalingCommand() // DisableAutoscalingCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.AutoscalingApi.AutoscalingDisable(context.Background()).DisableAutoscalingCommand(disableAutoscalingCommand).Execute()
+    r, err := apiClient.AutoscalingApi.AutoscalingDisableAutoscaling(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AutoscalingApi.AutoscalingDisable``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AutoscalingApi.AutoscalingDisableAutoscaling``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -45,15 +46,20 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAutoscalingDisableRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiAutoscalingDisableAutoscalingRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **disableAutoscalingCommand** | [**DisableAutoscalingCommand**](DisableAutoscalingCommand.md) |  | 
+
+ **body** | [**DisableAutoscalingCommand**](DisableAutoscalingCommand.md) |  | 
 
 ### Return type
 
@@ -65,17 +71,17 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## AutoscalingEdit
+## AutoscalingEditAutoscaling
 
-> AutoscalingEdit(ctx).EditAutoscalingCommand(editAutoscalingCommand).Execute()
+> AutoscalingEditAutoscaling(ctx, v).Body(body).Execute()
 
 Edit autoscaling
 
@@ -92,13 +98,14 @@ import (
 )
 
 func main() {
-    editAutoscalingCommand := *openapiclient.NewEditAutoscalingCommand(int32(123)) // EditAutoscalingCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewEditAutoscalingCommand(int32(123)) // EditAutoscalingCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.AutoscalingApi.AutoscalingEdit(context.Background()).EditAutoscalingCommand(editAutoscalingCommand).Execute()
+    r, err := apiClient.AutoscalingApi.AutoscalingEditAutoscaling(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AutoscalingApi.AutoscalingEdit``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AutoscalingApi.AutoscalingEditAutoscaling``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -107,15 +114,20 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAutoscalingEditRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiAutoscalingEditAutoscalingRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **editAutoscalingCommand** | [**EditAutoscalingCommand**](EditAutoscalingCommand.md) |  | 
+
+ **body** | [**EditAutoscalingCommand**](EditAutoscalingCommand.md) |  | 
 
 ### Return type
 
@@ -127,17 +139,17 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## AutoscalingEnable
+## AutoscalingEnableAutoscaling
 
-> AutoscalingEnable(ctx).EnableAutoscalingCommand(enableAutoscalingCommand).Execute()
+> AutoscalingEnableAutoscaling(ctx, v).Body(body).Execute()
 
 Enable autoscaling
 
@@ -154,13 +166,14 @@ import (
 )
 
 func main() {
-    enableAutoscalingCommand := *openapiclient.NewEnableAutoscalingCommand(int32(123), "AutoscalingGroupName_example", "Flavor_example") // EnableAutoscalingCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewEnableAutoscalingCommand(int32(123), "AutoscalingGroupName_example", "Flavor_example") // EnableAutoscalingCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.AutoscalingApi.AutoscalingEnable(context.Background()).EnableAutoscalingCommand(enableAutoscalingCommand).Execute()
+    r, err := apiClient.AutoscalingApi.AutoscalingEnableAutoscaling(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AutoscalingApi.AutoscalingEnable``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AutoscalingApi.AutoscalingEnableAutoscaling``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -169,15 +182,20 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAutoscalingEnableRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiAutoscalingEnableAutoscalingRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **enableAutoscalingCommand** | [**EnableAutoscalingCommand**](EnableAutoscalingCommand.md) |  | 
+
+ **body** | [**EnableAutoscalingCommand**](EnableAutoscalingCommand.md) |  | 
 
 ### Return type
 
@@ -189,17 +207,17 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## AutoscalingSync
+## AutoscalingSyncAutoscaling
 
-> AutoscalingSync(ctx).AutoscalingSyncCommand(autoscalingSyncCommand).Execute()
+> AutoscalingSyncAutoscaling(ctx, v).Body(body).Execute()
 
 Sync autoscaling
 
@@ -216,13 +234,14 @@ import (
 )
 
 func main() {
-    autoscalingSyncCommand := *openapiclient.NewAutoscalingSyncCommand() // AutoscalingSyncCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewAutoscalingSyncCommand() // AutoscalingSyncCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.AutoscalingApi.AutoscalingSync(context.Background()).AutoscalingSyncCommand(autoscalingSyncCommand).Execute()
+    r, err := apiClient.AutoscalingApi.AutoscalingSyncAutoscaling(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AutoscalingApi.AutoscalingSync``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AutoscalingApi.AutoscalingSyncAutoscaling``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -231,15 +250,20 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAutoscalingSyncRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiAutoscalingSyncAutoscalingRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **autoscalingSyncCommand** | [**AutoscalingSyncCommand**](AutoscalingSyncCommand.md) |  | 
+
+ **body** | [**AutoscalingSyncCommand**](AutoscalingSyncCommand.md) |  | 
 
 ### Return type
 
@@ -251,8 +275,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: Not defined
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

@@ -22,11 +22,13 @@ func Test_taikuncore_KubeConfigApiService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test KubeConfigApiService KubeconfigCreate", func(t *testing.T) {
+	t.Run("Test KubeConfigApiService KubeConfigCreate", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.KubeConfigApi.KubeconfigCreate(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.KubeConfigApi.KubeConfigCreate(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -34,45 +36,39 @@ func Test_taikuncore_KubeConfigApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test KubeConfigApiService KubeconfigDelete", func(t *testing.T) {
+	t.Run("Test KubeConfigApiService KubeConfigDelete", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.KubeConfigApi.KubeconfigDelete(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.KubeConfigApi.KubeConfigDelete(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test KubeConfigApiService KubeconfigDeleteByProjectId", func(t *testing.T) {
+	t.Run("Test KubeConfigApiService KubeConfigDeleteByProjectId", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.KubeConfigApi.KubeconfigDeleteByProjectId(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.KubeConfigApi.KubeConfigDeleteByProjectId(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test KubeConfigApiService KubeconfigDownload", func(t *testing.T) {
+	t.Run("Test KubeConfigApiService KubeConfigDownload", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.KubeConfigApi.KubeconfigDownload(context.Background()).Execute()
+		var v string
 
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test KubeConfigApiService KubeconfigInteractiveShell", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		resp, httpRes, err := apiClient.KubeConfigApi.KubeconfigInteractiveShell(context.Background()).Execute()
+		resp, httpRes, err := apiClient.KubeConfigApi.KubeConfigDownload(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -80,11 +76,27 @@ func Test_taikuncore_KubeConfigApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test KubeConfigApiService KubeconfigList", func(t *testing.T) {
+	t.Run("Test KubeConfigApiService KubeConfigInteractiveShell", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.KubeConfigApi.KubeconfigList(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.KubeConfigApi.KubeConfigInteractiveShell(context.Background(), v).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test KubeConfigApiService KubeConfigList", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var v string
+
+		resp, httpRes, err := apiClient.KubeConfigApi.KubeConfigList(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

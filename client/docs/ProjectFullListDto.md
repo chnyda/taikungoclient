@@ -5,37 +5,37 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
-**Operation** | Pointer to **NullableString** |  | [optional] 
-**JobUrl** | Pointer to **NullableString** |  | [optional] 
-**ImageName** | Pointer to **NullableString** |  | [optional] 
-**Token** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**Operation** | Pointer to **string** |  | [optional] 
+**JobUrl** | Pointer to **string** |  | [optional] 
+**ImageName** | Pointer to **string** |  | [optional] 
+**Token** | Pointer to **string** |  | [optional] 
 **IsKubernetes** | Pointer to **bool** |  | [optional] 
 **IsLocked** | Pointer to **bool** |  | [optional] 
 **IsBackupEnabled** | Pointer to **bool** |  | [optional] 
 **IsMonitoringEnabled** | Pointer to **bool** |  | [optional] 
 **IsAutoUpgrade** | Pointer to **bool** |  | [optional] 
 **AccessProfileRevision** | Pointer to **int32** |  | [optional] 
-**CloudCredentialName** | Pointer to **NullableString** |  | [optional] 
-**OrganizationName** | Pointer to **NullableString** |  | [optional] 
+**CloudCredentialName** | Pointer to **string** |  | [optional] 
+**OrganizationName** | Pointer to **string** |  | [optional] 
 **OrganizationId** | Pointer to **int32** |  | [optional] 
-**Status** | Pointer to **NullableString** |  | [optional] 
-**Health** | Pointer to **NullableString** |  | [optional] 
-**AccessIp** | Pointer to **NullableString** |  | [optional] 
-**CloudType** | Pointer to **NullableString** |  | [optional] 
-**CreatedAt** | Pointer to **NullableString** |  | [optional] 
-**UpdatedAt** | Pointer to **NullableTime** |  | [optional] 
+**Status** | Pointer to **string** |  | [optional] 
+**Health** | Pointer to **string** |  | [optional] 
+**AccessIp** | Pointer to **string** |  | [optional] 
+**CloudType** | Pointer to **string** |  | [optional] 
+**CreatedAt** | Pointer to **string** |  | [optional] 
+**UpdatedAt** | Pointer to **time.Time** |  | [optional] 
 **AccessProfiles** | Pointer to [**AccessProfilesForProjectListDto**](AccessProfilesForProjectListDto.md) |  | [optional] 
 **IsDeleteCluster** | Pointer to **bool** |  | [optional] 
-**TaikunPrivateSSHKey** | Pointer to **NullableString** |  | [optional] 
-**TaikunPublicSSHKey** | Pointer to **NullableString** |  | [optional] 
+**TaikunPrivateSSHKey** | Pointer to **string** |  | [optional] 
+**TaikunPublicSSHKey** | Pointer to **string** |  | [optional] 
 **StandaloneVms** | Pointer to [**[]StandAloneVmFullDto**](StandAloneVmFullDto.md) |  | [optional] 
-**Cidr** | Pointer to **NullableString** |  | [optional] 
-**NetMask** | Pointer to **NullableInt32** |  | [optional] 
-**PrivateIp** | Pointer to **NullableString** |  | [optional] 
-**PublicIp** | Pointer to **NullableString** |  | [optional] 
+**Cidr** | Pointer to **string** |  | [optional] 
+**NetMask** | Pointer to **int32** |  | [optional] 
+**PrivateIp** | Pointer to **string** |  | [optional] 
+**PublicIp** | Pointer to **string** |  | [optional] 
 **IsKubevapEnabled** | Pointer to **bool** |  | [optional] 
-**TanzuReleaseVersion** | Pointer to **NullableString** |  | [optional] 
+**TanzuReleaseVersion** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -106,16 +106,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *ProjectFullListDto) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *ProjectFullListDto) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetOperation
 
 `func (o *ProjectFullListDto) GetOperation() string`
@@ -141,16 +131,6 @@ SetOperation sets Operation field to given value.
 
 HasOperation returns a boolean if a field has been set.
 
-### SetOperationNil
-
-`func (o *ProjectFullListDto) SetOperationNil(b bool)`
-
- SetOperationNil sets the value for Operation to be an explicit nil
-
-### UnsetOperation
-`func (o *ProjectFullListDto) UnsetOperation()`
-
-UnsetOperation ensures that no value is present for Operation, not even an explicit nil
 ### GetJobUrl
 
 `func (o *ProjectFullListDto) GetJobUrl() string`
@@ -176,16 +156,6 @@ SetJobUrl sets JobUrl field to given value.
 
 HasJobUrl returns a boolean if a field has been set.
 
-### SetJobUrlNil
-
-`func (o *ProjectFullListDto) SetJobUrlNil(b bool)`
-
- SetJobUrlNil sets the value for JobUrl to be an explicit nil
-
-### UnsetJobUrl
-`func (o *ProjectFullListDto) UnsetJobUrl()`
-
-UnsetJobUrl ensures that no value is present for JobUrl, not even an explicit nil
 ### GetImageName
 
 `func (o *ProjectFullListDto) GetImageName() string`
@@ -211,16 +181,6 @@ SetImageName sets ImageName field to given value.
 
 HasImageName returns a boolean if a field has been set.
 
-### SetImageNameNil
-
-`func (o *ProjectFullListDto) SetImageNameNil(b bool)`
-
- SetImageNameNil sets the value for ImageName to be an explicit nil
-
-### UnsetImageName
-`func (o *ProjectFullListDto) UnsetImageName()`
-
-UnsetImageName ensures that no value is present for ImageName, not even an explicit nil
 ### GetToken
 
 `func (o *ProjectFullListDto) GetToken() string`
@@ -246,16 +206,6 @@ SetToken sets Token field to given value.
 
 HasToken returns a boolean if a field has been set.
 
-### SetTokenNil
-
-`func (o *ProjectFullListDto) SetTokenNil(b bool)`
-
- SetTokenNil sets the value for Token to be an explicit nil
-
-### UnsetToken
-`func (o *ProjectFullListDto) UnsetToken()`
-
-UnsetToken ensures that no value is present for Token, not even an explicit nil
 ### GetIsKubernetes
 
 `func (o *ProjectFullListDto) GetIsKubernetes() bool`
@@ -431,16 +381,6 @@ SetCloudCredentialName sets CloudCredentialName field to given value.
 
 HasCloudCredentialName returns a boolean if a field has been set.
 
-### SetCloudCredentialNameNil
-
-`func (o *ProjectFullListDto) SetCloudCredentialNameNil(b bool)`
-
- SetCloudCredentialNameNil sets the value for CloudCredentialName to be an explicit nil
-
-### UnsetCloudCredentialName
-`func (o *ProjectFullListDto) UnsetCloudCredentialName()`
-
-UnsetCloudCredentialName ensures that no value is present for CloudCredentialName, not even an explicit nil
 ### GetOrganizationName
 
 `func (o *ProjectFullListDto) GetOrganizationName() string`
@@ -466,16 +406,6 @@ SetOrganizationName sets OrganizationName field to given value.
 
 HasOrganizationName returns a boolean if a field has been set.
 
-### SetOrganizationNameNil
-
-`func (o *ProjectFullListDto) SetOrganizationNameNil(b bool)`
-
- SetOrganizationNameNil sets the value for OrganizationName to be an explicit nil
-
-### UnsetOrganizationName
-`func (o *ProjectFullListDto) UnsetOrganizationName()`
-
-UnsetOrganizationName ensures that no value is present for OrganizationName, not even an explicit nil
 ### GetOrganizationId
 
 `func (o *ProjectFullListDto) GetOrganizationId() int32`
@@ -526,16 +456,6 @@ SetStatus sets Status field to given value.
 
 HasStatus returns a boolean if a field has been set.
 
-### SetStatusNil
-
-`func (o *ProjectFullListDto) SetStatusNil(b bool)`
-
- SetStatusNil sets the value for Status to be an explicit nil
-
-### UnsetStatus
-`func (o *ProjectFullListDto) UnsetStatus()`
-
-UnsetStatus ensures that no value is present for Status, not even an explicit nil
 ### GetHealth
 
 `func (o *ProjectFullListDto) GetHealth() string`
@@ -561,16 +481,6 @@ SetHealth sets Health field to given value.
 
 HasHealth returns a boolean if a field has been set.
 
-### SetHealthNil
-
-`func (o *ProjectFullListDto) SetHealthNil(b bool)`
-
- SetHealthNil sets the value for Health to be an explicit nil
-
-### UnsetHealth
-`func (o *ProjectFullListDto) UnsetHealth()`
-
-UnsetHealth ensures that no value is present for Health, not even an explicit nil
 ### GetAccessIp
 
 `func (o *ProjectFullListDto) GetAccessIp() string`
@@ -596,16 +506,6 @@ SetAccessIp sets AccessIp field to given value.
 
 HasAccessIp returns a boolean if a field has been set.
 
-### SetAccessIpNil
-
-`func (o *ProjectFullListDto) SetAccessIpNil(b bool)`
-
- SetAccessIpNil sets the value for AccessIp to be an explicit nil
-
-### UnsetAccessIp
-`func (o *ProjectFullListDto) UnsetAccessIp()`
-
-UnsetAccessIp ensures that no value is present for AccessIp, not even an explicit nil
 ### GetCloudType
 
 `func (o *ProjectFullListDto) GetCloudType() string`
@@ -631,16 +531,6 @@ SetCloudType sets CloudType field to given value.
 
 HasCloudType returns a boolean if a field has been set.
 
-### SetCloudTypeNil
-
-`func (o *ProjectFullListDto) SetCloudTypeNil(b bool)`
-
- SetCloudTypeNil sets the value for CloudType to be an explicit nil
-
-### UnsetCloudType
-`func (o *ProjectFullListDto) UnsetCloudType()`
-
-UnsetCloudType ensures that no value is present for CloudType, not even an explicit nil
 ### GetCreatedAt
 
 `func (o *ProjectFullListDto) GetCreatedAt() string`
@@ -666,16 +556,6 @@ SetCreatedAt sets CreatedAt field to given value.
 
 HasCreatedAt returns a boolean if a field has been set.
 
-### SetCreatedAtNil
-
-`func (o *ProjectFullListDto) SetCreatedAtNil(b bool)`
-
- SetCreatedAtNil sets the value for CreatedAt to be an explicit nil
-
-### UnsetCreatedAt
-`func (o *ProjectFullListDto) UnsetCreatedAt()`
-
-UnsetCreatedAt ensures that no value is present for CreatedAt, not even an explicit nil
 ### GetUpdatedAt
 
 `func (o *ProjectFullListDto) GetUpdatedAt() time.Time`
@@ -701,16 +581,6 @@ SetUpdatedAt sets UpdatedAt field to given value.
 
 HasUpdatedAt returns a boolean if a field has been set.
 
-### SetUpdatedAtNil
-
-`func (o *ProjectFullListDto) SetUpdatedAtNil(b bool)`
-
- SetUpdatedAtNil sets the value for UpdatedAt to be an explicit nil
-
-### UnsetUpdatedAt
-`func (o *ProjectFullListDto) UnsetUpdatedAt()`
-
-UnsetUpdatedAt ensures that no value is present for UpdatedAt, not even an explicit nil
 ### GetAccessProfiles
 
 `func (o *ProjectFullListDto) GetAccessProfiles() AccessProfilesForProjectListDto`
@@ -786,16 +656,6 @@ SetTaikunPrivateSSHKey sets TaikunPrivateSSHKey field to given value.
 
 HasTaikunPrivateSSHKey returns a boolean if a field has been set.
 
-### SetTaikunPrivateSSHKeyNil
-
-`func (o *ProjectFullListDto) SetTaikunPrivateSSHKeyNil(b bool)`
-
- SetTaikunPrivateSSHKeyNil sets the value for TaikunPrivateSSHKey to be an explicit nil
-
-### UnsetTaikunPrivateSSHKey
-`func (o *ProjectFullListDto) UnsetTaikunPrivateSSHKey()`
-
-UnsetTaikunPrivateSSHKey ensures that no value is present for TaikunPrivateSSHKey, not even an explicit nil
 ### GetTaikunPublicSSHKey
 
 `func (o *ProjectFullListDto) GetTaikunPublicSSHKey() string`
@@ -821,16 +681,6 @@ SetTaikunPublicSSHKey sets TaikunPublicSSHKey field to given value.
 
 HasTaikunPublicSSHKey returns a boolean if a field has been set.
 
-### SetTaikunPublicSSHKeyNil
-
-`func (o *ProjectFullListDto) SetTaikunPublicSSHKeyNil(b bool)`
-
- SetTaikunPublicSSHKeyNil sets the value for TaikunPublicSSHKey to be an explicit nil
-
-### UnsetTaikunPublicSSHKey
-`func (o *ProjectFullListDto) UnsetTaikunPublicSSHKey()`
-
-UnsetTaikunPublicSSHKey ensures that no value is present for TaikunPublicSSHKey, not even an explicit nil
 ### GetStandaloneVms
 
 `func (o *ProjectFullListDto) GetStandaloneVms() []StandAloneVmFullDto`
@@ -856,16 +706,6 @@ SetStandaloneVms sets StandaloneVms field to given value.
 
 HasStandaloneVms returns a boolean if a field has been set.
 
-### SetStandaloneVmsNil
-
-`func (o *ProjectFullListDto) SetStandaloneVmsNil(b bool)`
-
- SetStandaloneVmsNil sets the value for StandaloneVms to be an explicit nil
-
-### UnsetStandaloneVms
-`func (o *ProjectFullListDto) UnsetStandaloneVms()`
-
-UnsetStandaloneVms ensures that no value is present for StandaloneVms, not even an explicit nil
 ### GetCidr
 
 `func (o *ProjectFullListDto) GetCidr() string`
@@ -891,16 +731,6 @@ SetCidr sets Cidr field to given value.
 
 HasCidr returns a boolean if a field has been set.
 
-### SetCidrNil
-
-`func (o *ProjectFullListDto) SetCidrNil(b bool)`
-
- SetCidrNil sets the value for Cidr to be an explicit nil
-
-### UnsetCidr
-`func (o *ProjectFullListDto) UnsetCidr()`
-
-UnsetCidr ensures that no value is present for Cidr, not even an explicit nil
 ### GetNetMask
 
 `func (o *ProjectFullListDto) GetNetMask() int32`
@@ -926,16 +756,6 @@ SetNetMask sets NetMask field to given value.
 
 HasNetMask returns a boolean if a field has been set.
 
-### SetNetMaskNil
-
-`func (o *ProjectFullListDto) SetNetMaskNil(b bool)`
-
- SetNetMaskNil sets the value for NetMask to be an explicit nil
-
-### UnsetNetMask
-`func (o *ProjectFullListDto) UnsetNetMask()`
-
-UnsetNetMask ensures that no value is present for NetMask, not even an explicit nil
 ### GetPrivateIp
 
 `func (o *ProjectFullListDto) GetPrivateIp() string`
@@ -961,16 +781,6 @@ SetPrivateIp sets PrivateIp field to given value.
 
 HasPrivateIp returns a boolean if a field has been set.
 
-### SetPrivateIpNil
-
-`func (o *ProjectFullListDto) SetPrivateIpNil(b bool)`
-
- SetPrivateIpNil sets the value for PrivateIp to be an explicit nil
-
-### UnsetPrivateIp
-`func (o *ProjectFullListDto) UnsetPrivateIp()`
-
-UnsetPrivateIp ensures that no value is present for PrivateIp, not even an explicit nil
 ### GetPublicIp
 
 `func (o *ProjectFullListDto) GetPublicIp() string`
@@ -996,16 +806,6 @@ SetPublicIp sets PublicIp field to given value.
 
 HasPublicIp returns a boolean if a field has been set.
 
-### SetPublicIpNil
-
-`func (o *ProjectFullListDto) SetPublicIpNil(b bool)`
-
- SetPublicIpNil sets the value for PublicIp to be an explicit nil
-
-### UnsetPublicIp
-`func (o *ProjectFullListDto) UnsetPublicIp()`
-
-UnsetPublicIp ensures that no value is present for PublicIp, not even an explicit nil
 ### GetIsKubevapEnabled
 
 `func (o *ProjectFullListDto) GetIsKubevapEnabled() bool`
@@ -1056,16 +856,6 @@ SetTanzuReleaseVersion sets TanzuReleaseVersion field to given value.
 
 HasTanzuReleaseVersion returns a boolean if a field has been set.
 
-### SetTanzuReleaseVersionNil
-
-`func (o *ProjectFullListDto) SetTanzuReleaseVersionNil(b bool)`
-
- SetTanzuReleaseVersionNil sets the value for TanzuReleaseVersion to be an explicit nil
-
-### UnsetTanzuReleaseVersion
-`func (o *ProjectFullListDto) UnsetTanzuReleaseVersion()`
-
-UnsetTanzuReleaseVersion ensures that no value is present for TanzuReleaseVersion, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

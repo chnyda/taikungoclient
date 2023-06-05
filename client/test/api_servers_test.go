@@ -26,7 +26,9 @@ func Test_taikuncore_ServersApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.ServersApi.ServersConsole(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.ServersApi.ServersConsole(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -38,7 +40,9 @@ func Test_taikuncore_ServersApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.ServersApi.ServersCreate(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.ServersApi.ServersCreate(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -50,7 +54,9 @@ func Test_taikuncore_ServersApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.ServersApi.ServersDelete(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.ServersApi.ServersDelete(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -62,8 +68,9 @@ func Test_taikuncore_ServersApiService(t *testing.T) {
 		t.Skip("skip test")  // remove to run test
 
 		var projectId int32
+		var v string
 
-		resp, httpRes, err := apiClient.ServersApi.ServersDetails(context.Background(), projectId).Execute()
+		resp, httpRes, err := apiClient.ServersApi.ServersDetails(context.Background(), projectId, v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -75,7 +82,9 @@ func Test_taikuncore_ServersApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.ServersApi.ServersList(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.ServersApi.ServersList(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -87,7 +96,9 @@ func Test_taikuncore_ServersApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.ServersApi.ServersReboot(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.ServersApi.ServersReboot(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -98,20 +109,23 @@ func Test_taikuncore_ServersApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.ServersApi.ServersReset(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.ServersApi.ServersReset(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test ServersApiService ServersStatus", func(t *testing.T) {
+	t.Run("Test ServersApiService ServersShowServerStatus", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var serverId int32
+		var v string
 
-		resp, httpRes, err := apiClient.ServersApi.ServersStatus(context.Background(), serverId).Execute()
+		resp, httpRes, err := apiClient.ServersApi.ServersShowServerStatus(context.Background(), serverId, v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -123,7 +137,9 @@ func Test_taikuncore_ServersApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.ServersApi.ServersUpdate(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.ServersApi.ServersUpdate(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -135,8 +151,9 @@ func Test_taikuncore_ServersApiService(t *testing.T) {
 		t.Skip("skip test")  // remove to run test
 
 		var projectId int32
+		var v string
 
-		httpRes, err := apiClient.ServersApi.ServersUpdateByProjectId(context.Background(), projectId).Execute()
+		httpRes, err := apiClient.ServersApi.ServersUpdateByProjectId(context.Background(), projectId, v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)

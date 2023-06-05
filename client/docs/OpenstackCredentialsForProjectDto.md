@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**OpenStackUser** | Pointer to **NullableString** |  | [optional] 
-**OpenStackDomain** | Pointer to **NullableString** |  | [optional] 
-**OpenStackPassword** | Pointer to **NullableString** |  | [optional] 
-**OpenStackProject** | Pointer to **NullableString** |  | [optional] 
-**OpenStackRegion** | Pointer to **NullableString** |  | [optional] 
-**OpenStackUrl** | Pointer to **NullableString** |  | [optional] 
-**OpenStackPublicNetwork** | Pointer to **NullableString** |  | [optional] 
-**OpenStackAvailabilityZone** | Pointer to **NullableString** |  | [optional] 
-**OpenStackVolumeType** | Pointer to **NullableString** |  | [optional] 
-**OpenStackTenantId** | Pointer to **NullableString** |  | [optional] 
+**OpenStackUser** | Pointer to **string** |  | [optional] 
+**OpenStackDomain** | Pointer to **string** |  | [optional] 
+**OpenStackPassword** | Pointer to **string** |  | [optional] 
+**OpenStackProject** | Pointer to **string** |  | [optional] 
+**OpenStackRegion** | Pointer to **string** |  | [optional] 
+**OpenStackUrl** | Pointer to **string** |  | [optional] 
+**OpenStackPublicNetwork** | Pointer to **string** |  | [optional] 
+**OpenStackAvailabilityZone** | Pointer to **string** |  | [optional] 
+**OpenStackVolumeType** | Pointer to **string** |  | [optional] 
+**OpenStackTenantId** | Pointer to **string** |  | [optional] 
 **OpenStackImportNetwork** | Pointer to **bool** |  | [optional] 
-**OpenStackInternalSubnetId** | Pointer to **NullableString** |  | [optional] 
+**OpenStackInternalSubnetId** | Pointer to **string** |  | [optional] 
 **ApplicationCredEnabled** | Pointer to **bool** |  | [optional] 
 
 ## Methods
@@ -62,16 +62,6 @@ SetOpenStackUser sets OpenStackUser field to given value.
 
 HasOpenStackUser returns a boolean if a field has been set.
 
-### SetOpenStackUserNil
-
-`func (o *OpenstackCredentialsForProjectDto) SetOpenStackUserNil(b bool)`
-
- SetOpenStackUserNil sets the value for OpenStackUser to be an explicit nil
-
-### UnsetOpenStackUser
-`func (o *OpenstackCredentialsForProjectDto) UnsetOpenStackUser()`
-
-UnsetOpenStackUser ensures that no value is present for OpenStackUser, not even an explicit nil
 ### GetOpenStackDomain
 
 `func (o *OpenstackCredentialsForProjectDto) GetOpenStackDomain() string`
@@ -97,16 +87,6 @@ SetOpenStackDomain sets OpenStackDomain field to given value.
 
 HasOpenStackDomain returns a boolean if a field has been set.
 
-### SetOpenStackDomainNil
-
-`func (o *OpenstackCredentialsForProjectDto) SetOpenStackDomainNil(b bool)`
-
- SetOpenStackDomainNil sets the value for OpenStackDomain to be an explicit nil
-
-### UnsetOpenStackDomain
-`func (o *OpenstackCredentialsForProjectDto) UnsetOpenStackDomain()`
-
-UnsetOpenStackDomain ensures that no value is present for OpenStackDomain, not even an explicit nil
 ### GetOpenStackPassword
 
 `func (o *OpenstackCredentialsForProjectDto) GetOpenStackPassword() string`
@@ -132,16 +112,6 @@ SetOpenStackPassword sets OpenStackPassword field to given value.
 
 HasOpenStackPassword returns a boolean if a field has been set.
 
-### SetOpenStackPasswordNil
-
-`func (o *OpenstackCredentialsForProjectDto) SetOpenStackPasswordNil(b bool)`
-
- SetOpenStackPasswordNil sets the value for OpenStackPassword to be an explicit nil
-
-### UnsetOpenStackPassword
-`func (o *OpenstackCredentialsForProjectDto) UnsetOpenStackPassword()`
-
-UnsetOpenStackPassword ensures that no value is present for OpenStackPassword, not even an explicit nil
 ### GetOpenStackProject
 
 `func (o *OpenstackCredentialsForProjectDto) GetOpenStackProject() string`
@@ -167,16 +137,6 @@ SetOpenStackProject sets OpenStackProject field to given value.
 
 HasOpenStackProject returns a boolean if a field has been set.
 
-### SetOpenStackProjectNil
-
-`func (o *OpenstackCredentialsForProjectDto) SetOpenStackProjectNil(b bool)`
-
- SetOpenStackProjectNil sets the value for OpenStackProject to be an explicit nil
-
-### UnsetOpenStackProject
-`func (o *OpenstackCredentialsForProjectDto) UnsetOpenStackProject()`
-
-UnsetOpenStackProject ensures that no value is present for OpenStackProject, not even an explicit nil
 ### GetOpenStackRegion
 
 `func (o *OpenstackCredentialsForProjectDto) GetOpenStackRegion() string`
@@ -202,16 +162,6 @@ SetOpenStackRegion sets OpenStackRegion field to given value.
 
 HasOpenStackRegion returns a boolean if a field has been set.
 
-### SetOpenStackRegionNil
-
-`func (o *OpenstackCredentialsForProjectDto) SetOpenStackRegionNil(b bool)`
-
- SetOpenStackRegionNil sets the value for OpenStackRegion to be an explicit nil
-
-### UnsetOpenStackRegion
-`func (o *OpenstackCredentialsForProjectDto) UnsetOpenStackRegion()`
-
-UnsetOpenStackRegion ensures that no value is present for OpenStackRegion, not even an explicit nil
 ### GetOpenStackUrl
 
 `func (o *OpenstackCredentialsForProjectDto) GetOpenStackUrl() string`
@@ -237,16 +187,6 @@ SetOpenStackUrl sets OpenStackUrl field to given value.
 
 HasOpenStackUrl returns a boolean if a field has been set.
 
-### SetOpenStackUrlNil
-
-`func (o *OpenstackCredentialsForProjectDto) SetOpenStackUrlNil(b bool)`
-
- SetOpenStackUrlNil sets the value for OpenStackUrl to be an explicit nil
-
-### UnsetOpenStackUrl
-`func (o *OpenstackCredentialsForProjectDto) UnsetOpenStackUrl()`
-
-UnsetOpenStackUrl ensures that no value is present for OpenStackUrl, not even an explicit nil
 ### GetOpenStackPublicNetwork
 
 `func (o *OpenstackCredentialsForProjectDto) GetOpenStackPublicNetwork() string`
@@ -272,16 +212,6 @@ SetOpenStackPublicNetwork sets OpenStackPublicNetwork field to given value.
 
 HasOpenStackPublicNetwork returns a boolean if a field has been set.
 
-### SetOpenStackPublicNetworkNil
-
-`func (o *OpenstackCredentialsForProjectDto) SetOpenStackPublicNetworkNil(b bool)`
-
- SetOpenStackPublicNetworkNil sets the value for OpenStackPublicNetwork to be an explicit nil
-
-### UnsetOpenStackPublicNetwork
-`func (o *OpenstackCredentialsForProjectDto) UnsetOpenStackPublicNetwork()`
-
-UnsetOpenStackPublicNetwork ensures that no value is present for OpenStackPublicNetwork, not even an explicit nil
 ### GetOpenStackAvailabilityZone
 
 `func (o *OpenstackCredentialsForProjectDto) GetOpenStackAvailabilityZone() string`
@@ -307,16 +237,6 @@ SetOpenStackAvailabilityZone sets OpenStackAvailabilityZone field to given value
 
 HasOpenStackAvailabilityZone returns a boolean if a field has been set.
 
-### SetOpenStackAvailabilityZoneNil
-
-`func (o *OpenstackCredentialsForProjectDto) SetOpenStackAvailabilityZoneNil(b bool)`
-
- SetOpenStackAvailabilityZoneNil sets the value for OpenStackAvailabilityZone to be an explicit nil
-
-### UnsetOpenStackAvailabilityZone
-`func (o *OpenstackCredentialsForProjectDto) UnsetOpenStackAvailabilityZone()`
-
-UnsetOpenStackAvailabilityZone ensures that no value is present for OpenStackAvailabilityZone, not even an explicit nil
 ### GetOpenStackVolumeType
 
 `func (o *OpenstackCredentialsForProjectDto) GetOpenStackVolumeType() string`
@@ -342,16 +262,6 @@ SetOpenStackVolumeType sets OpenStackVolumeType field to given value.
 
 HasOpenStackVolumeType returns a boolean if a field has been set.
 
-### SetOpenStackVolumeTypeNil
-
-`func (o *OpenstackCredentialsForProjectDto) SetOpenStackVolumeTypeNil(b bool)`
-
- SetOpenStackVolumeTypeNil sets the value for OpenStackVolumeType to be an explicit nil
-
-### UnsetOpenStackVolumeType
-`func (o *OpenstackCredentialsForProjectDto) UnsetOpenStackVolumeType()`
-
-UnsetOpenStackVolumeType ensures that no value is present for OpenStackVolumeType, not even an explicit nil
 ### GetOpenStackTenantId
 
 `func (o *OpenstackCredentialsForProjectDto) GetOpenStackTenantId() string`
@@ -377,16 +287,6 @@ SetOpenStackTenantId sets OpenStackTenantId field to given value.
 
 HasOpenStackTenantId returns a boolean if a field has been set.
 
-### SetOpenStackTenantIdNil
-
-`func (o *OpenstackCredentialsForProjectDto) SetOpenStackTenantIdNil(b bool)`
-
- SetOpenStackTenantIdNil sets the value for OpenStackTenantId to be an explicit nil
-
-### UnsetOpenStackTenantId
-`func (o *OpenstackCredentialsForProjectDto) UnsetOpenStackTenantId()`
-
-UnsetOpenStackTenantId ensures that no value is present for OpenStackTenantId, not even an explicit nil
 ### GetOpenStackImportNetwork
 
 `func (o *OpenstackCredentialsForProjectDto) GetOpenStackImportNetwork() bool`
@@ -437,16 +337,6 @@ SetOpenStackInternalSubnetId sets OpenStackInternalSubnetId field to given value
 
 HasOpenStackInternalSubnetId returns a boolean if a field has been set.
 
-### SetOpenStackInternalSubnetIdNil
-
-`func (o *OpenstackCredentialsForProjectDto) SetOpenStackInternalSubnetIdNil(b bool)`
-
- SetOpenStackInternalSubnetIdNil sets the value for OpenStackInternalSubnetId to be an explicit nil
-
-### UnsetOpenStackInternalSubnetId
-`func (o *OpenstackCredentialsForProjectDto) UnsetOpenStackInternalSubnetId()`
-
-UnsetOpenStackInternalSubnetId ensures that no value is present for OpenStackInternalSubnetId, not even an explicit nil
 ### GetApplicationCredEnabled
 
 `func (o *OpenstackCredentialsForProjectDto) GetApplicationCredEnabled() bool`

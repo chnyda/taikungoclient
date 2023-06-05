@@ -7,9 +7,9 @@ Name | Type | Description | Notes
 **StandaloneVmId** | **int32** |  | 
 **Name** | **string** |  | 
 **Size** | Pointer to **int64** |  | [optional] 
-**VolumeType** | Pointer to **NullableString** |  | [optional] 
-**DeviceName** | Pointer to **NullableString** |  | [optional] 
-**LunId** | Pointer to **NullableInt32** |  | [optional] 
+**VolumeType** | Pointer to **string** |  | [optional] 
+**DeviceName** | Pointer to **string** |  | [optional] 
+**LunId** | Pointer to **int32** |  | [optional] 
 
 ## Methods
 
@@ -120,16 +120,6 @@ SetVolumeType sets VolumeType field to given value.
 
 HasVolumeType returns a boolean if a field has been set.
 
-### SetVolumeTypeNil
-
-`func (o *CreateStandAloneDiskCommand) SetVolumeTypeNil(b bool)`
-
- SetVolumeTypeNil sets the value for VolumeType to be an explicit nil
-
-### UnsetVolumeType
-`func (o *CreateStandAloneDiskCommand) UnsetVolumeType()`
-
-UnsetVolumeType ensures that no value is present for VolumeType, not even an explicit nil
 ### GetDeviceName
 
 `func (o *CreateStandAloneDiskCommand) GetDeviceName() string`
@@ -155,16 +145,6 @@ SetDeviceName sets DeviceName field to given value.
 
 HasDeviceName returns a boolean if a field has been set.
 
-### SetDeviceNameNil
-
-`func (o *CreateStandAloneDiskCommand) SetDeviceNameNil(b bool)`
-
- SetDeviceNameNil sets the value for DeviceName to be an explicit nil
-
-### UnsetDeviceName
-`func (o *CreateStandAloneDiskCommand) UnsetDeviceName()`
-
-UnsetDeviceName ensures that no value is present for DeviceName, not even an explicit nil
 ### GetLunId
 
 `func (o *CreateStandAloneDiskCommand) GetLunId() int32`
@@ -190,16 +170,6 @@ SetLunId sets LunId field to given value.
 
 HasLunId returns a boolean if a field has been set.
 
-### SetLunIdNil
-
-`func (o *CreateStandAloneDiskCommand) SetLunIdNil(b bool)`
-
- SetLunIdNil sets the value for LunId to be an explicit nil
-
-### UnsetLunId
-`func (o *CreateStandAloneDiskCommand) UnsetLunId()`
-
-UnsetLunId ensures that no value is present for LunId, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

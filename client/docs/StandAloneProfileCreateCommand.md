@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Name** | **string** |  | 
 **PublicKey** | **string** |  | 
 **SecurityGroups** | Pointer to [**[]StandAloneProfileSecurityGroupDto**](StandAloneProfileSecurityGroupDto.md) |  | [optional] 
-**OrganizationId** | Pointer to **NullableInt32** |  | [optional] 
+**OrganizationId** | Pointer to **int32** |  | [optional] 
 
 ## Methods
 
@@ -93,16 +93,6 @@ SetSecurityGroups sets SecurityGroups field to given value.
 
 HasSecurityGroups returns a boolean if a field has been set.
 
-### SetSecurityGroupsNil
-
-`func (o *StandAloneProfileCreateCommand) SetSecurityGroupsNil(b bool)`
-
- SetSecurityGroupsNil sets the value for SecurityGroups to be an explicit nil
-
-### UnsetSecurityGroups
-`func (o *StandAloneProfileCreateCommand) UnsetSecurityGroups()`
-
-UnsetSecurityGroups ensures that no value is present for SecurityGroups, not even an explicit nil
 ### GetOrganizationId
 
 `func (o *StandAloneProfileCreateCommand) GetOrganizationId() int32`
@@ -128,16 +118,6 @@ SetOrganizationId sets OrganizationId field to given value.
 
 HasOrganizationId returns a boolean if a field has been set.
 
-### SetOrganizationIdNil
-
-`func (o *StandAloneProfileCreateCommand) SetOrganizationIdNil(b bool)`
-
- SetOrganizationIdNil sets the value for OrganizationId to be an explicit nil
-
-### UnsetOrganizationId
-`func (o *StandAloneProfileCreateCommand) UnsetOrganizationId()`
-
-UnsetOrganizationId ensures that no value is present for OrganizationId, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

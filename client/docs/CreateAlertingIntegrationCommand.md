@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Url** | **string** |  | 
-**Token** | Pointer to **NullableString** |  | [optional] 
+**Token** | Pointer to **string** |  | [optional] 
 **AlertingIntegrationType** | [**AlertingIntegrationType**](AlertingIntegrationType.md) |  | 
 **AlertingProfileId** | **int32** |  | 
 
@@ -73,16 +73,6 @@ SetToken sets Token field to given value.
 
 HasToken returns a boolean if a field has been set.
 
-### SetTokenNil
-
-`func (o *CreateAlertingIntegrationCommand) SetTokenNil(b bool)`
-
- SetTokenNil sets the value for Token to be an explicit nil
-
-### UnsetToken
-`func (o *CreateAlertingIntegrationCommand) UnsetToken()`
-
-UnsetToken ensures that no value is present for Token, not even an explicit nil
 ### GetAlertingIntegrationType
 
 `func (o *CreateAlertingIntegrationCommand) GetAlertingIntegrationType() AlertingIntegrationType`

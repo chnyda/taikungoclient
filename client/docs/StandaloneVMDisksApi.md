@@ -1,23 +1,23 @@
-# \StandaloneVMDisksApi
+# \StandAloneVmDisksApi
 
 All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**StandalonevmdisksCreate**](StandaloneVMDisksApi.md#StandalonevmdisksCreate) | **Post** /api/v1/standalonevmdisks/create | Add disk for standalone vm
-[**StandalonevmdisksDelete**](StandaloneVMDisksApi.md#StandalonevmdisksDelete) | **Post** /api/v1/standalonevmdisks/delete | Remove disk from standalone vm
-[**StandalonevmdisksPurge**](StandaloneVMDisksApi.md#StandalonevmdisksPurge) | **Post** /api/v1/standalonevmdisks/purge | Purge vm disks
-[**StandalonevmdisksReset**](StandaloneVMDisksApi.md#StandalonevmdisksReset) | **Post** /api/v1/standalonevmdisks/reset | Update status of disk
-[**StandalonevmdisksUpdate**](StandaloneVMDisksApi.md#StandalonevmdisksUpdate) | **Post** /api/v1/standalonevmdisks/update | Update disk
-[**StandalonevmdisksUpdateSize**](StandaloneVMDisksApi.md#StandalonevmdisksUpdateSize) | **Post** /api/v1/standalonevmdisks/update-size | Update disk size
+[**StandAloneVmDisksCreate**](StandAloneVmDisksApi.md#StandAloneVmDisksCreate) | **Post** /api/v{v}/StandAloneVmDisks/create | Add disk for stand alone vm
+[**StandAloneVmDisksDelete**](StandAloneVmDisksApi.md#StandAloneVmDisksDelete) | **Post** /api/v{v}/StandAloneVmDisks/delete | Delete disk by id
+[**StandAloneVmDisksPurge**](StandAloneVmDisksApi.md#StandAloneVmDisksPurge) | **Post** /api/v{v}/StandAloneVmDisks/purge | Purge disks by id
+[**StandAloneVmDisksReset**](StandAloneVmDisksApi.md#StandAloneVmDisksReset) | **Post** /api/v{v}/StandAloneVmDisks/reset | Update statuses of disks by vm Id
+[**StandAloneVmDisksUpdate**](StandAloneVmDisksApi.md#StandAloneVmDisksUpdate) | **Post** /api/v{v}/StandAloneVmDisks/update | Update disk by id
+[**StandAloneVmDisksUpdateDiskSize**](StandAloneVmDisksApi.md#StandAloneVmDisksUpdateDiskSize) | **Post** /api/v{v}/StandAloneVmDisks/update-size | Update disk size by id
 
 
 
-## StandalonevmdisksCreate
+## StandAloneVmDisksCreate
 
-> ApiResponse StandalonevmdisksCreate(ctx).CreateStandAloneDiskCommand(createStandAloneDiskCommand).Execute()
+> ApiResponse StandAloneVmDisksCreate(ctx, v).Body(body).Execute()
 
-Add disk for standalone vm
+Add disk for stand alone vm
 
 ### Example
 
@@ -32,32 +32,38 @@ import (
 )
 
 func main() {
-    createStandAloneDiskCommand := *openapiclient.NewCreateStandAloneDiskCommand(int32(123), "Name_example") // CreateStandAloneDiskCommand |  (optional)
+    v := "v_example" // string | 
+    body := *openapiclient.NewCreateStandAloneDiskCommand(int32(123), "Name_example") // CreateStandAloneDiskCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.StandaloneVMDisksApi.StandalonevmdisksCreate(context.Background()).CreateStandAloneDiskCommand(createStandAloneDiskCommand).Execute()
+    resp, r, err := apiClient.StandAloneVmDisksApi.StandAloneVmDisksCreate(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `StandaloneVMDisksApi.StandalonevmdisksCreate``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `StandAloneVmDisksApi.StandAloneVmDisksCreate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `StandalonevmdisksCreate`: ApiResponse
-    fmt.Fprintf(os.Stdout, "Response from `StandaloneVMDisksApi.StandalonevmdisksCreate`: %v\n", resp)
+    // response from `StandAloneVmDisksCreate`: ApiResponse
+    fmt.Fprintf(os.Stdout, "Response from `StandAloneVmDisksApi.StandAloneVmDisksCreate`: %v\n", resp)
 }
 ```
 
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiStandalonevmdisksCreateRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiStandAloneVmDisksCreateRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createStandAloneDiskCommand** | [**CreateStandAloneDiskCommand**](CreateStandAloneDiskCommand.md) |  | 
+
+ **body** | [**CreateStandAloneDiskCommand**](CreateStandAloneDiskCommand.md) |  | 
 
 ### Return type
 
@@ -69,19 +75,19 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## StandalonevmdisksDelete
+## StandAloneVmDisksDelete
 
-> StandalonevmdisksDelete(ctx).DeleteStandAloneVmDiskCommand(deleteStandAloneVmDiskCommand).Execute()
+> StandAloneVmDisksDelete(ctx, v).Body(body).Execute()
 
-Remove disk from standalone vm
+Delete disk by id
 
 ### Example
 
@@ -96,13 +102,14 @@ import (
 )
 
 func main() {
-    deleteStandAloneVmDiskCommand := *openapiclient.NewDeleteStandAloneVmDiskCommand() // DeleteStandAloneVmDiskCommand |  (optional)
+    v := "v_example" // string | 
+    body := *openapiclient.NewDeleteStandAloneVmDiskCommand() // DeleteStandAloneVmDiskCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.StandaloneVMDisksApi.StandalonevmdisksDelete(context.Background()).DeleteStandAloneVmDiskCommand(deleteStandAloneVmDiskCommand).Execute()
+    r, err := apiClient.StandAloneVmDisksApi.StandAloneVmDisksDelete(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `StandaloneVMDisksApi.StandalonevmdisksDelete``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `StandAloneVmDisksApi.StandAloneVmDisksDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -111,15 +118,20 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiStandalonevmdisksDeleteRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiStandAloneVmDisksDeleteRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **deleteStandAloneVmDiskCommand** | [**DeleteStandAloneVmDiskCommand**](DeleteStandAloneVmDiskCommand.md) |  | 
+
+ **body** | [**DeleteStandAloneVmDiskCommand**](DeleteStandAloneVmDiskCommand.md) |  | 
 
 ### Return type
 
@@ -131,19 +143,19 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## StandalonevmdisksPurge
+## StandAloneVmDisksPurge
 
-> StandalonevmdisksPurge(ctx).PurgeStandAloneVmDiskCommand(purgeStandAloneVmDiskCommand).Execute()
+> StandAloneVmDisksPurge(ctx, v).Body(body).Execute()
 
-Purge vm disks
+Purge disks by id
 
 ### Example
 
@@ -158,13 +170,14 @@ import (
 )
 
 func main() {
-    purgeStandAloneVmDiskCommand := *openapiclient.NewPurgeStandAloneVmDiskCommand() // PurgeStandAloneVmDiskCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewPurgeStandAloneVmDiskCommand() // PurgeStandAloneVmDiskCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.StandaloneVMDisksApi.StandalonevmdisksPurge(context.Background()).PurgeStandAloneVmDiskCommand(purgeStandAloneVmDiskCommand).Execute()
+    r, err := apiClient.StandAloneVmDisksApi.StandAloneVmDisksPurge(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `StandaloneVMDisksApi.StandalonevmdisksPurge``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `StandAloneVmDisksApi.StandAloneVmDisksPurge``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -173,15 +186,20 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiStandalonevmdisksPurgeRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiStandAloneVmDisksPurgeRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **purgeStandAloneVmDiskCommand** | [**PurgeStandAloneVmDiskCommand**](PurgeStandAloneVmDiskCommand.md) |  | 
+
+ **body** | [**PurgeStandAloneVmDiskCommand**](PurgeStandAloneVmDiskCommand.md) |  | 
 
 ### Return type
 
@@ -193,19 +211,19 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## StandalonevmdisksReset
+## StandAloneVmDisksReset
 
-> StandalonevmdisksReset(ctx).ResetStandAloneVmDiskStatusCommand(resetStandAloneVmDiskStatusCommand).Execute()
+> StandAloneVmDisksReset(ctx, v).Body(body).Execute()
 
-Update status of disk
+Update statuses of disks by vm Id
 
 ### Example
 
@@ -220,13 +238,14 @@ import (
 )
 
 func main() {
-    resetStandAloneVmDiskStatusCommand := *openapiclient.NewResetStandAloneVmDiskStatusCommand(int32(123)) // ResetStandAloneVmDiskStatusCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewResetStandAloneVmDiskStatusCommand(int32(123)) // ResetStandAloneVmDiskStatusCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.StandaloneVMDisksApi.StandalonevmdisksReset(context.Background()).ResetStandAloneVmDiskStatusCommand(resetStandAloneVmDiskStatusCommand).Execute()
+    r, err := apiClient.StandAloneVmDisksApi.StandAloneVmDisksReset(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `StandaloneVMDisksApi.StandalonevmdisksReset``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `StandAloneVmDisksApi.StandAloneVmDisksReset``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -235,15 +254,20 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiStandalonevmdisksResetRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiStandAloneVmDisksResetRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **resetStandAloneVmDiskStatusCommand** | [**ResetStandAloneVmDiskStatusCommand**](ResetStandAloneVmDiskStatusCommand.md) |  | 
+
+ **body** | [**ResetStandAloneVmDiskStatusCommand**](ResetStandAloneVmDiskStatusCommand.md) |  | 
 
 ### Return type
 
@@ -255,19 +279,19 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## StandalonevmdisksUpdate
+## StandAloneVmDisksUpdate
 
-> StandalonevmdisksUpdate(ctx).UpdateStandaloneVmDiskCommand(updateStandaloneVmDiskCommand).Execute()
+> StandAloneVmDisksUpdate(ctx, v).Body(body).Execute()
 
-Update disk
+Update disk by id
 
 ### Example
 
@@ -282,13 +306,14 @@ import (
 )
 
 func main() {
-    updateStandaloneVmDiskCommand := *openapiclient.NewUpdateStandaloneVmDiskCommand() // UpdateStandaloneVmDiskCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewUpdateStandaloneVmDiskCommand() // UpdateStandaloneVmDiskCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.StandaloneVMDisksApi.StandalonevmdisksUpdate(context.Background()).UpdateStandaloneVmDiskCommand(updateStandaloneVmDiskCommand).Execute()
+    r, err := apiClient.StandAloneVmDisksApi.StandAloneVmDisksUpdate(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `StandaloneVMDisksApi.StandalonevmdisksUpdate``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `StandAloneVmDisksApi.StandAloneVmDisksUpdate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -297,15 +322,20 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiStandalonevmdisksUpdateRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiStandAloneVmDisksUpdateRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **updateStandaloneVmDiskCommand** | [**UpdateStandaloneVmDiskCommand**](UpdateStandaloneVmDiskCommand.md) |  | 
+
+ **body** | [**UpdateStandaloneVmDiskCommand**](UpdateStandaloneVmDiskCommand.md) |  | 
 
 ### Return type
 
@@ -317,19 +347,19 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## StandalonevmdisksUpdateSize
+## StandAloneVmDisksUpdateDiskSize
 
-> StandalonevmdisksUpdateSize(ctx).UpdateStandaloneVmDiskSizeCommand(updateStandaloneVmDiskSizeCommand).Execute()
+> StandAloneVmDisksUpdateDiskSize(ctx, v).Body(body).Execute()
 
-Update disk size
+Update disk size by id
 
 ### Example
 
@@ -344,13 +374,14 @@ import (
 )
 
 func main() {
-    updateStandaloneVmDiskSizeCommand := *openapiclient.NewUpdateStandaloneVmDiskSizeCommand() // UpdateStandaloneVmDiskSizeCommand |  (optional)
+    v := "v_example" // string | 
+    body := *openapiclient.NewUpdateStandaloneVmDiskSizeCommand() // UpdateStandaloneVmDiskSizeCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.StandaloneVMDisksApi.StandalonevmdisksUpdateSize(context.Background()).UpdateStandaloneVmDiskSizeCommand(updateStandaloneVmDiskSizeCommand).Execute()
+    r, err := apiClient.StandAloneVmDisksApi.StandAloneVmDisksUpdateDiskSize(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `StandaloneVMDisksApi.StandalonevmdisksUpdateSize``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `StandAloneVmDisksApi.StandAloneVmDisksUpdateDiskSize``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -359,15 +390,20 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiStandalonevmdisksUpdateSizeRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiStandAloneVmDisksUpdateDiskSizeRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **updateStandaloneVmDiskSizeCommand** | [**UpdateStandaloneVmDiskSizeCommand**](UpdateStandaloneVmDiskSizeCommand.md) |  | 
+
+ **body** | [**UpdateStandaloneVmDiskSizeCommand**](UpdateStandaloneVmDiskSizeCommand.md) |  | 
 
 ### Return type
 
@@ -379,8 +415,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

@@ -1,26 +1,26 @@
-# \StandaloneActionsApi
+# \StandAloneActionsApi
 
 All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**StandaloneactionsConsole**](StandaloneActionsApi.md#StandaloneactionsConsole) | **Post** /api/v1/standaloneactions/console | Console screenshot or terminal for vm
-[**StandaloneactionsDownloadRdp**](StandaloneActionsApi.md#StandaloneactionsDownloadRdp) | **Get** /api/v1/standaloneactions/download/rdp/{id} | Download RDP file
-[**StandaloneactionsReboot**](StandaloneActionsApi.md#StandaloneactionsReboot) | **Post** /api/v1/standaloneactions/reboot | Reboot standalone vm
-[**StandaloneactionsShelve**](StandaloneActionsApi.md#StandaloneactionsShelve) | **Post** /api/v1/standaloneactions/shelve | Shelve standalone vm
-[**StandaloneactionsStart**](StandaloneActionsApi.md#StandaloneactionsStart) | **Post** /api/v1/standaloneactions/start | Start standalone vm
-[**StandaloneactionsStatus**](StandaloneActionsApi.md#StandaloneactionsStatus) | **Get** /api/v1/standaloneactions/status/{id} | Show standalone vm status
-[**StandaloneactionsStop**](StandaloneActionsApi.md#StandaloneactionsStop) | **Post** /api/v1/standaloneactions/stop | Stop standalone vm
-[**StandaloneactionsUnshelve**](StandaloneActionsApi.md#StandaloneactionsUnshelve) | **Post** /api/v1/standaloneactions/unshelve | Unshelve standalone vm
-[**StandaloneactionsWindowsInstancePassword**](StandaloneActionsApi.md#StandaloneactionsWindowsInstancePassword) | **Post** /api/v1/standaloneactions/password | Retrieve aws windows admin instance password
+[**StandAloneActionsConsole**](StandAloneActionsApi.md#StandAloneActionsConsole) | **Post** /api/v{v}/StandAloneActions/console | Console info standalone vm instance
+[**StandAloneActionsExportCsv**](StandAloneActionsApi.md#StandAloneActionsExportCsv) | **Get** /api/v{v}/StandAloneActions/download/rdp/{id} | Download RDP file
+[**StandAloneActionsInstancePassword**](StandAloneActionsApi.md#StandAloneActionsInstancePassword) | **Post** /api/v{v}/StandAloneActions/password | Retrieve aws windows admin instance password
+[**StandAloneActionsReboot**](StandAloneActionsApi.md#StandAloneActionsReboot) | **Post** /api/v{v}/StandAloneActions/reboot | Reboot standalone vm instance
+[**StandAloneActionsShelve**](StandAloneActionsApi.md#StandAloneActionsShelve) | **Post** /api/v{v}/StandAloneActions/shelve | Shelve standalone vm instance
+[**StandAloneActionsShowStandaloneVmStatus**](StandAloneActionsApi.md#StandAloneActionsShowStandaloneVmStatus) | **Get** /api/v{v}/StandAloneActions/status/{id} | Show standalone vm status
+[**StandAloneActionsStart**](StandAloneActionsApi.md#StandAloneActionsStart) | **Post** /api/v{v}/StandAloneActions/start | Start standalone vm instance
+[**StandAloneActionsStop**](StandAloneActionsApi.md#StandAloneActionsStop) | **Post** /api/v{v}/StandAloneActions/stop | Stop standalone vm instance
+[**StandAloneActionsUnshelve**](StandAloneActionsApi.md#StandAloneActionsUnshelve) | **Post** /api/v{v}/StandAloneActions/unshelve | Unshelve standalone vm instance
 
 
 
-## StandaloneactionsConsole
+## StandAloneActionsConsole
 
-> string StandaloneactionsConsole(ctx).VmConsoleScreenshotCommand(vmConsoleScreenshotCommand).Execute()
+> string StandAloneActionsConsole(ctx, v).Body(body).Execute()
 
-Console screenshot or terminal for vm
+Console info standalone vm instance
 
 ### Example
 
@@ -35,32 +35,38 @@ import (
 )
 
 func main() {
-    vmConsoleScreenshotCommand := *openapiclient.NewVmConsoleScreenshotCommand() // VmConsoleScreenshotCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewVmConsoleScreenshotCommand() // VmConsoleScreenshotCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.StandaloneActionsApi.StandaloneactionsConsole(context.Background()).VmConsoleScreenshotCommand(vmConsoleScreenshotCommand).Execute()
+    resp, r, err := apiClient.StandAloneActionsApi.StandAloneActionsConsole(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `StandaloneActionsApi.StandaloneactionsConsole``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `StandAloneActionsApi.StandAloneActionsConsole``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `StandaloneactionsConsole`: string
-    fmt.Fprintf(os.Stdout, "Response from `StandaloneActionsApi.StandaloneactionsConsole`: %v\n", resp)
+    // response from `StandAloneActionsConsole`: string
+    fmt.Fprintf(os.Stdout, "Response from `StandAloneActionsApi.StandAloneActionsConsole`: %v\n", resp)
 }
 ```
 
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiStandaloneactionsConsoleRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiStandAloneActionsConsoleRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **vmConsoleScreenshotCommand** | [**VmConsoleScreenshotCommand**](VmConsoleScreenshotCommand.md) |  | 
+
+ **body** | [**VmConsoleScreenshotCommand**](VmConsoleScreenshotCommand.md) |  | 
 
 ### Return type
 
@@ -72,17 +78,17 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## StandaloneactionsDownloadRdp
+## StandAloneActionsExportCsv
 
-> StandaloneactionsDownloadRdp(ctx, id).Execute()
+> StandAloneActionsExportCsv(ctx, id, v).Execute()
 
 Download RDP file
 
@@ -100,12 +106,13 @@ import (
 
 func main() {
     id := int32(56) // int32 | 
+    v := "v_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.StandaloneActionsApi.StandaloneactionsDownloadRdp(context.Background(), id).Execute()
+    r, err := apiClient.StandAloneActionsApi.StandAloneActionsExportCsv(context.Background(), id, v).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `StandaloneActionsApi.StandaloneactionsDownloadRdp``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `StandAloneActionsApi.StandAloneActionsExportCsv``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -118,14 +125,16 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **id** | **int32** |  | 
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiStandaloneactionsDownloadRdpRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiStandAloneActionsExportCsvRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
 
 
 ### Return type
@@ -139,18 +148,18 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## StandaloneactionsReboot
+## StandAloneActionsInstancePassword
 
-> StandaloneactionsReboot(ctx).RebootStandAloneVmCommand(rebootStandAloneVmCommand).Execute()
+> string StandAloneActionsInstancePassword(ctx, v).Id(id).Key(key).Config(config).Execute()
 
-Reboot standalone vm
+Retrieve aws windows admin instance password
 
 ### Example
 
@@ -165,34 +174,46 @@ import (
 )
 
 func main() {
-    rebootStandAloneVmCommand := *openapiclient.NewRebootStandAloneVmCommand() // RebootStandAloneVmCommand | 
+    v := "v_example" // string | 
+    id := int32(56) // int32 |  (optional)
+    key := "key_example" // string |  (optional)
+    config := os.NewFile(1234, "some_file") // *os.File |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.StandaloneActionsApi.StandaloneactionsReboot(context.Background()).RebootStandAloneVmCommand(rebootStandAloneVmCommand).Execute()
+    resp, r, err := apiClient.StandAloneActionsApi.StandAloneActionsInstancePassword(context.Background(), v).Id(id).Key(key).Config(config).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `StandaloneActionsApi.StandaloneactionsReboot``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `StandAloneActionsApi.StandAloneActionsInstancePassword``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
+    // response from `StandAloneActionsInstancePassword`: string
+    fmt.Fprintf(os.Stdout, "Response from `StandAloneActionsApi.StandAloneActionsInstancePassword`: %v\n", resp)
 }
 ```
 
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiStandaloneactionsRebootRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiStandAloneActionsInstancePasswordRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **rebootStandAloneVmCommand** | [**RebootStandAloneVmCommand**](RebootStandAloneVmCommand.md) |  | 
+
+ **id** | **int32** |  | 
+ **key** | **string** |  | 
+ **config** | ***os.File** |  | 
 
 ### Return type
 
- (empty response body)
+**string**
 
 ### Authorization
 
@@ -200,19 +221,19 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: multipart/form-data
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## StandaloneactionsShelve
+## StandAloneActionsReboot
 
-> StandaloneactionsShelve(ctx).ShelveStandAloneVmCommand(shelveStandAloneVmCommand).Execute()
+> StandAloneActionsReboot(ctx, v).Body(body).Execute()
 
-Shelve standalone vm
+Reboot standalone vm instance
 
 ### Example
 
@@ -227,13 +248,14 @@ import (
 )
 
 func main() {
-    shelveStandAloneVmCommand := *openapiclient.NewShelveStandAloneVmCommand() // ShelveStandAloneVmCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewRebootStandAloneVmCommand() // RebootStandAloneVmCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.StandaloneActionsApi.StandaloneactionsShelve(context.Background()).ShelveStandAloneVmCommand(shelveStandAloneVmCommand).Execute()
+    r, err := apiClient.StandAloneActionsApi.StandAloneActionsReboot(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `StandaloneActionsApi.StandaloneactionsShelve``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `StandAloneActionsApi.StandAloneActionsReboot``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -242,15 +264,20 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiStandaloneactionsShelveRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiStandAloneActionsRebootRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **shelveStandAloneVmCommand** | [**ShelveStandAloneVmCommand**](ShelveStandAloneVmCommand.md) |  | 
+
+ **body** | [**RebootStandAloneVmCommand**](RebootStandAloneVmCommand.md) |  | 
 
 ### Return type
 
@@ -262,19 +289,19 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## StandaloneactionsStart
+## StandAloneActionsShelve
 
-> StandaloneactionsStart(ctx).StartStandaloneVmCommand(startStandaloneVmCommand).Execute()
+> StandAloneActionsShelve(ctx, v).Body(body).Execute()
 
-Start standalone vm
+Shelve standalone vm instance
 
 ### Example
 
@@ -289,13 +316,14 @@ import (
 )
 
 func main() {
-    startStandaloneVmCommand := *openapiclient.NewStartStandaloneVmCommand() // StartStandaloneVmCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewShelveStandAloneVmCommand() // ShelveStandAloneVmCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.StandaloneActionsApi.StandaloneactionsStart(context.Background()).StartStandaloneVmCommand(startStandaloneVmCommand).Execute()
+    r, err := apiClient.StandAloneActionsApi.StandAloneActionsShelve(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `StandaloneActionsApi.StandaloneactionsStart``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `StandAloneActionsApi.StandAloneActionsShelve``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -304,15 +332,20 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiStandaloneactionsStartRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiStandAloneActionsShelveRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **startStandaloneVmCommand** | [**StartStandaloneVmCommand**](StartStandaloneVmCommand.md) |  | 
+
+ **body** | [**ShelveStandAloneVmCommand**](ShelveStandAloneVmCommand.md) |  | 
 
 ### Return type
 
@@ -324,17 +357,17 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## StandaloneactionsStatus
+## StandAloneActionsShowStandaloneVmStatus
 
-> string StandaloneactionsStatus(ctx, id).Execute()
+> string StandAloneActionsShowStandaloneVmStatus(ctx, id, v).Execute()
 
 Show standalone vm status
 
@@ -352,16 +385,17 @@ import (
 
 func main() {
     id := int32(56) // int32 | 
+    v := "v_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.StandaloneActionsApi.StandaloneactionsStatus(context.Background(), id).Execute()
+    resp, r, err := apiClient.StandAloneActionsApi.StandAloneActionsShowStandaloneVmStatus(context.Background(), id, v).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `StandaloneActionsApi.StandaloneactionsStatus``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `StandAloneActionsApi.StandAloneActionsShowStandaloneVmStatus``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `StandaloneactionsStatus`: string
-    fmt.Fprintf(os.Stdout, "Response from `StandaloneActionsApi.StandaloneactionsStatus`: %v\n", resp)
+    // response from `StandAloneActionsShowStandaloneVmStatus`: string
+    fmt.Fprintf(os.Stdout, "Response from `StandAloneActionsApi.StandAloneActionsShowStandaloneVmStatus`: %v\n", resp)
 }
 ```
 
@@ -372,14 +406,16 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **id** | **int32** |  | 
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiStandaloneactionsStatusRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiStandAloneActionsShowStandaloneVmStatusRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
 
 
 ### Return type
@@ -393,18 +429,18 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## StandaloneactionsStop
+## StandAloneActionsStart
 
-> StandaloneactionsStop(ctx).StopStandaloneVmCommand(stopStandaloneVmCommand).Execute()
+> StandAloneActionsStart(ctx, v).Body(body).Execute()
 
-Stop standalone vm
+Start standalone vm instance
 
 ### Example
 
@@ -419,13 +455,14 @@ import (
 )
 
 func main() {
-    stopStandaloneVmCommand := *openapiclient.NewStopStandaloneVmCommand() // StopStandaloneVmCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewStartStandaloneVmCommand() // StartStandaloneVmCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.StandaloneActionsApi.StandaloneactionsStop(context.Background()).StopStandaloneVmCommand(stopStandaloneVmCommand).Execute()
+    r, err := apiClient.StandAloneActionsApi.StandAloneActionsStart(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `StandaloneActionsApi.StandaloneactionsStop``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `StandAloneActionsApi.StandAloneActionsStart``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -434,15 +471,20 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiStandaloneactionsStopRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiStandAloneActionsStartRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **stopStandaloneVmCommand** | [**StopStandaloneVmCommand**](StopStandaloneVmCommand.md) |  | 
+
+ **body** | [**StartStandaloneVmCommand**](StartStandaloneVmCommand.md) |  | 
 
 ### Return type
 
@@ -454,19 +496,19 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## StandaloneactionsUnshelve
+## StandAloneActionsStop
 
-> StandaloneactionsUnshelve(ctx).UnshelveStandaloneVmCommand(unshelveStandaloneVmCommand).Execute()
+> StandAloneActionsStop(ctx, v).Body(body).Execute()
 
-Unshelve standalone vm
+Stop standalone vm instance
 
 ### Example
 
@@ -481,13 +523,14 @@ import (
 )
 
 func main() {
-    unshelveStandaloneVmCommand := *openapiclient.NewUnshelveStandaloneVmCommand() // UnshelveStandaloneVmCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewStopStandaloneVmCommand() // StopStandaloneVmCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.StandaloneActionsApi.StandaloneactionsUnshelve(context.Background()).UnshelveStandaloneVmCommand(unshelveStandaloneVmCommand).Execute()
+    r, err := apiClient.StandAloneActionsApi.StandAloneActionsStop(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `StandaloneActionsApi.StandaloneactionsUnshelve``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `StandAloneActionsApi.StandAloneActionsStop``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -496,15 +539,20 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiStandaloneactionsUnshelveRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiStandAloneActionsStopRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **unshelveStandaloneVmCommand** | [**UnshelveStandaloneVmCommand**](UnshelveStandaloneVmCommand.md) |  | 
+
+ **body** | [**StopStandaloneVmCommand**](StopStandaloneVmCommand.md) |  | 
 
 ### Return type
 
@@ -516,19 +564,19 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## StandaloneactionsWindowsInstancePassword
+## StandAloneActionsUnshelve
 
-> string StandaloneactionsWindowsInstancePassword(ctx).Id(id).Key(key).Execute()
+> StandAloneActionsUnshelve(ctx, v).Body(body).Execute()
 
-Retrieve aws windows admin instance password
+Unshelve standalone vm instance
 
 ### Example
 
@@ -543,38 +591,40 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 
-    key := "key_example" // string |  (optional)
+    v := "v_example" // string | 
+    body := *openapiclient.NewUnshelveStandaloneVmCommand() // UnshelveStandaloneVmCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.StandaloneActionsApi.StandaloneactionsWindowsInstancePassword(context.Background()).Id(id).Key(key).Execute()
+    r, err := apiClient.StandAloneActionsApi.StandAloneActionsUnshelve(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `StandaloneActionsApi.StandaloneactionsWindowsInstancePassword``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `StandAloneActionsApi.StandAloneActionsUnshelve``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `StandaloneactionsWindowsInstancePassword`: string
-    fmt.Fprintf(os.Stdout, "Response from `StandaloneActionsApi.StandaloneactionsWindowsInstancePassword`: %v\n", resp)
 }
 ```
 
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiStandaloneactionsWindowsInstancePasswordRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiStandAloneActionsUnshelveRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int32** |  | 
- **key** | **string** |  | 
+
+ **body** | [**UnshelveStandaloneVmCommand**](UnshelveStandaloneVmCommand.md) |  | 
 
 ### Return type
 
-**string**
+ (empty response body)
 
 ### Authorization
 
@@ -582,8 +632,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: multipart/form-data
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

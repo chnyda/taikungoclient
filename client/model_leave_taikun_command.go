@@ -21,7 +21,7 @@ var _ MappedNullable = &LeaveTaikunCommand{}
 // LeaveTaikunCommand struct for LeaveTaikunCommand
 type LeaveTaikunCommand struct {
 	Reason string `json:"reason"`
-	Message NullableString `json:"message,omitempty"`
+	Message *string `json:"message,omitempty"`
 }
 
 // NewLeaveTaikunCommand instantiates a new LeaveTaikunCommand object
@@ -66,46 +66,36 @@ func (o *LeaveTaikunCommand) SetReason(v string) {
 	o.Reason = v
 }
 
-// GetMessage returns the Message field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetMessage returns the Message field value if set, zero value otherwise.
 func (o *LeaveTaikunCommand) GetMessage() string {
-	if o == nil || IsNil(o.Message.Get()) {
+	if o == nil || IsNil(o.Message) {
 		var ret string
 		return ret
 	}
-	return *o.Message.Get()
+	return *o.Message
 }
 
 // GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *LeaveTaikunCommand) GetMessageOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Message) {
 		return nil, false
 	}
-	return o.Message.Get(), o.Message.IsSet()
+	return o.Message, true
 }
 
 // HasMessage returns a boolean if a field has been set.
 func (o *LeaveTaikunCommand) HasMessage() bool {
-	if o != nil && o.Message.IsSet() {
+	if o != nil && !IsNil(o.Message) {
 		return true
 	}
 
 	return false
 }
 
-// SetMessage gets a reference to the given NullableString and assigns it to the Message field.
+// SetMessage gets a reference to the given string and assigns it to the Message field.
 func (o *LeaveTaikunCommand) SetMessage(v string) {
-	o.Message.Set(&v)
-}
-// SetMessageNil sets the value for Message to be an explicit nil
-func (o *LeaveTaikunCommand) SetMessageNil() {
-	o.Message.Set(nil)
-}
-
-// UnsetMessage ensures that no value is present for Message, not even an explicit nil
-func (o *LeaveTaikunCommand) UnsetMessage() {
-	o.Message.Unset()
+	o.Message = &v
 }
 
 func (o LeaveTaikunCommand) MarshalJSON() ([]byte, error) {
@@ -119,8 +109,8 @@ func (o LeaveTaikunCommand) MarshalJSON() ([]byte, error) {
 func (o LeaveTaikunCommand) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["reason"] = o.Reason
-	if o.Message.IsSet() {
-		toSerialize["message"] = o.Message.Get()
+	if !IsNil(o.Message) {
+		toSerialize["message"] = o.Message
 	}
 	return toSerialize, nil
 }

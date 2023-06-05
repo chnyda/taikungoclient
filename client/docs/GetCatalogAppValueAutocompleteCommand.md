@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **PackageId** | **string** |  | 
 **Version** | **string** |  | 
-**CatalogAppId** | Pointer to **NullableInt32** |  | [optional] 
+**CatalogAppId** | Pointer to **int32** |  | [optional] 
 
 ## Methods
 
@@ -92,16 +92,6 @@ SetCatalogAppId sets CatalogAppId field to given value.
 
 HasCatalogAppId returns a boolean if a field has been set.
 
-### SetCatalogAppIdNil
-
-`func (o *GetCatalogAppValueAutocompleteCommand) SetCatalogAppIdNil(b bool)`
-
- SetCatalogAppIdNil sets the value for CatalogAppId to be an explicit nil
-
-### UnsetCatalogAppId
-`func (o *GetCatalogAppValueAutocompleteCommand) UnsetCatalogAppId()`
-
-UnsetCatalogAppId ensures that no value is present for CatalogAppId, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

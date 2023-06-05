@@ -5,12 +5,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
-**Protocol** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**Protocol** | Pointer to **string** |  | [optional] 
 **PortMinRange** | Pointer to **int32** |  | [optional] 
 **PortMaxRange** | Pointer to **int32** |  | [optional] 
-**RemoteIpPrefix** | Pointer to **NullableString** |  | [optional] 
-**ProfileName** | Pointer to **NullableString** |  | [optional] 
+**RemoteIpPrefix** | Pointer to **string** |  | [optional] 
+**ProfileName** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -81,16 +81,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *SecurityGroupListDto) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *SecurityGroupListDto) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetProtocol
 
 `func (o *SecurityGroupListDto) GetProtocol() string`
@@ -116,16 +106,6 @@ SetProtocol sets Protocol field to given value.
 
 HasProtocol returns a boolean if a field has been set.
 
-### SetProtocolNil
-
-`func (o *SecurityGroupListDto) SetProtocolNil(b bool)`
-
- SetProtocolNil sets the value for Protocol to be an explicit nil
-
-### UnsetProtocol
-`func (o *SecurityGroupListDto) UnsetProtocol()`
-
-UnsetProtocol ensures that no value is present for Protocol, not even an explicit nil
 ### GetPortMinRange
 
 `func (o *SecurityGroupListDto) GetPortMinRange() int32`
@@ -201,16 +181,6 @@ SetRemoteIpPrefix sets RemoteIpPrefix field to given value.
 
 HasRemoteIpPrefix returns a boolean if a field has been set.
 
-### SetRemoteIpPrefixNil
-
-`func (o *SecurityGroupListDto) SetRemoteIpPrefixNil(b bool)`
-
- SetRemoteIpPrefixNil sets the value for RemoteIpPrefix to be an explicit nil
-
-### UnsetRemoteIpPrefix
-`func (o *SecurityGroupListDto) UnsetRemoteIpPrefix()`
-
-UnsetRemoteIpPrefix ensures that no value is present for RemoteIpPrefix, not even an explicit nil
 ### GetProfileName
 
 `func (o *SecurityGroupListDto) GetProfileName() string`
@@ -236,16 +206,6 @@ SetProfileName sets ProfileName field to given value.
 
 HasProfileName returns a boolean if a field has been set.
 
-### SetProfileNameNil
-
-`func (o *SecurityGroupListDto) SetProfileNameNil(b bool)`
-
- SetProfileNameNil sets the value for ProfileName to be an explicit nil
-
-### UnsetProfileName
-`func (o *SecurityGroupListDto) UnsetProfileName()`
-
-UnsetProfileName ensures that no value is present for ProfileName, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

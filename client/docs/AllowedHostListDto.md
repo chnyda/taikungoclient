@@ -5,11 +5,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** |  | [optional] 
-**Description** | Pointer to **NullableString** |  | [optional] 
-**IpAddress** | Pointer to **NullableString** |  | [optional] 
+**Description** | Pointer to **string** |  | [optional] 
+**IpAddress** | Pointer to **string** |  | [optional] 
 **MaskBits** | Pointer to **int32** |  | [optional] 
 **AccessProfileId** | Pointer to **int32** |  | [optional] 
-**AccessProfileName** | Pointer to **NullableString** |  | [optional] 
+**AccessProfileName** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -80,16 +80,6 @@ SetDescription sets Description field to given value.
 
 HasDescription returns a boolean if a field has been set.
 
-### SetDescriptionNil
-
-`func (o *AllowedHostListDto) SetDescriptionNil(b bool)`
-
- SetDescriptionNil sets the value for Description to be an explicit nil
-
-### UnsetDescription
-`func (o *AllowedHostListDto) UnsetDescription()`
-
-UnsetDescription ensures that no value is present for Description, not even an explicit nil
 ### GetIpAddress
 
 `func (o *AllowedHostListDto) GetIpAddress() string`
@@ -115,16 +105,6 @@ SetIpAddress sets IpAddress field to given value.
 
 HasIpAddress returns a boolean if a field has been set.
 
-### SetIpAddressNil
-
-`func (o *AllowedHostListDto) SetIpAddressNil(b bool)`
-
- SetIpAddressNil sets the value for IpAddress to be an explicit nil
-
-### UnsetIpAddress
-`func (o *AllowedHostListDto) UnsetIpAddress()`
-
-UnsetIpAddress ensures that no value is present for IpAddress, not even an explicit nil
 ### GetMaskBits
 
 `func (o *AllowedHostListDto) GetMaskBits() int32`
@@ -200,16 +180,6 @@ SetAccessProfileName sets AccessProfileName field to given value.
 
 HasAccessProfileName returns a boolean if a field has been set.
 
-### SetAccessProfileNameNil
-
-`func (o *AllowedHostListDto) SetAccessProfileNameNil(b bool)`
-
- SetAccessProfileNameNil sets the value for AccessProfileName to be an explicit nil
-
-### UnsetAccessProfileName
-`func (o *AllowedHostListDto) UnsetAccessProfileName()`
-
-UnsetAccessProfileName ensures that no value is present for AccessProfileName, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

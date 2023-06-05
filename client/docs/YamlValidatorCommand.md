@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Yaml** | Pointer to **NullableString** |  | [optional] 
+**Yaml** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -50,16 +50,6 @@ SetYaml sets Yaml field to given value.
 
 HasYaml returns a boolean if a field has been set.
 
-### SetYamlNil
-
-`func (o *YamlValidatorCommand) SetYamlNil(b bool)`
-
- SetYamlNil sets the value for Yaml to be an explicit nil
-
-### UnsetYaml
-`func (o *YamlValidatorCommand) UnsetYaml()`
-
-UnsetYaml ensures that no value is present for Yaml, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

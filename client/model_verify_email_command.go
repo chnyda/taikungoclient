@@ -20,8 +20,8 @@ var _ MappedNullable = &VerifyEmailCommand{}
 
 // VerifyEmailCommand struct for VerifyEmailCommand
 type VerifyEmailCommand struct {
-	Token NullableString `json:"token,omitempty"`
-	Mode NullableString `json:"mode,omitempty"`
+	Token *string `json:"token,omitempty"`
+	Mode *string `json:"mode,omitempty"`
 }
 
 // NewVerifyEmailCommand instantiates a new VerifyEmailCommand object
@@ -41,88 +41,68 @@ func NewVerifyEmailCommandWithDefaults() *VerifyEmailCommand {
 	return &this
 }
 
-// GetToken returns the Token field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetToken returns the Token field value if set, zero value otherwise.
 func (o *VerifyEmailCommand) GetToken() string {
-	if o == nil || IsNil(o.Token.Get()) {
+	if o == nil || IsNil(o.Token) {
 		var ret string
 		return ret
 	}
-	return *o.Token.Get()
+	return *o.Token
 }
 
 // GetTokenOk returns a tuple with the Token field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *VerifyEmailCommand) GetTokenOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Token) {
 		return nil, false
 	}
-	return o.Token.Get(), o.Token.IsSet()
+	return o.Token, true
 }
 
 // HasToken returns a boolean if a field has been set.
 func (o *VerifyEmailCommand) HasToken() bool {
-	if o != nil && o.Token.IsSet() {
+	if o != nil && !IsNil(o.Token) {
 		return true
 	}
 
 	return false
 }
 
-// SetToken gets a reference to the given NullableString and assigns it to the Token field.
+// SetToken gets a reference to the given string and assigns it to the Token field.
 func (o *VerifyEmailCommand) SetToken(v string) {
-	o.Token.Set(&v)
-}
-// SetTokenNil sets the value for Token to be an explicit nil
-func (o *VerifyEmailCommand) SetTokenNil() {
-	o.Token.Set(nil)
+	o.Token = &v
 }
 
-// UnsetToken ensures that no value is present for Token, not even an explicit nil
-func (o *VerifyEmailCommand) UnsetToken() {
-	o.Token.Unset()
-}
-
-// GetMode returns the Mode field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetMode returns the Mode field value if set, zero value otherwise.
 func (o *VerifyEmailCommand) GetMode() string {
-	if o == nil || IsNil(o.Mode.Get()) {
+	if o == nil || IsNil(o.Mode) {
 		var ret string
 		return ret
 	}
-	return *o.Mode.Get()
+	return *o.Mode
 }
 
 // GetModeOk returns a tuple with the Mode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *VerifyEmailCommand) GetModeOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Mode) {
 		return nil, false
 	}
-	return o.Mode.Get(), o.Mode.IsSet()
+	return o.Mode, true
 }
 
 // HasMode returns a boolean if a field has been set.
 func (o *VerifyEmailCommand) HasMode() bool {
-	if o != nil && o.Mode.IsSet() {
+	if o != nil && !IsNil(o.Mode) {
 		return true
 	}
 
 	return false
 }
 
-// SetMode gets a reference to the given NullableString and assigns it to the Mode field.
+// SetMode gets a reference to the given string and assigns it to the Mode field.
 func (o *VerifyEmailCommand) SetMode(v string) {
-	o.Mode.Set(&v)
-}
-// SetModeNil sets the value for Mode to be an explicit nil
-func (o *VerifyEmailCommand) SetModeNil() {
-	o.Mode.Set(nil)
-}
-
-// UnsetMode ensures that no value is present for Mode, not even an explicit nil
-func (o *VerifyEmailCommand) UnsetMode() {
-	o.Mode.Unset()
+	o.Mode = &v
 }
 
 func (o VerifyEmailCommand) MarshalJSON() ([]byte, error) {
@@ -135,11 +115,11 @@ func (o VerifyEmailCommand) MarshalJSON() ([]byte, error) {
 
 func (o VerifyEmailCommand) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Token.IsSet() {
-		toSerialize["token"] = o.Token.Get()
+	if !IsNil(o.Token) {
+		toSerialize["token"] = o.Token
 	}
-	if o.Mode.IsSet() {
-		toSerialize["mode"] = o.Mode.Get()
+	if !IsNil(o.Mode) {
+		toSerialize["mode"] = o.Mode
 	}
 	return toSerialize, nil
 }

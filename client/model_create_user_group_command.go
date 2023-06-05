@@ -21,7 +21,7 @@ var _ MappedNullable = &CreateUserGroupCommand{}
 // CreateUserGroupCommand struct for CreateUserGroupCommand
 type CreateUserGroupCommand struct {
 	Name string `json:"name"`
-	OrganizationId NullableInt32 `json:"organizationId,omitempty"`
+	OrganizationId *int32 `json:"organizationId,omitempty"`
 	UserIds []string `json:"userIds,omitempty"`
 }
 
@@ -67,51 +67,41 @@ func (o *CreateUserGroupCommand) SetName(v string) {
 	o.Name = v
 }
 
-// GetOrganizationId returns the OrganizationId field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetOrganizationId returns the OrganizationId field value if set, zero value otherwise.
 func (o *CreateUserGroupCommand) GetOrganizationId() int32 {
-	if o == nil || IsNil(o.OrganizationId.Get()) {
+	if o == nil || IsNil(o.OrganizationId) {
 		var ret int32
 		return ret
 	}
-	return *o.OrganizationId.Get()
+	return *o.OrganizationId
 }
 
 // GetOrganizationIdOk returns a tuple with the OrganizationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateUserGroupCommand) GetOrganizationIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.OrganizationId) {
 		return nil, false
 	}
-	return o.OrganizationId.Get(), o.OrganizationId.IsSet()
+	return o.OrganizationId, true
 }
 
 // HasOrganizationId returns a boolean if a field has been set.
 func (o *CreateUserGroupCommand) HasOrganizationId() bool {
-	if o != nil && o.OrganizationId.IsSet() {
+	if o != nil && !IsNil(o.OrganizationId) {
 		return true
 	}
 
 	return false
 }
 
-// SetOrganizationId gets a reference to the given NullableInt32 and assigns it to the OrganizationId field.
+// SetOrganizationId gets a reference to the given int32 and assigns it to the OrganizationId field.
 func (o *CreateUserGroupCommand) SetOrganizationId(v int32) {
-	o.OrganizationId.Set(&v)
-}
-// SetOrganizationIdNil sets the value for OrganizationId to be an explicit nil
-func (o *CreateUserGroupCommand) SetOrganizationIdNil() {
-	o.OrganizationId.Set(nil)
+	o.OrganizationId = &v
 }
 
-// UnsetOrganizationId ensures that no value is present for OrganizationId, not even an explicit nil
-func (o *CreateUserGroupCommand) UnsetOrganizationId() {
-	o.OrganizationId.Unset()
-}
-
-// GetUserIds returns the UserIds field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetUserIds returns the UserIds field value if set, zero value otherwise.
 func (o *CreateUserGroupCommand) GetUserIds() []string {
-	if o == nil {
+	if o == nil || IsNil(o.UserIds) {
 		var ret []string
 		return ret
 	}
@@ -120,7 +110,6 @@ func (o *CreateUserGroupCommand) GetUserIds() []string {
 
 // GetUserIdsOk returns a tuple with the UserIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateUserGroupCommand) GetUserIdsOk() ([]string, bool) {
 	if o == nil || IsNil(o.UserIds) {
 		return nil, false
@@ -130,7 +119,7 @@ func (o *CreateUserGroupCommand) GetUserIdsOk() ([]string, bool) {
 
 // HasUserIds returns a boolean if a field has been set.
 func (o *CreateUserGroupCommand) HasUserIds() bool {
-	if o != nil && IsNil(o.UserIds) {
+	if o != nil && !IsNil(o.UserIds) {
 		return true
 	}
 
@@ -153,10 +142,10 @@ func (o CreateUserGroupCommand) MarshalJSON() ([]byte, error) {
 func (o CreateUserGroupCommand) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["name"] = o.Name
-	if o.OrganizationId.IsSet() {
-		toSerialize["organizationId"] = o.OrganizationId.Get()
+	if !IsNil(o.OrganizationId) {
+		toSerialize["organizationId"] = o.OrganizationId
 	}
-	if o.UserIds != nil {
+	if !IsNil(o.UserIds) {
 		toSerialize["userIds"] = o.UserIds
 	}
 	return toSerialize, nil

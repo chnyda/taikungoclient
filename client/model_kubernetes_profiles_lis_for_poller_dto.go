@@ -21,17 +21,17 @@ var _ MappedNullable = &KubernetesProfilesLisForPollerDto{}
 // KubernetesProfilesLisForPollerDto struct for KubernetesProfilesLisForPollerDto
 type KubernetesProfilesLisForPollerDto struct {
 	Id *int32 `json:"id,omitempty"`
-	Name NullableString `json:"name,omitempty"`
-	OrganizationId NullableInt32 `json:"organizationId,omitempty"`
-	OrganizationName NullableString `json:"organizationName,omitempty"`
-	Cni NullableString `json:"cni,omitempty"`
+	Name *string `json:"name,omitempty"`
+	OrganizationId *int32 `json:"organizationId,omitempty"`
+	OrganizationName *string `json:"organizationName,omitempty"`
+	Cni *string `json:"cni,omitempty"`
 	OctaviaEnabled *bool `json:"octaviaEnabled,omitempty"`
 	ExposeNodePortOnBastion *bool `json:"exposeNodePortOnBastion,omitempty"`
 	IsLocked *bool `json:"isLocked,omitempty"`
 	TaikunLBEnabled *bool `json:"taikunLBEnabled,omitempty"`
 	AllowSchedulingOnMaster *bool `json:"allowSchedulingOnMaster,omitempty"`
 	UniqueClusterName *bool `json:"uniqueClusterName,omitempty"`
-	ProxmoxStorage NullableString `json:"proxmoxStorage,omitempty"`
+	ProxmoxStorage *string `json:"proxmoxStorage,omitempty"`
 }
 
 // NewKubernetesProfilesLisForPollerDto instantiates a new KubernetesProfilesLisForPollerDto object
@@ -83,172 +83,132 @@ func (o *KubernetesProfilesLisForPollerDto) SetId(v int32) {
 	o.Id = &v
 }
 
-// GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetName returns the Name field value if set, zero value otherwise.
 func (o *KubernetesProfilesLisForPollerDto) GetName() string {
-	if o == nil || IsNil(o.Name.Get()) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
-	return *o.Name.Get()
+	return *o.Name
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *KubernetesProfilesLisForPollerDto) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
-	return o.Name.Get(), o.Name.IsSet()
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *KubernetesProfilesLisForPollerDto) HasName() bool {
-	if o != nil && o.Name.IsSet() {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
 	return false
 }
 
-// SetName gets a reference to the given NullableString and assigns it to the Name field.
+// SetName gets a reference to the given string and assigns it to the Name field.
 func (o *KubernetesProfilesLisForPollerDto) SetName(v string) {
-	o.Name.Set(&v)
-}
-// SetNameNil sets the value for Name to be an explicit nil
-func (o *KubernetesProfilesLisForPollerDto) SetNameNil() {
-	o.Name.Set(nil)
+	o.Name = &v
 }
 
-// UnsetName ensures that no value is present for Name, not even an explicit nil
-func (o *KubernetesProfilesLisForPollerDto) UnsetName() {
-	o.Name.Unset()
-}
-
-// GetOrganizationId returns the OrganizationId field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetOrganizationId returns the OrganizationId field value if set, zero value otherwise.
 func (o *KubernetesProfilesLisForPollerDto) GetOrganizationId() int32 {
-	if o == nil || IsNil(o.OrganizationId.Get()) {
+	if o == nil || IsNil(o.OrganizationId) {
 		var ret int32
 		return ret
 	}
-	return *o.OrganizationId.Get()
+	return *o.OrganizationId
 }
 
 // GetOrganizationIdOk returns a tuple with the OrganizationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *KubernetesProfilesLisForPollerDto) GetOrganizationIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.OrganizationId) {
 		return nil, false
 	}
-	return o.OrganizationId.Get(), o.OrganizationId.IsSet()
+	return o.OrganizationId, true
 }
 
 // HasOrganizationId returns a boolean if a field has been set.
 func (o *KubernetesProfilesLisForPollerDto) HasOrganizationId() bool {
-	if o != nil && o.OrganizationId.IsSet() {
+	if o != nil && !IsNil(o.OrganizationId) {
 		return true
 	}
 
 	return false
 }
 
-// SetOrganizationId gets a reference to the given NullableInt32 and assigns it to the OrganizationId field.
+// SetOrganizationId gets a reference to the given int32 and assigns it to the OrganizationId field.
 func (o *KubernetesProfilesLisForPollerDto) SetOrganizationId(v int32) {
-	o.OrganizationId.Set(&v)
-}
-// SetOrganizationIdNil sets the value for OrganizationId to be an explicit nil
-func (o *KubernetesProfilesLisForPollerDto) SetOrganizationIdNil() {
-	o.OrganizationId.Set(nil)
+	o.OrganizationId = &v
 }
 
-// UnsetOrganizationId ensures that no value is present for OrganizationId, not even an explicit nil
-func (o *KubernetesProfilesLisForPollerDto) UnsetOrganizationId() {
-	o.OrganizationId.Unset()
-}
-
-// GetOrganizationName returns the OrganizationName field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetOrganizationName returns the OrganizationName field value if set, zero value otherwise.
 func (o *KubernetesProfilesLisForPollerDto) GetOrganizationName() string {
-	if o == nil || IsNil(o.OrganizationName.Get()) {
+	if o == nil || IsNil(o.OrganizationName) {
 		var ret string
 		return ret
 	}
-	return *o.OrganizationName.Get()
+	return *o.OrganizationName
 }
 
 // GetOrganizationNameOk returns a tuple with the OrganizationName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *KubernetesProfilesLisForPollerDto) GetOrganizationNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.OrganizationName) {
 		return nil, false
 	}
-	return o.OrganizationName.Get(), o.OrganizationName.IsSet()
+	return o.OrganizationName, true
 }
 
 // HasOrganizationName returns a boolean if a field has been set.
 func (o *KubernetesProfilesLisForPollerDto) HasOrganizationName() bool {
-	if o != nil && o.OrganizationName.IsSet() {
+	if o != nil && !IsNil(o.OrganizationName) {
 		return true
 	}
 
 	return false
 }
 
-// SetOrganizationName gets a reference to the given NullableString and assigns it to the OrganizationName field.
+// SetOrganizationName gets a reference to the given string and assigns it to the OrganizationName field.
 func (o *KubernetesProfilesLisForPollerDto) SetOrganizationName(v string) {
-	o.OrganizationName.Set(&v)
-}
-// SetOrganizationNameNil sets the value for OrganizationName to be an explicit nil
-func (o *KubernetesProfilesLisForPollerDto) SetOrganizationNameNil() {
-	o.OrganizationName.Set(nil)
+	o.OrganizationName = &v
 }
 
-// UnsetOrganizationName ensures that no value is present for OrganizationName, not even an explicit nil
-func (o *KubernetesProfilesLisForPollerDto) UnsetOrganizationName() {
-	o.OrganizationName.Unset()
-}
-
-// GetCni returns the Cni field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetCni returns the Cni field value if set, zero value otherwise.
 func (o *KubernetesProfilesLisForPollerDto) GetCni() string {
-	if o == nil || IsNil(o.Cni.Get()) {
+	if o == nil || IsNil(o.Cni) {
 		var ret string
 		return ret
 	}
-	return *o.Cni.Get()
+	return *o.Cni
 }
 
 // GetCniOk returns a tuple with the Cni field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *KubernetesProfilesLisForPollerDto) GetCniOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Cni) {
 		return nil, false
 	}
-	return o.Cni.Get(), o.Cni.IsSet()
+	return o.Cni, true
 }
 
 // HasCni returns a boolean if a field has been set.
 func (o *KubernetesProfilesLisForPollerDto) HasCni() bool {
-	if o != nil && o.Cni.IsSet() {
+	if o != nil && !IsNil(o.Cni) {
 		return true
 	}
 
 	return false
 }
 
-// SetCni gets a reference to the given NullableString and assigns it to the Cni field.
+// SetCni gets a reference to the given string and assigns it to the Cni field.
 func (o *KubernetesProfilesLisForPollerDto) SetCni(v string) {
-	o.Cni.Set(&v)
-}
-// SetCniNil sets the value for Cni to be an explicit nil
-func (o *KubernetesProfilesLisForPollerDto) SetCniNil() {
-	o.Cni.Set(nil)
-}
-
-// UnsetCni ensures that no value is present for Cni, not even an explicit nil
-func (o *KubernetesProfilesLisForPollerDto) UnsetCni() {
-	o.Cni.Unset()
+	o.Cni = &v
 }
 
 // GetOctaviaEnabled returns the OctaviaEnabled field value if set, zero value otherwise.
@@ -443,46 +403,36 @@ func (o *KubernetesProfilesLisForPollerDto) SetUniqueClusterName(v bool) {
 	o.UniqueClusterName = &v
 }
 
-// GetProxmoxStorage returns the ProxmoxStorage field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetProxmoxStorage returns the ProxmoxStorage field value if set, zero value otherwise.
 func (o *KubernetesProfilesLisForPollerDto) GetProxmoxStorage() string {
-	if o == nil || IsNil(o.ProxmoxStorage.Get()) {
+	if o == nil || IsNil(o.ProxmoxStorage) {
 		var ret string
 		return ret
 	}
-	return *o.ProxmoxStorage.Get()
+	return *o.ProxmoxStorage
 }
 
 // GetProxmoxStorageOk returns a tuple with the ProxmoxStorage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *KubernetesProfilesLisForPollerDto) GetProxmoxStorageOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ProxmoxStorage) {
 		return nil, false
 	}
-	return o.ProxmoxStorage.Get(), o.ProxmoxStorage.IsSet()
+	return o.ProxmoxStorage, true
 }
 
 // HasProxmoxStorage returns a boolean if a field has been set.
 func (o *KubernetesProfilesLisForPollerDto) HasProxmoxStorage() bool {
-	if o != nil && o.ProxmoxStorage.IsSet() {
+	if o != nil && !IsNil(o.ProxmoxStorage) {
 		return true
 	}
 
 	return false
 }
 
-// SetProxmoxStorage gets a reference to the given NullableString and assigns it to the ProxmoxStorage field.
+// SetProxmoxStorage gets a reference to the given string and assigns it to the ProxmoxStorage field.
 func (o *KubernetesProfilesLisForPollerDto) SetProxmoxStorage(v string) {
-	o.ProxmoxStorage.Set(&v)
-}
-// SetProxmoxStorageNil sets the value for ProxmoxStorage to be an explicit nil
-func (o *KubernetesProfilesLisForPollerDto) SetProxmoxStorageNil() {
-	o.ProxmoxStorage.Set(nil)
-}
-
-// UnsetProxmoxStorage ensures that no value is present for ProxmoxStorage, not even an explicit nil
-func (o *KubernetesProfilesLisForPollerDto) UnsetProxmoxStorage() {
-	o.ProxmoxStorage.Unset()
+	o.ProxmoxStorage = &v
 }
 
 func (o KubernetesProfilesLisForPollerDto) MarshalJSON() ([]byte, error) {
@@ -498,17 +448,17 @@ func (o KubernetesProfilesLisForPollerDto) ToMap() (map[string]interface{}, erro
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if o.Name.IsSet() {
-		toSerialize["name"] = o.Name.Get()
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
 	}
-	if o.OrganizationId.IsSet() {
-		toSerialize["organizationId"] = o.OrganizationId.Get()
+	if !IsNil(o.OrganizationId) {
+		toSerialize["organizationId"] = o.OrganizationId
 	}
-	if o.OrganizationName.IsSet() {
-		toSerialize["organizationName"] = o.OrganizationName.Get()
+	if !IsNil(o.OrganizationName) {
+		toSerialize["organizationName"] = o.OrganizationName
 	}
-	if o.Cni.IsSet() {
-		toSerialize["cni"] = o.Cni.Get()
+	if !IsNil(o.Cni) {
+		toSerialize["cni"] = o.Cni
 	}
 	if !IsNil(o.OctaviaEnabled) {
 		toSerialize["octaviaEnabled"] = o.OctaviaEnabled
@@ -528,8 +478,8 @@ func (o KubernetesProfilesLisForPollerDto) ToMap() (map[string]interface{}, erro
 	if !IsNil(o.UniqueClusterName) {
 		toSerialize["uniqueClusterName"] = o.UniqueClusterName
 	}
-	if o.ProxmoxStorage.IsSet() {
-		toSerialize["proxmoxStorage"] = o.ProxmoxStorage.Get()
+	if !IsNil(o.ProxmoxStorage) {
+		toSerialize["proxmoxStorage"] = o.ProxmoxStorage
 	}
 	return toSerialize, nil
 }

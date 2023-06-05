@@ -5,11 +5,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
-**Token** | Pointer to **NullableString** |  | [optional] 
-**Status** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**Token** | Pointer to **string** |  | [optional] 
+**Status** | Pointer to **string** |  | [optional] 
 **OrganizationId** | Pointer to **int32** |  | [optional] 
-**Health** | Pointer to **NullableString** |  | [optional] 
+**Health** | Pointer to **string** |  | [optional] 
 **IsKubernetes** | Pointer to **bool** |  | [optional] 
 **IsLocked** | Pointer to **bool** |  | [optional] 
 **IsMonitoringEnabled** | Pointer to **bool** |  | [optional] 
@@ -86,16 +86,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *ProjectListForAlert) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *ProjectListForAlert) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetToken
 
 `func (o *ProjectListForAlert) GetToken() string`
@@ -121,16 +111,6 @@ SetToken sets Token field to given value.
 
 HasToken returns a boolean if a field has been set.
 
-### SetTokenNil
-
-`func (o *ProjectListForAlert) SetTokenNil(b bool)`
-
- SetTokenNil sets the value for Token to be an explicit nil
-
-### UnsetToken
-`func (o *ProjectListForAlert) UnsetToken()`
-
-UnsetToken ensures that no value is present for Token, not even an explicit nil
 ### GetStatus
 
 `func (o *ProjectListForAlert) GetStatus() string`
@@ -156,16 +136,6 @@ SetStatus sets Status field to given value.
 
 HasStatus returns a boolean if a field has been set.
 
-### SetStatusNil
-
-`func (o *ProjectListForAlert) SetStatusNil(b bool)`
-
- SetStatusNil sets the value for Status to be an explicit nil
-
-### UnsetStatus
-`func (o *ProjectListForAlert) UnsetStatus()`
-
-UnsetStatus ensures that no value is present for Status, not even an explicit nil
 ### GetOrganizationId
 
 `func (o *ProjectListForAlert) GetOrganizationId() int32`
@@ -216,16 +186,6 @@ SetHealth sets Health field to given value.
 
 HasHealth returns a boolean if a field has been set.
 
-### SetHealthNil
-
-`func (o *ProjectListForAlert) SetHealthNil(b bool)`
-
- SetHealthNil sets the value for Health to be an explicit nil
-
-### UnsetHealth
-`func (o *ProjectListForAlert) UnsetHealth()`
-
-UnsetHealth ensures that no value is present for Health, not even an explicit nil
 ### GetIsKubernetes
 
 `func (o *ProjectListForAlert) GetIsKubernetes() bool`
@@ -376,16 +336,6 @@ SetKubernetesAlerts sets KubernetesAlerts field to given value.
 
 HasKubernetesAlerts returns a boolean if a field has been set.
 
-### SetKubernetesAlertsNil
-
-`func (o *ProjectListForAlert) SetKubernetesAlertsNil(b bool)`
-
- SetKubernetesAlertsNil sets the value for KubernetesAlerts to be an explicit nil
-
-### UnsetKubernetesAlerts
-`func (o *ProjectListForAlert) UnsetKubernetesAlerts()`
-
-UnsetKubernetesAlerts ensures that no value is present for KubernetesAlerts, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

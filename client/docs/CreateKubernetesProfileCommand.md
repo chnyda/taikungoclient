@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Name** | **string** |  | 
 **OctaviaEnabled** | Pointer to **bool** |  | [optional] 
 **ExposeNodePortOnBastion** | Pointer to **bool** |  | [optional] 
-**OrganizationId** | Pointer to **NullableInt32** |  | [optional] 
+**OrganizationId** | Pointer to **int32** |  | [optional] 
 **TaikunLBEnabled** | Pointer to **bool** |  | [optional] 
 **AllowSchedulingOnMaster** | Pointer to **bool** |  | [optional] 
 **UniqueClusterName** | Pointer to **bool** |  | [optional] 
@@ -126,16 +126,6 @@ SetOrganizationId sets OrganizationId field to given value.
 
 HasOrganizationId returns a boolean if a field has been set.
 
-### SetOrganizationIdNil
-
-`func (o *CreateKubernetesProfileCommand) SetOrganizationIdNil(b bool)`
-
- SetOrganizationIdNil sets the value for OrganizationId to be an explicit nil
-
-### UnsetOrganizationId
-`func (o *CreateKubernetesProfileCommand) UnsetOrganizationId()`
-
-UnsetOrganizationId ensures that no value is present for OrganizationId, not even an explicit nil
 ### GetTaikunLBEnabled
 
 `func (o *CreateKubernetesProfileCommand) GetTaikunLBEnabled() bool`

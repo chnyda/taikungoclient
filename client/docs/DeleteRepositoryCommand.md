@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**RepoName** | Pointer to **NullableString** |  | [optional] 
+**RepoName** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -50,16 +50,6 @@ SetRepoName sets RepoName field to given value.
 
 HasRepoName returns a boolean if a field has been set.
 
-### SetRepoNameNil
-
-`func (o *DeleteRepositoryCommand) SetRepoNameNil(b bool)`
-
- SetRepoNameNil sets the value for RepoName to be an explicit nil
-
-### UnsetRepoName
-`func (o *DeleteRepositoryCommand) UnsetRepoName()`
-
-UnsetRepoName ensures that no value is present for RepoName, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

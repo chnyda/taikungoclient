@@ -22,9 +22,9 @@ var _ MappedNullable = &FlavorsListDto{}
 type FlavorsListDto struct {
 	Ram *int64 `json:"ram,omitempty"`
 	Cpu *int32 `json:"cpu,omitempty"`
-	Name NullableString `json:"name,omitempty"`
-	Description interface{} `json:"description,omitempty"`
-	MaxDataDiskCount NullableFloat64 `json:"maxDataDiskCount,omitempty"`
+	Name *string `json:"name,omitempty"`
+	Description map[string]interface{} `json:"description,omitempty"`
+	MaxDataDiskCount *float64 `json:"maxDataDiskCount,omitempty"`
 }
 
 // NewFlavorsListDto instantiates a new FlavorsListDto object
@@ -108,52 +108,42 @@ func (o *FlavorsListDto) SetCpu(v int32) {
 	o.Cpu = &v
 }
 
-// GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetName returns the Name field value if set, zero value otherwise.
 func (o *FlavorsListDto) GetName() string {
-	if o == nil || IsNil(o.Name.Get()) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
-	return *o.Name.Get()
+	return *o.Name
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *FlavorsListDto) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
-	return o.Name.Get(), o.Name.IsSet()
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *FlavorsListDto) HasName() bool {
-	if o != nil && o.Name.IsSet() {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
 	return false
 }
 
-// SetName gets a reference to the given NullableString and assigns it to the Name field.
+// SetName gets a reference to the given string and assigns it to the Name field.
 func (o *FlavorsListDto) SetName(v string) {
-	o.Name.Set(&v)
-}
-// SetNameNil sets the value for Name to be an explicit nil
-func (o *FlavorsListDto) SetNameNil() {
-	o.Name.Set(nil)
+	o.Name = &v
 }
 
-// UnsetName ensures that no value is present for Name, not even an explicit nil
-func (o *FlavorsListDto) UnsetName() {
-	o.Name.Unset()
-}
-
-// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *FlavorsListDto) GetDescription() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetDescription returns the Description field value if set, zero value otherwise.
+func (o *FlavorsListDto) GetDescription() map[string]interface{} {
+	if o == nil || IsNil(o.Description) {
+		var ret map[string]interface{}
 		return ret
 	}
 	return o.Description
@@ -161,68 +151,57 @@ func (o *FlavorsListDto) GetDescription() interface{} {
 
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *FlavorsListDto) GetDescriptionOk() (*interface{}, bool) {
+func (o *FlavorsListDto) GetDescriptionOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.Description) {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
-	return &o.Description, true
+	return o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
 func (o *FlavorsListDto) HasDescription() bool {
-	if o != nil && IsNil(o.Description) {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
 	return false
 }
 
-// SetDescription gets a reference to the given interface{} and assigns it to the Description field.
-func (o *FlavorsListDto) SetDescription(v interface{}) {
+// SetDescription gets a reference to the given map[string]interface{} and assigns it to the Description field.
+func (o *FlavorsListDto) SetDescription(v map[string]interface{}) {
 	o.Description = v
 }
 
-// GetMaxDataDiskCount returns the MaxDataDiskCount field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetMaxDataDiskCount returns the MaxDataDiskCount field value if set, zero value otherwise.
 func (o *FlavorsListDto) GetMaxDataDiskCount() float64 {
-	if o == nil || IsNil(o.MaxDataDiskCount.Get()) {
+	if o == nil || IsNil(o.MaxDataDiskCount) {
 		var ret float64
 		return ret
 	}
-	return *o.MaxDataDiskCount.Get()
+	return *o.MaxDataDiskCount
 }
 
 // GetMaxDataDiskCountOk returns a tuple with the MaxDataDiskCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *FlavorsListDto) GetMaxDataDiskCountOk() (*float64, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.MaxDataDiskCount) {
 		return nil, false
 	}
-	return o.MaxDataDiskCount.Get(), o.MaxDataDiskCount.IsSet()
+	return o.MaxDataDiskCount, true
 }
 
 // HasMaxDataDiskCount returns a boolean if a field has been set.
 func (o *FlavorsListDto) HasMaxDataDiskCount() bool {
-	if o != nil && o.MaxDataDiskCount.IsSet() {
+	if o != nil && !IsNil(o.MaxDataDiskCount) {
 		return true
 	}
 
 	return false
 }
 
-// SetMaxDataDiskCount gets a reference to the given NullableFloat64 and assigns it to the MaxDataDiskCount field.
+// SetMaxDataDiskCount gets a reference to the given float64 and assigns it to the MaxDataDiskCount field.
 func (o *FlavorsListDto) SetMaxDataDiskCount(v float64) {
-	o.MaxDataDiskCount.Set(&v)
-}
-// SetMaxDataDiskCountNil sets the value for MaxDataDiskCount to be an explicit nil
-func (o *FlavorsListDto) SetMaxDataDiskCountNil() {
-	o.MaxDataDiskCount.Set(nil)
-}
-
-// UnsetMaxDataDiskCount ensures that no value is present for MaxDataDiskCount, not even an explicit nil
-func (o *FlavorsListDto) UnsetMaxDataDiskCount() {
-	o.MaxDataDiskCount.Unset()
+	o.MaxDataDiskCount = &v
 }
 
 func (o FlavorsListDto) MarshalJSON() ([]byte, error) {
@@ -241,14 +220,14 @@ func (o FlavorsListDto) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Cpu) {
 		toSerialize["cpu"] = o.Cpu
 	}
-	if o.Name.IsSet() {
-		toSerialize["name"] = o.Name.Get()
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
 	}
-	if o.Description != nil {
+	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
-	if o.MaxDataDiskCount.IsSet() {
-		toSerialize["maxDataDiskCount"] = o.MaxDataDiskCount.Get()
+	if !IsNil(o.MaxDataDiskCount) {
+		toSerialize["maxDataDiskCount"] = o.MaxDataDiskCount
 	}
 	return toSerialize, nil
 }

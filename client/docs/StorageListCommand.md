@@ -5,14 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Url** | **string** |  | 
-**Username** | **string** |  | 
-**Password** | **string** |  | 
+**TokenId** | **string** |  | 
+**TokenSecret** | **string** |  | 
 
 ## Methods
 
 ### NewStorageListCommand
 
-`func NewStorageListCommand(url string, username string, password string, ) *StorageListCommand`
+`func NewStorageListCommand(url string, tokenId string, tokenSecret string, ) *StorageListCommand`
 
 NewStorageListCommand instantiates a new StorageListCommand object
 This constructor will assign default values to properties that have it defined,
@@ -47,44 +47,44 @@ and a boolean to check if the value has been set.
 SetUrl sets Url field to given value.
 
 
-### GetUsername
+### GetTokenId
 
-`func (o *StorageListCommand) GetUsername() string`
+`func (o *StorageListCommand) GetTokenId() string`
 
-GetUsername returns the Username field if non-nil, zero value otherwise.
+GetTokenId returns the TokenId field if non-nil, zero value otherwise.
 
-### GetUsernameOk
+### GetTokenIdOk
 
-`func (o *StorageListCommand) GetUsernameOk() (*string, bool)`
+`func (o *StorageListCommand) GetTokenIdOk() (*string, bool)`
 
-GetUsernameOk returns a tuple with the Username field if it's non-nil, zero value otherwise
+GetTokenIdOk returns a tuple with the TokenId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetUsername
+### SetTokenId
 
-`func (o *StorageListCommand) SetUsername(v string)`
+`func (o *StorageListCommand) SetTokenId(v string)`
 
-SetUsername sets Username field to given value.
+SetTokenId sets TokenId field to given value.
 
 
-### GetPassword
+### GetTokenSecret
 
-`func (o *StorageListCommand) GetPassword() string`
+`func (o *StorageListCommand) GetTokenSecret() string`
 
-GetPassword returns the Password field if non-nil, zero value otherwise.
+GetTokenSecret returns the TokenSecret field if non-nil, zero value otherwise.
 
-### GetPasswordOk
+### GetTokenSecretOk
 
-`func (o *StorageListCommand) GetPasswordOk() (*string, bool)`
+`func (o *StorageListCommand) GetTokenSecretOk() (*string, bool)`
 
-GetPasswordOk returns a tuple with the Password field if it's non-nil, zero value otherwise
+GetTokenSecretOk returns a tuple with the TokenSecret field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetPassword
+### SetTokenSecret
 
-`func (o *StorageListCommand) SetPassword(v string)`
+`func (o *StorageListCommand) SetTokenSecret(v string)`
 
-SetPassword sets Password field to given value.
+SetTokenSecret sets TokenSecret field to given value.
 
 
 

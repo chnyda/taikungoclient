@@ -5,15 +5,15 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
-**OrganizationName** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**OrganizationName** | Pointer to **string** |  | [optional] 
 **IsLocked** | Pointer to **bool** |  | [optional] 
-**KubernetesCurrentVersion** | Pointer to **NullableString** |  | [optional] 
-**KubesprayCurrentVersion** | Pointer to **NullableString** |  | [optional] 
-**Status** | Pointer to **NullableString** |  | [optional] 
+**KubernetesCurrentVersion** | Pointer to **string** |  | [optional] 
+**KubesprayCurrentVersion** | Pointer to **string** |  | [optional] 
+**Status** | Pointer to **string** |  | [optional] 
 **ServersCount** | Pointer to **int32** |  | [optional] 
 **Tcu** | Pointer to **int32** |  | [optional] 
-**CreatedAt** | Pointer to **NullableString** |  | [optional] 
+**CreatedAt** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -84,16 +84,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *AdminProjectsResponseData) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *AdminProjectsResponseData) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetOrganizationName
 
 `func (o *AdminProjectsResponseData) GetOrganizationName() string`
@@ -119,16 +109,6 @@ SetOrganizationName sets OrganizationName field to given value.
 
 HasOrganizationName returns a boolean if a field has been set.
 
-### SetOrganizationNameNil
-
-`func (o *AdminProjectsResponseData) SetOrganizationNameNil(b bool)`
-
- SetOrganizationNameNil sets the value for OrganizationName to be an explicit nil
-
-### UnsetOrganizationName
-`func (o *AdminProjectsResponseData) UnsetOrganizationName()`
-
-UnsetOrganizationName ensures that no value is present for OrganizationName, not even an explicit nil
 ### GetIsLocked
 
 `func (o *AdminProjectsResponseData) GetIsLocked() bool`
@@ -179,16 +159,6 @@ SetKubernetesCurrentVersion sets KubernetesCurrentVersion field to given value.
 
 HasKubernetesCurrentVersion returns a boolean if a field has been set.
 
-### SetKubernetesCurrentVersionNil
-
-`func (o *AdminProjectsResponseData) SetKubernetesCurrentVersionNil(b bool)`
-
- SetKubernetesCurrentVersionNil sets the value for KubernetesCurrentVersion to be an explicit nil
-
-### UnsetKubernetesCurrentVersion
-`func (o *AdminProjectsResponseData) UnsetKubernetesCurrentVersion()`
-
-UnsetKubernetesCurrentVersion ensures that no value is present for KubernetesCurrentVersion, not even an explicit nil
 ### GetKubesprayCurrentVersion
 
 `func (o *AdminProjectsResponseData) GetKubesprayCurrentVersion() string`
@@ -214,16 +184,6 @@ SetKubesprayCurrentVersion sets KubesprayCurrentVersion field to given value.
 
 HasKubesprayCurrentVersion returns a boolean if a field has been set.
 
-### SetKubesprayCurrentVersionNil
-
-`func (o *AdminProjectsResponseData) SetKubesprayCurrentVersionNil(b bool)`
-
- SetKubesprayCurrentVersionNil sets the value for KubesprayCurrentVersion to be an explicit nil
-
-### UnsetKubesprayCurrentVersion
-`func (o *AdminProjectsResponseData) UnsetKubesprayCurrentVersion()`
-
-UnsetKubesprayCurrentVersion ensures that no value is present for KubesprayCurrentVersion, not even an explicit nil
 ### GetStatus
 
 `func (o *AdminProjectsResponseData) GetStatus() string`
@@ -249,16 +209,6 @@ SetStatus sets Status field to given value.
 
 HasStatus returns a boolean if a field has been set.
 
-### SetStatusNil
-
-`func (o *AdminProjectsResponseData) SetStatusNil(b bool)`
-
- SetStatusNil sets the value for Status to be an explicit nil
-
-### UnsetStatus
-`func (o *AdminProjectsResponseData) UnsetStatus()`
-
-UnsetStatus ensures that no value is present for Status, not even an explicit nil
 ### GetServersCount
 
 `func (o *AdminProjectsResponseData) GetServersCount() int32`
@@ -334,16 +284,6 @@ SetCreatedAt sets CreatedAt field to given value.
 
 HasCreatedAt returns a boolean if a field has been set.
 
-### SetCreatedAtNil
-
-`func (o *AdminProjectsResponseData) SetCreatedAtNil(b bool)`
-
- SetCreatedAtNil sets the value for CreatedAt to be an explicit nil
-
-### UnsetCreatedAt
-`func (o *AdminProjectsResponseData) UnsetCreatedAt()`
-
-UnsetCreatedAt ensures that no value is present for CreatedAt, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

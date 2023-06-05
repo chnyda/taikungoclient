@@ -5,10 +5,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
-**ExpressionDecoded** | Pointer to **NullableString** |  | [optional] 
-**ExpressionEncoded** | Pointer to **NullableString** |  | [optional] 
-**Description** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**ExpressionDecoded** | Pointer to **string** |  | [optional] 
+**ExpressionEncoded** | Pointer to **string** |  | [optional] 
+**Description** | Pointer to **string** |  | [optional] 
 **IsReadonly** | Pointer to **bool** |  | [optional] 
 
 ## Methods
@@ -80,16 +80,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *PrometheusDashboardDto) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *PrometheusDashboardDto) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetExpressionDecoded
 
 `func (o *PrometheusDashboardDto) GetExpressionDecoded() string`
@@ -115,16 +105,6 @@ SetExpressionDecoded sets ExpressionDecoded field to given value.
 
 HasExpressionDecoded returns a boolean if a field has been set.
 
-### SetExpressionDecodedNil
-
-`func (o *PrometheusDashboardDto) SetExpressionDecodedNil(b bool)`
-
- SetExpressionDecodedNil sets the value for ExpressionDecoded to be an explicit nil
-
-### UnsetExpressionDecoded
-`func (o *PrometheusDashboardDto) UnsetExpressionDecoded()`
-
-UnsetExpressionDecoded ensures that no value is present for ExpressionDecoded, not even an explicit nil
 ### GetExpressionEncoded
 
 `func (o *PrometheusDashboardDto) GetExpressionEncoded() string`
@@ -150,16 +130,6 @@ SetExpressionEncoded sets ExpressionEncoded field to given value.
 
 HasExpressionEncoded returns a boolean if a field has been set.
 
-### SetExpressionEncodedNil
-
-`func (o *PrometheusDashboardDto) SetExpressionEncodedNil(b bool)`
-
- SetExpressionEncodedNil sets the value for ExpressionEncoded to be an explicit nil
-
-### UnsetExpressionEncoded
-`func (o *PrometheusDashboardDto) UnsetExpressionEncoded()`
-
-UnsetExpressionEncoded ensures that no value is present for ExpressionEncoded, not even an explicit nil
 ### GetDescription
 
 `func (o *PrometheusDashboardDto) GetDescription() string`
@@ -185,16 +155,6 @@ SetDescription sets Description field to given value.
 
 HasDescription returns a boolean if a field has been set.
 
-### SetDescriptionNil
-
-`func (o *PrometheusDashboardDto) SetDescriptionNil(b bool)`
-
- SetDescriptionNil sets the value for Description to be an explicit nil
-
-### UnsetDescription
-`func (o *PrometheusDashboardDto) UnsetDescription()`
-
-UnsetDescription ensures that no value is present for Description, not even an explicit nil
 ### GetIsReadonly
 
 `func (o *PrometheusDashboardDto) GetIsReadonly() bool`

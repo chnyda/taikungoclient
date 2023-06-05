@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**TokenId** | Pointer to **NullableString** |  | [optional] 
+**TokenId** | Pointer to **string** |  | [optional] 
 **Endpoints** | Pointer to [**[]AvailableEndpointData**](AvailableEndpointData.md) |  | [optional] 
 **BindAll** | Pointer to **bool** |  | [optional] 
 
@@ -52,16 +52,6 @@ SetTokenId sets TokenId field to given value.
 
 HasTokenId returns a boolean if a field has been set.
 
-### SetTokenIdNil
-
-`func (o *BindUnbindEndpointToTokenCommand) SetTokenIdNil(b bool)`
-
- SetTokenIdNil sets the value for TokenId to be an explicit nil
-
-### UnsetTokenId
-`func (o *BindUnbindEndpointToTokenCommand) UnsetTokenId()`
-
-UnsetTokenId ensures that no value is present for TokenId, not even an explicit nil
 ### GetEndpoints
 
 `func (o *BindUnbindEndpointToTokenCommand) GetEndpoints() []AvailableEndpointData`
@@ -87,16 +77,6 @@ SetEndpoints sets Endpoints field to given value.
 
 HasEndpoints returns a boolean if a field has been set.
 
-### SetEndpointsNil
-
-`func (o *BindUnbindEndpointToTokenCommand) SetEndpointsNil(b bool)`
-
- SetEndpointsNil sets the value for Endpoints to be an explicit nil
-
-### UnsetEndpoints
-`func (o *BindUnbindEndpointToTokenCommand) UnsetEndpoints()`
-
-UnsetEndpoints ensures that no value is present for Endpoints, not even an explicit nil
 ### GetBindAll
 
 `func (o *BindUnbindEndpointToTokenCommand) GetBindAll() bool`

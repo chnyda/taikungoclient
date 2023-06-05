@@ -76,16 +76,6 @@ SetReasons sets Reasons field to given value.
 
 HasReasons returns a boolean if a field has been set.
 
-### SetReasonsNil
-
-`func (o *ProjectButtonStatusDto) SetReasonsNil(b bool)`
-
- SetReasonsNil sets the value for Reasons to be an explicit nil
-
-### UnsetReasons
-`func (o *ProjectButtonStatusDto) UnsetReasons()`
-
-UnsetReasons ensures that no value is present for Reasons, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

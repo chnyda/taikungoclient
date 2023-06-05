@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **NullableString** |  | [optional] 
+**Id** | Pointer to **string** |  | [optional] 
 **Disable** | Pointer to **bool** |  | [optional] 
 
 ## Methods
@@ -51,16 +51,6 @@ SetId sets Id field to given value.
 
 HasId returns a boolean if a field has been set.
 
-### SetIdNil
-
-`func (o *DisableUserCommand) SetIdNil(b bool)`
-
- SetIdNil sets the value for Id to be an explicit nil
-
-### UnsetId
-`func (o *DisableUserCommand) UnsetId()`
-
-UnsetId ensures that no value is present for Id, not even an explicit nil
 ### GetDisable
 
 `func (o *DisableUserCommand) GetDisable() bool`

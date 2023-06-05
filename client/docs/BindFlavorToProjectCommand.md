@@ -76,16 +76,6 @@ SetFlavors sets Flavors field to given value.
 
 HasFlavors returns a boolean if a field has been set.
 
-### SetFlavorsNil
-
-`func (o *BindFlavorToProjectCommand) SetFlavorsNil(b bool)`
-
- SetFlavorsNil sets the value for Flavors to be an explicit nil
-
-### UnsetFlavors
-`func (o *BindFlavorToProjectCommand) UnsetFlavors()`
-
-UnsetFlavors ensures that no value is present for Flavors, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

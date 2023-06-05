@@ -22,7 +22,7 @@ var _ MappedNullable = &HelmStatus{}
 type HelmStatus struct {
 	Conditions []Condition `json:"conditions,omitempty"`
 	Failures *int64 `json:"failures,omitempty"`
-	HelmChart NullableString `json:"helmChart,omitempty"`
+	HelmChart *string `json:"helmChart,omitempty"`
 	ObservedGeneration *int64 `json:"observedGeneration,omitempty"`
 }
 
@@ -43,9 +43,9 @@ func NewHelmStatusWithDefaults() *HelmStatus {
 	return &this
 }
 
-// GetConditions returns the Conditions field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetConditions returns the Conditions field value if set, zero value otherwise.
 func (o *HelmStatus) GetConditions() []Condition {
-	if o == nil {
+	if o == nil || IsNil(o.Conditions) {
 		var ret []Condition
 		return ret
 	}
@@ -54,7 +54,6 @@ func (o *HelmStatus) GetConditions() []Condition {
 
 // GetConditionsOk returns a tuple with the Conditions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *HelmStatus) GetConditionsOk() ([]Condition, bool) {
 	if o == nil || IsNil(o.Conditions) {
 		return nil, false
@@ -64,7 +63,7 @@ func (o *HelmStatus) GetConditionsOk() ([]Condition, bool) {
 
 // HasConditions returns a boolean if a field has been set.
 func (o *HelmStatus) HasConditions() bool {
-	if o != nil && IsNil(o.Conditions) {
+	if o != nil && !IsNil(o.Conditions) {
 		return true
 	}
 
@@ -108,46 +107,36 @@ func (o *HelmStatus) SetFailures(v int64) {
 	o.Failures = &v
 }
 
-// GetHelmChart returns the HelmChart field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetHelmChart returns the HelmChart field value if set, zero value otherwise.
 func (o *HelmStatus) GetHelmChart() string {
-	if o == nil || IsNil(o.HelmChart.Get()) {
+	if o == nil || IsNil(o.HelmChart) {
 		var ret string
 		return ret
 	}
-	return *o.HelmChart.Get()
+	return *o.HelmChart
 }
 
 // GetHelmChartOk returns a tuple with the HelmChart field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *HelmStatus) GetHelmChartOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.HelmChart) {
 		return nil, false
 	}
-	return o.HelmChart.Get(), o.HelmChart.IsSet()
+	return o.HelmChart, true
 }
 
 // HasHelmChart returns a boolean if a field has been set.
 func (o *HelmStatus) HasHelmChart() bool {
-	if o != nil && o.HelmChart.IsSet() {
+	if o != nil && !IsNil(o.HelmChart) {
 		return true
 	}
 
 	return false
 }
 
-// SetHelmChart gets a reference to the given NullableString and assigns it to the HelmChart field.
+// SetHelmChart gets a reference to the given string and assigns it to the HelmChart field.
 func (o *HelmStatus) SetHelmChart(v string) {
-	o.HelmChart.Set(&v)
-}
-// SetHelmChartNil sets the value for HelmChart to be an explicit nil
-func (o *HelmStatus) SetHelmChartNil() {
-	o.HelmChart.Set(nil)
-}
-
-// UnsetHelmChart ensures that no value is present for HelmChart, not even an explicit nil
-func (o *HelmStatus) UnsetHelmChart() {
-	o.HelmChart.Unset()
+	o.HelmChart = &v
 }
 
 // GetObservedGeneration returns the ObservedGeneration field value if set, zero value otherwise.
@@ -192,14 +181,14 @@ func (o HelmStatus) MarshalJSON() ([]byte, error) {
 
 func (o HelmStatus) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Conditions != nil {
+	if !IsNil(o.Conditions) {
 		toSerialize["conditions"] = o.Conditions
 	}
 	if !IsNil(o.Failures) {
 		toSerialize["failures"] = o.Failures
 	}
-	if o.HelmChart.IsSet() {
-		toSerialize["helmChart"] = o.HelmChart.Get()
+	if !IsNil(o.HelmChart) {
+		toSerialize["helmChart"] = o.HelmChart
 	}
 	if !IsNil(o.ObservedGeneration) {
 		toSerialize["observedGeneration"] = o.ObservedGeneration

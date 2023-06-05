@@ -72,16 +72,6 @@ SetServerIds sets ServerIds field to given value.
 
 HasServerIds returns a boolean if a field has been set.
 
-### SetServerIdsNil
-
-`func (o *ResetServerStatusCommand) SetServerIdsNil(b bool)`
-
- SetServerIdsNil sets the value for ServerIds to be an explicit nil
-
-### UnsetServerIds
-`func (o *ResetServerStatusCommand) UnsetServerIds()`
-
-UnsetServerIds ensures that no value is present for ServerIds, not even an explicit nil
 ### GetStatus
 
 `func (o *ResetServerStatusCommand) GetStatus() CloudStatus`

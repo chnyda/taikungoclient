@@ -26,9 +26,9 @@ type CreateSubscriptionCommand struct {
 	UserLimit *int32 `json:"userLimit,omitempty"`
 	CloudCredentialLimit *int32 `json:"cloudCredentialLimit,omitempty"`
 	TrialDays *int32 `json:"trialDays,omitempty"`
-	MonthlyPrice NullableFloat64 `json:"monthlyPrice,omitempty"`
-	TcuPrice NullableFloat64 `json:"tcuPrice,omitempty"`
-	YearlyPrice NullableFloat64 `json:"yearlyPrice,omitempty"`
+	MonthlyPrice *float64 `json:"monthlyPrice,omitempty"`
+	TcuPrice *float64 `json:"tcuPrice,omitempty"`
+	YearlyPrice *float64 `json:"yearlyPrice,omitempty"`
 }
 
 // NewCreateSubscriptionCommand instantiates a new CreateSubscriptionCommand object
@@ -233,130 +233,100 @@ func (o *CreateSubscriptionCommand) SetTrialDays(v int32) {
 	o.TrialDays = &v
 }
 
-// GetMonthlyPrice returns the MonthlyPrice field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetMonthlyPrice returns the MonthlyPrice field value if set, zero value otherwise.
 func (o *CreateSubscriptionCommand) GetMonthlyPrice() float64 {
-	if o == nil || IsNil(o.MonthlyPrice.Get()) {
+	if o == nil || IsNil(o.MonthlyPrice) {
 		var ret float64
 		return ret
 	}
-	return *o.MonthlyPrice.Get()
+	return *o.MonthlyPrice
 }
 
 // GetMonthlyPriceOk returns a tuple with the MonthlyPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateSubscriptionCommand) GetMonthlyPriceOk() (*float64, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.MonthlyPrice) {
 		return nil, false
 	}
-	return o.MonthlyPrice.Get(), o.MonthlyPrice.IsSet()
+	return o.MonthlyPrice, true
 }
 
 // HasMonthlyPrice returns a boolean if a field has been set.
 func (o *CreateSubscriptionCommand) HasMonthlyPrice() bool {
-	if o != nil && o.MonthlyPrice.IsSet() {
+	if o != nil && !IsNil(o.MonthlyPrice) {
 		return true
 	}
 
 	return false
 }
 
-// SetMonthlyPrice gets a reference to the given NullableFloat64 and assigns it to the MonthlyPrice field.
+// SetMonthlyPrice gets a reference to the given float64 and assigns it to the MonthlyPrice field.
 func (o *CreateSubscriptionCommand) SetMonthlyPrice(v float64) {
-	o.MonthlyPrice.Set(&v)
-}
-// SetMonthlyPriceNil sets the value for MonthlyPrice to be an explicit nil
-func (o *CreateSubscriptionCommand) SetMonthlyPriceNil() {
-	o.MonthlyPrice.Set(nil)
+	o.MonthlyPrice = &v
 }
 
-// UnsetMonthlyPrice ensures that no value is present for MonthlyPrice, not even an explicit nil
-func (o *CreateSubscriptionCommand) UnsetMonthlyPrice() {
-	o.MonthlyPrice.Unset()
-}
-
-// GetTcuPrice returns the TcuPrice field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetTcuPrice returns the TcuPrice field value if set, zero value otherwise.
 func (o *CreateSubscriptionCommand) GetTcuPrice() float64 {
-	if o == nil || IsNil(o.TcuPrice.Get()) {
+	if o == nil || IsNil(o.TcuPrice) {
 		var ret float64
 		return ret
 	}
-	return *o.TcuPrice.Get()
+	return *o.TcuPrice
 }
 
 // GetTcuPriceOk returns a tuple with the TcuPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateSubscriptionCommand) GetTcuPriceOk() (*float64, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.TcuPrice) {
 		return nil, false
 	}
-	return o.TcuPrice.Get(), o.TcuPrice.IsSet()
+	return o.TcuPrice, true
 }
 
 // HasTcuPrice returns a boolean if a field has been set.
 func (o *CreateSubscriptionCommand) HasTcuPrice() bool {
-	if o != nil && o.TcuPrice.IsSet() {
+	if o != nil && !IsNil(o.TcuPrice) {
 		return true
 	}
 
 	return false
 }
 
-// SetTcuPrice gets a reference to the given NullableFloat64 and assigns it to the TcuPrice field.
+// SetTcuPrice gets a reference to the given float64 and assigns it to the TcuPrice field.
 func (o *CreateSubscriptionCommand) SetTcuPrice(v float64) {
-	o.TcuPrice.Set(&v)
-}
-// SetTcuPriceNil sets the value for TcuPrice to be an explicit nil
-func (o *CreateSubscriptionCommand) SetTcuPriceNil() {
-	o.TcuPrice.Set(nil)
+	o.TcuPrice = &v
 }
 
-// UnsetTcuPrice ensures that no value is present for TcuPrice, not even an explicit nil
-func (o *CreateSubscriptionCommand) UnsetTcuPrice() {
-	o.TcuPrice.Unset()
-}
-
-// GetYearlyPrice returns the YearlyPrice field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetYearlyPrice returns the YearlyPrice field value if set, zero value otherwise.
 func (o *CreateSubscriptionCommand) GetYearlyPrice() float64 {
-	if o == nil || IsNil(o.YearlyPrice.Get()) {
+	if o == nil || IsNil(o.YearlyPrice) {
 		var ret float64
 		return ret
 	}
-	return *o.YearlyPrice.Get()
+	return *o.YearlyPrice
 }
 
 // GetYearlyPriceOk returns a tuple with the YearlyPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateSubscriptionCommand) GetYearlyPriceOk() (*float64, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.YearlyPrice) {
 		return nil, false
 	}
-	return o.YearlyPrice.Get(), o.YearlyPrice.IsSet()
+	return o.YearlyPrice, true
 }
 
 // HasYearlyPrice returns a boolean if a field has been set.
 func (o *CreateSubscriptionCommand) HasYearlyPrice() bool {
-	if o != nil && o.YearlyPrice.IsSet() {
+	if o != nil && !IsNil(o.YearlyPrice) {
 		return true
 	}
 
 	return false
 }
 
-// SetYearlyPrice gets a reference to the given NullableFloat64 and assigns it to the YearlyPrice field.
+// SetYearlyPrice gets a reference to the given float64 and assigns it to the YearlyPrice field.
 func (o *CreateSubscriptionCommand) SetYearlyPrice(v float64) {
-	o.YearlyPrice.Set(&v)
-}
-// SetYearlyPriceNil sets the value for YearlyPrice to be an explicit nil
-func (o *CreateSubscriptionCommand) SetYearlyPriceNil() {
-	o.YearlyPrice.Set(nil)
-}
-
-// UnsetYearlyPrice ensures that no value is present for YearlyPrice, not even an explicit nil
-func (o *CreateSubscriptionCommand) UnsetYearlyPrice() {
-	o.YearlyPrice.Unset()
+	o.YearlyPrice = &v
 }
 
 func (o CreateSubscriptionCommand) MarshalJSON() ([]byte, error) {
@@ -385,14 +355,14 @@ func (o CreateSubscriptionCommand) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.TrialDays) {
 		toSerialize["trialDays"] = o.TrialDays
 	}
-	if o.MonthlyPrice.IsSet() {
-		toSerialize["monthlyPrice"] = o.MonthlyPrice.Get()
+	if !IsNil(o.MonthlyPrice) {
+		toSerialize["monthlyPrice"] = o.MonthlyPrice
 	}
-	if o.TcuPrice.IsSet() {
-		toSerialize["tcuPrice"] = o.TcuPrice.Get()
+	if !IsNil(o.TcuPrice) {
+		toSerialize["tcuPrice"] = o.TcuPrice
 	}
-	if o.YearlyPrice.IsSet() {
-		toSerialize["yearlyPrice"] = o.YearlyPrice.Get()
+	if !IsNil(o.YearlyPrice) {
+		toSerialize["yearlyPrice"] = o.YearlyPrice
 	}
 	return toSerialize, nil
 }

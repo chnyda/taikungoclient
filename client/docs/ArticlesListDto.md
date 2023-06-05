@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SenderName** | Pointer to **NullableString** |  | [optional] 
+**SenderName** | Pointer to **string** |  | [optional] 
 **IsCsm** | Pointer to **bool** |  | [optional] 
-**CreateAt** | Pointer to **NullableString** |  | [optional] 
-**Body** | Pointer to **NullableString** |  | [optional] 
-**MessageId** | Pointer to **NullableString** |  | [optional] 
-**UserId** | Pointer to **NullableString** |  | [optional] 
+**CreateAt** | Pointer to **string** |  | [optional] 
+**Body** | Pointer to **string** |  | [optional] 
+**MessageId** | Pointer to **string** |  | [optional] 
+**UserId** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -55,16 +55,6 @@ SetSenderName sets SenderName field to given value.
 
 HasSenderName returns a boolean if a field has been set.
 
-### SetSenderNameNil
-
-`func (o *ArticlesListDto) SetSenderNameNil(b bool)`
-
- SetSenderNameNil sets the value for SenderName to be an explicit nil
-
-### UnsetSenderName
-`func (o *ArticlesListDto) UnsetSenderName()`
-
-UnsetSenderName ensures that no value is present for SenderName, not even an explicit nil
 ### GetIsCsm
 
 `func (o *ArticlesListDto) GetIsCsm() bool`
@@ -115,16 +105,6 @@ SetCreateAt sets CreateAt field to given value.
 
 HasCreateAt returns a boolean if a field has been set.
 
-### SetCreateAtNil
-
-`func (o *ArticlesListDto) SetCreateAtNil(b bool)`
-
- SetCreateAtNil sets the value for CreateAt to be an explicit nil
-
-### UnsetCreateAt
-`func (o *ArticlesListDto) UnsetCreateAt()`
-
-UnsetCreateAt ensures that no value is present for CreateAt, not even an explicit nil
 ### GetBody
 
 `func (o *ArticlesListDto) GetBody() string`
@@ -150,16 +130,6 @@ SetBody sets Body field to given value.
 
 HasBody returns a boolean if a field has been set.
 
-### SetBodyNil
-
-`func (o *ArticlesListDto) SetBodyNil(b bool)`
-
- SetBodyNil sets the value for Body to be an explicit nil
-
-### UnsetBody
-`func (o *ArticlesListDto) UnsetBody()`
-
-UnsetBody ensures that no value is present for Body, not even an explicit nil
 ### GetMessageId
 
 `func (o *ArticlesListDto) GetMessageId() string`
@@ -185,16 +155,6 @@ SetMessageId sets MessageId field to given value.
 
 HasMessageId returns a boolean if a field has been set.
 
-### SetMessageIdNil
-
-`func (o *ArticlesListDto) SetMessageIdNil(b bool)`
-
- SetMessageIdNil sets the value for MessageId to be an explicit nil
-
-### UnsetMessageId
-`func (o *ArticlesListDto) UnsetMessageId()`
-
-UnsetMessageId ensures that no value is present for MessageId, not even an explicit nil
 ### GetUserId
 
 `func (o *ArticlesListDto) GetUserId() string`
@@ -220,16 +180,6 @@ SetUserId sets UserId field to given value.
 
 HasUserId returns a boolean if a field has been set.
 
-### SetUserIdNil
-
-`func (o *ArticlesListDto) SetUserIdNil(b bool)`
-
- SetUserIdNil sets the value for UserId to be an explicit nil
-
-### UnsetUserId
-`func (o *ArticlesListDto) UnsetUserId()`
-
-UnsetUserId ensures that no value is present for UserId, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

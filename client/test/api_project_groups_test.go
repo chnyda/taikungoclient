@@ -22,22 +22,26 @@ func Test_taikuncore_ProjectGroupsApiService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test ProjectGroupsApiService ProjectgroupsBind", func(t *testing.T) {
+	t.Run("Test ProjectGroupsApiService ProjectGroupsBindUserGroups", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.ProjectGroupsApi.ProjectgroupsBind(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.ProjectGroupsApi.ProjectGroupsBindUserGroups(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test ProjectGroupsApiService ProjectgroupsCreate", func(t *testing.T) {
+	t.Run("Test ProjectGroupsApiService ProjectGroupsCreate", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.ProjectGroupsApi.ProjectgroupsCreate(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.ProjectGroupsApi.ProjectGroupsCreate(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -45,35 +49,55 @@ func Test_taikuncore_ProjectGroupsApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test ProjectGroupsApiService ProjectgroupsDelete", func(t *testing.T) {
+	t.Run("Test ProjectGroupsApiService ProjectGroupsDelete", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.ProjectGroupsApi.ProjectgroupsDelete(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.ProjectGroupsApi.ProjectGroupsDelete(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test ProjectGroupsApiService ProjectgroupsEdit", func(t *testing.T) {
+	t.Run("Test ProjectGroupsApiService ProjectGroupsList", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var v string
+
+		resp, httpRes, err := apiClient.ProjectGroupsApi.ProjectGroupsList(context.Background(), v).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ProjectGroupsApiService ProjectGroupsListByUserGroupId", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var v string
+
+		resp, httpRes, err := apiClient.ProjectGroupsApi.ProjectGroupsListByUserGroupId(context.Background(), v).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ProjectGroupsApiService ProjectGroupsProjectListByProjectGroupId", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var projectGroupId int32
+		var v string
 
-		httpRes, err := apiClient.ProjectGroupsApi.ProjectgroupsEdit(context.Background(), projectGroupId).Execute()
-
-		require.Nil(t, err)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test ProjectGroupsApiService ProjectgroupsList", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		resp, httpRes, err := apiClient.ProjectGroupsApi.ProjectgroupsList(context.Background()).Execute()
+		resp, httpRes, err := apiClient.ProjectGroupsApi.ProjectGroupsProjectListByProjectGroupId(context.Background(), projectGroupId, v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -81,30 +105,15 @@ func Test_taikuncore_ProjectGroupsApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test ProjectGroupsApiService ProjectgroupsListByUserId", func(t *testing.T) {
+	t.Run("Test ProjectGroupsApiService ProjectGroupsUpdate", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var userGroupId int32
+		var v string
 
-		resp, httpRes, err := apiClient.ProjectGroupsApi.ProjectgroupsListByUserId(context.Background(), userGroupId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test ProjectGroupsApiService ProjectgroupsProjectList", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var projectGroupId int32
-
-		resp, httpRes, err := apiClient.ProjectGroupsApi.ProjectgroupsProjectList(context.Background(), projectGroupId).Execute()
+		httpRes, err := apiClient.ProjectGroupsApi.ProjectGroupsUpdate(context.Background(), v).Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})

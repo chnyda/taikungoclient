@@ -6,9 +6,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **int32** |  | 
 **Ip** | **string** |  | 
-**InstanceId** | Pointer to **NullableString** |  | [optional] 
-**ProviderID** | Pointer to **NullableString** |  | [optional] 
-**AwsHostName** | Pointer to **NullableString** |  | [optional] 
+**InstanceId** | Pointer to **string** |  | [optional] 
+**ProviderID** | Pointer to **string** |  | [optional] 
+**AwsHostName** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -94,16 +94,6 @@ SetInstanceId sets InstanceId field to given value.
 
 HasInstanceId returns a boolean if a field has been set.
 
-### SetInstanceIdNil
-
-`func (o *UpdateServerCommand) SetInstanceIdNil(b bool)`
-
- SetInstanceIdNil sets the value for InstanceId to be an explicit nil
-
-### UnsetInstanceId
-`func (o *UpdateServerCommand) UnsetInstanceId()`
-
-UnsetInstanceId ensures that no value is present for InstanceId, not even an explicit nil
 ### GetProviderID
 
 `func (o *UpdateServerCommand) GetProviderID() string`
@@ -129,16 +119,6 @@ SetProviderID sets ProviderID field to given value.
 
 HasProviderID returns a boolean if a field has been set.
 
-### SetProviderIDNil
-
-`func (o *UpdateServerCommand) SetProviderIDNil(b bool)`
-
- SetProviderIDNil sets the value for ProviderID to be an explicit nil
-
-### UnsetProviderID
-`func (o *UpdateServerCommand) UnsetProviderID()`
-
-UnsetProviderID ensures that no value is present for ProviderID, not even an explicit nil
 ### GetAwsHostName
 
 `func (o *UpdateServerCommand) GetAwsHostName() string`
@@ -164,16 +144,6 @@ SetAwsHostName sets AwsHostName field to given value.
 
 HasAwsHostName returns a boolean if a field has been set.
 
-### SetAwsHostNameNil
-
-`func (o *UpdateServerCommand) SetAwsHostNameNil(b bool)`
-
- SetAwsHostNameNil sets the value for AwsHostName to be an explicit nil
-
-### UnsetAwsHostName
-`func (o *UpdateServerCommand) UnsetAwsHostName()`
-
-UnsetAwsHostName ensures that no value is present for AwsHostName, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

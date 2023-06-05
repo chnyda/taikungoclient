@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**LastTransitionTime** | Pointer to **NullableTime** |  | [optional] 
-**Message** | Pointer to **NullableString** |  | [optional] 
-**Reason** | Pointer to **NullableString** |  | [optional] 
-**Status** | Pointer to **NullableString** |  | [optional] 
-**Type** | Pointer to **NullableString** |  | [optional] 
+**LastTransitionTime** | Pointer to **time.Time** |  | [optional] 
+**Message** | Pointer to **string** |  | [optional] 
+**Reason** | Pointer to **string** |  | [optional] 
+**Status** | Pointer to **string** |  | [optional] 
+**Type** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -54,16 +54,6 @@ SetLastTransitionTime sets LastTransitionTime field to given value.
 
 HasLastTransitionTime returns a boolean if a field has been set.
 
-### SetLastTransitionTimeNil
-
-`func (o *Condition) SetLastTransitionTimeNil(b bool)`
-
- SetLastTransitionTimeNil sets the value for LastTransitionTime to be an explicit nil
-
-### UnsetLastTransitionTime
-`func (o *Condition) UnsetLastTransitionTime()`
-
-UnsetLastTransitionTime ensures that no value is present for LastTransitionTime, not even an explicit nil
 ### GetMessage
 
 `func (o *Condition) GetMessage() string`
@@ -89,16 +79,6 @@ SetMessage sets Message field to given value.
 
 HasMessage returns a boolean if a field has been set.
 
-### SetMessageNil
-
-`func (o *Condition) SetMessageNil(b bool)`
-
- SetMessageNil sets the value for Message to be an explicit nil
-
-### UnsetMessage
-`func (o *Condition) UnsetMessage()`
-
-UnsetMessage ensures that no value is present for Message, not even an explicit nil
 ### GetReason
 
 `func (o *Condition) GetReason() string`
@@ -124,16 +104,6 @@ SetReason sets Reason field to given value.
 
 HasReason returns a boolean if a field has been set.
 
-### SetReasonNil
-
-`func (o *Condition) SetReasonNil(b bool)`
-
- SetReasonNil sets the value for Reason to be an explicit nil
-
-### UnsetReason
-`func (o *Condition) UnsetReason()`
-
-UnsetReason ensures that no value is present for Reason, not even an explicit nil
 ### GetStatus
 
 `func (o *Condition) GetStatus() string`
@@ -159,16 +129,6 @@ SetStatus sets Status field to given value.
 
 HasStatus returns a boolean if a field has been set.
 
-### SetStatusNil
-
-`func (o *Condition) SetStatusNil(b bool)`
-
- SetStatusNil sets the value for Status to be an explicit nil
-
-### UnsetStatus
-`func (o *Condition) UnsetStatus()`
-
-UnsetStatus ensures that no value is present for Status, not even an explicit nil
 ### GetType
 
 `func (o *Condition) GetType() string`
@@ -194,16 +154,6 @@ SetType sets Type field to given value.
 
 HasType returns a boolean if a field has been set.
 
-### SetTypeNil
-
-`func (o *Condition) SetTypeNil(b bool)`
-
- SetTypeNil sets the value for Type to be an explicit nil
-
-### UnsetType
-`func (o *Condition) UnsetType()`
-
-UnsetType ensures that no value is present for Type, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

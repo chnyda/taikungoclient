@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ProjectId** | **int32** |  | 
-**ExpireAt** | Pointer to **NullableTime** |  | [optional] 
+**ExpireAt** | Pointer to **time.Time** |  | [optional] 
 **DeleteOnExpiration** | Pointer to **bool** |  | [optional] 
 
 ## Methods
@@ -72,16 +72,6 @@ SetExpireAt sets ExpireAt field to given value.
 
 HasExpireAt returns a boolean if a field has been set.
 
-### SetExpireAtNil
-
-`func (o *ProjectExtendLifeTimeCommand) SetExpireAtNil(b bool)`
-
- SetExpireAtNil sets the value for ExpireAt to be an explicit nil
-
-### UnsetExpireAt
-`func (o *ProjectExtendLifeTimeCommand) UnsetExpireAt()`
-
-UnsetExpireAt ensures that no value is present for ExpireAt, not even an explicit nil
 ### GetDeleteOnExpiration
 
 `func (o *ProjectExtendLifeTimeCommand) GetDeleteOnExpiration() bool`

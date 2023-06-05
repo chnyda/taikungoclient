@@ -20,9 +20,9 @@ var _ MappedNullable = &ProjectActionUpdateDto{}
 
 // ProjectActionUpdateDto struct for ProjectActionUpdateDto
 type ProjectActionUpdateDto struct {
-	Operation NullableString `json:"operation,omitempty"`
-	JobUrl NullableString `json:"jobUrl,omitempty"`
-	EstimatedTime NullableString `json:"estimatedTime,omitempty"`
+	Operation *string `json:"operation,omitempty"`
+	JobUrl *string `json:"jobUrl,omitempty"`
+	EstimatedTime *string `json:"estimatedTime,omitempty"`
 }
 
 // NewProjectActionUpdateDto instantiates a new ProjectActionUpdateDto object
@@ -42,130 +42,100 @@ func NewProjectActionUpdateDtoWithDefaults() *ProjectActionUpdateDto {
 	return &this
 }
 
-// GetOperation returns the Operation field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetOperation returns the Operation field value if set, zero value otherwise.
 func (o *ProjectActionUpdateDto) GetOperation() string {
-	if o == nil || IsNil(o.Operation.Get()) {
+	if o == nil || IsNil(o.Operation) {
 		var ret string
 		return ret
 	}
-	return *o.Operation.Get()
+	return *o.Operation
 }
 
 // GetOperationOk returns a tuple with the Operation field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProjectActionUpdateDto) GetOperationOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Operation) {
 		return nil, false
 	}
-	return o.Operation.Get(), o.Operation.IsSet()
+	return o.Operation, true
 }
 
 // HasOperation returns a boolean if a field has been set.
 func (o *ProjectActionUpdateDto) HasOperation() bool {
-	if o != nil && o.Operation.IsSet() {
+	if o != nil && !IsNil(o.Operation) {
 		return true
 	}
 
 	return false
 }
 
-// SetOperation gets a reference to the given NullableString and assigns it to the Operation field.
+// SetOperation gets a reference to the given string and assigns it to the Operation field.
 func (o *ProjectActionUpdateDto) SetOperation(v string) {
-	o.Operation.Set(&v)
-}
-// SetOperationNil sets the value for Operation to be an explicit nil
-func (o *ProjectActionUpdateDto) SetOperationNil() {
-	o.Operation.Set(nil)
+	o.Operation = &v
 }
 
-// UnsetOperation ensures that no value is present for Operation, not even an explicit nil
-func (o *ProjectActionUpdateDto) UnsetOperation() {
-	o.Operation.Unset()
-}
-
-// GetJobUrl returns the JobUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetJobUrl returns the JobUrl field value if set, zero value otherwise.
 func (o *ProjectActionUpdateDto) GetJobUrl() string {
-	if o == nil || IsNil(o.JobUrl.Get()) {
+	if o == nil || IsNil(o.JobUrl) {
 		var ret string
 		return ret
 	}
-	return *o.JobUrl.Get()
+	return *o.JobUrl
 }
 
 // GetJobUrlOk returns a tuple with the JobUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProjectActionUpdateDto) GetJobUrlOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.JobUrl) {
 		return nil, false
 	}
-	return o.JobUrl.Get(), o.JobUrl.IsSet()
+	return o.JobUrl, true
 }
 
 // HasJobUrl returns a boolean if a field has been set.
 func (o *ProjectActionUpdateDto) HasJobUrl() bool {
-	if o != nil && o.JobUrl.IsSet() {
+	if o != nil && !IsNil(o.JobUrl) {
 		return true
 	}
 
 	return false
 }
 
-// SetJobUrl gets a reference to the given NullableString and assigns it to the JobUrl field.
+// SetJobUrl gets a reference to the given string and assigns it to the JobUrl field.
 func (o *ProjectActionUpdateDto) SetJobUrl(v string) {
-	o.JobUrl.Set(&v)
-}
-// SetJobUrlNil sets the value for JobUrl to be an explicit nil
-func (o *ProjectActionUpdateDto) SetJobUrlNil() {
-	o.JobUrl.Set(nil)
+	o.JobUrl = &v
 }
 
-// UnsetJobUrl ensures that no value is present for JobUrl, not even an explicit nil
-func (o *ProjectActionUpdateDto) UnsetJobUrl() {
-	o.JobUrl.Unset()
-}
-
-// GetEstimatedTime returns the EstimatedTime field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetEstimatedTime returns the EstimatedTime field value if set, zero value otherwise.
 func (o *ProjectActionUpdateDto) GetEstimatedTime() string {
-	if o == nil || IsNil(o.EstimatedTime.Get()) {
+	if o == nil || IsNil(o.EstimatedTime) {
 		var ret string
 		return ret
 	}
-	return *o.EstimatedTime.Get()
+	return *o.EstimatedTime
 }
 
 // GetEstimatedTimeOk returns a tuple with the EstimatedTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProjectActionUpdateDto) GetEstimatedTimeOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.EstimatedTime) {
 		return nil, false
 	}
-	return o.EstimatedTime.Get(), o.EstimatedTime.IsSet()
+	return o.EstimatedTime, true
 }
 
 // HasEstimatedTime returns a boolean if a field has been set.
 func (o *ProjectActionUpdateDto) HasEstimatedTime() bool {
-	if o != nil && o.EstimatedTime.IsSet() {
+	if o != nil && !IsNil(o.EstimatedTime) {
 		return true
 	}
 
 	return false
 }
 
-// SetEstimatedTime gets a reference to the given NullableString and assigns it to the EstimatedTime field.
+// SetEstimatedTime gets a reference to the given string and assigns it to the EstimatedTime field.
 func (o *ProjectActionUpdateDto) SetEstimatedTime(v string) {
-	o.EstimatedTime.Set(&v)
-}
-// SetEstimatedTimeNil sets the value for EstimatedTime to be an explicit nil
-func (o *ProjectActionUpdateDto) SetEstimatedTimeNil() {
-	o.EstimatedTime.Set(nil)
-}
-
-// UnsetEstimatedTime ensures that no value is present for EstimatedTime, not even an explicit nil
-func (o *ProjectActionUpdateDto) UnsetEstimatedTime() {
-	o.EstimatedTime.Unset()
+	o.EstimatedTime = &v
 }
 
 func (o ProjectActionUpdateDto) MarshalJSON() ([]byte, error) {
@@ -178,14 +148,14 @@ func (o ProjectActionUpdateDto) MarshalJSON() ([]byte, error) {
 
 func (o ProjectActionUpdateDto) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Operation.IsSet() {
-		toSerialize["operation"] = o.Operation.Get()
+	if !IsNil(o.Operation) {
+		toSerialize["operation"] = o.Operation
 	}
-	if o.JobUrl.IsSet() {
-		toSerialize["jobUrl"] = o.JobUrl.Get()
+	if !IsNil(o.JobUrl) {
+		toSerialize["jobUrl"] = o.JobUrl
 	}
-	if o.EstimatedTime.IsSet() {
-		toSerialize["estimatedTime"] = o.EstimatedTime.Get()
+	if !IsNil(o.EstimatedTime) {
+		toSerialize["estimatedTime"] = o.EstimatedTime
 	}
 	return toSerialize, nil
 }

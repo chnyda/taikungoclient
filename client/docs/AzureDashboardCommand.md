@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CloudId** | Pointer to **int32** |  | [optional] 
-**FilterBy** | Pointer to **NullableString** |  | [optional] 
+**FilterBy** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -76,16 +76,6 @@ SetFilterBy sets FilterBy field to given value.
 
 HasFilterBy returns a boolean if a field has been set.
 
-### SetFilterByNil
-
-`func (o *AzureDashboardCommand) SetFilterByNil(b bool)`
-
- SetFilterByNil sets the value for FilterBy to be an explicit nil
-
-### UnsetFilterBy
-`func (o *AzureDashboardCommand) UnsetFilterBy()`
-
-UnsetFilterBy ensures that no value is present for FilterBy, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

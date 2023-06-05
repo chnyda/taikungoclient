@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
 **Revision** | Pointer to **int32** |  | [optional] 
 **IsLocked** | Pointer to **bool** |  | [optional] 
 **StandAloneProfileSecurityGroups** | Pointer to [**[]StandaloneProfileSecurityGroupListDto**](StandaloneProfileSecurityGroupListDto.md) |  | [optional] 
@@ -79,16 +79,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *StandaloneProfileListDto) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *StandaloneProfileListDto) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetRevision
 
 `func (o *StandaloneProfileListDto) GetRevision() int32`
@@ -164,16 +154,6 @@ SetStandAloneProfileSecurityGroups sets StandAloneProfileSecurityGroups field to
 
 HasStandAloneProfileSecurityGroups returns a boolean if a field has been set.
 
-### SetStandAloneProfileSecurityGroupsNil
-
-`func (o *StandaloneProfileListDto) SetStandAloneProfileSecurityGroupsNil(b bool)`
-
- SetStandAloneProfileSecurityGroupsNil sets the value for StandAloneProfileSecurityGroups to be an explicit nil
-
-### UnsetStandAloneProfileSecurityGroups
-`func (o *StandaloneProfileListDto) UnsetStandAloneProfileSecurityGroups()`
-
-UnsetStandAloneProfileSecurityGroups ensures that no value is present for StandAloneProfileSecurityGroups, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

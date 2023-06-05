@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ImageUrl** | Pointer to **NullableString** |  | [optional] 
+**ImageUrl** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **int32** |  | [optional] 
 **PaymentEnabled** | Pointer to **bool** |  | [optional] 
 **AllowRegistration** | Pointer to **bool** |  | [optional] 
@@ -53,16 +53,6 @@ SetImageUrl sets ImageUrl field to given value.
 
 HasImageUrl returns a boolean if a field has been set.
 
-### SetImageUrlNil
-
-`func (o *PartnerRecordDto) SetImageUrlNil(b bool)`
-
- SetImageUrlNil sets the value for ImageUrl to be an explicit nil
-
-### UnsetImageUrl
-`func (o *PartnerRecordDto) UnsetImageUrl()`
-
-UnsetImageUrl ensures that no value is present for ImageUrl, not even an explicit nil
 ### GetId
 
 `func (o *PartnerRecordDto) GetId() int32`

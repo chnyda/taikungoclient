@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** |  | 
-**HttpProxy** | Pointer to **NullableString** |  | [optional] 
-**OrganizationId** | Pointer to **NullableInt32** |  | [optional] 
+**HttpProxy** | Pointer to **string** |  | [optional] 
+**OrganizationId** | Pointer to **int32** |  | [optional] 
 **SshUsers** | Pointer to [**[]SshUserCreateDto**](SshUserCreateDto.md) |  | [optional] 
 **DnsServers** | Pointer to [**[]DnsServerCreateDto**](DnsServerCreateDto.md) |  | [optional] 
 **NtpServers** | Pointer to [**[]NtpServerCreateDto**](NtpServerCreateDto.md) |  | [optional] 
@@ -76,16 +76,6 @@ SetHttpProxy sets HttpProxy field to given value.
 
 HasHttpProxy returns a boolean if a field has been set.
 
-### SetHttpProxyNil
-
-`func (o *CreateAccessProfileCommand) SetHttpProxyNil(b bool)`
-
- SetHttpProxyNil sets the value for HttpProxy to be an explicit nil
-
-### UnsetHttpProxy
-`func (o *CreateAccessProfileCommand) UnsetHttpProxy()`
-
-UnsetHttpProxy ensures that no value is present for HttpProxy, not even an explicit nil
 ### GetOrganizationId
 
 `func (o *CreateAccessProfileCommand) GetOrganizationId() int32`
@@ -111,16 +101,6 @@ SetOrganizationId sets OrganizationId field to given value.
 
 HasOrganizationId returns a boolean if a field has been set.
 
-### SetOrganizationIdNil
-
-`func (o *CreateAccessProfileCommand) SetOrganizationIdNil(b bool)`
-
- SetOrganizationIdNil sets the value for OrganizationId to be an explicit nil
-
-### UnsetOrganizationId
-`func (o *CreateAccessProfileCommand) UnsetOrganizationId()`
-
-UnsetOrganizationId ensures that no value is present for OrganizationId, not even an explicit nil
 ### GetSshUsers
 
 `func (o *CreateAccessProfileCommand) GetSshUsers() []SshUserCreateDto`
@@ -146,16 +126,6 @@ SetSshUsers sets SshUsers field to given value.
 
 HasSshUsers returns a boolean if a field has been set.
 
-### SetSshUsersNil
-
-`func (o *CreateAccessProfileCommand) SetSshUsersNil(b bool)`
-
- SetSshUsersNil sets the value for SshUsers to be an explicit nil
-
-### UnsetSshUsers
-`func (o *CreateAccessProfileCommand) UnsetSshUsers()`
-
-UnsetSshUsers ensures that no value is present for SshUsers, not even an explicit nil
 ### GetDnsServers
 
 `func (o *CreateAccessProfileCommand) GetDnsServers() []DnsServerCreateDto`
@@ -181,16 +151,6 @@ SetDnsServers sets DnsServers field to given value.
 
 HasDnsServers returns a boolean if a field has been set.
 
-### SetDnsServersNil
-
-`func (o *CreateAccessProfileCommand) SetDnsServersNil(b bool)`
-
- SetDnsServersNil sets the value for DnsServers to be an explicit nil
-
-### UnsetDnsServers
-`func (o *CreateAccessProfileCommand) UnsetDnsServers()`
-
-UnsetDnsServers ensures that no value is present for DnsServers, not even an explicit nil
 ### GetNtpServers
 
 `func (o *CreateAccessProfileCommand) GetNtpServers() []NtpServerCreateDto`
@@ -216,16 +176,6 @@ SetNtpServers sets NtpServers field to given value.
 
 HasNtpServers returns a boolean if a field has been set.
 
-### SetNtpServersNil
-
-`func (o *CreateAccessProfileCommand) SetNtpServersNil(b bool)`
-
- SetNtpServersNil sets the value for NtpServers to be an explicit nil
-
-### UnsetNtpServers
-`func (o *CreateAccessProfileCommand) UnsetNtpServers()`
-
-UnsetNtpServers ensures that no value is present for NtpServers, not even an explicit nil
 ### GetAllowedHosts
 
 `func (o *CreateAccessProfileCommand) GetAllowedHosts() []AllowedHostCreateDto`
@@ -251,16 +201,6 @@ SetAllowedHosts sets AllowedHosts field to given value.
 
 HasAllowedHosts returns a boolean if a field has been set.
 
-### SetAllowedHostsNil
-
-`func (o *CreateAccessProfileCommand) SetAllowedHostsNil(b bool)`
-
- SetAllowedHostsNil sets the value for AllowedHosts to be an explicit nil
-
-### UnsetAllowedHosts
-`func (o *CreateAccessProfileCommand) UnsetAllowedHosts()`
-
-UnsetAllowedHosts ensures that no value is present for AllowedHosts, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

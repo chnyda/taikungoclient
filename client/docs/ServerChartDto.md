@@ -72,16 +72,6 @@ SetAws sets Aws field to given value.
 
 HasAws returns a boolean if a field has been set.
 
-### SetAwsNil
-
-`func (o *ServerChartDto) SetAwsNil(b bool)`
-
- SetAwsNil sets the value for Aws to be an explicit nil
-
-### UnsetAws
-`func (o *ServerChartDto) UnsetAws()`
-
-UnsetAws ensures that no value is present for Aws, not even an explicit nil
 ### GetAzure
 
 `func (o *ServerChartDto) GetAzure() []ServerCommonRecordDto`
@@ -107,16 +97,6 @@ SetAzure sets Azure field to given value.
 
 HasAzure returns a boolean if a field has been set.
 
-### SetAzureNil
-
-`func (o *ServerChartDto) SetAzureNil(b bool)`
-
- SetAzureNil sets the value for Azure to be an explicit nil
-
-### UnsetAzure
-`func (o *ServerChartDto) UnsetAzure()`
-
-UnsetAzure ensures that no value is present for Azure, not even an explicit nil
 ### GetOpenstack
 
 `func (o *ServerChartDto) GetOpenstack() []ServerCommonRecordDto`
@@ -142,16 +122,6 @@ SetOpenstack sets Openstack field to given value.
 
 HasOpenstack returns a boolean if a field has been set.
 
-### SetOpenstackNil
-
-`func (o *ServerChartDto) SetOpenstackNil(b bool)`
-
- SetOpenstackNil sets the value for Openstack to be an explicit nil
-
-### UnsetOpenstack
-`func (o *ServerChartDto) UnsetOpenstack()`
-
-UnsetOpenstack ensures that no value is present for Openstack, not even an explicit nil
 ### GetGoogle
 
 `func (o *ServerChartDto) GetGoogle() []ServerCommonRecordDto`
@@ -177,16 +147,6 @@ SetGoogle sets Google field to given value.
 
 HasGoogle returns a boolean if a field has been set.
 
-### SetGoogleNil
-
-`func (o *ServerChartDto) SetGoogleNil(b bool)`
-
- SetGoogleNil sets the value for Google to be an explicit nil
-
-### UnsetGoogle
-`func (o *ServerChartDto) UnsetGoogle()`
-
-UnsetGoogle ensures that no value is present for Google, not even an explicit nil
 ### GetTanzu
 
 `func (o *ServerChartDto) GetTanzu() []ServerCommonRecordDto`
@@ -212,16 +172,6 @@ SetTanzu sets Tanzu field to given value.
 
 HasTanzu returns a boolean if a field has been set.
 
-### SetTanzuNil
-
-`func (o *ServerChartDto) SetTanzuNil(b bool)`
-
- SetTanzuNil sets the value for Tanzu to be an explicit nil
-
-### UnsetTanzu
-`func (o *ServerChartDto) UnsetTanzu()`
-
-UnsetTanzu ensures that no value is present for Tanzu, not even an explicit nil
 ### GetFailed
 
 `func (o *ServerChartDto) GetFailed() []ServerCommonRecordDto`
@@ -247,16 +197,6 @@ SetFailed sets Failed field to given value.
 
 HasFailed returns a boolean if a field has been set.
 
-### SetFailedNil
-
-`func (o *ServerChartDto) SetFailedNil(b bool)`
-
- SetFailedNil sets the value for Failed to be an explicit nil
-
-### UnsetFailed
-`func (o *ServerChartDto) UnsetFailed()`
-
-UnsetFailed ensures that no value is present for Failed, not even an explicit nil
 ### GetSucceeded
 
 `func (o *ServerChartDto) GetSucceeded() []ServerCommonRecordDto`
@@ -282,16 +222,6 @@ SetSucceeded sets Succeeded field to given value.
 
 HasSucceeded returns a boolean if a field has been set.
 
-### SetSucceededNil
-
-`func (o *ServerChartDto) SetSucceededNil(b bool)`
-
- SetSucceededNil sets the value for Succeeded to be an explicit nil
-
-### UnsetSucceeded
-`func (o *ServerChartDto) UnsetSucceeded()`
-
-UnsetSucceeded ensures that no value is present for Succeeded, not even an explicit nil
 ### GetWaiting
 
 `func (o *ServerChartDto) GetWaiting() []ServerCommonRecordDto`
@@ -317,16 +247,6 @@ SetWaiting sets Waiting field to given value.
 
 HasWaiting returns a boolean if a field has been set.
 
-### SetWaitingNil
-
-`func (o *ServerChartDto) SetWaitingNil(b bool)`
-
- SetWaitingNil sets the value for Waiting to be an explicit nil
-
-### UnsetWaiting
-`func (o *ServerChartDto) UnsetWaiting()`
-
-UnsetWaiting ensures that no value is present for Waiting, not even an explicit nil
 ### GetUpdating
 
 `func (o *ServerChartDto) GetUpdating() []ServerCommonRecordDto`
@@ -352,16 +272,6 @@ SetUpdating sets Updating field to given value.
 
 HasUpdating returns a boolean if a field has been set.
 
-### SetUpdatingNil
-
-`func (o *ServerChartDto) SetUpdatingNil(b bool)`
-
- SetUpdatingNil sets the value for Updating to be an explicit nil
-
-### UnsetUpdating
-`func (o *ServerChartDto) UnsetUpdating()`
-
-UnsetUpdating ensures that no value is present for Updating, not even an explicit nil
 ### GetTotalCount
 
 `func (o *ServerChartDto) GetTotalCount() int32`
@@ -712,16 +622,6 @@ SetUsedResources sets UsedResources field to given value.
 
 HasUsedResources returns a boolean if a field has been set.
 
-### SetUsedResourcesNil
-
-`func (o *ServerChartDto) SetUsedResourcesNil(b bool)`
-
- SetUsedResourcesNil sets the value for UsedResources to be an explicit nil
-
-### UnsetUsedResources
-`func (o *ServerChartDto) UnsetUsedResources()`
-
-UnsetUsedResources ensures that no value is present for UsedResources, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

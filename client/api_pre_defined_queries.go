@@ -24,58 +24,59 @@ import (
 // PreDefinedQueriesApiService PreDefinedQueriesApi service
 type PreDefinedQueriesApiService service
 
-type ApiPredefinedqueriesCreateRequest struct {
+type ApiPreDefinedQueriesCreatePrometheusDashboardRequest struct {
 	ctx context.Context
 	ApiService *PreDefinedQueriesApiService
-	prometheusDashboardCreateCommand *PrometheusDashboardCreateCommand
+	v string
+	body *PrometheusDashboardCreateCommand
 }
 
-func (r ApiPredefinedqueriesCreateRequest) PrometheusDashboardCreateCommand(prometheusDashboardCreateCommand PrometheusDashboardCreateCommand) ApiPredefinedqueriesCreateRequest {
-	r.prometheusDashboardCreateCommand = &prometheusDashboardCreateCommand
+func (r ApiPreDefinedQueriesCreatePrometheusDashboardRequest) Body(body PrometheusDashboardCreateCommand) ApiPreDefinedQueriesCreatePrometheusDashboardRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiPredefinedqueriesCreateRequest) Execute() (*http.Response, error) {
-	return r.ApiService.PredefinedqueriesCreateExecute(r)
+func (r ApiPreDefinedQueriesCreatePrometheusDashboardRequest) Execute() (*http.Response, error) {
+	return r.ApiService.PreDefinedQueriesCreatePrometheusDashboardExecute(r)
 }
 
 /*
-PredefinedqueriesCreate Create prometheus dashboard pre defined query
+PreDefinedQueriesCreatePrometheusDashboard Create prometheus dashboard pre defined query
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPredefinedqueriesCreateRequest
+ @param v
+ @return ApiPreDefinedQueriesCreatePrometheusDashboardRequest
 */
-func (a *PreDefinedQueriesApiService) PredefinedqueriesCreate(ctx context.Context) ApiPredefinedqueriesCreateRequest {
-	return ApiPredefinedqueriesCreateRequest{
+func (a *PreDefinedQueriesApiService) PreDefinedQueriesCreatePrometheusDashboard(ctx context.Context, v string) ApiPreDefinedQueriesCreatePrometheusDashboardRequest {
+	return ApiPreDefinedQueriesCreatePrometheusDashboardRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
-func (a *PreDefinedQueriesApiService) PredefinedqueriesCreateExecute(r ApiPredefinedqueriesCreateRequest) (*http.Response, error) {
+func (a *PreDefinedQueriesApiService) PreDefinedQueriesCreatePrometheusDashboardExecute(r ApiPreDefinedQueriesCreatePrometheusDashboardRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PreDefinedQueriesApiService.PredefinedqueriesCreate")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PreDefinedQueriesApiService.PreDefinedQueriesCreatePrometheusDashboard")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/predefinedqueries/prometheus/dashboard/create"
+	localVarPath := localBasePath + "/api/v{v}/PreDefinedQueries/prometheus/dashboard/create"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.prometheusDashboardCreateCommand == nil {
-		return nil, reportError("prometheusDashboardCreateCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -84,7 +85,7 @@ func (a *PreDefinedQueriesApiService) PredefinedqueriesCreateExecute(r ApiPredef
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -92,7 +93,7 @@ func (a *PreDefinedQueriesApiService) PredefinedqueriesCreateExecute(r ApiPredef
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.prometheusDashboardCreateCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -129,17 +130,6 @@ func (a *PreDefinedQueriesApiService) PredefinedqueriesCreateExecute(r ApiPredef
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -173,7 +163,7 @@ func (a *PreDefinedQueriesApiService) PredefinedqueriesCreateExecute(r ApiPredef
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -189,46 +179,50 @@ func (a *PreDefinedQueriesApiService) PredefinedqueriesCreateExecute(r ApiPredef
 	return localVarHTTPResponse, nil
 }
 
-type ApiPredefinedqueriesDeleteRequest struct {
+type ApiPreDefinedQueriesDeletePrometheusDashboardRequest struct {
 	ctx context.Context
 	ApiService *PreDefinedQueriesApiService
 	id int32
+	v string
 }
 
-func (r ApiPredefinedqueriesDeleteRequest) Execute() (*http.Response, error) {
-	return r.ApiService.PredefinedqueriesDeleteExecute(r)
+func (r ApiPreDefinedQueriesDeletePrometheusDashboardRequest) Execute() (*http.Response, error) {
+	return r.ApiService.PreDefinedQueriesDeletePrometheusDashboardExecute(r)
 }
 
 /*
-PredefinedqueriesDelete Delete prometheus dashboard pre defined query
+PreDefinedQueriesDeletePrometheusDashboard Delete prometheus dashboard pre defined query
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
- @return ApiPredefinedqueriesDeleteRequest
+ @param v
+ @return ApiPreDefinedQueriesDeletePrometheusDashboardRequest
 */
-func (a *PreDefinedQueriesApiService) PredefinedqueriesDelete(ctx context.Context, id int32) ApiPredefinedqueriesDeleteRequest {
-	return ApiPredefinedqueriesDeleteRequest{
+func (a *PreDefinedQueriesApiService) PreDefinedQueriesDeletePrometheusDashboard(ctx context.Context, id int32, v string) ApiPreDefinedQueriesDeletePrometheusDashboardRequest {
+	return ApiPreDefinedQueriesDeletePrometheusDashboardRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
+		v: v,
 	}
 }
 
 // Execute executes the request
-func (a *PreDefinedQueriesApiService) PredefinedqueriesDeleteExecute(r ApiPredefinedqueriesDeleteRequest) (*http.Response, error) {
+func (a *PreDefinedQueriesApiService) PreDefinedQueriesDeletePrometheusDashboardExecute(r ApiPreDefinedQueriesDeletePrometheusDashboardRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PreDefinedQueriesApiService.PredefinedqueriesDelete")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PreDefinedQueriesApiService.PreDefinedQueriesDeletePrometheusDashboard")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/predefinedqueries/prometheus/dashboard/delete/{id}"
+	localVarPath := localBasePath + "/api/v{v}/PreDefinedQueries/prometheus/dashboard/delete/{id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -244,7 +238,7 @@ func (a *PreDefinedQueriesApiService) PredefinedqueriesDeleteExecute(r ApiPredef
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -287,17 +281,6 @@ func (a *PreDefinedQueriesApiService) PredefinedqueriesDeleteExecute(r ApiPredef
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -331,7 +314,7 @@ func (a *PreDefinedQueriesApiService) PredefinedqueriesDeleteExecute(r ApiPredef
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -347,34 +330,37 @@ func (a *PreDefinedQueriesApiService) PredefinedqueriesDeleteExecute(r ApiPredef
 	return localVarHTTPResponse, nil
 }
 
-type ApiPredefinedqueriesListRequest struct {
+type ApiPreDefinedQueriesGetPrometheusCommonDashboardListRequest struct {
 	ctx context.Context
 	ApiService *PreDefinedQueriesApiService
 	projectId int32
+	v string
 }
 
-func (r ApiPredefinedqueriesListRequest) Execute() ([]PrometheusDashboardListDto, *http.Response, error) {
-	return r.ApiService.PredefinedqueriesListExecute(r)
+func (r ApiPreDefinedQueriesGetPrometheusCommonDashboardListRequest) Execute() ([]PrometheusDashboardListDto, *http.Response, error) {
+	return r.ApiService.PreDefinedQueriesGetPrometheusCommonDashboardListExecute(r)
 }
 
 /*
-PredefinedqueriesList Get list of pre defined organization prometheus dashboard elements
+PreDefinedQueriesGetPrometheusCommonDashboardList Get list of pre defined common prometheus dashboard elements
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param projectId
- @return ApiPredefinedqueriesListRequest
+ @param v
+ @return ApiPreDefinedQueriesGetPrometheusCommonDashboardListRequest
 */
-func (a *PreDefinedQueriesApiService) PredefinedqueriesList(ctx context.Context, projectId int32) ApiPredefinedqueriesListRequest {
-	return ApiPredefinedqueriesListRequest{
+func (a *PreDefinedQueriesApiService) PreDefinedQueriesGetPrometheusCommonDashboardList(ctx context.Context, projectId int32, v string) ApiPreDefinedQueriesGetPrometheusCommonDashboardListRequest {
+	return ApiPreDefinedQueriesGetPrometheusCommonDashboardListRequest{
 		ApiService: a,
 		ctx: ctx,
 		projectId: projectId,
+		v: v,
 	}
 }
 
 // Execute executes the request
 //  @return []PrometheusDashboardListDto
-func (a *PreDefinedQueriesApiService) PredefinedqueriesListExecute(r ApiPredefinedqueriesListRequest) ([]PrometheusDashboardListDto, *http.Response, error) {
+func (a *PreDefinedQueriesApiService) PreDefinedQueriesGetPrometheusCommonDashboardListExecute(r ApiPreDefinedQueriesGetPrometheusCommonDashboardListRequest) ([]PrometheusDashboardListDto, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -382,13 +368,14 @@ func (a *PreDefinedQueriesApiService) PredefinedqueriesListExecute(r ApiPredefin
 		localVarReturnValue  []PrometheusDashboardListDto
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PreDefinedQueriesApiService.PredefinedqueriesList")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PreDefinedQueriesApiService.PreDefinedQueriesGetPrometheusCommonDashboardList")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/predefinedqueries/prometheus/dashboard/list/{projectId}"
+	localVarPath := localBasePath + "/api/v{v}/PreDefinedQueries/prometheus/dashboard/common/{projectId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -404,7 +391,7 @@ func (a *PreDefinedQueriesApiService) PredefinedqueriesListExecute(r ApiPredefin
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -447,17 +434,6 @@ func (a *PreDefinedQueriesApiService) PredefinedqueriesListExecute(r ApiPredefin
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -491,7 +467,7 @@ func (a *PreDefinedQueriesApiService) PredefinedqueriesListExecute(r ApiPredefin
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -516,34 +492,37 @@ func (a *PreDefinedQueriesApiService) PredefinedqueriesListExecute(r ApiPredefin
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiPredefinedqueriesPrometheusDashboardCommonRequest struct {
+type ApiPreDefinedQueriesGetPrometheusDashboardListRequest struct {
 	ctx context.Context
 	ApiService *PreDefinedQueriesApiService
 	projectId int32
+	v string
 }
 
-func (r ApiPredefinedqueriesPrometheusDashboardCommonRequest) Execute() ([]PrometheusDashboardListDto, *http.Response, error) {
-	return r.ApiService.PredefinedqueriesPrometheusDashboardCommonExecute(r)
+func (r ApiPreDefinedQueriesGetPrometheusDashboardListRequest) Execute() ([]PrometheusDashboardListDto, *http.Response, error) {
+	return r.ApiService.PreDefinedQueriesGetPrometheusDashboardListExecute(r)
 }
 
 /*
-PredefinedqueriesPrometheusDashboardCommon et list of pre defined common prometheus dashboard elements
+PreDefinedQueriesGetPrometheusDashboardList Get list of pre defined organization prometheus dashboard elements
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param projectId
- @return ApiPredefinedqueriesPrometheusDashboardCommonRequest
+ @param v
+ @return ApiPreDefinedQueriesGetPrometheusDashboardListRequest
 */
-func (a *PreDefinedQueriesApiService) PredefinedqueriesPrometheusDashboardCommon(ctx context.Context, projectId int32) ApiPredefinedqueriesPrometheusDashboardCommonRequest {
-	return ApiPredefinedqueriesPrometheusDashboardCommonRequest{
+func (a *PreDefinedQueriesApiService) PreDefinedQueriesGetPrometheusDashboardList(ctx context.Context, projectId int32, v string) ApiPreDefinedQueriesGetPrometheusDashboardListRequest {
+	return ApiPreDefinedQueriesGetPrometheusDashboardListRequest{
 		ApiService: a,
 		ctx: ctx,
 		projectId: projectId,
+		v: v,
 	}
 }
 
 // Execute executes the request
 //  @return []PrometheusDashboardListDto
-func (a *PreDefinedQueriesApiService) PredefinedqueriesPrometheusDashboardCommonExecute(r ApiPredefinedqueriesPrometheusDashboardCommonRequest) ([]PrometheusDashboardListDto, *http.Response, error) {
+func (a *PreDefinedQueriesApiService) PreDefinedQueriesGetPrometheusDashboardListExecute(r ApiPreDefinedQueriesGetPrometheusDashboardListRequest) ([]PrometheusDashboardListDto, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -551,13 +530,14 @@ func (a *PreDefinedQueriesApiService) PredefinedqueriesPrometheusDashboardCommon
 		localVarReturnValue  []PrometheusDashboardListDto
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PreDefinedQueriesApiService.PredefinedqueriesPrometheusDashboardCommon")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PreDefinedQueriesApiService.PreDefinedQueriesGetPrometheusDashboardList")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/predefinedqueries/prometheus/dashboard/common/{projectId}"
+	localVarPath := localBasePath + "/api/v{v}/PreDefinedQueries/prometheus/dashboard/list/{projectId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -573,7 +553,7 @@ func (a *PreDefinedQueriesApiService) PredefinedqueriesPrometheusDashboardCommon
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -616,17 +596,6 @@ func (a *PreDefinedQueriesApiService) PredefinedqueriesPrometheusDashboardCommon
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -660,7 +629,7 @@ func (a *PreDefinedQueriesApiService) PredefinedqueriesPrometheusDashboardCommon
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -685,58 +654,59 @@ func (a *PreDefinedQueriesApiService) PredefinedqueriesPrometheusDashboardCommon
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiPredefinedqueriesUpdateRequest struct {
+type ApiPreDefinedQueriesUpdatePrometheusDashboardRequest struct {
 	ctx context.Context
 	ApiService *PreDefinedQueriesApiService
-	prometheusDashboardUpdateCommand *PrometheusDashboardUpdateCommand
+	v string
+	body *PrometheusDashboardUpdateCommand
 }
 
-func (r ApiPredefinedqueriesUpdateRequest) PrometheusDashboardUpdateCommand(prometheusDashboardUpdateCommand PrometheusDashboardUpdateCommand) ApiPredefinedqueriesUpdateRequest {
-	r.prometheusDashboardUpdateCommand = &prometheusDashboardUpdateCommand
+func (r ApiPreDefinedQueriesUpdatePrometheusDashboardRequest) Body(body PrometheusDashboardUpdateCommand) ApiPreDefinedQueriesUpdatePrometheusDashboardRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiPredefinedqueriesUpdateRequest) Execute() (*http.Response, error) {
-	return r.ApiService.PredefinedqueriesUpdateExecute(r)
+func (r ApiPreDefinedQueriesUpdatePrometheusDashboardRequest) Execute() (*http.Response, error) {
+	return r.ApiService.PreDefinedQueriesUpdatePrometheusDashboardExecute(r)
 }
 
 /*
-PredefinedqueriesUpdate Update prometheus dashboard pre defined query
+PreDefinedQueriesUpdatePrometheusDashboard Update prometheus dashboard pre defined query
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPredefinedqueriesUpdateRequest
+ @param v
+ @return ApiPreDefinedQueriesUpdatePrometheusDashboardRequest
 */
-func (a *PreDefinedQueriesApiService) PredefinedqueriesUpdate(ctx context.Context) ApiPredefinedqueriesUpdateRequest {
-	return ApiPredefinedqueriesUpdateRequest{
+func (a *PreDefinedQueriesApiService) PreDefinedQueriesUpdatePrometheusDashboard(ctx context.Context, v string) ApiPreDefinedQueriesUpdatePrometheusDashboardRequest {
+	return ApiPreDefinedQueriesUpdatePrometheusDashboardRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
-func (a *PreDefinedQueriesApiService) PredefinedqueriesUpdateExecute(r ApiPredefinedqueriesUpdateRequest) (*http.Response, error) {
+func (a *PreDefinedQueriesApiService) PreDefinedQueriesUpdatePrometheusDashboardExecute(r ApiPreDefinedQueriesUpdatePrometheusDashboardRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PreDefinedQueriesApiService.PredefinedqueriesUpdate")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PreDefinedQueriesApiService.PreDefinedQueriesUpdatePrometheusDashboard")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/predefinedqueries/prometheus/dashboard/update"
+	localVarPath := localBasePath + "/api/v{v}/PreDefinedQueries/prometheus/dashboard/update"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.prometheusDashboardUpdateCommand == nil {
-		return nil, reportError("prometheusDashboardUpdateCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -745,7 +715,7 @@ func (a *PreDefinedQueriesApiService) PredefinedqueriesUpdateExecute(r ApiPredef
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -753,7 +723,7 @@ func (a *PreDefinedQueriesApiService) PredefinedqueriesUpdateExecute(r ApiPredef
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.prometheusDashboardUpdateCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -790,17 +760,6 @@ func (a *PreDefinedQueriesApiService) PredefinedqueriesUpdateExecute(r ApiPredef
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -834,7 +793,7 @@ func (a *PreDefinedQueriesApiService) PredefinedqueriesUpdateExecute(r ApiPredef
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

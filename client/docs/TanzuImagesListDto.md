@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ImageId** | Pointer to **NullableString** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
+**ImageId** | Pointer to **string** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
-**Type** | Pointer to **NullableString** |  | [optional] 
-**Details** | Pointer to **interface{}** |  | [optional] 
+**Type** | Pointer to **string** |  | [optional] 
+**Details** | Pointer to **map[string]interface{}** |  | [optional] 
 
 ## Methods
 
@@ -54,16 +54,6 @@ SetImageId sets ImageId field to given value.
 
 HasImageId returns a boolean if a field has been set.
 
-### SetImageIdNil
-
-`func (o *TanzuImagesListDto) SetImageIdNil(b bool)`
-
- SetImageIdNil sets the value for ImageId to be an explicit nil
-
-### UnsetImageId
-`func (o *TanzuImagesListDto) UnsetImageId()`
-
-UnsetImageId ensures that no value is present for ImageId, not even an explicit nil
 ### GetName
 
 `func (o *TanzuImagesListDto) GetName() string`
@@ -89,16 +79,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *TanzuImagesListDto) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *TanzuImagesListDto) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetCreatedAt
 
 `func (o *TanzuImagesListDto) GetCreatedAt() time.Time`
@@ -149,32 +129,22 @@ SetType sets Type field to given value.
 
 HasType returns a boolean if a field has been set.
 
-### SetTypeNil
-
-`func (o *TanzuImagesListDto) SetTypeNil(b bool)`
-
- SetTypeNil sets the value for Type to be an explicit nil
-
-### UnsetType
-`func (o *TanzuImagesListDto) UnsetType()`
-
-UnsetType ensures that no value is present for Type, not even an explicit nil
 ### GetDetails
 
-`func (o *TanzuImagesListDto) GetDetails() interface{}`
+`func (o *TanzuImagesListDto) GetDetails() map[string]interface{}`
 
 GetDetails returns the Details field if non-nil, zero value otherwise.
 
 ### GetDetailsOk
 
-`func (o *TanzuImagesListDto) GetDetailsOk() (*interface{}, bool)`
+`func (o *TanzuImagesListDto) GetDetailsOk() (*map[string]interface{}, bool)`
 
 GetDetailsOk returns a tuple with the Details field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDetails
 
-`func (o *TanzuImagesListDto) SetDetails(v interface{})`
+`func (o *TanzuImagesListDto) SetDetails(v map[string]interface{})`
 
 SetDetails sets Details field to given value.
 
@@ -184,16 +154,6 @@ SetDetails sets Details field to given value.
 
 HasDetails returns a boolean if a field has been set.
 
-### SetDetailsNil
-
-`func (o *TanzuImagesListDto) SetDetailsNil(b bool)`
-
- SetDetailsNil sets the value for Details to be an explicit nil
-
-### UnsetDetails
-`func (o *TanzuImagesListDto) UnsetDetails()`
-
-UnsetDetails ensures that no value is present for Details, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

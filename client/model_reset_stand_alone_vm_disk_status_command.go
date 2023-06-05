@@ -67,9 +67,9 @@ func (o *ResetStandAloneVmDiskStatusCommand) SetStandAloneVmId(v int32) {
 	o.StandAloneVmId = v
 }
 
-// GetDiskIds returns the DiskIds field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetDiskIds returns the DiskIds field value if set, zero value otherwise.
 func (o *ResetStandAloneVmDiskStatusCommand) GetDiskIds() []int32 {
-	if o == nil {
+	if o == nil || IsNil(o.DiskIds) {
 		var ret []int32
 		return ret
 	}
@@ -78,7 +78,6 @@ func (o *ResetStandAloneVmDiskStatusCommand) GetDiskIds() []int32 {
 
 // GetDiskIdsOk returns a tuple with the DiskIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ResetStandAloneVmDiskStatusCommand) GetDiskIdsOk() ([]int32, bool) {
 	if o == nil || IsNil(o.DiskIds) {
 		return nil, false
@@ -88,7 +87,7 @@ func (o *ResetStandAloneVmDiskStatusCommand) GetDiskIdsOk() ([]int32, bool) {
 
 // HasDiskIds returns a boolean if a field has been set.
 func (o *ResetStandAloneVmDiskStatusCommand) HasDiskIds() bool {
-	if o != nil && IsNil(o.DiskIds) {
+	if o != nil && !IsNil(o.DiskIds) {
 		return true
 	}
 
@@ -143,7 +142,7 @@ func (o ResetStandAloneVmDiskStatusCommand) MarshalJSON() ([]byte, error) {
 func (o ResetStandAloneVmDiskStatusCommand) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["standAloneVmId"] = o.StandAloneVmId
-	if o.DiskIds != nil {
+	if !IsNil(o.DiskIds) {
 		toSerialize["diskIds"] = o.DiskIds
 	}
 	if !IsNil(o.Status) {

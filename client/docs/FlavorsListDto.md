@@ -6,9 +6,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Ram** | Pointer to **int64** |  | [optional] 
 **Cpu** | Pointer to **int32** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
-**Description** | Pointer to **interface{}** |  | [optional] 
-**MaxDataDiskCount** | Pointer to **NullableFloat64** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**Description** | Pointer to **map[string]interface{}** |  | [optional] 
+**MaxDataDiskCount** | Pointer to **float64** |  | [optional] 
 
 ## Methods
 
@@ -104,32 +104,22 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *FlavorsListDto) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *FlavorsListDto) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetDescription
 
-`func (o *FlavorsListDto) GetDescription() interface{}`
+`func (o *FlavorsListDto) GetDescription() map[string]interface{}`
 
 GetDescription returns the Description field if non-nil, zero value otherwise.
 
 ### GetDescriptionOk
 
-`func (o *FlavorsListDto) GetDescriptionOk() (*interface{}, bool)`
+`func (o *FlavorsListDto) GetDescriptionOk() (*map[string]interface{}, bool)`
 
 GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDescription
 
-`func (o *FlavorsListDto) SetDescription(v interface{})`
+`func (o *FlavorsListDto) SetDescription(v map[string]interface{})`
 
 SetDescription sets Description field to given value.
 
@@ -139,16 +129,6 @@ SetDescription sets Description field to given value.
 
 HasDescription returns a boolean if a field has been set.
 
-### SetDescriptionNil
-
-`func (o *FlavorsListDto) SetDescriptionNil(b bool)`
-
- SetDescriptionNil sets the value for Description to be an explicit nil
-
-### UnsetDescription
-`func (o *FlavorsListDto) UnsetDescription()`
-
-UnsetDescription ensures that no value is present for Description, not even an explicit nil
 ### GetMaxDataDiskCount
 
 `func (o *FlavorsListDto) GetMaxDataDiskCount() float64`
@@ -174,16 +154,6 @@ SetMaxDataDiskCount sets MaxDataDiskCount field to given value.
 
 HasMaxDataDiskCount returns a boolean if a field has been set.
 
-### SetMaxDataDiskCountNil
-
-`func (o *FlavorsListDto) SetMaxDataDiskCountNil(b bool)`
-
- SetMaxDataDiskCountNil sets the value for MaxDataDiskCount to be an explicit nil
-
-### UnsetMaxDataDiskCount
-`func (o *FlavorsListDto) UnsetMaxDataDiskCount()`
-
-UnsetMaxDataDiskCount ensures that no value is present for MaxDataDiskCount, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

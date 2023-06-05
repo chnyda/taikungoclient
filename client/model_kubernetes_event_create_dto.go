@@ -21,14 +21,14 @@ var _ MappedNullable = &KubernetesEventCreateDto{}
 
 // KubernetesEventCreateDto struct for KubernetesEventCreateDto
 type KubernetesEventCreateDto struct {
-	Type NullableString `json:"type,omitempty"`
-	Reason NullableString `json:"reason,omitempty"`
-	Message NullableString `json:"message,omitempty"`
-	Metadata interface{} `json:"metadata,omitempty"`
-	Source interface{} `json:"source,omitempty"`
-	InvolvedObject interface{} `json:"involvedObject,omitempty"`
-	FirstTimeStamp NullableTime `json:"firstTimeStamp,omitempty"`
-	LastTimeStamp NullableTime `json:"lastTimeStamp,omitempty"`
+	Type *string `json:"type,omitempty"`
+	Reason *string `json:"reason,omitempty"`
+	Message *string `json:"message,omitempty"`
+	Metadata map[string]interface{} `json:"metadata,omitempty"`
+	Source map[string]interface{} `json:"source,omitempty"`
+	InvolvedObject map[string]interface{} `json:"involvedObject,omitempty"`
+	FirstTimeStamp *time.Time `json:"firstTimeStamp,omitempty"`
+	LastTimeStamp *time.Time `json:"lastTimeStamp,omitempty"`
 	Count *int32 `json:"count,omitempty"`
 }
 
@@ -49,136 +49,106 @@ func NewKubernetesEventCreateDtoWithDefaults() *KubernetesEventCreateDto {
 	return &this
 }
 
-// GetType returns the Type field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetType returns the Type field value if set, zero value otherwise.
 func (o *KubernetesEventCreateDto) GetType() string {
-	if o == nil || IsNil(o.Type.Get()) {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
-	return *o.Type.Get()
+	return *o.Type
 }
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *KubernetesEventCreateDto) GetTypeOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
-	return o.Type.Get(), o.Type.IsSet()
+	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
 func (o *KubernetesEventCreateDto) HasType() bool {
-	if o != nil && o.Type.IsSet() {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
 	return false
 }
 
-// SetType gets a reference to the given NullableString and assigns it to the Type field.
+// SetType gets a reference to the given string and assigns it to the Type field.
 func (o *KubernetesEventCreateDto) SetType(v string) {
-	o.Type.Set(&v)
-}
-// SetTypeNil sets the value for Type to be an explicit nil
-func (o *KubernetesEventCreateDto) SetTypeNil() {
-	o.Type.Set(nil)
+	o.Type = &v
 }
 
-// UnsetType ensures that no value is present for Type, not even an explicit nil
-func (o *KubernetesEventCreateDto) UnsetType() {
-	o.Type.Unset()
-}
-
-// GetReason returns the Reason field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetReason returns the Reason field value if set, zero value otherwise.
 func (o *KubernetesEventCreateDto) GetReason() string {
-	if o == nil || IsNil(o.Reason.Get()) {
+	if o == nil || IsNil(o.Reason) {
 		var ret string
 		return ret
 	}
-	return *o.Reason.Get()
+	return *o.Reason
 }
 
 // GetReasonOk returns a tuple with the Reason field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *KubernetesEventCreateDto) GetReasonOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Reason) {
 		return nil, false
 	}
-	return o.Reason.Get(), o.Reason.IsSet()
+	return o.Reason, true
 }
 
 // HasReason returns a boolean if a field has been set.
 func (o *KubernetesEventCreateDto) HasReason() bool {
-	if o != nil && o.Reason.IsSet() {
+	if o != nil && !IsNil(o.Reason) {
 		return true
 	}
 
 	return false
 }
 
-// SetReason gets a reference to the given NullableString and assigns it to the Reason field.
+// SetReason gets a reference to the given string and assigns it to the Reason field.
 func (o *KubernetesEventCreateDto) SetReason(v string) {
-	o.Reason.Set(&v)
-}
-// SetReasonNil sets the value for Reason to be an explicit nil
-func (o *KubernetesEventCreateDto) SetReasonNil() {
-	o.Reason.Set(nil)
+	o.Reason = &v
 }
 
-// UnsetReason ensures that no value is present for Reason, not even an explicit nil
-func (o *KubernetesEventCreateDto) UnsetReason() {
-	o.Reason.Unset()
-}
-
-// GetMessage returns the Message field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetMessage returns the Message field value if set, zero value otherwise.
 func (o *KubernetesEventCreateDto) GetMessage() string {
-	if o == nil || IsNil(o.Message.Get()) {
+	if o == nil || IsNil(o.Message) {
 		var ret string
 		return ret
 	}
-	return *o.Message.Get()
+	return *o.Message
 }
 
 // GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *KubernetesEventCreateDto) GetMessageOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Message) {
 		return nil, false
 	}
-	return o.Message.Get(), o.Message.IsSet()
+	return o.Message, true
 }
 
 // HasMessage returns a boolean if a field has been set.
 func (o *KubernetesEventCreateDto) HasMessage() bool {
-	if o != nil && o.Message.IsSet() {
+	if o != nil && !IsNil(o.Message) {
 		return true
 	}
 
 	return false
 }
 
-// SetMessage gets a reference to the given NullableString and assigns it to the Message field.
+// SetMessage gets a reference to the given string and assigns it to the Message field.
 func (o *KubernetesEventCreateDto) SetMessage(v string) {
-	o.Message.Set(&v)
-}
-// SetMessageNil sets the value for Message to be an explicit nil
-func (o *KubernetesEventCreateDto) SetMessageNil() {
-	o.Message.Set(nil)
+	o.Message = &v
 }
 
-// UnsetMessage ensures that no value is present for Message, not even an explicit nil
-func (o *KubernetesEventCreateDto) UnsetMessage() {
-	o.Message.Unset()
-}
-
-// GetMetadata returns the Metadata field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *KubernetesEventCreateDto) GetMetadata() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetMetadata returns the Metadata field value if set, zero value otherwise.
+func (o *KubernetesEventCreateDto) GetMetadata() map[string]interface{} {
+	if o == nil || IsNil(o.Metadata) {
+		var ret map[string]interface{}
 		return ret
 	}
 	return o.Metadata
@@ -186,32 +156,31 @@ func (o *KubernetesEventCreateDto) GetMetadata() interface{} {
 
 // GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *KubernetesEventCreateDto) GetMetadataOk() (*interface{}, bool) {
+func (o *KubernetesEventCreateDto) GetMetadataOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.Metadata) {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
-	return &o.Metadata, true
+	return o.Metadata, true
 }
 
 // HasMetadata returns a boolean if a field has been set.
 func (o *KubernetesEventCreateDto) HasMetadata() bool {
-	if o != nil && IsNil(o.Metadata) {
+	if o != nil && !IsNil(o.Metadata) {
 		return true
 	}
 
 	return false
 }
 
-// SetMetadata gets a reference to the given interface{} and assigns it to the Metadata field.
-func (o *KubernetesEventCreateDto) SetMetadata(v interface{}) {
+// SetMetadata gets a reference to the given map[string]interface{} and assigns it to the Metadata field.
+func (o *KubernetesEventCreateDto) SetMetadata(v map[string]interface{}) {
 	o.Metadata = v
 }
 
-// GetSource returns the Source field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *KubernetesEventCreateDto) GetSource() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetSource returns the Source field value if set, zero value otherwise.
+func (o *KubernetesEventCreateDto) GetSource() map[string]interface{} {
+	if o == nil || IsNil(o.Source) {
+		var ret map[string]interface{}
 		return ret
 	}
 	return o.Source
@@ -219,32 +188,31 @@ func (o *KubernetesEventCreateDto) GetSource() interface{} {
 
 // GetSourceOk returns a tuple with the Source field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *KubernetesEventCreateDto) GetSourceOk() (*interface{}, bool) {
+func (o *KubernetesEventCreateDto) GetSourceOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.Source) {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
-	return &o.Source, true
+	return o.Source, true
 }
 
 // HasSource returns a boolean if a field has been set.
 func (o *KubernetesEventCreateDto) HasSource() bool {
-	if o != nil && IsNil(o.Source) {
+	if o != nil && !IsNil(o.Source) {
 		return true
 	}
 
 	return false
 }
 
-// SetSource gets a reference to the given interface{} and assigns it to the Source field.
-func (o *KubernetesEventCreateDto) SetSource(v interface{}) {
+// SetSource gets a reference to the given map[string]interface{} and assigns it to the Source field.
+func (o *KubernetesEventCreateDto) SetSource(v map[string]interface{}) {
 	o.Source = v
 }
 
-// GetInvolvedObject returns the InvolvedObject field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *KubernetesEventCreateDto) GetInvolvedObject() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetInvolvedObject returns the InvolvedObject field value if set, zero value otherwise.
+func (o *KubernetesEventCreateDto) GetInvolvedObject() map[string]interface{} {
+	if o == nil || IsNil(o.InvolvedObject) {
+		var ret map[string]interface{}
 		return ret
 	}
 	return o.InvolvedObject
@@ -252,110 +220,89 @@ func (o *KubernetesEventCreateDto) GetInvolvedObject() interface{} {
 
 // GetInvolvedObjectOk returns a tuple with the InvolvedObject field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *KubernetesEventCreateDto) GetInvolvedObjectOk() (*interface{}, bool) {
+func (o *KubernetesEventCreateDto) GetInvolvedObjectOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.InvolvedObject) {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
-	return &o.InvolvedObject, true
+	return o.InvolvedObject, true
 }
 
 // HasInvolvedObject returns a boolean if a field has been set.
 func (o *KubernetesEventCreateDto) HasInvolvedObject() bool {
-	if o != nil && IsNil(o.InvolvedObject) {
+	if o != nil && !IsNil(o.InvolvedObject) {
 		return true
 	}
 
 	return false
 }
 
-// SetInvolvedObject gets a reference to the given interface{} and assigns it to the InvolvedObject field.
-func (o *KubernetesEventCreateDto) SetInvolvedObject(v interface{}) {
+// SetInvolvedObject gets a reference to the given map[string]interface{} and assigns it to the InvolvedObject field.
+func (o *KubernetesEventCreateDto) SetInvolvedObject(v map[string]interface{}) {
 	o.InvolvedObject = v
 }
 
-// GetFirstTimeStamp returns the FirstTimeStamp field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetFirstTimeStamp returns the FirstTimeStamp field value if set, zero value otherwise.
 func (o *KubernetesEventCreateDto) GetFirstTimeStamp() time.Time {
-	if o == nil || IsNil(o.FirstTimeStamp.Get()) {
+	if o == nil || IsNil(o.FirstTimeStamp) {
 		var ret time.Time
 		return ret
 	}
-	return *o.FirstTimeStamp.Get()
+	return *o.FirstTimeStamp
 }
 
 // GetFirstTimeStampOk returns a tuple with the FirstTimeStamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *KubernetesEventCreateDto) GetFirstTimeStampOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.FirstTimeStamp) {
 		return nil, false
 	}
-	return o.FirstTimeStamp.Get(), o.FirstTimeStamp.IsSet()
+	return o.FirstTimeStamp, true
 }
 
 // HasFirstTimeStamp returns a boolean if a field has been set.
 func (o *KubernetesEventCreateDto) HasFirstTimeStamp() bool {
-	if o != nil && o.FirstTimeStamp.IsSet() {
+	if o != nil && !IsNil(o.FirstTimeStamp) {
 		return true
 	}
 
 	return false
 }
 
-// SetFirstTimeStamp gets a reference to the given NullableTime and assigns it to the FirstTimeStamp field.
+// SetFirstTimeStamp gets a reference to the given time.Time and assigns it to the FirstTimeStamp field.
 func (o *KubernetesEventCreateDto) SetFirstTimeStamp(v time.Time) {
-	o.FirstTimeStamp.Set(&v)
-}
-// SetFirstTimeStampNil sets the value for FirstTimeStamp to be an explicit nil
-func (o *KubernetesEventCreateDto) SetFirstTimeStampNil() {
-	o.FirstTimeStamp.Set(nil)
+	o.FirstTimeStamp = &v
 }
 
-// UnsetFirstTimeStamp ensures that no value is present for FirstTimeStamp, not even an explicit nil
-func (o *KubernetesEventCreateDto) UnsetFirstTimeStamp() {
-	o.FirstTimeStamp.Unset()
-}
-
-// GetLastTimeStamp returns the LastTimeStamp field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetLastTimeStamp returns the LastTimeStamp field value if set, zero value otherwise.
 func (o *KubernetesEventCreateDto) GetLastTimeStamp() time.Time {
-	if o == nil || IsNil(o.LastTimeStamp.Get()) {
+	if o == nil || IsNil(o.LastTimeStamp) {
 		var ret time.Time
 		return ret
 	}
-	return *o.LastTimeStamp.Get()
+	return *o.LastTimeStamp
 }
 
 // GetLastTimeStampOk returns a tuple with the LastTimeStamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *KubernetesEventCreateDto) GetLastTimeStampOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.LastTimeStamp) {
 		return nil, false
 	}
-	return o.LastTimeStamp.Get(), o.LastTimeStamp.IsSet()
+	return o.LastTimeStamp, true
 }
 
 // HasLastTimeStamp returns a boolean if a field has been set.
 func (o *KubernetesEventCreateDto) HasLastTimeStamp() bool {
-	if o != nil && o.LastTimeStamp.IsSet() {
+	if o != nil && !IsNil(o.LastTimeStamp) {
 		return true
 	}
 
 	return false
 }
 
-// SetLastTimeStamp gets a reference to the given NullableTime and assigns it to the LastTimeStamp field.
+// SetLastTimeStamp gets a reference to the given time.Time and assigns it to the LastTimeStamp field.
 func (o *KubernetesEventCreateDto) SetLastTimeStamp(v time.Time) {
-	o.LastTimeStamp.Set(&v)
-}
-// SetLastTimeStampNil sets the value for LastTimeStamp to be an explicit nil
-func (o *KubernetesEventCreateDto) SetLastTimeStampNil() {
-	o.LastTimeStamp.Set(nil)
-}
-
-// UnsetLastTimeStamp ensures that no value is present for LastTimeStamp, not even an explicit nil
-func (o *KubernetesEventCreateDto) UnsetLastTimeStamp() {
-	o.LastTimeStamp.Unset()
+	o.LastTimeStamp = &v
 }
 
 // GetCount returns the Count field value if set, zero value otherwise.
@@ -400,29 +347,29 @@ func (o KubernetesEventCreateDto) MarshalJSON() ([]byte, error) {
 
 func (o KubernetesEventCreateDto) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Type.IsSet() {
-		toSerialize["type"] = o.Type.Get()
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
 	}
-	if o.Reason.IsSet() {
-		toSerialize["reason"] = o.Reason.Get()
+	if !IsNil(o.Reason) {
+		toSerialize["reason"] = o.Reason
 	}
-	if o.Message.IsSet() {
-		toSerialize["message"] = o.Message.Get()
+	if !IsNil(o.Message) {
+		toSerialize["message"] = o.Message
 	}
-	if o.Metadata != nil {
+	if !IsNil(o.Metadata) {
 		toSerialize["metadata"] = o.Metadata
 	}
-	if o.Source != nil {
+	if !IsNil(o.Source) {
 		toSerialize["source"] = o.Source
 	}
-	if o.InvolvedObject != nil {
+	if !IsNil(o.InvolvedObject) {
 		toSerialize["involvedObject"] = o.InvolvedObject
 	}
-	if o.FirstTimeStamp.IsSet() {
-		toSerialize["firstTimeStamp"] = o.FirstTimeStamp.Get()
+	if !IsNil(o.FirstTimeStamp) {
+		toSerialize["firstTimeStamp"] = o.FirstTimeStamp
 	}
-	if o.LastTimeStamp.IsSet() {
-		toSerialize["lastTimeStamp"] = o.LastTimeStamp.Get()
+	if !IsNil(o.LastTimeStamp) {
+		toSerialize["lastTimeStamp"] = o.LastTimeStamp
 	}
 	if !IsNil(o.Count) {
 		toSerialize["count"] = o.Count

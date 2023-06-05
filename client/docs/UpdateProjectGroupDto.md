@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
 **ProjectIds** | Pointer to **[]int32** |  | [optional] 
 
 ## Methods
@@ -51,16 +51,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *UpdateProjectGroupDto) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *UpdateProjectGroupDto) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetProjectIds
 
 `func (o *UpdateProjectGroupDto) GetProjectIds() []int32`
@@ -86,16 +76,6 @@ SetProjectIds sets ProjectIds field to given value.
 
 HasProjectIds returns a boolean if a field has been set.
 
-### SetProjectIdsNil
-
-`func (o *UpdateProjectGroupDto) SetProjectIdsNil(b bool)`
-
- SetProjectIdsNil sets the value for ProjectIds to be an explicit nil
-
-### UnsetProjectIds
-`func (o *UpdateProjectGroupDto) UnsetProjectIds()`
-
-UnsetProjectIds ensures that no value is present for ProjectIds, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -10,9 +10,9 @@ Name | Type | Description | Notes
 **UserLimit** | Pointer to **int32** |  | [optional] 
 **CloudCredentialLimit** | Pointer to **int32** |  | [optional] 
 **TrialDays** | Pointer to **int32** |  | [optional] 
-**MonthlyPrice** | Pointer to **NullableFloat64** |  | [optional] 
-**TcuPrice** | Pointer to **NullableFloat64** |  | [optional] 
-**YearlyPrice** | Pointer to **NullableFloat64** |  | [optional] 
+**MonthlyPrice** | Pointer to **float64** |  | [optional] 
+**TcuPrice** | Pointer to **float64** |  | [optional] 
+**YearlyPrice** | Pointer to **float64** |  | [optional] 
 
 ## Methods
 
@@ -203,16 +203,6 @@ SetMonthlyPrice sets MonthlyPrice field to given value.
 
 HasMonthlyPrice returns a boolean if a field has been set.
 
-### SetMonthlyPriceNil
-
-`func (o *CreateSubscriptionCommand) SetMonthlyPriceNil(b bool)`
-
- SetMonthlyPriceNil sets the value for MonthlyPrice to be an explicit nil
-
-### UnsetMonthlyPrice
-`func (o *CreateSubscriptionCommand) UnsetMonthlyPrice()`
-
-UnsetMonthlyPrice ensures that no value is present for MonthlyPrice, not even an explicit nil
 ### GetTcuPrice
 
 `func (o *CreateSubscriptionCommand) GetTcuPrice() float64`
@@ -238,16 +228,6 @@ SetTcuPrice sets TcuPrice field to given value.
 
 HasTcuPrice returns a boolean if a field has been set.
 
-### SetTcuPriceNil
-
-`func (o *CreateSubscriptionCommand) SetTcuPriceNil(b bool)`
-
- SetTcuPriceNil sets the value for TcuPrice to be an explicit nil
-
-### UnsetTcuPrice
-`func (o *CreateSubscriptionCommand) UnsetTcuPrice()`
-
-UnsetTcuPrice ensures that no value is present for TcuPrice, not even an explicit nil
 ### GetYearlyPrice
 
 `func (o *CreateSubscriptionCommand) GetYearlyPrice() float64`
@@ -273,16 +253,6 @@ SetYearlyPrice sets YearlyPrice field to given value.
 
 HasYearlyPrice returns a boolean if a field has been set.
 
-### SetYearlyPriceNil
-
-`func (o *CreateSubscriptionCommand) SetYearlyPriceNil(b bool)`
-
- SetYearlyPriceNil sets the value for YearlyPrice to be an explicit nil
-
-### UnsetYearlyPrice
-`func (o *CreateSubscriptionCommand) UnsetYearlyPrice()`
-
-UnsetYearlyPrice ensures that no value is present for YearlyPrice, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

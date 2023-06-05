@@ -6,8 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** |  | [optional] 
 **Projects** | Pointer to [**[]CommonDropdownDto**](CommonDropdownDto.md) |  | [optional] 
-**FullName** | Pointer to **NullableString** |  | [optional] 
-**CloudType** | Pointer to **NullableString** |  | [optional] 
+**FullName** | Pointer to **string** |  | [optional] 
+**CloudType** | Pointer to **string** |  | [optional] 
 **IsDefault** | Pointer to **bool** |  | [optional] 
 
 ## Methods
@@ -79,16 +79,6 @@ SetProjects sets Projects field to given value.
 
 HasProjects returns a boolean if a field has been set.
 
-### SetProjectsNil
-
-`func (o *CloudCredentialsForOrganizationEntity) SetProjectsNil(b bool)`
-
- SetProjectsNil sets the value for Projects to be an explicit nil
-
-### UnsetProjects
-`func (o *CloudCredentialsForOrganizationEntity) UnsetProjects()`
-
-UnsetProjects ensures that no value is present for Projects, not even an explicit nil
 ### GetFullName
 
 `func (o *CloudCredentialsForOrganizationEntity) GetFullName() string`
@@ -114,16 +104,6 @@ SetFullName sets FullName field to given value.
 
 HasFullName returns a boolean if a field has been set.
 
-### SetFullNameNil
-
-`func (o *CloudCredentialsForOrganizationEntity) SetFullNameNil(b bool)`
-
- SetFullNameNil sets the value for FullName to be an explicit nil
-
-### UnsetFullName
-`func (o *CloudCredentialsForOrganizationEntity) UnsetFullName()`
-
-UnsetFullName ensures that no value is present for FullName, not even an explicit nil
 ### GetCloudType
 
 `func (o *CloudCredentialsForOrganizationEntity) GetCloudType() string`
@@ -149,16 +129,6 @@ SetCloudType sets CloudType field to given value.
 
 HasCloudType returns a boolean if a field has been set.
 
-### SetCloudTypeNil
-
-`func (o *CloudCredentialsForOrganizationEntity) SetCloudTypeNil(b bool)`
-
- SetCloudTypeNil sets the value for CloudType to be an explicit nil
-
-### UnsetCloudType
-`func (o *CloudCredentialsForOrganizationEntity) UnsetCloudType()`
-
-UnsetCloudType ensures that no value is present for CloudType, not even an explicit nil
 ### GetIsDefault
 
 `func (o *CloudCredentialsForOrganizationEntity) GetIsDefault() bool`

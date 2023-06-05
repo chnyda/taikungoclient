@@ -24,10 +24,10 @@ type LokiResponseDto struct {
 	ProjectId *int32 `json:"projectId,omitempty"`
 	Parameters []Parameter `json:"parameters,omitempty"`
 	Filters []Filter `json:"filters,omitempty"`
-	Start NullableTime `json:"start,omitempty"`
-	End NullableTime `json:"end,omitempty"`
-	Limit NullableInt32 `json:"limit,omitempty"`
-	Direction NullableString `json:"direction,omitempty"`
+	Start *time.Time `json:"start,omitempty"`
+	End *time.Time `json:"end,omitempty"`
+	Limit *int32 `json:"limit,omitempty"`
+	Direction *string `json:"direction,omitempty"`
 	CanDownload *bool `json:"canDownload,omitempty"`
 }
 
@@ -80,9 +80,9 @@ func (o *LokiResponseDto) SetProjectId(v int32) {
 	o.ProjectId = &v
 }
 
-// GetParameters returns the Parameters field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetParameters returns the Parameters field value if set, zero value otherwise.
 func (o *LokiResponseDto) GetParameters() []Parameter {
-	if o == nil {
+	if o == nil || IsNil(o.Parameters) {
 		var ret []Parameter
 		return ret
 	}
@@ -91,7 +91,6 @@ func (o *LokiResponseDto) GetParameters() []Parameter {
 
 // GetParametersOk returns a tuple with the Parameters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *LokiResponseDto) GetParametersOk() ([]Parameter, bool) {
 	if o == nil || IsNil(o.Parameters) {
 		return nil, false
@@ -101,7 +100,7 @@ func (o *LokiResponseDto) GetParametersOk() ([]Parameter, bool) {
 
 // HasParameters returns a boolean if a field has been set.
 func (o *LokiResponseDto) HasParameters() bool {
-	if o != nil && IsNil(o.Parameters) {
+	if o != nil && !IsNil(o.Parameters) {
 		return true
 	}
 
@@ -113,9 +112,9 @@ func (o *LokiResponseDto) SetParameters(v []Parameter) {
 	o.Parameters = v
 }
 
-// GetFilters returns the Filters field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetFilters returns the Filters field value if set, zero value otherwise.
 func (o *LokiResponseDto) GetFilters() []Filter {
-	if o == nil {
+	if o == nil || IsNil(o.Filters) {
 		var ret []Filter
 		return ret
 	}
@@ -124,7 +123,6 @@ func (o *LokiResponseDto) GetFilters() []Filter {
 
 // GetFiltersOk returns a tuple with the Filters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *LokiResponseDto) GetFiltersOk() ([]Filter, bool) {
 	if o == nil || IsNil(o.Filters) {
 		return nil, false
@@ -134,7 +132,7 @@ func (o *LokiResponseDto) GetFiltersOk() ([]Filter, bool) {
 
 // HasFilters returns a boolean if a field has been set.
 func (o *LokiResponseDto) HasFilters() bool {
-	if o != nil && IsNil(o.Filters) {
+	if o != nil && !IsNil(o.Filters) {
 		return true
 	}
 
@@ -146,172 +144,132 @@ func (o *LokiResponseDto) SetFilters(v []Filter) {
 	o.Filters = v
 }
 
-// GetStart returns the Start field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetStart returns the Start field value if set, zero value otherwise.
 func (o *LokiResponseDto) GetStart() time.Time {
-	if o == nil || IsNil(o.Start.Get()) {
+	if o == nil || IsNil(o.Start) {
 		var ret time.Time
 		return ret
 	}
-	return *o.Start.Get()
+	return *o.Start
 }
 
 // GetStartOk returns a tuple with the Start field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *LokiResponseDto) GetStartOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Start) {
 		return nil, false
 	}
-	return o.Start.Get(), o.Start.IsSet()
+	return o.Start, true
 }
 
 // HasStart returns a boolean if a field has been set.
 func (o *LokiResponseDto) HasStart() bool {
-	if o != nil && o.Start.IsSet() {
+	if o != nil && !IsNil(o.Start) {
 		return true
 	}
 
 	return false
 }
 
-// SetStart gets a reference to the given NullableTime and assigns it to the Start field.
+// SetStart gets a reference to the given time.Time and assigns it to the Start field.
 func (o *LokiResponseDto) SetStart(v time.Time) {
-	o.Start.Set(&v)
-}
-// SetStartNil sets the value for Start to be an explicit nil
-func (o *LokiResponseDto) SetStartNil() {
-	o.Start.Set(nil)
+	o.Start = &v
 }
 
-// UnsetStart ensures that no value is present for Start, not even an explicit nil
-func (o *LokiResponseDto) UnsetStart() {
-	o.Start.Unset()
-}
-
-// GetEnd returns the End field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetEnd returns the End field value if set, zero value otherwise.
 func (o *LokiResponseDto) GetEnd() time.Time {
-	if o == nil || IsNil(o.End.Get()) {
+	if o == nil || IsNil(o.End) {
 		var ret time.Time
 		return ret
 	}
-	return *o.End.Get()
+	return *o.End
 }
 
 // GetEndOk returns a tuple with the End field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *LokiResponseDto) GetEndOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.End) {
 		return nil, false
 	}
-	return o.End.Get(), o.End.IsSet()
+	return o.End, true
 }
 
 // HasEnd returns a boolean if a field has been set.
 func (o *LokiResponseDto) HasEnd() bool {
-	if o != nil && o.End.IsSet() {
+	if o != nil && !IsNil(o.End) {
 		return true
 	}
 
 	return false
 }
 
-// SetEnd gets a reference to the given NullableTime and assigns it to the End field.
+// SetEnd gets a reference to the given time.Time and assigns it to the End field.
 func (o *LokiResponseDto) SetEnd(v time.Time) {
-	o.End.Set(&v)
-}
-// SetEndNil sets the value for End to be an explicit nil
-func (o *LokiResponseDto) SetEndNil() {
-	o.End.Set(nil)
+	o.End = &v
 }
 
-// UnsetEnd ensures that no value is present for End, not even an explicit nil
-func (o *LokiResponseDto) UnsetEnd() {
-	o.End.Unset()
-}
-
-// GetLimit returns the Limit field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetLimit returns the Limit field value if set, zero value otherwise.
 func (o *LokiResponseDto) GetLimit() int32 {
-	if o == nil || IsNil(o.Limit.Get()) {
+	if o == nil || IsNil(o.Limit) {
 		var ret int32
 		return ret
 	}
-	return *o.Limit.Get()
+	return *o.Limit
 }
 
 // GetLimitOk returns a tuple with the Limit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *LokiResponseDto) GetLimitOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Limit) {
 		return nil, false
 	}
-	return o.Limit.Get(), o.Limit.IsSet()
+	return o.Limit, true
 }
 
 // HasLimit returns a boolean if a field has been set.
 func (o *LokiResponseDto) HasLimit() bool {
-	if o != nil && o.Limit.IsSet() {
+	if o != nil && !IsNil(o.Limit) {
 		return true
 	}
 
 	return false
 }
 
-// SetLimit gets a reference to the given NullableInt32 and assigns it to the Limit field.
+// SetLimit gets a reference to the given int32 and assigns it to the Limit field.
 func (o *LokiResponseDto) SetLimit(v int32) {
-	o.Limit.Set(&v)
-}
-// SetLimitNil sets the value for Limit to be an explicit nil
-func (o *LokiResponseDto) SetLimitNil() {
-	o.Limit.Set(nil)
+	o.Limit = &v
 }
 
-// UnsetLimit ensures that no value is present for Limit, not even an explicit nil
-func (o *LokiResponseDto) UnsetLimit() {
-	o.Limit.Unset()
-}
-
-// GetDirection returns the Direction field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetDirection returns the Direction field value if set, zero value otherwise.
 func (o *LokiResponseDto) GetDirection() string {
-	if o == nil || IsNil(o.Direction.Get()) {
+	if o == nil || IsNil(o.Direction) {
 		var ret string
 		return ret
 	}
-	return *o.Direction.Get()
+	return *o.Direction
 }
 
 // GetDirectionOk returns a tuple with the Direction field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *LokiResponseDto) GetDirectionOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Direction) {
 		return nil, false
 	}
-	return o.Direction.Get(), o.Direction.IsSet()
+	return o.Direction, true
 }
 
 // HasDirection returns a boolean if a field has been set.
 func (o *LokiResponseDto) HasDirection() bool {
-	if o != nil && o.Direction.IsSet() {
+	if o != nil && !IsNil(o.Direction) {
 		return true
 	}
 
 	return false
 }
 
-// SetDirection gets a reference to the given NullableString and assigns it to the Direction field.
+// SetDirection gets a reference to the given string and assigns it to the Direction field.
 func (o *LokiResponseDto) SetDirection(v string) {
-	o.Direction.Set(&v)
-}
-// SetDirectionNil sets the value for Direction to be an explicit nil
-func (o *LokiResponseDto) SetDirectionNil() {
-	o.Direction.Set(nil)
-}
-
-// UnsetDirection ensures that no value is present for Direction, not even an explicit nil
-func (o *LokiResponseDto) UnsetDirection() {
-	o.Direction.Unset()
+	o.Direction = &v
 }
 
 // GetCanDownload returns the CanDownload field value if set, zero value otherwise.
@@ -359,23 +317,23 @@ func (o LokiResponseDto) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ProjectId) {
 		toSerialize["projectId"] = o.ProjectId
 	}
-	if o.Parameters != nil {
+	if !IsNil(o.Parameters) {
 		toSerialize["parameters"] = o.Parameters
 	}
-	if o.Filters != nil {
+	if !IsNil(o.Filters) {
 		toSerialize["filters"] = o.Filters
 	}
-	if o.Start.IsSet() {
-		toSerialize["start"] = o.Start.Get()
+	if !IsNil(o.Start) {
+		toSerialize["start"] = o.Start
 	}
-	if o.End.IsSet() {
-		toSerialize["end"] = o.End.Get()
+	if !IsNil(o.End) {
+		toSerialize["end"] = o.End
 	}
-	if o.Limit.IsSet() {
-		toSerialize["limit"] = o.Limit.Get()
+	if !IsNil(o.Limit) {
+		toSerialize["limit"] = o.Limit
 	}
-	if o.Direction.IsSet() {
-		toSerialize["direction"] = o.Direction.Get()
+	if !IsNil(o.Direction) {
+		toSerialize["direction"] = o.Direction
 	}
 	if !IsNil(o.CanDownload) {
 		toSerialize["canDownload"] = o.CanDownload

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Owner** | Pointer to **NullableString** |  | [optional] 
+**Owner** | Pointer to **string** |  | [optional] 
 **Image** | Pointer to [**GoogleCommonImages**](GoogleCommonImages.md) |  | [optional] 
 
 ## Methods
@@ -51,16 +51,6 @@ SetOwner sets Owner field to given value.
 
 HasOwner returns a boolean if a field has been set.
 
-### SetOwnerNil
-
-`func (o *GoogleOwnerDetails) SetOwnerNil(b bool)`
-
- SetOwnerNil sets the value for Owner to be an explicit nil
-
-### UnsetOwner
-`func (o *GoogleOwnerDetails) UnsetOwner()`
-
-UnsetOwner ensures that no value is present for Owner, not even an explicit nil
 ### GetImage
 
 `func (o *GoogleOwnerDetails) GetImage() GoogleCommonImages`

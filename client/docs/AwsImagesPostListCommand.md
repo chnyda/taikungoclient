@@ -5,11 +5,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CloudId** | Pointer to **int32** |  | [optional] 
-**Limit** | Pointer to **NullableInt32** |  | [optional] 
-**Offset** | Pointer to **NullableInt32** |  | [optional] 
-**SortBy** | Pointer to **NullableString** |  | [optional] 
-**SortDirection** | Pointer to **NullableString** |  | [optional] 
-**Search** | Pointer to **NullableString** |  | [optional] 
+**Limit** | Pointer to **int32** |  | [optional] 
+**Offset** | Pointer to **int32** |  | [optional] 
+**SortBy** | Pointer to **string** |  | [optional] 
+**SortDirection** | Pointer to **string** |  | [optional] 
+**Search** | Pointer to **string** |  | [optional] 
 **Latest** | Pointer to **bool** |  | [optional] 
 **Owners** | Pointer to **[]string** |  | [optional] 
 
@@ -82,16 +82,6 @@ SetLimit sets Limit field to given value.
 
 HasLimit returns a boolean if a field has been set.
 
-### SetLimitNil
-
-`func (o *AwsImagesPostListCommand) SetLimitNil(b bool)`
-
- SetLimitNil sets the value for Limit to be an explicit nil
-
-### UnsetLimit
-`func (o *AwsImagesPostListCommand) UnsetLimit()`
-
-UnsetLimit ensures that no value is present for Limit, not even an explicit nil
 ### GetOffset
 
 `func (o *AwsImagesPostListCommand) GetOffset() int32`
@@ -117,16 +107,6 @@ SetOffset sets Offset field to given value.
 
 HasOffset returns a boolean if a field has been set.
 
-### SetOffsetNil
-
-`func (o *AwsImagesPostListCommand) SetOffsetNil(b bool)`
-
- SetOffsetNil sets the value for Offset to be an explicit nil
-
-### UnsetOffset
-`func (o *AwsImagesPostListCommand) UnsetOffset()`
-
-UnsetOffset ensures that no value is present for Offset, not even an explicit nil
 ### GetSortBy
 
 `func (o *AwsImagesPostListCommand) GetSortBy() string`
@@ -152,16 +132,6 @@ SetSortBy sets SortBy field to given value.
 
 HasSortBy returns a boolean if a field has been set.
 
-### SetSortByNil
-
-`func (o *AwsImagesPostListCommand) SetSortByNil(b bool)`
-
- SetSortByNil sets the value for SortBy to be an explicit nil
-
-### UnsetSortBy
-`func (o *AwsImagesPostListCommand) UnsetSortBy()`
-
-UnsetSortBy ensures that no value is present for SortBy, not even an explicit nil
 ### GetSortDirection
 
 `func (o *AwsImagesPostListCommand) GetSortDirection() string`
@@ -187,16 +157,6 @@ SetSortDirection sets SortDirection field to given value.
 
 HasSortDirection returns a boolean if a field has been set.
 
-### SetSortDirectionNil
-
-`func (o *AwsImagesPostListCommand) SetSortDirectionNil(b bool)`
-
- SetSortDirectionNil sets the value for SortDirection to be an explicit nil
-
-### UnsetSortDirection
-`func (o *AwsImagesPostListCommand) UnsetSortDirection()`
-
-UnsetSortDirection ensures that no value is present for SortDirection, not even an explicit nil
 ### GetSearch
 
 `func (o *AwsImagesPostListCommand) GetSearch() string`
@@ -222,16 +182,6 @@ SetSearch sets Search field to given value.
 
 HasSearch returns a boolean if a field has been set.
 
-### SetSearchNil
-
-`func (o *AwsImagesPostListCommand) SetSearchNil(b bool)`
-
- SetSearchNil sets the value for Search to be an explicit nil
-
-### UnsetSearch
-`func (o *AwsImagesPostListCommand) UnsetSearch()`
-
-UnsetSearch ensures that no value is present for Search, not even an explicit nil
 ### GetLatest
 
 `func (o *AwsImagesPostListCommand) GetLatest() bool`
@@ -282,16 +232,6 @@ SetOwners sets Owners field to given value.
 
 HasOwners returns a boolean if a field has been set.
 
-### SetOwnersNil
-
-`func (o *AwsImagesPostListCommand) SetOwnersNil(b bool)`
-
- SetOwnersNil sets the value for Owners to be an explicit nil
-
-### UnsetOwners
-`func (o *AwsImagesPostListCommand) UnsetOwners()`
-
-UnsetOwners ensures that no value is present for Owners, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -22,11 +22,13 @@ func Test_taikuncore_AlertingIntegrationsApiService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test AlertingIntegrationsApiService AlertingintegrationsCreate", func(t *testing.T) {
+	t.Run("Test AlertingIntegrationsApiService AlertingIntegrationsCreate", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.AlertingIntegrationsApi.AlertingintegrationsCreate(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.AlertingIntegrationsApi.AlertingIntegrationsCreate(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -34,49 +36,41 @@ func Test_taikuncore_AlertingIntegrationsApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test AlertingIntegrationsApiService AlertingintegrationsDelete", func(t *testing.T) {
+	t.Run("Test AlertingIntegrationsApiService AlertingIntegrationsDelete", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id int32
+		var v string
 
-		httpRes, err := apiClient.AlertingIntegrationsApi.AlertingintegrationsDelete(context.Background(), id).Execute()
+		httpRes, err := apiClient.AlertingIntegrationsApi.AlertingIntegrationsDelete(context.Background(), id, v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test AlertingIntegrationsApiService AlertingintegrationsEdit", func(t *testing.T) {
+	t.Run("Test AlertingIntegrationsApiService AlertingIntegrationsEdit", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.AlertingIntegrationsApi.AlertingintegrationsEdit(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.AlertingIntegrationsApi.AlertingIntegrationsEdit(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test AlertingIntegrationsApiService AlertingintegrationsList", func(t *testing.T) {
+	t.Run("Test AlertingIntegrationsApiService AlertingIntegrationsList", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var alertingProfileId int32
+		var v string
 
-		resp, httpRes, err := apiClient.AlertingIntegrationsApi.AlertingintegrationsList(context.Background(), alertingProfileId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test AlertingIntegrationsApiService DocumentationList", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		resp, httpRes, err := apiClient.AlertingIntegrationsApi.DocumentationList(context.Background()).Execute()
+		resp, httpRes, err := apiClient.AlertingIntegrationsApi.AlertingIntegrationsList(context.Background(), alertingProfileId, v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

@@ -4,16 +4,16 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**NtpserversCreate**](NtpServersApi.md#NtpserversCreate) | **Post** /api/v1/ntpservers/create | Create access profile ntp server
-[**NtpserversDelete**](NtpServersApi.md#NtpserversDelete) | **Delete** /api/v1/ntpservers/{id} | Delete access profile ntp server
-[**NtpserversEdit**](NtpServersApi.md#NtpserversEdit) | **Put** /api/v1/ntpservers/edit/{id} | Edit access profile ntp server
-[**NtpserversList**](NtpServersApi.md#NtpserversList) | **Get** /api/v1/ntpservers/list/{accessProfileId} | List ntp server by access profile id
+[**NtpServersCreate**](NtpServersApi.md#NtpServersCreate) | **Post** /api/v{v}/NtpServers/create | Create access profile ntp server
+[**NtpServersDelete**](NtpServersApi.md#NtpServersDelete) | **Delete** /api/v{v}/NtpServers/{id} | Delete access profile ntp server
+[**NtpServersEdit**](NtpServersApi.md#NtpServersEdit) | **Put** /api/v{v}/NtpServers/edit/{id} | Edit access profile ntp server
+[**NtpServersList**](NtpServersApi.md#NtpServersList) | **Get** /api/v{v}/NtpServers/list/{accessProfileId} | List ntp servers by profile id
 
 
 
-## NtpserversCreate
+## NtpServersCreate
 
-> ApiResponse NtpserversCreate(ctx).CreateNtpServerCommand(createNtpServerCommand).Execute()
+> ApiResponse NtpServersCreate(ctx, v).Body(body).Execute()
 
 Create access profile ntp server
 
@@ -30,32 +30,38 @@ import (
 )
 
 func main() {
-    createNtpServerCommand := *openapiclient.NewCreateNtpServerCommand("Address_example", int32(123)) // CreateNtpServerCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewCreateNtpServerCommand("Address_example", int32(123)) // CreateNtpServerCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.NtpServersApi.NtpserversCreate(context.Background()).CreateNtpServerCommand(createNtpServerCommand).Execute()
+    resp, r, err := apiClient.NtpServersApi.NtpServersCreate(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NtpServersApi.NtpserversCreate``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NtpServersApi.NtpServersCreate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `NtpserversCreate`: ApiResponse
-    fmt.Fprintf(os.Stdout, "Response from `NtpServersApi.NtpserversCreate`: %v\n", resp)
+    // response from `NtpServersCreate`: ApiResponse
+    fmt.Fprintf(os.Stdout, "Response from `NtpServersApi.NtpServersCreate`: %v\n", resp)
 }
 ```
 
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiNtpserversCreateRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiNtpServersCreateRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createNtpServerCommand** | [**CreateNtpServerCommand**](CreateNtpServerCommand.md) |  | 
+
+ **body** | [**CreateNtpServerCommand**](CreateNtpServerCommand.md) |  | 
 
 ### Return type
 
@@ -67,17 +73,17 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## NtpserversDelete
+## NtpServersDelete
 
-> NtpserversDelete(ctx, id).Execute()
+> NtpServersDelete(ctx, id, v).Execute()
 
 Delete access profile ntp server
 
@@ -95,12 +101,13 @@ import (
 
 func main() {
     id := int32(56) // int32 | 
+    v := "v_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.NtpServersApi.NtpserversDelete(context.Background(), id).Execute()
+    r, err := apiClient.NtpServersApi.NtpServersDelete(context.Background(), id, v).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NtpServersApi.NtpserversDelete``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NtpServersApi.NtpServersDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -113,14 +120,16 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **id** | **int32** |  | 
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiNtpserversDeleteRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiNtpServersDeleteRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
 
 
 ### Return type
@@ -134,16 +143,16 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## NtpserversEdit
+## NtpServersEdit
 
-> NtpserversEdit(ctx, id).DnsNtpAddressEditDto(dnsNtpAddressEditDto).Execute()
+> NtpServersEdit(ctx, id, v).Body(body).Execute()
 
 Edit access profile ntp server
 
@@ -161,13 +170,14 @@ import (
 
 func main() {
     id := int32(56) // int32 | 
-    dnsNtpAddressEditDto := *openapiclient.NewDnsNtpAddressEditDto() // DnsNtpAddressEditDto | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewDnsNtpAddressEditDto() // DnsNtpAddressEditDto |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.NtpServersApi.NtpserversEdit(context.Background(), id).DnsNtpAddressEditDto(dnsNtpAddressEditDto).Execute()
+    r, err := apiClient.NtpServersApi.NtpServersEdit(context.Background(), id, v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NtpServersApi.NtpserversEdit``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NtpServersApi.NtpServersEdit``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -180,16 +190,18 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **id** | **int32** |  | 
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiNtpserversEditRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiNtpServersEditRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **dnsNtpAddressEditDto** | [**DnsNtpAddressEditDto**](DnsNtpAddressEditDto.md) |  | 
+
+ **body** | [**DnsNtpAddressEditDto**](DnsNtpAddressEditDto.md) |  | 
 
 ### Return type
 
@@ -201,19 +213,19 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## NtpserversList
+## NtpServersList
 
-> []NtpServersListDto NtpserversList(ctx, accessProfileId).Search(search).Execute()
+> []NtpServersListDto NtpServersList(ctx, accessProfileId, v).Search(search).Execute()
 
-List ntp server by access profile id
+List ntp servers by profile id
 
 ### Example
 
@@ -229,17 +241,18 @@ import (
 
 func main() {
     accessProfileId := int32(56) // int32 | 
+    v := "v_example" // string | 
     search := "search_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.NtpServersApi.NtpserversList(context.Background(), accessProfileId).Search(search).Execute()
+    resp, r, err := apiClient.NtpServersApi.NtpServersList(context.Background(), accessProfileId, v).Search(search).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NtpServersApi.NtpserversList``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NtpServersApi.NtpServersList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `NtpserversList`: []NtpServersListDto
-    fmt.Fprintf(os.Stdout, "Response from `NtpServersApi.NtpserversList`: %v\n", resp)
+    // response from `NtpServersList`: []NtpServersListDto
+    fmt.Fprintf(os.Stdout, "Response from `NtpServersApi.NtpServersList`: %v\n", resp)
 }
 ```
 
@@ -250,14 +263,16 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **accessProfileId** | **int32** |  | 
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiNtpserversListRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiNtpServersListRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
 
  **search** | **string** |  | 
 
@@ -272,7 +287,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

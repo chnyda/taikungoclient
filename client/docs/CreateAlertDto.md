@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Alerts** | Pointer to [**[]KubernetesAlertCreateDto**](KubernetesAlertCreateDto.md) |  | [optional] 
-**Status** | Pointer to **NullableString** |  | [optional] 
+**Status** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -51,16 +51,6 @@ SetAlerts sets Alerts field to given value.
 
 HasAlerts returns a boolean if a field has been set.
 
-### SetAlertsNil
-
-`func (o *CreateAlertDto) SetAlertsNil(b bool)`
-
- SetAlertsNil sets the value for Alerts to be an explicit nil
-
-### UnsetAlerts
-`func (o *CreateAlertDto) UnsetAlerts()`
-
-UnsetAlerts ensures that no value is present for Alerts, not even an explicit nil
 ### GetStatus
 
 `func (o *CreateAlertDto) GetStatus() string`
@@ -86,16 +76,6 @@ SetStatus sets Status field to given value.
 
 HasStatus returns a boolean if a field has been set.
 
-### SetStatusNil
-
-`func (o *CreateAlertDto) SetStatusNil(b bool)`
-
- SetStatusNil sets the value for Status to be an explicit nil
-
-### UnsetStatus
-`func (o *CreateAlertDto) UnsetStatus()`
-
-UnsetStatus ensures that no value is present for Status, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

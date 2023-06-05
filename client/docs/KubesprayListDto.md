@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** |  | [optional] 
-**Version** | Pointer to **NullableString** |  | [optional] 
-**KubernetesVersion** | Pointer to **NullableString** |  | [optional] 
+**Version** | Pointer to **string** |  | [optional] 
+**KubernetesVersion** | Pointer to **string** |  | [optional] 
 **IsDeprecated** | Pointer to **bool** |  | [optional] 
 
 ## Methods
@@ -78,16 +78,6 @@ SetVersion sets Version field to given value.
 
 HasVersion returns a boolean if a field has been set.
 
-### SetVersionNil
-
-`func (o *KubesprayListDto) SetVersionNil(b bool)`
-
- SetVersionNil sets the value for Version to be an explicit nil
-
-### UnsetVersion
-`func (o *KubesprayListDto) UnsetVersion()`
-
-UnsetVersion ensures that no value is present for Version, not even an explicit nil
 ### GetKubernetesVersion
 
 `func (o *KubesprayListDto) GetKubernetesVersion() string`
@@ -113,16 +103,6 @@ SetKubernetesVersion sets KubernetesVersion field to given value.
 
 HasKubernetesVersion returns a boolean if a field has been set.
 
-### SetKubernetesVersionNil
-
-`func (o *KubesprayListDto) SetKubernetesVersionNil(b bool)`
-
- SetKubernetesVersionNil sets the value for KubernetesVersion to be an explicit nil
-
-### UnsetKubernetesVersion
-`func (o *KubesprayListDto) UnsetKubernetesVersion()`
-
-UnsetKubernetesVersion ensures that no value is present for KubernetesVersion, not even an explicit nil
 ### GetIsDeprecated
 
 `func (o *KubesprayListDto) GetIsDeprecated() bool`

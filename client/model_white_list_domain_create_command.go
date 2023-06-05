@@ -21,7 +21,7 @@ var _ MappedNullable = &WhiteListDomainCreateCommand{}
 // WhiteListDomainCreateCommand struct for WhiteListDomainCreateCommand
 type WhiteListDomainCreateCommand struct {
 	WhiteListDomains []WhiteListDomainCreateDto `json:"whiteListDomains,omitempty"`
-	PartnerId NullableInt32 `json:"partnerId,omitempty"`
+	PartnerId *int32 `json:"partnerId,omitempty"`
 }
 
 // NewWhiteListDomainCreateCommand instantiates a new WhiteListDomainCreateCommand object
@@ -41,9 +41,9 @@ func NewWhiteListDomainCreateCommandWithDefaults() *WhiteListDomainCreateCommand
 	return &this
 }
 
-// GetWhiteListDomains returns the WhiteListDomains field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetWhiteListDomains returns the WhiteListDomains field value if set, zero value otherwise.
 func (o *WhiteListDomainCreateCommand) GetWhiteListDomains() []WhiteListDomainCreateDto {
-	if o == nil {
+	if o == nil || IsNil(o.WhiteListDomains) {
 		var ret []WhiteListDomainCreateDto
 		return ret
 	}
@@ -52,7 +52,6 @@ func (o *WhiteListDomainCreateCommand) GetWhiteListDomains() []WhiteListDomainCr
 
 // GetWhiteListDomainsOk returns a tuple with the WhiteListDomains field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *WhiteListDomainCreateCommand) GetWhiteListDomainsOk() ([]WhiteListDomainCreateDto, bool) {
 	if o == nil || IsNil(o.WhiteListDomains) {
 		return nil, false
@@ -62,7 +61,7 @@ func (o *WhiteListDomainCreateCommand) GetWhiteListDomainsOk() ([]WhiteListDomai
 
 // HasWhiteListDomains returns a boolean if a field has been set.
 func (o *WhiteListDomainCreateCommand) HasWhiteListDomains() bool {
-	if o != nil && IsNil(o.WhiteListDomains) {
+	if o != nil && !IsNil(o.WhiteListDomains) {
 		return true
 	}
 
@@ -74,46 +73,36 @@ func (o *WhiteListDomainCreateCommand) SetWhiteListDomains(v []WhiteListDomainCr
 	o.WhiteListDomains = v
 }
 
-// GetPartnerId returns the PartnerId field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetPartnerId returns the PartnerId field value if set, zero value otherwise.
 func (o *WhiteListDomainCreateCommand) GetPartnerId() int32 {
-	if o == nil || IsNil(o.PartnerId.Get()) {
+	if o == nil || IsNil(o.PartnerId) {
 		var ret int32
 		return ret
 	}
-	return *o.PartnerId.Get()
+	return *o.PartnerId
 }
 
 // GetPartnerIdOk returns a tuple with the PartnerId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *WhiteListDomainCreateCommand) GetPartnerIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.PartnerId) {
 		return nil, false
 	}
-	return o.PartnerId.Get(), o.PartnerId.IsSet()
+	return o.PartnerId, true
 }
 
 // HasPartnerId returns a boolean if a field has been set.
 func (o *WhiteListDomainCreateCommand) HasPartnerId() bool {
-	if o != nil && o.PartnerId.IsSet() {
+	if o != nil && !IsNil(o.PartnerId) {
 		return true
 	}
 
 	return false
 }
 
-// SetPartnerId gets a reference to the given NullableInt32 and assigns it to the PartnerId field.
+// SetPartnerId gets a reference to the given int32 and assigns it to the PartnerId field.
 func (o *WhiteListDomainCreateCommand) SetPartnerId(v int32) {
-	o.PartnerId.Set(&v)
-}
-// SetPartnerIdNil sets the value for PartnerId to be an explicit nil
-func (o *WhiteListDomainCreateCommand) SetPartnerIdNil() {
-	o.PartnerId.Set(nil)
-}
-
-// UnsetPartnerId ensures that no value is present for PartnerId, not even an explicit nil
-func (o *WhiteListDomainCreateCommand) UnsetPartnerId() {
-	o.PartnerId.Unset()
+	o.PartnerId = &v
 }
 
 func (o WhiteListDomainCreateCommand) MarshalJSON() ([]byte, error) {
@@ -126,11 +115,11 @@ func (o WhiteListDomainCreateCommand) MarshalJSON() ([]byte, error) {
 
 func (o WhiteListDomainCreateCommand) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.WhiteListDomains != nil {
+	if !IsNil(o.WhiteListDomains) {
 		toSerialize["whiteListDomains"] = o.WhiteListDomains
 	}
-	if o.PartnerId.IsSet() {
-		toSerialize["partnerId"] = o.PartnerId.Get()
+	if !IsNil(o.PartnerId) {
+		toSerialize["partnerId"] = o.PartnerId
 	}
 	return toSerialize, nil
 }

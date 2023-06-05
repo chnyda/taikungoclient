@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **PrometheusRuleId** | Pointer to **int32** |  | [optional] 
-**PrometheusRuleName** | Pointer to **NullableString** |  | [optional] 
+**PrometheusRuleName** | Pointer to **string** |  | [optional] 
 **RuleDiscountRate** | Pointer to **float64** |  | [optional] 
 
 ## Methods
@@ -77,16 +77,6 @@ SetPrometheusRuleName sets PrometheusRuleName field to given value.
 
 HasPrometheusRuleName returns a boolean if a field has been set.
 
-### SetPrometheusRuleNameNil
-
-`func (o *PrometheusEntity) SetPrometheusRuleNameNil(b bool)`
-
- SetPrometheusRuleNameNil sets the value for PrometheusRuleName to be an explicit nil
-
-### UnsetPrometheusRuleName
-`func (o *PrometheusEntity) UnsetPrometheusRuleName()`
-
-UnsetPrometheusRuleName ensures that no value is present for PrometheusRuleName, not even an explicit nil
 ### GetRuleDiscountRate
 
 `func (o *PrometheusEntity) GetRuleDiscountRate() float64`

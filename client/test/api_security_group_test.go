@@ -22,11 +22,13 @@ func Test_taikuncore_SecurityGroupApiService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test SecurityGroupApiService SecuritygroupCreate", func(t *testing.T) {
+	t.Run("Test SecurityGroupApiService SecurityGroupCreate", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.SecurityGroupApi.SecuritygroupCreate(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.SecurityGroupApi.SecurityGroupCreate(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -34,37 +36,40 @@ func Test_taikuncore_SecurityGroupApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test SecurityGroupApiService SecuritygroupDelete", func(t *testing.T) {
+	t.Run("Test SecurityGroupApiService SecurityGroupDelete", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id int32
+		var v string
 
-		httpRes, err := apiClient.SecurityGroupApi.SecuritygroupDelete(context.Background(), id).Execute()
+		httpRes, err := apiClient.SecurityGroupApi.SecurityGroupDelete(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test SecurityGroupApiService SecuritygroupEdit", func(t *testing.T) {
+	t.Run("Test SecurityGroupApiService SecurityGroupEdit", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.SecurityGroupApi.SecuritygroupEdit(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.SecurityGroupApi.SecurityGroupEdit(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test SecurityGroupApiService SecuritygroupList", func(t *testing.T) {
+	t.Run("Test SecurityGroupApiService SecurityGroupList", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var standAloneProfileId int32
+		var v string
 
-		resp, httpRes, err := apiClient.SecurityGroupApi.SecuritygroupList(context.Background(), standAloneProfileId).Execute()
+		resp, httpRes, err := apiClient.SecurityGroupApi.SecurityGroupList(context.Background(), standAloneProfileId, v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

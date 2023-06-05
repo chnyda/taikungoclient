@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **NullableString** |  | [optional] 
+**Id** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to **int32** |  | [optional] 
-**Message** | Pointer to **NullableString** |  | [optional] 
+**Message** | Pointer to **string** |  | [optional] 
 **IsError** | Pointer to **bool** |  | [optional] 
-**Result** | Pointer to **interface{}** |  | [optional] 
+**Result** | Pointer to **map[string]interface{}** |  | [optional] 
 
 ## Methods
 
@@ -54,16 +54,6 @@ SetId sets Id field to given value.
 
 HasId returns a boolean if a field has been set.
 
-### SetIdNil
-
-`func (o *ApiResponse) SetIdNil(b bool)`
-
- SetIdNil sets the value for Id to be an explicit nil
-
-### UnsetId
-`func (o *ApiResponse) UnsetId()`
-
-UnsetId ensures that no value is present for Id, not even an explicit nil
 ### GetStatus
 
 `func (o *ApiResponse) GetStatus() int32`
@@ -114,16 +104,6 @@ SetMessage sets Message field to given value.
 
 HasMessage returns a boolean if a field has been set.
 
-### SetMessageNil
-
-`func (o *ApiResponse) SetMessageNil(b bool)`
-
- SetMessageNil sets the value for Message to be an explicit nil
-
-### UnsetMessage
-`func (o *ApiResponse) UnsetMessage()`
-
-UnsetMessage ensures that no value is present for Message, not even an explicit nil
 ### GetIsError
 
 `func (o *ApiResponse) GetIsError() bool`
@@ -151,20 +131,20 @@ HasIsError returns a boolean if a field has been set.
 
 ### GetResult
 
-`func (o *ApiResponse) GetResult() interface{}`
+`func (o *ApiResponse) GetResult() map[string]interface{}`
 
 GetResult returns the Result field if non-nil, zero value otherwise.
 
 ### GetResultOk
 
-`func (o *ApiResponse) GetResultOk() (*interface{}, bool)`
+`func (o *ApiResponse) GetResultOk() (*map[string]interface{}, bool)`
 
 GetResultOk returns a tuple with the Result field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetResult
 
-`func (o *ApiResponse) SetResult(v interface{})`
+`func (o *ApiResponse) SetResult(v map[string]interface{})`
 
 SetResult sets Result field to given value.
 
@@ -174,16 +154,6 @@ SetResult sets Result field to given value.
 
 HasResult returns a boolean if a field has been set.
 
-### SetResultNil
-
-`func (o *ApiResponse) SetResultNil(b bool)`
-
- SetResultNil sets the value for Result to be an explicit nil
-
-### UnsetResult
-`func (o *ApiResponse) UnsetResult()`
-
-UnsetResult ensures that no value is present for Result, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

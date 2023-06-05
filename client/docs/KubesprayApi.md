@@ -4,17 +4,17 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**KubesprayCreate**](KubesprayApi.md#KubesprayCreate) | **Post** /api/v1/kubespray | Add kubespray
-[**KubesprayDelete**](KubesprayApi.md#KubesprayDelete) | **Delete** /api/v1/kubespray/{id} | Delete kubespray
-[**KubesprayList**](KubesprayApi.md#KubesprayList) | **Get** /api/v1/kubespray/list | Retrieve all kubespray versions
+[**KubesprayCreate**](KubesprayApi.md#KubesprayCreate) | **Post** /api/v{v}/Kubespray | 
+[**KubesprayDelete**](KubesprayApi.md#KubesprayDelete) | **Delete** /api/v{v}/Kubespray/{id} | 
+[**KubesprayList**](KubesprayApi.md#KubesprayList) | **Get** /api/v{v}/Kubespray | 
 
 
 
 ## KubesprayCreate
 
-> ApiResponse KubesprayCreate(ctx).KubesprayCreateCommand(kubesprayCreateCommand).Execute()
+> ApiResponse KubesprayCreate(ctx, v).Body(body).Execute()
 
-Add kubespray
+
 
 ### Example
 
@@ -29,11 +29,12 @@ import (
 )
 
 func main() {
-    kubesprayCreateCommand := *openapiclient.NewKubesprayCreateCommand("Version_example", "KubernetesVersion_example") // KubesprayCreateCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewKubesprayCreateCommand("Version_example", "KubernetesVersion_example") // KubesprayCreateCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.KubesprayApi.KubesprayCreate(context.Background()).KubesprayCreateCommand(kubesprayCreateCommand).Execute()
+    resp, r, err := apiClient.KubesprayApi.KubesprayCreate(context.Background(), v).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `KubesprayApi.KubesprayCreate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -46,6 +47,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -54,7 +59,8 @@ Other parameters are passed through a pointer to a apiKubesprayCreateRequest str
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **kubesprayCreateCommand** | [**KubesprayCreateCommand**](KubesprayCreateCommand.md) |  | 
+
+ **body** | [**KubesprayCreateCommand**](KubesprayCreateCommand.md) |  | 
 
 ### Return type
 
@@ -66,8 +72,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -76,9 +82,9 @@ Name | Type | Description  | Notes
 
 ## KubesprayDelete
 
-> KubesprayDelete(ctx, id).Execute()
+> KubesprayDelete(ctx, id, v).Execute()
 
-Delete kubespray
+
 
 ### Example
 
@@ -94,10 +100,11 @@ import (
 
 func main() {
     id := int32(56) // int32 | 
+    v := "v_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.KubesprayApi.KubesprayDelete(context.Background(), id).Execute()
+    r, err := apiClient.KubesprayApi.KubesprayDelete(context.Background(), id, v).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `KubesprayApi.KubesprayDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -112,6 +119,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **id** | **int32** |  | 
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -120,6 +128,7 @@ Other parameters are passed through a pointer to a apiKubesprayDeleteRequest str
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
 
 
 ### Return type
@@ -133,7 +142,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -142,9 +151,9 @@ Name | Type | Description  | Notes
 
 ## KubesprayList
 
-> Kubesprays KubesprayList(ctx).Execute()
+> Kubesprays KubesprayList(ctx, v).Execute()
 
-Retrieve all kubespray versions
+
 
 ### Example
 
@@ -159,10 +168,11 @@ import (
 )
 
 func main() {
+    v := "v_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.KubesprayApi.KubesprayList(context.Background()).Execute()
+    resp, r, err := apiClient.KubesprayApi.KubesprayList(context.Background(), v).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `KubesprayApi.KubesprayList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -174,11 +184,19 @@ func main() {
 
 ### Path Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiKubesprayListRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
 
 
 ### Return type
@@ -192,7 +210,7 @@ Other parameters are passed through a pointer to a apiKubesprayListRequest struc
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

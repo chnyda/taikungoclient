@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **NullableString** |  | [optional] 
-**Unit** | Pointer to **NullableString** |  | [optional] 
-**HourlyQuantity** | Pointer to **NullableString** |  | [optional] 
-**MonthlyQuantity** | Pointer to **NullableString** |  | [optional] 
-**Price** | Pointer to **NullableString** |  | [optional] 
-**HourlyCost** | Pointer to **NullableString** |  | [optional] 
-**MonthlyCost** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**Unit** | Pointer to **string** |  | [optional] 
+**HourlyQuantity** | Pointer to **string** |  | [optional] 
+**MonthlyQuantity** | Pointer to **string** |  | [optional] 
+**Price** | Pointer to **string** |  | [optional] 
+**HourlyCost** | Pointer to **string** |  | [optional] 
+**MonthlyCost** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -56,16 +56,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *CostComponent) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *CostComponent) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetUnit
 
 `func (o *CostComponent) GetUnit() string`
@@ -91,16 +81,6 @@ SetUnit sets Unit field to given value.
 
 HasUnit returns a boolean if a field has been set.
 
-### SetUnitNil
-
-`func (o *CostComponent) SetUnitNil(b bool)`
-
- SetUnitNil sets the value for Unit to be an explicit nil
-
-### UnsetUnit
-`func (o *CostComponent) UnsetUnit()`
-
-UnsetUnit ensures that no value is present for Unit, not even an explicit nil
 ### GetHourlyQuantity
 
 `func (o *CostComponent) GetHourlyQuantity() string`
@@ -126,16 +106,6 @@ SetHourlyQuantity sets HourlyQuantity field to given value.
 
 HasHourlyQuantity returns a boolean if a field has been set.
 
-### SetHourlyQuantityNil
-
-`func (o *CostComponent) SetHourlyQuantityNil(b bool)`
-
- SetHourlyQuantityNil sets the value for HourlyQuantity to be an explicit nil
-
-### UnsetHourlyQuantity
-`func (o *CostComponent) UnsetHourlyQuantity()`
-
-UnsetHourlyQuantity ensures that no value is present for HourlyQuantity, not even an explicit nil
 ### GetMonthlyQuantity
 
 `func (o *CostComponent) GetMonthlyQuantity() string`
@@ -161,16 +131,6 @@ SetMonthlyQuantity sets MonthlyQuantity field to given value.
 
 HasMonthlyQuantity returns a boolean if a field has been set.
 
-### SetMonthlyQuantityNil
-
-`func (o *CostComponent) SetMonthlyQuantityNil(b bool)`
-
- SetMonthlyQuantityNil sets the value for MonthlyQuantity to be an explicit nil
-
-### UnsetMonthlyQuantity
-`func (o *CostComponent) UnsetMonthlyQuantity()`
-
-UnsetMonthlyQuantity ensures that no value is present for MonthlyQuantity, not even an explicit nil
 ### GetPrice
 
 `func (o *CostComponent) GetPrice() string`
@@ -196,16 +156,6 @@ SetPrice sets Price field to given value.
 
 HasPrice returns a boolean if a field has been set.
 
-### SetPriceNil
-
-`func (o *CostComponent) SetPriceNil(b bool)`
-
- SetPriceNil sets the value for Price to be an explicit nil
-
-### UnsetPrice
-`func (o *CostComponent) UnsetPrice()`
-
-UnsetPrice ensures that no value is present for Price, not even an explicit nil
 ### GetHourlyCost
 
 `func (o *CostComponent) GetHourlyCost() string`
@@ -231,16 +181,6 @@ SetHourlyCost sets HourlyCost field to given value.
 
 HasHourlyCost returns a boolean if a field has been set.
 
-### SetHourlyCostNil
-
-`func (o *CostComponent) SetHourlyCostNil(b bool)`
-
- SetHourlyCostNil sets the value for HourlyCost to be an explicit nil
-
-### UnsetHourlyCost
-`func (o *CostComponent) UnsetHourlyCost()`
-
-UnsetHourlyCost ensures that no value is present for HourlyCost, not even an explicit nil
 ### GetMonthlyCost
 
 `func (o *CostComponent) GetMonthlyCost() string`
@@ -266,16 +206,6 @@ SetMonthlyCost sets MonthlyCost field to given value.
 
 HasMonthlyCost returns a boolean if a field has been set.
 
-### SetMonthlyCostNil
-
-`func (o *CostComponent) SetMonthlyCostNil(b bool)`
-
- SetMonthlyCostNil sets the value for MonthlyCost to be an explicit nil
-
-### UnsetMonthlyCost
-`func (o *CostComponent) UnsetMonthlyCost()`
-
-UnsetMonthlyCost ensures that no value is present for MonthlyCost, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

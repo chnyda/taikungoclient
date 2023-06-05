@@ -5,17 +5,17 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** |  | [optional] 
-**UserId** | Pointer to **NullableString** |  | [optional] 
-**DisplayName** | Pointer to **NullableString** |  | [optional] 
+**UserId** | Pointer to **string** |  | [optional] 
+**DisplayName** | Pointer to **string** |  | [optional] 
 **ProjectId** | Pointer to **int32** |  | [optional] 
-**ProjectName** | Pointer to **NullableString** |  | [optional] 
+**ProjectName** | Pointer to **string** |  | [optional] 
 **IsAccessibleForAll** | Pointer to **bool** |  | [optional] 
 **IsAccessibleForManager** | Pointer to **bool** |  | [optional] 
-**KubeConfigRoleName** | Pointer to **NullableString** |  | [optional] 
-**CreatedBy** | Pointer to **NullableString** |  | [optional] 
-**CreatedAt** | Pointer to **NullableString** |  | [optional] 
-**Namespace** | Pointer to **NullableString** |  | [optional] 
-**ExpirationDate** | Pointer to **NullableString** |  | [optional] 
+**KubeConfigRoleName** | Pointer to **string** |  | [optional] 
+**CreatedBy** | Pointer to **string** |  | [optional] 
+**CreatedAt** | Pointer to **string** |  | [optional] 
+**Namespace** | Pointer to **string** |  | [optional] 
+**ExpirationDate** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -86,16 +86,6 @@ SetUserId sets UserId field to given value.
 
 HasUserId returns a boolean if a field has been set.
 
-### SetUserIdNil
-
-`func (o *KubeConfigForUserDto) SetUserIdNil(b bool)`
-
- SetUserIdNil sets the value for UserId to be an explicit nil
-
-### UnsetUserId
-`func (o *KubeConfigForUserDto) UnsetUserId()`
-
-UnsetUserId ensures that no value is present for UserId, not even an explicit nil
 ### GetDisplayName
 
 `func (o *KubeConfigForUserDto) GetDisplayName() string`
@@ -121,16 +111,6 @@ SetDisplayName sets DisplayName field to given value.
 
 HasDisplayName returns a boolean if a field has been set.
 
-### SetDisplayNameNil
-
-`func (o *KubeConfigForUserDto) SetDisplayNameNil(b bool)`
-
- SetDisplayNameNil sets the value for DisplayName to be an explicit nil
-
-### UnsetDisplayName
-`func (o *KubeConfigForUserDto) UnsetDisplayName()`
-
-UnsetDisplayName ensures that no value is present for DisplayName, not even an explicit nil
 ### GetProjectId
 
 `func (o *KubeConfigForUserDto) GetProjectId() int32`
@@ -181,16 +161,6 @@ SetProjectName sets ProjectName field to given value.
 
 HasProjectName returns a boolean if a field has been set.
 
-### SetProjectNameNil
-
-`func (o *KubeConfigForUserDto) SetProjectNameNil(b bool)`
-
- SetProjectNameNil sets the value for ProjectName to be an explicit nil
-
-### UnsetProjectName
-`func (o *KubeConfigForUserDto) UnsetProjectName()`
-
-UnsetProjectName ensures that no value is present for ProjectName, not even an explicit nil
 ### GetIsAccessibleForAll
 
 `func (o *KubeConfigForUserDto) GetIsAccessibleForAll() bool`
@@ -266,16 +236,6 @@ SetKubeConfigRoleName sets KubeConfigRoleName field to given value.
 
 HasKubeConfigRoleName returns a boolean if a field has been set.
 
-### SetKubeConfigRoleNameNil
-
-`func (o *KubeConfigForUserDto) SetKubeConfigRoleNameNil(b bool)`
-
- SetKubeConfigRoleNameNil sets the value for KubeConfigRoleName to be an explicit nil
-
-### UnsetKubeConfigRoleName
-`func (o *KubeConfigForUserDto) UnsetKubeConfigRoleName()`
-
-UnsetKubeConfigRoleName ensures that no value is present for KubeConfigRoleName, not even an explicit nil
 ### GetCreatedBy
 
 `func (o *KubeConfigForUserDto) GetCreatedBy() string`
@@ -301,16 +261,6 @@ SetCreatedBy sets CreatedBy field to given value.
 
 HasCreatedBy returns a boolean if a field has been set.
 
-### SetCreatedByNil
-
-`func (o *KubeConfigForUserDto) SetCreatedByNil(b bool)`
-
- SetCreatedByNil sets the value for CreatedBy to be an explicit nil
-
-### UnsetCreatedBy
-`func (o *KubeConfigForUserDto) UnsetCreatedBy()`
-
-UnsetCreatedBy ensures that no value is present for CreatedBy, not even an explicit nil
 ### GetCreatedAt
 
 `func (o *KubeConfigForUserDto) GetCreatedAt() string`
@@ -336,16 +286,6 @@ SetCreatedAt sets CreatedAt field to given value.
 
 HasCreatedAt returns a boolean if a field has been set.
 
-### SetCreatedAtNil
-
-`func (o *KubeConfigForUserDto) SetCreatedAtNil(b bool)`
-
- SetCreatedAtNil sets the value for CreatedAt to be an explicit nil
-
-### UnsetCreatedAt
-`func (o *KubeConfigForUserDto) UnsetCreatedAt()`
-
-UnsetCreatedAt ensures that no value is present for CreatedAt, not even an explicit nil
 ### GetNamespace
 
 `func (o *KubeConfigForUserDto) GetNamespace() string`
@@ -371,16 +311,6 @@ SetNamespace sets Namespace field to given value.
 
 HasNamespace returns a boolean if a field has been set.
 
-### SetNamespaceNil
-
-`func (o *KubeConfigForUserDto) SetNamespaceNil(b bool)`
-
- SetNamespaceNil sets the value for Namespace to be an explicit nil
-
-### UnsetNamespace
-`func (o *KubeConfigForUserDto) UnsetNamespace()`
-
-UnsetNamespace ensures that no value is present for Namespace, not even an explicit nil
 ### GetExpirationDate
 
 `func (o *KubeConfigForUserDto) GetExpirationDate() string`
@@ -406,16 +336,6 @@ SetExpirationDate sets ExpirationDate field to given value.
 
 HasExpirationDate returns a boolean if a field has been set.
 
-### SetExpirationDateNil
-
-`func (o *KubeConfigForUserDto) SetExpirationDateNil(b bool)`
-
- SetExpirationDateNil sets the value for ExpirationDate to be an explicit nil
-
-### UnsetExpirationDate
-`func (o *KubeConfigForUserDto) UnsetExpirationDate()`
-
-UnsetExpirationDate ensures that no value is present for ExpirationDate, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

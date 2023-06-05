@@ -76,16 +76,6 @@ SetVmDiskIds sets VmDiskIds field to given value.
 
 HasVmDiskIds returns a boolean if a field has been set.
 
-### SetVmDiskIdsNil
-
-`func (o *PurgeStandAloneVmDiskCommand) SetVmDiskIdsNil(b bool)`
-
- SetVmDiskIdsNil sets the value for VmDiskIds to be an explicit nil
-
-### UnsetVmDiskIds
-`func (o *PurgeStandAloneVmDiskCommand) UnsetVmDiskIds()`
-
-UnsetVmDiskIds ensures that no value is present for VmDiskIds, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

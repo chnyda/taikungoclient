@@ -5,10 +5,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
-**OrganizationId** | Pointer to **NullableInt32** |  | [optional] 
-**OrganizationName** | Pointer to **NullableString** |  | [optional] 
-**Cni** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**OrganizationId** | Pointer to **int32** |  | [optional] 
+**OrganizationName** | Pointer to **string** |  | [optional] 
+**Cni** | Pointer to **string** |  | [optional] 
 **OctaviaEnabled** | Pointer to **bool** |  | [optional] 
 **ExposeNodePortOnBastion** | Pointer to **bool** |  | [optional] 
 **IsLocked** | Pointer to **bool** |  | [optional] 
@@ -16,11 +16,11 @@ Name | Type | Description | Notes
 **AllowSchedulingOnMaster** | Pointer to **bool** |  | [optional] 
 **UniqueClusterName** | Pointer to **bool** |  | [optional] 
 **Projects** | Pointer to [**[]CommonDropdownDto**](CommonDropdownDto.md) |  | [optional] 
-**CreatedBy** | Pointer to **NullableString** |  | [optional] 
-**CreatedAt** | Pointer to **NullableString** |  | [optional] 
-**LastModified** | Pointer to **NullableString** |  | [optional] 
-**LastModifiedBy** | Pointer to **NullableString** |  | [optional] 
-**ProxmoxStorage** | Pointer to **NullableString** |  | [optional] 
+**CreatedBy** | Pointer to **string** |  | [optional] 
+**CreatedAt** | Pointer to **string** |  | [optional] 
+**LastModified** | Pointer to **string** |  | [optional] 
+**LastModifiedBy** | Pointer to **string** |  | [optional] 
+**ProxmoxStorage** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -91,16 +91,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *KubernetesProfilesListDto) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *KubernetesProfilesListDto) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetOrganizationId
 
 `func (o *KubernetesProfilesListDto) GetOrganizationId() int32`
@@ -126,16 +116,6 @@ SetOrganizationId sets OrganizationId field to given value.
 
 HasOrganizationId returns a boolean if a field has been set.
 
-### SetOrganizationIdNil
-
-`func (o *KubernetesProfilesListDto) SetOrganizationIdNil(b bool)`
-
- SetOrganizationIdNil sets the value for OrganizationId to be an explicit nil
-
-### UnsetOrganizationId
-`func (o *KubernetesProfilesListDto) UnsetOrganizationId()`
-
-UnsetOrganizationId ensures that no value is present for OrganizationId, not even an explicit nil
 ### GetOrganizationName
 
 `func (o *KubernetesProfilesListDto) GetOrganizationName() string`
@@ -161,16 +141,6 @@ SetOrganizationName sets OrganizationName field to given value.
 
 HasOrganizationName returns a boolean if a field has been set.
 
-### SetOrganizationNameNil
-
-`func (o *KubernetesProfilesListDto) SetOrganizationNameNil(b bool)`
-
- SetOrganizationNameNil sets the value for OrganizationName to be an explicit nil
-
-### UnsetOrganizationName
-`func (o *KubernetesProfilesListDto) UnsetOrganizationName()`
-
-UnsetOrganizationName ensures that no value is present for OrganizationName, not even an explicit nil
 ### GetCni
 
 `func (o *KubernetesProfilesListDto) GetCni() string`
@@ -196,16 +166,6 @@ SetCni sets Cni field to given value.
 
 HasCni returns a boolean if a field has been set.
 
-### SetCniNil
-
-`func (o *KubernetesProfilesListDto) SetCniNil(b bool)`
-
- SetCniNil sets the value for Cni to be an explicit nil
-
-### UnsetCni
-`func (o *KubernetesProfilesListDto) UnsetCni()`
-
-UnsetCni ensures that no value is present for Cni, not even an explicit nil
 ### GetOctaviaEnabled
 
 `func (o *KubernetesProfilesListDto) GetOctaviaEnabled() bool`
@@ -381,16 +341,6 @@ SetProjects sets Projects field to given value.
 
 HasProjects returns a boolean if a field has been set.
 
-### SetProjectsNil
-
-`func (o *KubernetesProfilesListDto) SetProjectsNil(b bool)`
-
- SetProjectsNil sets the value for Projects to be an explicit nil
-
-### UnsetProjects
-`func (o *KubernetesProfilesListDto) UnsetProjects()`
-
-UnsetProjects ensures that no value is present for Projects, not even an explicit nil
 ### GetCreatedBy
 
 `func (o *KubernetesProfilesListDto) GetCreatedBy() string`
@@ -416,16 +366,6 @@ SetCreatedBy sets CreatedBy field to given value.
 
 HasCreatedBy returns a boolean if a field has been set.
 
-### SetCreatedByNil
-
-`func (o *KubernetesProfilesListDto) SetCreatedByNil(b bool)`
-
- SetCreatedByNil sets the value for CreatedBy to be an explicit nil
-
-### UnsetCreatedBy
-`func (o *KubernetesProfilesListDto) UnsetCreatedBy()`
-
-UnsetCreatedBy ensures that no value is present for CreatedBy, not even an explicit nil
 ### GetCreatedAt
 
 `func (o *KubernetesProfilesListDto) GetCreatedAt() string`
@@ -451,16 +391,6 @@ SetCreatedAt sets CreatedAt field to given value.
 
 HasCreatedAt returns a boolean if a field has been set.
 
-### SetCreatedAtNil
-
-`func (o *KubernetesProfilesListDto) SetCreatedAtNil(b bool)`
-
- SetCreatedAtNil sets the value for CreatedAt to be an explicit nil
-
-### UnsetCreatedAt
-`func (o *KubernetesProfilesListDto) UnsetCreatedAt()`
-
-UnsetCreatedAt ensures that no value is present for CreatedAt, not even an explicit nil
 ### GetLastModified
 
 `func (o *KubernetesProfilesListDto) GetLastModified() string`
@@ -486,16 +416,6 @@ SetLastModified sets LastModified field to given value.
 
 HasLastModified returns a boolean if a field has been set.
 
-### SetLastModifiedNil
-
-`func (o *KubernetesProfilesListDto) SetLastModifiedNil(b bool)`
-
- SetLastModifiedNil sets the value for LastModified to be an explicit nil
-
-### UnsetLastModified
-`func (o *KubernetesProfilesListDto) UnsetLastModified()`
-
-UnsetLastModified ensures that no value is present for LastModified, not even an explicit nil
 ### GetLastModifiedBy
 
 `func (o *KubernetesProfilesListDto) GetLastModifiedBy() string`
@@ -521,16 +441,6 @@ SetLastModifiedBy sets LastModifiedBy field to given value.
 
 HasLastModifiedBy returns a boolean if a field has been set.
 
-### SetLastModifiedByNil
-
-`func (o *KubernetesProfilesListDto) SetLastModifiedByNil(b bool)`
-
- SetLastModifiedByNil sets the value for LastModifiedBy to be an explicit nil
-
-### UnsetLastModifiedBy
-`func (o *KubernetesProfilesListDto) UnsetLastModifiedBy()`
-
-UnsetLastModifiedBy ensures that no value is present for LastModifiedBy, not even an explicit nil
 ### GetProxmoxStorage
 
 `func (o *KubernetesProfilesListDto) GetProxmoxStorage() string`
@@ -556,16 +466,6 @@ SetProxmoxStorage sets ProxmoxStorage field to given value.
 
 HasProxmoxStorage returns a boolean if a field has been set.
 
-### SetProxmoxStorageNil
-
-`func (o *KubernetesProfilesListDto) SetProxmoxStorageNil(b bool)`
-
- SetProxmoxStorageNil sets the value for ProxmoxStorage to be an explicit nil
-
-### UnsetProxmoxStorage
-`func (o *KubernetesProfilesListDto) UnsetProxmoxStorage()`
-
-UnsetProxmoxStorage ensures that no value is present for ProxmoxStorage, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

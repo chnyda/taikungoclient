@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Key** | **string** |  | 
-**Value** | Pointer to **NullableString** |  | [optional] 
+**Value** | Pointer to **string** |  | [optional] 
 **IsEditableWhenInstalling** | Pointer to **bool** |  | [optional] 
 **IsEditableAfterInstallation** | Pointer to **bool** |  | [optional] 
 **IsMandatory** | Pointer to **bool** |  | [optional] 
@@ -74,16 +74,6 @@ SetValue sets Value field to given value.
 
 HasValue returns a boolean if a field has been set.
 
-### SetValueNil
-
-`func (o *CatalogAppParamsDto) SetValueNil(b bool)`
-
- SetValueNil sets the value for Value to be an explicit nil
-
-### UnsetValue
-`func (o *CatalogAppParamsDto) UnsetValue()`
-
-UnsetValue ensures that no value is present for Value, not even an explicit nil
 ### GetIsEditableWhenInstalling
 
 `func (o *CatalogAppParamsDto) GetIsEditableWhenInstalling() bool`

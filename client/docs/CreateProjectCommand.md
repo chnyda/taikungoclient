@@ -5,40 +5,40 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** |  | 
-**KubernetesVersion** | Pointer to **NullableString** |  | [optional] 
-**OrganizationId** | Pointer to **NullableInt32** |  | [optional] 
+**KubernetesVersion** | Pointer to **string** |  | [optional] 
+**OrganizationId** | Pointer to **int32** |  | [optional] 
 **CloudCredentialId** | **int32** |  | 
-**S3CredentialId** | Pointer to **NullableInt32** |  | [optional] 
-**AccessProfileId** | Pointer to **NullableInt32** |  | [optional] 
-**OpaProfileId** | Pointer to **NullableInt32** |  | [optional] 
-**KubernetesProfileId** | Pointer to **NullableInt32** |  | [optional] 
+**S3CredentialId** | Pointer to **int32** |  | [optional] 
+**AccessProfileId** | Pointer to **int32** |  | [optional] 
+**OpaProfileId** | Pointer to **int32** |  | [optional] 
+**KubernetesProfileId** | Pointer to **int32** |  | [optional] 
 **IsKubernetes** | Pointer to **bool** |  | [optional] 
 **IsAutoUpgrade** | Pointer to **bool** |  | [optional] 
 **IsBackupEnabled** | Pointer to **bool** |  | [optional] 
 **IsMonitoringEnabled** | Pointer to **bool** |  | [optional] 
 **Flavors** | Pointer to **[]string** |  | [optional] 
 **Users** | Pointer to **[]string** |  | [optional] 
-**AlertingProfileId** | Pointer to **NullableInt32** |  | [optional] 
-**TaikunLBFlavor** | Pointer to **NullableString** |  | [optional] 
-**RouterIdStartRange** | Pointer to **NullableInt32** |  | [optional] 
-**RouterIdEndRange** | Pointer to **NullableInt32** |  | [optional] 
-**ExpiredAt** | Pointer to **NullableTime** |  | [optional] 
+**AlertingProfileId** | Pointer to **int32** |  | [optional] 
+**TaikunLBFlavor** | Pointer to **string** |  | [optional] 
+**RouterIdStartRange** | Pointer to **int32** |  | [optional] 
+**RouterIdEndRange** | Pointer to **int32** |  | [optional] 
+**ExpiredAt** | Pointer to **time.Time** |  | [optional] 
 **DeleteOnExpiration** | Pointer to **bool** |  | [optional] 
 **AllowFullSpotKubernetes** | Pointer to **bool** |  | [optional] 
 **AllowSpotWorkers** | Pointer to **bool** |  | [optional] 
 **AllowSpotVMs** | Pointer to **bool** |  | [optional] 
-**MaxSpotPrice** | Pointer to **NullableFloat64** |  | [optional] 
+**MaxSpotPrice** | Pointer to **float64** |  | [optional] 
 **AutoscalingEnabled** | Pointer to **bool** |  | [optional] 
-**AutoscalingGroupName** | Pointer to **NullableString** |  | [optional] 
+**AutoscalingGroupName** | Pointer to **string** |  | [optional] 
 **MinSize** | Pointer to **int32** |  | [optional] 
 **MaxSize** | Pointer to **int32** |  | [optional] 
 **DiskSize** | Pointer to **float64** |  | [optional] 
-**AutoscalingFlavor** | Pointer to **NullableString** |  | [optional] 
+**AutoscalingFlavor** | Pointer to **string** |  | [optional] 
 **AutoscalingSpotEnabled** | Pointer to **bool** |  | [optional] 
-**Cidr** | Pointer to **NullableString** |  | [optional] 
-**NetMask** | Pointer to **NullableInt32** |  | [optional] 
+**Cidr** | Pointer to **string** |  | [optional] 
+**NetMask** | Pointer to **int32** |  | [optional] 
 **SaveAsTemplate** | Pointer to **bool** |  | [optional] 
-**TemplateName** | Pointer to **NullableString** |  | [optional] 
+**TemplateName** | Pointer to **string** |  | [optional] 
 **FromTemplate** | Pointer to [**FromTemplateDto**](FromTemplateDto.md) |  | [optional] 
 **ServerTemplates** | Pointer to [**[]ServerTemplateDto**](ServerTemplateDto.md) |  | [optional] 
 
@@ -106,16 +106,6 @@ SetKubernetesVersion sets KubernetesVersion field to given value.
 
 HasKubernetesVersion returns a boolean if a field has been set.
 
-### SetKubernetesVersionNil
-
-`func (o *CreateProjectCommand) SetKubernetesVersionNil(b bool)`
-
- SetKubernetesVersionNil sets the value for KubernetesVersion to be an explicit nil
-
-### UnsetKubernetesVersion
-`func (o *CreateProjectCommand) UnsetKubernetesVersion()`
-
-UnsetKubernetesVersion ensures that no value is present for KubernetesVersion, not even an explicit nil
 ### GetOrganizationId
 
 `func (o *CreateProjectCommand) GetOrganizationId() int32`
@@ -141,16 +131,6 @@ SetOrganizationId sets OrganizationId field to given value.
 
 HasOrganizationId returns a boolean if a field has been set.
 
-### SetOrganizationIdNil
-
-`func (o *CreateProjectCommand) SetOrganizationIdNil(b bool)`
-
- SetOrganizationIdNil sets the value for OrganizationId to be an explicit nil
-
-### UnsetOrganizationId
-`func (o *CreateProjectCommand) UnsetOrganizationId()`
-
-UnsetOrganizationId ensures that no value is present for OrganizationId, not even an explicit nil
 ### GetCloudCredentialId
 
 `func (o *CreateProjectCommand) GetCloudCredentialId() int32`
@@ -196,16 +176,6 @@ SetS3CredentialId sets S3CredentialId field to given value.
 
 HasS3CredentialId returns a boolean if a field has been set.
 
-### SetS3CredentialIdNil
-
-`func (o *CreateProjectCommand) SetS3CredentialIdNil(b bool)`
-
- SetS3CredentialIdNil sets the value for S3CredentialId to be an explicit nil
-
-### UnsetS3CredentialId
-`func (o *CreateProjectCommand) UnsetS3CredentialId()`
-
-UnsetS3CredentialId ensures that no value is present for S3CredentialId, not even an explicit nil
 ### GetAccessProfileId
 
 `func (o *CreateProjectCommand) GetAccessProfileId() int32`
@@ -231,16 +201,6 @@ SetAccessProfileId sets AccessProfileId field to given value.
 
 HasAccessProfileId returns a boolean if a field has been set.
 
-### SetAccessProfileIdNil
-
-`func (o *CreateProjectCommand) SetAccessProfileIdNil(b bool)`
-
- SetAccessProfileIdNil sets the value for AccessProfileId to be an explicit nil
-
-### UnsetAccessProfileId
-`func (o *CreateProjectCommand) UnsetAccessProfileId()`
-
-UnsetAccessProfileId ensures that no value is present for AccessProfileId, not even an explicit nil
 ### GetOpaProfileId
 
 `func (o *CreateProjectCommand) GetOpaProfileId() int32`
@@ -266,16 +226,6 @@ SetOpaProfileId sets OpaProfileId field to given value.
 
 HasOpaProfileId returns a boolean if a field has been set.
 
-### SetOpaProfileIdNil
-
-`func (o *CreateProjectCommand) SetOpaProfileIdNil(b bool)`
-
- SetOpaProfileIdNil sets the value for OpaProfileId to be an explicit nil
-
-### UnsetOpaProfileId
-`func (o *CreateProjectCommand) UnsetOpaProfileId()`
-
-UnsetOpaProfileId ensures that no value is present for OpaProfileId, not even an explicit nil
 ### GetKubernetesProfileId
 
 `func (o *CreateProjectCommand) GetKubernetesProfileId() int32`
@@ -301,16 +251,6 @@ SetKubernetesProfileId sets KubernetesProfileId field to given value.
 
 HasKubernetesProfileId returns a boolean if a field has been set.
 
-### SetKubernetesProfileIdNil
-
-`func (o *CreateProjectCommand) SetKubernetesProfileIdNil(b bool)`
-
- SetKubernetesProfileIdNil sets the value for KubernetesProfileId to be an explicit nil
-
-### UnsetKubernetesProfileId
-`func (o *CreateProjectCommand) UnsetKubernetesProfileId()`
-
-UnsetKubernetesProfileId ensures that no value is present for KubernetesProfileId, not even an explicit nil
 ### GetIsKubernetes
 
 `func (o *CreateProjectCommand) GetIsKubernetes() bool`
@@ -436,16 +376,6 @@ SetFlavors sets Flavors field to given value.
 
 HasFlavors returns a boolean if a field has been set.
 
-### SetFlavorsNil
-
-`func (o *CreateProjectCommand) SetFlavorsNil(b bool)`
-
- SetFlavorsNil sets the value for Flavors to be an explicit nil
-
-### UnsetFlavors
-`func (o *CreateProjectCommand) UnsetFlavors()`
-
-UnsetFlavors ensures that no value is present for Flavors, not even an explicit nil
 ### GetUsers
 
 `func (o *CreateProjectCommand) GetUsers() []string`
@@ -471,16 +401,6 @@ SetUsers sets Users field to given value.
 
 HasUsers returns a boolean if a field has been set.
 
-### SetUsersNil
-
-`func (o *CreateProjectCommand) SetUsersNil(b bool)`
-
- SetUsersNil sets the value for Users to be an explicit nil
-
-### UnsetUsers
-`func (o *CreateProjectCommand) UnsetUsers()`
-
-UnsetUsers ensures that no value is present for Users, not even an explicit nil
 ### GetAlertingProfileId
 
 `func (o *CreateProjectCommand) GetAlertingProfileId() int32`
@@ -506,16 +426,6 @@ SetAlertingProfileId sets AlertingProfileId field to given value.
 
 HasAlertingProfileId returns a boolean if a field has been set.
 
-### SetAlertingProfileIdNil
-
-`func (o *CreateProjectCommand) SetAlertingProfileIdNil(b bool)`
-
- SetAlertingProfileIdNil sets the value for AlertingProfileId to be an explicit nil
-
-### UnsetAlertingProfileId
-`func (o *CreateProjectCommand) UnsetAlertingProfileId()`
-
-UnsetAlertingProfileId ensures that no value is present for AlertingProfileId, not even an explicit nil
 ### GetTaikunLBFlavor
 
 `func (o *CreateProjectCommand) GetTaikunLBFlavor() string`
@@ -541,16 +451,6 @@ SetTaikunLBFlavor sets TaikunLBFlavor field to given value.
 
 HasTaikunLBFlavor returns a boolean if a field has been set.
 
-### SetTaikunLBFlavorNil
-
-`func (o *CreateProjectCommand) SetTaikunLBFlavorNil(b bool)`
-
- SetTaikunLBFlavorNil sets the value for TaikunLBFlavor to be an explicit nil
-
-### UnsetTaikunLBFlavor
-`func (o *CreateProjectCommand) UnsetTaikunLBFlavor()`
-
-UnsetTaikunLBFlavor ensures that no value is present for TaikunLBFlavor, not even an explicit nil
 ### GetRouterIdStartRange
 
 `func (o *CreateProjectCommand) GetRouterIdStartRange() int32`
@@ -576,16 +476,6 @@ SetRouterIdStartRange sets RouterIdStartRange field to given value.
 
 HasRouterIdStartRange returns a boolean if a field has been set.
 
-### SetRouterIdStartRangeNil
-
-`func (o *CreateProjectCommand) SetRouterIdStartRangeNil(b bool)`
-
- SetRouterIdStartRangeNil sets the value for RouterIdStartRange to be an explicit nil
-
-### UnsetRouterIdStartRange
-`func (o *CreateProjectCommand) UnsetRouterIdStartRange()`
-
-UnsetRouterIdStartRange ensures that no value is present for RouterIdStartRange, not even an explicit nil
 ### GetRouterIdEndRange
 
 `func (o *CreateProjectCommand) GetRouterIdEndRange() int32`
@@ -611,16 +501,6 @@ SetRouterIdEndRange sets RouterIdEndRange field to given value.
 
 HasRouterIdEndRange returns a boolean if a field has been set.
 
-### SetRouterIdEndRangeNil
-
-`func (o *CreateProjectCommand) SetRouterIdEndRangeNil(b bool)`
-
- SetRouterIdEndRangeNil sets the value for RouterIdEndRange to be an explicit nil
-
-### UnsetRouterIdEndRange
-`func (o *CreateProjectCommand) UnsetRouterIdEndRange()`
-
-UnsetRouterIdEndRange ensures that no value is present for RouterIdEndRange, not even an explicit nil
 ### GetExpiredAt
 
 `func (o *CreateProjectCommand) GetExpiredAt() time.Time`
@@ -646,16 +526,6 @@ SetExpiredAt sets ExpiredAt field to given value.
 
 HasExpiredAt returns a boolean if a field has been set.
 
-### SetExpiredAtNil
-
-`func (o *CreateProjectCommand) SetExpiredAtNil(b bool)`
-
- SetExpiredAtNil sets the value for ExpiredAt to be an explicit nil
-
-### UnsetExpiredAt
-`func (o *CreateProjectCommand) UnsetExpiredAt()`
-
-UnsetExpiredAt ensures that no value is present for ExpiredAt, not even an explicit nil
 ### GetDeleteOnExpiration
 
 `func (o *CreateProjectCommand) GetDeleteOnExpiration() bool`
@@ -781,16 +651,6 @@ SetMaxSpotPrice sets MaxSpotPrice field to given value.
 
 HasMaxSpotPrice returns a boolean if a field has been set.
 
-### SetMaxSpotPriceNil
-
-`func (o *CreateProjectCommand) SetMaxSpotPriceNil(b bool)`
-
- SetMaxSpotPriceNil sets the value for MaxSpotPrice to be an explicit nil
-
-### UnsetMaxSpotPrice
-`func (o *CreateProjectCommand) UnsetMaxSpotPrice()`
-
-UnsetMaxSpotPrice ensures that no value is present for MaxSpotPrice, not even an explicit nil
 ### GetAutoscalingEnabled
 
 `func (o *CreateProjectCommand) GetAutoscalingEnabled() bool`
@@ -841,16 +701,6 @@ SetAutoscalingGroupName sets AutoscalingGroupName field to given value.
 
 HasAutoscalingGroupName returns a boolean if a field has been set.
 
-### SetAutoscalingGroupNameNil
-
-`func (o *CreateProjectCommand) SetAutoscalingGroupNameNil(b bool)`
-
- SetAutoscalingGroupNameNil sets the value for AutoscalingGroupName to be an explicit nil
-
-### UnsetAutoscalingGroupName
-`func (o *CreateProjectCommand) UnsetAutoscalingGroupName()`
-
-UnsetAutoscalingGroupName ensures that no value is present for AutoscalingGroupName, not even an explicit nil
 ### GetMinSize
 
 `func (o *CreateProjectCommand) GetMinSize() int32`
@@ -951,16 +801,6 @@ SetAutoscalingFlavor sets AutoscalingFlavor field to given value.
 
 HasAutoscalingFlavor returns a boolean if a field has been set.
 
-### SetAutoscalingFlavorNil
-
-`func (o *CreateProjectCommand) SetAutoscalingFlavorNil(b bool)`
-
- SetAutoscalingFlavorNil sets the value for AutoscalingFlavor to be an explicit nil
-
-### UnsetAutoscalingFlavor
-`func (o *CreateProjectCommand) UnsetAutoscalingFlavor()`
-
-UnsetAutoscalingFlavor ensures that no value is present for AutoscalingFlavor, not even an explicit nil
 ### GetAutoscalingSpotEnabled
 
 `func (o *CreateProjectCommand) GetAutoscalingSpotEnabled() bool`
@@ -1011,16 +851,6 @@ SetCidr sets Cidr field to given value.
 
 HasCidr returns a boolean if a field has been set.
 
-### SetCidrNil
-
-`func (o *CreateProjectCommand) SetCidrNil(b bool)`
-
- SetCidrNil sets the value for Cidr to be an explicit nil
-
-### UnsetCidr
-`func (o *CreateProjectCommand) UnsetCidr()`
-
-UnsetCidr ensures that no value is present for Cidr, not even an explicit nil
 ### GetNetMask
 
 `func (o *CreateProjectCommand) GetNetMask() int32`
@@ -1046,16 +876,6 @@ SetNetMask sets NetMask field to given value.
 
 HasNetMask returns a boolean if a field has been set.
 
-### SetNetMaskNil
-
-`func (o *CreateProjectCommand) SetNetMaskNil(b bool)`
-
- SetNetMaskNil sets the value for NetMask to be an explicit nil
-
-### UnsetNetMask
-`func (o *CreateProjectCommand) UnsetNetMask()`
-
-UnsetNetMask ensures that no value is present for NetMask, not even an explicit nil
 ### GetSaveAsTemplate
 
 `func (o *CreateProjectCommand) GetSaveAsTemplate() bool`
@@ -1106,16 +926,6 @@ SetTemplateName sets TemplateName field to given value.
 
 HasTemplateName returns a boolean if a field has been set.
 
-### SetTemplateNameNil
-
-`func (o *CreateProjectCommand) SetTemplateNameNil(b bool)`
-
- SetTemplateNameNil sets the value for TemplateName to be an explicit nil
-
-### UnsetTemplateName
-`func (o *CreateProjectCommand) UnsetTemplateName()`
-
-UnsetTemplateName ensures that no value is present for TemplateName, not even an explicit nil
 ### GetFromTemplate
 
 `func (o *CreateProjectCommand) GetFromTemplate() FromTemplateDto`
@@ -1166,16 +976,6 @@ SetServerTemplates sets ServerTemplates field to given value.
 
 HasServerTemplates returns a boolean if a field has been set.
 
-### SetServerTemplatesNil
-
-`func (o *CreateProjectCommand) SetServerTemplatesNil(b bool)`
-
- SetServerTemplatesNil sets the value for ServerTemplates to be an explicit nil
-
-### UnsetServerTemplates
-`func (o *CreateProjectCommand) UnsetServerTemplates()`
-
-UnsetServerTemplates ensures that no value is present for ServerTemplates, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

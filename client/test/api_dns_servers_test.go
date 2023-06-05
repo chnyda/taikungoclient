@@ -22,11 +22,13 @@ func Test_taikuncore_DnsServersApiService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test DnsServersApiService DnsserversCreate", func(t *testing.T) {
+	t.Run("Test DnsServersApiService DnsServersCreate", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.DnsServersApi.DnsserversCreate(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.DnsServersApi.DnsServersCreate(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -34,39 +36,42 @@ func Test_taikuncore_DnsServersApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test DnsServersApiService DnsserversDelete", func(t *testing.T) {
+	t.Run("Test DnsServersApiService DnsServersDelete", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id int32
+		var v string
 
-		httpRes, err := apiClient.DnsServersApi.DnsserversDelete(context.Background(), id).Execute()
+		httpRes, err := apiClient.DnsServersApi.DnsServersDelete(context.Background(), id, v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test DnsServersApiService DnsserversEdit", func(t *testing.T) {
+	t.Run("Test DnsServersApiService DnsServersEdit", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id int32
+		var v string
 
-		httpRes, err := apiClient.DnsServersApi.DnsserversEdit(context.Background(), id).Execute()
+		httpRes, err := apiClient.DnsServersApi.DnsServersEdit(context.Background(), id, v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test DnsServersApiService DnsserversList", func(t *testing.T) {
+	t.Run("Test DnsServersApiService DnsServersList", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var accessProfileId int32
+		var v string
 
-		resp, httpRes, err := apiClient.DnsServersApi.DnsserversList(context.Background(), accessProfileId).Execute()
+		resp, httpRes, err := apiClient.DnsServersApi.DnsServersList(context.Background(), accessProfileId, v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

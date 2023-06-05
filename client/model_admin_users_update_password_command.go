@@ -21,14 +21,14 @@ var _ MappedNullable = &AdminUsersUpdatePasswordCommand{}
 // AdminUsersUpdatePasswordCommand struct for AdminUsersUpdatePasswordCommand
 type AdminUsersUpdatePasswordCommand struct {
 	Id string `json:"id"`
-	Password interface{} `json:"password"`
+	Password AdminUserCreateCommandPassword `json:"password"`
 }
 
 // NewAdminUsersUpdatePasswordCommand instantiates a new AdminUsersUpdatePasswordCommand object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAdminUsersUpdatePasswordCommand(id string, password interface{}) *AdminUsersUpdatePasswordCommand {
+func NewAdminUsersUpdatePasswordCommand(id string, password AdminUserCreateCommandPassword) *AdminUsersUpdatePasswordCommand {
 	this := AdminUsersUpdatePasswordCommand{}
 	this.Id = id
 	this.Password = password
@@ -68,9 +68,9 @@ func (o *AdminUsersUpdatePasswordCommand) SetId(v string) {
 }
 
 // GetPassword returns the Password field value
-func (o *AdminUsersUpdatePasswordCommand) GetPassword() interface{} {
+func (o *AdminUsersUpdatePasswordCommand) GetPassword() AdminUserCreateCommandPassword {
 	if o == nil {
-		var ret interface{}
+		var ret AdminUserCreateCommandPassword
 		return ret
 	}
 
@@ -79,7 +79,7 @@ func (o *AdminUsersUpdatePasswordCommand) GetPassword() interface{} {
 
 // GetPasswordOk returns a tuple with the Password field value
 // and a boolean to check if the value has been set.
-func (o *AdminUsersUpdatePasswordCommand) GetPasswordOk() (*interface{}, bool) {
+func (o *AdminUsersUpdatePasswordCommand) GetPasswordOk() (*AdminUserCreateCommandPassword, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -87,7 +87,7 @@ func (o *AdminUsersUpdatePasswordCommand) GetPasswordOk() (*interface{}, bool) {
 }
 
 // SetPassword sets field value
-func (o *AdminUsersUpdatePasswordCommand) SetPassword(v interface{}) {
+func (o *AdminUsersUpdatePasswordCommand) SetPassword(v AdminUserCreateCommandPassword) {
 	o.Password = v
 }
 

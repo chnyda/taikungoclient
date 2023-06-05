@@ -24,37 +24,40 @@ import (
 // AllowedHostApiService AllowedHostApi service
 type AllowedHostApiService service
 
-type ApiAllowedhostCreateRequest struct {
+type ApiAllowedHostCreateRequest struct {
 	ctx context.Context
 	ApiService *AllowedHostApiService
-	createAllowedHostCommand *CreateAllowedHostCommand
+	v string
+	body *CreateAllowedHostCommand
 }
 
-func (r ApiAllowedhostCreateRequest) CreateAllowedHostCommand(createAllowedHostCommand CreateAllowedHostCommand) ApiAllowedhostCreateRequest {
-	r.createAllowedHostCommand = &createAllowedHostCommand
+func (r ApiAllowedHostCreateRequest) Body(body CreateAllowedHostCommand) ApiAllowedHostCreateRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiAllowedhostCreateRequest) Execute() (*ApiResponse, *http.Response, error) {
-	return r.ApiService.AllowedhostCreateExecute(r)
+func (r ApiAllowedHostCreateRequest) Execute() (*ApiResponse, *http.Response, error) {
+	return r.ApiService.AllowedHostCreateExecute(r)
 }
 
 /*
-AllowedhostCreate Create access profile allowed host
+AllowedHostCreate Create access profile allowed host
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiAllowedhostCreateRequest
+ @param v
+ @return ApiAllowedHostCreateRequest
 */
-func (a *AllowedHostApiService) AllowedhostCreate(ctx context.Context) ApiAllowedhostCreateRequest {
-	return ApiAllowedhostCreateRequest{
+func (a *AllowedHostApiService) AllowedHostCreate(ctx context.Context, v string) ApiAllowedHostCreateRequest {
+	return ApiAllowedHostCreateRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
 //  @return ApiResponse
-func (a *AllowedHostApiService) AllowedhostCreateExecute(r ApiAllowedhostCreateRequest) (*ApiResponse, *http.Response, error) {
+func (a *AllowedHostApiService) AllowedHostCreateExecute(r ApiAllowedHostCreateRequest) (*ApiResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -62,19 +65,20 @@ func (a *AllowedHostApiService) AllowedhostCreateExecute(r ApiAllowedhostCreateR
 		localVarReturnValue  *ApiResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AllowedHostApiService.AllowedhostCreate")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AllowedHostApiService.AllowedHostCreate")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/allowedhost/create"
+	localVarPath := localBasePath + "/api/v{v}/AllowedHost/create"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -83,7 +87,7 @@ func (a *AllowedHostApiService) AllowedhostCreateExecute(r ApiAllowedhostCreateR
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -91,7 +95,7 @@ func (a *AllowedHostApiService) AllowedhostCreateExecute(r ApiAllowedhostCreateR
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createAllowedHostCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -128,17 +132,6 @@ func (a *AllowedHostApiService) AllowedhostCreateExecute(r ApiAllowedhostCreateR
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -172,7 +165,7 @@ func (a *AllowedHostApiService) AllowedhostCreateExecute(r ApiAllowedhostCreateR
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -197,46 +190,50 @@ func (a *AllowedHostApiService) AllowedhostCreateExecute(r ApiAllowedhostCreateR
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiAllowedhostDeleteRequest struct {
+type ApiAllowedHostDeleteRequest struct {
 	ctx context.Context
 	ApiService *AllowedHostApiService
 	id int32
+	v string
 }
 
-func (r ApiAllowedhostDeleteRequest) Execute() (*http.Response, error) {
-	return r.ApiService.AllowedhostDeleteExecute(r)
+func (r ApiAllowedHostDeleteRequest) Execute() (*http.Response, error) {
+	return r.ApiService.AllowedHostDeleteExecute(r)
 }
 
 /*
-AllowedhostDelete Delete access profile allowed host
+AllowedHostDelete Delete access profile allowed host
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
- @return ApiAllowedhostDeleteRequest
+ @param v
+ @return ApiAllowedHostDeleteRequest
 */
-func (a *AllowedHostApiService) AllowedhostDelete(ctx context.Context, id int32) ApiAllowedhostDeleteRequest {
-	return ApiAllowedhostDeleteRequest{
+func (a *AllowedHostApiService) AllowedHostDelete(ctx context.Context, id int32, v string) ApiAllowedHostDeleteRequest {
+	return ApiAllowedHostDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
+		v: v,
 	}
 }
 
 // Execute executes the request
-func (a *AllowedHostApiService) AllowedhostDeleteExecute(r ApiAllowedhostDeleteRequest) (*http.Response, error) {
+func (a *AllowedHostApiService) AllowedHostDeleteExecute(r ApiAllowedHostDeleteRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AllowedHostApiService.AllowedhostDelete")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AllowedHostApiService.AllowedHostDelete")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/allowedhost/{id}"
+	localVarPath := localBasePath + "/api/v{v}/AllowedHost/{id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -252,7 +249,7 @@ func (a *AllowedHostApiService) AllowedhostDeleteExecute(r ApiAllowedhostDeleteR
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -295,17 +292,6 @@ func (a *AllowedHostApiService) AllowedhostDeleteExecute(r ApiAllowedhostDeleteR
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -339,7 +325,7 @@ func (a *AllowedHostApiService) AllowedhostDeleteExecute(r ApiAllowedhostDeleteR
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -348,6 +334,7 @@ func (a *AllowedHostApiService) AllowedhostDeleteExecute(r ApiAllowedhostDeleteR
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
+			return localVarHTTPResponse, newErr
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -355,62 +342,63 @@ func (a *AllowedHostApiService) AllowedhostDeleteExecute(r ApiAllowedhostDeleteR
 	return localVarHTTPResponse, nil
 }
 
-type ApiAllowedhostEditRequest struct {
+type ApiAllowedHostEditRequest struct {
 	ctx context.Context
 	ApiService *AllowedHostApiService
 	id int32
-	editAllowedHostDto *EditAllowedHostDto
+	v string
+	body *EditAllowedHostDto
 }
 
-func (r ApiAllowedhostEditRequest) EditAllowedHostDto(editAllowedHostDto EditAllowedHostDto) ApiAllowedhostEditRequest {
-	r.editAllowedHostDto = &editAllowedHostDto
+func (r ApiAllowedHostEditRequest) Body(body EditAllowedHostDto) ApiAllowedHostEditRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiAllowedhostEditRequest) Execute() (*http.Response, error) {
-	return r.ApiService.AllowedhostEditExecute(r)
+func (r ApiAllowedHostEditRequest) Execute() (*http.Response, error) {
+	return r.ApiService.AllowedHostEditExecute(r)
 }
 
 /*
-AllowedhostEdit Edit access profile allowed host
+AllowedHostEdit Edit access profile allowed host
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
- @return ApiAllowedhostEditRequest
+ @param v
+ @return ApiAllowedHostEditRequest
 */
-func (a *AllowedHostApiService) AllowedhostEdit(ctx context.Context, id int32) ApiAllowedhostEditRequest {
-	return ApiAllowedhostEditRequest{
+func (a *AllowedHostApiService) AllowedHostEdit(ctx context.Context, id int32, v string) ApiAllowedHostEditRequest {
+	return ApiAllowedHostEditRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
+		v: v,
 	}
 }
 
 // Execute executes the request
-func (a *AllowedHostApiService) AllowedhostEditExecute(r ApiAllowedhostEditRequest) (*http.Response, error) {
+func (a *AllowedHostApiService) AllowedHostEditExecute(r ApiAllowedHostEditRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AllowedHostApiService.AllowedhostEdit")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AllowedHostApiService.AllowedHostEdit")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/allowedhost/edit/{id}"
+	localVarPath := localBasePath + "/api/v{v}/AllowedHost/edit/{id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.editAllowedHostDto == nil {
-		return nil, reportError("editAllowedHostDto is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -419,7 +407,7 @@ func (a *AllowedHostApiService) AllowedhostEditExecute(r ApiAllowedhostEditReque
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -427,7 +415,7 @@ func (a *AllowedHostApiService) AllowedhostEditExecute(r ApiAllowedhostEditReque
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.editAllowedHostDto
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -464,17 +452,6 @@ func (a *AllowedHostApiService) AllowedhostEditExecute(r ApiAllowedhostEditReque
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -508,7 +485,7 @@ func (a *AllowedHostApiService) AllowedhostEditExecute(r ApiAllowedhostEditReque
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -524,10 +501,11 @@ func (a *AllowedHostApiService) AllowedhostEditExecute(r ApiAllowedhostEditReque
 	return localVarHTTPResponse, nil
 }
 
-type ApiAllowedhostListRequest struct {
+type ApiAllowedHostListRequest struct {
 	ctx context.Context
 	ApiService *AllowedHostApiService
 	accessProfileId int32
+	v string
 	offset *int32
 	limit *int32
 	search *string
@@ -535,53 +513,55 @@ type ApiAllowedhostListRequest struct {
 	sortDirection *string
 }
 
-func (r ApiAllowedhostListRequest) Offset(offset int32) ApiAllowedhostListRequest {
+func (r ApiAllowedHostListRequest) Offset(offset int32) ApiAllowedHostListRequest {
 	r.offset = &offset
 	return r
 }
 
-func (r ApiAllowedhostListRequest) Limit(limit int32) ApiAllowedhostListRequest {
+func (r ApiAllowedHostListRequest) Limit(limit int32) ApiAllowedHostListRequest {
 	r.limit = &limit
 	return r
 }
 
-func (r ApiAllowedhostListRequest) Search(search string) ApiAllowedhostListRequest {
+func (r ApiAllowedHostListRequest) Search(search string) ApiAllowedHostListRequest {
 	r.search = &search
 	return r
 }
 
-func (r ApiAllowedhostListRequest) SortBy(sortBy string) ApiAllowedhostListRequest {
+func (r ApiAllowedHostListRequest) SortBy(sortBy string) ApiAllowedHostListRequest {
 	r.sortBy = &sortBy
 	return r
 }
 
-func (r ApiAllowedhostListRequest) SortDirection(sortDirection string) ApiAllowedhostListRequest {
+func (r ApiAllowedHostListRequest) SortDirection(sortDirection string) ApiAllowedHostListRequest {
 	r.sortDirection = &sortDirection
 	return r
 }
 
-func (r ApiAllowedhostListRequest) Execute() (*AllowedHostList, *http.Response, error) {
-	return r.ApiService.AllowedhostListExecute(r)
+func (r ApiAllowedHostListRequest) Execute() (*AllowedHostList, *http.Response, error) {
+	return r.ApiService.AllowedHostListExecute(r)
 }
 
 /*
-AllowedhostList List allowed hosts by access profile id
+AllowedHostList List allowed hosts by access profile id
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param accessProfileId
- @return ApiAllowedhostListRequest
+ @param v
+ @return ApiAllowedHostListRequest
 */
-func (a *AllowedHostApiService) AllowedhostList(ctx context.Context, accessProfileId int32) ApiAllowedhostListRequest {
-	return ApiAllowedhostListRequest{
+func (a *AllowedHostApiService) AllowedHostList(ctx context.Context, accessProfileId int32, v string) ApiAllowedHostListRequest {
+	return ApiAllowedHostListRequest{
 		ApiService: a,
 		ctx: ctx,
 		accessProfileId: accessProfileId,
+		v: v,
 	}
 }
 
 // Execute executes the request
 //  @return AllowedHostList
-func (a *AllowedHostApiService) AllowedhostListExecute(r ApiAllowedhostListRequest) (*AllowedHostList, *http.Response, error) {
+func (a *AllowedHostApiService) AllowedHostListExecute(r ApiAllowedHostListRequest) (*AllowedHostList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -589,32 +569,33 @@ func (a *AllowedHostApiService) AllowedhostListExecute(r ApiAllowedhostListReque
 		localVarReturnValue  *AllowedHostList
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AllowedHostApiService.AllowedhostList")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AllowedHostApiService.AllowedHostList")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/allowedhost/list/{accessProfileId}"
+	localVarPath := localBasePath + "/api/v{v}/AllowedHost/list/{accessProfileId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"accessProfileId"+"}", url.PathEscape(parameterValueToString(r.accessProfileId, "accessProfileId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Offset", r.offset, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
 	}
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
 	}
 	if r.search != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Search", r.search, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "")
 	}
 	if r.sortBy != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "SortBy", r.sortBy, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", r.sortBy, "")
 	}
 	if r.sortDirection != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "SortDirection", r.sortDirection, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "sortDirection", r.sortDirection, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -626,7 +607,7 @@ func (a *AllowedHostApiService) AllowedhostListExecute(r ApiAllowedhostListReque
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -669,17 +650,6 @@ func (a *AllowedHostApiService) AllowedhostListExecute(r ApiAllowedhostListReque
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -713,7 +683,7 @@ func (a *AllowedHostApiService) AllowedhostListExecute(r ApiAllowedhostListReque
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

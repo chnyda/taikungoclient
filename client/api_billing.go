@@ -17,6 +17,8 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+	"strings"
+	"time"
 )
 
 
@@ -26,11 +28,12 @@ type BillingApiService service
 type ApiBillingCreateRequest struct {
 	ctx context.Context
 	ApiService *BillingApiService
-	createBillingSummaryCommand *CreateBillingSummaryCommand
+	v string
+	body *CreateBillingSummaryCommand
 }
 
-func (r ApiBillingCreateRequest) CreateBillingSummaryCommand(createBillingSummaryCommand CreateBillingSummaryCommand) ApiBillingCreateRequest {
-	r.createBillingSummaryCommand = &createBillingSummaryCommand
+func (r ApiBillingCreateRequest) Body(body CreateBillingSummaryCommand) ApiBillingCreateRequest {
+	r.body = &body
 	return r
 }
 
@@ -42,12 +45,14 @@ func (r ApiBillingCreateRequest) Execute() (*http.Response, error) {
 BillingCreate Add billing summary
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param v
  @return ApiBillingCreateRequest
 */
-func (a *BillingApiService) BillingCreate(ctx context.Context) ApiBillingCreateRequest {
+func (a *BillingApiService) BillingCreate(ctx context.Context, v string) ApiBillingCreateRequest {
 	return ApiBillingCreateRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
@@ -64,14 +69,15 @@ func (a *BillingApiService) BillingCreateExecute(r ApiBillingCreateRequest) (*ht
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/billing/create"
+	localVarPath := localBasePath + "/api/v{v}/Billing/add"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -80,7 +86,7 @@ func (a *BillingApiService) BillingCreateExecute(r ApiBillingCreateRequest) (*ht
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -88,7 +94,7 @@ func (a *BillingApiService) BillingCreateExecute(r ApiBillingCreateRequest) (*ht
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createBillingSummaryCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -125,17 +131,6 @@ func (a *BillingApiService) BillingCreateExecute(r ApiBillingCreateRequest) (*ht
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -169,7 +164,7 @@ func (a *BillingApiService) BillingCreateExecute(r ApiBillingCreateRequest) (*ht
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -188,16 +183,12 @@ func (a *BillingApiService) BillingCreateExecute(r ApiBillingCreateRequest) (*ht
 type ApiBillingExportCsvRequest struct {
 	ctx context.Context
 	ApiService *BillingApiService
-	isEmailEnabled *bool
+	v string
 	organizationId *int32
-	startDate *string
-	endDate *string
+	startDate *time.Time
+	endDate *time.Time
 	isDeleted *bool
-}
-
-func (r ApiBillingExportCsvRequest) IsEmailEnabled(isEmailEnabled bool) ApiBillingExportCsvRequest {
-	r.isEmailEnabled = &isEmailEnabled
-	return r
+	isEmailEnabled *bool
 }
 
 func (r ApiBillingExportCsvRequest) OrganizationId(organizationId int32) ApiBillingExportCsvRequest {
@@ -205,18 +196,23 @@ func (r ApiBillingExportCsvRequest) OrganizationId(organizationId int32) ApiBill
 	return r
 }
 
-func (r ApiBillingExportCsvRequest) StartDate(startDate string) ApiBillingExportCsvRequest {
+func (r ApiBillingExportCsvRequest) StartDate(startDate time.Time) ApiBillingExportCsvRequest {
 	r.startDate = &startDate
 	return r
 }
 
-func (r ApiBillingExportCsvRequest) EndDate(endDate string) ApiBillingExportCsvRequest {
+func (r ApiBillingExportCsvRequest) EndDate(endDate time.Time) ApiBillingExportCsvRequest {
 	r.endDate = &endDate
 	return r
 }
 
 func (r ApiBillingExportCsvRequest) IsDeleted(isDeleted bool) ApiBillingExportCsvRequest {
 	r.isDeleted = &isDeleted
+	return r
+}
+
+func (r ApiBillingExportCsvRequest) IsEmailEnabled(isEmailEnabled bool) ApiBillingExportCsvRequest {
+	r.isEmailEnabled = &isEmailEnabled
 	return r
 }
 
@@ -228,12 +224,14 @@ func (r ApiBillingExportCsvRequest) Execute() (*http.Response, error) {
 BillingExportCsv Export Csv
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param v
  @return ApiBillingExportCsvRequest
 */
-func (a *BillingApiService) BillingExportCsv(ctx context.Context) ApiBillingExportCsvRequest {
+func (a *BillingApiService) BillingExportCsv(ctx context.Context, v string) ApiBillingExportCsvRequest {
 	return ApiBillingExportCsvRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
@@ -250,28 +248,28 @@ func (a *BillingApiService) BillingExportCsvExecute(r ApiBillingExportCsvRequest
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/billing/export"
+	localVarPath := localBasePath + "/api/v{v}/Billing/export"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.isEmailEnabled == nil {
-		return nil, reportError("isEmailEnabled is required and must be specified")
-	}
 
 	if r.organizationId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "OrganizationId", r.organizationId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "organizationId", r.organizationId, "")
 	}
 	if r.startDate != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "StartDate", r.startDate, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "startDate", r.startDate, "")
 	}
 	if r.endDate != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "EndDate", r.endDate, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "endDate", r.endDate, "")
 	}
 	if r.isDeleted != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "IsDeleted", r.isDeleted, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "isDeleted", r.isDeleted, "")
 	}
-	parameterAddToHeaderOrQuery(localVarQueryParams, "IsEmailEnabled", r.isEmailEnabled, "")
+	if r.isEmailEnabled != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "isEmailEnabled", r.isEmailEnabled, "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -282,7 +280,7 @@ func (a *BillingApiService) BillingExportCsvExecute(r ApiBillingExportCsvRequest
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -325,17 +323,6 @@ func (a *BillingApiService) BillingExportCsvExecute(r ApiBillingExportCsvRequest
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -369,7 +356,7 @@ func (a *BillingApiService) BillingExportCsvExecute(r ApiBillingExportCsvRequest
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -388,6 +375,7 @@ func (a *BillingApiService) BillingExportCsvExecute(r ApiBillingExportCsvRequest
 type ApiBillingGroupedListRequest struct {
 	ctx context.Context
 	ApiService *BillingApiService
+	v string
 	organizationId *int32
 	periodDuration *string
 	isDeleted *bool
@@ -416,12 +404,14 @@ func (r ApiBillingGroupedListRequest) Execute() ([]GroupedBillingInfo, *http.Res
 BillingGroupedList Retrieve a grouped list of billing summaries
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param v
  @return ApiBillingGroupedListRequest
 */
-func (a *BillingApiService) BillingGroupedList(ctx context.Context) ApiBillingGroupedListRequest {
+func (a *BillingApiService) BillingGroupedList(ctx context.Context, v string) ApiBillingGroupedListRequest {
 	return ApiBillingGroupedListRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
@@ -440,20 +430,21 @@ func (a *BillingApiService) BillingGroupedListExecute(r ApiBillingGroupedListReq
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/billing/grouped"
+	localVarPath := localBasePath + "/api/v{v}/Billing/grouped"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.organizationId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "OrganizationId", r.organizationId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "organizationId", r.organizationId, "")
 	}
 	if r.periodDuration != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "PeriodDuration", r.periodDuration, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "periodDuration", r.periodDuration, "")
 	}
 	if r.isDeleted != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "IsDeleted", r.isDeleted, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "isDeleted", r.isDeleted, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -465,7 +456,7 @@ func (a *BillingApiService) BillingGroupedListExecute(r ApiBillingGroupedListReq
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -508,17 +499,6 @@ func (a *BillingApiService) BillingGroupedListExecute(r ApiBillingGroupedListReq
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -552,7 +532,7 @@ func (a *BillingApiService) BillingGroupedListExecute(r ApiBillingGroupedListReq
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -580,22 +560,25 @@ func (a *BillingApiService) BillingGroupedListExecute(r ApiBillingGroupedListReq
 type ApiBillingListRequest struct {
 	ctx context.Context
 	ApiService *BillingApiService
+	v string
 	limit *int32
 	offset *int32
 	sortBy *string
 	sortDirection *string
-	startDate *string
-	endDate *string
+	startDate *time.Time
+	endDate *time.Time
 	organizationId *int32
 	isDeleted *bool
 	projectId *int32
 }
 
+// Limits user size (by default 50)
 func (r ApiBillingListRequest) Limit(limit int32) ApiBillingListRequest {
 	r.limit = &limit
 	return r
 }
 
+// Skip elements
 func (r ApiBillingListRequest) Offset(offset int32) ApiBillingListRequest {
 	r.offset = &offset
 	return r
@@ -611,12 +594,12 @@ func (r ApiBillingListRequest) SortDirection(sortDirection string) ApiBillingLis
 	return r
 }
 
-func (r ApiBillingListRequest) StartDate(startDate string) ApiBillingListRequest {
+func (r ApiBillingListRequest) StartDate(startDate time.Time) ApiBillingListRequest {
 	r.startDate = &startDate
 	return r
 }
 
-func (r ApiBillingListRequest) EndDate(endDate string) ApiBillingListRequest {
+func (r ApiBillingListRequest) EndDate(endDate time.Time) ApiBillingListRequest {
 	r.endDate = &endDate
 	return r
 }
@@ -644,12 +627,14 @@ func (r ApiBillingListRequest) Execute() (*BillingInfo, *http.Response, error) {
 BillingList Retrieve billing info
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param v
  @return ApiBillingListRequest
 */
-func (a *BillingApiService) BillingList(ctx context.Context) ApiBillingListRequest {
+func (a *BillingApiService) BillingList(ctx context.Context, v string) ApiBillingListRequest {
 	return ApiBillingListRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
@@ -668,38 +653,39 @@ func (a *BillingApiService) BillingListExecute(r ApiBillingListRequest) (*Billin
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/billing"
+	localVarPath := localBasePath + "/api/v{v}/Billing"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
 	}
 	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Offset", r.offset, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
 	}
 	if r.sortBy != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "SortBy", r.sortBy, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", r.sortBy, "")
 	}
 	if r.sortDirection != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "SortDirection", r.sortDirection, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "sortDirection", r.sortDirection, "")
 	}
 	if r.startDate != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "StartDate", r.startDate, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "startDate", r.startDate, "")
 	}
 	if r.endDate != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "EndDate", r.endDate, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "endDate", r.endDate, "")
 	}
 	if r.organizationId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "OrganizationId", r.organizationId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "organizationId", r.organizationId, "")
 	}
 	if r.isDeleted != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "IsDeleted", r.isDeleted, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "isDeleted", r.isDeleted, "")
 	}
 	if r.projectId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "ProjectId", r.projectId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "projectId", r.projectId, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -711,7 +697,7 @@ func (a *BillingApiService) BillingListExecute(r ApiBillingListRequest) (*Billin
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -754,17 +740,6 @@ func (a *BillingApiService) BillingListExecute(r ApiBillingListRequest) (*Billin
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -798,7 +773,7 @@ func (a *BillingApiService) BillingListExecute(r ApiBillingListRequest) (*Billin
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

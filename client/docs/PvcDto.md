@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**MetadataName** | Pointer to **NullableString** |  | [optional] 
-**Phase** | Pointer to **NullableString** |  | [optional] 
-**Size** | Pointer to **NullableString** |  | [optional] 
-**Namespace** | Pointer to **NullableString** |  | [optional] 
-**StorageClassName** | Pointer to **NullableString** |  | [optional] 
-**Age** | Pointer to **NullableString** |  | [optional] 
+**MetadataName** | Pointer to **string** |  | [optional] 
+**Phase** | Pointer to **string** |  | [optional] 
+**Size** | Pointer to **string** |  | [optional] 
+**Namespace** | Pointer to **string** |  | [optional] 
+**StorageClassName** | Pointer to **string** |  | [optional] 
+**Age** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -55,16 +55,6 @@ SetMetadataName sets MetadataName field to given value.
 
 HasMetadataName returns a boolean if a field has been set.
 
-### SetMetadataNameNil
-
-`func (o *PvcDto) SetMetadataNameNil(b bool)`
-
- SetMetadataNameNil sets the value for MetadataName to be an explicit nil
-
-### UnsetMetadataName
-`func (o *PvcDto) UnsetMetadataName()`
-
-UnsetMetadataName ensures that no value is present for MetadataName, not even an explicit nil
 ### GetPhase
 
 `func (o *PvcDto) GetPhase() string`
@@ -90,16 +80,6 @@ SetPhase sets Phase field to given value.
 
 HasPhase returns a boolean if a field has been set.
 
-### SetPhaseNil
-
-`func (o *PvcDto) SetPhaseNil(b bool)`
-
- SetPhaseNil sets the value for Phase to be an explicit nil
-
-### UnsetPhase
-`func (o *PvcDto) UnsetPhase()`
-
-UnsetPhase ensures that no value is present for Phase, not even an explicit nil
 ### GetSize
 
 `func (o *PvcDto) GetSize() string`
@@ -125,16 +105,6 @@ SetSize sets Size field to given value.
 
 HasSize returns a boolean if a field has been set.
 
-### SetSizeNil
-
-`func (o *PvcDto) SetSizeNil(b bool)`
-
- SetSizeNil sets the value for Size to be an explicit nil
-
-### UnsetSize
-`func (o *PvcDto) UnsetSize()`
-
-UnsetSize ensures that no value is present for Size, not even an explicit nil
 ### GetNamespace
 
 `func (o *PvcDto) GetNamespace() string`
@@ -160,16 +130,6 @@ SetNamespace sets Namespace field to given value.
 
 HasNamespace returns a boolean if a field has been set.
 
-### SetNamespaceNil
-
-`func (o *PvcDto) SetNamespaceNil(b bool)`
-
- SetNamespaceNil sets the value for Namespace to be an explicit nil
-
-### UnsetNamespace
-`func (o *PvcDto) UnsetNamespace()`
-
-UnsetNamespace ensures that no value is present for Namespace, not even an explicit nil
 ### GetStorageClassName
 
 `func (o *PvcDto) GetStorageClassName() string`
@@ -195,16 +155,6 @@ SetStorageClassName sets StorageClassName field to given value.
 
 HasStorageClassName returns a boolean if a field has been set.
 
-### SetStorageClassNameNil
-
-`func (o *PvcDto) SetStorageClassNameNil(b bool)`
-
- SetStorageClassNameNil sets the value for StorageClassName to be an explicit nil
-
-### UnsetStorageClassName
-`func (o *PvcDto) UnsetStorageClassName()`
-
-UnsetStorageClassName ensures that no value is present for StorageClassName, not even an explicit nil
 ### GetAge
 
 `func (o *PvcDto) GetAge() string`
@@ -230,16 +180,6 @@ SetAge sets Age field to given value.
 
 HasAge returns a boolean if a field has been set.
 
-### SetAgeNil
-
-`func (o *PvcDto) SetAgeNil(b bool)`
-
- SetAgeNil sets the value for Age to be an explicit nil
-
-### UnsetAge
-`func (o *PvcDto) UnsetAge()`
-
-UnsetAge ensures that no value is present for Age, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

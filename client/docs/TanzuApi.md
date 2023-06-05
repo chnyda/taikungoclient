@@ -4,19 +4,19 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**TanzuCreate**](TanzuApi.md#TanzuCreate) | **Post** /api/v1/tanzu/create | Create tanzu credentials
-[**TanzuKubernetesVersions**](TanzuApi.md#TanzuKubernetesVersions) | **Post** /api/v1/tanzu/kubernetes-versions/{cloudId} | Tanzu available k8s version list
-[**TanzuList**](TanzuApi.md#TanzuList) | **Post** /api/v1/tanzu/list | Retrieve list of tanzu cloud credentials
-[**TanzuStorageList**](TanzuApi.md#TanzuStorageList) | **Post** /api/v1/tanzu/storage-list | Tanzu storage list
-[**TanzuUpdate**](TanzuApi.md#TanzuUpdate) | **Post** /api/v1/tanzu/update | Update tanzu credentials
+[**TanzuCreate**](TanzuApi.md#TanzuCreate) | **Post** /api/v{v}/Tanzu/create | Add Tanzu credentials
+[**TanzuKubernetesVersions**](TanzuApi.md#TanzuKubernetesVersions) | **Get** /api/v{v}/Tanzu/kubernetes-versions/{cloudId} | Tanzu available k8s version list
+[**TanzuList**](TanzuApi.md#TanzuList) | **Get** /api/v{v}/Tanzu/list | Retrieve list of tanzu cloud credentials
+[**TanzuStorageList**](TanzuApi.md#TanzuStorageList) | **Post** /api/v{v}/Tanzu/storage-list | Tanzu storage list
+[**TanzuUpdate**](TanzuApi.md#TanzuUpdate) | **Post** /api/v{v}/Tanzu/update | Update Tanzu credentials
 
 
 
 ## TanzuCreate
 
-> ApiResponse TanzuCreate(ctx).CreateTanzuCommand(createTanzuCommand).Execute()
+> ApiResponse TanzuCreate(ctx, v).Body(body).Execute()
 
-Create tanzu credentials
+Add Tanzu credentials
 
 ### Example
 
@@ -31,11 +31,12 @@ import (
 )
 
 func main() {
-    createTanzuCommand := *openapiclient.NewCreateTanzuCommand("Name_example", "Username_example", "Url_example", "Password_example", "VolumeType_example", "Namespace_example") // CreateTanzuCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewCreateTanzuCommand("Name_example", "Username_example", "Url_example", "Password_example", "VolumeType_example", "Namespace_example") // CreateTanzuCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TanzuApi.TanzuCreate(context.Background()).CreateTanzuCommand(createTanzuCommand).Execute()
+    resp, r, err := apiClient.TanzuApi.TanzuCreate(context.Background(), v).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TanzuApi.TanzuCreate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -48,6 +49,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -56,7 +61,8 @@ Other parameters are passed through a pointer to a apiTanzuCreateRequest struct 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createTanzuCommand** | [**CreateTanzuCommand**](CreateTanzuCommand.md) |  | 
+
+ **body** | [**CreateTanzuCommand**](CreateTanzuCommand.md) |  | 
 
 ### Return type
 
@@ -68,8 +74,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -78,7 +84,7 @@ Name | Type | Description  | Notes
 
 ## TanzuKubernetesVersions
 
-> []string TanzuKubernetesVersions(ctx, cloudId).Execute()
+> []string TanzuKubernetesVersions(ctx, cloudId, v).Execute()
 
 Tanzu available k8s version list
 
@@ -96,10 +102,11 @@ import (
 
 func main() {
     cloudId := int32(56) // int32 | 
+    v := "v_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TanzuApi.TanzuKubernetesVersions(context.Background(), cloudId).Execute()
+    resp, r, err := apiClient.TanzuApi.TanzuKubernetesVersions(context.Background(), cloudId, v).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TanzuApi.TanzuKubernetesVersions``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -116,6 +123,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **cloudId** | **int32** |  | 
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -124,6 +132,7 @@ Other parameters are passed through a pointer to a apiTanzuKubernetesVersionsReq
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
 
 
 ### Return type
@@ -137,7 +146,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -146,7 +155,7 @@ Name | Type | Description  | Notes
 
 ## TanzuList
 
-> TanzuCredentialsList TanzuList(ctx).Limit(limit).Offset(offset).OrganizationId(organizationId).SortBy(sortBy).SortDirection(sortDirection).Search(search).SearchId(searchId).Id(id).Execute()
+> TanzuCredentialsList TanzuList(ctx, v).Limit(limit).Offset(offset).OrganizationId(organizationId).SortBy(sortBy).SortDirection(sortDirection).Search(search).SearchId(searchId).Id(id).Execute()
 
 Retrieve list of tanzu cloud credentials
 
@@ -163,6 +172,7 @@ import (
 )
 
 func main() {
+    v := "v_example" // string | 
     limit := int32(56) // int32 |  (optional)
     offset := int32(56) // int32 |  (optional)
     organizationId := int32(56) // int32 |  (optional)
@@ -174,7 +184,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TanzuApi.TanzuList(context.Background()).Limit(limit).Offset(offset).OrganizationId(organizationId).SortBy(sortBy).SortDirection(sortDirection).Search(search).SearchId(searchId).Id(id).Execute()
+    resp, r, err := apiClient.TanzuApi.TanzuList(context.Background(), v).Limit(limit).Offset(offset).OrganizationId(organizationId).SortBy(sortBy).SortDirection(sortDirection).Search(search).SearchId(searchId).Id(id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TanzuApi.TanzuList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -187,6 +197,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -195,6 +209,7 @@ Other parameters are passed through a pointer to a apiTanzuListRequest struct vi
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
  **limit** | **int32** |  | 
  **offset** | **int32** |  | 
  **organizationId** | **int32** |  | 
@@ -215,7 +230,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -224,7 +239,7 @@ Name | Type | Description  | Notes
 
 ## TanzuStorageList
 
-> []string TanzuStorageList(ctx).TanzuStorageListCommand(tanzuStorageListCommand).Execute()
+> []string TanzuStorageList(ctx, v).Body(body).Execute()
 
 Tanzu storage list
 
@@ -241,11 +256,12 @@ import (
 )
 
 func main() {
-    tanzuStorageListCommand := *openapiclient.NewTanzuStorageListCommand() // TanzuStorageListCommand |  (optional)
+    v := "v_example" // string | 
+    body := *openapiclient.NewTanzuStorageListCommand() // TanzuStorageListCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TanzuApi.TanzuStorageList(context.Background()).TanzuStorageListCommand(tanzuStorageListCommand).Execute()
+    resp, r, err := apiClient.TanzuApi.TanzuStorageList(context.Background(), v).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TanzuApi.TanzuStorageList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -258,6 +274,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -266,7 +286,8 @@ Other parameters are passed through a pointer to a apiTanzuStorageListRequest st
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **tanzuStorageListCommand** | [**TanzuStorageListCommand**](TanzuStorageListCommand.md) |  | 
+
+ **body** | [**TanzuStorageListCommand**](TanzuStorageListCommand.md) |  | 
 
 ### Return type
 
@@ -278,8 +299,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -288,9 +309,9 @@ Name | Type | Description  | Notes
 
 ## TanzuUpdate
 
-> TanzuUpdate(ctx).UpdateTanzuCommand(updateTanzuCommand).Execute()
+> TanzuUpdate(ctx, v).Body(body).Execute()
 
-Update tanzu credentials
+Update Tanzu credentials
 
 ### Example
 
@@ -305,11 +326,12 @@ import (
 )
 
 func main() {
-    updateTanzuCommand := *openapiclient.NewUpdateTanzuCommand(int32(123), "Name_example", "Password_example") // UpdateTanzuCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewUpdateTanzuCommand(int32(123), "Name_example", "Password_example") // UpdateTanzuCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.TanzuApi.TanzuUpdate(context.Background()).UpdateTanzuCommand(updateTanzuCommand).Execute()
+    r, err := apiClient.TanzuApi.TanzuUpdate(context.Background(), v).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TanzuApi.TanzuUpdate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -320,6 +342,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -328,7 +354,8 @@ Other parameters are passed through a pointer to a apiTanzuUpdateRequest struct 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **updateTanzuCommand** | [**UpdateTanzuCommand**](UpdateTanzuCommand.md) |  | 
+
+ **body** | [**UpdateTanzuCommand**](UpdateTanzuCommand.md) |  | 
 
 ### Return type
 
@@ -340,8 +367,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

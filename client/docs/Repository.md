@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Url** | Pointer to **NullableString** |  | [optional] 
+**Url** | Pointer to **string** |  | [optional] 
 **Kind** | Pointer to **int64** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
 **Official** | Pointer to **bool** |  | [optional] 
-**RepositoryId** | Pointer to **NullableString** |  | [optional] 
+**RepositoryId** | Pointer to **string** |  | [optional] 
 **ScannerDisabled** | Pointer to **bool** |  | [optional] 
-**OrganizationName** | Pointer to **NullableString** |  | [optional] 
+**OrganizationName** | Pointer to **string** |  | [optional] 
 **VerifiedPublisher** | Pointer to **bool** |  | [optional] 
-**OrganizationDisplayName** | Pointer to **NullableString** |  | [optional] 
+**OrganizationDisplayName** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -58,16 +58,6 @@ SetUrl sets Url field to given value.
 
 HasUrl returns a boolean if a field has been set.
 
-### SetUrlNil
-
-`func (o *Repository) SetUrlNil(b bool)`
-
- SetUrlNil sets the value for Url to be an explicit nil
-
-### UnsetUrl
-`func (o *Repository) UnsetUrl()`
-
-UnsetUrl ensures that no value is present for Url, not even an explicit nil
 ### GetKind
 
 `func (o *Repository) GetKind() int64`
@@ -118,16 +108,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *Repository) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *Repository) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetOfficial
 
 `func (o *Repository) GetOfficial() bool`
@@ -178,16 +158,6 @@ SetRepositoryId sets RepositoryId field to given value.
 
 HasRepositoryId returns a boolean if a field has been set.
 
-### SetRepositoryIdNil
-
-`func (o *Repository) SetRepositoryIdNil(b bool)`
-
- SetRepositoryIdNil sets the value for RepositoryId to be an explicit nil
-
-### UnsetRepositoryId
-`func (o *Repository) UnsetRepositoryId()`
-
-UnsetRepositoryId ensures that no value is present for RepositoryId, not even an explicit nil
 ### GetScannerDisabled
 
 `func (o *Repository) GetScannerDisabled() bool`
@@ -238,16 +208,6 @@ SetOrganizationName sets OrganizationName field to given value.
 
 HasOrganizationName returns a boolean if a field has been set.
 
-### SetOrganizationNameNil
-
-`func (o *Repository) SetOrganizationNameNil(b bool)`
-
- SetOrganizationNameNil sets the value for OrganizationName to be an explicit nil
-
-### UnsetOrganizationName
-`func (o *Repository) UnsetOrganizationName()`
-
-UnsetOrganizationName ensures that no value is present for OrganizationName, not even an explicit nil
 ### GetVerifiedPublisher
 
 `func (o *Repository) GetVerifiedPublisher() bool`
@@ -298,16 +258,6 @@ SetOrganizationDisplayName sets OrganizationDisplayName field to given value.
 
 HasOrganizationDisplayName returns a boolean if a field has been set.
 
-### SetOrganizationDisplayNameNil
-
-`func (o *Repository) SetOrganizationDisplayNameNil(b bool)`
-
- SetOrganizationDisplayNameNil sets the value for OrganizationDisplayName to be an explicit nil
-
-### UnsetOrganizationDisplayName
-`func (o *Repository) UnsetOrganizationDisplayName()`
-
-UnsetOrganizationDisplayName ensures that no value is present for OrganizationDisplayName, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

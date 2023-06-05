@@ -4,27 +4,27 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**AdminAddBalance**](AdminApi.md#AdminAddBalance) | **Post** /api/v1/admin/organizations/add/balance | Add balance for organization
-[**AdminBillingOperations**](AdminApi.md#AdminBillingOperations) | **Post** /api/v1/admin/cloudcredentials/billing | Billing operations: enable/disable billing 
-[**AdminCreateUser**](AdminApi.md#AdminCreateUser) | **Post** /api/v1/admin/users/create | User creation for admin
-[**AdminDeleteOrg**](AdminApi.md#AdminDeleteOrg) | **Post** /api/v1/admin/organizations/delete | Delete organization
-[**AdminKeycloakList**](AdminApi.md#AdminKeycloakList) | **Get** /api/v1/admin/keycloak/list | Keycloak list for admin
-[**AdminMakeCsm**](AdminApi.md#AdminMakeCsm) | **Post** /api/v1/admin/users/make/csm | User csm update for admin
-[**AdminMakeOwner**](AdminApi.md#AdminMakeOwner) | **Post** /api/v1/admin/users/make/owner | User choose owner for admin
-[**AdminOrganizations**](AdminApi.md#AdminOrganizations) | **Get** /api/v1/admin/organizations/list |  Organizations for admin
-[**AdminProjectList**](AdminApi.md#AdminProjectList) | **Get** /api/v1/admin/projects/list | Projects for admin
-[**AdminUpdateProject**](AdminApi.md#AdminUpdateProject) | **Post** /api/v1/admin/projects/update/version | Projects update for admin
-[**AdminUpdateProjectKube**](AdminApi.md#AdminUpdateProjectKube) | **Post** /api/v1/admin/projects/update/kubeconfig | Projects update kube for admin
-[**AdminUpdateUser**](AdminApi.md#AdminUpdateUser) | **Post** /api/v1/admin/users/update/password | User password update for admin
-[**AdminUpdateUserKube**](AdminApi.md#AdminUpdateUserKube) | **Post** /api/v1/admin/projects/update/userkube | Projects update kube for admin
-[**AdminUpdateUsers**](AdminApi.md#AdminUpdateUsers) | **Post** /api/v1/admin/users/update/email | User email update for admin
-[**AdminUsersList**](AdminApi.md#AdminUsersList) | **Get** /api/v1/admin/users/list | Users for admin
+[**AdminAddBalance**](AdminApi.md#AdminAddBalance) | **Post** /api/v{v}/Admin/organizations/add/balance | Add balance for organization
+[**AdminBillingOperations**](AdminApi.md#AdminBillingOperations) | **Post** /api/v{v}/Admin/cloudcredentials/billing | Billing operations: enable/disable billing
+[**AdminCreateUser**](AdminApi.md#AdminCreateUser) | **Post** /api/v{v}/Admin/users/create | User creation for admin
+[**AdminDeleteOrganization**](AdminApi.md#AdminDeleteOrganization) | **Post** /api/v{v}/Admin/organizations/delete | Delete organization
+[**AdminKeycloakList**](AdminApi.md#AdminKeycloakList) | **Get** /api/v{v}/Admin/keycloak/list | Keycloak list for admin
+[**AdminMakeCsmUser**](AdminApi.md#AdminMakeCsmUser) | **Post** /api/v{v}/Admin/users/make/csm | User csm update for admin
+[**AdminMakeOwner**](AdminApi.md#AdminMakeOwner) | **Post** /api/v{v}/Admin/users/make/owner | User choose owner for admin
+[**AdminOrganizations**](AdminApi.md#AdminOrganizations) | **Get** /api/v{v}/Admin/organizations/list | Organizations for admin
+[**AdminProjectsList**](AdminApi.md#AdminProjectsList) | **Get** /api/v{v}/Admin/projects/list | Projects for admin
+[**AdminUpdateProjectKubeConfig**](AdminApi.md#AdminUpdateProjectKubeConfig) | **Post** /api/v{v}/Admin/projects/update/kubeconfig | Projects update for admin
+[**AdminUpdateProjectVersion**](AdminApi.md#AdminUpdateProjectVersion) | **Post** /api/v{v}/Admin/projects/update/version | Projects update for admin
+[**AdminUpdateUserEmail**](AdminApi.md#AdminUpdateUserEmail) | **Post** /api/v{v}/Admin/users/update/email | User email update for admin
+[**AdminUpdateUserKubeConfig**](AdminApi.md#AdminUpdateUserKubeConfig) | **Post** /api/v{v}/Admin/projects/update/userkube | Projects update for admin
+[**AdminUpdateUserPassword**](AdminApi.md#AdminUpdateUserPassword) | **Post** /api/v{v}/Admin/users/update/password | User password update for admin
+[**AdminUsersList**](AdminApi.md#AdminUsersList) | **Get** /api/v{v}/Admin/users/list | Users for admin
 
 
 
 ## AdminAddBalance
 
-> AdminAddBalance(ctx).AdminAddBalanceCommand(adminAddBalanceCommand).Execute()
+> AdminAddBalance(ctx, v).Body(body).Execute()
 
 Add balance for organization
 
@@ -41,11 +41,12 @@ import (
 )
 
 func main() {
-    adminAddBalanceCommand := *openapiclient.NewAdminAddBalanceCommand("CustomerId_example") // AdminAddBalanceCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewAdminAddBalanceCommand("CustomerId_example") // AdminAddBalanceCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.AdminApi.AdminAddBalance(context.Background()).AdminAddBalanceCommand(adminAddBalanceCommand).Execute()
+    r, err := apiClient.AdminApi.AdminAddBalance(context.Background(), v).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AdminApi.AdminAddBalance``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -56,6 +57,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -64,7 +69,8 @@ Other parameters are passed through a pointer to a apiAdminAddBalanceRequest str
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **adminAddBalanceCommand** | [**AdminAddBalanceCommand**](AdminAddBalanceCommand.md) |  | 
+
+ **body** | [**AdminAddBalanceCommand**](AdminAddBalanceCommand.md) |  | 
 
 ### Return type
 
@@ -76,8 +82,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -86,9 +92,9 @@ Name | Type | Description  | Notes
 
 ## AdminBillingOperations
 
-> AdminBillingOperations(ctx).AdminBillingOperationCommand(adminBillingOperationCommand).Execute()
+> AdminBillingOperations(ctx, v).Body(body).Execute()
 
-Billing operations: enable/disable billing 
+Billing operations: enable/disable billing
 
 ### Example
 
@@ -103,11 +109,12 @@ import (
 )
 
 func main() {
-    adminBillingOperationCommand := *openapiclient.NewAdminBillingOperationCommand(int32(123)) // AdminBillingOperationCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewAdminBillingOperationCommand(int32(123)) // AdminBillingOperationCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.AdminApi.AdminBillingOperations(context.Background()).AdminBillingOperationCommand(adminBillingOperationCommand).Execute()
+    r, err := apiClient.AdminApi.AdminBillingOperations(context.Background(), v).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AdminApi.AdminBillingOperations``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -118,6 +125,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -126,7 +137,8 @@ Other parameters are passed through a pointer to a apiAdminBillingOperationsRequ
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **adminBillingOperationCommand** | [**AdminBillingOperationCommand**](AdminBillingOperationCommand.md) |  | 
+
+ **body** | [**AdminBillingOperationCommand**](AdminBillingOperationCommand.md) |  | 
 
 ### Return type
 
@@ -138,8 +150,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -148,7 +160,7 @@ Name | Type | Description  | Notes
 
 ## AdminCreateUser
 
-> AdminCreateUser(ctx).AdminUserCreateCommand(adminUserCreateCommand).Execute()
+> AdminCreateUser(ctx, v).Body(body).Execute()
 
 User creation for admin
 
@@ -165,11 +177,12 @@ import (
 )
 
 func main() {
-    adminUserCreateCommand := *openapiclient.NewAdminUserCreateCommand("Email_example", "Username_example", "Password_example") // AdminUserCreateCommand |  (optional)
+    v := "v_example" // string | 
+    body := *openapiclient.NewAdminUserCreateCommand("Email_example", "Username_example", *openapiclient.NewAdminUserCreateCommandPassword()) // AdminUserCreateCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.AdminApi.AdminCreateUser(context.Background()).AdminUserCreateCommand(adminUserCreateCommand).Execute()
+    r, err := apiClient.AdminApi.AdminCreateUser(context.Background(), v).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AdminApi.AdminCreateUser``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -180,6 +193,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -188,7 +205,8 @@ Other parameters are passed through a pointer to a apiAdminCreateUserRequest str
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **adminUserCreateCommand** | [**AdminUserCreateCommand**](AdminUserCreateCommand.md) |  | 
+
+ **body** | [**AdminUserCreateCommand**](AdminUserCreateCommand.md) |  | 
 
 ### Return type
 
@@ -200,17 +218,17 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## AdminDeleteOrg
+## AdminDeleteOrganization
 
-> AdminDeleteOrg(ctx).AdminOrganizationsDeleteCommand(adminOrganizationsDeleteCommand).Execute()
+> AdminDeleteOrganization(ctx, v).Body(body).Execute()
 
 Delete organization
 
@@ -227,13 +245,14 @@ import (
 )
 
 func main() {
-    adminOrganizationsDeleteCommand := *openapiclient.NewAdminOrganizationsDeleteCommand() // AdminOrganizationsDeleteCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewAdminOrganizationsDeleteCommand() // AdminOrganizationsDeleteCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.AdminApi.AdminDeleteOrg(context.Background()).AdminOrganizationsDeleteCommand(adminOrganizationsDeleteCommand).Execute()
+    r, err := apiClient.AdminApi.AdminDeleteOrganization(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AdminApi.AdminDeleteOrg``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AdminApi.AdminDeleteOrganization``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -242,15 +261,20 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAdminDeleteOrgRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiAdminDeleteOrganizationRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **adminOrganizationsDeleteCommand** | [**AdminOrganizationsDeleteCommand**](AdminOrganizationsDeleteCommand.md) |  | 
+
+ **body** | [**AdminOrganizationsDeleteCommand**](AdminOrganizationsDeleteCommand.md) |  | 
 
 ### Return type
 
@@ -262,8 +286,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -272,7 +296,7 @@ Name | Type | Description  | Notes
 
 ## AdminKeycloakList
 
-> AdminProjectsList AdminKeycloakList(ctx).Limit(limit).Offset(offset).Execute()
+> AdminKeycloakList AdminKeycloakList(ctx, v).Limit(limit).Offset(offset).Execute()
 
 Keycloak list for admin
 
@@ -289,17 +313,18 @@ import (
 )
 
 func main() {
-    limit := int32(56) // int32 |  (optional)
-    offset := int32(56) // int32 |  (optional)
+    v := "v_example" // string | 
+    limit := int32(56) // int32 | Limits projects size (by default 50) (optional)
+    offset := int32(56) // int32 | Skip elements (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AdminApi.AdminKeycloakList(context.Background()).Limit(limit).Offset(offset).Execute()
+    resp, r, err := apiClient.AdminApi.AdminKeycloakList(context.Background(), v).Limit(limit).Offset(offset).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AdminApi.AdminKeycloakList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `AdminKeycloakList`: AdminProjectsList
+    // response from `AdminKeycloakList`: AdminKeycloakList
     fmt.Fprintf(os.Stdout, "Response from `AdminApi.AdminKeycloakList`: %v\n", resp)
 }
 ```
@@ -307,6 +332,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -315,12 +344,13 @@ Other parameters are passed through a pointer to a apiAdminKeycloakListRequest s
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **limit** | **int32** |  | 
- **offset** | **int32** |  | 
+
+ **limit** | **int32** | Limits projects size (by default 50) | 
+ **offset** | **int32** | Skip elements | 
 
 ### Return type
 
-[**AdminProjectsList**](AdminProjectsList.md)
+[**AdminKeycloakList**](AdminKeycloakList.md)
 
 ### Authorization
 
@@ -329,16 +359,16 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## AdminMakeCsm
+## AdminMakeCsmUser
 
-> AdminMakeCsm(ctx).MakeCsmCommand(makeCsmCommand).Execute()
+> AdminMakeCsmUser(ctx, v).Body(body).Execute()
 
 User csm update for admin
 
@@ -355,13 +385,14 @@ import (
 )
 
 func main() {
-    makeCsmCommand := *openapiclient.NewMakeCsmCommand("UserId_example", "Mode_example") // MakeCsmCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewMakeCsmCommand("UserId_example", "Mode_example") // MakeCsmCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.AdminApi.AdminMakeCsm(context.Background()).MakeCsmCommand(makeCsmCommand).Execute()
+    r, err := apiClient.AdminApi.AdminMakeCsmUser(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AdminApi.AdminMakeCsm``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AdminApi.AdminMakeCsmUser``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -370,15 +401,20 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAdminMakeCsmRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiAdminMakeCsmUserRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **makeCsmCommand** | [**MakeCsmCommand**](MakeCsmCommand.md) |  | 
+
+ **body** | [**MakeCsmCommand**](MakeCsmCommand.md) |  | 
 
 ### Return type
 
@@ -390,8 +426,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -400,7 +436,7 @@ Name | Type | Description  | Notes
 
 ## AdminMakeOwner
 
-> AdminMakeOwner(ctx).MakeOwnerCommand(makeOwnerCommand).Execute()
+> AdminMakeOwner(ctx, v).Body(body).Execute()
 
 User choose owner for admin
 
@@ -417,11 +453,12 @@ import (
 )
 
 func main() {
-    makeOwnerCommand := *openapiclient.NewMakeOwnerCommand("UserId_example") // MakeOwnerCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewMakeOwnerCommand("UserId_example") // MakeOwnerCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.AdminApi.AdminMakeOwner(context.Background()).MakeOwnerCommand(makeOwnerCommand).Execute()
+    r, err := apiClient.AdminApi.AdminMakeOwner(context.Background(), v).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AdminApi.AdminMakeOwner``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -432,6 +469,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -440,7 +481,8 @@ Other parameters are passed through a pointer to a apiAdminMakeOwnerRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **makeOwnerCommand** | [**MakeOwnerCommand**](MakeOwnerCommand.md) |  | 
+
+ **body** | [**MakeOwnerCommand**](MakeOwnerCommand.md) |  | 
 
 ### Return type
 
@@ -452,8 +494,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -462,9 +504,9 @@ Name | Type | Description  | Notes
 
 ## AdminOrganizations
 
-> AdminOrganizationsList AdminOrganizations(ctx).Limit(limit).Offset(offset).PartnerId(partnerId).Search(search).Execute()
+> AdminOrganizationsList AdminOrganizations(ctx, v).Limit(limit).Offset(offset).PartnerId(partnerId).Search(search).Execute()
 
- Organizations for admin
+Organizations for admin
 
 ### Example
 
@@ -479,6 +521,7 @@ import (
 )
 
 func main() {
+    v := "v_example" // string | 
     limit := int32(56) // int32 |  (optional)
     offset := int32(56) // int32 |  (optional)
     partnerId := int32(56) // int32 |  (optional)
@@ -486,7 +529,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AdminApi.AdminOrganizations(context.Background()).Limit(limit).Offset(offset).PartnerId(partnerId).Search(search).Execute()
+    resp, r, err := apiClient.AdminApi.AdminOrganizations(context.Background(), v).Limit(limit).Offset(offset).PartnerId(partnerId).Search(search).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AdminApi.AdminOrganizations``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -499,6 +542,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -507,6 +554,7 @@ Other parameters are passed through a pointer to a apiAdminOrganizationsRequest 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
  **limit** | **int32** |  | 
  **offset** | **int32** |  | 
  **partnerId** | **int32** |  | 
@@ -523,16 +571,16 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## AdminProjectList
+## AdminProjectsList
 
-> AdminProjectsList AdminProjectList(ctx).Limit(limit).Offset(offset).OrganizationId(organizationId).Search(search).Execute()
+> AdminProjectsList AdminProjectsList(ctx, v).Limit(limit).Offset(offset).OrganizationId(organizationId).Search(search).Execute()
 
 Projects for admin
 
@@ -549,38 +597,44 @@ import (
 )
 
 func main() {
-    limit := int32(56) // int32 |  (optional)
-    offset := int32(56) // int32 |  (optional)
+    v := "v_example" // string | 
+    limit := int32(56) // int32 | Limits projects size (by default 50) (optional)
+    offset := int32(56) // int32 | Skip elements (optional)
     organizationId := int32(56) // int32 |  (optional)
-    search := "search_example" // string |  (optional)
+    search := "search_example" // string | Keyword for searching (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AdminApi.AdminProjectList(context.Background()).Limit(limit).Offset(offset).OrganizationId(organizationId).Search(search).Execute()
+    resp, r, err := apiClient.AdminApi.AdminProjectsList(context.Background(), v).Limit(limit).Offset(offset).OrganizationId(organizationId).Search(search).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AdminApi.AdminProjectList``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AdminApi.AdminProjectsList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `AdminProjectList`: AdminProjectsList
-    fmt.Fprintf(os.Stdout, "Response from `AdminApi.AdminProjectList`: %v\n", resp)
+    // response from `AdminProjectsList`: AdminProjectsList
+    fmt.Fprintf(os.Stdout, "Response from `AdminApi.AdminProjectsList`: %v\n", resp)
 }
 ```
 
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAdminProjectListRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiAdminProjectsListRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **limit** | **int32** |  | 
- **offset** | **int32** |  | 
+
+ **limit** | **int32** | Limits projects size (by default 50) | 
+ **offset** | **int32** | Skip elements | 
  **organizationId** | **int32** |  | 
- **search** | **string** |  | 
+ **search** | **string** | Keyword for searching | 
 
 ### Return type
 
@@ -593,16 +647,16 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## AdminUpdateProject
+## AdminUpdateProjectKubeConfig
 
-> AdminUpdateProject(ctx).AdminProjectUpdateCommand(adminProjectUpdateCommand).Execute()
+> AdminUpdateProjectKubeConfig(ctx, v).Body(body).Execute()
 
 Projects update for admin
 
@@ -619,13 +673,14 @@ import (
 )
 
 func main() {
-    adminProjectUpdateCommand := *openapiclient.NewAdminProjectUpdateCommand(int32(123), "KubernetesCurrentVersion_example", "KubesprayCurrentVersion_example") // AdminProjectUpdateCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewAdminUpdateProjectKubeConfigCommand(int32(123)) // AdminUpdateProjectKubeConfigCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.AdminApi.AdminUpdateProject(context.Background()).AdminProjectUpdateCommand(adminProjectUpdateCommand).Execute()
+    r, err := apiClient.AdminApi.AdminUpdateProjectKubeConfig(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AdminApi.AdminUpdateProject``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AdminApi.AdminUpdateProjectKubeConfig``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -634,15 +689,20 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAdminUpdateProjectRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiAdminUpdateProjectKubeConfigRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **adminProjectUpdateCommand** | [**AdminProjectUpdateCommand**](AdminProjectUpdateCommand.md) |  | 
+
+ **body** | [**AdminUpdateProjectKubeConfigCommand**](AdminUpdateProjectKubeConfigCommand.md) |  | 
 
 ### Return type
 
@@ -654,19 +714,19 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## AdminUpdateProjectKube
+## AdminUpdateProjectVersion
 
-> AdminUpdateProjectKube(ctx).AdminUpdateProjectKubeConfigCommand(adminUpdateProjectKubeConfigCommand).Execute()
+> AdminUpdateProjectVersion(ctx, v).Body(body).Execute()
 
-Projects update kube for admin
+Projects update for admin
 
 ### Example
 
@@ -681,13 +741,14 @@ import (
 )
 
 func main() {
-    adminUpdateProjectKubeConfigCommand := *openapiclient.NewAdminUpdateProjectKubeConfigCommand(int32(123)) // AdminUpdateProjectKubeConfigCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewAdminProjectUpdateCommand(int32(123), "KubernetesCurrentVersion_example", "KubesprayCurrentVersion_example") // AdminProjectUpdateCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.AdminApi.AdminUpdateProjectKube(context.Background()).AdminUpdateProjectKubeConfigCommand(adminUpdateProjectKubeConfigCommand).Execute()
+    r, err := apiClient.AdminApi.AdminUpdateProjectVersion(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AdminApi.AdminUpdateProjectKube``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AdminApi.AdminUpdateProjectVersion``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -696,15 +757,20 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAdminUpdateProjectKubeRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiAdminUpdateProjectVersionRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **adminUpdateProjectKubeConfigCommand** | [**AdminUpdateProjectKubeConfigCommand**](AdminUpdateProjectKubeConfigCommand.md) |  | 
+
+ **body** | [**AdminProjectUpdateCommand**](AdminProjectUpdateCommand.md) |  | 
 
 ### Return type
 
@@ -716,141 +782,17 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## AdminUpdateUser
+## AdminUpdateUserEmail
 
-> AdminUpdateUser(ctx).AdminUsersUpdatePasswordCommand(adminUsersUpdatePasswordCommand).Execute()
-
-User password update for admin
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/chnyda/taikungoclient"
-)
-
-func main() {
-    adminUsersUpdatePasswordCommand := *openapiclient.NewAdminUsersUpdatePasswordCommand("Id_example", "Password_example") // AdminUsersUpdatePasswordCommand | 
-
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.AdminApi.AdminUpdateUser(context.Background()).AdminUsersUpdatePasswordCommand(adminUsersUpdatePasswordCommand).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AdminApi.AdminUpdateUser``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiAdminUpdateUserRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **adminUsersUpdatePasswordCommand** | [**AdminUsersUpdatePasswordCommand**](AdminUsersUpdatePasswordCommand.md) |  | 
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## AdminUpdateUserKube
-
-> AdminUpdateUserKube(ctx).AdminUpdateUserKubeConfigCommand(adminUpdateUserKubeConfigCommand).Execute()
-
-Projects update kube for admin
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/chnyda/taikungoclient"
-)
-
-func main() {
-    adminUpdateUserKubeConfigCommand := *openapiclient.NewAdminUpdateUserKubeConfigCommand(int32(123)) // AdminUpdateUserKubeConfigCommand | 
-
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.AdminApi.AdminUpdateUserKube(context.Background()).AdminUpdateUserKubeConfigCommand(adminUpdateUserKubeConfigCommand).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AdminApi.AdminUpdateUserKube``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiAdminUpdateUserKubeRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **adminUpdateUserKubeConfigCommand** | [**AdminUpdateUserKubeConfigCommand**](AdminUpdateUserKubeConfigCommand.md) |  | 
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## AdminUpdateUsers
-
-> AdminUpdateUsers(ctx).AdminUsersUpdateEmailCommand(adminUsersUpdateEmailCommand).Execute()
+> AdminUpdateUserEmail(ctx, v).Body(body).Execute()
 
 User email update for admin
 
@@ -867,13 +809,14 @@ import (
 )
 
 func main() {
-    adminUsersUpdateEmailCommand := *openapiclient.NewAdminUsersUpdateEmailCommand("Id_example") // AdminUsersUpdateEmailCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewAdminUsersUpdateEmailCommand("Id_example") // AdminUsersUpdateEmailCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.AdminApi.AdminUpdateUsers(context.Background()).AdminUsersUpdateEmailCommand(adminUsersUpdateEmailCommand).Execute()
+    r, err := apiClient.AdminApi.AdminUpdateUserEmail(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AdminApi.AdminUpdateUsers``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AdminApi.AdminUpdateUserEmail``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -882,15 +825,20 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAdminUpdateUsersRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiAdminUpdateUserEmailRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **adminUsersUpdateEmailCommand** | [**AdminUsersUpdateEmailCommand**](AdminUsersUpdateEmailCommand.md) |  | 
+
+ **body** | [**AdminUsersUpdateEmailCommand**](AdminUsersUpdateEmailCommand.md) |  | 
 
 ### Return type
 
@@ -902,8 +850,144 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## AdminUpdateUserKubeConfig
+
+> AdminUpdateUserKubeConfig(ctx, v).Body(body).Execute()
+
+Projects update for admin
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/chnyda/taikungoclient"
+)
+
+func main() {
+    v := "v_example" // string | 
+    body := *openapiclient.NewAdminUpdateUserKubeConfigCommand(int32(123)) // AdminUpdateUserKubeConfigCommand |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.AdminApi.AdminUpdateUserKubeConfig(context.Background(), v).Body(body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AdminApi.AdminUpdateUserKubeConfig``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAdminUpdateUserKubeConfigRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **body** | [**AdminUpdateUserKubeConfigCommand**](AdminUpdateUserKubeConfigCommand.md) |  | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## AdminUpdateUserPassword
+
+> AdminUpdateUserPassword(ctx, v).Body(body).Execute()
+
+User password update for admin
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/chnyda/taikungoclient"
+)
+
+func main() {
+    v := "v_example" // string | 
+    body := *openapiclient.NewAdminUsersUpdatePasswordCommand("Id_example", *openapiclient.NewAdminUserCreateCommandPassword()) // AdminUsersUpdatePasswordCommand |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.AdminApi.AdminUpdateUserPassword(context.Background(), v).Body(body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AdminApi.AdminUpdateUserPassword``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAdminUpdateUserPasswordRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **body** | [**AdminUsersUpdatePasswordCommand**](AdminUsersUpdatePasswordCommand.md) |  | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -912,7 +996,7 @@ Name | Type | Description  | Notes
 
 ## AdminUsersList
 
-> AdminUsersList AdminUsersList(ctx).Limit(limit).Offset(offset).OrganizationId(organizationId).Search(search).Execute()
+> AdminUsersList AdminUsersList(ctx, v).Limit(limit).Offset(offset).OrganizationId(organizationId).Search(search).Execute()
 
 Users for admin
 
@@ -929,14 +1013,15 @@ import (
 )
 
 func main() {
-    limit := int32(56) // int32 |  (optional)
-    offset := int32(56) // int32 |  (optional)
+    v := "v_example" // string | 
+    limit := int32(56) // int32 | Limits user size (by default 50) (optional)
+    offset := int32(56) // int32 | Skip elements (optional)
     organizationId := int32(56) // int32 |  (optional)
-    search := "search_example" // string |  (optional)
+    search := "search_example" // string | Keyword for searching (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AdminApi.AdminUsersList(context.Background()).Limit(limit).Offset(offset).OrganizationId(organizationId).Search(search).Execute()
+    resp, r, err := apiClient.AdminApi.AdminUsersList(context.Background(), v).Limit(limit).Offset(offset).OrganizationId(organizationId).Search(search).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AdminApi.AdminUsersList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -949,6 +1034,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -957,10 +1046,11 @@ Other parameters are passed through a pointer to a apiAdminUsersListRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **limit** | **int32** |  | 
- **offset** | **int32** |  | 
+
+ **limit** | **int32** | Limits user size (by default 50) | 
+ **offset** | **int32** | Skip elements | 
  **organizationId** | **int32** |  | 
- **search** | **string** |  | 
+ **search** | **string** | Keyword for searching | 
 
 ### Return type
 
@@ -973,7 +1063,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

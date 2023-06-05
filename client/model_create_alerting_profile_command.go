@@ -21,8 +21,8 @@ var _ MappedNullable = &CreateAlertingProfileCommand{}
 // CreateAlertingProfileCommand struct for CreateAlertingProfileCommand
 type CreateAlertingProfileCommand struct {
 	Name string `json:"name"`
-	SlackConfigurationId NullableInt32 `json:"slackConfigurationId,omitempty"`
-	OrganizationId NullableInt32 `json:"organizationId,omitempty"`
+	SlackConfigurationId *int32 `json:"slackConfigurationId,omitempty"`
+	OrganizationId *int32 `json:"organizationId,omitempty"`
 	Emails []AlertingEmailDto `json:"emails,omitempty"`
 	Webhooks []AlertingWebhookDto `json:"webhooks,omitempty"`
 	AlertingIntegrations []AlertingIntegrationDto `json:"alertingIntegrations,omitempty"`
@@ -71,93 +71,73 @@ func (o *CreateAlertingProfileCommand) SetName(v string) {
 	o.Name = v
 }
 
-// GetSlackConfigurationId returns the SlackConfigurationId field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetSlackConfigurationId returns the SlackConfigurationId field value if set, zero value otherwise.
 func (o *CreateAlertingProfileCommand) GetSlackConfigurationId() int32 {
-	if o == nil || IsNil(o.SlackConfigurationId.Get()) {
+	if o == nil || IsNil(o.SlackConfigurationId) {
 		var ret int32
 		return ret
 	}
-	return *o.SlackConfigurationId.Get()
+	return *o.SlackConfigurationId
 }
 
 // GetSlackConfigurationIdOk returns a tuple with the SlackConfigurationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateAlertingProfileCommand) GetSlackConfigurationIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.SlackConfigurationId) {
 		return nil, false
 	}
-	return o.SlackConfigurationId.Get(), o.SlackConfigurationId.IsSet()
+	return o.SlackConfigurationId, true
 }
 
 // HasSlackConfigurationId returns a boolean if a field has been set.
 func (o *CreateAlertingProfileCommand) HasSlackConfigurationId() bool {
-	if o != nil && o.SlackConfigurationId.IsSet() {
+	if o != nil && !IsNil(o.SlackConfigurationId) {
 		return true
 	}
 
 	return false
 }
 
-// SetSlackConfigurationId gets a reference to the given NullableInt32 and assigns it to the SlackConfigurationId field.
+// SetSlackConfigurationId gets a reference to the given int32 and assigns it to the SlackConfigurationId field.
 func (o *CreateAlertingProfileCommand) SetSlackConfigurationId(v int32) {
-	o.SlackConfigurationId.Set(&v)
-}
-// SetSlackConfigurationIdNil sets the value for SlackConfigurationId to be an explicit nil
-func (o *CreateAlertingProfileCommand) SetSlackConfigurationIdNil() {
-	o.SlackConfigurationId.Set(nil)
+	o.SlackConfigurationId = &v
 }
 
-// UnsetSlackConfigurationId ensures that no value is present for SlackConfigurationId, not even an explicit nil
-func (o *CreateAlertingProfileCommand) UnsetSlackConfigurationId() {
-	o.SlackConfigurationId.Unset()
-}
-
-// GetOrganizationId returns the OrganizationId field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetOrganizationId returns the OrganizationId field value if set, zero value otherwise.
 func (o *CreateAlertingProfileCommand) GetOrganizationId() int32 {
-	if o == nil || IsNil(o.OrganizationId.Get()) {
+	if o == nil || IsNil(o.OrganizationId) {
 		var ret int32
 		return ret
 	}
-	return *o.OrganizationId.Get()
+	return *o.OrganizationId
 }
 
 // GetOrganizationIdOk returns a tuple with the OrganizationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateAlertingProfileCommand) GetOrganizationIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.OrganizationId) {
 		return nil, false
 	}
-	return o.OrganizationId.Get(), o.OrganizationId.IsSet()
+	return o.OrganizationId, true
 }
 
 // HasOrganizationId returns a boolean if a field has been set.
 func (o *CreateAlertingProfileCommand) HasOrganizationId() bool {
-	if o != nil && o.OrganizationId.IsSet() {
+	if o != nil && !IsNil(o.OrganizationId) {
 		return true
 	}
 
 	return false
 }
 
-// SetOrganizationId gets a reference to the given NullableInt32 and assigns it to the OrganizationId field.
+// SetOrganizationId gets a reference to the given int32 and assigns it to the OrganizationId field.
 func (o *CreateAlertingProfileCommand) SetOrganizationId(v int32) {
-	o.OrganizationId.Set(&v)
-}
-// SetOrganizationIdNil sets the value for OrganizationId to be an explicit nil
-func (o *CreateAlertingProfileCommand) SetOrganizationIdNil() {
-	o.OrganizationId.Set(nil)
+	o.OrganizationId = &v
 }
 
-// UnsetOrganizationId ensures that no value is present for OrganizationId, not even an explicit nil
-func (o *CreateAlertingProfileCommand) UnsetOrganizationId() {
-	o.OrganizationId.Unset()
-}
-
-// GetEmails returns the Emails field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetEmails returns the Emails field value if set, zero value otherwise.
 func (o *CreateAlertingProfileCommand) GetEmails() []AlertingEmailDto {
-	if o == nil {
+	if o == nil || IsNil(o.Emails) {
 		var ret []AlertingEmailDto
 		return ret
 	}
@@ -166,7 +146,6 @@ func (o *CreateAlertingProfileCommand) GetEmails() []AlertingEmailDto {
 
 // GetEmailsOk returns a tuple with the Emails field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateAlertingProfileCommand) GetEmailsOk() ([]AlertingEmailDto, bool) {
 	if o == nil || IsNil(o.Emails) {
 		return nil, false
@@ -176,7 +155,7 @@ func (o *CreateAlertingProfileCommand) GetEmailsOk() ([]AlertingEmailDto, bool) 
 
 // HasEmails returns a boolean if a field has been set.
 func (o *CreateAlertingProfileCommand) HasEmails() bool {
-	if o != nil && IsNil(o.Emails) {
+	if o != nil && !IsNil(o.Emails) {
 		return true
 	}
 
@@ -188,9 +167,9 @@ func (o *CreateAlertingProfileCommand) SetEmails(v []AlertingEmailDto) {
 	o.Emails = v
 }
 
-// GetWebhooks returns the Webhooks field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetWebhooks returns the Webhooks field value if set, zero value otherwise.
 func (o *CreateAlertingProfileCommand) GetWebhooks() []AlertingWebhookDto {
-	if o == nil {
+	if o == nil || IsNil(o.Webhooks) {
 		var ret []AlertingWebhookDto
 		return ret
 	}
@@ -199,7 +178,6 @@ func (o *CreateAlertingProfileCommand) GetWebhooks() []AlertingWebhookDto {
 
 // GetWebhooksOk returns a tuple with the Webhooks field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateAlertingProfileCommand) GetWebhooksOk() ([]AlertingWebhookDto, bool) {
 	if o == nil || IsNil(o.Webhooks) {
 		return nil, false
@@ -209,7 +187,7 @@ func (o *CreateAlertingProfileCommand) GetWebhooksOk() ([]AlertingWebhookDto, bo
 
 // HasWebhooks returns a boolean if a field has been set.
 func (o *CreateAlertingProfileCommand) HasWebhooks() bool {
-	if o != nil && IsNil(o.Webhooks) {
+	if o != nil && !IsNil(o.Webhooks) {
 		return true
 	}
 
@@ -221,9 +199,9 @@ func (o *CreateAlertingProfileCommand) SetWebhooks(v []AlertingWebhookDto) {
 	o.Webhooks = v
 }
 
-// GetAlertingIntegrations returns the AlertingIntegrations field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetAlertingIntegrations returns the AlertingIntegrations field value if set, zero value otherwise.
 func (o *CreateAlertingProfileCommand) GetAlertingIntegrations() []AlertingIntegrationDto {
-	if o == nil {
+	if o == nil || IsNil(o.AlertingIntegrations) {
 		var ret []AlertingIntegrationDto
 		return ret
 	}
@@ -232,7 +210,6 @@ func (o *CreateAlertingProfileCommand) GetAlertingIntegrations() []AlertingInteg
 
 // GetAlertingIntegrationsOk returns a tuple with the AlertingIntegrations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateAlertingProfileCommand) GetAlertingIntegrationsOk() ([]AlertingIntegrationDto, bool) {
 	if o == nil || IsNil(o.AlertingIntegrations) {
 		return nil, false
@@ -242,7 +219,7 @@ func (o *CreateAlertingProfileCommand) GetAlertingIntegrationsOk() ([]AlertingIn
 
 // HasAlertingIntegrations returns a boolean if a field has been set.
 func (o *CreateAlertingProfileCommand) HasAlertingIntegrations() bool {
-	if o != nil && IsNil(o.AlertingIntegrations) {
+	if o != nil && !IsNil(o.AlertingIntegrations) {
 		return true
 	}
 
@@ -297,19 +274,19 @@ func (o CreateAlertingProfileCommand) MarshalJSON() ([]byte, error) {
 func (o CreateAlertingProfileCommand) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["name"] = o.Name
-	if o.SlackConfigurationId.IsSet() {
-		toSerialize["slackConfigurationId"] = o.SlackConfigurationId.Get()
+	if !IsNil(o.SlackConfigurationId) {
+		toSerialize["slackConfigurationId"] = o.SlackConfigurationId
 	}
-	if o.OrganizationId.IsSet() {
-		toSerialize["organizationId"] = o.OrganizationId.Get()
+	if !IsNil(o.OrganizationId) {
+		toSerialize["organizationId"] = o.OrganizationId
 	}
-	if o.Emails != nil {
+	if !IsNil(o.Emails) {
 		toSerialize["emails"] = o.Emails
 	}
-	if o.Webhooks != nil {
+	if !IsNil(o.Webhooks) {
 		toSerialize["webhooks"] = o.Webhooks
 	}
-	if o.AlertingIntegrations != nil {
+	if !IsNil(o.AlertingIntegrations) {
 		toSerialize["alertingIntegrations"] = o.AlertingIntegrations
 	}
 	if !IsNil(o.Reminder) {

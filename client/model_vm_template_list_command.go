@@ -20,20 +20,18 @@ var _ MappedNullable = &VmTemplateListCommand{}
 
 // VmTemplateListCommand struct for VmTemplateListCommand
 type VmTemplateListCommand struct {
-	Url string `json:"url"`
-	Username string `json:"username"`
-	Password string `json:"password"`
+	CloudId *int32 `json:"cloudId,omitempty"`
+	Url *string `json:"url,omitempty"`
+	TokenId *string `json:"tokenId,omitempty"`
+	TokenSecret *string `json:"tokenSecret,omitempty"`
 }
 
 // NewVmTemplateListCommand instantiates a new VmTemplateListCommand object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVmTemplateListCommand(url string, username string, password string) *VmTemplateListCommand {
+func NewVmTemplateListCommand() *VmTemplateListCommand {
 	this := VmTemplateListCommand{}
-	this.Url = url
-	this.Username = username
-	this.Password = password
 	return &this
 }
 
@@ -45,76 +43,132 @@ func NewVmTemplateListCommandWithDefaults() *VmTemplateListCommand {
 	return &this
 }
 
-// GetUrl returns the Url field value
+// GetCloudId returns the CloudId field value if set, zero value otherwise.
+func (o *VmTemplateListCommand) GetCloudId() int32 {
+	if o == nil || IsNil(o.CloudId) {
+		var ret int32
+		return ret
+	}
+	return *o.CloudId
+}
+
+// GetCloudIdOk returns a tuple with the CloudId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VmTemplateListCommand) GetCloudIdOk() (*int32, bool) {
+	if o == nil || IsNil(o.CloudId) {
+		return nil, false
+	}
+	return o.CloudId, true
+}
+
+// HasCloudId returns a boolean if a field has been set.
+func (o *VmTemplateListCommand) HasCloudId() bool {
+	if o != nil && !IsNil(o.CloudId) {
+		return true
+	}
+
+	return false
+}
+
+// SetCloudId gets a reference to the given int32 and assigns it to the CloudId field.
+func (o *VmTemplateListCommand) SetCloudId(v int32) {
+	o.CloudId = &v
+}
+
+// GetUrl returns the Url field value if set, zero value otherwise.
 func (o *VmTemplateListCommand) GetUrl() string {
-	if o == nil {
+	if o == nil || IsNil(o.Url) {
 		var ret string
 		return ret
 	}
-
-	return o.Url
+	return *o.Url
 }
 
-// GetUrlOk returns a tuple with the Url field value
+// GetUrlOk returns a tuple with the Url field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VmTemplateListCommand) GetUrlOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Url) {
 		return nil, false
 	}
-	return &o.Url, true
+	return o.Url, true
 }
 
-// SetUrl sets field value
+// HasUrl returns a boolean if a field has been set.
+func (o *VmTemplateListCommand) HasUrl() bool {
+	if o != nil && !IsNil(o.Url) {
+		return true
+	}
+
+	return false
+}
+
+// SetUrl gets a reference to the given string and assigns it to the Url field.
 func (o *VmTemplateListCommand) SetUrl(v string) {
-	o.Url = v
+	o.Url = &v
 }
 
-// GetUsername returns the Username field value
-func (o *VmTemplateListCommand) GetUsername() string {
-	if o == nil {
+// GetTokenId returns the TokenId field value if set, zero value otherwise.
+func (o *VmTemplateListCommand) GetTokenId() string {
+	if o == nil || IsNil(o.TokenId) {
 		var ret string
 		return ret
 	}
-
-	return o.Username
+	return *o.TokenId
 }
 
-// GetUsernameOk returns a tuple with the Username field value
+// GetTokenIdOk returns a tuple with the TokenId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VmTemplateListCommand) GetUsernameOk() (*string, bool) {
-	if o == nil {
+func (o *VmTemplateListCommand) GetTokenIdOk() (*string, bool) {
+	if o == nil || IsNil(o.TokenId) {
 		return nil, false
 	}
-	return &o.Username, true
+	return o.TokenId, true
 }
 
-// SetUsername sets field value
-func (o *VmTemplateListCommand) SetUsername(v string) {
-	o.Username = v
+// HasTokenId returns a boolean if a field has been set.
+func (o *VmTemplateListCommand) HasTokenId() bool {
+	if o != nil && !IsNil(o.TokenId) {
+		return true
+	}
+
+	return false
 }
 
-// GetPassword returns the Password field value
-func (o *VmTemplateListCommand) GetPassword() string {
-	if o == nil {
+// SetTokenId gets a reference to the given string and assigns it to the TokenId field.
+func (o *VmTemplateListCommand) SetTokenId(v string) {
+	o.TokenId = &v
+}
+
+// GetTokenSecret returns the TokenSecret field value if set, zero value otherwise.
+func (o *VmTemplateListCommand) GetTokenSecret() string {
+	if o == nil || IsNil(o.TokenSecret) {
 		var ret string
 		return ret
 	}
-
-	return o.Password
+	return *o.TokenSecret
 }
 
-// GetPasswordOk returns a tuple with the Password field value
+// GetTokenSecretOk returns a tuple with the TokenSecret field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VmTemplateListCommand) GetPasswordOk() (*string, bool) {
-	if o == nil {
+func (o *VmTemplateListCommand) GetTokenSecretOk() (*string, bool) {
+	if o == nil || IsNil(o.TokenSecret) {
 		return nil, false
 	}
-	return &o.Password, true
+	return o.TokenSecret, true
 }
 
-// SetPassword sets field value
-func (o *VmTemplateListCommand) SetPassword(v string) {
-	o.Password = v
+// HasTokenSecret returns a boolean if a field has been set.
+func (o *VmTemplateListCommand) HasTokenSecret() bool {
+	if o != nil && !IsNil(o.TokenSecret) {
+		return true
+	}
+
+	return false
+}
+
+// SetTokenSecret gets a reference to the given string and assigns it to the TokenSecret field.
+func (o *VmTemplateListCommand) SetTokenSecret(v string) {
+	o.TokenSecret = &v
 }
 
 func (o VmTemplateListCommand) MarshalJSON() ([]byte, error) {
@@ -127,9 +181,18 @@ func (o VmTemplateListCommand) MarshalJSON() ([]byte, error) {
 
 func (o VmTemplateListCommand) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["url"] = o.Url
-	toSerialize["username"] = o.Username
-	toSerialize["password"] = o.Password
+	if !IsNil(o.CloudId) {
+		toSerialize["cloudId"] = o.CloudId
+	}
+	if !IsNil(o.Url) {
+		toSerialize["url"] = o.Url
+	}
+	if !IsNil(o.TokenId) {
+		toSerialize["tokenId"] = o.TokenId
+	}
+	if !IsNil(o.TokenSecret) {
+		toSerialize["tokenSecret"] = o.TokenSecret
+	}
 	return toSerialize, nil
 }
 

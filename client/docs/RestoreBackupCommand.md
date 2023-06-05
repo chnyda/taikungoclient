@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ProjectId** | Pointer to **int32** |  | [optional] 
-**BackupName** | Pointer to **NullableString** |  | [optional] 
-**RestoreName** | Pointer to **NullableString** |  | [optional] 
+**BackupName** | Pointer to **string** |  | [optional] 
+**RestoreName** | Pointer to **string** |  | [optional] 
 **IncludeNamespaces** | Pointer to **[]string** |  | [optional] 
 **ExcludeNamespaces** | Pointer to **[]string** |  | [optional] 
 
@@ -79,16 +79,6 @@ SetBackupName sets BackupName field to given value.
 
 HasBackupName returns a boolean if a field has been set.
 
-### SetBackupNameNil
-
-`func (o *RestoreBackupCommand) SetBackupNameNil(b bool)`
-
- SetBackupNameNil sets the value for BackupName to be an explicit nil
-
-### UnsetBackupName
-`func (o *RestoreBackupCommand) UnsetBackupName()`
-
-UnsetBackupName ensures that no value is present for BackupName, not even an explicit nil
 ### GetRestoreName
 
 `func (o *RestoreBackupCommand) GetRestoreName() string`
@@ -114,16 +104,6 @@ SetRestoreName sets RestoreName field to given value.
 
 HasRestoreName returns a boolean if a field has been set.
 
-### SetRestoreNameNil
-
-`func (o *RestoreBackupCommand) SetRestoreNameNil(b bool)`
-
- SetRestoreNameNil sets the value for RestoreName to be an explicit nil
-
-### UnsetRestoreName
-`func (o *RestoreBackupCommand) UnsetRestoreName()`
-
-UnsetRestoreName ensures that no value is present for RestoreName, not even an explicit nil
 ### GetIncludeNamespaces
 
 `func (o *RestoreBackupCommand) GetIncludeNamespaces() []string`
@@ -149,16 +129,6 @@ SetIncludeNamespaces sets IncludeNamespaces field to given value.
 
 HasIncludeNamespaces returns a boolean if a field has been set.
 
-### SetIncludeNamespacesNil
-
-`func (o *RestoreBackupCommand) SetIncludeNamespacesNil(b bool)`
-
- SetIncludeNamespacesNil sets the value for IncludeNamespaces to be an explicit nil
-
-### UnsetIncludeNamespaces
-`func (o *RestoreBackupCommand) UnsetIncludeNamespaces()`
-
-UnsetIncludeNamespaces ensures that no value is present for IncludeNamespaces, not even an explicit nil
 ### GetExcludeNamespaces
 
 `func (o *RestoreBackupCommand) GetExcludeNamespaces() []string`
@@ -184,16 +154,6 @@ SetExcludeNamespaces sets ExcludeNamespaces field to given value.
 
 HasExcludeNamespaces returns a boolean if a field has been set.
 
-### SetExcludeNamespacesNil
-
-`func (o *RestoreBackupCommand) SetExcludeNamespacesNil(b bool)`
-
- SetExcludeNamespacesNil sets the value for ExcludeNamespaces to be an explicit nil
-
-### UnsetExcludeNamespaces
-`func (o *RestoreBackupCommand) UnsetExcludeNamespaces()`
-
-UnsetExcludeNamespaces ensures that no value is present for ExcludeNamespaces, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

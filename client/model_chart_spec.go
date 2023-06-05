@@ -20,10 +20,10 @@ var _ MappedNullable = &ChartSpec{}
 
 // ChartSpec struct for ChartSpec
 type ChartSpec struct {
-	Chart NullableString `json:"chart,omitempty"`
-	Version NullableString `json:"version,omitempty"`
+	Chart *string `json:"chart,omitempty"`
+	Version *string `json:"version,omitempty"`
 	SourceRef *SourceRef `json:"sourceRef,omitempty"`
-	Interval NullableString `json:"interval,omitempty"`
+	Interval *string `json:"interval,omitempty"`
 }
 
 // NewChartSpec instantiates a new ChartSpec object
@@ -43,88 +43,68 @@ func NewChartSpecWithDefaults() *ChartSpec {
 	return &this
 }
 
-// GetChart returns the Chart field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetChart returns the Chart field value if set, zero value otherwise.
 func (o *ChartSpec) GetChart() string {
-	if o == nil || IsNil(o.Chart.Get()) {
+	if o == nil || IsNil(o.Chart) {
 		var ret string
 		return ret
 	}
-	return *o.Chart.Get()
+	return *o.Chart
 }
 
 // GetChartOk returns a tuple with the Chart field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ChartSpec) GetChartOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Chart) {
 		return nil, false
 	}
-	return o.Chart.Get(), o.Chart.IsSet()
+	return o.Chart, true
 }
 
 // HasChart returns a boolean if a field has been set.
 func (o *ChartSpec) HasChart() bool {
-	if o != nil && o.Chart.IsSet() {
+	if o != nil && !IsNil(o.Chart) {
 		return true
 	}
 
 	return false
 }
 
-// SetChart gets a reference to the given NullableString and assigns it to the Chart field.
+// SetChart gets a reference to the given string and assigns it to the Chart field.
 func (o *ChartSpec) SetChart(v string) {
-	o.Chart.Set(&v)
-}
-// SetChartNil sets the value for Chart to be an explicit nil
-func (o *ChartSpec) SetChartNil() {
-	o.Chart.Set(nil)
+	o.Chart = &v
 }
 
-// UnsetChart ensures that no value is present for Chart, not even an explicit nil
-func (o *ChartSpec) UnsetChart() {
-	o.Chart.Unset()
-}
-
-// GetVersion returns the Version field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetVersion returns the Version field value if set, zero value otherwise.
 func (o *ChartSpec) GetVersion() string {
-	if o == nil || IsNil(o.Version.Get()) {
+	if o == nil || IsNil(o.Version) {
 		var ret string
 		return ret
 	}
-	return *o.Version.Get()
+	return *o.Version
 }
 
 // GetVersionOk returns a tuple with the Version field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ChartSpec) GetVersionOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Version) {
 		return nil, false
 	}
-	return o.Version.Get(), o.Version.IsSet()
+	return o.Version, true
 }
 
 // HasVersion returns a boolean if a field has been set.
 func (o *ChartSpec) HasVersion() bool {
-	if o != nil && o.Version.IsSet() {
+	if o != nil && !IsNil(o.Version) {
 		return true
 	}
 
 	return false
 }
 
-// SetVersion gets a reference to the given NullableString and assigns it to the Version field.
+// SetVersion gets a reference to the given string and assigns it to the Version field.
 func (o *ChartSpec) SetVersion(v string) {
-	o.Version.Set(&v)
-}
-// SetVersionNil sets the value for Version to be an explicit nil
-func (o *ChartSpec) SetVersionNil() {
-	o.Version.Set(nil)
-}
-
-// UnsetVersion ensures that no value is present for Version, not even an explicit nil
-func (o *ChartSpec) UnsetVersion() {
-	o.Version.Unset()
+	o.Version = &v
 }
 
 // GetSourceRef returns the SourceRef field value if set, zero value otherwise.
@@ -159,46 +139,36 @@ func (o *ChartSpec) SetSourceRef(v SourceRef) {
 	o.SourceRef = &v
 }
 
-// GetInterval returns the Interval field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetInterval returns the Interval field value if set, zero value otherwise.
 func (o *ChartSpec) GetInterval() string {
-	if o == nil || IsNil(o.Interval.Get()) {
+	if o == nil || IsNil(o.Interval) {
 		var ret string
 		return ret
 	}
-	return *o.Interval.Get()
+	return *o.Interval
 }
 
 // GetIntervalOk returns a tuple with the Interval field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ChartSpec) GetIntervalOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Interval) {
 		return nil, false
 	}
-	return o.Interval.Get(), o.Interval.IsSet()
+	return o.Interval, true
 }
 
 // HasInterval returns a boolean if a field has been set.
 func (o *ChartSpec) HasInterval() bool {
-	if o != nil && o.Interval.IsSet() {
+	if o != nil && !IsNil(o.Interval) {
 		return true
 	}
 
 	return false
 }
 
-// SetInterval gets a reference to the given NullableString and assigns it to the Interval field.
+// SetInterval gets a reference to the given string and assigns it to the Interval field.
 func (o *ChartSpec) SetInterval(v string) {
-	o.Interval.Set(&v)
-}
-// SetIntervalNil sets the value for Interval to be an explicit nil
-func (o *ChartSpec) SetIntervalNil() {
-	o.Interval.Set(nil)
-}
-
-// UnsetInterval ensures that no value is present for Interval, not even an explicit nil
-func (o *ChartSpec) UnsetInterval() {
-	o.Interval.Unset()
+	o.Interval = &v
 }
 
 func (o ChartSpec) MarshalJSON() ([]byte, error) {
@@ -211,17 +181,17 @@ func (o ChartSpec) MarshalJSON() ([]byte, error) {
 
 func (o ChartSpec) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Chart.IsSet() {
-		toSerialize["chart"] = o.Chart.Get()
+	if !IsNil(o.Chart) {
+		toSerialize["chart"] = o.Chart
 	}
-	if o.Version.IsSet() {
-		toSerialize["version"] = o.Version.Get()
+	if !IsNil(o.Version) {
+		toSerialize["version"] = o.Version
 	}
 	if !IsNil(o.SourceRef) {
 		toSerialize["sourceRef"] = o.SourceRef
 	}
-	if o.Interval.IsSet() {
-		toSerialize["interval"] = o.Interval.Get()
+	if !IsNil(o.Interval) {
+		toSerialize["interval"] = o.Interval
 	}
 	return toSerialize, nil
 }

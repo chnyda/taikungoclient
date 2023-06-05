@@ -4,17 +4,17 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**PredefinedqueriesCreate**](PreDefinedQueriesApi.md#PredefinedqueriesCreate) | **Post** /api/v1/predefinedqueries/prometheus/dashboard/create | Create prometheus dashboard pre defined query
-[**PredefinedqueriesDelete**](PreDefinedQueriesApi.md#PredefinedqueriesDelete) | **Delete** /api/v1/predefinedqueries/prometheus/dashboard/delete/{id} | Delete prometheus dashboard pre defined query
-[**PredefinedqueriesList**](PreDefinedQueriesApi.md#PredefinedqueriesList) | **Get** /api/v1/predefinedqueries/prometheus/dashboard/list/{projectId} | Get list of pre defined organization prometheus dashboard elements
-[**PredefinedqueriesPrometheusDashboardCommon**](PreDefinedQueriesApi.md#PredefinedqueriesPrometheusDashboardCommon) | **Get** /api/v1/predefinedqueries/prometheus/dashboard/common/{projectId} | et list of pre defined common prometheus dashboard elements
-[**PredefinedqueriesUpdate**](PreDefinedQueriesApi.md#PredefinedqueriesUpdate) | **Post** /api/v1/predefinedqueries/prometheus/dashboard/update | Update prometheus dashboard pre defined query
+[**PreDefinedQueriesCreatePrometheusDashboard**](PreDefinedQueriesApi.md#PreDefinedQueriesCreatePrometheusDashboard) | **Post** /api/v{v}/PreDefinedQueries/prometheus/dashboard/create | Create prometheus dashboard pre defined query
+[**PreDefinedQueriesDeletePrometheusDashboard**](PreDefinedQueriesApi.md#PreDefinedQueriesDeletePrometheusDashboard) | **Delete** /api/v{v}/PreDefinedQueries/prometheus/dashboard/delete/{id} | Delete prometheus dashboard pre defined query
+[**PreDefinedQueriesGetPrometheusCommonDashboardList**](PreDefinedQueriesApi.md#PreDefinedQueriesGetPrometheusCommonDashboardList) | **Get** /api/v{v}/PreDefinedQueries/prometheus/dashboard/common/{projectId} | Get list of pre defined common prometheus dashboard elements
+[**PreDefinedQueriesGetPrometheusDashboardList**](PreDefinedQueriesApi.md#PreDefinedQueriesGetPrometheusDashboardList) | **Get** /api/v{v}/PreDefinedQueries/prometheus/dashboard/list/{projectId} | Get list of pre defined organization prometheus dashboard elements
+[**PreDefinedQueriesUpdatePrometheusDashboard**](PreDefinedQueriesApi.md#PreDefinedQueriesUpdatePrometheusDashboard) | **Post** /api/v{v}/PreDefinedQueries/prometheus/dashboard/update | Update prometheus dashboard pre defined query
 
 
 
-## PredefinedqueriesCreate
+## PreDefinedQueriesCreatePrometheusDashboard
 
-> PredefinedqueriesCreate(ctx).PrometheusDashboardCreateCommand(prometheusDashboardCreateCommand).Execute()
+> PreDefinedQueriesCreatePrometheusDashboard(ctx, v).Body(body).Execute()
 
 Create prometheus dashboard pre defined query
 
@@ -31,13 +31,14 @@ import (
 )
 
 func main() {
-    prometheusDashboardCreateCommand := *openapiclient.NewPrometheusDashboardCreateCommand("Name_example", "Expression_example", "Description_example", "CategoryName_example") // PrometheusDashboardCreateCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewPrometheusDashboardCreateCommand("Name_example", "Expression_example", "Description_example", "CategoryName_example") // PrometheusDashboardCreateCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.PreDefinedQueriesApi.PredefinedqueriesCreate(context.Background()).PrometheusDashboardCreateCommand(prometheusDashboardCreateCommand).Execute()
+    r, err := apiClient.PreDefinedQueriesApi.PreDefinedQueriesCreatePrometheusDashboard(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PreDefinedQueriesApi.PredefinedqueriesCreate``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `PreDefinedQueriesApi.PreDefinedQueriesCreatePrometheusDashboard``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -46,15 +47,20 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPredefinedqueriesCreateRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiPreDefinedQueriesCreatePrometheusDashboardRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **prometheusDashboardCreateCommand** | [**PrometheusDashboardCreateCommand**](PrometheusDashboardCreateCommand.md) |  | 
+
+ **body** | [**PrometheusDashboardCreateCommand**](PrometheusDashboardCreateCommand.md) |  | 
 
 ### Return type
 
@@ -66,17 +72,17 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## PredefinedqueriesDelete
+## PreDefinedQueriesDeletePrometheusDashboard
 
-> PredefinedqueriesDelete(ctx, id).Execute()
+> PreDefinedQueriesDeletePrometheusDashboard(ctx, id, v).Execute()
 
 Delete prometheus dashboard pre defined query
 
@@ -94,12 +100,13 @@ import (
 
 func main() {
     id := int32(56) // int32 | 
+    v := "v_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.PreDefinedQueriesApi.PredefinedqueriesDelete(context.Background(), id).Execute()
+    r, err := apiClient.PreDefinedQueriesApi.PreDefinedQueriesDeletePrometheusDashboard(context.Background(), id, v).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PreDefinedQueriesApi.PredefinedqueriesDelete``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `PreDefinedQueriesApi.PreDefinedQueriesDeletePrometheusDashboard``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -112,14 +119,16 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **id** | **int32** |  | 
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPredefinedqueriesDeleteRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiPreDefinedQueriesDeletePrometheusDashboardRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
 
 
 ### Return type
@@ -133,16 +142,87 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## PredefinedqueriesList
+## PreDefinedQueriesGetPrometheusCommonDashboardList
 
-> []PrometheusDashboardListDto PredefinedqueriesList(ctx, projectId).Execute()
+> []PrometheusDashboardListDto PreDefinedQueriesGetPrometheusCommonDashboardList(ctx, projectId, v).Execute()
+
+Get list of pre defined common prometheus dashboard elements
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/chnyda/taikungoclient"
+)
+
+func main() {
+    projectId := int32(56) // int32 | 
+    v := "v_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.PreDefinedQueriesApi.PreDefinedQueriesGetPrometheusCommonDashboardList(context.Background(), projectId, v).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `PreDefinedQueriesApi.PreDefinedQueriesGetPrometheusCommonDashboardList``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `PreDefinedQueriesGetPrometheusCommonDashboardList`: []PrometheusDashboardListDto
+    fmt.Fprintf(os.Stdout, "Response from `PreDefinedQueriesApi.PreDefinedQueriesGetPrometheusCommonDashboardList`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**projectId** | **int32** |  | 
+**v** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPreDefinedQueriesGetPrometheusCommonDashboardListRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+[**[]PrometheusDashboardListDto**](PrometheusDashboardListDto.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: text/plain, application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## PreDefinedQueriesGetPrometheusDashboardList
+
+> []PrometheusDashboardListDto PreDefinedQueriesGetPrometheusDashboardList(ctx, projectId, v).Execute()
 
 Get list of pre defined organization prometheus dashboard elements
 
@@ -160,16 +240,17 @@ import (
 
 func main() {
     projectId := int32(56) // int32 | 
+    v := "v_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PreDefinedQueriesApi.PredefinedqueriesList(context.Background(), projectId).Execute()
+    resp, r, err := apiClient.PreDefinedQueriesApi.PreDefinedQueriesGetPrometheusDashboardList(context.Background(), projectId, v).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PreDefinedQueriesApi.PredefinedqueriesList``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `PreDefinedQueriesApi.PreDefinedQueriesGetPrometheusDashboardList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `PredefinedqueriesList`: []PrometheusDashboardListDto
-    fmt.Fprintf(os.Stdout, "Response from `PreDefinedQueriesApi.PredefinedqueriesList`: %v\n", resp)
+    // response from `PreDefinedQueriesGetPrometheusDashboardList`: []PrometheusDashboardListDto
+    fmt.Fprintf(os.Stdout, "Response from `PreDefinedQueriesApi.PreDefinedQueriesGetPrometheusDashboardList`: %v\n", resp)
 }
 ```
 
@@ -180,14 +261,16 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **projectId** | **int32** |  | 
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPredefinedqueriesListRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiPreDefinedQueriesGetPrometheusDashboardListRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
 
 
 ### Return type
@@ -201,84 +284,16 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## PredefinedqueriesPrometheusDashboardCommon
+## PreDefinedQueriesUpdatePrometheusDashboard
 
-> []PrometheusDashboardListDto PredefinedqueriesPrometheusDashboardCommon(ctx, projectId).Execute()
-
-et list of pre defined common prometheus dashboard elements
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/chnyda/taikungoclient"
-)
-
-func main() {
-    projectId := int32(56) // int32 | 
-
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PreDefinedQueriesApi.PredefinedqueriesPrometheusDashboardCommon(context.Background(), projectId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PreDefinedQueriesApi.PredefinedqueriesPrometheusDashboardCommon``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PredefinedqueriesPrometheusDashboardCommon`: []PrometheusDashboardListDto
-    fmt.Fprintf(os.Stdout, "Response from `PreDefinedQueriesApi.PredefinedqueriesPrometheusDashboardCommon`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**projectId** | **int32** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiPredefinedqueriesPrometheusDashboardCommonRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
-### Return type
-
-[**[]PrometheusDashboardListDto**](PrometheusDashboardListDto.md)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## PredefinedqueriesUpdate
-
-> PredefinedqueriesUpdate(ctx).PrometheusDashboardUpdateCommand(prometheusDashboardUpdateCommand).Execute()
+> PreDefinedQueriesUpdatePrometheusDashboard(ctx, v).Body(body).Execute()
 
 Update prometheus dashboard pre defined query
 
@@ -295,13 +310,14 @@ import (
 )
 
 func main() {
-    prometheusDashboardUpdateCommand := *openapiclient.NewPrometheusDashboardUpdateCommand(int32(123), "Name_example", "Expression_example", "Description_example", "CategoryName_example") // PrometheusDashboardUpdateCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewPrometheusDashboardUpdateCommand(int32(123), "Name_example", "Expression_example", "Description_example", "CategoryName_example") // PrometheusDashboardUpdateCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.PreDefinedQueriesApi.PredefinedqueriesUpdate(context.Background()).PrometheusDashboardUpdateCommand(prometheusDashboardUpdateCommand).Execute()
+    r, err := apiClient.PreDefinedQueriesApi.PreDefinedQueriesUpdatePrometheusDashboard(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PreDefinedQueriesApi.PredefinedqueriesUpdate``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `PreDefinedQueriesApi.PreDefinedQueriesUpdatePrometheusDashboard``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -310,15 +326,20 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPredefinedqueriesUpdateRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiPreDefinedQueriesUpdatePrometheusDashboardRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **prometheusDashboardUpdateCommand** | [**PrometheusDashboardUpdateCommand**](PrometheusDashboardUpdateCommand.md) |  | 
+
+ **body** | [**PrometheusDashboardUpdateCommand**](PrometheusDashboardUpdateCommand.md) |  | 
 
 ### Return type
 
@@ -330,8 +351,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

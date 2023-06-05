@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**LegalName** | Pointer to **NullableString** |  | [optional] 
-**BillingEmail** | Pointer to **NullableString** |  | [optional] 
+**LegalName** | Pointer to **string** |  | [optional] 
+**BillingEmail** | Pointer to **string** |  | [optional] 
 **Country** | **string** |  | 
-**Address** | Pointer to **NullableString** |  | [optional] 
-**City** | Pointer to **NullableString** |  | [optional] 
-**VatNumber** | Pointer to **NullableString** |  | [optional] 
+**Address** | Pointer to **string** |  | [optional] 
+**City** | Pointer to **string** |  | [optional] 
+**VatNumber** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -55,16 +55,6 @@ SetLegalName sets LegalName field to given value.
 
 HasLegalName returns a boolean if a field has been set.
 
-### SetLegalNameNil
-
-`func (o *CreateStripeCustomerCommand) SetLegalNameNil(b bool)`
-
- SetLegalNameNil sets the value for LegalName to be an explicit nil
-
-### UnsetLegalName
-`func (o *CreateStripeCustomerCommand) UnsetLegalName()`
-
-UnsetLegalName ensures that no value is present for LegalName, not even an explicit nil
 ### GetBillingEmail
 
 `func (o *CreateStripeCustomerCommand) GetBillingEmail() string`
@@ -90,16 +80,6 @@ SetBillingEmail sets BillingEmail field to given value.
 
 HasBillingEmail returns a boolean if a field has been set.
 
-### SetBillingEmailNil
-
-`func (o *CreateStripeCustomerCommand) SetBillingEmailNil(b bool)`
-
- SetBillingEmailNil sets the value for BillingEmail to be an explicit nil
-
-### UnsetBillingEmail
-`func (o *CreateStripeCustomerCommand) UnsetBillingEmail()`
-
-UnsetBillingEmail ensures that no value is present for BillingEmail, not even an explicit nil
 ### GetCountry
 
 `func (o *CreateStripeCustomerCommand) GetCountry() string`
@@ -145,16 +125,6 @@ SetAddress sets Address field to given value.
 
 HasAddress returns a boolean if a field has been set.
 
-### SetAddressNil
-
-`func (o *CreateStripeCustomerCommand) SetAddressNil(b bool)`
-
- SetAddressNil sets the value for Address to be an explicit nil
-
-### UnsetAddress
-`func (o *CreateStripeCustomerCommand) UnsetAddress()`
-
-UnsetAddress ensures that no value is present for Address, not even an explicit nil
 ### GetCity
 
 `func (o *CreateStripeCustomerCommand) GetCity() string`
@@ -180,16 +150,6 @@ SetCity sets City field to given value.
 
 HasCity returns a boolean if a field has been set.
 
-### SetCityNil
-
-`func (o *CreateStripeCustomerCommand) SetCityNil(b bool)`
-
- SetCityNil sets the value for City to be an explicit nil
-
-### UnsetCity
-`func (o *CreateStripeCustomerCommand) UnsetCity()`
-
-UnsetCity ensures that no value is present for City, not even an explicit nil
 ### GetVatNumber
 
 `func (o *CreateStripeCustomerCommand) GetVatNumber() string`
@@ -215,16 +175,6 @@ SetVatNumber sets VatNumber field to given value.
 
 HasVatNumber returns a boolean if a field has been set.
 
-### SetVatNumberNil
-
-`func (o *CreateStripeCustomerCommand) SetVatNumberNil(b bool)`
-
- SetVatNumberNil sets the value for VatNumber to be an explicit nil
-
-### UnsetVatNumber
-`func (o *CreateStripeCustomerCommand) UnsetVatNumber()`
-
-UnsetVatNumber ensures that no value is present for VatNumber, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

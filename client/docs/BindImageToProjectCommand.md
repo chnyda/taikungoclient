@@ -76,16 +76,6 @@ SetImages sets Images field to given value.
 
 HasImages returns a boolean if a field has been set.
 
-### SetImagesNil
-
-`func (o *BindImageToProjectCommand) SetImagesNil(b bool)`
-
- SetImagesNil sets the value for Images to be an explicit nil
-
-### UnsetImages
-`func (o *BindImageToProjectCommand) UnsetImages()`
-
-UnsetImages ensures that no value is present for Images, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

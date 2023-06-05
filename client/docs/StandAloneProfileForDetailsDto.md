@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
-**PublicKey** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**PublicKey** | Pointer to **string** |  | [optional] 
 **SecurityGroups** | Pointer to [**[]StandAloneProfileSecurityGroupForDetailsDto**](StandAloneProfileSecurityGroupForDetailsDto.md) |  | [optional] 
 
 ## Methods
@@ -78,16 +78,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *StandAloneProfileForDetailsDto) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *StandAloneProfileForDetailsDto) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetPublicKey
 
 `func (o *StandAloneProfileForDetailsDto) GetPublicKey() string`
@@ -113,16 +103,6 @@ SetPublicKey sets PublicKey field to given value.
 
 HasPublicKey returns a boolean if a field has been set.
 
-### SetPublicKeyNil
-
-`func (o *StandAloneProfileForDetailsDto) SetPublicKeyNil(b bool)`
-
- SetPublicKeyNil sets the value for PublicKey to be an explicit nil
-
-### UnsetPublicKey
-`func (o *StandAloneProfileForDetailsDto) UnsetPublicKey()`
-
-UnsetPublicKey ensures that no value is present for PublicKey, not even an explicit nil
 ### GetSecurityGroups
 
 `func (o *StandAloneProfileForDetailsDto) GetSecurityGroups() []StandAloneProfileSecurityGroupForDetailsDto`
@@ -148,16 +128,6 @@ SetSecurityGroups sets SecurityGroups field to given value.
 
 HasSecurityGroups returns a boolean if a field has been set.
 
-### SetSecurityGroupsNil
-
-`func (o *StandAloneProfileForDetailsDto) SetSecurityGroupsNil(b bool)`
-
- SetSecurityGroupsNil sets the value for SecurityGroups to be an explicit nil
-
-### UnsetSecurityGroups
-`func (o *StandAloneProfileForDetailsDto) UnsetSecurityGroups()`
-
-UnsetSecurityGroups ensures that no value is present for SecurityGroups, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

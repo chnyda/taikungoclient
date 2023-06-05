@@ -20,9 +20,9 @@ var _ MappedNullable = &ProjectRevisionUpdateDto{}
 
 // ProjectRevisionUpdateDto struct for ProjectRevisionUpdateDto
 type ProjectRevisionUpdateDto struct {
-	CloudCredentialRevision NullableInt32 `json:"cloudCredentialRevision,omitempty"`
-	OpaProfileRevision NullableInt32 `json:"opaProfileRevision,omitempty"`
-	AccessProfileRevision NullableInt32 `json:"accessProfileRevision,omitempty"`
+	CloudCredentialRevision *int32 `json:"cloudCredentialRevision,omitempty"`
+	OpaProfileRevision *int32 `json:"opaProfileRevision,omitempty"`
+	AccessProfileRevision *int32 `json:"accessProfileRevision,omitempty"`
 }
 
 // NewProjectRevisionUpdateDto instantiates a new ProjectRevisionUpdateDto object
@@ -42,130 +42,100 @@ func NewProjectRevisionUpdateDtoWithDefaults() *ProjectRevisionUpdateDto {
 	return &this
 }
 
-// GetCloudCredentialRevision returns the CloudCredentialRevision field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetCloudCredentialRevision returns the CloudCredentialRevision field value if set, zero value otherwise.
 func (o *ProjectRevisionUpdateDto) GetCloudCredentialRevision() int32 {
-	if o == nil || IsNil(o.CloudCredentialRevision.Get()) {
+	if o == nil || IsNil(o.CloudCredentialRevision) {
 		var ret int32
 		return ret
 	}
-	return *o.CloudCredentialRevision.Get()
+	return *o.CloudCredentialRevision
 }
 
 // GetCloudCredentialRevisionOk returns a tuple with the CloudCredentialRevision field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProjectRevisionUpdateDto) GetCloudCredentialRevisionOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CloudCredentialRevision) {
 		return nil, false
 	}
-	return o.CloudCredentialRevision.Get(), o.CloudCredentialRevision.IsSet()
+	return o.CloudCredentialRevision, true
 }
 
 // HasCloudCredentialRevision returns a boolean if a field has been set.
 func (o *ProjectRevisionUpdateDto) HasCloudCredentialRevision() bool {
-	if o != nil && o.CloudCredentialRevision.IsSet() {
+	if o != nil && !IsNil(o.CloudCredentialRevision) {
 		return true
 	}
 
 	return false
 }
 
-// SetCloudCredentialRevision gets a reference to the given NullableInt32 and assigns it to the CloudCredentialRevision field.
+// SetCloudCredentialRevision gets a reference to the given int32 and assigns it to the CloudCredentialRevision field.
 func (o *ProjectRevisionUpdateDto) SetCloudCredentialRevision(v int32) {
-	o.CloudCredentialRevision.Set(&v)
-}
-// SetCloudCredentialRevisionNil sets the value for CloudCredentialRevision to be an explicit nil
-func (o *ProjectRevisionUpdateDto) SetCloudCredentialRevisionNil() {
-	o.CloudCredentialRevision.Set(nil)
+	o.CloudCredentialRevision = &v
 }
 
-// UnsetCloudCredentialRevision ensures that no value is present for CloudCredentialRevision, not even an explicit nil
-func (o *ProjectRevisionUpdateDto) UnsetCloudCredentialRevision() {
-	o.CloudCredentialRevision.Unset()
-}
-
-// GetOpaProfileRevision returns the OpaProfileRevision field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetOpaProfileRevision returns the OpaProfileRevision field value if set, zero value otherwise.
 func (o *ProjectRevisionUpdateDto) GetOpaProfileRevision() int32 {
-	if o == nil || IsNil(o.OpaProfileRevision.Get()) {
+	if o == nil || IsNil(o.OpaProfileRevision) {
 		var ret int32
 		return ret
 	}
-	return *o.OpaProfileRevision.Get()
+	return *o.OpaProfileRevision
 }
 
 // GetOpaProfileRevisionOk returns a tuple with the OpaProfileRevision field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProjectRevisionUpdateDto) GetOpaProfileRevisionOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.OpaProfileRevision) {
 		return nil, false
 	}
-	return o.OpaProfileRevision.Get(), o.OpaProfileRevision.IsSet()
+	return o.OpaProfileRevision, true
 }
 
 // HasOpaProfileRevision returns a boolean if a field has been set.
 func (o *ProjectRevisionUpdateDto) HasOpaProfileRevision() bool {
-	if o != nil && o.OpaProfileRevision.IsSet() {
+	if o != nil && !IsNil(o.OpaProfileRevision) {
 		return true
 	}
 
 	return false
 }
 
-// SetOpaProfileRevision gets a reference to the given NullableInt32 and assigns it to the OpaProfileRevision field.
+// SetOpaProfileRevision gets a reference to the given int32 and assigns it to the OpaProfileRevision field.
 func (o *ProjectRevisionUpdateDto) SetOpaProfileRevision(v int32) {
-	o.OpaProfileRevision.Set(&v)
-}
-// SetOpaProfileRevisionNil sets the value for OpaProfileRevision to be an explicit nil
-func (o *ProjectRevisionUpdateDto) SetOpaProfileRevisionNil() {
-	o.OpaProfileRevision.Set(nil)
+	o.OpaProfileRevision = &v
 }
 
-// UnsetOpaProfileRevision ensures that no value is present for OpaProfileRevision, not even an explicit nil
-func (o *ProjectRevisionUpdateDto) UnsetOpaProfileRevision() {
-	o.OpaProfileRevision.Unset()
-}
-
-// GetAccessProfileRevision returns the AccessProfileRevision field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetAccessProfileRevision returns the AccessProfileRevision field value if set, zero value otherwise.
 func (o *ProjectRevisionUpdateDto) GetAccessProfileRevision() int32 {
-	if o == nil || IsNil(o.AccessProfileRevision.Get()) {
+	if o == nil || IsNil(o.AccessProfileRevision) {
 		var ret int32
 		return ret
 	}
-	return *o.AccessProfileRevision.Get()
+	return *o.AccessProfileRevision
 }
 
 // GetAccessProfileRevisionOk returns a tuple with the AccessProfileRevision field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProjectRevisionUpdateDto) GetAccessProfileRevisionOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.AccessProfileRevision) {
 		return nil, false
 	}
-	return o.AccessProfileRevision.Get(), o.AccessProfileRevision.IsSet()
+	return o.AccessProfileRevision, true
 }
 
 // HasAccessProfileRevision returns a boolean if a field has been set.
 func (o *ProjectRevisionUpdateDto) HasAccessProfileRevision() bool {
-	if o != nil && o.AccessProfileRevision.IsSet() {
+	if o != nil && !IsNil(o.AccessProfileRevision) {
 		return true
 	}
 
 	return false
 }
 
-// SetAccessProfileRevision gets a reference to the given NullableInt32 and assigns it to the AccessProfileRevision field.
+// SetAccessProfileRevision gets a reference to the given int32 and assigns it to the AccessProfileRevision field.
 func (o *ProjectRevisionUpdateDto) SetAccessProfileRevision(v int32) {
-	o.AccessProfileRevision.Set(&v)
-}
-// SetAccessProfileRevisionNil sets the value for AccessProfileRevision to be an explicit nil
-func (o *ProjectRevisionUpdateDto) SetAccessProfileRevisionNil() {
-	o.AccessProfileRevision.Set(nil)
-}
-
-// UnsetAccessProfileRevision ensures that no value is present for AccessProfileRevision, not even an explicit nil
-func (o *ProjectRevisionUpdateDto) UnsetAccessProfileRevision() {
-	o.AccessProfileRevision.Unset()
+	o.AccessProfileRevision = &v
 }
 
 func (o ProjectRevisionUpdateDto) MarshalJSON() ([]byte, error) {
@@ -178,14 +148,14 @@ func (o ProjectRevisionUpdateDto) MarshalJSON() ([]byte, error) {
 
 func (o ProjectRevisionUpdateDto) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.CloudCredentialRevision.IsSet() {
-		toSerialize["cloudCredentialRevision"] = o.CloudCredentialRevision.Get()
+	if !IsNil(o.CloudCredentialRevision) {
+		toSerialize["cloudCredentialRevision"] = o.CloudCredentialRevision
 	}
-	if o.OpaProfileRevision.IsSet() {
-		toSerialize["opaProfileRevision"] = o.OpaProfileRevision.Get()
+	if !IsNil(o.OpaProfileRevision) {
+		toSerialize["opaProfileRevision"] = o.OpaProfileRevision
 	}
-	if o.AccessProfileRevision.IsSet() {
-		toSerialize["accessProfileRevision"] = o.AccessProfileRevision.Get()
+	if !IsNil(o.AccessProfileRevision) {
+		toSerialize["accessProfileRevision"] = o.AccessProfileRevision
 	}
 	return toSerialize, nil
 }

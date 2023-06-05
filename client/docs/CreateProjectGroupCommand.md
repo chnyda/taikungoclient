@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** |  | 
-**OrganizationId** | Pointer to **NullableInt32** |  | [optional] 
+**OrganizationId** | Pointer to **int32** |  | [optional] 
 **ProjectIds** | Pointer to **[]int32** |  | [optional] 
 
 ## Methods
@@ -72,16 +72,6 @@ SetOrganizationId sets OrganizationId field to given value.
 
 HasOrganizationId returns a boolean if a field has been set.
 
-### SetOrganizationIdNil
-
-`func (o *CreateProjectGroupCommand) SetOrganizationIdNil(b bool)`
-
- SetOrganizationIdNil sets the value for OrganizationId to be an explicit nil
-
-### UnsetOrganizationId
-`func (o *CreateProjectGroupCommand) UnsetOrganizationId()`
-
-UnsetOrganizationId ensures that no value is present for OrganizationId, not even an explicit nil
 ### GetProjectIds
 
 `func (o *CreateProjectGroupCommand) GetProjectIds() []int32`
@@ -107,16 +97,6 @@ SetProjectIds sets ProjectIds field to given value.
 
 HasProjectIds returns a boolean if a field has been set.
 
-### SetProjectIdsNil
-
-`func (o *CreateProjectGroupCommand) SetProjectIdsNil(b bool)`
-
- SetProjectIdsNil sets the value for ProjectIds to be an explicit nil
-
-### UnsetProjectIds
-`func (o *CreateProjectGroupCommand) UnsetProjectIds()`
-
-UnsetProjectIds ensures that no value is present for ProjectIds, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

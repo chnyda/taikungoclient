@@ -42,9 +42,9 @@ func NewBindOrganizationsCommandWithDefaults() *BindOrganizationsCommand {
 	return &this
 }
 
-// GetOrganizations returns the Organizations field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetOrganizations returns the Organizations field value if set, zero value otherwise.
 func (o *BindOrganizationsCommand) GetOrganizations() []OrganizationDto {
-	if o == nil {
+	if o == nil || IsNil(o.Organizations) {
 		var ret []OrganizationDto
 		return ret
 	}
@@ -53,7 +53,6 @@ func (o *BindOrganizationsCommand) GetOrganizations() []OrganizationDto {
 
 // GetOrganizationsOk returns a tuple with the Organizations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *BindOrganizationsCommand) GetOrganizationsOk() ([]OrganizationDto, bool) {
 	if o == nil || IsNil(o.Organizations) {
 		return nil, false
@@ -63,7 +62,7 @@ func (o *BindOrganizationsCommand) GetOrganizationsOk() ([]OrganizationDto, bool
 
 // HasOrganizations returns a boolean if a field has been set.
 func (o *BindOrganizationsCommand) HasOrganizations() bool {
-	if o != nil && IsNil(o.Organizations) {
+	if o != nil && !IsNil(o.Organizations) {
 		return true
 	}
 
@@ -109,7 +108,7 @@ func (o BindOrganizationsCommand) MarshalJSON() ([]byte, error) {
 
 func (o BindOrganizationsCommand) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Organizations != nil {
+	if !IsNil(o.Organizations) {
 		toSerialize["organizations"] = o.Organizations
 	}
 	toSerialize["partnerId"] = o.PartnerId

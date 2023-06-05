@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Url** | Pointer to **NullableString** |  | [optional] 
-**Username** | Pointer to **NullableString** |  | [optional] 
-**Password** | Pointer to **NullableString** |  | [optional] 
-**CloudId** | Pointer to **NullableInt32** |  | [optional] 
+**Url** | Pointer to **string** |  | [optional] 
+**TokenId** | Pointer to **string** |  | [optional] 
+**TokenSecret** | Pointer to **string** |  | [optional] 
+**CloudId** | Pointer to **int32** |  | [optional] 
 
 ## Methods
 
@@ -53,86 +53,56 @@ SetUrl sets Url field to given value.
 
 HasUrl returns a boolean if a field has been set.
 
-### SetUrlNil
+### GetTokenId
 
-`func (o *HypervisorListCommand) SetUrlNil(b bool)`
+`func (o *HypervisorListCommand) GetTokenId() string`
 
- SetUrlNil sets the value for Url to be an explicit nil
+GetTokenId returns the TokenId field if non-nil, zero value otherwise.
 
-### UnsetUrl
-`func (o *HypervisorListCommand) UnsetUrl()`
+### GetTokenIdOk
 
-UnsetUrl ensures that no value is present for Url, not even an explicit nil
-### GetUsername
+`func (o *HypervisorListCommand) GetTokenIdOk() (*string, bool)`
 
-`func (o *HypervisorListCommand) GetUsername() string`
-
-GetUsername returns the Username field if non-nil, zero value otherwise.
-
-### GetUsernameOk
-
-`func (o *HypervisorListCommand) GetUsernameOk() (*string, bool)`
-
-GetUsernameOk returns a tuple with the Username field if it's non-nil, zero value otherwise
+GetTokenIdOk returns a tuple with the TokenId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetUsername
+### SetTokenId
 
-`func (o *HypervisorListCommand) SetUsername(v string)`
+`func (o *HypervisorListCommand) SetTokenId(v string)`
 
-SetUsername sets Username field to given value.
+SetTokenId sets TokenId field to given value.
 
-### HasUsername
+### HasTokenId
 
-`func (o *HypervisorListCommand) HasUsername() bool`
+`func (o *HypervisorListCommand) HasTokenId() bool`
 
-HasUsername returns a boolean if a field has been set.
+HasTokenId returns a boolean if a field has been set.
 
-### SetUsernameNil
+### GetTokenSecret
 
-`func (o *HypervisorListCommand) SetUsernameNil(b bool)`
+`func (o *HypervisorListCommand) GetTokenSecret() string`
 
- SetUsernameNil sets the value for Username to be an explicit nil
+GetTokenSecret returns the TokenSecret field if non-nil, zero value otherwise.
 
-### UnsetUsername
-`func (o *HypervisorListCommand) UnsetUsername()`
+### GetTokenSecretOk
 
-UnsetUsername ensures that no value is present for Username, not even an explicit nil
-### GetPassword
+`func (o *HypervisorListCommand) GetTokenSecretOk() (*string, bool)`
 
-`func (o *HypervisorListCommand) GetPassword() string`
-
-GetPassword returns the Password field if non-nil, zero value otherwise.
-
-### GetPasswordOk
-
-`func (o *HypervisorListCommand) GetPasswordOk() (*string, bool)`
-
-GetPasswordOk returns a tuple with the Password field if it's non-nil, zero value otherwise
+GetTokenSecretOk returns a tuple with the TokenSecret field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetPassword
+### SetTokenSecret
 
-`func (o *HypervisorListCommand) SetPassword(v string)`
+`func (o *HypervisorListCommand) SetTokenSecret(v string)`
 
-SetPassword sets Password field to given value.
+SetTokenSecret sets TokenSecret field to given value.
 
-### HasPassword
+### HasTokenSecret
 
-`func (o *HypervisorListCommand) HasPassword() bool`
+`func (o *HypervisorListCommand) HasTokenSecret() bool`
 
-HasPassword returns a boolean if a field has been set.
+HasTokenSecret returns a boolean if a field has been set.
 
-### SetPasswordNil
-
-`func (o *HypervisorListCommand) SetPasswordNil(b bool)`
-
- SetPasswordNil sets the value for Password to be an explicit nil
-
-### UnsetPassword
-`func (o *HypervisorListCommand) UnsetPassword()`
-
-UnsetPassword ensures that no value is present for Password, not even an explicit nil
 ### GetCloudId
 
 `func (o *HypervisorListCommand) GetCloudId() int32`
@@ -158,16 +128,6 @@ SetCloudId sets CloudId field to given value.
 
 HasCloudId returns a boolean if a field has been set.
 
-### SetCloudIdNil
-
-`func (o *HypervisorListCommand) SetCloudIdNil(b bool)`
-
- SetCloudIdNil sets the value for CloudId to be an explicit nil
-
-### UnsetCloudId
-`func (o *HypervisorListCommand) UnsetCloudId()`
-
-UnsetCloudId ensures that no value is present for CloudId, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

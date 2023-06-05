@@ -20,11 +20,11 @@ var _ MappedNullable = &SecurityReportSummary{}
 
 // SecurityReportSummary struct for SecurityReportSummary
 type SecurityReportSummary struct {
-	Low NullableInt64 `json:"low,omitempty"`
-	High NullableInt64 `json:"high,omitempty"`
-	Medium NullableInt64 `json:"medium,omitempty"`
-	Unknown NullableInt64 `json:"unknown,omitempty"`
-	Critical NullableInt64 `json:"critical,omitempty"`
+	Low *int64 `json:"low,omitempty"`
+	High *int64 `json:"high,omitempty"`
+	Medium *int64 `json:"medium,omitempty"`
+	Unknown *int64 `json:"unknown,omitempty"`
+	Critical *int64 `json:"critical,omitempty"`
 }
 
 // NewSecurityReportSummary instantiates a new SecurityReportSummary object
@@ -44,214 +44,164 @@ func NewSecurityReportSummaryWithDefaults() *SecurityReportSummary {
 	return &this
 }
 
-// GetLow returns the Low field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetLow returns the Low field value if set, zero value otherwise.
 func (o *SecurityReportSummary) GetLow() int64 {
-	if o == nil || IsNil(o.Low.Get()) {
+	if o == nil || IsNil(o.Low) {
 		var ret int64
 		return ret
 	}
-	return *o.Low.Get()
+	return *o.Low
 }
 
 // GetLowOk returns a tuple with the Low field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SecurityReportSummary) GetLowOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Low) {
 		return nil, false
 	}
-	return o.Low.Get(), o.Low.IsSet()
+	return o.Low, true
 }
 
 // HasLow returns a boolean if a field has been set.
 func (o *SecurityReportSummary) HasLow() bool {
-	if o != nil && o.Low.IsSet() {
+	if o != nil && !IsNil(o.Low) {
 		return true
 	}
 
 	return false
 }
 
-// SetLow gets a reference to the given NullableInt64 and assigns it to the Low field.
+// SetLow gets a reference to the given int64 and assigns it to the Low field.
 func (o *SecurityReportSummary) SetLow(v int64) {
-	o.Low.Set(&v)
-}
-// SetLowNil sets the value for Low to be an explicit nil
-func (o *SecurityReportSummary) SetLowNil() {
-	o.Low.Set(nil)
+	o.Low = &v
 }
 
-// UnsetLow ensures that no value is present for Low, not even an explicit nil
-func (o *SecurityReportSummary) UnsetLow() {
-	o.Low.Unset()
-}
-
-// GetHigh returns the High field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetHigh returns the High field value if set, zero value otherwise.
 func (o *SecurityReportSummary) GetHigh() int64 {
-	if o == nil || IsNil(o.High.Get()) {
+	if o == nil || IsNil(o.High) {
 		var ret int64
 		return ret
 	}
-	return *o.High.Get()
+	return *o.High
 }
 
 // GetHighOk returns a tuple with the High field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SecurityReportSummary) GetHighOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.High) {
 		return nil, false
 	}
-	return o.High.Get(), o.High.IsSet()
+	return o.High, true
 }
 
 // HasHigh returns a boolean if a field has been set.
 func (o *SecurityReportSummary) HasHigh() bool {
-	if o != nil && o.High.IsSet() {
+	if o != nil && !IsNil(o.High) {
 		return true
 	}
 
 	return false
 }
 
-// SetHigh gets a reference to the given NullableInt64 and assigns it to the High field.
+// SetHigh gets a reference to the given int64 and assigns it to the High field.
 func (o *SecurityReportSummary) SetHigh(v int64) {
-	o.High.Set(&v)
-}
-// SetHighNil sets the value for High to be an explicit nil
-func (o *SecurityReportSummary) SetHighNil() {
-	o.High.Set(nil)
+	o.High = &v
 }
 
-// UnsetHigh ensures that no value is present for High, not even an explicit nil
-func (o *SecurityReportSummary) UnsetHigh() {
-	o.High.Unset()
-}
-
-// GetMedium returns the Medium field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetMedium returns the Medium field value if set, zero value otherwise.
 func (o *SecurityReportSummary) GetMedium() int64 {
-	if o == nil || IsNil(o.Medium.Get()) {
+	if o == nil || IsNil(o.Medium) {
 		var ret int64
 		return ret
 	}
-	return *o.Medium.Get()
+	return *o.Medium
 }
 
 // GetMediumOk returns a tuple with the Medium field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SecurityReportSummary) GetMediumOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Medium) {
 		return nil, false
 	}
-	return o.Medium.Get(), o.Medium.IsSet()
+	return o.Medium, true
 }
 
 // HasMedium returns a boolean if a field has been set.
 func (o *SecurityReportSummary) HasMedium() bool {
-	if o != nil && o.Medium.IsSet() {
+	if o != nil && !IsNil(o.Medium) {
 		return true
 	}
 
 	return false
 }
 
-// SetMedium gets a reference to the given NullableInt64 and assigns it to the Medium field.
+// SetMedium gets a reference to the given int64 and assigns it to the Medium field.
 func (o *SecurityReportSummary) SetMedium(v int64) {
-	o.Medium.Set(&v)
-}
-// SetMediumNil sets the value for Medium to be an explicit nil
-func (o *SecurityReportSummary) SetMediumNil() {
-	o.Medium.Set(nil)
+	o.Medium = &v
 }
 
-// UnsetMedium ensures that no value is present for Medium, not even an explicit nil
-func (o *SecurityReportSummary) UnsetMedium() {
-	o.Medium.Unset()
-}
-
-// GetUnknown returns the Unknown field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetUnknown returns the Unknown field value if set, zero value otherwise.
 func (o *SecurityReportSummary) GetUnknown() int64 {
-	if o == nil || IsNil(o.Unknown.Get()) {
+	if o == nil || IsNil(o.Unknown) {
 		var ret int64
 		return ret
 	}
-	return *o.Unknown.Get()
+	return *o.Unknown
 }
 
 // GetUnknownOk returns a tuple with the Unknown field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SecurityReportSummary) GetUnknownOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Unknown) {
 		return nil, false
 	}
-	return o.Unknown.Get(), o.Unknown.IsSet()
+	return o.Unknown, true
 }
 
 // HasUnknown returns a boolean if a field has been set.
 func (o *SecurityReportSummary) HasUnknown() bool {
-	if o != nil && o.Unknown.IsSet() {
+	if o != nil && !IsNil(o.Unknown) {
 		return true
 	}
 
 	return false
 }
 
-// SetUnknown gets a reference to the given NullableInt64 and assigns it to the Unknown field.
+// SetUnknown gets a reference to the given int64 and assigns it to the Unknown field.
 func (o *SecurityReportSummary) SetUnknown(v int64) {
-	o.Unknown.Set(&v)
-}
-// SetUnknownNil sets the value for Unknown to be an explicit nil
-func (o *SecurityReportSummary) SetUnknownNil() {
-	o.Unknown.Set(nil)
+	o.Unknown = &v
 }
 
-// UnsetUnknown ensures that no value is present for Unknown, not even an explicit nil
-func (o *SecurityReportSummary) UnsetUnknown() {
-	o.Unknown.Unset()
-}
-
-// GetCritical returns the Critical field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetCritical returns the Critical field value if set, zero value otherwise.
 func (o *SecurityReportSummary) GetCritical() int64 {
-	if o == nil || IsNil(o.Critical.Get()) {
+	if o == nil || IsNil(o.Critical) {
 		var ret int64
 		return ret
 	}
-	return *o.Critical.Get()
+	return *o.Critical
 }
 
 // GetCriticalOk returns a tuple with the Critical field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SecurityReportSummary) GetCriticalOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Critical) {
 		return nil, false
 	}
-	return o.Critical.Get(), o.Critical.IsSet()
+	return o.Critical, true
 }
 
 // HasCritical returns a boolean if a field has been set.
 func (o *SecurityReportSummary) HasCritical() bool {
-	if o != nil && o.Critical.IsSet() {
+	if o != nil && !IsNil(o.Critical) {
 		return true
 	}
 
 	return false
 }
 
-// SetCritical gets a reference to the given NullableInt64 and assigns it to the Critical field.
+// SetCritical gets a reference to the given int64 and assigns it to the Critical field.
 func (o *SecurityReportSummary) SetCritical(v int64) {
-	o.Critical.Set(&v)
-}
-// SetCriticalNil sets the value for Critical to be an explicit nil
-func (o *SecurityReportSummary) SetCriticalNil() {
-	o.Critical.Set(nil)
-}
-
-// UnsetCritical ensures that no value is present for Critical, not even an explicit nil
-func (o *SecurityReportSummary) UnsetCritical() {
-	o.Critical.Unset()
+	o.Critical = &v
 }
 
 func (o SecurityReportSummary) MarshalJSON() ([]byte, error) {
@@ -264,20 +214,20 @@ func (o SecurityReportSummary) MarshalJSON() ([]byte, error) {
 
 func (o SecurityReportSummary) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Low.IsSet() {
-		toSerialize["low"] = o.Low.Get()
+	if !IsNil(o.Low) {
+		toSerialize["low"] = o.Low
 	}
-	if o.High.IsSet() {
-		toSerialize["high"] = o.High.Get()
+	if !IsNil(o.High) {
+		toSerialize["high"] = o.High
 	}
-	if o.Medium.IsSet() {
-		toSerialize["medium"] = o.Medium.Get()
+	if !IsNil(o.Medium) {
+		toSerialize["medium"] = o.Medium
 	}
-	if o.Unknown.IsSet() {
-		toSerialize["unknown"] = o.Unknown.Get()
+	if !IsNil(o.Unknown) {
+		toSerialize["unknown"] = o.Unknown
 	}
-	if o.Critical.IsSet() {
-		toSerialize["critical"] = o.Critical.Get()
+	if !IsNil(o.Critical) {
+		toSerialize["critical"] = o.Critical
 	}
 	return toSerialize, nil
 }

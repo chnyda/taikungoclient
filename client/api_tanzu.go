@@ -27,11 +27,12 @@ type TanzuApiService service
 type ApiTanzuCreateRequest struct {
 	ctx context.Context
 	ApiService *TanzuApiService
-	createTanzuCommand *CreateTanzuCommand
+	v string
+	body *CreateTanzuCommand
 }
 
-func (r ApiTanzuCreateRequest) CreateTanzuCommand(createTanzuCommand CreateTanzuCommand) ApiTanzuCreateRequest {
-	r.createTanzuCommand = &createTanzuCommand
+func (r ApiTanzuCreateRequest) Body(body CreateTanzuCommand) ApiTanzuCreateRequest {
+	r.body = &body
 	return r
 }
 
@@ -40,15 +41,17 @@ func (r ApiTanzuCreateRequest) Execute() (*ApiResponse, *http.Response, error) {
 }
 
 /*
-TanzuCreate Create tanzu credentials
+TanzuCreate Add Tanzu credentials
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param v
  @return ApiTanzuCreateRequest
 */
-func (a *TanzuApiService) TanzuCreate(ctx context.Context) ApiTanzuCreateRequest {
+func (a *TanzuApiService) TanzuCreate(ctx context.Context, v string) ApiTanzuCreateRequest {
 	return ApiTanzuCreateRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
@@ -67,17 +70,15 @@ func (a *TanzuApiService) TanzuCreateExecute(r ApiTanzuCreateRequest) (*ApiRespo
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/tanzu/create"
+	localVarPath := localBasePath + "/api/v{v}/Tanzu/create"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createTanzuCommand == nil {
-		return localVarReturnValue, nil, reportError("createTanzuCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -86,7 +87,7 @@ func (a *TanzuApiService) TanzuCreateExecute(r ApiTanzuCreateRequest) (*ApiRespo
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -94,7 +95,7 @@ func (a *TanzuApiService) TanzuCreateExecute(r ApiTanzuCreateRequest) (*ApiRespo
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createTanzuCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -131,17 +132,6 @@ func (a *TanzuApiService) TanzuCreateExecute(r ApiTanzuCreateRequest) (*ApiRespo
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -175,7 +165,7 @@ func (a *TanzuApiService) TanzuCreateExecute(r ApiTanzuCreateRequest) (*ApiRespo
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -204,6 +194,7 @@ type ApiTanzuKubernetesVersionsRequest struct {
 	ctx context.Context
 	ApiService *TanzuApiService
 	cloudId int32
+	v string
 }
 
 func (r ApiTanzuKubernetesVersionsRequest) Execute() ([]string, *http.Response, error) {
@@ -215,13 +206,15 @@ TanzuKubernetesVersions Tanzu available k8s version list
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param cloudId
+ @param v
  @return ApiTanzuKubernetesVersionsRequest
 */
-func (a *TanzuApiService) TanzuKubernetesVersions(ctx context.Context, cloudId int32) ApiTanzuKubernetesVersionsRequest {
+func (a *TanzuApiService) TanzuKubernetesVersions(ctx context.Context, cloudId int32, v string) ApiTanzuKubernetesVersionsRequest {
 	return ApiTanzuKubernetesVersionsRequest{
 		ApiService: a,
 		ctx: ctx,
 		cloudId: cloudId,
+		v: v,
 	}
 }
 
@@ -229,7 +222,7 @@ func (a *TanzuApiService) TanzuKubernetesVersions(ctx context.Context, cloudId i
 //  @return []string
 func (a *TanzuApiService) TanzuKubernetesVersionsExecute(r ApiTanzuKubernetesVersionsRequest) ([]string, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
 		localVarReturnValue  []string
@@ -240,8 +233,9 @@ func (a *TanzuApiService) TanzuKubernetesVersionsExecute(r ApiTanzuKubernetesVer
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/tanzu/kubernetes-versions/{cloudId}"
+	localVarPath := localBasePath + "/api/v{v}/Tanzu/kubernetes-versions/{cloudId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"cloudId"+"}", url.PathEscape(parameterValueToString(r.cloudId, "cloudId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -257,7 +251,7 @@ func (a *TanzuApiService) TanzuKubernetesVersionsExecute(r ApiTanzuKubernetesVer
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -300,17 +294,6 @@ func (a *TanzuApiService) TanzuKubernetesVersionsExecute(r ApiTanzuKubernetesVer
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -344,7 +327,7 @@ func (a *TanzuApiService) TanzuKubernetesVersionsExecute(r ApiTanzuKubernetesVer
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -372,6 +355,7 @@ func (a *TanzuApiService) TanzuKubernetesVersionsExecute(r ApiTanzuKubernetesVer
 type ApiTanzuListRequest struct {
 	ctx context.Context
 	ApiService *TanzuApiService
+	v string
 	limit *int32
 	offset *int32
 	organizationId *int32
@@ -430,12 +414,14 @@ func (r ApiTanzuListRequest) Execute() (*TanzuCredentialsList, *http.Response, e
 TanzuList Retrieve list of tanzu cloud credentials
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param v
  @return ApiTanzuListRequest
 */
-func (a *TanzuApiService) TanzuList(ctx context.Context) ApiTanzuListRequest {
+func (a *TanzuApiService) TanzuList(ctx context.Context, v string) ApiTanzuListRequest {
 	return ApiTanzuListRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
@@ -443,7 +429,7 @@ func (a *TanzuApiService) TanzuList(ctx context.Context) ApiTanzuListRequest {
 //  @return TanzuCredentialsList
 func (a *TanzuApiService) TanzuListExecute(r ApiTanzuListRequest) (*TanzuCredentialsList, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
 		localVarReturnValue  *TanzuCredentialsList
@@ -454,35 +440,36 @@ func (a *TanzuApiService) TanzuListExecute(r ApiTanzuListRequest) (*TanzuCredent
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/tanzu/list"
+	localVarPath := localBasePath + "/api/v{v}/Tanzu/list"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
 	}
 	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Offset", r.offset, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
 	}
 	if r.organizationId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "OrganizationId", r.organizationId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "organizationId", r.organizationId, "")
 	}
 	if r.sortBy != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "SortBy", r.sortBy, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", r.sortBy, "")
 	}
 	if r.sortDirection != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "SortDirection", r.sortDirection, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "sortDirection", r.sortDirection, "")
 	}
 	if r.search != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Search", r.search, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "")
 	}
 	if r.searchId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "SearchId", r.searchId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "searchId", r.searchId, "")
 	}
 	if r.id != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Id", r.id, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -494,7 +481,7 @@ func (a *TanzuApiService) TanzuListExecute(r ApiTanzuListRequest) (*TanzuCredent
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -537,17 +524,6 @@ func (a *TanzuApiService) TanzuListExecute(r ApiTanzuListRequest) (*TanzuCredent
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -581,7 +557,7 @@ func (a *TanzuApiService) TanzuListExecute(r ApiTanzuListRequest) (*TanzuCredent
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -609,11 +585,12 @@ func (a *TanzuApiService) TanzuListExecute(r ApiTanzuListRequest) (*TanzuCredent
 type ApiTanzuStorageListRequest struct {
 	ctx context.Context
 	ApiService *TanzuApiService
-	tanzuStorageListCommand *TanzuStorageListCommand
+	v string
+	body *TanzuStorageListCommand
 }
 
-func (r ApiTanzuStorageListRequest) TanzuStorageListCommand(tanzuStorageListCommand TanzuStorageListCommand) ApiTanzuStorageListRequest {
-	r.tanzuStorageListCommand = &tanzuStorageListCommand
+func (r ApiTanzuStorageListRequest) Body(body TanzuStorageListCommand) ApiTanzuStorageListRequest {
+	r.body = &body
 	return r
 }
 
@@ -625,12 +602,14 @@ func (r ApiTanzuStorageListRequest) Execute() ([]string, *http.Response, error) 
 TanzuStorageList Tanzu storage list
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param v
  @return ApiTanzuStorageListRequest
 */
-func (a *TanzuApiService) TanzuStorageList(ctx context.Context) ApiTanzuStorageListRequest {
+func (a *TanzuApiService) TanzuStorageList(ctx context.Context, v string) ApiTanzuStorageListRequest {
 	return ApiTanzuStorageListRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
@@ -649,14 +628,15 @@ func (a *TanzuApiService) TanzuStorageListExecute(r ApiTanzuStorageListRequest) 
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/tanzu/storage-list"
+	localVarPath := localBasePath + "/api/v{v}/Tanzu/storage-list"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -665,7 +645,7 @@ func (a *TanzuApiService) TanzuStorageListExecute(r ApiTanzuStorageListRequest) 
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -673,7 +653,7 @@ func (a *TanzuApiService) TanzuStorageListExecute(r ApiTanzuStorageListRequest) 
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.tanzuStorageListCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -710,17 +690,6 @@ func (a *TanzuApiService) TanzuStorageListExecute(r ApiTanzuStorageListRequest) 
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -754,7 +723,7 @@ func (a *TanzuApiService) TanzuStorageListExecute(r ApiTanzuStorageListRequest) 
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -782,11 +751,12 @@ func (a *TanzuApiService) TanzuStorageListExecute(r ApiTanzuStorageListRequest) 
 type ApiTanzuUpdateRequest struct {
 	ctx context.Context
 	ApiService *TanzuApiService
-	updateTanzuCommand *UpdateTanzuCommand
+	v string
+	body *UpdateTanzuCommand
 }
 
-func (r ApiTanzuUpdateRequest) UpdateTanzuCommand(updateTanzuCommand UpdateTanzuCommand) ApiTanzuUpdateRequest {
-	r.updateTanzuCommand = &updateTanzuCommand
+func (r ApiTanzuUpdateRequest) Body(body UpdateTanzuCommand) ApiTanzuUpdateRequest {
+	r.body = &body
 	return r
 }
 
@@ -795,15 +765,17 @@ func (r ApiTanzuUpdateRequest) Execute() (*http.Response, error) {
 }
 
 /*
-TanzuUpdate Update tanzu credentials
+TanzuUpdate Update Tanzu credentials
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param v
  @return ApiTanzuUpdateRequest
 */
-func (a *TanzuApiService) TanzuUpdate(ctx context.Context) ApiTanzuUpdateRequest {
+func (a *TanzuApiService) TanzuUpdate(ctx context.Context, v string) ApiTanzuUpdateRequest {
 	return ApiTanzuUpdateRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
@@ -820,17 +792,15 @@ func (a *TanzuApiService) TanzuUpdateExecute(r ApiTanzuUpdateRequest) (*http.Res
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/tanzu/update"
+	localVarPath := localBasePath + "/api/v{v}/Tanzu/update"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateTanzuCommand == nil {
-		return nil, reportError("updateTanzuCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -839,7 +809,7 @@ func (a *TanzuApiService) TanzuUpdateExecute(r ApiTanzuUpdateRequest) (*http.Res
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -847,7 +817,7 @@ func (a *TanzuApiService) TanzuUpdateExecute(r ApiTanzuUpdateRequest) (*http.Res
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateTanzuCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -884,17 +854,6 @@ func (a *TanzuApiService) TanzuUpdateExecute(r ApiTanzuUpdateRequest) (*http.Res
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -928,7 +887,7 @@ func (a *TanzuApiService) TanzuUpdateExecute(r ApiTanzuUpdateRequest) (*http.Res
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**OrganizationId** | Pointer to **NullableInt32** |  | [optional] 
+**OrganizationId** | Pointer to **int32** |  | [optional] 
 **Name** | **string** |  | 
 **Username** | **string** |  | 
 **Url** | **string** |  | 
 **Password** | **string** |  | 
 **VolumeType** | **string** |  | 
 **Namespace** | **string** |  | 
-**TanzuContinent** | Pointer to **NullableString** |  | [optional] 
-**Port** | Pointer to **NullableInt32** |  | [optional] 
+**TanzuContinent** | Pointer to **string** |  | [optional] 
+**Port** | Pointer to **int32** |  | [optional] 
 
 ## Methods
 
@@ -58,16 +58,6 @@ SetOrganizationId sets OrganizationId field to given value.
 
 HasOrganizationId returns a boolean if a field has been set.
 
-### SetOrganizationIdNil
-
-`func (o *CreateTanzuCommand) SetOrganizationIdNil(b bool)`
-
- SetOrganizationIdNil sets the value for OrganizationId to be an explicit nil
-
-### UnsetOrganizationId
-`func (o *CreateTanzuCommand) UnsetOrganizationId()`
-
-UnsetOrganizationId ensures that no value is present for OrganizationId, not even an explicit nil
 ### GetName
 
 `func (o *CreateTanzuCommand) GetName() string`
@@ -213,16 +203,6 @@ SetTanzuContinent sets TanzuContinent field to given value.
 
 HasTanzuContinent returns a boolean if a field has been set.
 
-### SetTanzuContinentNil
-
-`func (o *CreateTanzuCommand) SetTanzuContinentNil(b bool)`
-
- SetTanzuContinentNil sets the value for TanzuContinent to be an explicit nil
-
-### UnsetTanzuContinent
-`func (o *CreateTanzuCommand) UnsetTanzuContinent()`
-
-UnsetTanzuContinent ensures that no value is present for TanzuContinent, not even an explicit nil
 ### GetPort
 
 `func (o *CreateTanzuCommand) GetPort() int32`
@@ -248,16 +228,6 @@ SetPort sets Port field to given value.
 
 HasPort returns a boolean if a field has been set.
 
-### SetPortNil
-
-`func (o *CreateTanzuCommand) SetPortNil(b bool)`
-
- SetPortNil sets the value for Port to be an explicit nil
-
-### UnsetPort
-`func (o *CreateTanzuCommand) UnsetPort()`
-
-UnsetPort ensures that no value is present for Port, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

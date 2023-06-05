@@ -5,9 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** |  | [optional] 
-**Key** | Pointer to **NullableString** |  | [optional] 
-**Link** | Pointer to **NullableString** |  | [optional] 
-**Role** | Pointer to **NullableString** |  | [optional] 
+**Key** | Pointer to **string** |  | [optional] 
+**Link** | Pointer to **string** |  | [optional] 
+**Role** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -78,16 +78,6 @@ SetKey sets Key field to given value.
 
 HasKey returns a boolean if a field has been set.
 
-### SetKeyNil
-
-`func (o *DocumentationData) SetKeyNil(b bool)`
-
- SetKeyNil sets the value for Key to be an explicit nil
-
-### UnsetKey
-`func (o *DocumentationData) UnsetKey()`
-
-UnsetKey ensures that no value is present for Key, not even an explicit nil
 ### GetLink
 
 `func (o *DocumentationData) GetLink() string`
@@ -113,16 +103,6 @@ SetLink sets Link field to given value.
 
 HasLink returns a boolean if a field has been set.
 
-### SetLinkNil
-
-`func (o *DocumentationData) SetLinkNil(b bool)`
-
- SetLinkNil sets the value for Link to be an explicit nil
-
-### UnsetLink
-`func (o *DocumentationData) UnsetLink()`
-
-UnsetLink ensures that no value is present for Link, not even an explicit nil
 ### GetRole
 
 `func (o *DocumentationData) GetRole() string`
@@ -148,16 +128,6 @@ SetRole sets Role field to given value.
 
 HasRole returns a boolean if a field has been set.
 
-### SetRoleNil
-
-`func (o *DocumentationData) SetRoleNil(b bool)`
-
- SetRoleNil sets the value for Role to be an explicit nil
-
-### UnsetRole
-`func (o *DocumentationData) UnsetRole()`
-
-UnsetRole ensures that no value is present for Role, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

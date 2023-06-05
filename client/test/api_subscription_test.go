@@ -26,7 +26,9 @@ func Test_taikuncore_SubscriptionApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.SubscriptionApi.SubscriptionBind(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.SubscriptionApi.SubscriptionBind(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -34,14 +36,15 @@ func Test_taikuncore_SubscriptionApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test SubscriptionApiService SubscriptionBoundList", func(t *testing.T) {
+	t.Run("Test SubscriptionApiService SubscriptionCreate", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.SubscriptionApi.SubscriptionBoundList(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.SubscriptionApi.SubscriptionCreate(context.Background(), v).Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
@@ -50,7 +53,9 @@ func Test_taikuncore_SubscriptionApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.SubscriptionApi.SubscriptionDelete(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.SubscriptionApi.SubscriptionDelete(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -61,7 +66,9 @@ func Test_taikuncore_SubscriptionApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.SubscriptionApi.SubscriptionList(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.SubscriptionApi.SubscriptionList(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -69,11 +76,13 @@ func Test_taikuncore_SubscriptionApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test SubscriptionApiService SubscriptionPublic", func(t *testing.T) {
+	t.Run("Test SubscriptionApiService SubscriptionSubscriptionForLandingPage", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.SubscriptionApi.SubscriptionPublic(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.SubscriptionApi.SubscriptionSubscriptionForLandingPage(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -81,13 +90,16 @@ func Test_taikuncore_SubscriptionApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test SubscriptionApiService SubscriptionSubscription", func(t *testing.T) {
+	t.Run("Test SubscriptionApiService SubscriptionSubscriptionForOrganizationList", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.SubscriptionApi.SubscriptionSubscription(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.SubscriptionApi.SubscriptionSubscriptionForOrganizationList(context.Background(), v).Execute()
 
 		require.Nil(t, err)
+		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
@@ -96,7 +108,9 @@ func Test_taikuncore_SubscriptionApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.SubscriptionApi.SubscriptionUpdate(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.SubscriptionApi.SubscriptionUpdate(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)

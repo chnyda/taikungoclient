@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ProjectId** | Pointer to **int32** |  | [optional] 
-**Parameters** | Pointer to **NullableString** |  | [optional] 
-**Time** | Pointer to **NullableTime** |  | [optional] 
-**Start** | Pointer to **NullableTime** |  | [optional] 
-**End** | Pointer to **NullableTime** |  | [optional] 
+**Parameters** | Pointer to **string** |  | [optional] 
+**Time** | Pointer to **time.Time** |  | [optional] 
+**Start** | Pointer to **time.Time** |  | [optional] 
+**End** | Pointer to **time.Time** |  | [optional] 
 **IsGraphEnabled** | Pointer to **bool** |  | [optional] 
 **IsAutoComplete** | Pointer to **bool** |  | [optional] 
-**Step** | Pointer to **NullableString** |  | [optional] 
+**Step** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -82,16 +82,6 @@ SetParameters sets Parameters field to given value.
 
 HasParameters returns a boolean if a field has been set.
 
-### SetParametersNil
-
-`func (o *PrometheusMetricsCommand) SetParametersNil(b bool)`
-
- SetParametersNil sets the value for Parameters to be an explicit nil
-
-### UnsetParameters
-`func (o *PrometheusMetricsCommand) UnsetParameters()`
-
-UnsetParameters ensures that no value is present for Parameters, not even an explicit nil
 ### GetTime
 
 `func (o *PrometheusMetricsCommand) GetTime() time.Time`
@@ -117,16 +107,6 @@ SetTime sets Time field to given value.
 
 HasTime returns a boolean if a field has been set.
 
-### SetTimeNil
-
-`func (o *PrometheusMetricsCommand) SetTimeNil(b bool)`
-
- SetTimeNil sets the value for Time to be an explicit nil
-
-### UnsetTime
-`func (o *PrometheusMetricsCommand) UnsetTime()`
-
-UnsetTime ensures that no value is present for Time, not even an explicit nil
 ### GetStart
 
 `func (o *PrometheusMetricsCommand) GetStart() time.Time`
@@ -152,16 +132,6 @@ SetStart sets Start field to given value.
 
 HasStart returns a boolean if a field has been set.
 
-### SetStartNil
-
-`func (o *PrometheusMetricsCommand) SetStartNil(b bool)`
-
- SetStartNil sets the value for Start to be an explicit nil
-
-### UnsetStart
-`func (o *PrometheusMetricsCommand) UnsetStart()`
-
-UnsetStart ensures that no value is present for Start, not even an explicit nil
 ### GetEnd
 
 `func (o *PrometheusMetricsCommand) GetEnd() time.Time`
@@ -187,16 +157,6 @@ SetEnd sets End field to given value.
 
 HasEnd returns a boolean if a field has been set.
 
-### SetEndNil
-
-`func (o *PrometheusMetricsCommand) SetEndNil(b bool)`
-
- SetEndNil sets the value for End to be an explicit nil
-
-### UnsetEnd
-`func (o *PrometheusMetricsCommand) UnsetEnd()`
-
-UnsetEnd ensures that no value is present for End, not even an explicit nil
 ### GetIsGraphEnabled
 
 `func (o *PrometheusMetricsCommand) GetIsGraphEnabled() bool`
@@ -272,16 +232,6 @@ SetStep sets Step field to given value.
 
 HasStep returns a boolean if a field has been set.
 
-### SetStepNil
-
-`func (o *PrometheusMetricsCommand) SetStepNil(b bool)`
-
- SetStepNil sets the value for Step to be an explicit nil
-
-### UnsetStep
-`func (o *PrometheusMetricsCommand) UnsetStep()`
-
-UnsetStep ensures that no value is present for Step, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

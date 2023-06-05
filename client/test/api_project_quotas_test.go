@@ -22,25 +22,29 @@ func Test_taikuncore_ProjectQuotasApiService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test ProjectQuotasApiService ProjectquotasList", func(t *testing.T) {
+	t.Run("Test ProjectQuotasApiService ProjectQuotasEdit", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.ProjectQuotasApi.ProjectquotasList(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.ProjectQuotasApi.ProjectQuotasEdit(context.Background(), v).Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test ProjectQuotasApiService ProjectquotasUpdate", func(t *testing.T) {
+	t.Run("Test ProjectQuotasApiService ProjectQuotasList", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.ProjectQuotasApi.ProjectquotasUpdate(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.ProjectQuotasApi.ProjectQuotasList(context.Background(), v).Execute()
 
 		require.Nil(t, err)
+		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})

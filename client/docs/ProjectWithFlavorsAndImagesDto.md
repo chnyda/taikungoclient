@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
 **Flavors** | Pointer to **[]string** |  | [optional] 
 **Images** | Pointer to **[]string** |  | [optional] 
 **ImageNames** | Pointer to **[]string** |  | [optional] 
@@ -80,16 +80,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *ProjectWithFlavorsAndImagesDto) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *ProjectWithFlavorsAndImagesDto) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetFlavors
 
 `func (o *ProjectWithFlavorsAndImagesDto) GetFlavors() []string`
@@ -115,16 +105,6 @@ SetFlavors sets Flavors field to given value.
 
 HasFlavors returns a boolean if a field has been set.
 
-### SetFlavorsNil
-
-`func (o *ProjectWithFlavorsAndImagesDto) SetFlavorsNil(b bool)`
-
- SetFlavorsNil sets the value for Flavors to be an explicit nil
-
-### UnsetFlavors
-`func (o *ProjectWithFlavorsAndImagesDto) UnsetFlavors()`
-
-UnsetFlavors ensures that no value is present for Flavors, not even an explicit nil
 ### GetImages
 
 `func (o *ProjectWithFlavorsAndImagesDto) GetImages() []string`
@@ -150,16 +130,6 @@ SetImages sets Images field to given value.
 
 HasImages returns a boolean if a field has been set.
 
-### SetImagesNil
-
-`func (o *ProjectWithFlavorsAndImagesDto) SetImagesNil(b bool)`
-
- SetImagesNil sets the value for Images to be an explicit nil
-
-### UnsetImages
-`func (o *ProjectWithFlavorsAndImagesDto) UnsetImages()`
-
-UnsetImages ensures that no value is present for Images, not even an explicit nil
 ### GetImageNames
 
 `func (o *ProjectWithFlavorsAndImagesDto) GetImageNames() []string`
@@ -185,16 +155,6 @@ SetImageNames sets ImageNames field to given value.
 
 HasImageNames returns a boolean if a field has been set.
 
-### SetImageNamesNil
-
-`func (o *ProjectWithFlavorsAndImagesDto) SetImageNamesNil(b bool)`
-
- SetImageNamesNil sets the value for ImageNames to be an explicit nil
-
-### UnsetImageNames
-`func (o *ProjectWithFlavorsAndImagesDto) UnsetImageNames()`
-
-UnsetImageNames ensures that no value is present for ImageNames, not even an explicit nil
 ### GetIsReady
 
 `func (o *ProjectWithFlavorsAndImagesDto) GetIsReady() bool`

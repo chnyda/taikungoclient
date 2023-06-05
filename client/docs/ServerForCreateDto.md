@@ -4,19 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
 **Role** | Pointer to [**CloudRole**](CloudRole.md) |  | [optional] 
 **ProjectId** | Pointer to **int32** |  | [optional] 
 **DiskSize** | Pointer to **int64** |  | [optional] 
-**Flavor** | Pointer to **NullableString** |  | [optional] 
+**Flavor** | Pointer to **string** |  | [optional] 
 **Count** | Pointer to **int32** |  | [optional] 
-**SpotPrice** | Pointer to **NullableFloat64** |  | [optional] 
+**SpotPrice** | Pointer to **float64** |  | [optional] 
 **SpotInstance** | Pointer to **bool** |  | [optional] 
-**AutoscalingGroup** | Pointer to **NullableString** |  | [optional] 
-**AvailabilityZone** | Pointer to **NullableString** |  | [optional] 
+**AutoscalingGroup** | Pointer to **string** |  | [optional] 
+**AvailabilityZone** | Pointer to **string** |  | [optional] 
 **ProxmoxNFSDiskSize** | Pointer to **int32** |  | [optional] 
 **ProxmoxRole** | Pointer to [**ProxmoxRole**](ProxmoxRole.md) |  | [optional] 
-**Hypervisor** | Pointer to **NullableString** |  | [optional] 
+**Hypervisor** | Pointer to **string** |  | [optional] 
 **KubernetesNodeLabels** | Pointer to [**[]KubernetesNodeLabelsDto**](KubernetesNodeLabelsDto.md) |  | [optional] 
 
 ## Methods
@@ -63,16 +63,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *ServerForCreateDto) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *ServerForCreateDto) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetRole
 
 `func (o *ServerForCreateDto) GetRole() CloudRole`
@@ -173,16 +163,6 @@ SetFlavor sets Flavor field to given value.
 
 HasFlavor returns a boolean if a field has been set.
 
-### SetFlavorNil
-
-`func (o *ServerForCreateDto) SetFlavorNil(b bool)`
-
- SetFlavorNil sets the value for Flavor to be an explicit nil
-
-### UnsetFlavor
-`func (o *ServerForCreateDto) UnsetFlavor()`
-
-UnsetFlavor ensures that no value is present for Flavor, not even an explicit nil
 ### GetCount
 
 `func (o *ServerForCreateDto) GetCount() int32`
@@ -233,16 +213,6 @@ SetSpotPrice sets SpotPrice field to given value.
 
 HasSpotPrice returns a boolean if a field has been set.
 
-### SetSpotPriceNil
-
-`func (o *ServerForCreateDto) SetSpotPriceNil(b bool)`
-
- SetSpotPriceNil sets the value for SpotPrice to be an explicit nil
-
-### UnsetSpotPrice
-`func (o *ServerForCreateDto) UnsetSpotPrice()`
-
-UnsetSpotPrice ensures that no value is present for SpotPrice, not even an explicit nil
 ### GetSpotInstance
 
 `func (o *ServerForCreateDto) GetSpotInstance() bool`
@@ -293,16 +263,6 @@ SetAutoscalingGroup sets AutoscalingGroup field to given value.
 
 HasAutoscalingGroup returns a boolean if a field has been set.
 
-### SetAutoscalingGroupNil
-
-`func (o *ServerForCreateDto) SetAutoscalingGroupNil(b bool)`
-
- SetAutoscalingGroupNil sets the value for AutoscalingGroup to be an explicit nil
-
-### UnsetAutoscalingGroup
-`func (o *ServerForCreateDto) UnsetAutoscalingGroup()`
-
-UnsetAutoscalingGroup ensures that no value is present for AutoscalingGroup, not even an explicit nil
 ### GetAvailabilityZone
 
 `func (o *ServerForCreateDto) GetAvailabilityZone() string`
@@ -328,16 +288,6 @@ SetAvailabilityZone sets AvailabilityZone field to given value.
 
 HasAvailabilityZone returns a boolean if a field has been set.
 
-### SetAvailabilityZoneNil
-
-`func (o *ServerForCreateDto) SetAvailabilityZoneNil(b bool)`
-
- SetAvailabilityZoneNil sets the value for AvailabilityZone to be an explicit nil
-
-### UnsetAvailabilityZone
-`func (o *ServerForCreateDto) UnsetAvailabilityZone()`
-
-UnsetAvailabilityZone ensures that no value is present for AvailabilityZone, not even an explicit nil
 ### GetProxmoxNFSDiskSize
 
 `func (o *ServerForCreateDto) GetProxmoxNFSDiskSize() int32`
@@ -413,16 +363,6 @@ SetHypervisor sets Hypervisor field to given value.
 
 HasHypervisor returns a boolean if a field has been set.
 
-### SetHypervisorNil
-
-`func (o *ServerForCreateDto) SetHypervisorNil(b bool)`
-
- SetHypervisorNil sets the value for Hypervisor to be an explicit nil
-
-### UnsetHypervisor
-`func (o *ServerForCreateDto) UnsetHypervisor()`
-
-UnsetHypervisor ensures that no value is present for Hypervisor, not even an explicit nil
 ### GetKubernetesNodeLabels
 
 `func (o *ServerForCreateDto) GetKubernetesNodeLabels() []KubernetesNodeLabelsDto`
@@ -448,16 +388,6 @@ SetKubernetesNodeLabels sets KubernetesNodeLabels field to given value.
 
 HasKubernetesNodeLabels returns a boolean if a field has been set.
 
-### SetKubernetesNodeLabelsNil
-
-`func (o *ServerForCreateDto) SetKubernetesNodeLabelsNil(b bool)`
-
- SetKubernetesNodeLabelsNil sets the value for KubernetesNodeLabels to be an explicit nil
-
-### UnsetKubernetesNodeLabels
-`func (o *ServerForCreateDto) UnsetKubernetesNodeLabels()`
-
-UnsetKubernetesNodeLabels ensures that no value is present for KubernetesNodeLabels, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **NullableString** |  | [optional] 
-**Namespace** | Pointer to **NullableString** |  | [optional] 
-**CreationTimestamp** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**Namespace** | Pointer to **string** |  | [optional] 
+**CreationTimestamp** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -52,16 +52,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *HelmMetadata) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *HelmMetadata) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetNamespace
 
 `func (o *HelmMetadata) GetNamespace() string`
@@ -87,16 +77,6 @@ SetNamespace sets Namespace field to given value.
 
 HasNamespace returns a boolean if a field has been set.
 
-### SetNamespaceNil
-
-`func (o *HelmMetadata) SetNamespaceNil(b bool)`
-
- SetNamespaceNil sets the value for Namespace to be an explicit nil
-
-### UnsetNamespace
-`func (o *HelmMetadata) UnsetNamespace()`
-
-UnsetNamespace ensures that no value is present for Namespace, not even an explicit nil
 ### GetCreationTimestamp
 
 `func (o *HelmMetadata) GetCreationTimestamp() string`
@@ -122,16 +102,6 @@ SetCreationTimestamp sets CreationTimestamp field to given value.
 
 HasCreationTimestamp returns a boolean if a field has been set.
 
-### SetCreationTimestampNil
-
-`func (o *HelmMetadata) SetCreationTimestampNil(b bool)`
-
- SetCreationTimestampNil sets the value for CreationTimestamp to be an explicit nil
-
-### UnsetCreationTimestamp
-`func (o *HelmMetadata) UnsetCreationTimestamp()`
-
-UnsetCreationTimestamp ensures that no value is present for CreationTimestamp, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

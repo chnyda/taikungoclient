@@ -21,8 +21,8 @@ var _ MappedNullable = &FromTemplateDto{}
 // FromTemplateDto struct for FromTemplateDto
 type FromTemplateDto struct {
 	AutoTrigger *bool `json:"autoTrigger,omitempty"`
-	UserId NullableString `json:"userId,omitempty"`
-	UserName NullableString `json:"userName,omitempty"`
+	UserId *string `json:"userId,omitempty"`
+	UserName *string `json:"userName,omitempty"`
 }
 
 // NewFromTemplateDto instantiates a new FromTemplateDto object
@@ -74,88 +74,68 @@ func (o *FromTemplateDto) SetAutoTrigger(v bool) {
 	o.AutoTrigger = &v
 }
 
-// GetUserId returns the UserId field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetUserId returns the UserId field value if set, zero value otherwise.
 func (o *FromTemplateDto) GetUserId() string {
-	if o == nil || IsNil(o.UserId.Get()) {
+	if o == nil || IsNil(o.UserId) {
 		var ret string
 		return ret
 	}
-	return *o.UserId.Get()
+	return *o.UserId
 }
 
 // GetUserIdOk returns a tuple with the UserId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *FromTemplateDto) GetUserIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.UserId) {
 		return nil, false
 	}
-	return o.UserId.Get(), o.UserId.IsSet()
+	return o.UserId, true
 }
 
 // HasUserId returns a boolean if a field has been set.
 func (o *FromTemplateDto) HasUserId() bool {
-	if o != nil && o.UserId.IsSet() {
+	if o != nil && !IsNil(o.UserId) {
 		return true
 	}
 
 	return false
 }
 
-// SetUserId gets a reference to the given NullableString and assigns it to the UserId field.
+// SetUserId gets a reference to the given string and assigns it to the UserId field.
 func (o *FromTemplateDto) SetUserId(v string) {
-	o.UserId.Set(&v)
-}
-// SetUserIdNil sets the value for UserId to be an explicit nil
-func (o *FromTemplateDto) SetUserIdNil() {
-	o.UserId.Set(nil)
+	o.UserId = &v
 }
 
-// UnsetUserId ensures that no value is present for UserId, not even an explicit nil
-func (o *FromTemplateDto) UnsetUserId() {
-	o.UserId.Unset()
-}
-
-// GetUserName returns the UserName field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetUserName returns the UserName field value if set, zero value otherwise.
 func (o *FromTemplateDto) GetUserName() string {
-	if o == nil || IsNil(o.UserName.Get()) {
+	if o == nil || IsNil(o.UserName) {
 		var ret string
 		return ret
 	}
-	return *o.UserName.Get()
+	return *o.UserName
 }
 
 // GetUserNameOk returns a tuple with the UserName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *FromTemplateDto) GetUserNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.UserName) {
 		return nil, false
 	}
-	return o.UserName.Get(), o.UserName.IsSet()
+	return o.UserName, true
 }
 
 // HasUserName returns a boolean if a field has been set.
 func (o *FromTemplateDto) HasUserName() bool {
-	if o != nil && o.UserName.IsSet() {
+	if o != nil && !IsNil(o.UserName) {
 		return true
 	}
 
 	return false
 }
 
-// SetUserName gets a reference to the given NullableString and assigns it to the UserName field.
+// SetUserName gets a reference to the given string and assigns it to the UserName field.
 func (o *FromTemplateDto) SetUserName(v string) {
-	o.UserName.Set(&v)
-}
-// SetUserNameNil sets the value for UserName to be an explicit nil
-func (o *FromTemplateDto) SetUserNameNil() {
-	o.UserName.Set(nil)
-}
-
-// UnsetUserName ensures that no value is present for UserName, not even an explicit nil
-func (o *FromTemplateDto) UnsetUserName() {
-	o.UserName.Unset()
+	o.UserName = &v
 }
 
 func (o FromTemplateDto) MarshalJSON() ([]byte, error) {
@@ -171,11 +151,11 @@ func (o FromTemplateDto) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.AutoTrigger) {
 		toSerialize["autoTrigger"] = o.AutoTrigger
 	}
-	if o.UserId.IsSet() {
-		toSerialize["userId"] = o.UserId.Get()
+	if !IsNil(o.UserId) {
+		toSerialize["userId"] = o.UserId
 	}
-	if o.UserName.IsSet() {
-		toSerialize["userName"] = o.UserName.Get()
+	if !IsNil(o.UserName) {
+		toSerialize["userName"] = o.UserName
 	}
 	return toSerialize, nil
 }

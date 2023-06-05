@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CloudCredentialRevision** | Pointer to **NullableInt32** |  | [optional] 
-**OpaProfileRevision** | Pointer to **NullableInt32** |  | [optional] 
-**AccessProfileRevision** | Pointer to **NullableInt32** |  | [optional] 
+**CloudCredentialRevision** | Pointer to **int32** |  | [optional] 
+**OpaProfileRevision** | Pointer to **int32** |  | [optional] 
+**AccessProfileRevision** | Pointer to **int32** |  | [optional] 
 
 ## Methods
 
@@ -52,16 +52,6 @@ SetCloudCredentialRevision sets CloudCredentialRevision field to given value.
 
 HasCloudCredentialRevision returns a boolean if a field has been set.
 
-### SetCloudCredentialRevisionNil
-
-`func (o *ProjectRevisionUpdateDto) SetCloudCredentialRevisionNil(b bool)`
-
- SetCloudCredentialRevisionNil sets the value for CloudCredentialRevision to be an explicit nil
-
-### UnsetCloudCredentialRevision
-`func (o *ProjectRevisionUpdateDto) UnsetCloudCredentialRevision()`
-
-UnsetCloudCredentialRevision ensures that no value is present for CloudCredentialRevision, not even an explicit nil
 ### GetOpaProfileRevision
 
 `func (o *ProjectRevisionUpdateDto) GetOpaProfileRevision() int32`
@@ -87,16 +77,6 @@ SetOpaProfileRevision sets OpaProfileRevision field to given value.
 
 HasOpaProfileRevision returns a boolean if a field has been set.
 
-### SetOpaProfileRevisionNil
-
-`func (o *ProjectRevisionUpdateDto) SetOpaProfileRevisionNil(b bool)`
-
- SetOpaProfileRevisionNil sets the value for OpaProfileRevision to be an explicit nil
-
-### UnsetOpaProfileRevision
-`func (o *ProjectRevisionUpdateDto) UnsetOpaProfileRevision()`
-
-UnsetOpaProfileRevision ensures that no value is present for OpaProfileRevision, not even an explicit nil
 ### GetAccessProfileRevision
 
 `func (o *ProjectRevisionUpdateDto) GetAccessProfileRevision() int32`
@@ -122,16 +102,6 @@ SetAccessProfileRevision sets AccessProfileRevision field to given value.
 
 HasAccessProfileRevision returns a boolean if a field has been set.
 
-### SetAccessProfileRevisionNil
-
-`func (o *ProjectRevisionUpdateDto) SetAccessProfileRevisionNil(b bool)`
-
- SetAccessProfileRevisionNil sets the value for AccessProfileRevision to be an explicit nil
-
-### UnsetAccessProfileRevision
-`func (o *ProjectRevisionUpdateDto) UnsetAccessProfileRevision()`
-
-UnsetAccessProfileRevision ensures that no value is present for AccessProfileRevision, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

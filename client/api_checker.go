@@ -18,6 +18,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"os"
 )
 
 
@@ -27,11 +28,12 @@ type CheckerApiService service
 type ApiCheckerArtifactRequest struct {
 	ctx context.Context
 	ApiService *CheckerApiService
-	artifactUrlCheckerCommand *ArtifactUrlCheckerCommand
+	v string
+	body *ArtifactUrlCheckerCommand
 }
 
-func (r ApiCheckerArtifactRequest) ArtifactUrlCheckerCommand(artifactUrlCheckerCommand ArtifactUrlCheckerCommand) ApiCheckerArtifactRequest {
-	r.artifactUrlCheckerCommand = &artifactUrlCheckerCommand
+func (r ApiCheckerArtifactRequest) Body(body ArtifactUrlCheckerCommand) ApiCheckerArtifactRequest {
+	r.body = &body
 	return r
 }
 
@@ -43,12 +45,14 @@ func (r ApiCheckerArtifactRequest) Execute() (*http.Response, error) {
 CheckerArtifact Check artifact url
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param v
  @return ApiCheckerArtifactRequest
 */
-func (a *CheckerApiService) CheckerArtifact(ctx context.Context) ApiCheckerArtifactRequest {
+func (a *CheckerApiService) CheckerArtifact(ctx context.Context, v string) ApiCheckerArtifactRequest {
 	return ApiCheckerArtifactRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
@@ -65,17 +69,15 @@ func (a *CheckerApiService) CheckerArtifactExecute(r ApiCheckerArtifactRequest) 
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/checker/artifact"
+	localVarPath := localBasePath + "/api/v{v}/Checker/artifact"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.artifactUrlCheckerCommand == nil {
-		return nil, reportError("artifactUrlCheckerCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -84,7 +86,7 @@ func (a *CheckerApiService) CheckerArtifactExecute(r ApiCheckerArtifactRequest) 
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -92,7 +94,7 @@ func (a *CheckerApiService) CheckerArtifactExecute(r ApiCheckerArtifactRequest) 
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.artifactUrlCheckerCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -129,17 +131,6 @@ func (a *CheckerApiService) CheckerArtifactExecute(r ApiCheckerArtifactRequest) 
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -173,7 +164,7 @@ func (a *CheckerApiService) CheckerArtifactExecute(r ApiCheckerArtifactRequest) 
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -192,11 +183,12 @@ func (a *CheckerApiService) CheckerArtifactExecute(r ApiCheckerArtifactRequest) 
 type ApiCheckerAwsRequest struct {
 	ctx context.Context
 	ApiService *CheckerApiService
-	checkAwsCommand *CheckAwsCommand
+	v string
+	body *CheckAwsCommand
 }
 
-func (r ApiCheckerAwsRequest) CheckAwsCommand(checkAwsCommand CheckAwsCommand) ApiCheckerAwsRequest {
-	r.checkAwsCommand = &checkAwsCommand
+func (r ApiCheckerAwsRequest) Body(body CheckAwsCommand) ApiCheckerAwsRequest {
+	r.body = &body
 	return r
 }
 
@@ -205,15 +197,17 @@ func (r ApiCheckerAwsRequest) Execute() (*http.Response, error) {
 }
 
 /*
-CheckerAws Check aws credential
+CheckerAws Check aws credentials
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param v
  @return ApiCheckerAwsRequest
 */
-func (a *CheckerApiService) CheckerAws(ctx context.Context) ApiCheckerAwsRequest {
+func (a *CheckerApiService) CheckerAws(ctx context.Context, v string) ApiCheckerAwsRequest {
 	return ApiCheckerAwsRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
@@ -230,17 +224,15 @@ func (a *CheckerApiService) CheckerAwsExecute(r ApiCheckerAwsRequest) (*http.Res
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/checker/aws"
+	localVarPath := localBasePath + "/api/v{v}/Checker/aws"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.checkAwsCommand == nil {
-		return nil, reportError("checkAwsCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -249,7 +241,7 @@ func (a *CheckerApiService) CheckerAwsExecute(r ApiCheckerAwsRequest) (*http.Res
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -257,7 +249,7 @@ func (a *CheckerApiService) CheckerAwsExecute(r ApiCheckerAwsRequest) (*http.Res
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.checkAwsCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -294,17 +286,6 @@ func (a *CheckerApiService) CheckerAwsExecute(r ApiCheckerAwsRequest) (*http.Res
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -338,7 +319,7 @@ func (a *CheckerApiService) CheckerAwsExecute(r ApiCheckerAwsRequest) (*http.Res
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -357,11 +338,12 @@ func (a *CheckerApiService) CheckerAwsExecute(r ApiCheckerAwsRequest) (*http.Res
 type ApiCheckerAzureRequest struct {
 	ctx context.Context
 	ApiService *CheckerApiService
-	checkAzureCommand *CheckAzureCommand
+	v string
+	body *CheckAzureCommand
 }
 
-func (r ApiCheckerAzureRequest) CheckAzureCommand(checkAzureCommand CheckAzureCommand) ApiCheckerAzureRequest {
-	r.checkAzureCommand = &checkAzureCommand
+func (r ApiCheckerAzureRequest) Body(body CheckAzureCommand) ApiCheckerAzureRequest {
+	r.body = &body
 	return r
 }
 
@@ -370,15 +352,17 @@ func (r ApiCheckerAzureRequest) Execute() (*http.Response, error) {
 }
 
 /*
-CheckerAzure Check azure credentials
+CheckerAzure Check valid azure credentials
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param v
  @return ApiCheckerAzureRequest
 */
-func (a *CheckerApiService) CheckerAzure(ctx context.Context) ApiCheckerAzureRequest {
+func (a *CheckerApiService) CheckerAzure(ctx context.Context, v string) ApiCheckerAzureRequest {
 	return ApiCheckerAzureRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
@@ -395,17 +379,15 @@ func (a *CheckerApiService) CheckerAzureExecute(r ApiCheckerAzureRequest) (*http
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/checker/azure"
+	localVarPath := localBasePath + "/api/v{v}/Checker/azure"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.checkAzureCommand == nil {
-		return nil, reportError("checkAzureCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -414,7 +396,7 @@ func (a *CheckerApiService) CheckerAzureExecute(r ApiCheckerAzureRequest) (*http
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -422,7 +404,7 @@ func (a *CheckerApiService) CheckerAzureExecute(r ApiCheckerAzureRequest) (*http
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.checkAzureCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -459,17 +441,6 @@ func (a *CheckerApiService) CheckerAzureExecute(r ApiCheckerAzureRequest) (*http
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -503,7 +474,7 @@ func (a *CheckerApiService) CheckerAzureExecute(r ApiCheckerAzureRequest) (*http
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -519,58 +490,59 @@ func (a *CheckerApiService) CheckerAzureExecute(r ApiCheckerAzureRequest) (*http
 	return localVarHTTPResponse, nil
 }
 
-type ApiCheckerAzureQuotaRequest struct {
+type ApiCheckerAzureCpuQuotaRequest struct {
 	ctx context.Context
 	ApiService *CheckerApiService
-	checkAzureCpuQuotaCommand *CheckAzureCpuQuotaCommand
+	v string
+	body *CheckAzureCpuQuotaCommand
 }
 
-func (r ApiCheckerAzureQuotaRequest) CheckAzureCpuQuotaCommand(checkAzureCpuQuotaCommand CheckAzureCpuQuotaCommand) ApiCheckerAzureQuotaRequest {
-	r.checkAzureCpuQuotaCommand = &checkAzureCpuQuotaCommand
+func (r ApiCheckerAzureCpuQuotaRequest) Body(body CheckAzureCpuQuotaCommand) ApiCheckerAzureCpuQuotaRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiCheckerAzureQuotaRequest) Execute() (*http.Response, error) {
-	return r.ApiService.CheckerAzureQuotaExecute(r)
+func (r ApiCheckerAzureCpuQuotaRequest) Execute() (*http.Response, error) {
+	return r.ApiService.CheckerAzureCpuQuotaExecute(r)
 }
 
 /*
-CheckerAzureQuota Check azure cpu quota
+CheckerAzureCpuQuota Check azure cpu quota limit
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCheckerAzureQuotaRequest
+ @param v
+ @return ApiCheckerAzureCpuQuotaRequest
 */
-func (a *CheckerApiService) CheckerAzureQuota(ctx context.Context) ApiCheckerAzureQuotaRequest {
-	return ApiCheckerAzureQuotaRequest{
+func (a *CheckerApiService) CheckerAzureCpuQuota(ctx context.Context, v string) ApiCheckerAzureCpuQuotaRequest {
+	return ApiCheckerAzureCpuQuotaRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
-func (a *CheckerApiService) CheckerAzureQuotaExecute(r ApiCheckerAzureQuotaRequest) (*http.Response, error) {
+func (a *CheckerApiService) CheckerAzureCpuQuotaExecute(r ApiCheckerAzureCpuQuotaRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CheckerApiService.CheckerAzureQuota")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CheckerApiService.CheckerAzureCpuQuota")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/checker/azure/quota/cpu"
+	localVarPath := localBasePath + "/api/v{v}/Checker/azure/quota/cpu"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.checkAzureCpuQuotaCommand == nil {
-		return nil, reportError("checkAzureCpuQuotaCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -579,7 +551,7 @@ func (a *CheckerApiService) CheckerAzureQuotaExecute(r ApiCheckerAzureQuotaReque
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -587,7 +559,7 @@ func (a *CheckerApiService) CheckerAzureQuotaExecute(r ApiCheckerAzureQuotaReque
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.checkAzureCpuQuotaCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -624,17 +596,6 @@ func (a *CheckerApiService) CheckerAzureQuotaExecute(r ApiCheckerAzureQuotaReque
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -668,7 +629,7 @@ func (a *CheckerApiService) CheckerAzureQuotaExecute(r ApiCheckerAzureQuotaReque
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -687,11 +648,12 @@ func (a *CheckerApiService) CheckerAzureQuotaExecute(r ApiCheckerAzureQuotaReque
 type ApiCheckerCidrRequest struct {
 	ctx context.Context
 	ApiService *CheckerApiService
-	cidrCommand *CidrCommand
+	v string
+	body *CidrCommand
 }
 
-func (r ApiCheckerCidrRequest) CidrCommand(cidrCommand CidrCommand) ApiCheckerCidrRequest {
-	r.cidrCommand = &cidrCommand
+func (r ApiCheckerCidrRequest) Body(body CidrCommand) ApiCheckerCidrRequest {
+	r.body = &body
 	return r
 }
 
@@ -703,12 +665,14 @@ func (r ApiCheckerCidrRequest) Execute() (*http.Response, error) {
 CheckerCidr Check valid cidr format
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param v
  @return ApiCheckerCidrRequest
 */
-func (a *CheckerApiService) CheckerCidr(ctx context.Context) ApiCheckerCidrRequest {
+func (a *CheckerApiService) CheckerCidr(ctx context.Context, v string) ApiCheckerCidrRequest {
 	return ApiCheckerCidrRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
@@ -725,17 +689,15 @@ func (a *CheckerApiService) CheckerCidrExecute(r ApiCheckerCidrRequest) (*http.R
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/checker/cidr"
+	localVarPath := localBasePath + "/api/v{v}/Checker/cidr"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.cidrCommand == nil {
-		return nil, reportError("cidrCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -744,7 +706,7 @@ func (a *CheckerApiService) CheckerCidrExecute(r ApiCheckerCidrRequest) (*http.R
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -752,7 +714,7 @@ func (a *CheckerApiService) CheckerCidrExecute(r ApiCheckerCidrRequest) (*http.R
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.cidrCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -789,17 +751,6 @@ func (a *CheckerApiService) CheckerCidrExecute(r ApiCheckerCidrRequest) (*http.R
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -833,7 +784,7 @@ func (a *CheckerApiService) CheckerCidrExecute(r ApiCheckerCidrRequest) (*http.R
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -852,11 +803,12 @@ func (a *CheckerApiService) CheckerCidrExecute(r ApiCheckerCidrRequest) (*http.R
 type ApiCheckerCronRequest struct {
 	ctx context.Context
 	ApiService *CheckerApiService
-	cronJobCommand *CronJobCommand
+	v string
+	body *CronJobCommand
 }
 
-func (r ApiCheckerCronRequest) CronJobCommand(cronJobCommand CronJobCommand) ApiCheckerCronRequest {
-	r.cronJobCommand = &cronJobCommand
+func (r ApiCheckerCronRequest) Body(body CronJobCommand) ApiCheckerCronRequest {
+	r.body = &body
 	return r
 }
 
@@ -868,12 +820,14 @@ func (r ApiCheckerCronRequest) Execute() (*http.Response, error) {
 CheckerCron Check valid cron job format
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param v
  @return ApiCheckerCronRequest
 */
-func (a *CheckerApiService) CheckerCron(ctx context.Context) ApiCheckerCronRequest {
+func (a *CheckerApiService) CheckerCron(ctx context.Context, v string) ApiCheckerCronRequest {
 	return ApiCheckerCronRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
@@ -890,17 +844,15 @@ func (a *CheckerApiService) CheckerCronExecute(r ApiCheckerCronRequest) (*http.R
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/checker/cron"
+	localVarPath := localBasePath + "/api/v{v}/Checker/cron"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.cronJobCommand == nil {
-		return nil, reportError("cronJobCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -909,7 +861,7 @@ func (a *CheckerApiService) CheckerCronExecute(r ApiCheckerCronRequest) (*http.R
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -917,7 +869,7 @@ func (a *CheckerApiService) CheckerCronExecute(r ApiCheckerCronRequest) (*http.R
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.cronJobCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -954,17 +906,6 @@ func (a *CheckerApiService) CheckerCronExecute(r ApiCheckerCronRequest) (*http.R
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -998,7 +939,7 @@ func (a *CheckerApiService) CheckerCronExecute(r ApiCheckerCronRequest) (*http.R
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1017,11 +958,12 @@ func (a *CheckerApiService) CheckerCronExecute(r ApiCheckerCronRequest) (*http.R
 type ApiCheckerDnsRequest struct {
 	ctx context.Context
 	ApiService *CheckerApiService
-	dnsCommand *DnsCommand
+	v string
+	body *DnsCommand
 }
 
-func (r ApiCheckerDnsRequest) DnsCommand(dnsCommand DnsCommand) ApiCheckerDnsRequest {
-	r.dnsCommand = &dnsCommand
+func (r ApiCheckerDnsRequest) Body(body DnsCommand) ApiCheckerDnsRequest {
+	r.body = &body
 	return r
 }
 
@@ -1033,12 +975,14 @@ func (r ApiCheckerDnsRequest) Execute() (*http.Response, error) {
 CheckerDns Check valid dns format
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param v
  @return ApiCheckerDnsRequest
 */
-func (a *CheckerApiService) CheckerDns(ctx context.Context) ApiCheckerDnsRequest {
+func (a *CheckerApiService) CheckerDns(ctx context.Context, v string) ApiCheckerDnsRequest {
 	return ApiCheckerDnsRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
@@ -1055,17 +999,15 @@ func (a *CheckerApiService) CheckerDnsExecute(r ApiCheckerDnsRequest) (*http.Res
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/checker/dns"
+	localVarPath := localBasePath + "/api/v{v}/Checker/dns"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.dnsCommand == nil {
-		return nil, reportError("dnsCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -1074,7 +1016,7 @@ func (a *CheckerApiService) CheckerDnsExecute(r ApiCheckerDnsRequest) (*http.Res
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1082,7 +1024,7 @@ func (a *CheckerApiService) CheckerDnsExecute(r ApiCheckerDnsRequest) (*http.Res
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.dnsCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1119,17 +1061,6 @@ func (a *CheckerApiService) CheckerDnsExecute(r ApiCheckerDnsRequest) (*http.Res
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1163,7 +1094,7 @@ func (a *CheckerApiService) CheckerDnsExecute(r ApiCheckerDnsRequest) (*http.Res
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1179,37 +1110,40 @@ func (a *CheckerApiService) CheckerDnsExecute(r ApiCheckerDnsRequest) (*http.Res
 	return localVarHTTPResponse, nil
 }
 
-type ApiCheckerDuplicateNameRequest struct {
+type ApiCheckerDuplicateRequest struct {
 	ctx context.Context
 	ApiService *CheckerApiService
-	duplicateNameCheckerCommand *DuplicateNameCheckerCommand
+	v string
+	body *DuplicateNameCheckerCommand
 }
 
-func (r ApiCheckerDuplicateNameRequest) DuplicateNameCheckerCommand(duplicateNameCheckerCommand DuplicateNameCheckerCommand) ApiCheckerDuplicateNameRequest {
-	r.duplicateNameCheckerCommand = &duplicateNameCheckerCommand
+func (r ApiCheckerDuplicateRequest) Body(body DuplicateNameCheckerCommand) ApiCheckerDuplicateRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiCheckerDuplicateNameRequest) Execute() (bool, *http.Response, error) {
-	return r.ApiService.CheckerDuplicateNameExecute(r)
+func (r ApiCheckerDuplicateRequest) Execute() (bool, *http.Response, error) {
+	return r.ApiService.CheckerDuplicateExecute(r)
 }
 
 /*
-CheckerDuplicateName Duplicate name
+CheckerDuplicate Duplicate name
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCheckerDuplicateNameRequest
+ @param v
+ @return ApiCheckerDuplicateRequest
 */
-func (a *CheckerApiService) CheckerDuplicateName(ctx context.Context) ApiCheckerDuplicateNameRequest {
-	return ApiCheckerDuplicateNameRequest{
+func (a *CheckerApiService) CheckerDuplicate(ctx context.Context, v string) ApiCheckerDuplicateRequest {
+	return ApiCheckerDuplicateRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
 //  @return bool
-func (a *CheckerApiService) CheckerDuplicateNameExecute(r ApiCheckerDuplicateNameRequest) (bool, *http.Response, error) {
+func (a *CheckerApiService) CheckerDuplicateExecute(r ApiCheckerDuplicateRequest) (bool, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -1217,22 +1151,20 @@ func (a *CheckerApiService) CheckerDuplicateNameExecute(r ApiCheckerDuplicateNam
 		localVarReturnValue  bool
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CheckerApiService.CheckerDuplicateName")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CheckerApiService.CheckerDuplicate")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/checker/duplicate"
+	localVarPath := localBasePath + "/api/v{v}/Checker/duplicate"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.duplicateNameCheckerCommand == nil {
-		return localVarReturnValue, nil, reportError("duplicateNameCheckerCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -1241,7 +1173,7 @@ func (a *CheckerApiService) CheckerDuplicateNameExecute(r ApiCheckerDuplicateNam
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1249,7 +1181,7 @@ func (a *CheckerApiService) CheckerDuplicateNameExecute(r ApiCheckerDuplicateNam
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.duplicateNameCheckerCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1286,17 +1218,6 @@ func (a *CheckerApiService) CheckerDuplicateNameExecute(r ApiCheckerDuplicateNam
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1330,7 +1251,7 @@ func (a *CheckerApiService) CheckerDuplicateNameExecute(r ApiCheckerDuplicateNam
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1358,6 +1279,13 @@ func (a *CheckerApiService) CheckerDuplicateNameExecute(r ApiCheckerDuplicateNam
 type ApiCheckerGoogleRequest struct {
 	ctx context.Context
 	ApiService *CheckerApiService
+	v string
+	config *os.File
+}
+
+func (r ApiCheckerGoogleRequest) Config(config *os.File) ApiCheckerGoogleRequest {
+	r.config = config
+	return r
 }
 
 func (r ApiCheckerGoogleRequest) Execute() (*http.Response, error) {
@@ -1365,15 +1293,17 @@ func (r ApiCheckerGoogleRequest) Execute() (*http.Response, error) {
 }
 
 /*
-CheckerGoogle Check google credentials
+CheckerGoogle Check aws credentials
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param v
  @return ApiCheckerGoogleRequest
 */
-func (a *CheckerApiService) CheckerGoogle(ctx context.Context) ApiCheckerGoogleRequest {
+func (a *CheckerApiService) CheckerGoogle(ctx context.Context, v string) ApiCheckerGoogleRequest {
 	return ApiCheckerGoogleRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
@@ -1390,7 +1320,8 @@ func (a *CheckerApiService) CheckerGoogleExecute(r ApiCheckerGoogleRequest) (*ht
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/checker/google"
+	localVarPath := localBasePath + "/api/v{v}/Checker/google"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1406,12 +1337,29 @@ func (a *CheckerApiService) CheckerGoogleExecute(r ApiCheckerGoogleRequest) (*ht
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	var configLocalVarFormFileName string
+	var configLocalVarFileName     string
+	var configLocalVarFileBytes    []byte
+
+	configLocalVarFormFileName = "Config"
+
+
+	configLocalVarFile := r.config
+
+	if configLocalVarFile != nil {
+		fbs, _ := io.ReadAll(configLocalVarFile)
+
+		configLocalVarFileBytes = fbs
+		configLocalVarFileName = configLocalVarFile.Name()
+		configLocalVarFile.Close()
+		formFiles = append(formFiles, formFile{fileBytes: configLocalVarFileBytes, fileName: configLocalVarFileName, formFileName: configLocalVarFormFileName})
 	}
 	if r.ctx != nil {
 		// API Key Authentication
@@ -1449,17 +1397,6 @@ func (a *CheckerApiService) CheckerGoogleExecute(r ApiCheckerGoogleRequest) (*ht
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1493,7 +1430,7 @@ func (a *CheckerApiService) CheckerGoogleExecute(r ApiCheckerGoogleRequest) (*ht
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1512,11 +1449,12 @@ func (a *CheckerApiService) CheckerGoogleExecute(r ApiCheckerGoogleRequest) (*ht
 type ApiCheckerKeycloakRequest struct {
 	ctx context.Context
 	ApiService *CheckerApiService
-	keycloakCheckerCommand *KeycloakCheckerCommand
+	v string
+	body *KeycloakCheckerCommand
 }
 
-func (r ApiCheckerKeycloakRequest) KeycloakCheckerCommand(keycloakCheckerCommand KeycloakCheckerCommand) ApiCheckerKeycloakRequest {
-	r.keycloakCheckerCommand = &keycloakCheckerCommand
+func (r ApiCheckerKeycloakRequest) Body(body KeycloakCheckerCommand) ApiCheckerKeycloakRequest {
+	r.body = &body
 	return r
 }
 
@@ -1525,15 +1463,17 @@ func (r ApiCheckerKeycloakRequest) Execute() (*http.Response, error) {
 }
 
 /*
-CheckerKeycloak Check keycloak credential
+CheckerKeycloak Check keycloak credentials
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param v
  @return ApiCheckerKeycloakRequest
 */
-func (a *CheckerApiService) CheckerKeycloak(ctx context.Context) ApiCheckerKeycloakRequest {
+func (a *CheckerApiService) CheckerKeycloak(ctx context.Context, v string) ApiCheckerKeycloakRequest {
 	return ApiCheckerKeycloakRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
@@ -1550,17 +1490,15 @@ func (a *CheckerApiService) CheckerKeycloakExecute(r ApiCheckerKeycloakRequest) 
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/checker/keycloak"
+	localVarPath := localBasePath + "/api/v{v}/Checker/keycloak"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.keycloakCheckerCommand == nil {
-		return nil, reportError("keycloakCheckerCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -1569,7 +1507,7 @@ func (a *CheckerApiService) CheckerKeycloakExecute(r ApiCheckerKeycloakRequest) 
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1577,7 +1515,7 @@ func (a *CheckerApiService) CheckerKeycloakExecute(r ApiCheckerKeycloakRequest) 
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.keycloakCheckerCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1614,17 +1552,6 @@ func (a *CheckerApiService) CheckerKeycloakExecute(r ApiCheckerKeycloakRequest) 
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1658,7 +1585,7 @@ func (a *CheckerApiService) CheckerKeycloakExecute(r ApiCheckerKeycloakRequest) 
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1677,11 +1604,12 @@ func (a *CheckerApiService) CheckerKeycloakExecute(r ApiCheckerKeycloakRequest) 
 type ApiCheckerNodeRequest struct {
 	ctx context.Context
 	ApiService *CheckerApiService
-	nodeCommand *NodeCommand
+	v string
+	body *NodeCommand
 }
 
-func (r ApiCheckerNodeRequest) NodeCommand(nodeCommand NodeCommand) ApiCheckerNodeRequest {
-	r.nodeCommand = &nodeCommand
+func (r ApiCheckerNodeRequest) Body(body NodeCommand) ApiCheckerNodeRequest {
+	r.body = &body
 	return r
 }
 
@@ -1693,12 +1621,14 @@ func (r ApiCheckerNodeRequest) Execute() (*http.Response, error) {
 CheckerNode Duplicate server name checker
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param v
  @return ApiCheckerNodeRequest
 */
-func (a *CheckerApiService) CheckerNode(ctx context.Context) ApiCheckerNodeRequest {
+func (a *CheckerApiService) CheckerNode(ctx context.Context, v string) ApiCheckerNodeRequest {
 	return ApiCheckerNodeRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
@@ -1715,17 +1645,15 @@ func (a *CheckerApiService) CheckerNodeExecute(r ApiCheckerNodeRequest) (*http.R
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/checker/node"
+	localVarPath := localBasePath + "/api/v{v}/Checker/node"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.nodeCommand == nil {
-		return nil, reportError("nodeCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -1734,7 +1662,7 @@ func (a *CheckerApiService) CheckerNodeExecute(r ApiCheckerNodeRequest) (*http.R
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1742,7 +1670,7 @@ func (a *CheckerApiService) CheckerNodeExecute(r ApiCheckerNodeRequest) (*http.R
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.nodeCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1779,17 +1707,6 @@ func (a *CheckerApiService) CheckerNodeExecute(r ApiCheckerNodeRequest) (*http.R
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1823,7 +1740,7 @@ func (a *CheckerApiService) CheckerNodeExecute(r ApiCheckerNodeRequest) (*http.R
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1842,11 +1759,12 @@ func (a *CheckerApiService) CheckerNodeExecute(r ApiCheckerNodeRequest) (*http.R
 type ApiCheckerNtpRequest struct {
 	ctx context.Context
 	ApiService *CheckerApiService
-	ntpCommand *NtpCommand
+	v string
+	body *NtpCommand
 }
 
-func (r ApiCheckerNtpRequest) NtpCommand(ntpCommand NtpCommand) ApiCheckerNtpRequest {
-	r.ntpCommand = &ntpCommand
+func (r ApiCheckerNtpRequest) Body(body NtpCommand) ApiCheckerNtpRequest {
+	r.body = &body
 	return r
 }
 
@@ -1858,12 +1776,14 @@ func (r ApiCheckerNtpRequest) Execute() (*http.Response, error) {
 CheckerNtp Check valid ntp format
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param v
  @return ApiCheckerNtpRequest
 */
-func (a *CheckerApiService) CheckerNtp(ctx context.Context) ApiCheckerNtpRequest {
+func (a *CheckerApiService) CheckerNtp(ctx context.Context, v string) ApiCheckerNtpRequest {
 	return ApiCheckerNtpRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
@@ -1880,17 +1800,15 @@ func (a *CheckerApiService) CheckerNtpExecute(r ApiCheckerNtpRequest) (*http.Res
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/checker/ntp"
+	localVarPath := localBasePath + "/api/v{v}/Checker/ntp"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.ntpCommand == nil {
-		return nil, reportError("ntpCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -1899,7 +1817,7 @@ func (a *CheckerApiService) CheckerNtpExecute(r ApiCheckerNtpRequest) (*http.Res
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1907,7 +1825,7 @@ func (a *CheckerApiService) CheckerNtpExecute(r ApiCheckerNtpRequest) (*http.Res
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.ntpCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1944,17 +1862,6 @@ func (a *CheckerApiService) CheckerNtpExecute(r ApiCheckerNtpRequest) (*http.Res
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1988,7 +1895,7 @@ func (a *CheckerApiService) CheckerNtpExecute(r ApiCheckerNtpRequest) (*http.Res
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2007,11 +1914,12 @@ func (a *CheckerApiService) CheckerNtpExecute(r ApiCheckerNtpRequest) (*http.Res
 type ApiCheckerOpenstackRequest struct {
 	ctx context.Context
 	ApiService *CheckerApiService
-	checkOpenstackCommand *CheckOpenstackCommand
+	v string
+	body *CheckOpenstackCommand
 }
 
-func (r ApiCheckerOpenstackRequest) CheckOpenstackCommand(checkOpenstackCommand CheckOpenstackCommand) ApiCheckerOpenstackRequest {
-	r.checkOpenstackCommand = &checkOpenstackCommand
+func (r ApiCheckerOpenstackRequest) Body(body CheckOpenstackCommand) ApiCheckerOpenstackRequest {
+	r.body = &body
 	return r
 }
 
@@ -2020,15 +1928,17 @@ func (r ApiCheckerOpenstackRequest) Execute() (*http.Response, error) {
 }
 
 /*
-CheckerOpenstack Check openstack credential
+CheckerOpenstack Check openstack credentials
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param v
  @return ApiCheckerOpenstackRequest
 */
-func (a *CheckerApiService) CheckerOpenstack(ctx context.Context) ApiCheckerOpenstackRequest {
+func (a *CheckerApiService) CheckerOpenstack(ctx context.Context, v string) ApiCheckerOpenstackRequest {
 	return ApiCheckerOpenstackRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
@@ -2045,14 +1955,15 @@ func (a *CheckerApiService) CheckerOpenstackExecute(r ApiCheckerOpenstackRequest
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/checker/openstack"
+	localVarPath := localBasePath + "/api/v{v}/Checker/openstack"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -2061,7 +1972,7 @@ func (a *CheckerApiService) CheckerOpenstackExecute(r ApiCheckerOpenstackRequest
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -2069,7 +1980,7 @@ func (a *CheckerApiService) CheckerOpenstackExecute(r ApiCheckerOpenstackRequest
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.checkOpenstackCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -2106,17 +2017,6 @@ func (a *CheckerApiService) CheckerOpenstackExecute(r ApiCheckerOpenstackRequest
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -2150,7 +2050,7 @@ func (a *CheckerApiService) CheckerOpenstackExecute(r ApiCheckerOpenstackRequest
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2166,46 +2066,50 @@ func (a *CheckerApiService) CheckerOpenstackExecute(r ApiCheckerOpenstackRequest
 	return localVarHTTPResponse, nil
 }
 
-type ApiCheckerOpenstackTaikunImageRequest struct {
+type ApiCheckerOpenstackImageRequest struct {
 	ctx context.Context
 	ApiService *CheckerApiService
 	id int32
+	v string
 }
 
-func (r ApiCheckerOpenstackTaikunImageRequest) Execute() (*http.Response, error) {
-	return r.ApiService.CheckerOpenstackTaikunImageExecute(r)
+func (r ApiCheckerOpenstackImageRequest) Execute() (*http.Response, error) {
+	return r.ApiService.CheckerOpenstackImageExecute(r)
 }
 
 /*
-CheckerOpenstackTaikunImage Check openstack taikun image
+CheckerOpenstackImage Check openstack Taikun image
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
- @return ApiCheckerOpenstackTaikunImageRequest
+ @param v
+ @return ApiCheckerOpenstackImageRequest
 */
-func (a *CheckerApiService) CheckerOpenstackTaikunImage(ctx context.Context, id int32) ApiCheckerOpenstackTaikunImageRequest {
-	return ApiCheckerOpenstackTaikunImageRequest{
+func (a *CheckerApiService) CheckerOpenstackImage(ctx context.Context, id int32, v string) ApiCheckerOpenstackImageRequest {
+	return ApiCheckerOpenstackImageRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
+		v: v,
 	}
 }
 
 // Execute executes the request
-func (a *CheckerApiService) CheckerOpenstackTaikunImageExecute(r ApiCheckerOpenstackTaikunImageRequest) (*http.Response, error) {
+func (a *CheckerApiService) CheckerOpenstackImageExecute(r ApiCheckerOpenstackImageRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CheckerApiService.CheckerOpenstackTaikunImage")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CheckerApiService.CheckerOpenstackImage")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/checker/openstack-image/{id}"
+	localVarPath := localBasePath + "/api/v{v}/Checker/openstack-image/{id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2221,7 +2125,7 @@ func (a *CheckerApiService) CheckerOpenstackTaikunImageExecute(r ApiCheckerOpens
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -2264,17 +2168,6 @@ func (a *CheckerApiService) CheckerOpenstackTaikunImageExecute(r ApiCheckerOpens
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -2308,7 +2201,7 @@ func (a *CheckerApiService) CheckerOpenstackTaikunImageExecute(r ApiCheckerOpens
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2328,6 +2221,7 @@ type ApiCheckerOpenstackTaikunLbImageRequest struct {
 	ctx context.Context
 	ApiService *CheckerApiService
 	id int32
+	v string
 }
 
 func (r ApiCheckerOpenstackTaikunLbImageRequest) Execute() (*http.Response, error) {
@@ -2335,17 +2229,19 @@ func (r ApiCheckerOpenstackTaikunLbImageRequest) Execute() (*http.Response, erro
 }
 
 /*
-CheckerOpenstackTaikunLbImage Check openstack taikun lb image
+CheckerOpenstackTaikunLbImage Check openstack Taikun lb image
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
+ @param v
  @return ApiCheckerOpenstackTaikunLbImageRequest
 */
-func (a *CheckerApiService) CheckerOpenstackTaikunLbImage(ctx context.Context, id int32) ApiCheckerOpenstackTaikunLbImageRequest {
+func (a *CheckerApiService) CheckerOpenstackTaikunLbImage(ctx context.Context, id int32, v string) ApiCheckerOpenstackTaikunLbImageRequest {
 	return ApiCheckerOpenstackTaikunLbImageRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
+		v: v,
 	}
 }
 
@@ -2362,8 +2258,9 @@ func (a *CheckerApiService) CheckerOpenstackTaikunLbImageExecute(r ApiCheckerOpe
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/checker/taikun-lb-image/{id}"
+	localVarPath := localBasePath + "/api/v{v}/Checker/taikun-lb-image/{id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2379,7 +2276,7 @@ func (a *CheckerApiService) CheckerOpenstackTaikunLbImageExecute(r ApiCheckerOpe
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -2422,17 +2319,6 @@ func (a *CheckerApiService) CheckerOpenstackTaikunLbImageExecute(r ApiCheckerOpe
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -2466,7 +2352,7 @@ func (a *CheckerApiService) CheckerOpenstackTaikunLbImageExecute(r ApiCheckerOpe
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2485,11 +2371,12 @@ func (a *CheckerApiService) CheckerOpenstackTaikunLbImageExecute(r ApiCheckerOpe
 type ApiCheckerOrganizationRequest struct {
 	ctx context.Context
 	ApiService *CheckerApiService
-	organizationNameCheckerCommand *OrganizationNameCheckerCommand
+	v string
+	body *OrganizationNameCheckerCommand
 }
 
-func (r ApiCheckerOrganizationRequest) OrganizationNameCheckerCommand(organizationNameCheckerCommand OrganizationNameCheckerCommand) ApiCheckerOrganizationRequest {
-	r.organizationNameCheckerCommand = &organizationNameCheckerCommand
+func (r ApiCheckerOrganizationRequest) Body(body OrganizationNameCheckerCommand) ApiCheckerOrganizationRequest {
+	r.body = &body
 	return r
 }
 
@@ -2501,12 +2388,14 @@ func (r ApiCheckerOrganizationRequest) Execute() (*http.Response, error) {
 CheckerOrganization Check duplicate org name
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param v
  @return ApiCheckerOrganizationRequest
 */
-func (a *CheckerApiService) CheckerOrganization(ctx context.Context) ApiCheckerOrganizationRequest {
+func (a *CheckerApiService) CheckerOrganization(ctx context.Context, v string) ApiCheckerOrganizationRequest {
 	return ApiCheckerOrganizationRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
@@ -2523,17 +2412,15 @@ func (a *CheckerApiService) CheckerOrganizationExecute(r ApiCheckerOrganizationR
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/checker/organization"
+	localVarPath := localBasePath + "/api/v{v}/Checker/organization"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.organizationNameCheckerCommand == nil {
-		return nil, reportError("organizationNameCheckerCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -2542,7 +2429,7 @@ func (a *CheckerApiService) CheckerOrganizationExecute(r ApiCheckerOrganizationR
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -2550,7 +2437,7 @@ func (a *CheckerApiService) CheckerOrganizationExecute(r ApiCheckerOrganizationR
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.organizationNameCheckerCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -2587,17 +2474,6 @@ func (a *CheckerApiService) CheckerOrganizationExecute(r ApiCheckerOrganizationR
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -2631,7 +2507,7 @@ func (a *CheckerApiService) CheckerOrganizationExecute(r ApiCheckerOrganizationR
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2650,11 +2526,12 @@ func (a *CheckerApiService) CheckerOrganizationExecute(r ApiCheckerOrganizationR
 type ApiCheckerPrometheusRequest struct {
 	ctx context.Context
 	ApiService *CheckerApiService
-	checkPrometheusCommand *CheckPrometheusCommand
+	v string
+	body *CheckPrometheusCommand
 }
 
-func (r ApiCheckerPrometheusRequest) CheckPrometheusCommand(checkPrometheusCommand CheckPrometheusCommand) ApiCheckerPrometheusRequest {
-	r.checkPrometheusCommand = &checkPrometheusCommand
+func (r ApiCheckerPrometheusRequest) Body(body CheckPrometheusCommand) ApiCheckerPrometheusRequest {
+	r.body = &body
 	return r
 }
 
@@ -2666,12 +2543,14 @@ func (r ApiCheckerPrometheusRequest) Execute() (*http.Response, error) {
 CheckerPrometheus Check prometheus credentials
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param v
  @return ApiCheckerPrometheusRequest
 */
-func (a *CheckerApiService) CheckerPrometheus(ctx context.Context) ApiCheckerPrometheusRequest {
+func (a *CheckerApiService) CheckerPrometheus(ctx context.Context, v string) ApiCheckerPrometheusRequest {
 	return ApiCheckerPrometheusRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
@@ -2688,17 +2567,15 @@ func (a *CheckerApiService) CheckerPrometheusExecute(r ApiCheckerPrometheusReque
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/checker/prometheus"
+	localVarPath := localBasePath + "/api/v{v}/Checker/prometheus"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.checkPrometheusCommand == nil {
-		return nil, reportError("checkPrometheusCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -2707,7 +2584,7 @@ func (a *CheckerApiService) CheckerPrometheusExecute(r ApiCheckerPrometheusReque
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -2715,7 +2592,7 @@ func (a *CheckerApiService) CheckerPrometheusExecute(r ApiCheckerPrometheusReque
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.checkPrometheusCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -2752,17 +2629,6 @@ func (a *CheckerApiService) CheckerPrometheusExecute(r ApiCheckerPrometheusReque
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -2796,7 +2662,7 @@ func (a *CheckerApiService) CheckerPrometheusExecute(r ApiCheckerPrometheusReque
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2815,11 +2681,12 @@ func (a *CheckerApiService) CheckerPrometheusExecute(r ApiCheckerPrometheusReque
 type ApiCheckerProxmoxRequest struct {
 	ctx context.Context
 	ApiService *CheckerApiService
-	proxmoxCheckerCommand *ProxmoxCheckerCommand
+	v string
+	body *ProxmoxCheckerCommand
 }
 
-func (r ApiCheckerProxmoxRequest) ProxmoxCheckerCommand(proxmoxCheckerCommand ProxmoxCheckerCommand) ApiCheckerProxmoxRequest {
-	r.proxmoxCheckerCommand = &proxmoxCheckerCommand
+func (r ApiCheckerProxmoxRequest) Body(body ProxmoxCheckerCommand) ApiCheckerProxmoxRequest {
+	r.body = &body
 	return r
 }
 
@@ -2828,15 +2695,17 @@ func (r ApiCheckerProxmoxRequest) Execute() (*http.Response, error) {
 }
 
 /*
-CheckerProxmox Check proxmox credential
+CheckerProxmox Check proxmox credentials
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param v
  @return ApiCheckerProxmoxRequest
 */
-func (a *CheckerApiService) CheckerProxmox(ctx context.Context) ApiCheckerProxmoxRequest {
+func (a *CheckerApiService) CheckerProxmox(ctx context.Context, v string) ApiCheckerProxmoxRequest {
 	return ApiCheckerProxmoxRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
@@ -2853,17 +2722,15 @@ func (a *CheckerApiService) CheckerProxmoxExecute(r ApiCheckerProxmoxRequest) (*
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/checker/proxmox"
+	localVarPath := localBasePath + "/api/v{v}/Checker/proxmox"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.proxmoxCheckerCommand == nil {
-		return nil, reportError("proxmoxCheckerCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -2872,7 +2739,7 @@ func (a *CheckerApiService) CheckerProxmoxExecute(r ApiCheckerProxmoxRequest) (*
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -2880,7 +2747,7 @@ func (a *CheckerApiService) CheckerProxmoxExecute(r ApiCheckerProxmoxRequest) (*
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.proxmoxCheckerCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -2917,17 +2784,6 @@ func (a *CheckerApiService) CheckerProxmoxExecute(r ApiCheckerProxmoxRequest) (*
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -2961,7 +2817,7 @@ func (a *CheckerApiService) CheckerProxmoxExecute(r ApiCheckerProxmoxRequest) (*
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2980,11 +2836,12 @@ func (a *CheckerApiService) CheckerProxmoxExecute(r ApiCheckerProxmoxRequest) (*
 type ApiCheckerS3Request struct {
 	ctx context.Context
 	ApiService *CheckerApiService
-	checkS3Command *CheckS3Command
+	v string
+	body *CheckS3Command
 }
 
-func (r ApiCheckerS3Request) CheckS3Command(checkS3Command CheckS3Command) ApiCheckerS3Request {
-	r.checkS3Command = &checkS3Command
+func (r ApiCheckerS3Request) Body(body CheckS3Command) ApiCheckerS3Request {
+	r.body = &body
 	return r
 }
 
@@ -2993,15 +2850,17 @@ func (r ApiCheckerS3Request) Execute() (*http.Response, error) {
 }
 
 /*
-CheckerS3 Check s3 credential
+CheckerS3 Check s3 credentials
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param v
  @return ApiCheckerS3Request
 */
-func (a *CheckerApiService) CheckerS3(ctx context.Context) ApiCheckerS3Request {
+func (a *CheckerApiService) CheckerS3(ctx context.Context, v string) ApiCheckerS3Request {
 	return ApiCheckerS3Request{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
@@ -3018,17 +2877,15 @@ func (a *CheckerApiService) CheckerS3Execute(r ApiCheckerS3Request) (*http.Respo
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/checker/s3"
+	localVarPath := localBasePath + "/api/v{v}/Checker/s3"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.checkS3Command == nil {
-		return nil, reportError("checkS3Command is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -3037,7 +2894,7 @@ func (a *CheckerApiService) CheckerS3Execute(r ApiCheckerS3Request) (*http.Respo
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -3045,7 +2902,7 @@ func (a *CheckerApiService) CheckerS3Execute(r ApiCheckerS3Request) (*http.Respo
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.checkS3Command
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -3082,17 +2939,6 @@ func (a *CheckerApiService) CheckerS3Execute(r ApiCheckerS3Request) (*http.Respo
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -3126,7 +2972,7 @@ func (a *CheckerApiService) CheckerS3Execute(r ApiCheckerS3Request) (*http.Respo
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -3145,11 +2991,12 @@ func (a *CheckerApiService) CheckerS3Execute(r ApiCheckerS3Request) (*http.Respo
 type ApiCheckerSshRequest struct {
 	ctx context.Context
 	ApiService *CheckerApiService
-	sshKeyCommand *SshKeyCommand
+	v string
+	body *SshKeyCommand
 }
 
-func (r ApiCheckerSshRequest) SshKeyCommand(sshKeyCommand SshKeyCommand) ApiCheckerSshRequest {
-	r.sshKeyCommand = &sshKeyCommand
+func (r ApiCheckerSshRequest) Body(body SshKeyCommand) ApiCheckerSshRequest {
+	r.body = &body
 	return r
 }
 
@@ -3161,12 +3008,14 @@ func (r ApiCheckerSshRequest) Execute() (*http.Response, error) {
 CheckerSsh Check valid ssh key format
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param v
  @return ApiCheckerSshRequest
 */
-func (a *CheckerApiService) CheckerSsh(ctx context.Context) ApiCheckerSshRequest {
+func (a *CheckerApiService) CheckerSsh(ctx context.Context, v string) ApiCheckerSshRequest {
 	return ApiCheckerSshRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
@@ -3183,17 +3032,15 @@ func (a *CheckerApiService) CheckerSshExecute(r ApiCheckerSshRequest) (*http.Res
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/checker/ssh"
+	localVarPath := localBasePath + "/api/v{v}/Checker/ssh"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.sshKeyCommand == nil {
-		return nil, reportError("sshKeyCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -3202,7 +3049,7 @@ func (a *CheckerApiService) CheckerSshExecute(r ApiCheckerSshRequest) (*http.Res
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -3210,7 +3057,7 @@ func (a *CheckerApiService) CheckerSshExecute(r ApiCheckerSshRequest) (*http.Res
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.sshKeyCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -3247,17 +3094,6 @@ func (a *CheckerApiService) CheckerSshExecute(r ApiCheckerSshRequest) (*http.Res
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -3291,7 +3127,7 @@ func (a *CheckerApiService) CheckerSshExecute(r ApiCheckerSshRequest) (*http.Res
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -3310,11 +3146,12 @@ func (a *CheckerApiService) CheckerSshExecute(r ApiCheckerSshRequest) (*http.Res
 type ApiCheckerTanzuRequest struct {
 	ctx context.Context
 	ApiService *CheckerApiService
-	checkTanzuCommand *CheckTanzuCommand
+	v string
+	body *CheckTanzuCommand
 }
 
-func (r ApiCheckerTanzuRequest) CheckTanzuCommand(checkTanzuCommand CheckTanzuCommand) ApiCheckerTanzuRequest {
-	r.checkTanzuCommand = &checkTanzuCommand
+func (r ApiCheckerTanzuRequest) Body(body CheckTanzuCommand) ApiCheckerTanzuRequest {
+	r.body = &body
 	return r
 }
 
@@ -3323,15 +3160,17 @@ func (r ApiCheckerTanzuRequest) Execute() (*http.Response, error) {
 }
 
 /*
-CheckerTanzu Check tanzu credential
+CheckerTanzu Check tanzu credentials
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param v
  @return ApiCheckerTanzuRequest
 */
-func (a *CheckerApiService) CheckerTanzu(ctx context.Context) ApiCheckerTanzuRequest {
+func (a *CheckerApiService) CheckerTanzu(ctx context.Context, v string) ApiCheckerTanzuRequest {
 	return ApiCheckerTanzuRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
@@ -3348,17 +3187,15 @@ func (a *CheckerApiService) CheckerTanzuExecute(r ApiCheckerTanzuRequest) (*http
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/checker/tanzu"
+	localVarPath := localBasePath + "/api/v{v}/Checker/tanzu"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.checkTanzuCommand == nil {
-		return nil, reportError("checkTanzuCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -3367,7 +3204,7 @@ func (a *CheckerApiService) CheckerTanzuExecute(r ApiCheckerTanzuRequest) (*http
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -3375,7 +3212,7 @@ func (a *CheckerApiService) CheckerTanzuExecute(r ApiCheckerTanzuRequest) (*http
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.checkTanzuCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -3412,17 +3249,6 @@ func (a *CheckerApiService) CheckerTanzuExecute(r ApiCheckerTanzuRequest) (*http
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -3456,7 +3282,7 @@ func (a *CheckerApiService) CheckerTanzuExecute(r ApiCheckerTanzuRequest) (*http
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -3472,58 +3298,59 @@ func (a *CheckerApiService) CheckerTanzuExecute(r ApiCheckerTanzuRequest) (*http
 	return localVarHTTPResponse, nil
 }
 
-type ApiCheckerUserRequest struct {
+type ApiCheckerUserCheckerRequest struct {
 	ctx context.Context
 	ApiService *CheckerApiService
-	userExistCommand *UserExistCommand
+	v string
+	body *UserExistCommand
 }
 
-func (r ApiCheckerUserRequest) UserExistCommand(userExistCommand UserExistCommand) ApiCheckerUserRequest {
-	r.userExistCommand = &userExistCommand
+func (r ApiCheckerUserCheckerRequest) Body(body UserExistCommand) ApiCheckerUserCheckerRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiCheckerUserRequest) Execute() (*http.Response, error) {
-	return r.ApiService.CheckerUserExecute(r)
+func (r ApiCheckerUserCheckerRequest) Execute() (*http.Response, error) {
+	return r.ApiService.CheckerUserCheckerExecute(r)
 }
 
 /*
-CheckerUser Check duplicate username
+CheckerUserChecker Check duplicate username
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCheckerUserRequest
+ @param v
+ @return ApiCheckerUserCheckerRequest
 */
-func (a *CheckerApiService) CheckerUser(ctx context.Context) ApiCheckerUserRequest {
-	return ApiCheckerUserRequest{
+func (a *CheckerApiService) CheckerUserChecker(ctx context.Context, v string) ApiCheckerUserCheckerRequest {
+	return ApiCheckerUserCheckerRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
-func (a *CheckerApiService) CheckerUserExecute(r ApiCheckerUserRequest) (*http.Response, error) {
+func (a *CheckerApiService) CheckerUserCheckerExecute(r ApiCheckerUserCheckerRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CheckerApiService.CheckerUser")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CheckerApiService.CheckerUserChecker")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/checker/user"
+	localVarPath := localBasePath + "/api/v{v}/Checker/user"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.userExistCommand == nil {
-		return nil, reportError("userExistCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -3532,7 +3359,7 @@ func (a *CheckerApiService) CheckerUserExecute(r ApiCheckerUserRequest) (*http.R
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -3540,7 +3367,7 @@ func (a *CheckerApiService) CheckerUserExecute(r ApiCheckerUserRequest) (*http.R
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.userExistCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -3577,17 +3404,6 @@ func (a *CheckerApiService) CheckerUserExecute(r ApiCheckerUserRequest) (*http.R
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -3621,7 +3437,7 @@ func (a *CheckerApiService) CheckerUserExecute(r ApiCheckerUserRequest) (*http.R
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -3640,11 +3456,12 @@ func (a *CheckerApiService) CheckerUserExecute(r ApiCheckerUserRequest) (*http.R
 type ApiCheckerYamlRequest struct {
 	ctx context.Context
 	ApiService *CheckerApiService
-	yamlValidatorCommand *YamlValidatorCommand
+	v string
+	body *YamlValidatorCommand
 }
 
-func (r ApiCheckerYamlRequest) YamlValidatorCommand(yamlValidatorCommand YamlValidatorCommand) ApiCheckerYamlRequest {
-	r.yamlValidatorCommand = &yamlValidatorCommand
+func (r ApiCheckerYamlRequest) Body(body YamlValidatorCommand) ApiCheckerYamlRequest {
+	r.body = &body
 	return r
 }
 
@@ -3656,12 +3473,14 @@ func (r ApiCheckerYamlRequest) Execute() (*http.Response, error) {
 CheckerYaml Check yaml file
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param v
  @return ApiCheckerYamlRequest
 */
-func (a *CheckerApiService) CheckerYaml(ctx context.Context) ApiCheckerYamlRequest {
+func (a *CheckerApiService) CheckerYaml(ctx context.Context, v string) ApiCheckerYamlRequest {
 	return ApiCheckerYamlRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
@@ -3678,17 +3497,15 @@ func (a *CheckerApiService) CheckerYamlExecute(r ApiCheckerYamlRequest) (*http.R
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/checker/yaml"
+	localVarPath := localBasePath + "/api/v{v}/Checker/yaml"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.yamlValidatorCommand == nil {
-		return nil, reportError("yamlValidatorCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -3697,7 +3514,7 @@ func (a *CheckerApiService) CheckerYamlExecute(r ApiCheckerYamlRequest) (*http.R
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -3705,7 +3522,7 @@ func (a *CheckerApiService) CheckerYamlExecute(r ApiCheckerYamlRequest) (*http.R
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.yamlValidatorCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -3742,17 +3559,6 @@ func (a *CheckerApiService) CheckerYamlExecute(r ApiCheckerYamlRequest) (*http.R
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -3786,7 +3592,7 @@ func (a *CheckerApiService) CheckerYamlExecute(r ApiCheckerYamlRequest) (*http.R
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

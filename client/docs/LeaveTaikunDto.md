@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**PaymentIntentId** | Pointer to **NullableString** |  | [optional] 
-**PaymentClientSecret** | Pointer to **NullableString** |  | [optional] 
+**PaymentIntentId** | Pointer to **string** |  | [optional] 
+**PaymentClientSecret** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -51,16 +51,6 @@ SetPaymentIntentId sets PaymentIntentId field to given value.
 
 HasPaymentIntentId returns a boolean if a field has been set.
 
-### SetPaymentIntentIdNil
-
-`func (o *LeaveTaikunDto) SetPaymentIntentIdNil(b bool)`
-
- SetPaymentIntentIdNil sets the value for PaymentIntentId to be an explicit nil
-
-### UnsetPaymentIntentId
-`func (o *LeaveTaikunDto) UnsetPaymentIntentId()`
-
-UnsetPaymentIntentId ensures that no value is present for PaymentIntentId, not even an explicit nil
 ### GetPaymentClientSecret
 
 `func (o *LeaveTaikunDto) GetPaymentClientSecret() string`
@@ -86,16 +76,6 @@ SetPaymentClientSecret sets PaymentClientSecret field to given value.
 
 HasPaymentClientSecret returns a boolean if a field has been set.
 
-### SetPaymentClientSecretNil
-
-`func (o *LeaveTaikunDto) SetPaymentClientSecretNil(b bool)`
-
- SetPaymentClientSecretNil sets the value for PaymentClientSecret to be an explicit nil
-
-### UnsetPaymentClientSecret
-`func (o *LeaveTaikunDto) UnsetPaymentClientSecret()`
-
-UnsetPaymentClientSecret ensures that no value is present for PaymentClientSecret, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -24,37 +24,40 @@ import (
 // KubernetesProfilesApiService KubernetesProfilesApi service
 type KubernetesProfilesApiService service
 
-type ApiKubernetesprofilesCreateRequest struct {
+type ApiKubernetesProfilesCreateRequest struct {
 	ctx context.Context
 	ApiService *KubernetesProfilesApiService
-	createKubernetesProfileCommand *CreateKubernetesProfileCommand
+	v string
+	body *CreateKubernetesProfileCommand
 }
 
-func (r ApiKubernetesprofilesCreateRequest) CreateKubernetesProfileCommand(createKubernetesProfileCommand CreateKubernetesProfileCommand) ApiKubernetesprofilesCreateRequest {
-	r.createKubernetesProfileCommand = &createKubernetesProfileCommand
+func (r ApiKubernetesProfilesCreateRequest) Body(body CreateKubernetesProfileCommand) ApiKubernetesProfilesCreateRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiKubernetesprofilesCreateRequest) Execute() (*ApiResponse, *http.Response, error) {
-	return r.ApiService.KubernetesprofilesCreateExecute(r)
+func (r ApiKubernetesProfilesCreateRequest) Execute() (*ApiResponse, *http.Response, error) {
+	return r.ApiService.KubernetesProfilesCreateExecute(r)
 }
 
 /*
-KubernetesprofilesCreate Add kubernetes profile
+KubernetesProfilesCreate Add kubernetes profiles
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiKubernetesprofilesCreateRequest
+ @param v
+ @return ApiKubernetesProfilesCreateRequest
 */
-func (a *KubernetesProfilesApiService) KubernetesprofilesCreate(ctx context.Context) ApiKubernetesprofilesCreateRequest {
-	return ApiKubernetesprofilesCreateRequest{
+func (a *KubernetesProfilesApiService) KubernetesProfilesCreate(ctx context.Context, v string) ApiKubernetesProfilesCreateRequest {
+	return ApiKubernetesProfilesCreateRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
 //  @return ApiResponse
-func (a *KubernetesProfilesApiService) KubernetesprofilesCreateExecute(r ApiKubernetesprofilesCreateRequest) (*ApiResponse, *http.Response, error) {
+func (a *KubernetesProfilesApiService) KubernetesProfilesCreateExecute(r ApiKubernetesProfilesCreateRequest) (*ApiResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -62,22 +65,20 @@ func (a *KubernetesProfilesApiService) KubernetesprofilesCreateExecute(r ApiKube
 		localVarReturnValue  *ApiResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "KubernetesProfilesApiService.KubernetesprofilesCreate")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "KubernetesProfilesApiService.KubernetesProfilesCreate")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/kubernetesprofiles"
+	localVarPath := localBasePath + "/api/v{v}/KubernetesProfiles"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createKubernetesProfileCommand == nil {
-		return localVarReturnValue, nil, reportError("createKubernetesProfileCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -86,7 +87,7 @@ func (a *KubernetesProfilesApiService) KubernetesprofilesCreateExecute(r ApiKube
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -94,7 +95,7 @@ func (a *KubernetesProfilesApiService) KubernetesprofilesCreateExecute(r ApiKube
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createKubernetesProfileCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -131,17 +132,6 @@ func (a *KubernetesProfilesApiService) KubernetesprofilesCreateExecute(r ApiKube
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -175,7 +165,7 @@ func (a *KubernetesProfilesApiService) KubernetesprofilesCreateExecute(r ApiKube
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -200,46 +190,50 @@ func (a *KubernetesProfilesApiService) KubernetesprofilesCreateExecute(r ApiKube
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiKubernetesprofilesDeleteRequest struct {
+type ApiKubernetesProfilesDeleteRequest struct {
 	ctx context.Context
 	ApiService *KubernetesProfilesApiService
 	id int32
+	v string
 }
 
-func (r ApiKubernetesprofilesDeleteRequest) Execute() (*http.Response, error) {
-	return r.ApiService.KubernetesprofilesDeleteExecute(r)
+func (r ApiKubernetesProfilesDeleteRequest) Execute() (*http.Response, error) {
+	return r.ApiService.KubernetesProfilesDeleteExecute(r)
 }
 
 /*
-KubernetesprofilesDelete Delete kubernetes profile
+KubernetesProfilesDelete Remove kubernetes profiles by Id
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
- @return ApiKubernetesprofilesDeleteRequest
+ @param v
+ @return ApiKubernetesProfilesDeleteRequest
 */
-func (a *KubernetesProfilesApiService) KubernetesprofilesDelete(ctx context.Context, id int32) ApiKubernetesprofilesDeleteRequest {
-	return ApiKubernetesprofilesDeleteRequest{
+func (a *KubernetesProfilesApiService) KubernetesProfilesDelete(ctx context.Context, id int32, v string) ApiKubernetesProfilesDeleteRequest {
+	return ApiKubernetesProfilesDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
+		v: v,
 	}
 }
 
 // Execute executes the request
-func (a *KubernetesProfilesApiService) KubernetesprofilesDeleteExecute(r ApiKubernetesprofilesDeleteRequest) (*http.Response, error) {
+func (a *KubernetesProfilesApiService) KubernetesProfilesDeleteExecute(r ApiKubernetesProfilesDeleteRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "KubernetesProfilesApiService.KubernetesprofilesDelete")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "KubernetesProfilesApiService.KubernetesProfilesDelete")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/kubernetesprofiles/{id}"
+	localVarPath := localBasePath + "/api/v{v}/KubernetesProfiles/{id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -255,7 +249,7 @@ func (a *KubernetesProfilesApiService) KubernetesprofilesDeleteExecute(r ApiKube
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -298,17 +292,6 @@ func (a *KubernetesProfilesApiService) KubernetesprofilesDeleteExecute(r ApiKube
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -342,7 +325,7 @@ func (a *KubernetesProfilesApiService) KubernetesprofilesDeleteExecute(r ApiKube
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -351,6 +334,7 @@ func (a *KubernetesProfilesApiService) KubernetesprofilesDeleteExecute(r ApiKube
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
+			return localVarHTTPResponse, newErr
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -358,43 +342,46 @@ func (a *KubernetesProfilesApiService) KubernetesprofilesDeleteExecute(r ApiKube
 	return localVarHTTPResponse, nil
 }
 
-type ApiKubernetesprofilesDropdownRequest struct {
+type ApiKubernetesProfilesKubernetesProfilesForOrganizationListRequest struct {
 	ctx context.Context
 	ApiService *KubernetesProfilesApiService
+	v string
 	organizationId *int32
 	search *string
 }
 
-func (r ApiKubernetesprofilesDropdownRequest) OrganizationId(organizationId int32) ApiKubernetesprofilesDropdownRequest {
+func (r ApiKubernetesProfilesKubernetesProfilesForOrganizationListRequest) OrganizationId(organizationId int32) ApiKubernetesProfilesKubernetesProfilesForOrganizationListRequest {
 	r.organizationId = &organizationId
 	return r
 }
 
-func (r ApiKubernetesprofilesDropdownRequest) Search(search string) ApiKubernetesprofilesDropdownRequest {
+func (r ApiKubernetesProfilesKubernetesProfilesForOrganizationListRequest) Search(search string) ApiKubernetesProfilesKubernetesProfilesForOrganizationListRequest {
 	r.search = &search
 	return r
 }
 
-func (r ApiKubernetesprofilesDropdownRequest) Execute() ([]KubernetesProfilesEntity, *http.Response, error) {
-	return r.ApiService.KubernetesprofilesDropdownExecute(r)
+func (r ApiKubernetesProfilesKubernetesProfilesForOrganizationListRequest) Execute() ([]KubernetesProfilesEntity, *http.Response, error) {
+	return r.ApiService.KubernetesProfilesKubernetesProfilesForOrganizationListExecute(r)
 }
 
 /*
-KubernetesprofilesDropdown Retrieve all kubernetes profiles for organization
+KubernetesProfilesKubernetesProfilesForOrganizationList Retrieve all kubernetes profiles for organization
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiKubernetesprofilesDropdownRequest
+ @param v
+ @return ApiKubernetesProfilesKubernetesProfilesForOrganizationListRequest
 */
-func (a *KubernetesProfilesApiService) KubernetesprofilesDropdown(ctx context.Context) ApiKubernetesprofilesDropdownRequest {
-	return ApiKubernetesprofilesDropdownRequest{
+func (a *KubernetesProfilesApiService) KubernetesProfilesKubernetesProfilesForOrganizationList(ctx context.Context, v string) ApiKubernetesProfilesKubernetesProfilesForOrganizationListRequest {
+	return ApiKubernetesProfilesKubernetesProfilesForOrganizationListRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
 //  @return []KubernetesProfilesEntity
-func (a *KubernetesProfilesApiService) KubernetesprofilesDropdownExecute(r ApiKubernetesprofilesDropdownRequest) ([]KubernetesProfilesEntity, *http.Response, error) {
+func (a *KubernetesProfilesApiService) KubernetesProfilesKubernetesProfilesForOrganizationListExecute(r ApiKubernetesProfilesKubernetesProfilesForOrganizationListRequest) ([]KubernetesProfilesEntity, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -402,22 +389,23 @@ func (a *KubernetesProfilesApiService) KubernetesprofilesDropdownExecute(r ApiKu
 		localVarReturnValue  []KubernetesProfilesEntity
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "KubernetesProfilesApiService.KubernetesprofilesDropdown")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "KubernetesProfilesApiService.KubernetesProfilesKubernetesProfilesForOrganizationList")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/kubernetesprofiles"
+	localVarPath := localBasePath + "/api/v{v}/KubernetesProfiles"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.organizationId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "OrganizationId", r.organizationId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "organizationId", r.organizationId, "")
 	}
 	if r.search != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Search", r.search, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -429,7 +417,7 @@ func (a *KubernetesProfilesApiService) KubernetesprofilesDropdownExecute(r ApiKu
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -472,17 +460,6 @@ func (a *KubernetesProfilesApiService) KubernetesprofilesDropdownExecute(r ApiKu
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -516,7 +493,7 @@ func (a *KubernetesProfilesApiService) KubernetesprofilesDropdownExecute(r ApiKu
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -541,9 +518,10 @@ func (a *KubernetesProfilesApiService) KubernetesprofilesDropdownExecute(r ApiKu
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiKubernetesprofilesListRequest struct {
+type ApiKubernetesProfilesListRequest struct {
 	ctx context.Context
 	ApiService *KubernetesProfilesApiService
+	v string
 	organizationId *int32
 	limit *int32
 	offset *int32
@@ -554,66 +532,70 @@ type ApiKubernetesprofilesListRequest struct {
 	id *int32
 }
 
-func (r ApiKubernetesprofilesListRequest) OrganizationId(organizationId int32) ApiKubernetesprofilesListRequest {
+func (r ApiKubernetesProfilesListRequest) OrganizationId(organizationId int32) ApiKubernetesProfilesListRequest {
 	r.organizationId = &organizationId
 	return r
 }
 
-func (r ApiKubernetesprofilesListRequest) Limit(limit int32) ApiKubernetesprofilesListRequest {
+// Limits user size (by default 50)
+func (r ApiKubernetesProfilesListRequest) Limit(limit int32) ApiKubernetesProfilesListRequest {
 	r.limit = &limit
 	return r
 }
 
-func (r ApiKubernetesprofilesListRequest) Offset(offset int32) ApiKubernetesprofilesListRequest {
+// Skip elements
+func (r ApiKubernetesProfilesListRequest) Offset(offset int32) ApiKubernetesProfilesListRequest {
 	r.offset = &offset
 	return r
 }
 
-func (r ApiKubernetesprofilesListRequest) SortBy(sortBy string) ApiKubernetesprofilesListRequest {
+func (r ApiKubernetesProfilesListRequest) SortBy(sortBy string) ApiKubernetesProfilesListRequest {
 	r.sortBy = &sortBy
 	return r
 }
 
-func (r ApiKubernetesprofilesListRequest) SortDirection(sortDirection string) ApiKubernetesprofilesListRequest {
+func (r ApiKubernetesProfilesListRequest) SortDirection(sortDirection string) ApiKubernetesProfilesListRequest {
 	r.sortDirection = &sortDirection
 	return r
 }
 
-func (r ApiKubernetesprofilesListRequest) Search(search string) ApiKubernetesprofilesListRequest {
+func (r ApiKubernetesProfilesListRequest) Search(search string) ApiKubernetesProfilesListRequest {
 	r.search = &search
 	return r
 }
 
-func (r ApiKubernetesprofilesListRequest) SearchId(searchId string) ApiKubernetesprofilesListRequest {
+func (r ApiKubernetesProfilesListRequest) SearchId(searchId string) ApiKubernetesProfilesListRequest {
 	r.searchId = &searchId
 	return r
 }
 
-func (r ApiKubernetesprofilesListRequest) Id(id int32) ApiKubernetesprofilesListRequest {
+func (r ApiKubernetesProfilesListRequest) Id(id int32) ApiKubernetesProfilesListRequest {
 	r.id = &id
 	return r
 }
 
-func (r ApiKubernetesprofilesListRequest) Execute() (*KubernetesProfilesList, *http.Response, error) {
-	return r.ApiService.KubernetesprofilesListExecute(r)
+func (r ApiKubernetesProfilesListRequest) Execute() (*KubernetesProfilesList, *http.Response, error) {
+	return r.ApiService.KubernetesProfilesListExecute(r)
 }
 
 /*
-KubernetesprofilesList Retrieve all kubernetes profiles
+KubernetesProfilesList Retrieve all kubernetes profiles
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiKubernetesprofilesListRequest
+ @param v
+ @return ApiKubernetesProfilesListRequest
 */
-func (a *KubernetesProfilesApiService) KubernetesprofilesList(ctx context.Context) ApiKubernetesprofilesListRequest {
-	return ApiKubernetesprofilesListRequest{
+func (a *KubernetesProfilesApiService) KubernetesProfilesList(ctx context.Context, v string) ApiKubernetesProfilesListRequest {
+	return ApiKubernetesProfilesListRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
 //  @return KubernetesProfilesList
-func (a *KubernetesProfilesApiService) KubernetesprofilesListExecute(r ApiKubernetesprofilesListRequest) (*KubernetesProfilesList, *http.Response, error) {
+func (a *KubernetesProfilesApiService) KubernetesProfilesListExecute(r ApiKubernetesProfilesListRequest) (*KubernetesProfilesList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -621,40 +603,41 @@ func (a *KubernetesProfilesApiService) KubernetesprofilesListExecute(r ApiKubern
 		localVarReturnValue  *KubernetesProfilesList
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "KubernetesProfilesApiService.KubernetesprofilesList")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "KubernetesProfilesApiService.KubernetesProfilesList")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/kubernetesprofiles/list"
+	localVarPath := localBasePath + "/api/v{v}/KubernetesProfiles/list"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.organizationId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "OrganizationId", r.organizationId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "organizationId", r.organizationId, "")
 	}
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
 	}
 	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Offset", r.offset, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
 	}
 	if r.sortBy != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "SortBy", r.sortBy, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", r.sortBy, "")
 	}
 	if r.sortDirection != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "SortDirection", r.sortDirection, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "sortDirection", r.sortDirection, "")
 	}
 	if r.search != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Search", r.search, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "")
 	}
 	if r.searchId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "SearchId", r.searchId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "searchId", r.searchId, "")
 	}
 	if r.id != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Id", r.id, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -666,7 +649,7 @@ func (a *KubernetesProfilesApiService) KubernetesprofilesListExecute(r ApiKubern
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -709,17 +692,6 @@ func (a *KubernetesProfilesApiService) KubernetesprofilesListExecute(r ApiKubern
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -753,7 +725,7 @@ func (a *KubernetesProfilesApiService) KubernetesprofilesListExecute(r ApiKubern
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -778,58 +750,59 @@ func (a *KubernetesProfilesApiService) KubernetesprofilesListExecute(r ApiKubern
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiKubernetesprofilesLockManagerRequest struct {
+type ApiKubernetesProfilesLockManagerRequest struct {
 	ctx context.Context
 	ApiService *KubernetesProfilesApiService
-	kubernetesProfilesLockManagerCommand *KubernetesProfilesLockManagerCommand
+	v string
+	body *KubernetesProfilesLockManagerCommand
 }
 
-func (r ApiKubernetesprofilesLockManagerRequest) KubernetesProfilesLockManagerCommand(kubernetesProfilesLockManagerCommand KubernetesProfilesLockManagerCommand) ApiKubernetesprofilesLockManagerRequest {
-	r.kubernetesProfilesLockManagerCommand = &kubernetesProfilesLockManagerCommand
+func (r ApiKubernetesProfilesLockManagerRequest) Body(body KubernetesProfilesLockManagerCommand) ApiKubernetesProfilesLockManagerRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiKubernetesprofilesLockManagerRequest) Execute() (*http.Response, error) {
-	return r.ApiService.KubernetesprofilesLockManagerExecute(r)
+func (r ApiKubernetesProfilesLockManagerRequest) Execute() (*http.Response, error) {
+	return r.ApiService.KubernetesProfilesLockManagerExecute(r)
 }
 
 /*
-KubernetesprofilesLockManager Kubernetes profile lock/unlock
+KubernetesProfilesLockManager Lock/Unlock kubernetes profiles
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiKubernetesprofilesLockManagerRequest
+ @param v
+ @return ApiKubernetesProfilesLockManagerRequest
 */
-func (a *KubernetesProfilesApiService) KubernetesprofilesLockManager(ctx context.Context) ApiKubernetesprofilesLockManagerRequest {
-	return ApiKubernetesprofilesLockManagerRequest{
+func (a *KubernetesProfilesApiService) KubernetesProfilesLockManager(ctx context.Context, v string) ApiKubernetesProfilesLockManagerRequest {
+	return ApiKubernetesProfilesLockManagerRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
-func (a *KubernetesProfilesApiService) KubernetesprofilesLockManagerExecute(r ApiKubernetesprofilesLockManagerRequest) (*http.Response, error) {
+func (a *KubernetesProfilesApiService) KubernetesProfilesLockManagerExecute(r ApiKubernetesProfilesLockManagerRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "KubernetesProfilesApiService.KubernetesprofilesLockManager")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "KubernetesProfilesApiService.KubernetesProfilesLockManager")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/kubernetesprofiles/lockmanager"
+	localVarPath := localBasePath + "/api/v{v}/KubernetesProfiles/lockmanager"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.kubernetesProfilesLockManagerCommand == nil {
-		return nil, reportError("kubernetesProfilesLockManagerCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -838,7 +811,7 @@ func (a *KubernetesProfilesApiService) KubernetesprofilesLockManagerExecute(r Ap
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -846,7 +819,7 @@ func (a *KubernetesProfilesApiService) KubernetesprofilesLockManagerExecute(r Ap
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.kubernetesProfilesLockManagerCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -883,17 +856,6 @@ func (a *KubernetesProfilesApiService) KubernetesprofilesLockManagerExecute(r Ap
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -927,7 +889,7 @@ func (a *KubernetesProfilesApiService) KubernetesprofilesLockManagerExecute(r Ap
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -941,277 +903,4 @@ func (a *KubernetesProfilesApiService) KubernetesprofilesLockManagerExecute(r Ap
 	}
 
 	return localVarHTTPResponse, nil
-}
-
-type ApiNotificationsListRequest struct {
-	ctx context.Context
-	ApiService *KubernetesProfilesApiService
-	limit *int32
-	offset *int32
-	sortBy *string
-	sortDirection *string
-	startDate *string
-	endDate *string
-	organizationId *int32
-	filterBy *string
-	projectId *int32
-	userId *string
-	isDeleted *bool
-	search *string
-}
-
-func (r ApiNotificationsListRequest) Limit(limit int32) ApiNotificationsListRequest {
-	r.limit = &limit
-	return r
-}
-
-func (r ApiNotificationsListRequest) Offset(offset int32) ApiNotificationsListRequest {
-	r.offset = &offset
-	return r
-}
-
-func (r ApiNotificationsListRequest) SortBy(sortBy string) ApiNotificationsListRequest {
-	r.sortBy = &sortBy
-	return r
-}
-
-func (r ApiNotificationsListRequest) SortDirection(sortDirection string) ApiNotificationsListRequest {
-	r.sortDirection = &sortDirection
-	return r
-}
-
-func (r ApiNotificationsListRequest) StartDate(startDate string) ApiNotificationsListRequest {
-	r.startDate = &startDate
-	return r
-}
-
-func (r ApiNotificationsListRequest) EndDate(endDate string) ApiNotificationsListRequest {
-	r.endDate = &endDate
-	return r
-}
-
-func (r ApiNotificationsListRequest) OrganizationId(organizationId int32) ApiNotificationsListRequest {
-	r.organizationId = &organizationId
-	return r
-}
-
-func (r ApiNotificationsListRequest) FilterBy(filterBy string) ApiNotificationsListRequest {
-	r.filterBy = &filterBy
-	return r
-}
-
-func (r ApiNotificationsListRequest) ProjectId(projectId int32) ApiNotificationsListRequest {
-	r.projectId = &projectId
-	return r
-}
-
-func (r ApiNotificationsListRequest) UserId(userId string) ApiNotificationsListRequest {
-	r.userId = &userId
-	return r
-}
-
-func (r ApiNotificationsListRequest) IsDeleted(isDeleted bool) ApiNotificationsListRequest {
-	r.isDeleted = &isDeleted
-	return r
-}
-
-func (r ApiNotificationsListRequest) Search(search string) ApiNotificationsListRequest {
-	r.search = &search
-	return r
-}
-
-func (r ApiNotificationsListRequest) Execute() (*NotificationHistory, *http.Response, error) {
-	return r.ApiService.NotificationsListExecute(r)
-}
-
-/*
-NotificationsList Retrieve all notifications
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiNotificationsListRequest
-*/
-func (a *KubernetesProfilesApiService) NotificationsList(ctx context.Context) ApiNotificationsListRequest {
-	return ApiNotificationsListRequest{
-		ApiService: a,
-		ctx: ctx,
-	}
-}
-
-// Execute executes the request
-//  @return NotificationHistory
-func (a *KubernetesProfilesApiService) NotificationsListExecute(r ApiNotificationsListRequest) (*NotificationHistory, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *NotificationHistory
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "KubernetesProfilesApiService.NotificationsList")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v1/notifications/list"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Limit", r.limit, "")
-	}
-	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Offset", r.offset, "")
-	}
-	if r.sortBy != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "SortBy", r.sortBy, "")
-	}
-	if r.sortDirection != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "SortDirection", r.sortDirection, "")
-	}
-	if r.startDate != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "StartDate", r.startDate, "")
-	}
-	if r.endDate != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "EndDate", r.endDate, "")
-	}
-	if r.organizationId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "OrganizationId", r.organizationId, "")
-	}
-	if r.filterBy != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "FilterBy", r.filterBy, "")
-	}
-	if r.projectId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "ProjectId", r.projectId, "")
-	}
-	if r.userId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "UserId", r.userId, "")
-	}
-	if r.isDeleted != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "IsDeleted", r.isDeleted, "")
-	}
-	if r.search != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Search", r.search, "")
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["Bearer"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
 }

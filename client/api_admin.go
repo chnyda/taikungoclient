@@ -17,6 +17,7 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+	"strings"
 )
 
 
@@ -26,11 +27,12 @@ type AdminApiService service
 type ApiAdminAddBalanceRequest struct {
 	ctx context.Context
 	ApiService *AdminApiService
-	adminAddBalanceCommand *AdminAddBalanceCommand
+	v string
+	body *AdminAddBalanceCommand
 }
 
-func (r ApiAdminAddBalanceRequest) AdminAddBalanceCommand(adminAddBalanceCommand AdminAddBalanceCommand) ApiAdminAddBalanceRequest {
-	r.adminAddBalanceCommand = &adminAddBalanceCommand
+func (r ApiAdminAddBalanceRequest) Body(body AdminAddBalanceCommand) ApiAdminAddBalanceRequest {
+	r.body = &body
 	return r
 }
 
@@ -42,12 +44,14 @@ func (r ApiAdminAddBalanceRequest) Execute() (*http.Response, error) {
 AdminAddBalance Add balance for organization
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param v
  @return ApiAdminAddBalanceRequest
 */
-func (a *AdminApiService) AdminAddBalance(ctx context.Context) ApiAdminAddBalanceRequest {
+func (a *AdminApiService) AdminAddBalance(ctx context.Context, v string) ApiAdminAddBalanceRequest {
 	return ApiAdminAddBalanceRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
@@ -64,17 +68,15 @@ func (a *AdminApiService) AdminAddBalanceExecute(r ApiAdminAddBalanceRequest) (*
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/admin/organizations/add/balance"
+	localVarPath := localBasePath + "/api/v{v}/Admin/organizations/add/balance"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.adminAddBalanceCommand == nil {
-		return nil, reportError("adminAddBalanceCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -83,7 +85,7 @@ func (a *AdminApiService) AdminAddBalanceExecute(r ApiAdminAddBalanceRequest) (*
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -91,7 +93,7 @@ func (a *AdminApiService) AdminAddBalanceExecute(r ApiAdminAddBalanceRequest) (*
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.adminAddBalanceCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -128,17 +130,6 @@ func (a *AdminApiService) AdminAddBalanceExecute(r ApiAdminAddBalanceRequest) (*
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -172,7 +163,7 @@ func (a *AdminApiService) AdminAddBalanceExecute(r ApiAdminAddBalanceRequest) (*
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -191,11 +182,12 @@ func (a *AdminApiService) AdminAddBalanceExecute(r ApiAdminAddBalanceRequest) (*
 type ApiAdminBillingOperationsRequest struct {
 	ctx context.Context
 	ApiService *AdminApiService
-	adminBillingOperationCommand *AdminBillingOperationCommand
+	v string
+	body *AdminBillingOperationCommand
 }
 
-func (r ApiAdminBillingOperationsRequest) AdminBillingOperationCommand(adminBillingOperationCommand AdminBillingOperationCommand) ApiAdminBillingOperationsRequest {
-	r.adminBillingOperationCommand = &adminBillingOperationCommand
+func (r ApiAdminBillingOperationsRequest) Body(body AdminBillingOperationCommand) ApiAdminBillingOperationsRequest {
+	r.body = &body
 	return r
 }
 
@@ -204,15 +196,17 @@ func (r ApiAdminBillingOperationsRequest) Execute() (*http.Response, error) {
 }
 
 /*
-AdminBillingOperations Billing operations: enable/disable billing 
+AdminBillingOperations Billing operations: enable/disable billing
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param v
  @return ApiAdminBillingOperationsRequest
 */
-func (a *AdminApiService) AdminBillingOperations(ctx context.Context) ApiAdminBillingOperationsRequest {
+func (a *AdminApiService) AdminBillingOperations(ctx context.Context, v string) ApiAdminBillingOperationsRequest {
 	return ApiAdminBillingOperationsRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
@@ -229,17 +223,15 @@ func (a *AdminApiService) AdminBillingOperationsExecute(r ApiAdminBillingOperati
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/admin/cloudcredentials/billing"
+	localVarPath := localBasePath + "/api/v{v}/Admin/cloudcredentials/billing"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.adminBillingOperationCommand == nil {
-		return nil, reportError("adminBillingOperationCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -248,7 +240,7 @@ func (a *AdminApiService) AdminBillingOperationsExecute(r ApiAdminBillingOperati
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -256,7 +248,7 @@ func (a *AdminApiService) AdminBillingOperationsExecute(r ApiAdminBillingOperati
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.adminBillingOperationCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -293,17 +285,6 @@ func (a *AdminApiService) AdminBillingOperationsExecute(r ApiAdminBillingOperati
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -337,7 +318,7 @@ func (a *AdminApiService) AdminBillingOperationsExecute(r ApiAdminBillingOperati
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -356,11 +337,12 @@ func (a *AdminApiService) AdminBillingOperationsExecute(r ApiAdminBillingOperati
 type ApiAdminCreateUserRequest struct {
 	ctx context.Context
 	ApiService *AdminApiService
-	adminUserCreateCommand *AdminUserCreateCommand
+	v string
+	body *AdminUserCreateCommand
 }
 
-func (r ApiAdminCreateUserRequest) AdminUserCreateCommand(adminUserCreateCommand AdminUserCreateCommand) ApiAdminCreateUserRequest {
-	r.adminUserCreateCommand = &adminUserCreateCommand
+func (r ApiAdminCreateUserRequest) Body(body AdminUserCreateCommand) ApiAdminCreateUserRequest {
+	r.body = &body
 	return r
 }
 
@@ -372,12 +354,14 @@ func (r ApiAdminCreateUserRequest) Execute() (*http.Response, error) {
 AdminCreateUser User creation for admin
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param v
  @return ApiAdminCreateUserRequest
 */
-func (a *AdminApiService) AdminCreateUser(ctx context.Context) ApiAdminCreateUserRequest {
+func (a *AdminApiService) AdminCreateUser(ctx context.Context, v string) ApiAdminCreateUserRequest {
 	return ApiAdminCreateUserRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
@@ -394,14 +378,15 @@ func (a *AdminApiService) AdminCreateUserExecute(r ApiAdminCreateUserRequest) (*
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/admin/users/create"
+	localVarPath := localBasePath + "/api/v{v}/Admin/users/create"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -410,7 +395,7 @@ func (a *AdminApiService) AdminCreateUserExecute(r ApiAdminCreateUserRequest) (*
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -418,7 +403,7 @@ func (a *AdminApiService) AdminCreateUserExecute(r ApiAdminCreateUserRequest) (*
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.adminUserCreateCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -455,17 +440,6 @@ func (a *AdminApiService) AdminCreateUserExecute(r ApiAdminCreateUserRequest) (*
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -499,7 +473,7 @@ func (a *AdminApiService) AdminCreateUserExecute(r ApiAdminCreateUserRequest) (*
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -515,58 +489,59 @@ func (a *AdminApiService) AdminCreateUserExecute(r ApiAdminCreateUserRequest) (*
 	return localVarHTTPResponse, nil
 }
 
-type ApiAdminDeleteOrgRequest struct {
+type ApiAdminDeleteOrganizationRequest struct {
 	ctx context.Context
 	ApiService *AdminApiService
-	adminOrganizationsDeleteCommand *AdminOrganizationsDeleteCommand
+	v string
+	body *AdminOrganizationsDeleteCommand
 }
 
-func (r ApiAdminDeleteOrgRequest) AdminOrganizationsDeleteCommand(adminOrganizationsDeleteCommand AdminOrganizationsDeleteCommand) ApiAdminDeleteOrgRequest {
-	r.adminOrganizationsDeleteCommand = &adminOrganizationsDeleteCommand
+func (r ApiAdminDeleteOrganizationRequest) Body(body AdminOrganizationsDeleteCommand) ApiAdminDeleteOrganizationRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiAdminDeleteOrgRequest) Execute() (*http.Response, error) {
-	return r.ApiService.AdminDeleteOrgExecute(r)
+func (r ApiAdminDeleteOrganizationRequest) Execute() (*http.Response, error) {
+	return r.ApiService.AdminDeleteOrganizationExecute(r)
 }
 
 /*
-AdminDeleteOrg Delete organization
+AdminDeleteOrganization Delete organization
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiAdminDeleteOrgRequest
+ @param v
+ @return ApiAdminDeleteOrganizationRequest
 */
-func (a *AdminApiService) AdminDeleteOrg(ctx context.Context) ApiAdminDeleteOrgRequest {
-	return ApiAdminDeleteOrgRequest{
+func (a *AdminApiService) AdminDeleteOrganization(ctx context.Context, v string) ApiAdminDeleteOrganizationRequest {
+	return ApiAdminDeleteOrganizationRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
-func (a *AdminApiService) AdminDeleteOrgExecute(r ApiAdminDeleteOrgRequest) (*http.Response, error) {
+func (a *AdminApiService) AdminDeleteOrganizationExecute(r ApiAdminDeleteOrganizationRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AdminApiService.AdminDeleteOrg")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AdminApiService.AdminDeleteOrganization")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/admin/organizations/delete"
+	localVarPath := localBasePath + "/api/v{v}/Admin/organizations/delete"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.adminOrganizationsDeleteCommand == nil {
-		return nil, reportError("adminOrganizationsDeleteCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -575,7 +550,7 @@ func (a *AdminApiService) AdminDeleteOrgExecute(r ApiAdminDeleteOrgRequest) (*ht
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -583,7 +558,7 @@ func (a *AdminApiService) AdminDeleteOrgExecute(r ApiAdminDeleteOrgRequest) (*ht
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.adminOrganizationsDeleteCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -620,17 +595,6 @@ func (a *AdminApiService) AdminDeleteOrgExecute(r ApiAdminDeleteOrgRequest) (*ht
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -664,7 +628,7 @@ func (a *AdminApiService) AdminDeleteOrgExecute(r ApiAdminDeleteOrgRequest) (*ht
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -683,21 +647,24 @@ func (a *AdminApiService) AdminDeleteOrgExecute(r ApiAdminDeleteOrgRequest) (*ht
 type ApiAdminKeycloakListRequest struct {
 	ctx context.Context
 	ApiService *AdminApiService
+	v string
 	limit *int32
 	offset *int32
 }
 
+// Limits projects size (by default 50)
 func (r ApiAdminKeycloakListRequest) Limit(limit int32) ApiAdminKeycloakListRequest {
 	r.limit = &limit
 	return r
 }
 
+// Skip elements
 func (r ApiAdminKeycloakListRequest) Offset(offset int32) ApiAdminKeycloakListRequest {
 	r.offset = &offset
 	return r
 }
 
-func (r ApiAdminKeycloakListRequest) Execute() (*AdminProjectsList, *http.Response, error) {
+func (r ApiAdminKeycloakListRequest) Execute() (*AdminKeycloakList, *http.Response, error) {
 	return r.ApiService.AdminKeycloakListExecute(r)
 }
 
@@ -705,23 +672,25 @@ func (r ApiAdminKeycloakListRequest) Execute() (*AdminProjectsList, *http.Respon
 AdminKeycloakList Keycloak list for admin
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param v
  @return ApiAdminKeycloakListRequest
 */
-func (a *AdminApiService) AdminKeycloakList(ctx context.Context) ApiAdminKeycloakListRequest {
+func (a *AdminApiService) AdminKeycloakList(ctx context.Context, v string) ApiAdminKeycloakListRequest {
 	return ApiAdminKeycloakListRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
-//  @return AdminProjectsList
-func (a *AdminApiService) AdminKeycloakListExecute(r ApiAdminKeycloakListRequest) (*AdminProjectsList, *http.Response, error) {
+//  @return AdminKeycloakList
+func (a *AdminApiService) AdminKeycloakListExecute(r ApiAdminKeycloakListRequest) (*AdminKeycloakList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AdminProjectsList
+		localVarReturnValue  *AdminKeycloakList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AdminApiService.AdminKeycloakList")
@@ -729,17 +698,18 @@ func (a *AdminApiService) AdminKeycloakListExecute(r ApiAdminKeycloakListRequest
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/admin/keycloak/list"
+	localVarPath := localBasePath + "/api/v{v}/Admin/keycloak/list"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
 	}
 	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Offset", r.offset, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -751,7 +721,7 @@ func (a *AdminApiService) AdminKeycloakListExecute(r ApiAdminKeycloakListRequest
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -794,17 +764,6 @@ func (a *AdminApiService) AdminKeycloakListExecute(r ApiAdminKeycloakListRequest
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -838,7 +797,7 @@ func (a *AdminApiService) AdminKeycloakListExecute(r ApiAdminKeycloakListRequest
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -863,58 +822,59 @@ func (a *AdminApiService) AdminKeycloakListExecute(r ApiAdminKeycloakListRequest
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiAdminMakeCsmRequest struct {
+type ApiAdminMakeCsmUserRequest struct {
 	ctx context.Context
 	ApiService *AdminApiService
-	makeCsmCommand *MakeCsmCommand
+	v string
+	body *MakeCsmCommand
 }
 
-func (r ApiAdminMakeCsmRequest) MakeCsmCommand(makeCsmCommand MakeCsmCommand) ApiAdminMakeCsmRequest {
-	r.makeCsmCommand = &makeCsmCommand
+func (r ApiAdminMakeCsmUserRequest) Body(body MakeCsmCommand) ApiAdminMakeCsmUserRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiAdminMakeCsmRequest) Execute() (*http.Response, error) {
-	return r.ApiService.AdminMakeCsmExecute(r)
+func (r ApiAdminMakeCsmUserRequest) Execute() (*http.Response, error) {
+	return r.ApiService.AdminMakeCsmUserExecute(r)
 }
 
 /*
-AdminMakeCsm User csm update for admin
+AdminMakeCsmUser User csm update for admin
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiAdminMakeCsmRequest
+ @param v
+ @return ApiAdminMakeCsmUserRequest
 */
-func (a *AdminApiService) AdminMakeCsm(ctx context.Context) ApiAdminMakeCsmRequest {
-	return ApiAdminMakeCsmRequest{
+func (a *AdminApiService) AdminMakeCsmUser(ctx context.Context, v string) ApiAdminMakeCsmUserRequest {
+	return ApiAdminMakeCsmUserRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
-func (a *AdminApiService) AdminMakeCsmExecute(r ApiAdminMakeCsmRequest) (*http.Response, error) {
+func (a *AdminApiService) AdminMakeCsmUserExecute(r ApiAdminMakeCsmUserRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AdminApiService.AdminMakeCsm")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AdminApiService.AdminMakeCsmUser")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/admin/users/make/csm"
+	localVarPath := localBasePath + "/api/v{v}/Admin/users/make/csm"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.makeCsmCommand == nil {
-		return nil, reportError("makeCsmCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -923,7 +883,7 @@ func (a *AdminApiService) AdminMakeCsmExecute(r ApiAdminMakeCsmRequest) (*http.R
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -931,7 +891,7 @@ func (a *AdminApiService) AdminMakeCsmExecute(r ApiAdminMakeCsmRequest) (*http.R
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.makeCsmCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -968,17 +928,6 @@ func (a *AdminApiService) AdminMakeCsmExecute(r ApiAdminMakeCsmRequest) (*http.R
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1012,7 +961,7 @@ func (a *AdminApiService) AdminMakeCsmExecute(r ApiAdminMakeCsmRequest) (*http.R
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1031,11 +980,12 @@ func (a *AdminApiService) AdminMakeCsmExecute(r ApiAdminMakeCsmRequest) (*http.R
 type ApiAdminMakeOwnerRequest struct {
 	ctx context.Context
 	ApiService *AdminApiService
-	makeOwnerCommand *MakeOwnerCommand
+	v string
+	body *MakeOwnerCommand
 }
 
-func (r ApiAdminMakeOwnerRequest) MakeOwnerCommand(makeOwnerCommand MakeOwnerCommand) ApiAdminMakeOwnerRequest {
-	r.makeOwnerCommand = &makeOwnerCommand
+func (r ApiAdminMakeOwnerRequest) Body(body MakeOwnerCommand) ApiAdminMakeOwnerRequest {
+	r.body = &body
 	return r
 }
 
@@ -1047,12 +997,14 @@ func (r ApiAdminMakeOwnerRequest) Execute() (*http.Response, error) {
 AdminMakeOwner User choose owner for admin
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param v
  @return ApiAdminMakeOwnerRequest
 */
-func (a *AdminApiService) AdminMakeOwner(ctx context.Context) ApiAdminMakeOwnerRequest {
+func (a *AdminApiService) AdminMakeOwner(ctx context.Context, v string) ApiAdminMakeOwnerRequest {
 	return ApiAdminMakeOwnerRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
@@ -1069,17 +1021,15 @@ func (a *AdminApiService) AdminMakeOwnerExecute(r ApiAdminMakeOwnerRequest) (*ht
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/admin/users/make/owner"
+	localVarPath := localBasePath + "/api/v{v}/Admin/users/make/owner"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.makeOwnerCommand == nil {
-		return nil, reportError("makeOwnerCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -1088,7 +1038,7 @@ func (a *AdminApiService) AdminMakeOwnerExecute(r ApiAdminMakeOwnerRequest) (*ht
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1096,7 +1046,7 @@ func (a *AdminApiService) AdminMakeOwnerExecute(r ApiAdminMakeOwnerRequest) (*ht
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.makeOwnerCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1133,17 +1083,6 @@ func (a *AdminApiService) AdminMakeOwnerExecute(r ApiAdminMakeOwnerRequest) (*ht
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1177,7 +1116,7 @@ func (a *AdminApiService) AdminMakeOwnerExecute(r ApiAdminMakeOwnerRequest) (*ht
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1196,6 +1135,7 @@ func (a *AdminApiService) AdminMakeOwnerExecute(r ApiAdminMakeOwnerRequest) (*ht
 type ApiAdminOrganizationsRequest struct {
 	ctx context.Context
 	ApiService *AdminApiService
+	v string
 	limit *int32
 	offset *int32
 	partnerId *int32
@@ -1227,15 +1167,17 @@ func (r ApiAdminOrganizationsRequest) Execute() (*AdminOrganizationsList, *http.
 }
 
 /*
-AdminOrganizations  Organizations for admin
+AdminOrganizations Organizations for admin
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param v
  @return ApiAdminOrganizationsRequest
 */
-func (a *AdminApiService) AdminOrganizations(ctx context.Context) ApiAdminOrganizationsRequest {
+func (a *AdminApiService) AdminOrganizations(ctx context.Context, v string) ApiAdminOrganizationsRequest {
 	return ApiAdminOrganizationsRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
@@ -1254,23 +1196,24 @@ func (a *AdminApiService) AdminOrganizationsExecute(r ApiAdminOrganizationsReque
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/admin/organizations/list"
+	localVarPath := localBasePath + "/api/v{v}/Admin/organizations/list"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
 	}
 	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Offset", r.offset, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
 	}
 	if r.partnerId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "PartnerId", r.partnerId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "partnerId", r.partnerId, "")
 	}
 	if r.search != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Search", r.search, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1282,7 +1225,7 @@ func (a *AdminApiService) AdminOrganizationsExecute(r ApiAdminOrganizationsReque
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1325,17 +1268,6 @@ func (a *AdminApiService) AdminOrganizationsExecute(r ApiAdminOrganizationsReque
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1369,7 +1301,7 @@ func (a *AdminApiService) AdminOrganizationsExecute(r ApiAdminOrganizationsReque
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1394,55 +1326,61 @@ func (a *AdminApiService) AdminOrganizationsExecute(r ApiAdminOrganizationsReque
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiAdminProjectListRequest struct {
+type ApiAdminProjectsListRequest struct {
 	ctx context.Context
 	ApiService *AdminApiService
+	v string
 	limit *int32
 	offset *int32
 	organizationId *int32
 	search *string
 }
 
-func (r ApiAdminProjectListRequest) Limit(limit int32) ApiAdminProjectListRequest {
+// Limits projects size (by default 50)
+func (r ApiAdminProjectsListRequest) Limit(limit int32) ApiAdminProjectsListRequest {
 	r.limit = &limit
 	return r
 }
 
-func (r ApiAdminProjectListRequest) Offset(offset int32) ApiAdminProjectListRequest {
+// Skip elements
+func (r ApiAdminProjectsListRequest) Offset(offset int32) ApiAdminProjectsListRequest {
 	r.offset = &offset
 	return r
 }
 
-func (r ApiAdminProjectListRequest) OrganizationId(organizationId int32) ApiAdminProjectListRequest {
+func (r ApiAdminProjectsListRequest) OrganizationId(organizationId int32) ApiAdminProjectsListRequest {
 	r.organizationId = &organizationId
 	return r
 }
 
-func (r ApiAdminProjectListRequest) Search(search string) ApiAdminProjectListRequest {
+// Keyword for searching
+func (r ApiAdminProjectsListRequest) Search(search string) ApiAdminProjectsListRequest {
 	r.search = &search
 	return r
 }
 
-func (r ApiAdminProjectListRequest) Execute() (*AdminProjectsList, *http.Response, error) {
-	return r.ApiService.AdminProjectListExecute(r)
+func (r ApiAdminProjectsListRequest) Execute() (*AdminProjectsList, *http.Response, error) {
+	return r.ApiService.AdminProjectsListExecute(r)
 }
 
 /*
-AdminProjectList Projects for admin
+AdminProjectsList Projects for admin
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiAdminProjectListRequest
+ @param v
+ @return ApiAdminProjectsListRequest
 */
-func (a *AdminApiService) AdminProjectList(ctx context.Context) ApiAdminProjectListRequest {
-	return ApiAdminProjectListRequest{
+func (a *AdminApiService) AdminProjectsList(ctx context.Context, v string) ApiAdminProjectsListRequest {
+	return ApiAdminProjectsListRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
 //  @return AdminProjectsList
-func (a *AdminApiService) AdminProjectListExecute(r ApiAdminProjectListRequest) (*AdminProjectsList, *http.Response, error) {
+func (a *AdminApiService) AdminProjectsListExecute(r ApiAdminProjectsListRequest) (*AdminProjectsList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1450,28 +1388,29 @@ func (a *AdminApiService) AdminProjectListExecute(r ApiAdminProjectListRequest) 
 		localVarReturnValue  *AdminProjectsList
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AdminApiService.AdminProjectList")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AdminApiService.AdminProjectsList")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/admin/projects/list"
+	localVarPath := localBasePath + "/api/v{v}/Admin/projects/list"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
 	}
 	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Offset", r.offset, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
 	}
 	if r.organizationId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "OrganizationId", r.organizationId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "organizationId", r.organizationId, "")
 	}
 	if r.search != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Search", r.search, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1483,7 +1422,7 @@ func (a *AdminApiService) AdminProjectListExecute(r ApiAdminProjectListRequest) 
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1526,17 +1465,6 @@ func (a *AdminApiService) AdminProjectListExecute(r ApiAdminProjectListRequest) 
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1570,7 +1498,7 @@ func (a *AdminApiService) AdminProjectListExecute(r ApiAdminProjectListRequest) 
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1595,58 +1523,59 @@ func (a *AdminApiService) AdminProjectListExecute(r ApiAdminProjectListRequest) 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiAdminUpdateProjectRequest struct {
+type ApiAdminUpdateProjectKubeConfigRequest struct {
 	ctx context.Context
 	ApiService *AdminApiService
-	adminProjectUpdateCommand *AdminProjectUpdateCommand
+	v string
+	body *AdminUpdateProjectKubeConfigCommand
 }
 
-func (r ApiAdminUpdateProjectRequest) AdminProjectUpdateCommand(adminProjectUpdateCommand AdminProjectUpdateCommand) ApiAdminUpdateProjectRequest {
-	r.adminProjectUpdateCommand = &adminProjectUpdateCommand
+func (r ApiAdminUpdateProjectKubeConfigRequest) Body(body AdminUpdateProjectKubeConfigCommand) ApiAdminUpdateProjectKubeConfigRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiAdminUpdateProjectRequest) Execute() (*http.Response, error) {
-	return r.ApiService.AdminUpdateProjectExecute(r)
+func (r ApiAdminUpdateProjectKubeConfigRequest) Execute() (*http.Response, error) {
+	return r.ApiService.AdminUpdateProjectKubeConfigExecute(r)
 }
 
 /*
-AdminUpdateProject Projects update for admin
+AdminUpdateProjectKubeConfig Projects update for admin
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiAdminUpdateProjectRequest
+ @param v
+ @return ApiAdminUpdateProjectKubeConfigRequest
 */
-func (a *AdminApiService) AdminUpdateProject(ctx context.Context) ApiAdminUpdateProjectRequest {
-	return ApiAdminUpdateProjectRequest{
+func (a *AdminApiService) AdminUpdateProjectKubeConfig(ctx context.Context, v string) ApiAdminUpdateProjectKubeConfigRequest {
+	return ApiAdminUpdateProjectKubeConfigRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
-func (a *AdminApiService) AdminUpdateProjectExecute(r ApiAdminUpdateProjectRequest) (*http.Response, error) {
+func (a *AdminApiService) AdminUpdateProjectKubeConfigExecute(r ApiAdminUpdateProjectKubeConfigRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AdminApiService.AdminUpdateProject")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AdminApiService.AdminUpdateProjectKubeConfig")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/admin/projects/update/version"
+	localVarPath := localBasePath + "/api/v{v}/Admin/projects/update/kubeconfig"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.adminProjectUpdateCommand == nil {
-		return nil, reportError("adminProjectUpdateCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -1655,7 +1584,7 @@ func (a *AdminApiService) AdminUpdateProjectExecute(r ApiAdminUpdateProjectReque
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1663,7 +1592,7 @@ func (a *AdminApiService) AdminUpdateProjectExecute(r ApiAdminUpdateProjectReque
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.adminProjectUpdateCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1700,17 +1629,6 @@ func (a *AdminApiService) AdminUpdateProjectExecute(r ApiAdminUpdateProjectReque
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1744,7 +1662,7 @@ func (a *AdminApiService) AdminUpdateProjectExecute(r ApiAdminUpdateProjectReque
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1760,58 +1678,59 @@ func (a *AdminApiService) AdminUpdateProjectExecute(r ApiAdminUpdateProjectReque
 	return localVarHTTPResponse, nil
 }
 
-type ApiAdminUpdateProjectKubeRequest struct {
+type ApiAdminUpdateProjectVersionRequest struct {
 	ctx context.Context
 	ApiService *AdminApiService
-	adminUpdateProjectKubeConfigCommand *AdminUpdateProjectKubeConfigCommand
+	v string
+	body *AdminProjectUpdateCommand
 }
 
-func (r ApiAdminUpdateProjectKubeRequest) AdminUpdateProjectKubeConfigCommand(adminUpdateProjectKubeConfigCommand AdminUpdateProjectKubeConfigCommand) ApiAdminUpdateProjectKubeRequest {
-	r.adminUpdateProjectKubeConfigCommand = &adminUpdateProjectKubeConfigCommand
+func (r ApiAdminUpdateProjectVersionRequest) Body(body AdminProjectUpdateCommand) ApiAdminUpdateProjectVersionRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiAdminUpdateProjectKubeRequest) Execute() (*http.Response, error) {
-	return r.ApiService.AdminUpdateProjectKubeExecute(r)
+func (r ApiAdminUpdateProjectVersionRequest) Execute() (*http.Response, error) {
+	return r.ApiService.AdminUpdateProjectVersionExecute(r)
 }
 
 /*
-AdminUpdateProjectKube Projects update kube for admin
+AdminUpdateProjectVersion Projects update for admin
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiAdminUpdateProjectKubeRequest
+ @param v
+ @return ApiAdminUpdateProjectVersionRequest
 */
-func (a *AdminApiService) AdminUpdateProjectKube(ctx context.Context) ApiAdminUpdateProjectKubeRequest {
-	return ApiAdminUpdateProjectKubeRequest{
+func (a *AdminApiService) AdminUpdateProjectVersion(ctx context.Context, v string) ApiAdminUpdateProjectVersionRequest {
+	return ApiAdminUpdateProjectVersionRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
-func (a *AdminApiService) AdminUpdateProjectKubeExecute(r ApiAdminUpdateProjectKubeRequest) (*http.Response, error) {
+func (a *AdminApiService) AdminUpdateProjectVersionExecute(r ApiAdminUpdateProjectVersionRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AdminApiService.AdminUpdateProjectKube")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AdminApiService.AdminUpdateProjectVersion")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/admin/projects/update/kubeconfig"
+	localVarPath := localBasePath + "/api/v{v}/Admin/projects/update/version"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.adminUpdateProjectKubeConfigCommand == nil {
-		return nil, reportError("adminUpdateProjectKubeConfigCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -1820,7 +1739,7 @@ func (a *AdminApiService) AdminUpdateProjectKubeExecute(r ApiAdminUpdateProjectK
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1828,7 +1747,7 @@ func (a *AdminApiService) AdminUpdateProjectKubeExecute(r ApiAdminUpdateProjectK
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.adminUpdateProjectKubeConfigCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1865,17 +1784,6 @@ func (a *AdminApiService) AdminUpdateProjectKubeExecute(r ApiAdminUpdateProjectK
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1909,7 +1817,7 @@ func (a *AdminApiService) AdminUpdateProjectKubeExecute(r ApiAdminUpdateProjectK
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1925,58 +1833,59 @@ func (a *AdminApiService) AdminUpdateProjectKubeExecute(r ApiAdminUpdateProjectK
 	return localVarHTTPResponse, nil
 }
 
-type ApiAdminUpdateUserRequest struct {
+type ApiAdminUpdateUserEmailRequest struct {
 	ctx context.Context
 	ApiService *AdminApiService
-	adminUsersUpdatePasswordCommand *AdminUsersUpdatePasswordCommand
+	v string
+	body *AdminUsersUpdateEmailCommand
 }
 
-func (r ApiAdminUpdateUserRequest) AdminUsersUpdatePasswordCommand(adminUsersUpdatePasswordCommand AdminUsersUpdatePasswordCommand) ApiAdminUpdateUserRequest {
-	r.adminUsersUpdatePasswordCommand = &adminUsersUpdatePasswordCommand
+func (r ApiAdminUpdateUserEmailRequest) Body(body AdminUsersUpdateEmailCommand) ApiAdminUpdateUserEmailRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiAdminUpdateUserRequest) Execute() (*http.Response, error) {
-	return r.ApiService.AdminUpdateUserExecute(r)
+func (r ApiAdminUpdateUserEmailRequest) Execute() (*http.Response, error) {
+	return r.ApiService.AdminUpdateUserEmailExecute(r)
 }
 
 /*
-AdminUpdateUser User password update for admin
+AdminUpdateUserEmail User email update for admin
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiAdminUpdateUserRequest
+ @param v
+ @return ApiAdminUpdateUserEmailRequest
 */
-func (a *AdminApiService) AdminUpdateUser(ctx context.Context) ApiAdminUpdateUserRequest {
-	return ApiAdminUpdateUserRequest{
+func (a *AdminApiService) AdminUpdateUserEmail(ctx context.Context, v string) ApiAdminUpdateUserEmailRequest {
+	return ApiAdminUpdateUserEmailRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
-func (a *AdminApiService) AdminUpdateUserExecute(r ApiAdminUpdateUserRequest) (*http.Response, error) {
+func (a *AdminApiService) AdminUpdateUserEmailExecute(r ApiAdminUpdateUserEmailRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AdminApiService.AdminUpdateUser")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AdminApiService.AdminUpdateUserEmail")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/admin/users/update/password"
+	localVarPath := localBasePath + "/api/v{v}/Admin/users/update/email"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.adminUsersUpdatePasswordCommand == nil {
-		return nil, reportError("adminUsersUpdatePasswordCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -1985,7 +1894,7 @@ func (a *AdminApiService) AdminUpdateUserExecute(r ApiAdminUpdateUserRequest) (*
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1993,7 +1902,7 @@ func (a *AdminApiService) AdminUpdateUserExecute(r ApiAdminUpdateUserRequest) (*
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.adminUsersUpdatePasswordCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -2030,17 +1939,6 @@ func (a *AdminApiService) AdminUpdateUserExecute(r ApiAdminUpdateUserRequest) (*
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -2074,7 +1972,7 @@ func (a *AdminApiService) AdminUpdateUserExecute(r ApiAdminUpdateUserRequest) (*
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2090,58 +1988,59 @@ func (a *AdminApiService) AdminUpdateUserExecute(r ApiAdminUpdateUserRequest) (*
 	return localVarHTTPResponse, nil
 }
 
-type ApiAdminUpdateUserKubeRequest struct {
+type ApiAdminUpdateUserKubeConfigRequest struct {
 	ctx context.Context
 	ApiService *AdminApiService
-	adminUpdateUserKubeConfigCommand *AdminUpdateUserKubeConfigCommand
+	v string
+	body *AdminUpdateUserKubeConfigCommand
 }
 
-func (r ApiAdminUpdateUserKubeRequest) AdminUpdateUserKubeConfigCommand(adminUpdateUserKubeConfigCommand AdminUpdateUserKubeConfigCommand) ApiAdminUpdateUserKubeRequest {
-	r.adminUpdateUserKubeConfigCommand = &adminUpdateUserKubeConfigCommand
+func (r ApiAdminUpdateUserKubeConfigRequest) Body(body AdminUpdateUserKubeConfigCommand) ApiAdminUpdateUserKubeConfigRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiAdminUpdateUserKubeRequest) Execute() (*http.Response, error) {
-	return r.ApiService.AdminUpdateUserKubeExecute(r)
+func (r ApiAdminUpdateUserKubeConfigRequest) Execute() (*http.Response, error) {
+	return r.ApiService.AdminUpdateUserKubeConfigExecute(r)
 }
 
 /*
-AdminUpdateUserKube Projects update kube for admin
+AdminUpdateUserKubeConfig Projects update for admin
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiAdminUpdateUserKubeRequest
+ @param v
+ @return ApiAdminUpdateUserKubeConfigRequest
 */
-func (a *AdminApiService) AdminUpdateUserKube(ctx context.Context) ApiAdminUpdateUserKubeRequest {
-	return ApiAdminUpdateUserKubeRequest{
+func (a *AdminApiService) AdminUpdateUserKubeConfig(ctx context.Context, v string) ApiAdminUpdateUserKubeConfigRequest {
+	return ApiAdminUpdateUserKubeConfigRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
-func (a *AdminApiService) AdminUpdateUserKubeExecute(r ApiAdminUpdateUserKubeRequest) (*http.Response, error) {
+func (a *AdminApiService) AdminUpdateUserKubeConfigExecute(r ApiAdminUpdateUserKubeConfigRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AdminApiService.AdminUpdateUserKube")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AdminApiService.AdminUpdateUserKubeConfig")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/admin/projects/update/userkube"
+	localVarPath := localBasePath + "/api/v{v}/Admin/projects/update/userkube"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.adminUpdateUserKubeConfigCommand == nil {
-		return nil, reportError("adminUpdateUserKubeConfigCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -2150,7 +2049,7 @@ func (a *AdminApiService) AdminUpdateUserKubeExecute(r ApiAdminUpdateUserKubeReq
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -2158,7 +2057,7 @@ func (a *AdminApiService) AdminUpdateUserKubeExecute(r ApiAdminUpdateUserKubeReq
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.adminUpdateUserKubeConfigCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -2195,17 +2094,6 @@ func (a *AdminApiService) AdminUpdateUserKubeExecute(r ApiAdminUpdateUserKubeReq
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -2239,7 +2127,7 @@ func (a *AdminApiService) AdminUpdateUserKubeExecute(r ApiAdminUpdateUserKubeReq
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2255,58 +2143,59 @@ func (a *AdminApiService) AdminUpdateUserKubeExecute(r ApiAdminUpdateUserKubeReq
 	return localVarHTTPResponse, nil
 }
 
-type ApiAdminUpdateUsersRequest struct {
+type ApiAdminUpdateUserPasswordRequest struct {
 	ctx context.Context
 	ApiService *AdminApiService
-	adminUsersUpdateEmailCommand *AdminUsersUpdateEmailCommand
+	v string
+	body *AdminUsersUpdatePasswordCommand
 }
 
-func (r ApiAdminUpdateUsersRequest) AdminUsersUpdateEmailCommand(adminUsersUpdateEmailCommand AdminUsersUpdateEmailCommand) ApiAdminUpdateUsersRequest {
-	r.adminUsersUpdateEmailCommand = &adminUsersUpdateEmailCommand
+func (r ApiAdminUpdateUserPasswordRequest) Body(body AdminUsersUpdatePasswordCommand) ApiAdminUpdateUserPasswordRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiAdminUpdateUsersRequest) Execute() (*http.Response, error) {
-	return r.ApiService.AdminUpdateUsersExecute(r)
+func (r ApiAdminUpdateUserPasswordRequest) Execute() (*http.Response, error) {
+	return r.ApiService.AdminUpdateUserPasswordExecute(r)
 }
 
 /*
-AdminUpdateUsers User email update for admin
+AdminUpdateUserPassword User password update for admin
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiAdminUpdateUsersRequest
+ @param v
+ @return ApiAdminUpdateUserPasswordRequest
 */
-func (a *AdminApiService) AdminUpdateUsers(ctx context.Context) ApiAdminUpdateUsersRequest {
-	return ApiAdminUpdateUsersRequest{
+func (a *AdminApiService) AdminUpdateUserPassword(ctx context.Context, v string) ApiAdminUpdateUserPasswordRequest {
+	return ApiAdminUpdateUserPasswordRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
-func (a *AdminApiService) AdminUpdateUsersExecute(r ApiAdminUpdateUsersRequest) (*http.Response, error) {
+func (a *AdminApiService) AdminUpdateUserPasswordExecute(r ApiAdminUpdateUserPasswordRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AdminApiService.AdminUpdateUsers")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AdminApiService.AdminUpdateUserPassword")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/admin/users/update/email"
+	localVarPath := localBasePath + "/api/v{v}/Admin/users/update/password"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.adminUsersUpdateEmailCommand == nil {
-		return nil, reportError("adminUsersUpdateEmailCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -2315,7 +2204,7 @@ func (a *AdminApiService) AdminUpdateUsersExecute(r ApiAdminUpdateUsersRequest) 
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -2323,7 +2212,7 @@ func (a *AdminApiService) AdminUpdateUsersExecute(r ApiAdminUpdateUsersRequest) 
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.adminUsersUpdateEmailCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -2360,17 +2249,6 @@ func (a *AdminApiService) AdminUpdateUsersExecute(r ApiAdminUpdateUsersRequest) 
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -2404,7 +2282,7 @@ func (a *AdminApiService) AdminUpdateUsersExecute(r ApiAdminUpdateUsersRequest) 
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2423,17 +2301,20 @@ func (a *AdminApiService) AdminUpdateUsersExecute(r ApiAdminUpdateUsersRequest) 
 type ApiAdminUsersListRequest struct {
 	ctx context.Context
 	ApiService *AdminApiService
+	v string
 	limit *int32
 	offset *int32
 	organizationId *int32
 	search *string
 }
 
+// Limits user size (by default 50)
 func (r ApiAdminUsersListRequest) Limit(limit int32) ApiAdminUsersListRequest {
 	r.limit = &limit
 	return r
 }
 
+// Skip elements
 func (r ApiAdminUsersListRequest) Offset(offset int32) ApiAdminUsersListRequest {
 	r.offset = &offset
 	return r
@@ -2444,6 +2325,7 @@ func (r ApiAdminUsersListRequest) OrganizationId(organizationId int32) ApiAdminU
 	return r
 }
 
+// Keyword for searching
 func (r ApiAdminUsersListRequest) Search(search string) ApiAdminUsersListRequest {
 	r.search = &search
 	return r
@@ -2457,12 +2339,14 @@ func (r ApiAdminUsersListRequest) Execute() (*AdminUsersList, *http.Response, er
 AdminUsersList Users for admin
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param v
  @return ApiAdminUsersListRequest
 */
-func (a *AdminApiService) AdminUsersList(ctx context.Context) ApiAdminUsersListRequest {
+func (a *AdminApiService) AdminUsersList(ctx context.Context, v string) ApiAdminUsersListRequest {
 	return ApiAdminUsersListRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
@@ -2481,23 +2365,24 @@ func (a *AdminApiService) AdminUsersListExecute(r ApiAdminUsersListRequest) (*Ad
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/admin/users/list"
+	localVarPath := localBasePath + "/api/v{v}/Admin/users/list"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
 	}
 	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Offset", r.offset, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
 	}
 	if r.organizationId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "OrganizationId", r.organizationId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "organizationId", r.organizationId, "")
 	}
 	if r.search != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Search", r.search, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -2509,7 +2394,7 @@ func (a *AdminApiService) AdminUsersListExecute(r ApiAdminUsersListRequest) (*Ad
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -2552,17 +2437,6 @@ func (a *AdminApiService) AdminUsersListExecute(r ApiAdminUsersListRequest) (*Ad
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -2596,7 +2470,7 @@ func (a *AdminApiService) AdminUsersListExecute(r ApiAdminUsersListRequest) (*Ad
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

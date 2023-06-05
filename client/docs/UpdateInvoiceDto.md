@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **NullableString** |  | [optional] 
-**OrganizationSubscriptionId** | Pointer to **NullableInt32** |  | [optional] 
-**StartDate** | Pointer to **NullableTime** |  | [optional] 
-**EndDate** | Pointer to **NullableTime** |  | [optional] 
-**DueDate** | Pointer to **NullableTime** |  | [optional] 
-**IsPaid** | Pointer to **NullableBool** |  | [optional] 
-**RequiredPaymentAction** | Pointer to **NullableBool** |  | [optional] 
-**StripeInvoiceId** | Pointer to **NullableString** |  | [optional] 
-**Price** | Pointer to **NullableFloat64** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**OrganizationSubscriptionId** | Pointer to **int32** |  | [optional] 
+**StartDate** | Pointer to **time.Time** |  | [optional] 
+**EndDate** | Pointer to **time.Time** |  | [optional] 
+**DueDate** | Pointer to **time.Time** |  | [optional] 
+**IsPaid** | Pointer to **bool** |  | [optional] 
+**RequiredPaymentAction** | Pointer to **bool** |  | [optional] 
+**StripeInvoiceId** | Pointer to **string** |  | [optional] 
+**Price** | Pointer to **float64** |  | [optional] 
 
 ## Methods
 
@@ -58,16 +58,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *UpdateInvoiceDto) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *UpdateInvoiceDto) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetOrganizationSubscriptionId
 
 `func (o *UpdateInvoiceDto) GetOrganizationSubscriptionId() int32`
@@ -93,16 +83,6 @@ SetOrganizationSubscriptionId sets OrganizationSubscriptionId field to given val
 
 HasOrganizationSubscriptionId returns a boolean if a field has been set.
 
-### SetOrganizationSubscriptionIdNil
-
-`func (o *UpdateInvoiceDto) SetOrganizationSubscriptionIdNil(b bool)`
-
- SetOrganizationSubscriptionIdNil sets the value for OrganizationSubscriptionId to be an explicit nil
-
-### UnsetOrganizationSubscriptionId
-`func (o *UpdateInvoiceDto) UnsetOrganizationSubscriptionId()`
-
-UnsetOrganizationSubscriptionId ensures that no value is present for OrganizationSubscriptionId, not even an explicit nil
 ### GetStartDate
 
 `func (o *UpdateInvoiceDto) GetStartDate() time.Time`
@@ -128,16 +108,6 @@ SetStartDate sets StartDate field to given value.
 
 HasStartDate returns a boolean if a field has been set.
 
-### SetStartDateNil
-
-`func (o *UpdateInvoiceDto) SetStartDateNil(b bool)`
-
- SetStartDateNil sets the value for StartDate to be an explicit nil
-
-### UnsetStartDate
-`func (o *UpdateInvoiceDto) UnsetStartDate()`
-
-UnsetStartDate ensures that no value is present for StartDate, not even an explicit nil
 ### GetEndDate
 
 `func (o *UpdateInvoiceDto) GetEndDate() time.Time`
@@ -163,16 +133,6 @@ SetEndDate sets EndDate field to given value.
 
 HasEndDate returns a boolean if a field has been set.
 
-### SetEndDateNil
-
-`func (o *UpdateInvoiceDto) SetEndDateNil(b bool)`
-
- SetEndDateNil sets the value for EndDate to be an explicit nil
-
-### UnsetEndDate
-`func (o *UpdateInvoiceDto) UnsetEndDate()`
-
-UnsetEndDate ensures that no value is present for EndDate, not even an explicit nil
 ### GetDueDate
 
 `func (o *UpdateInvoiceDto) GetDueDate() time.Time`
@@ -198,16 +158,6 @@ SetDueDate sets DueDate field to given value.
 
 HasDueDate returns a boolean if a field has been set.
 
-### SetDueDateNil
-
-`func (o *UpdateInvoiceDto) SetDueDateNil(b bool)`
-
- SetDueDateNil sets the value for DueDate to be an explicit nil
-
-### UnsetDueDate
-`func (o *UpdateInvoiceDto) UnsetDueDate()`
-
-UnsetDueDate ensures that no value is present for DueDate, not even an explicit nil
 ### GetIsPaid
 
 `func (o *UpdateInvoiceDto) GetIsPaid() bool`
@@ -233,16 +183,6 @@ SetIsPaid sets IsPaid field to given value.
 
 HasIsPaid returns a boolean if a field has been set.
 
-### SetIsPaidNil
-
-`func (o *UpdateInvoiceDto) SetIsPaidNil(b bool)`
-
- SetIsPaidNil sets the value for IsPaid to be an explicit nil
-
-### UnsetIsPaid
-`func (o *UpdateInvoiceDto) UnsetIsPaid()`
-
-UnsetIsPaid ensures that no value is present for IsPaid, not even an explicit nil
 ### GetRequiredPaymentAction
 
 `func (o *UpdateInvoiceDto) GetRequiredPaymentAction() bool`
@@ -268,16 +208,6 @@ SetRequiredPaymentAction sets RequiredPaymentAction field to given value.
 
 HasRequiredPaymentAction returns a boolean if a field has been set.
 
-### SetRequiredPaymentActionNil
-
-`func (o *UpdateInvoiceDto) SetRequiredPaymentActionNil(b bool)`
-
- SetRequiredPaymentActionNil sets the value for RequiredPaymentAction to be an explicit nil
-
-### UnsetRequiredPaymentAction
-`func (o *UpdateInvoiceDto) UnsetRequiredPaymentAction()`
-
-UnsetRequiredPaymentAction ensures that no value is present for RequiredPaymentAction, not even an explicit nil
 ### GetStripeInvoiceId
 
 `func (o *UpdateInvoiceDto) GetStripeInvoiceId() string`
@@ -303,16 +233,6 @@ SetStripeInvoiceId sets StripeInvoiceId field to given value.
 
 HasStripeInvoiceId returns a boolean if a field has been set.
 
-### SetStripeInvoiceIdNil
-
-`func (o *UpdateInvoiceDto) SetStripeInvoiceIdNil(b bool)`
-
- SetStripeInvoiceIdNil sets the value for StripeInvoiceId to be an explicit nil
-
-### UnsetStripeInvoiceId
-`func (o *UpdateInvoiceDto) UnsetStripeInvoiceId()`
-
-UnsetStripeInvoiceId ensures that no value is present for StripeInvoiceId, not even an explicit nil
 ### GetPrice
 
 `func (o *UpdateInvoiceDto) GetPrice() float64`
@@ -338,16 +258,6 @@ SetPrice sets Price field to given value.
 
 HasPrice returns a boolean if a field has been set.
 
-### SetPriceNil
-
-`func (o *UpdateInvoiceDto) SetPriceNil(b bool)`
-
- SetPriceNil sets the value for Price to be an explicit nil
-
-### UnsetPrice
-`func (o *UpdateInvoiceDto) UnsetPrice()`
-
-UnsetPrice ensures that no value is present for Price, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

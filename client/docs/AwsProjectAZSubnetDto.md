@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Zone** | Pointer to **NullableString** |  | [optional] 
-**PublicIp** | Pointer to **NullableString** |  | [optional] 
-**PrivateIp** | Pointer to **NullableString** |  | [optional] 
+**Zone** | Pointer to **string** |  | [optional] 
+**PublicIp** | Pointer to **string** |  | [optional] 
+**PrivateIp** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -52,16 +52,6 @@ SetZone sets Zone field to given value.
 
 HasZone returns a boolean if a field has been set.
 
-### SetZoneNil
-
-`func (o *AwsProjectAZSubnetDto) SetZoneNil(b bool)`
-
- SetZoneNil sets the value for Zone to be an explicit nil
-
-### UnsetZone
-`func (o *AwsProjectAZSubnetDto) UnsetZone()`
-
-UnsetZone ensures that no value is present for Zone, not even an explicit nil
 ### GetPublicIp
 
 `func (o *AwsProjectAZSubnetDto) GetPublicIp() string`
@@ -87,16 +77,6 @@ SetPublicIp sets PublicIp field to given value.
 
 HasPublicIp returns a boolean if a field has been set.
 
-### SetPublicIpNil
-
-`func (o *AwsProjectAZSubnetDto) SetPublicIpNil(b bool)`
-
- SetPublicIpNil sets the value for PublicIp to be an explicit nil
-
-### UnsetPublicIp
-`func (o *AwsProjectAZSubnetDto) UnsetPublicIp()`
-
-UnsetPublicIp ensures that no value is present for PublicIp, not even an explicit nil
 ### GetPrivateIp
 
 `func (o *AwsProjectAZSubnetDto) GetPrivateIp() string`
@@ -122,16 +102,6 @@ SetPrivateIp sets PrivateIp field to given value.
 
 HasPrivateIp returns a boolean if a field has been set.
 
-### SetPrivateIpNil
-
-`func (o *AwsProjectAZSubnetDto) SetPrivateIpNil(b bool)`
-
- SetPrivateIpNil sets the value for PrivateIp to be an explicit nil
-
-### UnsetPrivateIp
-`func (o *AwsProjectAZSubnetDto) UnsetPrivateIp()`
-
-UnsetPrivateIp ensures that no value is present for PrivateIp, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

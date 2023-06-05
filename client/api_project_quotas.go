@@ -17,22 +17,179 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+	"strings"
 )
 
 
 // ProjectQuotasApiService ProjectQuotasApi service
 type ProjectQuotasApiService service
 
-type ApiProjectquotasListRequest struct {
+type ApiProjectQuotasEditRequest struct {
 	ctx context.Context
 	ApiService *ProjectQuotasApiService
-	limit *int32
+	v string
+	body *UpdateQuotaCommand
+}
+
+func (r ApiProjectQuotasEditRequest) Body(body UpdateQuotaCommand) ApiProjectQuotasEditRequest {
+	r.body = &body
+	return r
+}
+
+func (r ApiProjectQuotasEditRequest) Execute() (*http.Response, error) {
+	return r.ApiService.ProjectQuotasEditExecute(r)
+}
+
+/*
+ProjectQuotasEdit Edit project quota
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param v
+ @return ApiProjectQuotasEditRequest
+*/
+func (a *ProjectQuotasApiService) ProjectQuotasEdit(ctx context.Context, v string) ApiProjectQuotasEditRequest {
+	return ApiProjectQuotasEditRequest{
+		ApiService: a,
+		ctx: ctx,
+		v: v,
+	}
+}
+
+// Execute executes the request
+func (a *ProjectQuotasApiService) ProjectQuotasEditExecute(r ApiProjectQuotasEditRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectQuotasApiService.ProjectQuotasEdit")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v{v}/ProjectQuotas/update"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.body
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["Bearer"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type ApiProjectQuotasListRequest struct {
+	ctx context.Context
+	ApiService *ProjectQuotasApiService
+	v string
 	offset *int32
+	limit *int32
 	sortBy *string
 	sortDirection *string
 	search *string
-	startRam *string
-	endRam *string
+	startRam *float64
+	endRam *float64
 	startDiskSize *int64
 	endDiskSize *int64
 	startCpu *int32
@@ -41,91 +198,95 @@ type ApiProjectquotasListRequest struct {
 	id *int32
 }
 
-func (r ApiProjectquotasListRequest) Limit(limit int32) ApiProjectquotasListRequest {
-	r.limit = &limit
-	return r
-}
-
-func (r ApiProjectquotasListRequest) Offset(offset int32) ApiProjectquotasListRequest {
+// Skip elements
+func (r ApiProjectQuotasListRequest) Offset(offset int32) ApiProjectQuotasListRequest {
 	r.offset = &offset
 	return r
 }
 
-func (r ApiProjectquotasListRequest) SortBy(sortBy string) ApiProjectquotasListRequest {
+// Limits user size (by default 50)
+func (r ApiProjectQuotasListRequest) Limit(limit int32) ApiProjectQuotasListRequest {
+	r.limit = &limit
+	return r
+}
+
+func (r ApiProjectQuotasListRequest) SortBy(sortBy string) ApiProjectQuotasListRequest {
 	r.sortBy = &sortBy
 	return r
 }
 
-func (r ApiProjectquotasListRequest) SortDirection(sortDirection string) ApiProjectquotasListRequest {
+func (r ApiProjectQuotasListRequest) SortDirection(sortDirection string) ApiProjectQuotasListRequest {
 	r.sortDirection = &sortDirection
 	return r
 }
 
-func (r ApiProjectquotasListRequest) Search(search string) ApiProjectquotasListRequest {
+func (r ApiProjectQuotasListRequest) Search(search string) ApiProjectQuotasListRequest {
 	r.search = &search
 	return r
 }
 
-func (r ApiProjectquotasListRequest) StartRam(startRam string) ApiProjectquotasListRequest {
+func (r ApiProjectQuotasListRequest) StartRam(startRam float64) ApiProjectQuotasListRequest {
 	r.startRam = &startRam
 	return r
 }
 
-func (r ApiProjectquotasListRequest) EndRam(endRam string) ApiProjectquotasListRequest {
+func (r ApiProjectQuotasListRequest) EndRam(endRam float64) ApiProjectQuotasListRequest {
 	r.endRam = &endRam
 	return r
 }
 
-func (r ApiProjectquotasListRequest) StartDiskSize(startDiskSize int64) ApiProjectquotasListRequest {
+func (r ApiProjectQuotasListRequest) StartDiskSize(startDiskSize int64) ApiProjectQuotasListRequest {
 	r.startDiskSize = &startDiskSize
 	return r
 }
 
-func (r ApiProjectquotasListRequest) EndDiskSize(endDiskSize int64) ApiProjectquotasListRequest {
+func (r ApiProjectQuotasListRequest) EndDiskSize(endDiskSize int64) ApiProjectQuotasListRequest {
 	r.endDiskSize = &endDiskSize
 	return r
 }
 
-func (r ApiProjectquotasListRequest) StartCpu(startCpu int32) ApiProjectquotasListRequest {
+func (r ApiProjectQuotasListRequest) StartCpu(startCpu int32) ApiProjectQuotasListRequest {
 	r.startCpu = &startCpu
 	return r
 }
 
-func (r ApiProjectquotasListRequest) EndCpu(endCpu int32) ApiProjectquotasListRequest {
+func (r ApiProjectQuotasListRequest) EndCpu(endCpu int32) ApiProjectQuotasListRequest {
 	r.endCpu = &endCpu
 	return r
 }
 
-func (r ApiProjectquotasListRequest) OrganizationId(organizationId int32) ApiProjectquotasListRequest {
+func (r ApiProjectQuotasListRequest) OrganizationId(organizationId int32) ApiProjectQuotasListRequest {
 	r.organizationId = &organizationId
 	return r
 }
 
-func (r ApiProjectquotasListRequest) Id(id int32) ApiProjectquotasListRequest {
+func (r ApiProjectQuotasListRequest) Id(id int32) ApiProjectQuotasListRequest {
 	r.id = &id
 	return r
 }
 
-func (r ApiProjectquotasListRequest) Execute() (*ProjectQuotaList, *http.Response, error) {
-	return r.ApiService.ProjectquotasListExecute(r)
+func (r ApiProjectQuotasListRequest) Execute() (*ProjectQuotaList, *http.Response, error) {
+	return r.ApiService.ProjectQuotasListExecute(r)
 }
 
 /*
-ProjectquotasList Retrieve all project quotas
+ProjectQuotasList Retrieve all project quotas
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiProjectquotasListRequest
+ @param v
+ @return ApiProjectQuotasListRequest
 */
-func (a *ProjectQuotasApiService) ProjectquotasList(ctx context.Context) ApiProjectquotasListRequest {
-	return ApiProjectquotasListRequest{
+func (a *ProjectQuotasApiService) ProjectQuotasList(ctx context.Context, v string) ApiProjectQuotasListRequest {
+	return ApiProjectQuotasListRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
 // Execute executes the request
 //  @return ProjectQuotaList
-func (a *ProjectQuotasApiService) ProjectquotasListExecute(r ApiProjectquotasListRequest) (*ProjectQuotaList, *http.Response, error) {
+func (a *ProjectQuotasApiService) ProjectQuotasListExecute(r ApiProjectQuotasListRequest) (*ProjectQuotaList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -133,55 +294,56 @@ func (a *ProjectQuotasApiService) ProjectquotasListExecute(r ApiProjectquotasLis
 		localVarReturnValue  *ProjectQuotaList
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectQuotasApiService.ProjectquotasList")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectQuotasApiService.ProjectQuotasList")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/projectquotas"
+	localVarPath := localBasePath + "/api/v{v}/ProjectQuotas"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Limit", r.limit, "")
-	}
 	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Offset", r.offset, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
 	}
 	if r.sortBy != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "SortBy", r.sortBy, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", r.sortBy, "")
 	}
 	if r.sortDirection != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "SortDirection", r.sortDirection, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "sortDirection", r.sortDirection, "")
 	}
 	if r.search != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Search", r.search, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "")
 	}
 	if r.startRam != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "StartRam", r.startRam, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "startRam", r.startRam, "")
 	}
 	if r.endRam != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "EndRam", r.endRam, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "endRam", r.endRam, "")
 	}
 	if r.startDiskSize != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "StartDiskSize", r.startDiskSize, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "startDiskSize", r.startDiskSize, "")
 	}
 	if r.endDiskSize != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "EndDiskSize", r.endDiskSize, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "endDiskSize", r.endDiskSize, "")
 	}
 	if r.startCpu != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "StartCpu", r.startCpu, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "startCpu", r.startCpu, "")
 	}
 	if r.endCpu != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "EndCpu", r.endCpu, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "endCpu", r.endCpu, "")
 	}
 	if r.organizationId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "OrganizationId", r.organizationId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "organizationId", r.organizationId, "")
 	}
 	if r.id != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Id", r.id, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -193,7 +355,7 @@ func (a *ProjectQuotasApiService) ProjectquotasListExecute(r ApiProjectquotasLis
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -236,17 +398,6 @@ func (a *ProjectQuotasApiService) ProjectquotasListExecute(r ApiProjectquotasLis
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -280,7 +431,7 @@ func (a *ProjectQuotasApiService) ProjectquotasListExecute(r ApiProjectquotasLis
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -303,166 +454,4 @@ func (a *ProjectQuotasApiService) ProjectquotasListExecute(r ApiProjectquotasLis
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiProjectquotasUpdateRequest struct {
-	ctx context.Context
-	ApiService *ProjectQuotasApiService
-	updateQuotaCommand *UpdateQuotaCommand
-}
-
-func (r ApiProjectquotasUpdateRequest) UpdateQuotaCommand(updateQuotaCommand UpdateQuotaCommand) ApiProjectquotasUpdateRequest {
-	r.updateQuotaCommand = &updateQuotaCommand
-	return r
-}
-
-func (r ApiProjectquotasUpdateRequest) Execute() (*http.Response, error) {
-	return r.ApiService.ProjectquotasUpdateExecute(r)
-}
-
-/*
-ProjectquotasUpdate Edit project quota
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiProjectquotasUpdateRequest
-*/
-func (a *ProjectQuotasApiService) ProjectquotasUpdate(ctx context.Context) ApiProjectquotasUpdateRequest {
-	return ApiProjectquotasUpdateRequest{
-		ApiService: a,
-		ctx: ctx,
-	}
-}
-
-// Execute executes the request
-func (a *ProjectQuotasApiService) ProjectquotasUpdateExecute(r ApiProjectquotasUpdateRequest) (*http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectQuotasApiService.ProjectquotasUpdate")
-	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v1/projectquotas/update"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.updateQuotaCommand
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["Bearer"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
 }

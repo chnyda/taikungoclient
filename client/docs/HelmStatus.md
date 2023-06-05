@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Conditions** | Pointer to [**[]Condition**](Condition.md) |  | [optional] 
 **Failures** | Pointer to **int64** |  | [optional] 
-**HelmChart** | Pointer to **NullableString** |  | [optional] 
+**HelmChart** | Pointer to **string** |  | [optional] 
 **ObservedGeneration** | Pointer to **int64** |  | [optional] 
 
 ## Methods
@@ -53,16 +53,6 @@ SetConditions sets Conditions field to given value.
 
 HasConditions returns a boolean if a field has been set.
 
-### SetConditionsNil
-
-`func (o *HelmStatus) SetConditionsNil(b bool)`
-
- SetConditionsNil sets the value for Conditions to be an explicit nil
-
-### UnsetConditions
-`func (o *HelmStatus) UnsetConditions()`
-
-UnsetConditions ensures that no value is present for Conditions, not even an explicit nil
 ### GetFailures
 
 `func (o *HelmStatus) GetFailures() int64`
@@ -113,16 +103,6 @@ SetHelmChart sets HelmChart field to given value.
 
 HasHelmChart returns a boolean if a field has been set.
 
-### SetHelmChartNil
-
-`func (o *HelmStatus) SetHelmChartNil(b bool)`
-
- SetHelmChartNil sets the value for HelmChart to be an explicit nil
-
-### UnsetHelmChart
-`func (o *HelmStatus) UnsetHelmChart()`
-
-UnsetHelmChart ensures that no value is present for HelmChart, not even an explicit nil
 ### GetObservedGeneration
 
 `func (o *HelmStatus) GetObservedGeneration() int64`

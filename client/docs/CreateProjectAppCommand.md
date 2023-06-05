@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Namespace** | **string** |  | 
 **ProjectId** | **int32** |  | 
 **CatalogAppId** | **int32** |  | 
-**ExtraValues** | Pointer to **NullableString** |  | [optional] 
+**ExtraValues** | Pointer to **string** |  | [optional] 
 **AutoSync** | Pointer to **bool** |  | [optional] 
 **Parameters** | Pointer to [**[]ProjectAppParamsDto**](ProjectAppParamsDto.md) |  | [optional] 
 
@@ -136,16 +136,6 @@ SetExtraValues sets ExtraValues field to given value.
 
 HasExtraValues returns a boolean if a field has been set.
 
-### SetExtraValuesNil
-
-`func (o *CreateProjectAppCommand) SetExtraValuesNil(b bool)`
-
- SetExtraValuesNil sets the value for ExtraValues to be an explicit nil
-
-### UnsetExtraValues
-`func (o *CreateProjectAppCommand) UnsetExtraValues()`
-
-UnsetExtraValues ensures that no value is present for ExtraValues, not even an explicit nil
 ### GetAutoSync
 
 `func (o *CreateProjectAppCommand) GetAutoSync() bool`
@@ -196,16 +186,6 @@ SetParameters sets Parameters field to given value.
 
 HasParameters returns a boolean if a field has been set.
 
-### SetParametersNil
-
-`func (o *CreateProjectAppCommand) SetParametersNil(b bool)`
-
- SetParametersNil sets the value for Parameters to be an explicit nil
-
-### UnsetParameters
-`func (o *CreateProjectAppCommand) UnsetParameters()`
-
-UnsetParameters ensures that no value is present for Parameters, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

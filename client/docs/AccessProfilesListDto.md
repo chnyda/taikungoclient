@@ -5,19 +5,19 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
-**HttpProxy** | Pointer to **NullableString** |  | [optional] 
-**OrganizationId** | Pointer to **NullableInt32** |  | [optional] 
-**OrganizationName** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**HttpProxy** | Pointer to **string** |  | [optional] 
+**OrganizationId** | Pointer to **int32** |  | [optional] 
+**OrganizationName** | Pointer to **string** |  | [optional] 
 **IsLocked** | Pointer to **bool** |  | [optional] 
 **DnsServers** | Pointer to [**[]DnsServerListDto**](DnsServerListDto.md) |  | [optional] 
 **NtpServers** | Pointer to [**[]NtpServerListDto**](NtpServerListDto.md) |  | [optional] 
 **AllowedHosts** | Pointer to [**[]AllowedHostListDto**](AllowedHostListDto.md) |  | [optional] 
 **Projects** | Pointer to [**[]CommonDropdownDto**](CommonDropdownDto.md) |  | [optional] 
-**CreatedBy** | Pointer to **NullableString** |  | [optional] 
-**LastModified** | Pointer to **NullableString** |  | [optional] 
-**LastModifiedBy** | Pointer to **NullableString** |  | [optional] 
-**CreatedAt** | Pointer to **NullableString** |  | [optional] 
+**CreatedBy** | Pointer to **string** |  | [optional] 
+**LastModified** | Pointer to **string** |  | [optional] 
+**LastModifiedBy** | Pointer to **string** |  | [optional] 
+**CreatedAt** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -88,16 +88,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *AccessProfilesListDto) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *AccessProfilesListDto) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetHttpProxy
 
 `func (o *AccessProfilesListDto) GetHttpProxy() string`
@@ -123,16 +113,6 @@ SetHttpProxy sets HttpProxy field to given value.
 
 HasHttpProxy returns a boolean if a field has been set.
 
-### SetHttpProxyNil
-
-`func (o *AccessProfilesListDto) SetHttpProxyNil(b bool)`
-
- SetHttpProxyNil sets the value for HttpProxy to be an explicit nil
-
-### UnsetHttpProxy
-`func (o *AccessProfilesListDto) UnsetHttpProxy()`
-
-UnsetHttpProxy ensures that no value is present for HttpProxy, not even an explicit nil
 ### GetOrganizationId
 
 `func (o *AccessProfilesListDto) GetOrganizationId() int32`
@@ -158,16 +138,6 @@ SetOrganizationId sets OrganizationId field to given value.
 
 HasOrganizationId returns a boolean if a field has been set.
 
-### SetOrganizationIdNil
-
-`func (o *AccessProfilesListDto) SetOrganizationIdNil(b bool)`
-
- SetOrganizationIdNil sets the value for OrganizationId to be an explicit nil
-
-### UnsetOrganizationId
-`func (o *AccessProfilesListDto) UnsetOrganizationId()`
-
-UnsetOrganizationId ensures that no value is present for OrganizationId, not even an explicit nil
 ### GetOrganizationName
 
 `func (o *AccessProfilesListDto) GetOrganizationName() string`
@@ -193,16 +163,6 @@ SetOrganizationName sets OrganizationName field to given value.
 
 HasOrganizationName returns a boolean if a field has been set.
 
-### SetOrganizationNameNil
-
-`func (o *AccessProfilesListDto) SetOrganizationNameNil(b bool)`
-
- SetOrganizationNameNil sets the value for OrganizationName to be an explicit nil
-
-### UnsetOrganizationName
-`func (o *AccessProfilesListDto) UnsetOrganizationName()`
-
-UnsetOrganizationName ensures that no value is present for OrganizationName, not even an explicit nil
 ### GetIsLocked
 
 `func (o *AccessProfilesListDto) GetIsLocked() bool`
@@ -253,16 +213,6 @@ SetDnsServers sets DnsServers field to given value.
 
 HasDnsServers returns a boolean if a field has been set.
 
-### SetDnsServersNil
-
-`func (o *AccessProfilesListDto) SetDnsServersNil(b bool)`
-
- SetDnsServersNil sets the value for DnsServers to be an explicit nil
-
-### UnsetDnsServers
-`func (o *AccessProfilesListDto) UnsetDnsServers()`
-
-UnsetDnsServers ensures that no value is present for DnsServers, not even an explicit nil
 ### GetNtpServers
 
 `func (o *AccessProfilesListDto) GetNtpServers() []NtpServerListDto`
@@ -288,16 +238,6 @@ SetNtpServers sets NtpServers field to given value.
 
 HasNtpServers returns a boolean if a field has been set.
 
-### SetNtpServersNil
-
-`func (o *AccessProfilesListDto) SetNtpServersNil(b bool)`
-
- SetNtpServersNil sets the value for NtpServers to be an explicit nil
-
-### UnsetNtpServers
-`func (o *AccessProfilesListDto) UnsetNtpServers()`
-
-UnsetNtpServers ensures that no value is present for NtpServers, not even an explicit nil
 ### GetAllowedHosts
 
 `func (o *AccessProfilesListDto) GetAllowedHosts() []AllowedHostListDto`
@@ -323,16 +263,6 @@ SetAllowedHosts sets AllowedHosts field to given value.
 
 HasAllowedHosts returns a boolean if a field has been set.
 
-### SetAllowedHostsNil
-
-`func (o *AccessProfilesListDto) SetAllowedHostsNil(b bool)`
-
- SetAllowedHostsNil sets the value for AllowedHosts to be an explicit nil
-
-### UnsetAllowedHosts
-`func (o *AccessProfilesListDto) UnsetAllowedHosts()`
-
-UnsetAllowedHosts ensures that no value is present for AllowedHosts, not even an explicit nil
 ### GetProjects
 
 `func (o *AccessProfilesListDto) GetProjects() []CommonDropdownDto`
@@ -358,16 +288,6 @@ SetProjects sets Projects field to given value.
 
 HasProjects returns a boolean if a field has been set.
 
-### SetProjectsNil
-
-`func (o *AccessProfilesListDto) SetProjectsNil(b bool)`
-
- SetProjectsNil sets the value for Projects to be an explicit nil
-
-### UnsetProjects
-`func (o *AccessProfilesListDto) UnsetProjects()`
-
-UnsetProjects ensures that no value is present for Projects, not even an explicit nil
 ### GetCreatedBy
 
 `func (o *AccessProfilesListDto) GetCreatedBy() string`
@@ -393,16 +313,6 @@ SetCreatedBy sets CreatedBy field to given value.
 
 HasCreatedBy returns a boolean if a field has been set.
 
-### SetCreatedByNil
-
-`func (o *AccessProfilesListDto) SetCreatedByNil(b bool)`
-
- SetCreatedByNil sets the value for CreatedBy to be an explicit nil
-
-### UnsetCreatedBy
-`func (o *AccessProfilesListDto) UnsetCreatedBy()`
-
-UnsetCreatedBy ensures that no value is present for CreatedBy, not even an explicit nil
 ### GetLastModified
 
 `func (o *AccessProfilesListDto) GetLastModified() string`
@@ -428,16 +338,6 @@ SetLastModified sets LastModified field to given value.
 
 HasLastModified returns a boolean if a field has been set.
 
-### SetLastModifiedNil
-
-`func (o *AccessProfilesListDto) SetLastModifiedNil(b bool)`
-
- SetLastModifiedNil sets the value for LastModified to be an explicit nil
-
-### UnsetLastModified
-`func (o *AccessProfilesListDto) UnsetLastModified()`
-
-UnsetLastModified ensures that no value is present for LastModified, not even an explicit nil
 ### GetLastModifiedBy
 
 `func (o *AccessProfilesListDto) GetLastModifiedBy() string`
@@ -463,16 +363,6 @@ SetLastModifiedBy sets LastModifiedBy field to given value.
 
 HasLastModifiedBy returns a boolean if a field has been set.
 
-### SetLastModifiedByNil
-
-`func (o *AccessProfilesListDto) SetLastModifiedByNil(b bool)`
-
- SetLastModifiedByNil sets the value for LastModifiedBy to be an explicit nil
-
-### UnsetLastModifiedBy
-`func (o *AccessProfilesListDto) UnsetLastModifiedBy()`
-
-UnsetLastModifiedBy ensures that no value is present for LastModifiedBy, not even an explicit nil
 ### GetCreatedAt
 
 `func (o *AccessProfilesListDto) GetCreatedAt() string`
@@ -498,16 +388,6 @@ SetCreatedAt sets CreatedAt field to given value.
 
 HasCreatedAt returns a boolean if a field has been set.
 
-### SetCreatedAtNil
-
-`func (o *AccessProfilesListDto) SetCreatedAtNil(b bool)`
-
- SetCreatedAtNil sets the value for CreatedAt to be an explicit nil
-
-### UnsetCreatedAt
-`func (o *AccessProfilesListDto) UnsetCreatedAt()`
-
-UnsetCreatedAt ensures that no value is present for CreatedAt, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

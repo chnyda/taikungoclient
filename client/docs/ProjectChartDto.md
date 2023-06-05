@@ -54,16 +54,6 @@ SetSucceeded sets Succeeded field to given value.
 
 HasSucceeded returns a boolean if a field has been set.
 
-### SetSucceededNil
-
-`func (o *ProjectChartDto) SetSucceededNil(b bool)`
-
- SetSucceededNil sets the value for Succeeded to be an explicit nil
-
-### UnsetSucceeded
-`func (o *ProjectChartDto) UnsetSucceeded()`
-
-UnsetSucceeded ensures that no value is present for Succeeded, not even an explicit nil
 ### GetPending
 
 `func (o *ProjectChartDto) GetPending() []ProjectCommonRecordDto`
@@ -89,16 +79,6 @@ SetPending sets Pending field to given value.
 
 HasPending returns a boolean if a field has been set.
 
-### SetPendingNil
-
-`func (o *ProjectChartDto) SetPendingNil(b bool)`
-
- SetPendingNil sets the value for Pending to be an explicit nil
-
-### UnsetPending
-`func (o *ProjectChartDto) UnsetPending()`
-
-UnsetPending ensures that no value is present for Pending, not even an explicit nil
 ### GetUpdating
 
 `func (o *ProjectChartDto) GetUpdating() []ProjectCommonRecordDto`
@@ -124,16 +104,6 @@ SetUpdating sets Updating field to given value.
 
 HasUpdating returns a boolean if a field has been set.
 
-### SetUpdatingNil
-
-`func (o *ProjectChartDto) SetUpdatingNil(b bool)`
-
- SetUpdatingNil sets the value for Updating to be an explicit nil
-
-### UnsetUpdating
-`func (o *ProjectChartDto) UnsetUpdating()`
-
-UnsetUpdating ensures that no value is present for Updating, not even an explicit nil
 ### GetTotalCount
 
 `func (o *ProjectChartDto) GetTotalCount() int32`
@@ -184,16 +154,6 @@ SetFailed sets Failed field to given value.
 
 HasFailed returns a boolean if a field has been set.
 
-### SetFailedNil
-
-`func (o *ProjectChartDto) SetFailedNil(b bool)`
-
- SetFailedNil sets the value for Failed to be an explicit nil
-
-### UnsetFailed
-`func (o *ProjectChartDto) UnsetFailed()`
-
-UnsetFailed ensures that no value is present for Failed, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

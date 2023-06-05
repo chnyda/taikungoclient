@@ -5,20 +5,20 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** |  | [optional] 
-**Labels** | Pointer to **interface{}** |  | [optional] 
-**Description** | Pointer to **NullableString** |  | [optional] 
-**Title** | Pointer to **NullableString** |  | [optional] 
-**Severity** | Pointer to **NullableString** |  | [optional] 
-**Fingerprint** | Pointer to **NullableString** |  | [optional] 
-**Status** | Pointer to **NullableString** |  | [optional] 
-**StartsAt** | Pointer to **NullableString** |  | [optional] 
-**EndAt** | Pointer to **NullableString** |  | [optional] 
+**Labels** | Pointer to **map[string]interface{}** |  | [optional] 
+**Description** | Pointer to **string** |  | [optional] 
+**Title** | Pointer to **string** |  | [optional] 
+**Severity** | Pointer to **string** |  | [optional] 
+**Fingerprint** | Pointer to **string** |  | [optional] 
+**Status** | Pointer to **string** |  | [optional] 
+**StartsAt** | Pointer to **string** |  | [optional] 
+**EndAt** | Pointer to **string** |  | [optional] 
 **IsSolved** | Pointer to **bool** |  | [optional] 
 **ProjectId** | Pointer to **int32** |  | [optional] 
-**ProjectName** | Pointer to **NullableString** |  | [optional] 
+**ProjectName** | Pointer to **string** |  | [optional] 
 **IsSilenced** | Pointer to **bool** |  | [optional] 
-**SilenceReason** | Pointer to **NullableString** |  | [optional] 
-**LastModifiedBy** | Pointer to **NullableString** |  | [optional] 
+**SilenceReason** | Pointer to **string** |  | [optional] 
+**LastModifiedBy** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -66,20 +66,20 @@ HasId returns a boolean if a field has been set.
 
 ### GetLabels
 
-`func (o *KubernetesAlertDto) GetLabels() interface{}`
+`func (o *KubernetesAlertDto) GetLabels() map[string]interface{}`
 
 GetLabels returns the Labels field if non-nil, zero value otherwise.
 
 ### GetLabelsOk
 
-`func (o *KubernetesAlertDto) GetLabelsOk() (*interface{}, bool)`
+`func (o *KubernetesAlertDto) GetLabelsOk() (*map[string]interface{}, bool)`
 
 GetLabelsOk returns a tuple with the Labels field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLabels
 
-`func (o *KubernetesAlertDto) SetLabels(v interface{})`
+`func (o *KubernetesAlertDto) SetLabels(v map[string]interface{})`
 
 SetLabels sets Labels field to given value.
 
@@ -89,16 +89,6 @@ SetLabels sets Labels field to given value.
 
 HasLabels returns a boolean if a field has been set.
 
-### SetLabelsNil
-
-`func (o *KubernetesAlertDto) SetLabelsNil(b bool)`
-
- SetLabelsNil sets the value for Labels to be an explicit nil
-
-### UnsetLabels
-`func (o *KubernetesAlertDto) UnsetLabels()`
-
-UnsetLabels ensures that no value is present for Labels, not even an explicit nil
 ### GetDescription
 
 `func (o *KubernetesAlertDto) GetDescription() string`
@@ -124,16 +114,6 @@ SetDescription sets Description field to given value.
 
 HasDescription returns a boolean if a field has been set.
 
-### SetDescriptionNil
-
-`func (o *KubernetesAlertDto) SetDescriptionNil(b bool)`
-
- SetDescriptionNil sets the value for Description to be an explicit nil
-
-### UnsetDescription
-`func (o *KubernetesAlertDto) UnsetDescription()`
-
-UnsetDescription ensures that no value is present for Description, not even an explicit nil
 ### GetTitle
 
 `func (o *KubernetesAlertDto) GetTitle() string`
@@ -159,16 +139,6 @@ SetTitle sets Title field to given value.
 
 HasTitle returns a boolean if a field has been set.
 
-### SetTitleNil
-
-`func (o *KubernetesAlertDto) SetTitleNil(b bool)`
-
- SetTitleNil sets the value for Title to be an explicit nil
-
-### UnsetTitle
-`func (o *KubernetesAlertDto) UnsetTitle()`
-
-UnsetTitle ensures that no value is present for Title, not even an explicit nil
 ### GetSeverity
 
 `func (o *KubernetesAlertDto) GetSeverity() string`
@@ -194,16 +164,6 @@ SetSeverity sets Severity field to given value.
 
 HasSeverity returns a boolean if a field has been set.
 
-### SetSeverityNil
-
-`func (o *KubernetesAlertDto) SetSeverityNil(b bool)`
-
- SetSeverityNil sets the value for Severity to be an explicit nil
-
-### UnsetSeverity
-`func (o *KubernetesAlertDto) UnsetSeverity()`
-
-UnsetSeverity ensures that no value is present for Severity, not even an explicit nil
 ### GetFingerprint
 
 `func (o *KubernetesAlertDto) GetFingerprint() string`
@@ -229,16 +189,6 @@ SetFingerprint sets Fingerprint field to given value.
 
 HasFingerprint returns a boolean if a field has been set.
 
-### SetFingerprintNil
-
-`func (o *KubernetesAlertDto) SetFingerprintNil(b bool)`
-
- SetFingerprintNil sets the value for Fingerprint to be an explicit nil
-
-### UnsetFingerprint
-`func (o *KubernetesAlertDto) UnsetFingerprint()`
-
-UnsetFingerprint ensures that no value is present for Fingerprint, not even an explicit nil
 ### GetStatus
 
 `func (o *KubernetesAlertDto) GetStatus() string`
@@ -264,16 +214,6 @@ SetStatus sets Status field to given value.
 
 HasStatus returns a boolean if a field has been set.
 
-### SetStatusNil
-
-`func (o *KubernetesAlertDto) SetStatusNil(b bool)`
-
- SetStatusNil sets the value for Status to be an explicit nil
-
-### UnsetStatus
-`func (o *KubernetesAlertDto) UnsetStatus()`
-
-UnsetStatus ensures that no value is present for Status, not even an explicit nil
 ### GetStartsAt
 
 `func (o *KubernetesAlertDto) GetStartsAt() string`
@@ -299,16 +239,6 @@ SetStartsAt sets StartsAt field to given value.
 
 HasStartsAt returns a boolean if a field has been set.
 
-### SetStartsAtNil
-
-`func (o *KubernetesAlertDto) SetStartsAtNil(b bool)`
-
- SetStartsAtNil sets the value for StartsAt to be an explicit nil
-
-### UnsetStartsAt
-`func (o *KubernetesAlertDto) UnsetStartsAt()`
-
-UnsetStartsAt ensures that no value is present for StartsAt, not even an explicit nil
 ### GetEndAt
 
 `func (o *KubernetesAlertDto) GetEndAt() string`
@@ -334,16 +264,6 @@ SetEndAt sets EndAt field to given value.
 
 HasEndAt returns a boolean if a field has been set.
 
-### SetEndAtNil
-
-`func (o *KubernetesAlertDto) SetEndAtNil(b bool)`
-
- SetEndAtNil sets the value for EndAt to be an explicit nil
-
-### UnsetEndAt
-`func (o *KubernetesAlertDto) UnsetEndAt()`
-
-UnsetEndAt ensures that no value is present for EndAt, not even an explicit nil
 ### GetIsSolved
 
 `func (o *KubernetesAlertDto) GetIsSolved() bool`
@@ -419,16 +339,6 @@ SetProjectName sets ProjectName field to given value.
 
 HasProjectName returns a boolean if a field has been set.
 
-### SetProjectNameNil
-
-`func (o *KubernetesAlertDto) SetProjectNameNil(b bool)`
-
- SetProjectNameNil sets the value for ProjectName to be an explicit nil
-
-### UnsetProjectName
-`func (o *KubernetesAlertDto) UnsetProjectName()`
-
-UnsetProjectName ensures that no value is present for ProjectName, not even an explicit nil
 ### GetIsSilenced
 
 `func (o *KubernetesAlertDto) GetIsSilenced() bool`
@@ -479,16 +389,6 @@ SetSilenceReason sets SilenceReason field to given value.
 
 HasSilenceReason returns a boolean if a field has been set.
 
-### SetSilenceReasonNil
-
-`func (o *KubernetesAlertDto) SetSilenceReasonNil(b bool)`
-
- SetSilenceReasonNil sets the value for SilenceReason to be an explicit nil
-
-### UnsetSilenceReason
-`func (o *KubernetesAlertDto) UnsetSilenceReason()`
-
-UnsetSilenceReason ensures that no value is present for SilenceReason, not even an explicit nil
 ### GetLastModifiedBy
 
 `func (o *KubernetesAlertDto) GetLastModifiedBy() string`
@@ -514,16 +414,6 @@ SetLastModifiedBy sets LastModifiedBy field to given value.
 
 HasLastModifiedBy returns a boolean if a field has been set.
 
-### SetLastModifiedByNil
-
-`func (o *KubernetesAlertDto) SetLastModifiedByNil(b bool)`
-
- SetLastModifiedByNil sets the value for LastModifiedBy to be an explicit nil
-
-### UnsetLastModifiedBy
-`func (o *KubernetesAlertDto) UnsetLastModifiedBy()`
-
-UnsetLastModifiedBy ensures that no value is present for LastModifiedBy, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | Pointer to **NullableString** |  | [optional] 
-**Reason** | Pointer to **NullableString** |  | [optional] 
-**Message** | Pointer to **NullableString** |  | [optional] 
-**Metadata** | Pointer to **interface{}** |  | [optional] 
-**Source** | Pointer to **interface{}** |  | [optional] 
-**InvolvedObject** | Pointer to **interface{}** |  | [optional] 
-**FirstTimeStamp** | Pointer to **NullableTime** |  | [optional] 
-**LastTimeStamp** | Pointer to **NullableTime** |  | [optional] 
+**Type** | Pointer to **string** |  | [optional] 
+**Reason** | Pointer to **string** |  | [optional] 
+**Message** | Pointer to **string** |  | [optional] 
+**Metadata** | Pointer to **map[string]interface{}** |  | [optional] 
+**Source** | Pointer to **map[string]interface{}** |  | [optional] 
+**InvolvedObject** | Pointer to **map[string]interface{}** |  | [optional] 
+**FirstTimeStamp** | Pointer to **time.Time** |  | [optional] 
+**LastTimeStamp** | Pointer to **time.Time** |  | [optional] 
 **Count** | Pointer to **int32** |  | [optional] 
 
 ## Methods
@@ -58,16 +58,6 @@ SetType sets Type field to given value.
 
 HasType returns a boolean if a field has been set.
 
-### SetTypeNil
-
-`func (o *KubernetesEventCreateDto) SetTypeNil(b bool)`
-
- SetTypeNil sets the value for Type to be an explicit nil
-
-### UnsetType
-`func (o *KubernetesEventCreateDto) UnsetType()`
-
-UnsetType ensures that no value is present for Type, not even an explicit nil
 ### GetReason
 
 `func (o *KubernetesEventCreateDto) GetReason() string`
@@ -93,16 +83,6 @@ SetReason sets Reason field to given value.
 
 HasReason returns a boolean if a field has been set.
 
-### SetReasonNil
-
-`func (o *KubernetesEventCreateDto) SetReasonNil(b bool)`
-
- SetReasonNil sets the value for Reason to be an explicit nil
-
-### UnsetReason
-`func (o *KubernetesEventCreateDto) UnsetReason()`
-
-UnsetReason ensures that no value is present for Reason, not even an explicit nil
 ### GetMessage
 
 `func (o *KubernetesEventCreateDto) GetMessage() string`
@@ -128,32 +108,22 @@ SetMessage sets Message field to given value.
 
 HasMessage returns a boolean if a field has been set.
 
-### SetMessageNil
-
-`func (o *KubernetesEventCreateDto) SetMessageNil(b bool)`
-
- SetMessageNil sets the value for Message to be an explicit nil
-
-### UnsetMessage
-`func (o *KubernetesEventCreateDto) UnsetMessage()`
-
-UnsetMessage ensures that no value is present for Message, not even an explicit nil
 ### GetMetadata
 
-`func (o *KubernetesEventCreateDto) GetMetadata() interface{}`
+`func (o *KubernetesEventCreateDto) GetMetadata() map[string]interface{}`
 
 GetMetadata returns the Metadata field if non-nil, zero value otherwise.
 
 ### GetMetadataOk
 
-`func (o *KubernetesEventCreateDto) GetMetadataOk() (*interface{}, bool)`
+`func (o *KubernetesEventCreateDto) GetMetadataOk() (*map[string]interface{}, bool)`
 
 GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMetadata
 
-`func (o *KubernetesEventCreateDto) SetMetadata(v interface{})`
+`func (o *KubernetesEventCreateDto) SetMetadata(v map[string]interface{})`
 
 SetMetadata sets Metadata field to given value.
 
@@ -163,32 +133,22 @@ SetMetadata sets Metadata field to given value.
 
 HasMetadata returns a boolean if a field has been set.
 
-### SetMetadataNil
-
-`func (o *KubernetesEventCreateDto) SetMetadataNil(b bool)`
-
- SetMetadataNil sets the value for Metadata to be an explicit nil
-
-### UnsetMetadata
-`func (o *KubernetesEventCreateDto) UnsetMetadata()`
-
-UnsetMetadata ensures that no value is present for Metadata, not even an explicit nil
 ### GetSource
 
-`func (o *KubernetesEventCreateDto) GetSource() interface{}`
+`func (o *KubernetesEventCreateDto) GetSource() map[string]interface{}`
 
 GetSource returns the Source field if non-nil, zero value otherwise.
 
 ### GetSourceOk
 
-`func (o *KubernetesEventCreateDto) GetSourceOk() (*interface{}, bool)`
+`func (o *KubernetesEventCreateDto) GetSourceOk() (*map[string]interface{}, bool)`
 
 GetSourceOk returns a tuple with the Source field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSource
 
-`func (o *KubernetesEventCreateDto) SetSource(v interface{})`
+`func (o *KubernetesEventCreateDto) SetSource(v map[string]interface{})`
 
 SetSource sets Source field to given value.
 
@@ -198,32 +158,22 @@ SetSource sets Source field to given value.
 
 HasSource returns a boolean if a field has been set.
 
-### SetSourceNil
-
-`func (o *KubernetesEventCreateDto) SetSourceNil(b bool)`
-
- SetSourceNil sets the value for Source to be an explicit nil
-
-### UnsetSource
-`func (o *KubernetesEventCreateDto) UnsetSource()`
-
-UnsetSource ensures that no value is present for Source, not even an explicit nil
 ### GetInvolvedObject
 
-`func (o *KubernetesEventCreateDto) GetInvolvedObject() interface{}`
+`func (o *KubernetesEventCreateDto) GetInvolvedObject() map[string]interface{}`
 
 GetInvolvedObject returns the InvolvedObject field if non-nil, zero value otherwise.
 
 ### GetInvolvedObjectOk
 
-`func (o *KubernetesEventCreateDto) GetInvolvedObjectOk() (*interface{}, bool)`
+`func (o *KubernetesEventCreateDto) GetInvolvedObjectOk() (*map[string]interface{}, bool)`
 
 GetInvolvedObjectOk returns a tuple with the InvolvedObject field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInvolvedObject
 
-`func (o *KubernetesEventCreateDto) SetInvolvedObject(v interface{})`
+`func (o *KubernetesEventCreateDto) SetInvolvedObject(v map[string]interface{})`
 
 SetInvolvedObject sets InvolvedObject field to given value.
 
@@ -233,16 +183,6 @@ SetInvolvedObject sets InvolvedObject field to given value.
 
 HasInvolvedObject returns a boolean if a field has been set.
 
-### SetInvolvedObjectNil
-
-`func (o *KubernetesEventCreateDto) SetInvolvedObjectNil(b bool)`
-
- SetInvolvedObjectNil sets the value for InvolvedObject to be an explicit nil
-
-### UnsetInvolvedObject
-`func (o *KubernetesEventCreateDto) UnsetInvolvedObject()`
-
-UnsetInvolvedObject ensures that no value is present for InvolvedObject, not even an explicit nil
 ### GetFirstTimeStamp
 
 `func (o *KubernetesEventCreateDto) GetFirstTimeStamp() time.Time`
@@ -268,16 +208,6 @@ SetFirstTimeStamp sets FirstTimeStamp field to given value.
 
 HasFirstTimeStamp returns a boolean if a field has been set.
 
-### SetFirstTimeStampNil
-
-`func (o *KubernetesEventCreateDto) SetFirstTimeStampNil(b bool)`
-
- SetFirstTimeStampNil sets the value for FirstTimeStamp to be an explicit nil
-
-### UnsetFirstTimeStamp
-`func (o *KubernetesEventCreateDto) UnsetFirstTimeStamp()`
-
-UnsetFirstTimeStamp ensures that no value is present for FirstTimeStamp, not even an explicit nil
 ### GetLastTimeStamp
 
 `func (o *KubernetesEventCreateDto) GetLastTimeStamp() time.Time`
@@ -303,16 +233,6 @@ SetLastTimeStamp sets LastTimeStamp field to given value.
 
 HasLastTimeStamp returns a boolean if a field has been set.
 
-### SetLastTimeStampNil
-
-`func (o *KubernetesEventCreateDto) SetLastTimeStampNil(b bool)`
-
- SetLastTimeStampNil sets the value for LastTimeStamp to be an explicit nil
-
-### UnsetLastTimeStamp
-`func (o *KubernetesEventCreateDto) UnsetLastTimeStamp()`
-
-UnsetLastTimeStamp ensures that no value is present for LastTimeStamp, not even an explicit nil
 ### GetCount
 
 `func (o *KubernetesEventCreateDto) GetCount() int32`

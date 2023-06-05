@@ -6,8 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Data** | Pointer to [**UserForListDto**](UserForListDto.md) |  | [optional] 
 **IsMaintenanceModeEnabled** | Pointer to **bool** |  | [optional] 
-**DemoOrganization** | Pointer to **NullableInt32** |  | [optional] 
-**TrialDays** | Pointer to **NullableInt32** |  | [optional] 
+**DemoOrganization** | Pointer to **int32** |  | [optional] 
+**TrialDays** | Pointer to **int32** |  | [optional] 
 
 ## Methods
 
@@ -103,16 +103,6 @@ SetDemoOrganization sets DemoOrganization field to given value.
 
 HasDemoOrganization returns a boolean if a field has been set.
 
-### SetDemoOrganizationNil
-
-`func (o *UserDetails) SetDemoOrganizationNil(b bool)`
-
- SetDemoOrganizationNil sets the value for DemoOrganization to be an explicit nil
-
-### UnsetDemoOrganization
-`func (o *UserDetails) UnsetDemoOrganization()`
-
-UnsetDemoOrganization ensures that no value is present for DemoOrganization, not even an explicit nil
 ### GetTrialDays
 
 `func (o *UserDetails) GetTrialDays() int32`
@@ -138,16 +128,6 @@ SetTrialDays sets TrialDays field to given value.
 
 HasTrialDays returns a boolean if a field has been set.
 
-### SetTrialDaysNil
-
-`func (o *UserDetails) SetTrialDaysNil(b bool)`
-
- SetTrialDaysNil sets the value for TrialDays to be an explicit nil
-
-### UnsetTrialDays
-`func (o *UserDetails) UnsetTrialDays()`
-
-UnsetTrialDays ensures that no value is present for TrialDays, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

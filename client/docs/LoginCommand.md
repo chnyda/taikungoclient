@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Email** | Pointer to **NullableString** |  | [optional] 
-**Password** | Pointer to **NullableString** |  | [optional] 
-**Mode** | Pointer to **NullableString** |  | [optional] 
-**AccessKey** | Pointer to **NullableString** |  | [optional] 
-**SecretKey** | Pointer to **NullableString** |  | [optional] 
+**Email** | Pointer to **string** |  | [optional] 
+**Password** | Pointer to **string** |  | [optional] 
+**Mode** | Pointer to **string** |  | [optional] 
+**AccessKey** | Pointer to **string** |  | [optional] 
+**SecretKey** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -54,16 +54,6 @@ SetEmail sets Email field to given value.
 
 HasEmail returns a boolean if a field has been set.
 
-### SetEmailNil
-
-`func (o *LoginCommand) SetEmailNil(b bool)`
-
- SetEmailNil sets the value for Email to be an explicit nil
-
-### UnsetEmail
-`func (o *LoginCommand) UnsetEmail()`
-
-UnsetEmail ensures that no value is present for Email, not even an explicit nil
 ### GetPassword
 
 `func (o *LoginCommand) GetPassword() string`
@@ -89,16 +79,6 @@ SetPassword sets Password field to given value.
 
 HasPassword returns a boolean if a field has been set.
 
-### SetPasswordNil
-
-`func (o *LoginCommand) SetPasswordNil(b bool)`
-
- SetPasswordNil sets the value for Password to be an explicit nil
-
-### UnsetPassword
-`func (o *LoginCommand) UnsetPassword()`
-
-UnsetPassword ensures that no value is present for Password, not even an explicit nil
 ### GetMode
 
 `func (o *LoginCommand) GetMode() string`
@@ -124,16 +104,6 @@ SetMode sets Mode field to given value.
 
 HasMode returns a boolean if a field has been set.
 
-### SetModeNil
-
-`func (o *LoginCommand) SetModeNil(b bool)`
-
- SetModeNil sets the value for Mode to be an explicit nil
-
-### UnsetMode
-`func (o *LoginCommand) UnsetMode()`
-
-UnsetMode ensures that no value is present for Mode, not even an explicit nil
 ### GetAccessKey
 
 `func (o *LoginCommand) GetAccessKey() string`
@@ -159,16 +129,6 @@ SetAccessKey sets AccessKey field to given value.
 
 HasAccessKey returns a boolean if a field has been set.
 
-### SetAccessKeyNil
-
-`func (o *LoginCommand) SetAccessKeyNil(b bool)`
-
- SetAccessKeyNil sets the value for AccessKey to be an explicit nil
-
-### UnsetAccessKey
-`func (o *LoginCommand) UnsetAccessKey()`
-
-UnsetAccessKey ensures that no value is present for AccessKey, not even an explicit nil
 ### GetSecretKey
 
 `func (o *LoginCommand) GetSecretKey() string`
@@ -194,16 +154,6 @@ SetSecretKey sets SecretKey field to given value.
 
 HasSecretKey returns a boolean if a field has been set.
 
-### SetSecretKeyNil
-
-`func (o *LoginCommand) SetSecretKeyNil(b bool)`
-
- SetSecretKeyNil sets the value for SecretKey to be an explicit nil
-
-### UnsetSecretKey
-`func (o *LoginCommand) UnsetSecretKey()`
-
-UnsetSecretKey ensures that no value is present for SecretKey, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

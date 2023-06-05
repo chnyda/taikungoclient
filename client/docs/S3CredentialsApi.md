@@ -4,149 +4,19 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**S3credentialsCreate**](S3CredentialsApi.md#S3credentialsCreate) | **Post** /api/v1/s3credentials | Add s3 credential
-[**S3credentialsDelete**](S3CredentialsApi.md#S3credentialsDelete) | **Delete** /api/v1/s3credentials/{id} | Delete s3 credential
-[**S3credentialsDropdown**](S3CredentialsApi.md#S3credentialsDropdown) | **Get** /api/v1/s3credentials | Retrieve all S3 credentials for organization
-[**S3credentialsList**](S3CredentialsApi.md#S3credentialsList) | **Get** /api/v1/s3credentials/list | Retrieve all S3 credentials
-[**S3credentialsLockManagement**](S3CredentialsApi.md#S3credentialsLockManagement) | **Post** /api/v1/s3credentials/lockmanager | Lock/unlock s3 credential
-[**S3credentialsMakeDeafult**](S3CredentialsApi.md#S3credentialsMakeDeafult) | **Post** /api/v1/s3credentials/makedefault | Make default s3 credential
-[**S3credentialsUpdate**](S3CredentialsApi.md#S3credentialsUpdate) | **Put** /api/v1/s3credentials | Update s3 credential
+[**S3CredentialsBackupCredentialsForOrganizationList**](S3CredentialsApi.md#S3CredentialsBackupCredentialsForOrganizationList) | **Get** /api/v{v}/S3Credentials | Retrieve all S3 credentials for organization
+[**S3CredentialsCreate**](S3CredentialsApi.md#S3CredentialsCreate) | **Post** /api/v{v}/S3Credentials | Add S3 credential
+[**S3CredentialsDelete**](S3CredentialsApi.md#S3CredentialsDelete) | **Delete** /api/v{v}/S3Credentials/{id} | Remove S3 credentials by Id
+[**S3CredentialsList**](S3CredentialsApi.md#S3CredentialsList) | **Get** /api/v{v}/S3Credentials/list | Retrieve all S3 credentials
+[**S3CredentialsLockManager**](S3CredentialsApi.md#S3CredentialsLockManager) | **Post** /api/v{v}/S3Credentials/lockmanager | Lock/Unlock S3 credentials
+[**S3CredentialsMakeDefault**](S3CredentialsApi.md#S3CredentialsMakeDefault) | **Post** /api/v{v}/S3Credentials/makedefault | Make backup credentials default
+[**S3CredentialsUpdate**](S3CredentialsApi.md#S3CredentialsUpdate) | **Put** /api/v{v}/S3Credentials | Update S3 credential
 
 
 
-## S3credentialsCreate
+## S3CredentialsBackupCredentialsForOrganizationList
 
-> ApiResponse S3credentialsCreate(ctx).BackupCredentialsCreateCommand(backupCredentialsCreateCommand).Execute()
-
-Add s3 credential
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/chnyda/taikungoclient"
-)
-
-func main() {
-    backupCredentialsCreateCommand := *openapiclient.NewBackupCredentialsCreateCommand("S3Name_example", "S3AccessKeyId_example", "S3SecretKey_example", "S3Endpoint_example") // BackupCredentialsCreateCommand | 
-
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.S3CredentialsApi.S3credentialsCreate(context.Background()).BackupCredentialsCreateCommand(backupCredentialsCreateCommand).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `S3CredentialsApi.S3credentialsCreate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `S3credentialsCreate`: ApiResponse
-    fmt.Fprintf(os.Stdout, "Response from `S3CredentialsApi.S3credentialsCreate`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiS3credentialsCreateRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **backupCredentialsCreateCommand** | [**BackupCredentialsCreateCommand**](BackupCredentialsCreateCommand.md) |  | 
-
-### Return type
-
-[**ApiResponse**](ApiResponse.md)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## S3credentialsDelete
-
-> S3credentialsDelete(ctx, id).Execute()
-
-Delete s3 credential
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/chnyda/taikungoclient"
-)
-
-func main() {
-    id := int32(56) // int32 | 
-
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.S3CredentialsApi.S3credentialsDelete(context.Background(), id).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `S3CredentialsApi.S3credentialsDelete``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiS3credentialsDeleteRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## S3credentialsDropdown
-
-> []BackupCredentialsForOrganizationEntity S3credentialsDropdown(ctx).OrganizationId(organizationId).Search(search).Execute()
+> []BackupCredentialsForOrganizationEntity S3CredentialsBackupCredentialsForOrganizationList(ctx, v).OrganizationId(organizationId).Search(search).Execute()
 
 Retrieve all S3 credentials for organization
 
@@ -163,32 +33,38 @@ import (
 )
 
 func main() {
+    v := "v_example" // string | 
     organizationId := int32(56) // int32 |  (optional)
     search := "search_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.S3CredentialsApi.S3credentialsDropdown(context.Background()).OrganizationId(organizationId).Search(search).Execute()
+    resp, r, err := apiClient.S3CredentialsApi.S3CredentialsBackupCredentialsForOrganizationList(context.Background(), v).OrganizationId(organizationId).Search(search).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `S3CredentialsApi.S3credentialsDropdown``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `S3CredentialsApi.S3CredentialsBackupCredentialsForOrganizationList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `S3credentialsDropdown`: []BackupCredentialsForOrganizationEntity
-    fmt.Fprintf(os.Stdout, "Response from `S3CredentialsApi.S3credentialsDropdown`: %v\n", resp)
+    // response from `S3CredentialsBackupCredentialsForOrganizationList`: []BackupCredentialsForOrganizationEntity
+    fmt.Fprintf(os.Stdout, "Response from `S3CredentialsApi.S3CredentialsBackupCredentialsForOrganizationList`: %v\n", resp)
 }
 ```
 
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiS3credentialsDropdownRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiS3CredentialsBackupCredentialsForOrganizationListRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
  **organizationId** | **int32** |  | 
  **search** | **string** |  | 
 
@@ -203,16 +79,155 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## S3credentialsList
+## S3CredentialsCreate
 
-> BackupCredentials S3credentialsList(ctx).Limit(limit).Offset(offset).OrganizationId(organizationId).Search(search).SearchId(searchId).Id(id).SortBy(sortBy).SortDirection(sortDirection).Execute()
+> ApiResponse S3CredentialsCreate(ctx, v).Body(body).Execute()
+
+Add S3 credential
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/chnyda/taikungoclient"
+)
+
+func main() {
+    v := "v_example" // string | 
+    body := *openapiclient.NewBackupCredentialsCreateCommand("S3Name_example", "S3AccessKeyId_example", "S3SecretKey_example", "S3Endpoint_example") // BackupCredentialsCreateCommand |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.S3CredentialsApi.S3CredentialsCreate(context.Background(), v).Body(body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `S3CredentialsApi.S3CredentialsCreate``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `S3CredentialsCreate`: ApiResponse
+    fmt.Fprintf(os.Stdout, "Response from `S3CredentialsApi.S3CredentialsCreate`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiS3CredentialsCreateRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **body** | [**BackupCredentialsCreateCommand**](BackupCredentialsCreateCommand.md) |  | 
+
+### Return type
+
+[**ApiResponse**](ApiResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## S3CredentialsDelete
+
+> S3CredentialsDelete(ctx, id, v).Execute()
+
+Remove S3 credentials by Id
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/chnyda/taikungoclient"
+)
+
+func main() {
+    id := int32(56) // int32 | 
+    v := "v_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.S3CredentialsApi.S3CredentialsDelete(context.Background(), id, v).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `S3CredentialsApi.S3CredentialsDelete``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **int32** |  | 
+**v** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiS3CredentialsDeleteRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: text/plain, application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## S3CredentialsList
+
+> BackupCredentials S3CredentialsList(ctx, v).Offset(offset).Limit(limit).OrganizationId(organizationId).Search(search).SearchId(searchId).Id(id).SortBy(sortBy).SortDirection(sortDirection).Execute()
 
 Retrieve all S3 credentials
 
@@ -229,8 +244,9 @@ import (
 )
 
 func main() {
-    limit := int32(56) // int32 |  (optional)
-    offset := int32(56) // int32 |  (optional)
+    v := "v_example" // string | 
+    offset := int32(56) // int32 | Skip elements (optional)
+    limit := int32(56) // int32 | Limits user size (by default 50) (optional)
     organizationId := int32(56) // int32 |  (optional)
     search := "search_example" // string |  (optional)
     searchId := "searchId_example" // string |  (optional)
@@ -240,29 +256,34 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.S3CredentialsApi.S3credentialsList(context.Background()).Limit(limit).Offset(offset).OrganizationId(organizationId).Search(search).SearchId(searchId).Id(id).SortBy(sortBy).SortDirection(sortDirection).Execute()
+    resp, r, err := apiClient.S3CredentialsApi.S3CredentialsList(context.Background(), v).Offset(offset).Limit(limit).OrganizationId(organizationId).Search(search).SearchId(searchId).Id(id).SortBy(sortBy).SortDirection(sortDirection).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `S3CredentialsApi.S3credentialsList``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `S3CredentialsApi.S3CredentialsList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `S3credentialsList`: BackupCredentials
-    fmt.Fprintf(os.Stdout, "Response from `S3CredentialsApi.S3credentialsList`: %v\n", resp)
+    // response from `S3CredentialsList`: BackupCredentials
+    fmt.Fprintf(os.Stdout, "Response from `S3CredentialsApi.S3CredentialsList`: %v\n", resp)
 }
 ```
 
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiS3credentialsListRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiS3CredentialsListRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **limit** | **int32** |  | 
- **offset** | **int32** |  | 
+
+ **offset** | **int32** | Skip elements | 
+ **limit** | **int32** | Limits user size (by default 50) | 
  **organizationId** | **int32** |  | 
  **search** | **string** |  | 
  **searchId** | **string** |  | 
@@ -281,18 +302,18 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## S3credentialsLockManagement
+## S3CredentialsLockManager
 
-> S3credentialsLockManagement(ctx).BackupLockManagerCommand(backupLockManagerCommand).Execute()
+> S3CredentialsLockManager(ctx, v).Body(body).Execute()
 
-Lock/unlock s3 credential
+Lock/Unlock S3 credentials
 
 ### Example
 
@@ -307,13 +328,14 @@ import (
 )
 
 func main() {
-    backupLockManagerCommand := *openapiclient.NewBackupLockManagerCommand() // BackupLockManagerCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewBackupLockManagerCommand() // BackupLockManagerCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.S3CredentialsApi.S3credentialsLockManagement(context.Background()).BackupLockManagerCommand(backupLockManagerCommand).Execute()
+    r, err := apiClient.S3CredentialsApi.S3CredentialsLockManager(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `S3CredentialsApi.S3credentialsLockManagement``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `S3CredentialsApi.S3CredentialsLockManager``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -322,15 +344,20 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiS3credentialsLockManagementRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiS3CredentialsLockManagerRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **backupLockManagerCommand** | [**BackupLockManagerCommand**](BackupLockManagerCommand.md) |  | 
+
+ **body** | [**BackupLockManagerCommand**](BackupLockManagerCommand.md) |  | 
 
 ### Return type
 
@@ -342,19 +369,19 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## S3credentialsMakeDeafult
+## S3CredentialsMakeDefault
 
-> S3credentialsMakeDeafult(ctx).BackupMakeDefaultCommand(backupMakeDefaultCommand).Execute()
+> S3CredentialsMakeDefault(ctx, v).Body(body).Execute()
 
-Make default s3 credential
+Make backup credentials default
 
 ### Example
 
@@ -369,13 +396,14 @@ import (
 )
 
 func main() {
-    backupMakeDefaultCommand := *openapiclient.NewBackupMakeDefaultCommand() // BackupMakeDefaultCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewBackupMakeDefaultCommand() // BackupMakeDefaultCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.S3CredentialsApi.S3credentialsMakeDeafult(context.Background()).BackupMakeDefaultCommand(backupMakeDefaultCommand).Execute()
+    r, err := apiClient.S3CredentialsApi.S3CredentialsMakeDefault(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `S3CredentialsApi.S3credentialsMakeDeafult``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `S3CredentialsApi.S3CredentialsMakeDefault``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -384,15 +412,20 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiS3credentialsMakeDeafultRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiS3CredentialsMakeDefaultRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **backupMakeDefaultCommand** | [**BackupMakeDefaultCommand**](BackupMakeDefaultCommand.md) |  | 
+
+ **body** | [**BackupMakeDefaultCommand**](BackupMakeDefaultCommand.md) |  | 
 
 ### Return type
 
@@ -404,19 +437,19 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## S3credentialsUpdate
+## S3CredentialsUpdate
 
-> S3credentialsUpdate(ctx).BackupCredentialsUpdateCommand(backupCredentialsUpdateCommand).Execute()
+> S3CredentialsUpdate(ctx, v).Body(body).Execute()
 
-Update s3 credential
+Update S3 credential
 
 ### Example
 
@@ -431,13 +464,14 @@ import (
 )
 
 func main() {
-    backupCredentialsUpdateCommand := *openapiclient.NewBackupCredentialsUpdateCommand(int32(123), "S3Name_example", "S3AccessKeyId_example", "S3SecretKey_example") // BackupCredentialsUpdateCommand |  (optional)
+    v := "v_example" // string | 
+    body := *openapiclient.NewBackupCredentialsUpdateCommand(int32(123), "S3Name_example", "S3AccessKeyId_example", "S3SecretKey_example") // BackupCredentialsUpdateCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.S3CredentialsApi.S3credentialsUpdate(context.Background()).BackupCredentialsUpdateCommand(backupCredentialsUpdateCommand).Execute()
+    r, err := apiClient.S3CredentialsApi.S3CredentialsUpdate(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `S3CredentialsApi.S3credentialsUpdate``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `S3CredentialsApi.S3CredentialsUpdate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -446,15 +480,20 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiS3credentialsUpdateRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiS3CredentialsUpdateRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **backupCredentialsUpdateCommand** | [**BackupCredentialsUpdateCommand**](BackupCredentialsUpdateCommand.md) |  | 
+
+ **body** | [**BackupCredentialsUpdateCommand**](BackupCredentialsUpdateCommand.md) |  | 
 
 ### Return type
 
@@ -466,8 +505,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

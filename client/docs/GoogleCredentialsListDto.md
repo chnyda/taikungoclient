@@ -5,22 +5,23 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
 **Projects** | Pointer to [**[]CommonDropdownDto**](CommonDropdownDto.md) |  | [optional] 
 **OrganizationId** | Pointer to **int32** |  | [optional] 
-**OrganizationName** | Pointer to **NullableString** |  | [optional] 
-**PartnerLogo** | Pointer to **NullableString** |  | [optional] 
-**PartnerName** | Pointer to **NullableString** |  | [optional] 
-**FolderId** | Pointer to **NullableString** |  | [optional] 
-**ProjectId** | Pointer to **NullableString** |  | [optional] 
-**BillingAccountId** | Pointer to **NullableString** |  | [optional] 
+**OrganizationName** | Pointer to **string** |  | [optional] 
+**PartnerLogo** | Pointer to **string** |  | [optional] 
+**PartnerName** | Pointer to **string** |  | [optional] 
+**FolderId** | Pointer to **string** |  | [optional] 
+**ProjectId** | Pointer to **string** |  | [optional] 
+**BillingAccountId** | Pointer to **string** |  | [optional] 
 **Zones** | Pointer to **[]string** |  | [optional] 
-**Region** | Pointer to **NullableString** |  | [optional] 
+**AvailabilityZonesCount** | Pointer to **int32** |  | [optional] 
+**Region** | Pointer to **string** |  | [optional] 
 **IsLocked** | Pointer to **bool** |  | [optional] 
 **IsDefault** | Pointer to **bool** |  | [optional] 
-**BillingAccountName** | Pointer to **NullableString** |  | [optional] 
-**CreatedAt** | Pointer to **NullableString** |  | [optional] 
-**ContinentName** | Pointer to **NullableString** |  | [optional] 
+**BillingAccountName** | Pointer to **string** |  | [optional] 
+**CreatedAt** | Pointer to **string** |  | [optional] 
+**ContinentName** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -91,16 +92,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *GoogleCredentialsListDto) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *GoogleCredentialsListDto) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetProjects
 
 `func (o *GoogleCredentialsListDto) GetProjects() []CommonDropdownDto`
@@ -126,16 +117,6 @@ SetProjects sets Projects field to given value.
 
 HasProjects returns a boolean if a field has been set.
 
-### SetProjectsNil
-
-`func (o *GoogleCredentialsListDto) SetProjectsNil(b bool)`
-
- SetProjectsNil sets the value for Projects to be an explicit nil
-
-### UnsetProjects
-`func (o *GoogleCredentialsListDto) UnsetProjects()`
-
-UnsetProjects ensures that no value is present for Projects, not even an explicit nil
 ### GetOrganizationId
 
 `func (o *GoogleCredentialsListDto) GetOrganizationId() int32`
@@ -186,16 +167,6 @@ SetOrganizationName sets OrganizationName field to given value.
 
 HasOrganizationName returns a boolean if a field has been set.
 
-### SetOrganizationNameNil
-
-`func (o *GoogleCredentialsListDto) SetOrganizationNameNil(b bool)`
-
- SetOrganizationNameNil sets the value for OrganizationName to be an explicit nil
-
-### UnsetOrganizationName
-`func (o *GoogleCredentialsListDto) UnsetOrganizationName()`
-
-UnsetOrganizationName ensures that no value is present for OrganizationName, not even an explicit nil
 ### GetPartnerLogo
 
 `func (o *GoogleCredentialsListDto) GetPartnerLogo() string`
@@ -221,16 +192,6 @@ SetPartnerLogo sets PartnerLogo field to given value.
 
 HasPartnerLogo returns a boolean if a field has been set.
 
-### SetPartnerLogoNil
-
-`func (o *GoogleCredentialsListDto) SetPartnerLogoNil(b bool)`
-
- SetPartnerLogoNil sets the value for PartnerLogo to be an explicit nil
-
-### UnsetPartnerLogo
-`func (o *GoogleCredentialsListDto) UnsetPartnerLogo()`
-
-UnsetPartnerLogo ensures that no value is present for PartnerLogo, not even an explicit nil
 ### GetPartnerName
 
 `func (o *GoogleCredentialsListDto) GetPartnerName() string`
@@ -256,16 +217,6 @@ SetPartnerName sets PartnerName field to given value.
 
 HasPartnerName returns a boolean if a field has been set.
 
-### SetPartnerNameNil
-
-`func (o *GoogleCredentialsListDto) SetPartnerNameNil(b bool)`
-
- SetPartnerNameNil sets the value for PartnerName to be an explicit nil
-
-### UnsetPartnerName
-`func (o *GoogleCredentialsListDto) UnsetPartnerName()`
-
-UnsetPartnerName ensures that no value is present for PartnerName, not even an explicit nil
 ### GetFolderId
 
 `func (o *GoogleCredentialsListDto) GetFolderId() string`
@@ -291,16 +242,6 @@ SetFolderId sets FolderId field to given value.
 
 HasFolderId returns a boolean if a field has been set.
 
-### SetFolderIdNil
-
-`func (o *GoogleCredentialsListDto) SetFolderIdNil(b bool)`
-
- SetFolderIdNil sets the value for FolderId to be an explicit nil
-
-### UnsetFolderId
-`func (o *GoogleCredentialsListDto) UnsetFolderId()`
-
-UnsetFolderId ensures that no value is present for FolderId, not even an explicit nil
 ### GetProjectId
 
 `func (o *GoogleCredentialsListDto) GetProjectId() string`
@@ -326,16 +267,6 @@ SetProjectId sets ProjectId field to given value.
 
 HasProjectId returns a boolean if a field has been set.
 
-### SetProjectIdNil
-
-`func (o *GoogleCredentialsListDto) SetProjectIdNil(b bool)`
-
- SetProjectIdNil sets the value for ProjectId to be an explicit nil
-
-### UnsetProjectId
-`func (o *GoogleCredentialsListDto) UnsetProjectId()`
-
-UnsetProjectId ensures that no value is present for ProjectId, not even an explicit nil
 ### GetBillingAccountId
 
 `func (o *GoogleCredentialsListDto) GetBillingAccountId() string`
@@ -361,16 +292,6 @@ SetBillingAccountId sets BillingAccountId field to given value.
 
 HasBillingAccountId returns a boolean if a field has been set.
 
-### SetBillingAccountIdNil
-
-`func (o *GoogleCredentialsListDto) SetBillingAccountIdNil(b bool)`
-
- SetBillingAccountIdNil sets the value for BillingAccountId to be an explicit nil
-
-### UnsetBillingAccountId
-`func (o *GoogleCredentialsListDto) UnsetBillingAccountId()`
-
-UnsetBillingAccountId ensures that no value is present for BillingAccountId, not even an explicit nil
 ### GetZones
 
 `func (o *GoogleCredentialsListDto) GetZones() []string`
@@ -396,16 +317,31 @@ SetZones sets Zones field to given value.
 
 HasZones returns a boolean if a field has been set.
 
-### SetZonesNil
+### GetAvailabilityZonesCount
 
-`func (o *GoogleCredentialsListDto) SetZonesNil(b bool)`
+`func (o *GoogleCredentialsListDto) GetAvailabilityZonesCount() int32`
 
- SetZonesNil sets the value for Zones to be an explicit nil
+GetAvailabilityZonesCount returns the AvailabilityZonesCount field if non-nil, zero value otherwise.
 
-### UnsetZones
-`func (o *GoogleCredentialsListDto) UnsetZones()`
+### GetAvailabilityZonesCountOk
 
-UnsetZones ensures that no value is present for Zones, not even an explicit nil
+`func (o *GoogleCredentialsListDto) GetAvailabilityZonesCountOk() (*int32, bool)`
+
+GetAvailabilityZonesCountOk returns a tuple with the AvailabilityZonesCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAvailabilityZonesCount
+
+`func (o *GoogleCredentialsListDto) SetAvailabilityZonesCount(v int32)`
+
+SetAvailabilityZonesCount sets AvailabilityZonesCount field to given value.
+
+### HasAvailabilityZonesCount
+
+`func (o *GoogleCredentialsListDto) HasAvailabilityZonesCount() bool`
+
+HasAvailabilityZonesCount returns a boolean if a field has been set.
+
 ### GetRegion
 
 `func (o *GoogleCredentialsListDto) GetRegion() string`
@@ -431,16 +367,6 @@ SetRegion sets Region field to given value.
 
 HasRegion returns a boolean if a field has been set.
 
-### SetRegionNil
-
-`func (o *GoogleCredentialsListDto) SetRegionNil(b bool)`
-
- SetRegionNil sets the value for Region to be an explicit nil
-
-### UnsetRegion
-`func (o *GoogleCredentialsListDto) UnsetRegion()`
-
-UnsetRegion ensures that no value is present for Region, not even an explicit nil
 ### GetIsLocked
 
 `func (o *GoogleCredentialsListDto) GetIsLocked() bool`
@@ -516,16 +442,6 @@ SetBillingAccountName sets BillingAccountName field to given value.
 
 HasBillingAccountName returns a boolean if a field has been set.
 
-### SetBillingAccountNameNil
-
-`func (o *GoogleCredentialsListDto) SetBillingAccountNameNil(b bool)`
-
- SetBillingAccountNameNil sets the value for BillingAccountName to be an explicit nil
-
-### UnsetBillingAccountName
-`func (o *GoogleCredentialsListDto) UnsetBillingAccountName()`
-
-UnsetBillingAccountName ensures that no value is present for BillingAccountName, not even an explicit nil
 ### GetCreatedAt
 
 `func (o *GoogleCredentialsListDto) GetCreatedAt() string`
@@ -551,16 +467,6 @@ SetCreatedAt sets CreatedAt field to given value.
 
 HasCreatedAt returns a boolean if a field has been set.
 
-### SetCreatedAtNil
-
-`func (o *GoogleCredentialsListDto) SetCreatedAtNil(b bool)`
-
- SetCreatedAtNil sets the value for CreatedAt to be an explicit nil
-
-### UnsetCreatedAt
-`func (o *GoogleCredentialsListDto) UnsetCreatedAt()`
-
-UnsetCreatedAt ensures that no value is present for CreatedAt, not even an explicit nil
 ### GetContinentName
 
 `func (o *GoogleCredentialsListDto) GetContinentName() string`
@@ -586,16 +492,6 @@ SetContinentName sets ContinentName field to given value.
 
 HasContinentName returns a boolean if a field has been set.
 
-### SetContinentNameNil
-
-`func (o *GoogleCredentialsListDto) SetContinentNameNil(b bool)`
-
- SetContinentNameNil sets the value for ContinentName to be an explicit nil
-
-### UnsetContinentName
-`func (o *GoogleCredentialsListDto) UnsetContinentName()`
-
-UnsetContinentName ensures that no value is present for ContinentName, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

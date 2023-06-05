@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**MetadataName** | Pointer to **NullableString** |  | [optional] 
-**LastSchedule** | Pointer to **NullableString** |  | [optional] 
-**Suspend** | Pointer to **NullableBool** |  | [optional] 
-**Schedule** | Pointer to **NullableString** |  | [optional] 
-**Namespace** | Pointer to **NullableString** |  | [optional] 
-**Age** | Pointer to **NullableString** |  | [optional] 
+**MetadataName** | Pointer to **string** |  | [optional] 
+**LastSchedule** | Pointer to **string** |  | [optional] 
+**Suspend** | Pointer to **bool** |  | [optional] 
+**Schedule** | Pointer to **string** |  | [optional] 
+**Namespace** | Pointer to **string** |  | [optional] 
+**Age** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -55,16 +55,6 @@ SetMetadataName sets MetadataName field to given value.
 
 HasMetadataName returns a boolean if a field has been set.
 
-### SetMetadataNameNil
-
-`func (o *KubernetesCronJobDto) SetMetadataNameNil(b bool)`
-
- SetMetadataNameNil sets the value for MetadataName to be an explicit nil
-
-### UnsetMetadataName
-`func (o *KubernetesCronJobDto) UnsetMetadataName()`
-
-UnsetMetadataName ensures that no value is present for MetadataName, not even an explicit nil
 ### GetLastSchedule
 
 `func (o *KubernetesCronJobDto) GetLastSchedule() string`
@@ -90,16 +80,6 @@ SetLastSchedule sets LastSchedule field to given value.
 
 HasLastSchedule returns a boolean if a field has been set.
 
-### SetLastScheduleNil
-
-`func (o *KubernetesCronJobDto) SetLastScheduleNil(b bool)`
-
- SetLastScheduleNil sets the value for LastSchedule to be an explicit nil
-
-### UnsetLastSchedule
-`func (o *KubernetesCronJobDto) UnsetLastSchedule()`
-
-UnsetLastSchedule ensures that no value is present for LastSchedule, not even an explicit nil
 ### GetSuspend
 
 `func (o *KubernetesCronJobDto) GetSuspend() bool`
@@ -125,16 +105,6 @@ SetSuspend sets Suspend field to given value.
 
 HasSuspend returns a boolean if a field has been set.
 
-### SetSuspendNil
-
-`func (o *KubernetesCronJobDto) SetSuspendNil(b bool)`
-
- SetSuspendNil sets the value for Suspend to be an explicit nil
-
-### UnsetSuspend
-`func (o *KubernetesCronJobDto) UnsetSuspend()`
-
-UnsetSuspend ensures that no value is present for Suspend, not even an explicit nil
 ### GetSchedule
 
 `func (o *KubernetesCronJobDto) GetSchedule() string`
@@ -160,16 +130,6 @@ SetSchedule sets Schedule field to given value.
 
 HasSchedule returns a boolean if a field has been set.
 
-### SetScheduleNil
-
-`func (o *KubernetesCronJobDto) SetScheduleNil(b bool)`
-
- SetScheduleNil sets the value for Schedule to be an explicit nil
-
-### UnsetSchedule
-`func (o *KubernetesCronJobDto) UnsetSchedule()`
-
-UnsetSchedule ensures that no value is present for Schedule, not even an explicit nil
 ### GetNamespace
 
 `func (o *KubernetesCronJobDto) GetNamespace() string`
@@ -195,16 +155,6 @@ SetNamespace sets Namespace field to given value.
 
 HasNamespace returns a boolean if a field has been set.
 
-### SetNamespaceNil
-
-`func (o *KubernetesCronJobDto) SetNamespaceNil(b bool)`
-
- SetNamespaceNil sets the value for Namespace to be an explicit nil
-
-### UnsetNamespace
-`func (o *KubernetesCronJobDto) UnsetNamespace()`
-
-UnsetNamespace ensures that no value is present for Namespace, not even an explicit nil
 ### GetAge
 
 `func (o *KubernetesCronJobDto) GetAge() string`
@@ -230,16 +180,6 @@ SetAge sets Age field to given value.
 
 HasAge returns a boolean if a field has been set.
 
-### SetAgeNil
-
-`func (o *KubernetesCronJobDto) SetAgeNil(b bool)`
-
- SetAgeNil sets the value for Age to be an explicit nil
-
-### UnsetAge
-`func (o *KubernetesCronJobDto) UnsetAge()`
-
-UnsetAge ensures that no value is present for Age, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

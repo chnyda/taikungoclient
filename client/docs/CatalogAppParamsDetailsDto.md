@@ -5,9 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** |  | [optional] 
-**CatalogAppName** | Pointer to **NullableString** |  | [optional] 
-**Key** | Pointer to **NullableString** |  | [optional] 
-**Value** | Pointer to **NullableString** |  | [optional] 
+**CatalogAppName** | Pointer to **string** |  | [optional] 
+**Key** | Pointer to **string** |  | [optional] 
+**Value** | Pointer to **string** |  | [optional] 
 **IsEditableWhenInstalling** | Pointer to **bool** |  | [optional] 
 **IsEditableAfterInstallation** | Pointer to **bool** |  | [optional] 
 **IsMandatory** | Pointer to **bool** |  | [optional] 
@@ -82,16 +82,6 @@ SetCatalogAppName sets CatalogAppName field to given value.
 
 HasCatalogAppName returns a boolean if a field has been set.
 
-### SetCatalogAppNameNil
-
-`func (o *CatalogAppParamsDetailsDto) SetCatalogAppNameNil(b bool)`
-
- SetCatalogAppNameNil sets the value for CatalogAppName to be an explicit nil
-
-### UnsetCatalogAppName
-`func (o *CatalogAppParamsDetailsDto) UnsetCatalogAppName()`
-
-UnsetCatalogAppName ensures that no value is present for CatalogAppName, not even an explicit nil
 ### GetKey
 
 `func (o *CatalogAppParamsDetailsDto) GetKey() string`
@@ -117,16 +107,6 @@ SetKey sets Key field to given value.
 
 HasKey returns a boolean if a field has been set.
 
-### SetKeyNil
-
-`func (o *CatalogAppParamsDetailsDto) SetKeyNil(b bool)`
-
- SetKeyNil sets the value for Key to be an explicit nil
-
-### UnsetKey
-`func (o *CatalogAppParamsDetailsDto) UnsetKey()`
-
-UnsetKey ensures that no value is present for Key, not even an explicit nil
 ### GetValue
 
 `func (o *CatalogAppParamsDetailsDto) GetValue() string`
@@ -152,16 +132,6 @@ SetValue sets Value field to given value.
 
 HasValue returns a boolean if a field has been set.
 
-### SetValueNil
-
-`func (o *CatalogAppParamsDetailsDto) SetValueNil(b bool)`
-
- SetValueNil sets the value for Value to be an explicit nil
-
-### UnsetValue
-`func (o *CatalogAppParamsDetailsDto) UnsetValue()`
-
-UnsetValue ensures that no value is present for Value, not even an explicit nil
 ### GetIsEditableWhenInstalling
 
 `func (o *CatalogAppParamsDetailsDto) GetIsEditableWhenInstalling() bool`

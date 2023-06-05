@@ -27,11 +27,12 @@ type ServersApiService service
 type ApiServersConsoleRequest struct {
 	ctx context.Context
 	ApiService *ServersApiService
-	consoleScreenshotCommand *ConsoleScreenshotCommand
+	v string
+	body *ConsoleScreenshotCommand
 }
 
-func (r ApiServersConsoleRequest) ConsoleScreenshotCommand(consoleScreenshotCommand ConsoleScreenshotCommand) ApiServersConsoleRequest {
-	r.consoleScreenshotCommand = &consoleScreenshotCommand
+func (r ApiServersConsoleRequest) Body(body ConsoleScreenshotCommand) ApiServersConsoleRequest {
+	r.body = &body
 	return r
 }
 
@@ -40,15 +41,17 @@ func (r ApiServersConsoleRequest) Execute() (string, *http.Response, error) {
 }
 
 /*
-ServersConsole Console screenshot or terminal access for server
+ServersConsole Console servers
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param v
  @return ApiServersConsoleRequest
 */
-func (a *ServersApiService) ServersConsole(ctx context.Context) ApiServersConsoleRequest {
+func (a *ServersApiService) ServersConsole(ctx context.Context, v string) ApiServersConsoleRequest {
 	return ApiServersConsoleRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
@@ -67,17 +70,15 @@ func (a *ServersApiService) ServersConsoleExecute(r ApiServersConsoleRequest) (s
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/servers/console"
+	localVarPath := localBasePath + "/api/v{v}/Servers/console"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.consoleScreenshotCommand == nil {
-		return localVarReturnValue, nil, reportError("consoleScreenshotCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -86,7 +87,7 @@ func (a *ServersApiService) ServersConsoleExecute(r ApiServersConsoleRequest) (s
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -94,7 +95,7 @@ func (a *ServersApiService) ServersConsoleExecute(r ApiServersConsoleRequest) (s
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.consoleScreenshotCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -131,17 +132,6 @@ func (a *ServersApiService) ServersConsoleExecute(r ApiServersConsoleRequest) (s
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -175,7 +165,7 @@ func (a *ServersApiService) ServersConsoleExecute(r ApiServersConsoleRequest) (s
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -203,11 +193,12 @@ func (a *ServersApiService) ServersConsoleExecute(r ApiServersConsoleRequest) (s
 type ApiServersCreateRequest struct {
 	ctx context.Context
 	ApiService *ServersApiService
-	serverForCreateDto *ServerForCreateDto
+	v string
+	body *ServerForCreateDto
 }
 
-func (r ApiServersCreateRequest) ServerForCreateDto(serverForCreateDto ServerForCreateDto) ApiServersCreateRequest {
-	r.serverForCreateDto = &serverForCreateDto
+func (r ApiServersCreateRequest) Body(body ServerForCreateDto) ApiServersCreateRequest {
+	r.body = &body
 	return r
 }
 
@@ -219,12 +210,14 @@ func (r ApiServersCreateRequest) Execute() (*ApiResponse, *http.Response, error)
 ServersCreate Create a new server in the given project.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param v
  @return ApiServersCreateRequest
 */
-func (a *ServersApiService) ServersCreate(ctx context.Context) ApiServersCreateRequest {
+func (a *ServersApiService) ServersCreate(ctx context.Context, v string) ApiServersCreateRequest {
 	return ApiServersCreateRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
@@ -243,14 +236,15 @@ func (a *ServersApiService) ServersCreateExecute(r ApiServersCreateRequest) (*Ap
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/servers/create"
+	localVarPath := localBasePath + "/api/v{v}/Servers"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -259,7 +253,7 @@ func (a *ServersApiService) ServersCreateExecute(r ApiServersCreateRequest) (*Ap
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -267,7 +261,7 @@ func (a *ServersApiService) ServersCreateExecute(r ApiServersCreateRequest) (*Ap
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.serverForCreateDto
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -304,17 +298,6 @@ func (a *ServersApiService) ServersCreateExecute(r ApiServersCreateRequest) (*Ap
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -348,7 +331,7 @@ func (a *ServersApiService) ServersCreateExecute(r ApiServersCreateRequest) (*Ap
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -376,11 +359,12 @@ func (a *ServersApiService) ServersCreateExecute(r ApiServersCreateRequest) (*Ap
 type ApiServersDeleteRequest struct {
 	ctx context.Context
 	ApiService *ServersApiService
-	deleteServerCommand *DeleteServerCommand
+	v string
+	body *DeleteServerCommand
 }
 
-func (r ApiServersDeleteRequest) DeleteServerCommand(deleteServerCommand DeleteServerCommand) ApiServersDeleteRequest {
-	r.deleteServerCommand = &deleteServerCommand
+func (r ApiServersDeleteRequest) Body(body DeleteServerCommand) ApiServersDeleteRequest {
+	r.body = &body
 	return r
 }
 
@@ -389,15 +373,17 @@ func (r ApiServersDeleteRequest) Execute() (*http.Response, error) {
 }
 
 /*
-ServersDelete Delete server by project id
+ServersDelete Delete servers by project Id
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param v
  @return ApiServersDeleteRequest
 */
-func (a *ServersApiService) ServersDelete(ctx context.Context) ApiServersDeleteRequest {
+func (a *ServersApiService) ServersDelete(ctx context.Context, v string) ApiServersDeleteRequest {
 	return ApiServersDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
@@ -414,17 +400,15 @@ func (a *ServersApiService) ServersDeleteExecute(r ApiServersDeleteRequest) (*ht
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/servers/delete"
+	localVarPath := localBasePath + "/api/v{v}/Servers/delete"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.deleteServerCommand == nil {
-		return nil, reportError("deleteServerCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -433,7 +417,7 @@ func (a *ServersApiService) ServersDeleteExecute(r ApiServersDeleteRequest) (*ht
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -441,7 +425,7 @@ func (a *ServersApiService) ServersDeleteExecute(r ApiServersDeleteRequest) (*ht
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.deleteServerCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -478,17 +462,6 @@ func (a *ServersApiService) ServersDeleteExecute(r ApiServersDeleteRequest) (*ht
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -522,7 +495,7 @@ func (a *ServersApiService) ServersDeleteExecute(r ApiServersDeleteRequest) (*ht
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -531,6 +504,7 @@ func (a *ServersApiService) ServersDeleteExecute(r ApiServersDeleteRequest) (*ht
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
+			return localVarHTTPResponse, newErr
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -542,6 +516,7 @@ type ApiServersDetailsRequest struct {
 	ctx context.Context
 	ApiService *ServersApiService
 	projectId int32
+	v string
 	sortBy *string
 	sortDirection *string
 	withAutoscalingGroup *string
@@ -567,17 +542,19 @@ func (r ApiServersDetailsRequest) Execute() (*ServersListForDetails, *http.Respo
 }
 
 /*
-ServersDetails Retrieve all servers by given project
+ServersDetails Retrieve a list of servers with detailed info
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param projectId
+ @param v
  @return ApiServersDetailsRequest
 */
-func (a *ServersApiService) ServersDetails(ctx context.Context, projectId int32) ApiServersDetailsRequest {
+func (a *ServersApiService) ServersDetails(ctx context.Context, projectId int32, v string) ApiServersDetailsRequest {
 	return ApiServersDetailsRequest{
 		ApiService: a,
 		ctx: ctx,
 		projectId: projectId,
+		v: v,
 	}
 }
 
@@ -596,21 +573,22 @@ func (a *ServersApiService) ServersDetailsExecute(r ApiServersDetailsRequest) (*
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/servers/{projectId}"
+	localVarPath := localBasePath + "/api/v{v}/Servers/{projectId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.sortBy != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "SortBy", r.sortBy, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", r.sortBy, "")
 	}
 	if r.sortDirection != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "SortDirection", r.sortDirection, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "sortDirection", r.sortDirection, "")
 	}
 	if r.withAutoscalingGroup != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "WithAutoscalingGroup", r.withAutoscalingGroup, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "withAutoscalingGroup", r.withAutoscalingGroup, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -622,7 +600,7 @@ func (a *ServersApiService) ServersDetailsExecute(r ApiServersDetailsRequest) (*
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -665,17 +643,6 @@ func (a *ServersApiService) ServersDetailsExecute(r ApiServersDetailsRequest) (*
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -709,7 +676,7 @@ func (a *ServersApiService) ServersDetailsExecute(r ApiServersDetailsRequest) (*
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -737,14 +704,15 @@ func (a *ServersApiService) ServersDetailsExecute(r ApiServersDetailsRequest) (*
 type ApiServersListRequest struct {
 	ctx context.Context
 	ApiService *ServersApiService
-	limit *int32
+	v string
 	offset *int32
+	limit *int32
 	projectId *int32
 	sortBy *string
 	sortDirection *string
 	search *string
-	startRam *string
-	endRam *string
+	startRam *float64
+	endRam *float64
 	startDiskSize *int64
 	endDiskSize *int64
 	startCpu *int32
@@ -755,13 +723,15 @@ type ApiServersListRequest struct {
 	autoscalingGroup *string
 }
 
-func (r ApiServersListRequest) Limit(limit int32) ApiServersListRequest {
-	r.limit = &limit
+// Skip elements
+func (r ApiServersListRequest) Offset(offset int32) ApiServersListRequest {
+	r.offset = &offset
 	return r
 }
 
-func (r ApiServersListRequest) Offset(offset int32) ApiServersListRequest {
-	r.offset = &offset
+// Limits user size (by default 50)
+func (r ApiServersListRequest) Limit(limit int32) ApiServersListRequest {
+	r.limit = &limit
 	return r
 }
 
@@ -785,12 +755,12 @@ func (r ApiServersListRequest) Search(search string) ApiServersListRequest {
 	return r
 }
 
-func (r ApiServersListRequest) StartRam(startRam string) ApiServersListRequest {
+func (r ApiServersListRequest) StartRam(startRam float64) ApiServersListRequest {
 	r.startRam = &startRam
 	return r
 }
 
-func (r ApiServersListRequest) EndRam(endRam string) ApiServersListRequest {
+func (r ApiServersListRequest) EndRam(endRam float64) ApiServersListRequest {
 	r.endRam = &endRam
 	return r
 }
@@ -840,15 +810,17 @@ func (r ApiServersListRequest) Execute() (*ServersList, *http.Response, error) {
 }
 
 /*
-ServersList Retrieve all servers
+ServersList List all servers according to roles
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param v
  @return ApiServersListRequest
 */
-func (a *ServersApiService) ServersList(ctx context.Context) ApiServersListRequest {
+func (a *ServersApiService) ServersList(ctx context.Context, v string) ApiServersListRequest {
 	return ApiServersListRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
@@ -867,59 +839,60 @@ func (a *ServersApiService) ServersListExecute(r ApiServersListRequest) (*Server
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/servers"
+	localVarPath := localBasePath + "/api/v{v}/Servers"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Limit", r.limit, "")
-	}
 	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Offset", r.offset, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
 	}
 	if r.projectId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "ProjectId", r.projectId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "projectId", r.projectId, "")
 	}
 	if r.sortBy != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "SortBy", r.sortBy, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", r.sortBy, "")
 	}
 	if r.sortDirection != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "SortDirection", r.sortDirection, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "sortDirection", r.sortDirection, "")
 	}
 	if r.search != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Search", r.search, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "")
 	}
 	if r.startRam != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "StartRam", r.startRam, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "startRam", r.startRam, "")
 	}
 	if r.endRam != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "EndRam", r.endRam, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "endRam", r.endRam, "")
 	}
 	if r.startDiskSize != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "StartDiskSize", r.startDiskSize, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "startDiskSize", r.startDiskSize, "")
 	}
 	if r.endDiskSize != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "EndDiskSize", r.endDiskSize, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "endDiskSize", r.endDiskSize, "")
 	}
 	if r.startCpu != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "StartCpu", r.startCpu, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "startCpu", r.startCpu, "")
 	}
 	if r.endCpu != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "EndCpu", r.endCpu, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "endCpu", r.endCpu, "")
 	}
 	if r.organizationId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "OrganizationId", r.organizationId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "organizationId", r.organizationId, "")
 	}
 	if r.id != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Id", r.id, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "")
 	}
 	if r.filterBy != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "FilterBy", r.filterBy, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "filterBy", r.filterBy, "")
 	}
 	if r.autoscalingGroup != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "AutoscalingGroup", r.autoscalingGroup, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "autoscalingGroup", r.autoscalingGroup, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -931,7 +904,7 @@ func (a *ServersApiService) ServersListExecute(r ApiServersListRequest) (*Server
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -974,17 +947,6 @@ func (a *ServersApiService) ServersListExecute(r ApiServersListRequest) (*Server
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1018,7 +980,7 @@ func (a *ServersApiService) ServersListExecute(r ApiServersListRequest) (*Server
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1046,11 +1008,12 @@ func (a *ServersApiService) ServersListExecute(r ApiServersListRequest) (*Server
 type ApiServersRebootRequest struct {
 	ctx context.Context
 	ApiService *ServersApiService
-	rebootServerCommand *RebootServerCommand
+	v string
+	body *RebootServerCommand
 }
 
-func (r ApiServersRebootRequest) RebootServerCommand(rebootServerCommand RebootServerCommand) ApiServersRebootRequest {
-	r.rebootServerCommand = &rebootServerCommand
+func (r ApiServersRebootRequest) Body(body RebootServerCommand) ApiServersRebootRequest {
+	r.body = &body
 	return r
 }
 
@@ -1059,15 +1022,17 @@ func (r ApiServersRebootRequest) Execute() (*http.Response, error) {
 }
 
 /*
-ServersReboot Reboot server
+ServersReboot Reboot servers
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param v
  @return ApiServersRebootRequest
 */
-func (a *ServersApiService) ServersReboot(ctx context.Context) ApiServersRebootRequest {
+func (a *ServersApiService) ServersReboot(ctx context.Context, v string) ApiServersRebootRequest {
 	return ApiServersRebootRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
@@ -1084,17 +1049,15 @@ func (a *ServersApiService) ServersRebootExecute(r ApiServersRebootRequest) (*ht
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/servers/reboot"
+	localVarPath := localBasePath + "/api/v{v}/Servers/reboot"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.rebootServerCommand == nil {
-		return nil, reportError("rebootServerCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -1103,7 +1066,7 @@ func (a *ServersApiService) ServersRebootExecute(r ApiServersRebootRequest) (*ht
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1111,7 +1074,7 @@ func (a *ServersApiService) ServersRebootExecute(r ApiServersRebootRequest) (*ht
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.rebootServerCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1148,17 +1111,6 @@ func (a *ServersApiService) ServersRebootExecute(r ApiServersRebootRequest) (*ht
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1192,7 +1144,7 @@ func (a *ServersApiService) ServersRebootExecute(r ApiServersRebootRequest) (*ht
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1211,11 +1163,12 @@ func (a *ServersApiService) ServersRebootExecute(r ApiServersRebootRequest) (*ht
 type ApiServersResetRequest struct {
 	ctx context.Context
 	ApiService *ServersApiService
-	resetServerStatusCommand *ResetServerStatusCommand
+	v string
+	body *ResetServerStatusCommand
 }
 
-func (r ApiServersResetRequest) ResetServerStatusCommand(resetServerStatusCommand ResetServerStatusCommand) ApiServersResetRequest {
-	r.resetServerStatusCommand = &resetServerStatusCommand
+func (r ApiServersResetRequest) Body(body ResetServerStatusCommand) ApiServersResetRequest {
+	r.body = &body
 	return r
 }
 
@@ -1224,15 +1177,17 @@ func (r ApiServersResetRequest) Execute() (*http.Response, error) {
 }
 
 /*
-ServersReset Update server(s) status(es)
+ServersReset Update statuses of servers by project Id
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param v
  @return ApiServersResetRequest
 */
-func (a *ServersApiService) ServersReset(ctx context.Context) ApiServersResetRequest {
+func (a *ServersApiService) ServersReset(ctx context.Context, v string) ApiServersResetRequest {
 	return ApiServersResetRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
@@ -1249,14 +1204,15 @@ func (a *ServersApiService) ServersResetExecute(r ApiServersResetRequest) (*http
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/servers/reset"
+	localVarPath := localBasePath + "/api/v{v}/Servers/reset"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -1265,7 +1221,7 @@ func (a *ServersApiService) ServersResetExecute(r ApiServersResetRequest) (*http
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1273,7 +1229,7 @@ func (a *ServersApiService) ServersResetExecute(r ApiServersResetRequest) (*http
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.resetServerStatusCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1310,17 +1266,6 @@ func (a *ServersApiService) ServersResetExecute(r ApiServersResetRequest) (*http
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1354,7 +1299,7 @@ func (a *ServersApiService) ServersResetExecute(r ApiServersResetRequest) (*http
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1370,34 +1315,37 @@ func (a *ServersApiService) ServersResetExecute(r ApiServersResetRequest) (*http
 	return localVarHTTPResponse, nil
 }
 
-type ApiServersStatusRequest struct {
+type ApiServersShowServerStatusRequest struct {
 	ctx context.Context
 	ApiService *ServersApiService
 	serverId int32
+	v string
 }
 
-func (r ApiServersStatusRequest) Execute() (string, *http.Response, error) {
-	return r.ApiService.ServersStatusExecute(r)
+func (r ApiServersShowServerStatusRequest) Execute() (string, *http.Response, error) {
+	return r.ApiService.ServersShowServerStatusExecute(r)
 }
 
 /*
-ServersStatus Show server status
+ServersShowServerStatus Show server status
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param serverId
- @return ApiServersStatusRequest
+ @param v
+ @return ApiServersShowServerStatusRequest
 */
-func (a *ServersApiService) ServersStatus(ctx context.Context, serverId int32) ApiServersStatusRequest {
-	return ApiServersStatusRequest{
+func (a *ServersApiService) ServersShowServerStatus(ctx context.Context, serverId int32, v string) ApiServersShowServerStatusRequest {
+	return ApiServersShowServerStatusRequest{
 		ApiService: a,
 		ctx: ctx,
 		serverId: serverId,
+		v: v,
 	}
 }
 
 // Execute executes the request
 //  @return string
-func (a *ServersApiService) ServersStatusExecute(r ApiServersStatusRequest) (string, *http.Response, error) {
+func (a *ServersApiService) ServersShowServerStatusExecute(r ApiServersShowServerStatusRequest) (string, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1405,13 +1353,14 @@ func (a *ServersApiService) ServersStatusExecute(r ApiServersStatusRequest) (str
 		localVarReturnValue  string
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServersApiService.ServersStatus")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServersApiService.ServersShowServerStatus")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/servers/status/{serverId}"
+	localVarPath := localBasePath + "/api/v{v}/Servers/status/{serverId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"serverId"+"}", url.PathEscape(parameterValueToString(r.serverId, "serverId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1427,7 +1376,7 @@ func (a *ServersApiService) ServersStatusExecute(r ApiServersStatusRequest) (str
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1470,17 +1419,6 @@ func (a *ServersApiService) ServersStatusExecute(r ApiServersStatusRequest) (str
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1514,7 +1452,7 @@ func (a *ServersApiService) ServersStatusExecute(r ApiServersStatusRequest) (str
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1542,11 +1480,12 @@ func (a *ServersApiService) ServersStatusExecute(r ApiServersStatusRequest) (str
 type ApiServersUpdateRequest struct {
 	ctx context.Context
 	ApiService *ServersApiService
-	updateServerCommand *UpdateServerCommand
+	v string
+	body *UpdateServerCommand
 }
 
-func (r ApiServersUpdateRequest) UpdateServerCommand(updateServerCommand UpdateServerCommand) ApiServersUpdateRequest {
-	r.updateServerCommand = &updateServerCommand
+func (r ApiServersUpdateRequest) Body(body UpdateServerCommand) ApiServersUpdateRequest {
+	r.body = &body
 	return r
 }
 
@@ -1558,12 +1497,14 @@ func (r ApiServersUpdateRequest) Execute() (*http.Response, error) {
 ServersUpdate Update server
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param v
  @return ApiServersUpdateRequest
 */
-func (a *ServersApiService) ServersUpdate(ctx context.Context) ApiServersUpdateRequest {
+func (a *ServersApiService) ServersUpdate(ctx context.Context, v string) ApiServersUpdateRequest {
 	return ApiServersUpdateRequest{
 		ApiService: a,
 		ctx: ctx,
+		v: v,
 	}
 }
 
@@ -1580,14 +1521,15 @@ func (a *ServersApiService) ServersUpdateExecute(r ApiServersUpdateRequest) (*ht
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/servers/update"
+	localVarPath := localBasePath + "/api/v{v}/Servers/update"
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -1596,7 +1538,7 @@ func (a *ServersApiService) ServersUpdateExecute(r ApiServersUpdateRequest) (*ht
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1604,7 +1546,7 @@ func (a *ServersApiService) ServersUpdateExecute(r ApiServersUpdateRequest) (*ht
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateServerCommand
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1641,17 +1583,6 @@ func (a *ServersApiService) ServersUpdateExecute(r ApiServersUpdateRequest) (*ht
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1685,7 +1616,7 @@ func (a *ServersApiService) ServersUpdateExecute(r ApiServersUpdateRequest) (*ht
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1705,11 +1636,12 @@ type ApiServersUpdateByProjectIdRequest struct {
 	ctx context.Context
 	ApiService *ServersApiService
 	projectId int32
-	updateServerHealthDto *[]UpdateServerHealthDto
+	v string
+	body *[]UpdateServerHealthDto
 }
 
-func (r ApiServersUpdateByProjectIdRequest) UpdateServerHealthDto(updateServerHealthDto []UpdateServerHealthDto) ApiServersUpdateByProjectIdRequest {
-	r.updateServerHealthDto = &updateServerHealthDto
+func (r ApiServersUpdateByProjectIdRequest) Body(body []UpdateServerHealthDto) ApiServersUpdateByProjectIdRequest {
+	r.body = &body
 	return r
 }
 
@@ -1722,13 +1654,15 @@ ServersUpdateByProjectId Update server by projectId
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param projectId
+ @param v
  @return ApiServersUpdateByProjectIdRequest
 */
-func (a *ServersApiService) ServersUpdateByProjectId(ctx context.Context, projectId int32) ApiServersUpdateByProjectIdRequest {
+func (a *ServersApiService) ServersUpdateByProjectId(ctx context.Context, projectId int32, v string) ApiServersUpdateByProjectIdRequest {
 	return ApiServersUpdateByProjectIdRequest{
 		ApiService: a,
 		ctx: ctx,
 		projectId: projectId,
+		v: v,
 	}
 }
 
@@ -1745,15 +1679,16 @@ func (a *ServersApiService) ServersUpdateByProjectIdExecute(r ApiServersUpdateBy
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/servers/update/{projectId}"
+	localVarPath := localBasePath + "/api/v{v}/Servers/update/{projectId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"v"+"}", url.PathEscape(parameterValueToString(r.v, "v")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -1762,7 +1697,7 @@ func (a *ServersApiService) ServersUpdateByProjectIdExecute(r ApiServersUpdateBy
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1770,7 +1705,7 @@ func (a *ServersApiService) ServersUpdateByProjectIdExecute(r ApiServersUpdateBy
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateServerHealthDto
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1807,17 +1742,6 @@ func (a *ServersApiService) ServersUpdateByProjectIdExecute(r ApiServersUpdateBy
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1851,7 +1775,7 @@ func (a *ServersApiService) ServersUpdateByProjectIdExecute(r ApiServersUpdateBy
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

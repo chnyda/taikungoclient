@@ -4,18 +4,18 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**SlackCreate**](SlackApi.md#SlackCreate) | **Post** /api/v1/slack/create | Create slack configuration
-[**SlackDeleteMultiple**](SlackApi.md#SlackDeleteMultiple) | **Post** /api/v1/slack/delete-multiple | Delete slack configuration(s)
-[**SlackDropdown**](SlackApi.md#SlackDropdown) | **Get** /api/v1/slack/list | Retrieve all slack configs for organization
-[**SlackList**](SlackApi.md#SlackList) | **Get** /api/v1/slack | Retrieve all slack configs
-[**SlackUpdate**](SlackApi.md#SlackUpdate) | **Put** /api/v1/slack/update/{id} | Update slack configuration
-[**SlackVerify**](SlackApi.md#SlackVerify) | **Post** /api/v1/slack/verify | Verify slack configuration
+[**SlackCreate**](SlackApi.md#SlackCreate) | **Post** /api/v{v}/Slack/create | Create slack configuration
+[**SlackDeleteMultiple**](SlackApi.md#SlackDeleteMultiple) | **Post** /api/v{v}/Slack/delete-multiple | Delete slack configurations (s)
+[**SlackList**](SlackApi.md#SlackList) | **Get** /api/v{v}/Slack | Retrieve a list of slack configs.
+[**SlackSlackConfigurationForOrganizationList**](SlackApi.md#SlackSlackConfigurationForOrganizationList) | **Get** /api/v{v}/Slack/list | Retrieve all slack configs for organization
+[**SlackUpdate**](SlackApi.md#SlackUpdate) | **Put** /api/v{v}/Slack/update/{id} | Update slack configuration
+[**SlackVerifySlackCredentials**](SlackApi.md#SlackVerifySlackCredentials) | **Post** /api/v{v}/Slack/verify | Verify slack credentials
 
 
 
 ## SlackCreate
 
-> ApiResponse SlackCreate(ctx).CreateSlackConfigurationCommand(createSlackConfigurationCommand).Execute()
+> ApiResponse SlackCreate(ctx, v).Body(body).Execute()
 
 Create slack configuration
 
@@ -32,11 +32,12 @@ import (
 )
 
 func main() {
-    createSlackConfigurationCommand := *openapiclient.NewCreateSlackConfigurationCommand("Name_example", "Url_example", "Channel_example") // CreateSlackConfigurationCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewCreateSlackConfigurationCommand("Name_example", "Url_example", "Channel_example") // CreateSlackConfigurationCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SlackApi.SlackCreate(context.Background()).CreateSlackConfigurationCommand(createSlackConfigurationCommand).Execute()
+    resp, r, err := apiClient.SlackApi.SlackCreate(context.Background(), v).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SlackApi.SlackCreate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -49,6 +50,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -57,7 +62,8 @@ Other parameters are passed through a pointer to a apiSlackCreateRequest struct 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createSlackConfigurationCommand** | [**CreateSlackConfigurationCommand**](CreateSlackConfigurationCommand.md) |  | 
+
+ **body** | [**CreateSlackConfigurationCommand**](CreateSlackConfigurationCommand.md) |  | 
 
 ### Return type
 
@@ -69,8 +75,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -79,9 +85,9 @@ Name | Type | Description  | Notes
 
 ## SlackDeleteMultiple
 
-> SlackDeleteMultiple(ctx).DeleteSlackConfigCommand(deleteSlackConfigCommand).Execute()
+> SlackDeleteMultiple(ctx, v).Body(body).Execute()
 
-Delete slack configuration(s)
+Delete slack configurations (s)
 
 ### Example
 
@@ -96,11 +102,12 @@ import (
 )
 
 func main() {
-    deleteSlackConfigCommand := *openapiclient.NewDeleteSlackConfigCommand() // DeleteSlackConfigCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewDeleteSlackConfigCommand() // DeleteSlackConfigCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.SlackApi.SlackDeleteMultiple(context.Background()).DeleteSlackConfigCommand(deleteSlackConfigCommand).Execute()
+    r, err := apiClient.SlackApi.SlackDeleteMultiple(context.Background(), v).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SlackApi.SlackDeleteMultiple``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -111,6 +118,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -119,7 +130,8 @@ Other parameters are passed through a pointer to a apiSlackDeleteMultipleRequest
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **deleteSlackConfigCommand** | [**DeleteSlackConfigCommand**](DeleteSlackConfigCommand.md) |  | 
+
+ **body** | [**DeleteSlackConfigCommand**](DeleteSlackConfigCommand.md) |  | 
 
 ### Return type
 
@@ -131,17 +143,99 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## SlackDropdown
+## SlackList
 
-> []CommonDropdownDto SlackDropdown(ctx).OrganizationId(organizationId).Search(search).Execute()
+> SlackConfigurationList SlackList(ctx, v).OrganizationId(organizationId).Limit(limit).Offset(offset).SortBy(sortBy).SortDirection(sortDirection).Search(search).Id(id).Execute()
+
+Retrieve a list of slack configs.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/chnyda/taikungoclient"
+)
+
+func main() {
+    v := "v_example" // string | 
+    organizationId := int32(56) // int32 | Only for admin sort by org id (optional)
+    limit := int32(56) // int32 | Limits user size (by default 50) (optional)
+    offset := int32(56) // int32 | Skip elements (optional)
+    sortBy := "sortBy_example" // string |  (optional)
+    sortDirection := "sortDirection_example" // string |  (optional)
+    search := "search_example" // string | Keyword for searching (optional)
+    id := int32(56) // int32 |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SlackApi.SlackList(context.Background(), v).OrganizationId(organizationId).Limit(limit).Offset(offset).SortBy(sortBy).SortDirection(sortDirection).Search(search).Id(id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `SlackApi.SlackList``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `SlackList`: SlackConfigurationList
+    fmt.Fprintf(os.Stdout, "Response from `SlackApi.SlackList`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSlackListRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **organizationId** | **int32** | Only for admin sort by org id | 
+ **limit** | **int32** | Limits user size (by default 50) | 
+ **offset** | **int32** | Skip elements | 
+ **sortBy** | **string** |  | 
+ **sortDirection** | **string** |  | 
+ **search** | **string** | Keyword for searching | 
+ **id** | **int32** |  | 
+
+### Return type
+
+[**SlackConfigurationList**](SlackConfigurationList.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: text/plain, application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## SlackSlackConfigurationForOrganizationList
+
+> []CommonDropdownDto SlackSlackConfigurationForOrganizationList(ctx, v).OrganizationId(organizationId).Search(search).Execute()
 
 Retrieve all slack configs for organization
 
@@ -158,32 +252,38 @@ import (
 )
 
 func main() {
+    v := "v_example" // string | 
     organizationId := int32(56) // int32 |  (optional)
     search := "search_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SlackApi.SlackDropdown(context.Background()).OrganizationId(organizationId).Search(search).Execute()
+    resp, r, err := apiClient.SlackApi.SlackSlackConfigurationForOrganizationList(context.Background(), v).OrganizationId(organizationId).Search(search).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SlackApi.SlackDropdown``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `SlackApi.SlackSlackConfigurationForOrganizationList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `SlackDropdown`: []CommonDropdownDto
-    fmt.Fprintf(os.Stdout, "Response from `SlackApi.SlackDropdown`: %v\n", resp)
+    // response from `SlackSlackConfigurationForOrganizationList`: []CommonDropdownDto
+    fmt.Fprintf(os.Stdout, "Response from `SlackApi.SlackSlackConfigurationForOrganizationList`: %v\n", resp)
 }
 ```
 
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiSlackDropdownRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiSlackSlackConfigurationForOrganizationListRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
  **organizationId** | **int32** |  | 
  **search** | **string** |  | 
 
@@ -198,83 +298,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## SlackList
-
-> SlackConfigurationList SlackList(ctx).OrganizationId(organizationId).Limit(limit).Offset(offset).SortBy(sortBy).SortDirection(sortDirection).Search(search).Id(id).Execute()
-
-Retrieve all slack configs
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/chnyda/taikungoclient"
-)
-
-func main() {
-    organizationId := int32(56) // int32 |  (optional)
-    limit := int32(56) // int32 |  (optional)
-    offset := int32(56) // int32 |  (optional)
-    sortBy := "sortBy_example" // string |  (optional)
-    sortDirection := "sortDirection_example" // string |  (optional)
-    search := "search_example" // string |  (optional)
-    id := int32(56) // int32 |  (optional)
-
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SlackApi.SlackList(context.Background()).OrganizationId(organizationId).Limit(limit).Offset(offset).SortBy(sortBy).SortDirection(sortDirection).Search(search).Id(id).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SlackApi.SlackList``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `SlackList`: SlackConfigurationList
-    fmt.Fprintf(os.Stdout, "Response from `SlackApi.SlackList`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiSlackListRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **int32** |  | 
- **limit** | **int32** |  | 
- **offset** | **int32** |  | 
- **sortBy** | **string** |  | 
- **sortDirection** | **string** |  | 
- **search** | **string** |  | 
- **id** | **int32** |  | 
-
-### Return type
-
-[**SlackConfigurationList**](SlackConfigurationList.md)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -283,7 +307,7 @@ Name | Type | Description  | Notes
 
 ## SlackUpdate
 
-> SlackUpdate(ctx, id).UpdateSlackConfigurationDto(updateSlackConfigurationDto).Execute()
+> SlackUpdate(ctx, id, v).Body(body).Execute()
 
 Update slack configuration
 
@@ -301,11 +325,12 @@ import (
 
 func main() {
     id := int32(56) // int32 | 
-    updateSlackConfigurationDto := *openapiclient.NewUpdateSlackConfigurationDto() // UpdateSlackConfigurationDto |  (optional)
+    v := "v_example" // string | 
+    body := *openapiclient.NewUpdateSlackConfigurationDto() // UpdateSlackConfigurationDto |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.SlackApi.SlackUpdate(context.Background(), id).UpdateSlackConfigurationDto(updateSlackConfigurationDto).Execute()
+    r, err := apiClient.SlackApi.SlackUpdate(context.Background(), id, v).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SlackApi.SlackUpdate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -320,6 +345,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **id** | **int32** |  | 
+**v** | **string** |  | 
 
 ### Other Parameters
 
@@ -329,7 +355,8 @@ Other parameters are passed through a pointer to a apiSlackUpdateRequest struct 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateSlackConfigurationDto** | [**UpdateSlackConfigurationDto**](UpdateSlackConfigurationDto.md) |  | 
+
+ **body** | [**UpdateSlackConfigurationDto**](UpdateSlackConfigurationDto.md) |  | 
 
 ### Return type
 
@@ -341,19 +368,19 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## SlackVerify
+## SlackVerifySlackCredentials
 
-> SlackVerify(ctx).VerifySlackCredentialsCommand(verifySlackCredentialsCommand).Execute()
+> SlackVerifySlackCredentials(ctx, v).Body(body).Execute()
 
-Verify slack configuration
+Verify slack credentials
 
 ### Example
 
@@ -368,13 +395,14 @@ import (
 )
 
 func main() {
-    verifySlackCredentialsCommand := *openapiclient.NewVerifySlackCredentialsCommand() // VerifySlackCredentialsCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewVerifySlackCredentialsCommand() // VerifySlackCredentialsCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.SlackApi.SlackVerify(context.Background()).VerifySlackCredentialsCommand(verifySlackCredentialsCommand).Execute()
+    r, err := apiClient.SlackApi.SlackVerifySlackCredentials(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SlackApi.SlackVerify``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `SlackApi.SlackVerifySlackCredentials``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -383,15 +411,20 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiSlackVerifyRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiSlackVerifySlackCredentialsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **verifySlackCredentialsCommand** | [**VerifySlackCredentialsCommand**](VerifySlackCredentialsCommand.md) |  | 
+
+ **body** | [**VerifySlackCredentialsCommand**](VerifySlackCredentialsCommand.md) |  | 
 
 ### Return type
 
@@ -403,8 +436,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

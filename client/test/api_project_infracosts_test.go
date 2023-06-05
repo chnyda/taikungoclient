@@ -22,26 +22,27 @@ func Test_taikuncore_ProjectInfracostsApiService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test ProjectInfracostsApiService ProjectinfracostsDelete", func(t *testing.T) {
+	t.Run("Test ProjectInfracostsApiService ProjectInfracostsDelete", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var projectId int32
+		var v string
 
-		httpRes, err := apiClient.ProjectInfracostsApi.ProjectinfracostsDelete(context.Background(), projectId).Execute()
+		httpRes, err := apiClient.ProjectInfracostsApi.ProjectInfracostsDelete(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test ProjectInfracostsApiService ProjectinfracostsDetails", func(t *testing.T) {
+	t.Run("Test ProjectInfracostsApiService ProjectInfracostsDetails", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var projectId int32
+		var v string
 
-		resp, httpRes, err := apiClient.ProjectInfracostsApi.ProjectinfracostsDetails(context.Background(), projectId).Execute()
+		resp, httpRes, err := apiClient.ProjectInfracostsApi.ProjectInfracostsDetails(context.Background(), projectId, v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -49,13 +50,14 @@ func Test_taikuncore_ProjectInfracostsApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test ProjectInfracostsApiService ProjectinfracostsUpsert", func(t *testing.T) {
+	t.Run("Test ProjectInfracostsApiService ProjectInfracostsEdit", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var projectId int32
+		var v string
 
-		httpRes, err := apiClient.ProjectInfracostsApi.ProjectinfracostsUpsert(context.Background(), projectId).Execute()
+		httpRes, err := apiClient.ProjectInfracostsApi.ProjectInfracostsEdit(context.Background(), projectId, v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)

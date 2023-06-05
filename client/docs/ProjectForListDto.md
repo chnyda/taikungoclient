@@ -5,12 +5,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
-**Operation** | Pointer to **NullableString** |  | [optional] 
-**JobUrl** | Pointer to **NullableString** |  | [optional] 
-**TopicName** | Pointer to **NullableString** |  | [optional] 
-**ImageName** | Pointer to **NullableString** |  | [optional] 
-**Token** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**Operation** | Pointer to **string** |  | [optional] 
+**JobUrl** | Pointer to **string** |  | [optional] 
+**TopicName** | Pointer to **string** |  | [optional] 
+**ImageName** | Pointer to **string** |  | [optional] 
+**Token** | Pointer to **string** |  | [optional] 
 **IsKubernetes** | Pointer to **bool** |  | [optional] 
 **IsLocked** | Pointer to **bool** |  | [optional] 
 **IsBackupEnabled** | Pointer to **bool** |  | [optional] 
@@ -25,22 +25,22 @@ Name | Type | Description | Notes
 **Bastion** | Pointer to **int32** |  | [optional] 
 **AccessProfileRevision** | Pointer to **int32** |  | [optional] 
 **OpaProfileRevision** | Pointer to **int32** |  | [optional] 
-**CloudCredentialName** | Pointer to **NullableString** |  | [optional] 
-**CloudCredentialId** | Pointer to **NullableInt32** |  | [optional] 
-**OrganizationName** | Pointer to **NullableString** |  | [optional] 
+**CloudCredentialName** | Pointer to **string** |  | [optional] 
+**CloudCredentialId** | Pointer to **int32** |  | [optional] 
+**OrganizationName** | Pointer to **string** |  | [optional] 
 **OrganizationId** | Pointer to **int32** |  | [optional] 
-**PartnerId** | Pointer to **NullableInt32** |  | [optional] 
-**Status** | Pointer to **NullableString** |  | [optional] 
-**Health** | Pointer to **NullableString** |  | [optional] 
-**AccessIp** | Pointer to **NullableString** |  | [optional] 
+**PartnerId** | Pointer to **int32** |  | [optional] 
+**Status** | Pointer to **string** |  | [optional] 
+**Health** | Pointer to **string** |  | [optional] 
+**AccessIp** | Pointer to **string** |  | [optional] 
 **TotalServersCount** | Pointer to **int32** |  | [optional] 
-**CloudType** | Pointer to **NullableString** |  | [optional] 
-**KubesprayCurrentVersion** | Pointer to **NullableString** |  | [optional] 
-**KubesprayTargetVersion** | Pointer to **NullableString** |  | [optional] 
-**KubernetesCurrentVersion** | Pointer to **NullableString** |  | [optional] 
-**KubernetesTargetVersion** | Pointer to **NullableString** |  | [optional] 
-**CreatedAt** | Pointer to **NullableString** |  | [optional] 
-**UpdatedAt** | Pointer to **NullableTime** |  | [optional] 
+**CloudType** | Pointer to **string** |  | [optional] 
+**KubesprayCurrentVersion** | Pointer to **string** |  | [optional] 
+**KubesprayTargetVersion** | Pointer to **string** |  | [optional] 
+**KubernetesCurrentVersion** | Pointer to **string** |  | [optional] 
+**KubernetesTargetVersion** | Pointer to **string** |  | [optional] 
+**CreatedAt** | Pointer to **string** |  | [optional] 
+**UpdatedAt** | Pointer to **time.Time** |  | [optional] 
 **BoundUsers** | Pointer to [**[]UserDto**](UserDto.md) |  | [optional] 
 **MonitoringCredential** | Pointer to [**MonitoringCredentialsListDto**](MonitoringCredentialsListDto.md) |  | [optional] 
 **IsAutoscalingEnabled** | Pointer to **bool** |  | [optional] 
@@ -49,26 +49,26 @@ Name | Type | Description | Notes
 **KubernetesProfiles** | Pointer to [**KubernetesProfilesLisForPollerDto**](KubernetesProfilesLisForPollerDto.md) |  | [optional] 
 **OpaProfile** | Pointer to [**OpaProfileListDto**](OpaProfileListDto.md) |  | [optional] 
 **KubernetesAlerts** | Pointer to [**[]KubernetesAlertDto**](KubernetesAlertDto.md) |  | [optional] 
-**S3BucketName** | Pointer to **NullableString** |  | [optional] 
-**S3AccessKeyId** | Pointer to **NullableString** |  | [optional] 
-**S3SecretKey** | Pointer to **NullableString** |  | [optional] 
-**S3Endpoint** | Pointer to **NullableString** |  | [optional] 
-**S3Region** | Pointer to **NullableString** |  | [optional] 
+**S3BucketName** | Pointer to **string** |  | [optional] 
+**S3AccessKeyId** | Pointer to **string** |  | [optional] 
+**S3SecretKey** | Pointer to **string** |  | [optional] 
+**S3Endpoint** | Pointer to **string** |  | [optional] 
+**S3Region** | Pointer to **string** |  | [optional] 
 **IsDeleteCluster** | Pointer to **bool** |  | [optional] 
-**TaikunLBFlavor** | Pointer to **NullableString** |  | [optional] 
-**TaikunLBPrivateKey** | Pointer to **NullableString** |  | [optional] 
-**TaikunLBPublicKey** | Pointer to **NullableString** |  | [optional] 
-**RouterIdStartRange** | Pointer to **NullableInt32** |  | [optional] 
-**RouterIdEndRange** | Pointer to **NullableInt32** |  | [optional] 
-**TaikunPrivateSSHKey** | Pointer to **NullableString** |  | [optional] 
-**TaikunPublicSSHKey** | Pointer to **NullableString** |  | [optional] 
-**GoogleProjectId** | Pointer to **NullableString** |  | [optional] 
-**Cidr** | Pointer to **NullableString** |  | [optional] 
-**NetMask** | Pointer to **NullableInt32** |  | [optional] 
-**PrivateIp** | Pointer to **NullableString** |  | [optional] 
-**PublicIp** | Pointer to **NullableString** |  | [optional] 
+**TaikunLBFlavor** | Pointer to **string** |  | [optional] 
+**TaikunLBPrivateKey** | Pointer to **string** |  | [optional] 
+**TaikunLBPublicKey** | Pointer to **string** |  | [optional] 
+**RouterIdStartRange** | Pointer to **int32** |  | [optional] 
+**RouterIdEndRange** | Pointer to **int32** |  | [optional] 
+**TaikunPrivateSSHKey** | Pointer to **string** |  | [optional] 
+**TaikunPublicSSHKey** | Pointer to **string** |  | [optional] 
+**GoogleProjectId** | Pointer to **string** |  | [optional] 
+**Cidr** | Pointer to **string** |  | [optional] 
+**NetMask** | Pointer to **int32** |  | [optional] 
+**PrivateIp** | Pointer to **string** |  | [optional] 
+**PublicIp** | Pointer to **string** |  | [optional] 
 **IsKubevapEnabled** | Pointer to **bool** |  | [optional] 
-**TanzuReleaseVersion** | Pointer to **NullableString** |  | [optional] 
+**TanzuReleaseVersion** | Pointer to **string** |  | [optional] 
 **NfsDiskSize** | Pointer to **int32** |  | [optional] 
 **KubevapEnabeledKubernetesVersions** | Pointer to **[]string** |  | [optional] 
 **AwsProjectAZSubnets** | Pointer to [**[]AwsProjectAZSubnetDto**](AwsProjectAZSubnetDto.md) |  | [optional] 
@@ -143,16 +143,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *ProjectForListDto) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *ProjectForListDto) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetOperation
 
 `func (o *ProjectForListDto) GetOperation() string`
@@ -178,16 +168,6 @@ SetOperation sets Operation field to given value.
 
 HasOperation returns a boolean if a field has been set.
 
-### SetOperationNil
-
-`func (o *ProjectForListDto) SetOperationNil(b bool)`
-
- SetOperationNil sets the value for Operation to be an explicit nil
-
-### UnsetOperation
-`func (o *ProjectForListDto) UnsetOperation()`
-
-UnsetOperation ensures that no value is present for Operation, not even an explicit nil
 ### GetJobUrl
 
 `func (o *ProjectForListDto) GetJobUrl() string`
@@ -213,16 +193,6 @@ SetJobUrl sets JobUrl field to given value.
 
 HasJobUrl returns a boolean if a field has been set.
 
-### SetJobUrlNil
-
-`func (o *ProjectForListDto) SetJobUrlNil(b bool)`
-
- SetJobUrlNil sets the value for JobUrl to be an explicit nil
-
-### UnsetJobUrl
-`func (o *ProjectForListDto) UnsetJobUrl()`
-
-UnsetJobUrl ensures that no value is present for JobUrl, not even an explicit nil
 ### GetTopicName
 
 `func (o *ProjectForListDto) GetTopicName() string`
@@ -248,16 +218,6 @@ SetTopicName sets TopicName field to given value.
 
 HasTopicName returns a boolean if a field has been set.
 
-### SetTopicNameNil
-
-`func (o *ProjectForListDto) SetTopicNameNil(b bool)`
-
- SetTopicNameNil sets the value for TopicName to be an explicit nil
-
-### UnsetTopicName
-`func (o *ProjectForListDto) UnsetTopicName()`
-
-UnsetTopicName ensures that no value is present for TopicName, not even an explicit nil
 ### GetImageName
 
 `func (o *ProjectForListDto) GetImageName() string`
@@ -283,16 +243,6 @@ SetImageName sets ImageName field to given value.
 
 HasImageName returns a boolean if a field has been set.
 
-### SetImageNameNil
-
-`func (o *ProjectForListDto) SetImageNameNil(b bool)`
-
- SetImageNameNil sets the value for ImageName to be an explicit nil
-
-### UnsetImageName
-`func (o *ProjectForListDto) UnsetImageName()`
-
-UnsetImageName ensures that no value is present for ImageName, not even an explicit nil
 ### GetToken
 
 `func (o *ProjectForListDto) GetToken() string`
@@ -318,16 +268,6 @@ SetToken sets Token field to given value.
 
 HasToken returns a boolean if a field has been set.
 
-### SetTokenNil
-
-`func (o *ProjectForListDto) SetTokenNil(b bool)`
-
- SetTokenNil sets the value for Token to be an explicit nil
-
-### UnsetToken
-`func (o *ProjectForListDto) UnsetToken()`
-
-UnsetToken ensures that no value is present for Token, not even an explicit nil
 ### GetIsKubernetes
 
 `func (o *ProjectForListDto) GetIsKubernetes() bool`
@@ -703,16 +643,6 @@ SetCloudCredentialName sets CloudCredentialName field to given value.
 
 HasCloudCredentialName returns a boolean if a field has been set.
 
-### SetCloudCredentialNameNil
-
-`func (o *ProjectForListDto) SetCloudCredentialNameNil(b bool)`
-
- SetCloudCredentialNameNil sets the value for CloudCredentialName to be an explicit nil
-
-### UnsetCloudCredentialName
-`func (o *ProjectForListDto) UnsetCloudCredentialName()`
-
-UnsetCloudCredentialName ensures that no value is present for CloudCredentialName, not even an explicit nil
 ### GetCloudCredentialId
 
 `func (o *ProjectForListDto) GetCloudCredentialId() int32`
@@ -738,16 +668,6 @@ SetCloudCredentialId sets CloudCredentialId field to given value.
 
 HasCloudCredentialId returns a boolean if a field has been set.
 
-### SetCloudCredentialIdNil
-
-`func (o *ProjectForListDto) SetCloudCredentialIdNil(b bool)`
-
- SetCloudCredentialIdNil sets the value for CloudCredentialId to be an explicit nil
-
-### UnsetCloudCredentialId
-`func (o *ProjectForListDto) UnsetCloudCredentialId()`
-
-UnsetCloudCredentialId ensures that no value is present for CloudCredentialId, not even an explicit nil
 ### GetOrganizationName
 
 `func (o *ProjectForListDto) GetOrganizationName() string`
@@ -773,16 +693,6 @@ SetOrganizationName sets OrganizationName field to given value.
 
 HasOrganizationName returns a boolean if a field has been set.
 
-### SetOrganizationNameNil
-
-`func (o *ProjectForListDto) SetOrganizationNameNil(b bool)`
-
- SetOrganizationNameNil sets the value for OrganizationName to be an explicit nil
-
-### UnsetOrganizationName
-`func (o *ProjectForListDto) UnsetOrganizationName()`
-
-UnsetOrganizationName ensures that no value is present for OrganizationName, not even an explicit nil
 ### GetOrganizationId
 
 `func (o *ProjectForListDto) GetOrganizationId() int32`
@@ -833,16 +743,6 @@ SetPartnerId sets PartnerId field to given value.
 
 HasPartnerId returns a boolean if a field has been set.
 
-### SetPartnerIdNil
-
-`func (o *ProjectForListDto) SetPartnerIdNil(b bool)`
-
- SetPartnerIdNil sets the value for PartnerId to be an explicit nil
-
-### UnsetPartnerId
-`func (o *ProjectForListDto) UnsetPartnerId()`
-
-UnsetPartnerId ensures that no value is present for PartnerId, not even an explicit nil
 ### GetStatus
 
 `func (o *ProjectForListDto) GetStatus() string`
@@ -868,16 +768,6 @@ SetStatus sets Status field to given value.
 
 HasStatus returns a boolean if a field has been set.
 
-### SetStatusNil
-
-`func (o *ProjectForListDto) SetStatusNil(b bool)`
-
- SetStatusNil sets the value for Status to be an explicit nil
-
-### UnsetStatus
-`func (o *ProjectForListDto) UnsetStatus()`
-
-UnsetStatus ensures that no value is present for Status, not even an explicit nil
 ### GetHealth
 
 `func (o *ProjectForListDto) GetHealth() string`
@@ -903,16 +793,6 @@ SetHealth sets Health field to given value.
 
 HasHealth returns a boolean if a field has been set.
 
-### SetHealthNil
-
-`func (o *ProjectForListDto) SetHealthNil(b bool)`
-
- SetHealthNil sets the value for Health to be an explicit nil
-
-### UnsetHealth
-`func (o *ProjectForListDto) UnsetHealth()`
-
-UnsetHealth ensures that no value is present for Health, not even an explicit nil
 ### GetAccessIp
 
 `func (o *ProjectForListDto) GetAccessIp() string`
@@ -938,16 +818,6 @@ SetAccessIp sets AccessIp field to given value.
 
 HasAccessIp returns a boolean if a field has been set.
 
-### SetAccessIpNil
-
-`func (o *ProjectForListDto) SetAccessIpNil(b bool)`
-
- SetAccessIpNil sets the value for AccessIp to be an explicit nil
-
-### UnsetAccessIp
-`func (o *ProjectForListDto) UnsetAccessIp()`
-
-UnsetAccessIp ensures that no value is present for AccessIp, not even an explicit nil
 ### GetTotalServersCount
 
 `func (o *ProjectForListDto) GetTotalServersCount() int32`
@@ -998,16 +868,6 @@ SetCloudType sets CloudType field to given value.
 
 HasCloudType returns a boolean if a field has been set.
 
-### SetCloudTypeNil
-
-`func (o *ProjectForListDto) SetCloudTypeNil(b bool)`
-
- SetCloudTypeNil sets the value for CloudType to be an explicit nil
-
-### UnsetCloudType
-`func (o *ProjectForListDto) UnsetCloudType()`
-
-UnsetCloudType ensures that no value is present for CloudType, not even an explicit nil
 ### GetKubesprayCurrentVersion
 
 `func (o *ProjectForListDto) GetKubesprayCurrentVersion() string`
@@ -1033,16 +893,6 @@ SetKubesprayCurrentVersion sets KubesprayCurrentVersion field to given value.
 
 HasKubesprayCurrentVersion returns a boolean if a field has been set.
 
-### SetKubesprayCurrentVersionNil
-
-`func (o *ProjectForListDto) SetKubesprayCurrentVersionNil(b bool)`
-
- SetKubesprayCurrentVersionNil sets the value for KubesprayCurrentVersion to be an explicit nil
-
-### UnsetKubesprayCurrentVersion
-`func (o *ProjectForListDto) UnsetKubesprayCurrentVersion()`
-
-UnsetKubesprayCurrentVersion ensures that no value is present for KubesprayCurrentVersion, not even an explicit nil
 ### GetKubesprayTargetVersion
 
 `func (o *ProjectForListDto) GetKubesprayTargetVersion() string`
@@ -1068,16 +918,6 @@ SetKubesprayTargetVersion sets KubesprayTargetVersion field to given value.
 
 HasKubesprayTargetVersion returns a boolean if a field has been set.
 
-### SetKubesprayTargetVersionNil
-
-`func (o *ProjectForListDto) SetKubesprayTargetVersionNil(b bool)`
-
- SetKubesprayTargetVersionNil sets the value for KubesprayTargetVersion to be an explicit nil
-
-### UnsetKubesprayTargetVersion
-`func (o *ProjectForListDto) UnsetKubesprayTargetVersion()`
-
-UnsetKubesprayTargetVersion ensures that no value is present for KubesprayTargetVersion, not even an explicit nil
 ### GetKubernetesCurrentVersion
 
 `func (o *ProjectForListDto) GetKubernetesCurrentVersion() string`
@@ -1103,16 +943,6 @@ SetKubernetesCurrentVersion sets KubernetesCurrentVersion field to given value.
 
 HasKubernetesCurrentVersion returns a boolean if a field has been set.
 
-### SetKubernetesCurrentVersionNil
-
-`func (o *ProjectForListDto) SetKubernetesCurrentVersionNil(b bool)`
-
- SetKubernetesCurrentVersionNil sets the value for KubernetesCurrentVersion to be an explicit nil
-
-### UnsetKubernetesCurrentVersion
-`func (o *ProjectForListDto) UnsetKubernetesCurrentVersion()`
-
-UnsetKubernetesCurrentVersion ensures that no value is present for KubernetesCurrentVersion, not even an explicit nil
 ### GetKubernetesTargetVersion
 
 `func (o *ProjectForListDto) GetKubernetesTargetVersion() string`
@@ -1138,16 +968,6 @@ SetKubernetesTargetVersion sets KubernetesTargetVersion field to given value.
 
 HasKubernetesTargetVersion returns a boolean if a field has been set.
 
-### SetKubernetesTargetVersionNil
-
-`func (o *ProjectForListDto) SetKubernetesTargetVersionNil(b bool)`
-
- SetKubernetesTargetVersionNil sets the value for KubernetesTargetVersion to be an explicit nil
-
-### UnsetKubernetesTargetVersion
-`func (o *ProjectForListDto) UnsetKubernetesTargetVersion()`
-
-UnsetKubernetesTargetVersion ensures that no value is present for KubernetesTargetVersion, not even an explicit nil
 ### GetCreatedAt
 
 `func (o *ProjectForListDto) GetCreatedAt() string`
@@ -1173,16 +993,6 @@ SetCreatedAt sets CreatedAt field to given value.
 
 HasCreatedAt returns a boolean if a field has been set.
 
-### SetCreatedAtNil
-
-`func (o *ProjectForListDto) SetCreatedAtNil(b bool)`
-
- SetCreatedAtNil sets the value for CreatedAt to be an explicit nil
-
-### UnsetCreatedAt
-`func (o *ProjectForListDto) UnsetCreatedAt()`
-
-UnsetCreatedAt ensures that no value is present for CreatedAt, not even an explicit nil
 ### GetUpdatedAt
 
 `func (o *ProjectForListDto) GetUpdatedAt() time.Time`
@@ -1208,16 +1018,6 @@ SetUpdatedAt sets UpdatedAt field to given value.
 
 HasUpdatedAt returns a boolean if a field has been set.
 
-### SetUpdatedAtNil
-
-`func (o *ProjectForListDto) SetUpdatedAtNil(b bool)`
-
- SetUpdatedAtNil sets the value for UpdatedAt to be an explicit nil
-
-### UnsetUpdatedAt
-`func (o *ProjectForListDto) UnsetUpdatedAt()`
-
-UnsetUpdatedAt ensures that no value is present for UpdatedAt, not even an explicit nil
 ### GetBoundUsers
 
 `func (o *ProjectForListDto) GetBoundUsers() []UserDto`
@@ -1243,16 +1043,6 @@ SetBoundUsers sets BoundUsers field to given value.
 
 HasBoundUsers returns a boolean if a field has been set.
 
-### SetBoundUsersNil
-
-`func (o *ProjectForListDto) SetBoundUsersNil(b bool)`
-
- SetBoundUsersNil sets the value for BoundUsers to be an explicit nil
-
-### UnsetBoundUsers
-`func (o *ProjectForListDto) UnsetBoundUsers()`
-
-UnsetBoundUsers ensures that no value is present for BoundUsers, not even an explicit nil
 ### GetMonitoringCredential
 
 `func (o *ProjectForListDto) GetMonitoringCredential() MonitoringCredentialsListDto`
@@ -1328,16 +1118,6 @@ SetFlavors sets Flavors field to given value.
 
 HasFlavors returns a boolean if a field has been set.
 
-### SetFlavorsNil
-
-`func (o *ProjectForListDto) SetFlavorsNil(b bool)`
-
- SetFlavorsNil sets the value for Flavors to be an explicit nil
-
-### UnsetFlavors
-`func (o *ProjectForListDto) UnsetFlavors()`
-
-UnsetFlavors ensures that no value is present for Flavors, not even an explicit nil
 ### GetAccessProfile
 
 `func (o *ProjectForListDto) GetAccessProfile() AccessProfilesForProjectListDto`
@@ -1438,16 +1218,6 @@ SetKubernetesAlerts sets KubernetesAlerts field to given value.
 
 HasKubernetesAlerts returns a boolean if a field has been set.
 
-### SetKubernetesAlertsNil
-
-`func (o *ProjectForListDto) SetKubernetesAlertsNil(b bool)`
-
- SetKubernetesAlertsNil sets the value for KubernetesAlerts to be an explicit nil
-
-### UnsetKubernetesAlerts
-`func (o *ProjectForListDto) UnsetKubernetesAlerts()`
-
-UnsetKubernetesAlerts ensures that no value is present for KubernetesAlerts, not even an explicit nil
 ### GetS3BucketName
 
 `func (o *ProjectForListDto) GetS3BucketName() string`
@@ -1473,16 +1243,6 @@ SetS3BucketName sets S3BucketName field to given value.
 
 HasS3BucketName returns a boolean if a field has been set.
 
-### SetS3BucketNameNil
-
-`func (o *ProjectForListDto) SetS3BucketNameNil(b bool)`
-
- SetS3BucketNameNil sets the value for S3BucketName to be an explicit nil
-
-### UnsetS3BucketName
-`func (o *ProjectForListDto) UnsetS3BucketName()`
-
-UnsetS3BucketName ensures that no value is present for S3BucketName, not even an explicit nil
 ### GetS3AccessKeyId
 
 `func (o *ProjectForListDto) GetS3AccessKeyId() string`
@@ -1508,16 +1268,6 @@ SetS3AccessKeyId sets S3AccessKeyId field to given value.
 
 HasS3AccessKeyId returns a boolean if a field has been set.
 
-### SetS3AccessKeyIdNil
-
-`func (o *ProjectForListDto) SetS3AccessKeyIdNil(b bool)`
-
- SetS3AccessKeyIdNil sets the value for S3AccessKeyId to be an explicit nil
-
-### UnsetS3AccessKeyId
-`func (o *ProjectForListDto) UnsetS3AccessKeyId()`
-
-UnsetS3AccessKeyId ensures that no value is present for S3AccessKeyId, not even an explicit nil
 ### GetS3SecretKey
 
 `func (o *ProjectForListDto) GetS3SecretKey() string`
@@ -1543,16 +1293,6 @@ SetS3SecretKey sets S3SecretKey field to given value.
 
 HasS3SecretKey returns a boolean if a field has been set.
 
-### SetS3SecretKeyNil
-
-`func (o *ProjectForListDto) SetS3SecretKeyNil(b bool)`
-
- SetS3SecretKeyNil sets the value for S3SecretKey to be an explicit nil
-
-### UnsetS3SecretKey
-`func (o *ProjectForListDto) UnsetS3SecretKey()`
-
-UnsetS3SecretKey ensures that no value is present for S3SecretKey, not even an explicit nil
 ### GetS3Endpoint
 
 `func (o *ProjectForListDto) GetS3Endpoint() string`
@@ -1578,16 +1318,6 @@ SetS3Endpoint sets S3Endpoint field to given value.
 
 HasS3Endpoint returns a boolean if a field has been set.
 
-### SetS3EndpointNil
-
-`func (o *ProjectForListDto) SetS3EndpointNil(b bool)`
-
- SetS3EndpointNil sets the value for S3Endpoint to be an explicit nil
-
-### UnsetS3Endpoint
-`func (o *ProjectForListDto) UnsetS3Endpoint()`
-
-UnsetS3Endpoint ensures that no value is present for S3Endpoint, not even an explicit nil
 ### GetS3Region
 
 `func (o *ProjectForListDto) GetS3Region() string`
@@ -1613,16 +1343,6 @@ SetS3Region sets S3Region field to given value.
 
 HasS3Region returns a boolean if a field has been set.
 
-### SetS3RegionNil
-
-`func (o *ProjectForListDto) SetS3RegionNil(b bool)`
-
- SetS3RegionNil sets the value for S3Region to be an explicit nil
-
-### UnsetS3Region
-`func (o *ProjectForListDto) UnsetS3Region()`
-
-UnsetS3Region ensures that no value is present for S3Region, not even an explicit nil
 ### GetIsDeleteCluster
 
 `func (o *ProjectForListDto) GetIsDeleteCluster() bool`
@@ -1673,16 +1393,6 @@ SetTaikunLBFlavor sets TaikunLBFlavor field to given value.
 
 HasTaikunLBFlavor returns a boolean if a field has been set.
 
-### SetTaikunLBFlavorNil
-
-`func (o *ProjectForListDto) SetTaikunLBFlavorNil(b bool)`
-
- SetTaikunLBFlavorNil sets the value for TaikunLBFlavor to be an explicit nil
-
-### UnsetTaikunLBFlavor
-`func (o *ProjectForListDto) UnsetTaikunLBFlavor()`
-
-UnsetTaikunLBFlavor ensures that no value is present for TaikunLBFlavor, not even an explicit nil
 ### GetTaikunLBPrivateKey
 
 `func (o *ProjectForListDto) GetTaikunLBPrivateKey() string`
@@ -1708,16 +1418,6 @@ SetTaikunLBPrivateKey sets TaikunLBPrivateKey field to given value.
 
 HasTaikunLBPrivateKey returns a boolean if a field has been set.
 
-### SetTaikunLBPrivateKeyNil
-
-`func (o *ProjectForListDto) SetTaikunLBPrivateKeyNil(b bool)`
-
- SetTaikunLBPrivateKeyNil sets the value for TaikunLBPrivateKey to be an explicit nil
-
-### UnsetTaikunLBPrivateKey
-`func (o *ProjectForListDto) UnsetTaikunLBPrivateKey()`
-
-UnsetTaikunLBPrivateKey ensures that no value is present for TaikunLBPrivateKey, not even an explicit nil
 ### GetTaikunLBPublicKey
 
 `func (o *ProjectForListDto) GetTaikunLBPublicKey() string`
@@ -1743,16 +1443,6 @@ SetTaikunLBPublicKey sets TaikunLBPublicKey field to given value.
 
 HasTaikunLBPublicKey returns a boolean if a field has been set.
 
-### SetTaikunLBPublicKeyNil
-
-`func (o *ProjectForListDto) SetTaikunLBPublicKeyNil(b bool)`
-
- SetTaikunLBPublicKeyNil sets the value for TaikunLBPublicKey to be an explicit nil
-
-### UnsetTaikunLBPublicKey
-`func (o *ProjectForListDto) UnsetTaikunLBPublicKey()`
-
-UnsetTaikunLBPublicKey ensures that no value is present for TaikunLBPublicKey, not even an explicit nil
 ### GetRouterIdStartRange
 
 `func (o *ProjectForListDto) GetRouterIdStartRange() int32`
@@ -1778,16 +1468,6 @@ SetRouterIdStartRange sets RouterIdStartRange field to given value.
 
 HasRouterIdStartRange returns a boolean if a field has been set.
 
-### SetRouterIdStartRangeNil
-
-`func (o *ProjectForListDto) SetRouterIdStartRangeNil(b bool)`
-
- SetRouterIdStartRangeNil sets the value for RouterIdStartRange to be an explicit nil
-
-### UnsetRouterIdStartRange
-`func (o *ProjectForListDto) UnsetRouterIdStartRange()`
-
-UnsetRouterIdStartRange ensures that no value is present for RouterIdStartRange, not even an explicit nil
 ### GetRouterIdEndRange
 
 `func (o *ProjectForListDto) GetRouterIdEndRange() int32`
@@ -1813,16 +1493,6 @@ SetRouterIdEndRange sets RouterIdEndRange field to given value.
 
 HasRouterIdEndRange returns a boolean if a field has been set.
 
-### SetRouterIdEndRangeNil
-
-`func (o *ProjectForListDto) SetRouterIdEndRangeNil(b bool)`
-
- SetRouterIdEndRangeNil sets the value for RouterIdEndRange to be an explicit nil
-
-### UnsetRouterIdEndRange
-`func (o *ProjectForListDto) UnsetRouterIdEndRange()`
-
-UnsetRouterIdEndRange ensures that no value is present for RouterIdEndRange, not even an explicit nil
 ### GetTaikunPrivateSSHKey
 
 `func (o *ProjectForListDto) GetTaikunPrivateSSHKey() string`
@@ -1848,16 +1518,6 @@ SetTaikunPrivateSSHKey sets TaikunPrivateSSHKey field to given value.
 
 HasTaikunPrivateSSHKey returns a boolean if a field has been set.
 
-### SetTaikunPrivateSSHKeyNil
-
-`func (o *ProjectForListDto) SetTaikunPrivateSSHKeyNil(b bool)`
-
- SetTaikunPrivateSSHKeyNil sets the value for TaikunPrivateSSHKey to be an explicit nil
-
-### UnsetTaikunPrivateSSHKey
-`func (o *ProjectForListDto) UnsetTaikunPrivateSSHKey()`
-
-UnsetTaikunPrivateSSHKey ensures that no value is present for TaikunPrivateSSHKey, not even an explicit nil
 ### GetTaikunPublicSSHKey
 
 `func (o *ProjectForListDto) GetTaikunPublicSSHKey() string`
@@ -1883,16 +1543,6 @@ SetTaikunPublicSSHKey sets TaikunPublicSSHKey field to given value.
 
 HasTaikunPublicSSHKey returns a boolean if a field has been set.
 
-### SetTaikunPublicSSHKeyNil
-
-`func (o *ProjectForListDto) SetTaikunPublicSSHKeyNil(b bool)`
-
- SetTaikunPublicSSHKeyNil sets the value for TaikunPublicSSHKey to be an explicit nil
-
-### UnsetTaikunPublicSSHKey
-`func (o *ProjectForListDto) UnsetTaikunPublicSSHKey()`
-
-UnsetTaikunPublicSSHKey ensures that no value is present for TaikunPublicSSHKey, not even an explicit nil
 ### GetGoogleProjectId
 
 `func (o *ProjectForListDto) GetGoogleProjectId() string`
@@ -1918,16 +1568,6 @@ SetGoogleProjectId sets GoogleProjectId field to given value.
 
 HasGoogleProjectId returns a boolean if a field has been set.
 
-### SetGoogleProjectIdNil
-
-`func (o *ProjectForListDto) SetGoogleProjectIdNil(b bool)`
-
- SetGoogleProjectIdNil sets the value for GoogleProjectId to be an explicit nil
-
-### UnsetGoogleProjectId
-`func (o *ProjectForListDto) UnsetGoogleProjectId()`
-
-UnsetGoogleProjectId ensures that no value is present for GoogleProjectId, not even an explicit nil
 ### GetCidr
 
 `func (o *ProjectForListDto) GetCidr() string`
@@ -1953,16 +1593,6 @@ SetCidr sets Cidr field to given value.
 
 HasCidr returns a boolean if a field has been set.
 
-### SetCidrNil
-
-`func (o *ProjectForListDto) SetCidrNil(b bool)`
-
- SetCidrNil sets the value for Cidr to be an explicit nil
-
-### UnsetCidr
-`func (o *ProjectForListDto) UnsetCidr()`
-
-UnsetCidr ensures that no value is present for Cidr, not even an explicit nil
 ### GetNetMask
 
 `func (o *ProjectForListDto) GetNetMask() int32`
@@ -1988,16 +1618,6 @@ SetNetMask sets NetMask field to given value.
 
 HasNetMask returns a boolean if a field has been set.
 
-### SetNetMaskNil
-
-`func (o *ProjectForListDto) SetNetMaskNil(b bool)`
-
- SetNetMaskNil sets the value for NetMask to be an explicit nil
-
-### UnsetNetMask
-`func (o *ProjectForListDto) UnsetNetMask()`
-
-UnsetNetMask ensures that no value is present for NetMask, not even an explicit nil
 ### GetPrivateIp
 
 `func (o *ProjectForListDto) GetPrivateIp() string`
@@ -2023,16 +1643,6 @@ SetPrivateIp sets PrivateIp field to given value.
 
 HasPrivateIp returns a boolean if a field has been set.
 
-### SetPrivateIpNil
-
-`func (o *ProjectForListDto) SetPrivateIpNil(b bool)`
-
- SetPrivateIpNil sets the value for PrivateIp to be an explicit nil
-
-### UnsetPrivateIp
-`func (o *ProjectForListDto) UnsetPrivateIp()`
-
-UnsetPrivateIp ensures that no value is present for PrivateIp, not even an explicit nil
 ### GetPublicIp
 
 `func (o *ProjectForListDto) GetPublicIp() string`
@@ -2058,16 +1668,6 @@ SetPublicIp sets PublicIp field to given value.
 
 HasPublicIp returns a boolean if a field has been set.
 
-### SetPublicIpNil
-
-`func (o *ProjectForListDto) SetPublicIpNil(b bool)`
-
- SetPublicIpNil sets the value for PublicIp to be an explicit nil
-
-### UnsetPublicIp
-`func (o *ProjectForListDto) UnsetPublicIp()`
-
-UnsetPublicIp ensures that no value is present for PublicIp, not even an explicit nil
 ### GetIsKubevapEnabled
 
 `func (o *ProjectForListDto) GetIsKubevapEnabled() bool`
@@ -2118,16 +1718,6 @@ SetTanzuReleaseVersion sets TanzuReleaseVersion field to given value.
 
 HasTanzuReleaseVersion returns a boolean if a field has been set.
 
-### SetTanzuReleaseVersionNil
-
-`func (o *ProjectForListDto) SetTanzuReleaseVersionNil(b bool)`
-
- SetTanzuReleaseVersionNil sets the value for TanzuReleaseVersion to be an explicit nil
-
-### UnsetTanzuReleaseVersion
-`func (o *ProjectForListDto) UnsetTanzuReleaseVersion()`
-
-UnsetTanzuReleaseVersion ensures that no value is present for TanzuReleaseVersion, not even an explicit nil
 ### GetNfsDiskSize
 
 `func (o *ProjectForListDto) GetNfsDiskSize() int32`
@@ -2178,16 +1768,6 @@ SetKubevapEnabeledKubernetesVersions sets KubevapEnabeledKubernetesVersions fiel
 
 HasKubevapEnabeledKubernetesVersions returns a boolean if a field has been set.
 
-### SetKubevapEnabeledKubernetesVersionsNil
-
-`func (o *ProjectForListDto) SetKubevapEnabeledKubernetesVersionsNil(b bool)`
-
- SetKubevapEnabeledKubernetesVersionsNil sets the value for KubevapEnabeledKubernetesVersions to be an explicit nil
-
-### UnsetKubevapEnabeledKubernetesVersions
-`func (o *ProjectForListDto) UnsetKubevapEnabeledKubernetesVersions()`
-
-UnsetKubevapEnabeledKubernetesVersions ensures that no value is present for KubevapEnabeledKubernetesVersions, not even an explicit nil
 ### GetAwsProjectAZSubnets
 
 `func (o *ProjectForListDto) GetAwsProjectAZSubnets() []AwsProjectAZSubnetDto`
@@ -2213,16 +1793,6 @@ SetAwsProjectAZSubnets sets AwsProjectAZSubnets field to given value.
 
 HasAwsProjectAZSubnets returns a boolean if a field has been set.
 
-### SetAwsProjectAZSubnetsNil
-
-`func (o *ProjectForListDto) SetAwsProjectAZSubnetsNil(b bool)`
-
- SetAwsProjectAZSubnetsNil sets the value for AwsProjectAZSubnets to be an explicit nil
-
-### UnsetAwsProjectAZSubnets
-`func (o *ProjectForListDto) UnsetAwsProjectAZSubnets()`
-
-UnsetAwsProjectAZSubnets ensures that no value is present for AwsProjectAZSubnets, not even an explicit nil
 ### GetAvailabilityZones
 
 `func (o *ProjectForListDto) GetAvailabilityZones() []string`
@@ -2248,16 +1818,6 @@ SetAvailabilityZones sets AvailabilityZones field to given value.
 
 HasAvailabilityZones returns a boolean if a field has been set.
 
-### SetAvailabilityZonesNil
-
-`func (o *ProjectForListDto) SetAvailabilityZonesNil(b bool)`
-
- SetAvailabilityZonesNil sets the value for AvailabilityZones to be an explicit nil
-
-### UnsetAvailabilityZones
-`func (o *ProjectForListDto) UnsetAvailabilityZones()`
-
-UnsetAvailabilityZones ensures that no value is present for AvailabilityZones, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

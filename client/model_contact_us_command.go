@@ -23,7 +23,7 @@ type ContactUsCommand struct {
 	Name string `json:"name"`
 	BusinessEmail string `json:"businessEmail"`
 	CompanyName string `json:"companyName"`
-	Comment NullableString `json:"comment,omitempty"`
+	Comment *string `json:"comment,omitempty"`
 }
 
 // NewContactUsCommand instantiates a new ContactUsCommand object
@@ -118,46 +118,36 @@ func (o *ContactUsCommand) SetCompanyName(v string) {
 	o.CompanyName = v
 }
 
-// GetComment returns the Comment field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetComment returns the Comment field value if set, zero value otherwise.
 func (o *ContactUsCommand) GetComment() string {
-	if o == nil || IsNil(o.Comment.Get()) {
+	if o == nil || IsNil(o.Comment) {
 		var ret string
 		return ret
 	}
-	return *o.Comment.Get()
+	return *o.Comment
 }
 
 // GetCommentOk returns a tuple with the Comment field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ContactUsCommand) GetCommentOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Comment) {
 		return nil, false
 	}
-	return o.Comment.Get(), o.Comment.IsSet()
+	return o.Comment, true
 }
 
 // HasComment returns a boolean if a field has been set.
 func (o *ContactUsCommand) HasComment() bool {
-	if o != nil && o.Comment.IsSet() {
+	if o != nil && !IsNil(o.Comment) {
 		return true
 	}
 
 	return false
 }
 
-// SetComment gets a reference to the given NullableString and assigns it to the Comment field.
+// SetComment gets a reference to the given string and assigns it to the Comment field.
 func (o *ContactUsCommand) SetComment(v string) {
-	o.Comment.Set(&v)
-}
-// SetCommentNil sets the value for Comment to be an explicit nil
-func (o *ContactUsCommand) SetCommentNil() {
-	o.Comment.Set(nil)
-}
-
-// UnsetComment ensures that no value is present for Comment, not even an explicit nil
-func (o *ContactUsCommand) UnsetComment() {
-	o.Comment.Unset()
+	o.Comment = &v
 }
 
 func (o ContactUsCommand) MarshalJSON() ([]byte, error) {
@@ -173,8 +163,8 @@ func (o ContactUsCommand) ToMap() (map[string]interface{}, error) {
 	toSerialize["name"] = o.Name
 	toSerialize["businessEmail"] = o.BusinessEmail
 	toSerialize["companyName"] = o.CompanyName
-	if o.Comment.IsSet() {
-		toSerialize["comment"] = o.Comment.Get()
+	if !IsNil(o.Comment) {
+		toSerialize["comment"] = o.Comment
 	}
 	return toSerialize, nil
 }

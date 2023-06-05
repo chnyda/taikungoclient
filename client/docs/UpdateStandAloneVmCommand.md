@@ -5,11 +5,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **int32** |  | 
-**IpAddress** | Pointer to **NullableString** |  | [optional] 
-**PublicIp** | Pointer to **NullableString** |  | [optional] 
-**InstanceId** | Pointer to **NullableString** |  | [optional] 
-**FlavorId** | Pointer to **NullableString** |  | [optional] 
-**Revision** | Pointer to **NullableInt32** |  | [optional] 
+**IpAddress** | Pointer to **string** |  | [optional] 
+**PublicIp** | Pointer to **string** |  | [optional] 
+**InstanceId** | Pointer to **string** |  | [optional] 
+**FlavorId** | Pointer to **string** |  | [optional] 
+**Revision** | Pointer to **int32** |  | [optional] 
 **Disks** | Pointer to [**[]UpdateStandAloneVmDiskDto**](UpdateStandAloneVmDiskDto.md) |  | [optional] 
 
 ## Methods
@@ -76,16 +76,6 @@ SetIpAddress sets IpAddress field to given value.
 
 HasIpAddress returns a boolean if a field has been set.
 
-### SetIpAddressNil
-
-`func (o *UpdateStandAloneVmCommand) SetIpAddressNil(b bool)`
-
- SetIpAddressNil sets the value for IpAddress to be an explicit nil
-
-### UnsetIpAddress
-`func (o *UpdateStandAloneVmCommand) UnsetIpAddress()`
-
-UnsetIpAddress ensures that no value is present for IpAddress, not even an explicit nil
 ### GetPublicIp
 
 `func (o *UpdateStandAloneVmCommand) GetPublicIp() string`
@@ -111,16 +101,6 @@ SetPublicIp sets PublicIp field to given value.
 
 HasPublicIp returns a boolean if a field has been set.
 
-### SetPublicIpNil
-
-`func (o *UpdateStandAloneVmCommand) SetPublicIpNil(b bool)`
-
- SetPublicIpNil sets the value for PublicIp to be an explicit nil
-
-### UnsetPublicIp
-`func (o *UpdateStandAloneVmCommand) UnsetPublicIp()`
-
-UnsetPublicIp ensures that no value is present for PublicIp, not even an explicit nil
 ### GetInstanceId
 
 `func (o *UpdateStandAloneVmCommand) GetInstanceId() string`
@@ -146,16 +126,6 @@ SetInstanceId sets InstanceId field to given value.
 
 HasInstanceId returns a boolean if a field has been set.
 
-### SetInstanceIdNil
-
-`func (o *UpdateStandAloneVmCommand) SetInstanceIdNil(b bool)`
-
- SetInstanceIdNil sets the value for InstanceId to be an explicit nil
-
-### UnsetInstanceId
-`func (o *UpdateStandAloneVmCommand) UnsetInstanceId()`
-
-UnsetInstanceId ensures that no value is present for InstanceId, not even an explicit nil
 ### GetFlavorId
 
 `func (o *UpdateStandAloneVmCommand) GetFlavorId() string`
@@ -181,16 +151,6 @@ SetFlavorId sets FlavorId field to given value.
 
 HasFlavorId returns a boolean if a field has been set.
 
-### SetFlavorIdNil
-
-`func (o *UpdateStandAloneVmCommand) SetFlavorIdNil(b bool)`
-
- SetFlavorIdNil sets the value for FlavorId to be an explicit nil
-
-### UnsetFlavorId
-`func (o *UpdateStandAloneVmCommand) UnsetFlavorId()`
-
-UnsetFlavorId ensures that no value is present for FlavorId, not even an explicit nil
 ### GetRevision
 
 `func (o *UpdateStandAloneVmCommand) GetRevision() int32`
@@ -216,16 +176,6 @@ SetRevision sets Revision field to given value.
 
 HasRevision returns a boolean if a field has been set.
 
-### SetRevisionNil
-
-`func (o *UpdateStandAloneVmCommand) SetRevisionNil(b bool)`
-
- SetRevisionNil sets the value for Revision to be an explicit nil
-
-### UnsetRevision
-`func (o *UpdateStandAloneVmCommand) UnsetRevision()`
-
-UnsetRevision ensures that no value is present for Revision, not even an explicit nil
 ### GetDisks
 
 `func (o *UpdateStandAloneVmCommand) GetDisks() []UpdateStandAloneVmDiskDto`
@@ -251,16 +201,6 @@ SetDisks sets Disks field to given value.
 
 HasDisks returns a boolean if a field has been set.
 
-### SetDisksNil
-
-`func (o *UpdateStandAloneVmCommand) SetDisksNil(b bool)`
-
- SetDisksNil sets the value for Disks to be an explicit nil
-
-### UnsetDisks
-`func (o *UpdateStandAloneVmCommand) UnsetDisks()`
-
-UnsetDisks ensures that no value is present for Disks, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

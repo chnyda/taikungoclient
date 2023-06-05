@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Version** | Pointer to **NullableString** |  | [optional] 
+**Version** | Pointer to **string** |  | [optional] 
 **IsKubevapEnabled** | Pointer to **bool** |  | [optional] 
 
 ## Methods
@@ -51,16 +51,6 @@ SetVersion sets Version field to given value.
 
 HasVersion returns a boolean if a field has been set.
 
-### SetVersionNil
-
-`func (o *KubernetesVersionListDto) SetVersionNil(b bool)`
-
- SetVersionNil sets the value for Version to be an explicit nil
-
-### UnsetVersion
-`func (o *KubernetesVersionListDto) UnsetVersion()`
-
-UnsetVersion ensures that no value is present for Version, not even an explicit nil
 ### GetIsKubevapEnabled
 
 `func (o *KubernetesVersionListDto) GetIsKubevapEnabled() bool`

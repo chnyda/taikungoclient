@@ -20,7 +20,7 @@ var _ MappedNullable = &ExceededQuotaList{}
 
 // ExceededQuotaList struct for ExceededQuotaList
 type ExceededQuotaList struct {
-	Data interface{} `json:"data,omitempty"`
+	Data map[string]interface{} `json:"data,omitempty"`
 	TotalCount *int32 `json:"totalCount,omitempty"`
 }
 
@@ -41,10 +41,10 @@ func NewExceededQuotaListWithDefaults() *ExceededQuotaList {
 	return &this
 }
 
-// GetData returns the Data field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ExceededQuotaList) GetData() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetData returns the Data field value if set, zero value otherwise.
+func (o *ExceededQuotaList) GetData() map[string]interface{} {
+	if o == nil || IsNil(o.Data) {
+		var ret map[string]interface{}
 		return ret
 	}
 	return o.Data
@@ -52,25 +52,24 @@ func (o *ExceededQuotaList) GetData() interface{} {
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ExceededQuotaList) GetDataOk() (*interface{}, bool) {
+func (o *ExceededQuotaList) GetDataOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.Data) {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
-	return &o.Data, true
+	return o.Data, true
 }
 
 // HasData returns a boolean if a field has been set.
 func (o *ExceededQuotaList) HasData() bool {
-	if o != nil && IsNil(o.Data) {
+	if o != nil && !IsNil(o.Data) {
 		return true
 	}
 
 	return false
 }
 
-// SetData gets a reference to the given interface{} and assigns it to the Data field.
-func (o *ExceededQuotaList) SetData(v interface{}) {
+// SetData gets a reference to the given map[string]interface{} and assigns it to the Data field.
+func (o *ExceededQuotaList) SetData(v map[string]interface{}) {
 	o.Data = v
 }
 
@@ -116,7 +115,7 @@ func (o ExceededQuotaList) MarshalJSON() ([]byte, error) {
 
 func (o ExceededQuotaList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Data != nil {
+	if !IsNil(o.Data) {
 		toSerialize["data"] = o.Data
 	}
 	if !IsNil(o.TotalCount) {

@@ -21,19 +21,19 @@ var _ MappedNullable = &ProxmoxCheckerCommand{}
 // ProxmoxCheckerCommand struct for ProxmoxCheckerCommand
 type ProxmoxCheckerCommand struct {
 	Url string `json:"url"`
-	Username string `json:"username"`
-	Password string `json:"password"`
+	TokenId string `json:"tokenId"`
+	TokenSecret string `json:"tokenSecret"`
 }
 
 // NewProxmoxCheckerCommand instantiates a new ProxmoxCheckerCommand object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewProxmoxCheckerCommand(url string, username string, password string) *ProxmoxCheckerCommand {
+func NewProxmoxCheckerCommand(url string, tokenId string, tokenSecret string) *ProxmoxCheckerCommand {
 	this := ProxmoxCheckerCommand{}
 	this.Url = url
-	this.Username = username
-	this.Password = password
+	this.TokenId = tokenId
+	this.TokenSecret = tokenSecret
 	return &this
 }
 
@@ -69,52 +69,52 @@ func (o *ProxmoxCheckerCommand) SetUrl(v string) {
 	o.Url = v
 }
 
-// GetUsername returns the Username field value
-func (o *ProxmoxCheckerCommand) GetUsername() string {
+// GetTokenId returns the TokenId field value
+func (o *ProxmoxCheckerCommand) GetTokenId() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Username
+	return o.TokenId
 }
 
-// GetUsernameOk returns a tuple with the Username field value
+// GetTokenIdOk returns a tuple with the TokenId field value
 // and a boolean to check if the value has been set.
-func (o *ProxmoxCheckerCommand) GetUsernameOk() (*string, bool) {
+func (o *ProxmoxCheckerCommand) GetTokenIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Username, true
+	return &o.TokenId, true
 }
 
-// SetUsername sets field value
-func (o *ProxmoxCheckerCommand) SetUsername(v string) {
-	o.Username = v
+// SetTokenId sets field value
+func (o *ProxmoxCheckerCommand) SetTokenId(v string) {
+	o.TokenId = v
 }
 
-// GetPassword returns the Password field value
-func (o *ProxmoxCheckerCommand) GetPassword() string {
+// GetTokenSecret returns the TokenSecret field value
+func (o *ProxmoxCheckerCommand) GetTokenSecret() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Password
+	return o.TokenSecret
 }
 
-// GetPasswordOk returns a tuple with the Password field value
+// GetTokenSecretOk returns a tuple with the TokenSecret field value
 // and a boolean to check if the value has been set.
-func (o *ProxmoxCheckerCommand) GetPasswordOk() (*string, bool) {
+func (o *ProxmoxCheckerCommand) GetTokenSecretOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Password, true
+	return &o.TokenSecret, true
 }
 
-// SetPassword sets field value
-func (o *ProxmoxCheckerCommand) SetPassword(v string) {
-	o.Password = v
+// SetTokenSecret sets field value
+func (o *ProxmoxCheckerCommand) SetTokenSecret(v string) {
+	o.TokenSecret = v
 }
 
 func (o ProxmoxCheckerCommand) MarshalJSON() ([]byte, error) {
@@ -128,8 +128,8 @@ func (o ProxmoxCheckerCommand) MarshalJSON() ([]byte, error) {
 func (o ProxmoxCheckerCommand) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["url"] = o.Url
-	toSerialize["username"] = o.Username
-	toSerialize["password"] = o.Password
+	toSerialize["tokenId"] = o.TokenId
+	toSerialize["tokenSecret"] = o.TokenSecret
 	return toSerialize, nil
 }
 

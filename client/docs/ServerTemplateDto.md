@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Role** | Pointer to [**CloudRole**](CloudRole.md) |  | [optional] 
-**Flavor** | Pointer to **NullableString** |  | [optional] 
+**Flavor** | Pointer to **string** |  | [optional] 
 **DiskSize** | Pointer to **float64** |  | [optional] 
 **Count** | Pointer to **int32** |  | [optional] 
 
@@ -78,16 +78,6 @@ SetFlavor sets Flavor field to given value.
 
 HasFlavor returns a boolean if a field has been set.
 
-### SetFlavorNil
-
-`func (o *ServerTemplateDto) SetFlavorNil(b bool)`
-
- SetFlavorNil sets the value for Flavor to be an explicit nil
-
-### UnsetFlavor
-`func (o *ServerTemplateDto) UnsetFlavor()`
-
-UnsetFlavor ensures that no value is present for Flavor, not even an explicit nil
 ### GetDiskSize
 
 `func (o *ServerTemplateDto) GetDiskSize() float64`

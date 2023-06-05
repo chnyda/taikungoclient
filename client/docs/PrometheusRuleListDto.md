@@ -5,23 +5,22 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
-**Password** | Pointer to **NullableString** |  | [optional] 
-**UserName** | Pointer to **NullableString** |  | [optional] 
-**Url** | Pointer to **NullableString** |  | [optional] 
-**MetricName** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**Password** | Pointer to **string** |  | [optional] 
+**UserName** | Pointer to **string** |  | [optional] 
+**Url** | Pointer to **string** |  | [optional] 
+**MetricName** | Pointer to **string** |  | [optional] 
 **Labels** | Pointer to [**[]PrometheusLabelUpdateDto**](PrometheusLabelUpdateDto.md) |  | [optional] 
-**Type** | Pointer to **NullableString** |  | [optional] 
+**BoundOrganizations** | Pointer to [**[]PrometheusOrganizationDiscountDto**](PrometheusOrganizationDiscountDto.md) |  | [optional] 
+**Type** | Pointer to **string** |  | [optional] 
 **Price** | Pointer to **float64** |  | [optional] 
-**IsAll** | Pointer to **bool** |  | [optional] 
-**BillingStartDate** | Pointer to **NullableString** |  | [optional] 
-**CreatedAt** | Pointer to **NullableString** |  | [optional] 
+**BillingStartDate** | Pointer to **string** |  | [optional] 
+**CreatedAt** | Pointer to **string** |  | [optional] 
 **Partner** | Pointer to [**PartnerDetailsDto**](PartnerDetailsDto.md) |  | [optional] 
-**BoundOrganizations** | Pointer to [**[]OrganizationForPrometheus**](OrganizationForPrometheus.md) |  | [optional] 
 **OperationCredential** | Pointer to [**OperationCredentialsForOrganizationEntity**](OperationCredentialsForOrganizationEntity.md) |  | [optional] 
-**CreatedBy** | Pointer to **NullableString** |  | [optional] 
-**LastModified** | Pointer to **NullableString** |  | [optional] 
-**LastModifiedBy** | Pointer to **NullableString** |  | [optional] 
+**CreatedBy** | Pointer to **string** |  | [optional] 
+**LastModified** | Pointer to **string** |  | [optional] 
+**LastModifiedBy** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -92,16 +91,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *PrometheusRuleListDto) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *PrometheusRuleListDto) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetPassword
 
 `func (o *PrometheusRuleListDto) GetPassword() string`
@@ -127,16 +116,6 @@ SetPassword sets Password field to given value.
 
 HasPassword returns a boolean if a field has been set.
 
-### SetPasswordNil
-
-`func (o *PrometheusRuleListDto) SetPasswordNil(b bool)`
-
- SetPasswordNil sets the value for Password to be an explicit nil
-
-### UnsetPassword
-`func (o *PrometheusRuleListDto) UnsetPassword()`
-
-UnsetPassword ensures that no value is present for Password, not even an explicit nil
 ### GetUserName
 
 `func (o *PrometheusRuleListDto) GetUserName() string`
@@ -162,16 +141,6 @@ SetUserName sets UserName field to given value.
 
 HasUserName returns a boolean if a field has been set.
 
-### SetUserNameNil
-
-`func (o *PrometheusRuleListDto) SetUserNameNil(b bool)`
-
- SetUserNameNil sets the value for UserName to be an explicit nil
-
-### UnsetUserName
-`func (o *PrometheusRuleListDto) UnsetUserName()`
-
-UnsetUserName ensures that no value is present for UserName, not even an explicit nil
 ### GetUrl
 
 `func (o *PrometheusRuleListDto) GetUrl() string`
@@ -197,16 +166,6 @@ SetUrl sets Url field to given value.
 
 HasUrl returns a boolean if a field has been set.
 
-### SetUrlNil
-
-`func (o *PrometheusRuleListDto) SetUrlNil(b bool)`
-
- SetUrlNil sets the value for Url to be an explicit nil
-
-### UnsetUrl
-`func (o *PrometheusRuleListDto) UnsetUrl()`
-
-UnsetUrl ensures that no value is present for Url, not even an explicit nil
 ### GetMetricName
 
 `func (o *PrometheusRuleListDto) GetMetricName() string`
@@ -232,16 +191,6 @@ SetMetricName sets MetricName field to given value.
 
 HasMetricName returns a boolean if a field has been set.
 
-### SetMetricNameNil
-
-`func (o *PrometheusRuleListDto) SetMetricNameNil(b bool)`
-
- SetMetricNameNil sets the value for MetricName to be an explicit nil
-
-### UnsetMetricName
-`func (o *PrometheusRuleListDto) UnsetMetricName()`
-
-UnsetMetricName ensures that no value is present for MetricName, not even an explicit nil
 ### GetLabels
 
 `func (o *PrometheusRuleListDto) GetLabels() []PrometheusLabelUpdateDto`
@@ -267,16 +216,31 @@ SetLabels sets Labels field to given value.
 
 HasLabels returns a boolean if a field has been set.
 
-### SetLabelsNil
+### GetBoundOrganizations
 
-`func (o *PrometheusRuleListDto) SetLabelsNil(b bool)`
+`func (o *PrometheusRuleListDto) GetBoundOrganizations() []PrometheusOrganizationDiscountDto`
 
- SetLabelsNil sets the value for Labels to be an explicit nil
+GetBoundOrganizations returns the BoundOrganizations field if non-nil, zero value otherwise.
 
-### UnsetLabels
-`func (o *PrometheusRuleListDto) UnsetLabels()`
+### GetBoundOrganizationsOk
 
-UnsetLabels ensures that no value is present for Labels, not even an explicit nil
+`func (o *PrometheusRuleListDto) GetBoundOrganizationsOk() (*[]PrometheusOrganizationDiscountDto, bool)`
+
+GetBoundOrganizationsOk returns a tuple with the BoundOrganizations field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBoundOrganizations
+
+`func (o *PrometheusRuleListDto) SetBoundOrganizations(v []PrometheusOrganizationDiscountDto)`
+
+SetBoundOrganizations sets BoundOrganizations field to given value.
+
+### HasBoundOrganizations
+
+`func (o *PrometheusRuleListDto) HasBoundOrganizations() bool`
+
+HasBoundOrganizations returns a boolean if a field has been set.
+
 ### GetType
 
 `func (o *PrometheusRuleListDto) GetType() string`
@@ -302,16 +266,6 @@ SetType sets Type field to given value.
 
 HasType returns a boolean if a field has been set.
 
-### SetTypeNil
-
-`func (o *PrometheusRuleListDto) SetTypeNil(b bool)`
-
- SetTypeNil sets the value for Type to be an explicit nil
-
-### UnsetType
-`func (o *PrometheusRuleListDto) UnsetType()`
-
-UnsetType ensures that no value is present for Type, not even an explicit nil
 ### GetPrice
 
 `func (o *PrometheusRuleListDto) GetPrice() float64`
@@ -336,31 +290,6 @@ SetPrice sets Price field to given value.
 `func (o *PrometheusRuleListDto) HasPrice() bool`
 
 HasPrice returns a boolean if a field has been set.
-
-### GetIsAll
-
-`func (o *PrometheusRuleListDto) GetIsAll() bool`
-
-GetIsAll returns the IsAll field if non-nil, zero value otherwise.
-
-### GetIsAllOk
-
-`func (o *PrometheusRuleListDto) GetIsAllOk() (*bool, bool)`
-
-GetIsAllOk returns a tuple with the IsAll field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIsAll
-
-`func (o *PrometheusRuleListDto) SetIsAll(v bool)`
-
-SetIsAll sets IsAll field to given value.
-
-### HasIsAll
-
-`func (o *PrometheusRuleListDto) HasIsAll() bool`
-
-HasIsAll returns a boolean if a field has been set.
 
 ### GetBillingStartDate
 
@@ -387,16 +316,6 @@ SetBillingStartDate sets BillingStartDate field to given value.
 
 HasBillingStartDate returns a boolean if a field has been set.
 
-### SetBillingStartDateNil
-
-`func (o *PrometheusRuleListDto) SetBillingStartDateNil(b bool)`
-
- SetBillingStartDateNil sets the value for BillingStartDate to be an explicit nil
-
-### UnsetBillingStartDate
-`func (o *PrometheusRuleListDto) UnsetBillingStartDate()`
-
-UnsetBillingStartDate ensures that no value is present for BillingStartDate, not even an explicit nil
 ### GetCreatedAt
 
 `func (o *PrometheusRuleListDto) GetCreatedAt() string`
@@ -422,16 +341,6 @@ SetCreatedAt sets CreatedAt field to given value.
 
 HasCreatedAt returns a boolean if a field has been set.
 
-### SetCreatedAtNil
-
-`func (o *PrometheusRuleListDto) SetCreatedAtNil(b bool)`
-
- SetCreatedAtNil sets the value for CreatedAt to be an explicit nil
-
-### UnsetCreatedAt
-`func (o *PrometheusRuleListDto) UnsetCreatedAt()`
-
-UnsetCreatedAt ensures that no value is present for CreatedAt, not even an explicit nil
 ### GetPartner
 
 `func (o *PrometheusRuleListDto) GetPartner() PartnerDetailsDto`
@@ -457,41 +366,6 @@ SetPartner sets Partner field to given value.
 
 HasPartner returns a boolean if a field has been set.
 
-### GetBoundOrganizations
-
-`func (o *PrometheusRuleListDto) GetBoundOrganizations() []OrganizationForPrometheus`
-
-GetBoundOrganizations returns the BoundOrganizations field if non-nil, zero value otherwise.
-
-### GetBoundOrganizationsOk
-
-`func (o *PrometheusRuleListDto) GetBoundOrganizationsOk() (*[]OrganizationForPrometheus, bool)`
-
-GetBoundOrganizationsOk returns a tuple with the BoundOrganizations field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetBoundOrganizations
-
-`func (o *PrometheusRuleListDto) SetBoundOrganizations(v []OrganizationForPrometheus)`
-
-SetBoundOrganizations sets BoundOrganizations field to given value.
-
-### HasBoundOrganizations
-
-`func (o *PrometheusRuleListDto) HasBoundOrganizations() bool`
-
-HasBoundOrganizations returns a boolean if a field has been set.
-
-### SetBoundOrganizationsNil
-
-`func (o *PrometheusRuleListDto) SetBoundOrganizationsNil(b bool)`
-
- SetBoundOrganizationsNil sets the value for BoundOrganizations to be an explicit nil
-
-### UnsetBoundOrganizations
-`func (o *PrometheusRuleListDto) UnsetBoundOrganizations()`
-
-UnsetBoundOrganizations ensures that no value is present for BoundOrganizations, not even an explicit nil
 ### GetOperationCredential
 
 `func (o *PrometheusRuleListDto) GetOperationCredential() OperationCredentialsForOrganizationEntity`
@@ -542,16 +416,6 @@ SetCreatedBy sets CreatedBy field to given value.
 
 HasCreatedBy returns a boolean if a field has been set.
 
-### SetCreatedByNil
-
-`func (o *PrometheusRuleListDto) SetCreatedByNil(b bool)`
-
- SetCreatedByNil sets the value for CreatedBy to be an explicit nil
-
-### UnsetCreatedBy
-`func (o *PrometheusRuleListDto) UnsetCreatedBy()`
-
-UnsetCreatedBy ensures that no value is present for CreatedBy, not even an explicit nil
 ### GetLastModified
 
 `func (o *PrometheusRuleListDto) GetLastModified() string`
@@ -577,16 +441,6 @@ SetLastModified sets LastModified field to given value.
 
 HasLastModified returns a boolean if a field has been set.
 
-### SetLastModifiedNil
-
-`func (o *PrometheusRuleListDto) SetLastModifiedNil(b bool)`
-
- SetLastModifiedNil sets the value for LastModified to be an explicit nil
-
-### UnsetLastModified
-`func (o *PrometheusRuleListDto) UnsetLastModified()`
-
-UnsetLastModified ensures that no value is present for LastModified, not even an explicit nil
 ### GetLastModifiedBy
 
 `func (o *PrometheusRuleListDto) GetLastModifiedBy() string`
@@ -612,16 +466,6 @@ SetLastModifiedBy sets LastModifiedBy field to given value.
 
 HasLastModifiedBy returns a boolean if a field has been set.
 
-### SetLastModifiedByNil
-
-`func (o *PrometheusRuleListDto) SetLastModifiedByNil(b bool)`
-
- SetLastModifiedByNil sets the value for LastModifiedBy to be an explicit nil
-
-### UnsetLastModifiedBy
-`func (o *PrometheusRuleListDto) UnsetLastModifiedBy()`
-
-UnsetLastModifiedBy ensures that no value is present for LastModifiedBy, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

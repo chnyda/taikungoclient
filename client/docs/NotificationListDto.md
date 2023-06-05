@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CreatedAt** | Pointer to **NullableString** |  | [optional] 
-**ActionMessage** | Pointer to **NullableString** |  | [optional] 
-**ActionStatus** | Pointer to **NullableString** |  | [optional] 
-**Username** | Pointer to **NullableString** |  | [optional] 
-**Category** | Pointer to **NullableString** |  | [optional] 
-**ProjectName** | Pointer to **NullableString** |  | [optional] 
+**CreatedAt** | Pointer to **string** |  | [optional] 
+**ActionMessage** | Pointer to **string** |  | [optional] 
+**ActionStatus** | Pointer to **string** |  | [optional] 
+**Username** | Pointer to **string** |  | [optional] 
+**Category** | Pointer to **string** |  | [optional] 
+**ProjectName** | Pointer to **string** |  | [optional] 
 **ProjectId** | Pointer to **int32** |  | [optional] 
 **IsDeleted** | Pointer to **bool** |  | [optional] 
 
@@ -57,16 +57,6 @@ SetCreatedAt sets CreatedAt field to given value.
 
 HasCreatedAt returns a boolean if a field has been set.
 
-### SetCreatedAtNil
-
-`func (o *NotificationListDto) SetCreatedAtNil(b bool)`
-
- SetCreatedAtNil sets the value for CreatedAt to be an explicit nil
-
-### UnsetCreatedAt
-`func (o *NotificationListDto) UnsetCreatedAt()`
-
-UnsetCreatedAt ensures that no value is present for CreatedAt, not even an explicit nil
 ### GetActionMessage
 
 `func (o *NotificationListDto) GetActionMessage() string`
@@ -92,16 +82,6 @@ SetActionMessage sets ActionMessage field to given value.
 
 HasActionMessage returns a boolean if a field has been set.
 
-### SetActionMessageNil
-
-`func (o *NotificationListDto) SetActionMessageNil(b bool)`
-
- SetActionMessageNil sets the value for ActionMessage to be an explicit nil
-
-### UnsetActionMessage
-`func (o *NotificationListDto) UnsetActionMessage()`
-
-UnsetActionMessage ensures that no value is present for ActionMessage, not even an explicit nil
 ### GetActionStatus
 
 `func (o *NotificationListDto) GetActionStatus() string`
@@ -127,16 +107,6 @@ SetActionStatus sets ActionStatus field to given value.
 
 HasActionStatus returns a boolean if a field has been set.
 
-### SetActionStatusNil
-
-`func (o *NotificationListDto) SetActionStatusNil(b bool)`
-
- SetActionStatusNil sets the value for ActionStatus to be an explicit nil
-
-### UnsetActionStatus
-`func (o *NotificationListDto) UnsetActionStatus()`
-
-UnsetActionStatus ensures that no value is present for ActionStatus, not even an explicit nil
 ### GetUsername
 
 `func (o *NotificationListDto) GetUsername() string`
@@ -162,16 +132,6 @@ SetUsername sets Username field to given value.
 
 HasUsername returns a boolean if a field has been set.
 
-### SetUsernameNil
-
-`func (o *NotificationListDto) SetUsernameNil(b bool)`
-
- SetUsernameNil sets the value for Username to be an explicit nil
-
-### UnsetUsername
-`func (o *NotificationListDto) UnsetUsername()`
-
-UnsetUsername ensures that no value is present for Username, not even an explicit nil
 ### GetCategory
 
 `func (o *NotificationListDto) GetCategory() string`
@@ -197,16 +157,6 @@ SetCategory sets Category field to given value.
 
 HasCategory returns a boolean if a field has been set.
 
-### SetCategoryNil
-
-`func (o *NotificationListDto) SetCategoryNil(b bool)`
-
- SetCategoryNil sets the value for Category to be an explicit nil
-
-### UnsetCategory
-`func (o *NotificationListDto) UnsetCategory()`
-
-UnsetCategory ensures that no value is present for Category, not even an explicit nil
 ### GetProjectName
 
 `func (o *NotificationListDto) GetProjectName() string`
@@ -232,16 +182,6 @@ SetProjectName sets ProjectName field to given value.
 
 HasProjectName returns a boolean if a field has been set.
 
-### SetProjectNameNil
-
-`func (o *NotificationListDto) SetProjectNameNil(b bool)`
-
- SetProjectNameNil sets the value for ProjectName to be an explicit nil
-
-### UnsetProjectName
-`func (o *NotificationListDto) UnsetProjectName()`
-
-UnsetProjectName ensures that no value is present for ProjectName, not even an explicit nil
 ### GetProjectId
 
 `func (o *NotificationListDto) GetProjectId() int32`

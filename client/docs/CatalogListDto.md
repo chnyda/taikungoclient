@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
-**Description** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**Description** | Pointer to **string** |  | [optional] 
 **IsLocked** | Pointer to **bool** |  | [optional] 
 **OrganizationId** | Pointer to **int32** |  | [optional] 
 **PackageIds** | Pointer to **[]string** |  | [optional] 
@@ -82,16 +82,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *CatalogListDto) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *CatalogListDto) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetDescription
 
 `func (o *CatalogListDto) GetDescription() string`
@@ -117,16 +107,6 @@ SetDescription sets Description field to given value.
 
 HasDescription returns a boolean if a field has been set.
 
-### SetDescriptionNil
-
-`func (o *CatalogListDto) SetDescriptionNil(b bool)`
-
- SetDescriptionNil sets the value for Description to be an explicit nil
-
-### UnsetDescription
-`func (o *CatalogListDto) UnsetDescription()`
-
-UnsetDescription ensures that no value is present for Description, not even an explicit nil
 ### GetIsLocked
 
 `func (o *CatalogListDto) GetIsLocked() bool`
@@ -202,16 +182,6 @@ SetPackageIds sets PackageIds field to given value.
 
 HasPackageIds returns a boolean if a field has been set.
 
-### SetPackageIdsNil
-
-`func (o *CatalogListDto) SetPackageIdsNil(b bool)`
-
- SetPackageIdsNil sets the value for PackageIds to be an explicit nil
-
-### UnsetPackageIds
-`func (o *CatalogListDto) UnsetPackageIds()`
-
-UnsetPackageIds ensures that no value is present for PackageIds, not even an explicit nil
 ### GetBoundProjects
 
 `func (o *CatalogListDto) GetBoundProjects() []CommonDropdownDto`
@@ -237,16 +207,6 @@ SetBoundProjects sets BoundProjects field to given value.
 
 HasBoundProjects returns a boolean if a field has been set.
 
-### SetBoundProjectsNil
-
-`func (o *CatalogListDto) SetBoundProjectsNil(b bool)`
-
- SetBoundProjectsNil sets the value for BoundProjects to be an explicit nil
-
-### UnsetBoundProjects
-`func (o *CatalogListDto) UnsetBoundProjects()`
-
-UnsetBoundProjects ensures that no value is present for BoundProjects, not even an explicit nil
 ### GetBoundApplications
 
 `func (o *CatalogListDto) GetBoundApplications() []AvailablePackagesDto`
@@ -272,16 +232,6 @@ SetBoundApplications sets BoundApplications field to given value.
 
 HasBoundApplications returns a boolean if a field has been set.
 
-### SetBoundApplicationsNil
-
-`func (o *CatalogListDto) SetBoundApplicationsNil(b bool)`
-
- SetBoundApplicationsNil sets the value for BoundApplications to be an explicit nil
-
-### UnsetBoundApplications
-`func (o *CatalogListDto) UnsetBoundApplications()`
-
-UnsetBoundApplications ensures that no value is present for BoundApplications, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

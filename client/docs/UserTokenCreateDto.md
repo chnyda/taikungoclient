@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AccessKey** | Pointer to **NullableString** |  | [optional] 
-**SecretKey** | Pointer to **NullableString** |  | [optional] 
+**AccessKey** | Pointer to **string** |  | [optional] 
+**SecretKey** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -51,16 +51,6 @@ SetAccessKey sets AccessKey field to given value.
 
 HasAccessKey returns a boolean if a field has been set.
 
-### SetAccessKeyNil
-
-`func (o *UserTokenCreateDto) SetAccessKeyNil(b bool)`
-
- SetAccessKeyNil sets the value for AccessKey to be an explicit nil
-
-### UnsetAccessKey
-`func (o *UserTokenCreateDto) UnsetAccessKey()`
-
-UnsetAccessKey ensures that no value is present for AccessKey, not even an explicit nil
 ### GetSecretKey
 
 `func (o *UserTokenCreateDto) GetSecretKey() string`
@@ -86,16 +76,6 @@ SetSecretKey sets SecretKey field to given value.
 
 HasSecretKey returns a boolean if a field has been set.
 
-### SetSecretKeyNil
-
-`func (o *UserTokenCreateDto) SetSecretKeyNil(b bool)`
-
- SetSecretKeyNil sets the value for SecretKey to be an explicit nil
-
-### UnsetSecretKey
-`func (o *UserTokenCreateDto) UnsetSecretKey()`
-
-UnsetSecretKey ensures that no value is present for SecretKey, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

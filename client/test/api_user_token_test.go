@@ -22,11 +22,13 @@ func Test_taikuncore_UserTokenApiService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test UserTokenApiService UsertokenAvailableEndpoints", func(t *testing.T) {
+	t.Run("Test UserTokenApiService UserTokenAvailableEndpointList", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.UserTokenApi.UsertokenAvailableEndpoints(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.UserTokenApi.UserTokenAvailableEndpointList(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -34,22 +36,26 @@ func Test_taikuncore_UserTokenApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test UserTokenApiService UsertokenBindUnbind", func(t *testing.T) {
+	t.Run("Test UserTokenApiService UserTokenBindUnbind", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.UserTokenApi.UsertokenBindUnbind(context.Background()).Execute()
+		var v string
+
+		httpRes, err := apiClient.UserTokenApi.UserTokenBindUnbind(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test UserTokenApiService UsertokenCreate", func(t *testing.T) {
+	t.Run("Test UserTokenApiService UserTokenCreate", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.UserTokenApi.UsertokenCreate(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.UserTokenApi.UserTokenCreate(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -57,24 +63,27 @@ func Test_taikuncore_UserTokenApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test UserTokenApiService UsertokenDelete", func(t *testing.T) {
+	t.Run("Test UserTokenApiService UserTokenDelete", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
+		var v string
 
-		httpRes, err := apiClient.UserTokenApi.UsertokenDelete(context.Background(), id).Execute()
+		httpRes, err := apiClient.UserTokenApi.UserTokenDelete(context.Background(), id, v).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test UserTokenApiService UsertokenList", func(t *testing.T) {
+	t.Run("Test UserTokenApiService UserTokenList", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.UserTokenApi.UsertokenList(context.Background()).Execute()
+		var v string
+
+		resp, httpRes, err := apiClient.UserTokenApi.UserTokenList(context.Background(), v).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

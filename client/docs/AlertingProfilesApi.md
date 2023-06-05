@@ -4,23 +4,95 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**AlertingprofilesAssignEmail**](AlertingProfilesApi.md#AlertingprofilesAssignEmail) | **Put** /api/v1/alertingprofiles/assignemails/{id} | Assign Alerting emails
-[**AlertingprofilesAssignWebhooks**](AlertingProfilesApi.md#AlertingprofilesAssignWebhooks) | **Put** /api/v1/alertingprofiles/assignwebhooks/{id} | Assign Alerting webhooks
-[**AlertingprofilesAttach**](AlertingProfilesApi.md#AlertingprofilesAttach) | **Post** /api/v1/alertingprofiles/attach | Attach alerting profile to project
-[**AlertingprofilesCreate**](AlertingProfilesApi.md#AlertingprofilesCreate) | **Post** /api/v1/alertingprofiles/create | Add Alerting profile
-[**AlertingprofilesDelete**](AlertingProfilesApi.md#AlertingprofilesDelete) | **Delete** /api/v1/alertingprofiles/{id} | Remove Alerting profiles by Id
-[**AlertingprofilesDetach**](AlertingProfilesApi.md#AlertingprofilesDetach) | **Post** /api/v1/alertingprofiles/detach | Detach alerting profile from project
-[**AlertingprofilesDropdown**](AlertingProfilesApi.md#AlertingprofilesDropdown) | **Get** /api/v1/alertingprofiles/list | Retrieve all Alerting profiles for organization
-[**AlertingprofilesEdit**](AlertingProfilesApi.md#AlertingprofilesEdit) | **Post** /api/v1/alertingprofiles/edit | Update Alerting profile
-[**AlertingprofilesList**](AlertingProfilesApi.md#AlertingprofilesList) | **Get** /api/v1/alertingprofiles | Retrieve all Alerting profiles
-[**AlertingprofilesLockManager**](AlertingProfilesApi.md#AlertingprofilesLockManager) | **Post** /api/v1/alertingprofiles/lockmanager | Lock/Unlock Alerting profiles
-[**AlertingprofilesVerify**](AlertingProfilesApi.md#AlertingprofilesVerify) | **Post** /api/v1/alertingprofiles/verifywebhook | Verify webhook endpoint
+[**AlertingProfilesAlertingProfilesForOrganizationList**](AlertingProfilesApi.md#AlertingProfilesAlertingProfilesForOrganizationList) | **Get** /api/v{v}/AlertingProfiles/list | Retrieve all Alerting profiles for organization
+[**AlertingProfilesAssignEmails**](AlertingProfilesApi.md#AlertingProfilesAssignEmails) | **Put** /api/v{v}/AlertingProfiles/assignemails/{id} | Assign Alerting emails
+[**AlertingProfilesAssignWebhooks**](AlertingProfilesApi.md#AlertingProfilesAssignWebhooks) | **Put** /api/v{v}/AlertingProfiles/assignwebhooks/{id} | Assign Alerting webhooks
+[**AlertingProfilesAttach**](AlertingProfilesApi.md#AlertingProfilesAttach) | **Post** /api/v{v}/AlertingProfiles/attach | Attach alerting profile to project.
+[**AlertingProfilesCreate**](AlertingProfilesApi.md#AlertingProfilesCreate) | **Post** /api/v{v}/AlertingProfiles/create | Add Alerting profiles
+[**AlertingProfilesDelete**](AlertingProfilesApi.md#AlertingProfilesDelete) | **Post** /api/v{v}/AlertingProfiles/delete | Remove Alerting profiles by Id
+[**AlertingProfilesDetach**](AlertingProfilesApi.md#AlertingProfilesDetach) | **Post** /api/v{v}/AlertingProfiles/detach | Detach alerting profile from project.
+[**AlertingProfilesEdit**](AlertingProfilesApi.md#AlertingProfilesEdit) | **Post** /api/v{v}/AlertingProfiles/edit | Update Alerting profiles
+[**AlertingProfilesList**](AlertingProfilesApi.md#AlertingProfilesList) | **Get** /api/v{v}/AlertingProfiles | Retrieve all Alerting profiles
+[**AlertingProfilesLockManager**](AlertingProfilesApi.md#AlertingProfilesLockManager) | **Post** /api/v{v}/AlertingProfiles/lockmanager | Lock/Unlock Alerting profiles
+[**AlertingProfilesVerifyWebhook**](AlertingProfilesApi.md#AlertingProfilesVerifyWebhook) | **Post** /api/v{v}/AlertingProfiles/verifywebhook | Verify webhook endpoint
 
 
 
-## AlertingprofilesAssignEmail
+## AlertingProfilesAlertingProfilesForOrganizationList
 
-> AlertingprofilesAssignEmail(ctx, id).AlertingEmailDto(alertingEmailDto).Execute()
+> []CommonDropdownDto AlertingProfilesAlertingProfilesForOrganizationList(ctx, v).OrganizationId(organizationId).Search(search).Execute()
+
+Retrieve all Alerting profiles for organization
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/chnyda/taikungoclient"
+)
+
+func main() {
+    v := "v_example" // string | 
+    organizationId := int32(56) // int32 |  (optional)
+    search := "search_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.AlertingProfilesApi.AlertingProfilesAlertingProfilesForOrganizationList(context.Background(), v).OrganizationId(organizationId).Search(search).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AlertingProfilesApi.AlertingProfilesAlertingProfilesForOrganizationList``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `AlertingProfilesAlertingProfilesForOrganizationList`: []CommonDropdownDto
+    fmt.Fprintf(os.Stdout, "Response from `AlertingProfilesApi.AlertingProfilesAlertingProfilesForOrganizationList`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAlertingProfilesAlertingProfilesForOrganizationListRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **organizationId** | **int32** |  | 
+ **search** | **string** |  | 
+
+### Return type
+
+[**[]CommonDropdownDto**](CommonDropdownDto.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: text/plain, application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## AlertingProfilesAssignEmails
+
+> AlertingProfilesAssignEmails(ctx, id, v).Body(body).Execute()
 
 Assign Alerting emails
 
@@ -38,13 +110,14 @@ import (
 
 func main() {
     id := int32(56) // int32 | 
-    alertingEmailDto := []openapiclient.AlertingEmailDto{*openapiclient.NewAlertingEmailDto("Email_example")} // []AlertingEmailDto |  (optional)
+    v := "v_example" // string | 
+    body := []openapiclient.AlertingEmailDto{*openapiclient.NewAlertingEmailDto("Email_example")} // []AlertingEmailDto |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.AlertingProfilesApi.AlertingprofilesAssignEmail(context.Background(), id).AlertingEmailDto(alertingEmailDto).Execute()
+    r, err := apiClient.AlertingProfilesApi.AlertingProfilesAssignEmails(context.Background(), id, v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AlertingProfilesApi.AlertingprofilesAssignEmail``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AlertingProfilesApi.AlertingProfilesAssignEmails``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -57,16 +130,18 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **id** | **int32** |  | 
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAlertingprofilesAssignEmailRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiAlertingProfilesAssignEmailsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **alertingEmailDto** | [**[]AlertingEmailDto**](AlertingEmailDto.md) |  | 
+
+ **body** | [**[]AlertingEmailDto**](AlertingEmailDto.md) |  | 
 
 ### Return type
 
@@ -78,17 +153,17 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## AlertingprofilesAssignWebhooks
+## AlertingProfilesAssignWebhooks
 
-> AlertingprofilesAssignWebhooks(ctx, id).AlertingWebhookDto(alertingWebhookDto).Execute()
+> AlertingProfilesAssignWebhooks(ctx, id, v).Body(body).Execute()
 
 Assign Alerting webhooks
 
@@ -106,13 +181,14 @@ import (
 
 func main() {
     id := int32(56) // int32 | 
-    alertingWebhookDto := []openapiclient.AlertingWebhookDto{*openapiclient.NewAlertingWebhookDto()} // []AlertingWebhookDto |  (optional)
+    v := "v_example" // string | 
+    body := []openapiclient.AlertingWebhookDto{*openapiclient.NewAlertingWebhookDto()} // []AlertingWebhookDto |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.AlertingProfilesApi.AlertingprofilesAssignWebhooks(context.Background(), id).AlertingWebhookDto(alertingWebhookDto).Execute()
+    r, err := apiClient.AlertingProfilesApi.AlertingProfilesAssignWebhooks(context.Background(), id, v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AlertingProfilesApi.AlertingprofilesAssignWebhooks``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AlertingProfilesApi.AlertingProfilesAssignWebhooks``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -125,16 +201,18 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **id** | **int32** |  | 
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAlertingprofilesAssignWebhooksRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiAlertingProfilesAssignWebhooksRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **alertingWebhookDto** | [**[]AlertingWebhookDto**](AlertingWebhookDto.md) |  | 
+
+ **body** | [**[]AlertingWebhookDto**](AlertingWebhookDto.md) |  | 
 
 ### Return type
 
@@ -146,19 +224,19 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## AlertingprofilesAttach
+## AlertingProfilesAttach
 
-> AlertingprofilesAttach(ctx).AttachDetachAlertingProfileCommand(attachDetachAlertingProfileCommand).Execute()
+> AlertingProfilesAttach(ctx, v).Body(body).Execute()
 
-Attach alerting profile to project
+Attach alerting profile to project.
 
 ### Example
 
@@ -173,13 +251,14 @@ import (
 )
 
 func main() {
-    attachDetachAlertingProfileCommand := *openapiclient.NewAttachDetachAlertingProfileCommand() // AttachDetachAlertingProfileCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewAttachDetachAlertingProfileCommand() // AttachDetachAlertingProfileCommand | Attach command (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.AlertingProfilesApi.AlertingprofilesAttach(context.Background()).AttachDetachAlertingProfileCommand(attachDetachAlertingProfileCommand).Execute()
+    r, err := apiClient.AlertingProfilesApi.AlertingProfilesAttach(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AlertingProfilesApi.AlertingprofilesAttach``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AlertingProfilesApi.AlertingProfilesAttach``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -188,15 +267,20 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAlertingprofilesAttachRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiAlertingProfilesAttachRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **attachDetachAlertingProfileCommand** | [**AttachDetachAlertingProfileCommand**](AttachDetachAlertingProfileCommand.md) |  | 
+
+ **body** | [**AttachDetachAlertingProfileCommand**](AttachDetachAlertingProfileCommand.md) | Attach command | 
 
 ### Return type
 
@@ -208,19 +292,19 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## AlertingprofilesCreate
+## AlertingProfilesCreate
 
-> ApiResponse AlertingprofilesCreate(ctx).CreateAlertingProfileCommand(createAlertingProfileCommand).Execute()
+> ApiResponse AlertingProfilesCreate(ctx, v).Body(body).Execute()
 
-Add Alerting profile
+Add Alerting profiles
 
 ### Example
 
@@ -235,32 +319,38 @@ import (
 )
 
 func main() {
-    createAlertingProfileCommand := *openapiclient.NewCreateAlertingProfileCommand("Name_example") // CreateAlertingProfileCommand |  (optional)
+    v := "v_example" // string | 
+    body := *openapiclient.NewCreateAlertingProfileCommand("Name_example") // CreateAlertingProfileCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AlertingProfilesApi.AlertingprofilesCreate(context.Background()).CreateAlertingProfileCommand(createAlertingProfileCommand).Execute()
+    resp, r, err := apiClient.AlertingProfilesApi.AlertingProfilesCreate(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AlertingProfilesApi.AlertingprofilesCreate``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AlertingProfilesApi.AlertingProfilesCreate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `AlertingprofilesCreate`: ApiResponse
-    fmt.Fprintf(os.Stdout, "Response from `AlertingProfilesApi.AlertingprofilesCreate`: %v\n", resp)
+    // response from `AlertingProfilesCreate`: ApiResponse
+    fmt.Fprintf(os.Stdout, "Response from `AlertingProfilesApi.AlertingProfilesCreate`: %v\n", resp)
 }
 ```
 
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAlertingprofilesCreateRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiAlertingProfilesCreateRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createAlertingProfileCommand** | [**CreateAlertingProfileCommand**](CreateAlertingProfileCommand.md) |  | 
+
+ **body** | [**CreateAlertingProfileCommand**](CreateAlertingProfileCommand.md) |  | 
 
 ### Return type
 
@@ -272,17 +362,17 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## AlertingprofilesDelete
+## AlertingProfilesDelete
 
-> AlertingprofilesDelete(ctx, id).Execute()
+> AlertingProfilesDelete(ctx, v).Body(body).Execute()
 
 Remove Alerting profiles by Id
 
@@ -299,13 +389,14 @@ import (
 )
 
 func main() {
-    id := int32(56) // int32 | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewDeleteAlertingProfilesCommand() // DeleteAlertingProfilesCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.AlertingProfilesApi.AlertingprofilesDelete(context.Background(), id).Execute()
+    r, err := apiClient.AlertingProfilesApi.AlertingProfilesDelete(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AlertingProfilesApi.AlertingprofilesDelete``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AlertingProfilesApi.AlertingProfilesDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -317,16 +408,17 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** |  | 
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAlertingprofilesDeleteRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiAlertingProfilesDeleteRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **body** | [**DeleteAlertingProfilesCommand**](DeleteAlertingProfilesCommand.md) |  | 
 
 ### Return type
 
@@ -338,19 +430,19 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## AlertingprofilesDetach
+## AlertingProfilesDetach
 
-> AlertingprofilesDetach(ctx).AttachDetachAlertingProfileCommand(attachDetachAlertingProfileCommand).Execute()
+> AlertingProfilesDetach(ctx, v).Body(body).Execute()
 
-Detach alerting profile from project
+Detach alerting profile from project.
 
 ### Example
 
@@ -365,13 +457,14 @@ import (
 )
 
 func main() {
-    attachDetachAlertingProfileCommand := *openapiclient.NewAttachDetachAlertingProfileCommand() // AttachDetachAlertingProfileCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewAttachDetachAlertingProfileCommand() // AttachDetachAlertingProfileCommand | Detach command (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.AlertingProfilesApi.AlertingprofilesDetach(context.Background()).AttachDetachAlertingProfileCommand(attachDetachAlertingProfileCommand).Execute()
+    r, err := apiClient.AlertingProfilesApi.AlertingProfilesDetach(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AlertingProfilesApi.AlertingprofilesDetach``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AlertingProfilesApi.AlertingProfilesDetach``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -380,15 +473,20 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAlertingprofilesDetachRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiAlertingProfilesDetachRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **attachDetachAlertingProfileCommand** | [**AttachDetachAlertingProfileCommand**](AttachDetachAlertingProfileCommand.md) |  | 
+
+ **body** | [**AttachDetachAlertingProfileCommand**](AttachDetachAlertingProfileCommand.md) | Detach command | 
 
 ### Return type
 
@@ -400,19 +498,19 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## AlertingprofilesDropdown
+## AlertingProfilesEdit
 
-> []CommonDropdownDto AlertingprofilesDropdown(ctx).OrganizationId(organizationId).Search(search).Execute()
+> ApiResponse AlertingProfilesEdit(ctx, v).Body(body).Execute()
 
-Retrieve all Alerting profiles for organization
+Update Alerting profiles
 
 ### Example
 
@@ -427,98 +525,38 @@ import (
 )
 
 func main() {
-    organizationId := int32(56) // int32 |  (optional)
-    search := "search_example" // string |  (optional)
+    v := "v_example" // string | 
+    body := *openapiclient.NewUpdateAlertingProfileCommand(int32(123)) // UpdateAlertingProfileCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AlertingProfilesApi.AlertingprofilesDropdown(context.Background()).OrganizationId(organizationId).Search(search).Execute()
+    resp, r, err := apiClient.AlertingProfilesApi.AlertingProfilesEdit(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AlertingProfilesApi.AlertingprofilesDropdown``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AlertingProfilesApi.AlertingProfilesEdit``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `AlertingprofilesDropdown`: []CommonDropdownDto
-    fmt.Fprintf(os.Stdout, "Response from `AlertingProfilesApi.AlertingprofilesDropdown`: %v\n", resp)
+    // response from `AlertingProfilesEdit`: ApiResponse
+    fmt.Fprintf(os.Stdout, "Response from `AlertingProfilesApi.AlertingProfilesEdit`: %v\n", resp)
 }
 ```
 
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAlertingprofilesDropdownRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiAlertingProfilesEditRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organizationId** | **int32** |  | 
- **search** | **string** |  | 
 
-### Return type
-
-[**[]CommonDropdownDto**](CommonDropdownDto.md)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## AlertingprofilesEdit
-
-> ApiResponse AlertingprofilesEdit(ctx).UpdateAlertingProfileCommand(updateAlertingProfileCommand).Execute()
-
-Update Alerting profile
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/chnyda/taikungoclient"
-)
-
-func main() {
-    updateAlertingProfileCommand := *openapiclient.NewUpdateAlertingProfileCommand(int32(123)) // UpdateAlertingProfileCommand |  (optional)
-
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AlertingProfilesApi.AlertingprofilesEdit(context.Background()).UpdateAlertingProfileCommand(updateAlertingProfileCommand).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AlertingProfilesApi.AlertingprofilesEdit``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `AlertingprofilesEdit`: ApiResponse
-    fmt.Fprintf(os.Stdout, "Response from `AlertingProfilesApi.AlertingprofilesEdit`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiAlertingprofilesEditRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **updateAlertingProfileCommand** | [**UpdateAlertingProfileCommand**](UpdateAlertingProfileCommand.md) |  | 
+ **body** | [**UpdateAlertingProfileCommand**](UpdateAlertingProfileCommand.md) |  | 
 
 ### Return type
 
@@ -530,17 +568,17 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## AlertingprofilesList
+## AlertingProfilesList
 
-> AlertingProfilesList AlertingprofilesList(ctx).OrganizationId(organizationId).Limit(limit).Offset(offset).SortBy(sortBy).SortDirection(sortDirection).Search(search).Id(id).SearchId(searchId).Execute()
+> AlertingProfilesList AlertingProfilesList(ctx, v).OrganizationId(organizationId).Limit(limit).Offset(offset).SortBy(sortBy).SortDirection(sortDirection).Search(search).Id(id).SearchId(searchId).Execute()
 
 Retrieve all Alerting profiles
 
@@ -557,9 +595,10 @@ import (
 )
 
 func main() {
+    v := "v_example" // string | 
     organizationId := int32(56) // int32 |  (optional)
-    limit := int32(56) // int32 |  (optional)
-    offset := int32(56) // int32 |  (optional)
+    limit := int32(56) // int32 | Limits user size (by default 50) (optional)
+    offset := int32(56) // int32 | Skip elements (optional)
     sortBy := "sortBy_example" // string |  (optional)
     sortDirection := "sortDirection_example" // string |  (optional)
     search := "search_example" // string |  (optional)
@@ -568,30 +607,35 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AlertingProfilesApi.AlertingprofilesList(context.Background()).OrganizationId(organizationId).Limit(limit).Offset(offset).SortBy(sortBy).SortDirection(sortDirection).Search(search).Id(id).SearchId(searchId).Execute()
+    resp, r, err := apiClient.AlertingProfilesApi.AlertingProfilesList(context.Background(), v).OrganizationId(organizationId).Limit(limit).Offset(offset).SortBy(sortBy).SortDirection(sortDirection).Search(search).Id(id).SearchId(searchId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AlertingProfilesApi.AlertingprofilesList``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AlertingProfilesApi.AlertingProfilesList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `AlertingprofilesList`: AlertingProfilesList
-    fmt.Fprintf(os.Stdout, "Response from `AlertingProfilesApi.AlertingprofilesList`: %v\n", resp)
+    // response from `AlertingProfilesList`: AlertingProfilesList
+    fmt.Fprintf(os.Stdout, "Response from `AlertingProfilesApi.AlertingProfilesList`: %v\n", resp)
 }
 ```
 
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAlertingprofilesListRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiAlertingProfilesListRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
  **organizationId** | **int32** |  | 
- **limit** | **int32** |  | 
- **offset** | **int32** |  | 
+ **limit** | **int32** | Limits user size (by default 50) | 
+ **offset** | **int32** | Skip elements | 
  **sortBy** | **string** |  | 
  **sortDirection** | **string** |  | 
  **search** | **string** |  | 
@@ -609,16 +653,16 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## AlertingprofilesLockManager
+## AlertingProfilesLockManager
 
-> AlertingprofilesLockManager(ctx).AlertingProfilesLockManagerCommand(alertingProfilesLockManagerCommand).Execute()
+> AlertingProfilesLockManager(ctx, v).Body(body).Execute()
 
 Lock/Unlock Alerting profiles
 
@@ -635,13 +679,14 @@ import (
 )
 
 func main() {
-    alertingProfilesLockManagerCommand := *openapiclient.NewAlertingProfilesLockManagerCommand() // AlertingProfilesLockManagerCommand | 
+    v := "v_example" // string | 
+    body := *openapiclient.NewAlertingProfilesLockManagerCommand() // AlertingProfilesLockManagerCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.AlertingProfilesApi.AlertingprofilesLockManager(context.Background()).AlertingProfilesLockManagerCommand(alertingProfilesLockManagerCommand).Execute()
+    r, err := apiClient.AlertingProfilesApi.AlertingProfilesLockManager(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AlertingProfilesApi.AlertingprofilesLockManager``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AlertingProfilesApi.AlertingProfilesLockManager``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -650,15 +695,20 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAlertingprofilesLockManagerRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiAlertingProfilesLockManagerRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **alertingProfilesLockManagerCommand** | [**AlertingProfilesLockManagerCommand**](AlertingProfilesLockManagerCommand.md) |  | 
+
+ **body** | [**AlertingProfilesLockManagerCommand**](AlertingProfilesLockManagerCommand.md) |  | 
 
 ### Return type
 
@@ -670,17 +720,17 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## AlertingprofilesVerify
+## AlertingProfilesVerifyWebhook
 
-> AlertingprofilesVerify(ctx).VerifyWebhookCommand(verifyWebhookCommand).Execute()
+> AlertingProfilesVerifyWebhook(ctx, v).Body(body).Execute()
 
 Verify webhook endpoint
 
@@ -697,13 +747,14 @@ import (
 )
 
 func main() {
-    verifyWebhookCommand := *openapiclient.NewVerifyWebhookCommand("Url_example") // VerifyWebhookCommand |  (optional)
+    v := "v_example" // string | 
+    body := *openapiclient.NewVerifyWebhookCommand("Url_example") // VerifyWebhookCommand |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.AlertingProfilesApi.AlertingprofilesVerify(context.Background()).VerifyWebhookCommand(verifyWebhookCommand).Execute()
+    r, err := apiClient.AlertingProfilesApi.AlertingProfilesVerifyWebhook(context.Background(), v).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AlertingProfilesApi.AlertingprofilesVerify``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AlertingProfilesApi.AlertingProfilesVerifyWebhook``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -712,15 +763,20 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**v** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAlertingprofilesVerifyRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiAlertingProfilesVerifyWebhookRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **verifyWebhookCommand** | [**VerifyWebhookCommand**](VerifyWebhookCommand.md) |  | 
+
+ **body** | [**VerifyWebhookCommand**](VerifyWebhookCommand.md) |  | 
 
 ### Return type
 
@@ -732,8 +788,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
