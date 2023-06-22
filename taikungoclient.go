@@ -5,6 +5,7 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"net/http"
 	"os"
 	"strings"
@@ -49,6 +50,28 @@ type jwtData struct {
 	Nbf        int    `json:"nbf"`
 	Exp        int    `json:"exp"`
 	Iat        int    `json:"iat"`
+}
+
+type TaikunError struct {
+	HTTPStatusCode int
+	Message        string
+}
+
+func (e *TaikunError) Error() string {
+	return fmt.Sprintf("Taikun Error: %s (HTTP %d)", e.Message, e.HTTPStatusCode)
+}
+func CreateError(resp *http.Response, err error) error {
+	if resp == nil {
+		return err
+	}
+	body, err2 := ioutil.ReadAll(resp.Body)
+	if err2 != nil {
+		return err
+	}
+	return &TaikunError{
+		HTTPStatusCode: resp.StatusCode,
+		Message:        string(body),
+	}
 }
 
 func NewClientFromCredentials(email string, password string, accessKey string, secretKey string, authMode string, apiHost string) *Client {
@@ -115,7 +138,6 @@ func (c *CustomTransport) RoundTrip(req *http.Request) (*http.Response, error) {
 			defer c.mu.Unlock()
 
 			if c.Client.token == "" {
-				fmt.Println("LOGIN REQUEST")
 				var loginCmd *taikuncore.LoginCommand
 				// keycloak
 				// default
@@ -133,20 +155,20 @@ func (c *CustomTransport) RoundTrip(req *http.Request) (*http.Response, error) {
 						Password: *taikuncore.NewNullableString(&c.Client.password),
 					}
 				}
-				result, _, err := c.Client.Client.AuthManagementApi.AuthLogin(req.Context()).LoginCommand(*loginCmd).Execute()
+				result, body, err := c.Client.Client.AuthManagementApi.AuthLogin(req.Context()).LoginCommand(*loginCmd).Execute()
 				if err != nil {
-					return nil, err
+					return nil, CreateError(body, err)
 				}
 				c.Client.token = *result.Token.Get()
 				c.Client.refreshToken = *result.RefreshToken.Get()
 			}
 		} else if c.Client.token != "" && c.hasTokenExpired() {
-			result, _, err := c.Client.Client.AuthManagementApi.AuthRefresh(req.Context()).RefreshTokenCommand(taikuncore.RefreshTokenCommand{
+			result, body, err := c.Client.Client.AuthManagementApi.AuthRefresh(req.Context()).RefreshTokenCommand(taikuncore.RefreshTokenCommand{
 				RefreshToken: *taikuncore.NewNullableString(&c.Client.refreshToken),
 				Token:        *taikuncore.NewNullableString(&c.Client.token),
 			}).Execute()
 			if err != nil {
-				return nil, err
+				return nil, CreateError(body, err)
 			}
 			c.Client.token = *result.Token.Get()
 			c.Client.refreshToken = *result.RefreshToken.Get()
