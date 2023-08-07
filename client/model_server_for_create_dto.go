@@ -30,7 +30,7 @@ type ServerForCreateDto struct {
 	SpotInstance *bool `json:"spotInstance,omitempty"`
 	AutoscalingGroup NullableString `json:"autoscalingGroup,omitempty"`
 	AvailabilityZone NullableString `json:"availabilityZone,omitempty"`
-	ProxmoxNFSDiskSize *int32 `json:"proxmoxNFSDiskSize,omitempty"`
+	ProxmoxExtraDiskSize *int32 `json:"proxmoxExtraDiskSize,omitempty"`
 	ProxmoxRole *ProxmoxRole `json:"proxmoxRole,omitempty"`
 	Hypervisor NullableString `json:"hypervisor,omitempty"`
 	KubernetesNodeLabels []KubernetesNodeLabelsDto `json:"kubernetesNodeLabels,omitempty"`
@@ -423,36 +423,36 @@ func (o *ServerForCreateDto) UnsetAvailabilityZone() {
 	o.AvailabilityZone.Unset()
 }
 
-// GetProxmoxNFSDiskSize returns the ProxmoxNFSDiskSize field value if set, zero value otherwise.
-func (o *ServerForCreateDto) GetProxmoxNFSDiskSize() int32 {
-	if o == nil || IsNil(o.ProxmoxNFSDiskSize) {
+// GetProxmoxExtraDiskSize returns the ProxmoxExtraDiskSize field value if set, zero value otherwise.
+func (o *ServerForCreateDto) GetProxmoxExtraDiskSize() int32 {
+	if o == nil || IsNil(o.ProxmoxExtraDiskSize) {
 		var ret int32
 		return ret
 	}
-	return *o.ProxmoxNFSDiskSize
+	return *o.ProxmoxExtraDiskSize
 }
 
-// GetProxmoxNFSDiskSizeOk returns a tuple with the ProxmoxNFSDiskSize field value if set, nil otherwise
+// GetProxmoxExtraDiskSizeOk returns a tuple with the ProxmoxExtraDiskSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerForCreateDto) GetProxmoxNFSDiskSizeOk() (*int32, bool) {
-	if o == nil || IsNil(o.ProxmoxNFSDiskSize) {
+func (o *ServerForCreateDto) GetProxmoxExtraDiskSizeOk() (*int32, bool) {
+	if o == nil || IsNil(o.ProxmoxExtraDiskSize) {
 		return nil, false
 	}
-	return o.ProxmoxNFSDiskSize, true
+	return o.ProxmoxExtraDiskSize, true
 }
 
-// HasProxmoxNFSDiskSize returns a boolean if a field has been set.
-func (o *ServerForCreateDto) HasProxmoxNFSDiskSize() bool {
-	if o != nil && !IsNil(o.ProxmoxNFSDiskSize) {
+// HasProxmoxExtraDiskSize returns a boolean if a field has been set.
+func (o *ServerForCreateDto) HasProxmoxExtraDiskSize() bool {
+	if o != nil && !IsNil(o.ProxmoxExtraDiskSize) {
 		return true
 	}
 
 	return false
 }
 
-// SetProxmoxNFSDiskSize gets a reference to the given int32 and assigns it to the ProxmoxNFSDiskSize field.
-func (o *ServerForCreateDto) SetProxmoxNFSDiskSize(v int32) {
-	o.ProxmoxNFSDiskSize = &v
+// SetProxmoxExtraDiskSize gets a reference to the given int32 and assigns it to the ProxmoxExtraDiskSize field.
+func (o *ServerForCreateDto) SetProxmoxExtraDiskSize(v int32) {
+	o.ProxmoxExtraDiskSize = &v
 }
 
 // GetProxmoxRole returns the ProxmoxRole field value if set, zero value otherwise.
@@ -602,8 +602,8 @@ func (o ServerForCreateDto) ToMap() (map[string]interface{}, error) {
 	if o.AvailabilityZone.IsSet() {
 		toSerialize["availabilityZone"] = o.AvailabilityZone.Get()
 	}
-	if !IsNil(o.ProxmoxNFSDiskSize) {
-		toSerialize["proxmoxNFSDiskSize"] = o.ProxmoxNFSDiskSize
+	if !IsNil(o.ProxmoxExtraDiskSize) {
+		toSerialize["proxmoxExtraDiskSize"] = o.ProxmoxExtraDiskSize
 	}
 	if !IsNil(o.ProxmoxRole) {
 		toSerialize["proxmoxRole"] = o.ProxmoxRole

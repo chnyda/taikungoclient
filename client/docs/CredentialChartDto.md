@@ -9,6 +9,8 @@ Name | Type | Description | Notes
 **Openstack** | Pointer to **int32** |  | [optional] 
 **Google** | Pointer to **int32** |  | [optional] 
 **Tanzu** | Pointer to **int32** |  | [optional] 
+**Proxmox** | Pointer to **int32** |  | [optional] 
+**Openshift** | Pointer to **int32** |  | [optional] 
 **TotalCount** | Pointer to **int32** |  | [optional] 
 
 ## Methods
@@ -154,6 +156,56 @@ SetTanzu sets Tanzu field to given value.
 `func (o *CredentialChartDto) HasTanzu() bool`
 
 HasTanzu returns a boolean if a field has been set.
+
+### GetProxmox
+
+`func (o *CredentialChartDto) GetProxmox() int32`
+
+GetProxmox returns the Proxmox field if non-nil, zero value otherwise.
+
+### GetProxmoxOk
+
+`func (o *CredentialChartDto) GetProxmoxOk() (*int32, bool)`
+
+GetProxmoxOk returns a tuple with the Proxmox field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProxmox
+
+`func (o *CredentialChartDto) SetProxmox(v int32)`
+
+SetProxmox sets Proxmox field to given value.
+
+### HasProxmox
+
+`func (o *CredentialChartDto) HasProxmox() bool`
+
+HasProxmox returns a boolean if a field has been set.
+
+### GetOpenshift
+
+`func (o *CredentialChartDto) GetOpenshift() int32`
+
+GetOpenshift returns the Openshift field if non-nil, zero value otherwise.
+
+### GetOpenshiftOk
+
+`func (o *CredentialChartDto) GetOpenshiftOk() (*int32, bool)`
+
+GetOpenshiftOk returns a tuple with the Openshift field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOpenshift
+
+`func (o *CredentialChartDto) SetOpenshift(v int32)`
+
+SetOpenshift sets Openshift field to given value.
+
+### HasOpenshift
+
+`func (o *CredentialChartDto) HasOpenshift() bool`
+
+HasOpenshift returns a boolean if a field has been set.
 
 ### GetTotalCount
 

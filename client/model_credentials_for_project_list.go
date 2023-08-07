@@ -31,6 +31,7 @@ type CredentialsForProjectList struct {
 	Google *GoogleCredentialForProjectDto `json:"google,omitempty"`
 	Tanzu *TanzuCredentialsForProjectDto `json:"tanzu,omitempty"`
 	Proxmox *ProxmoxCredentialsForProjectDto `json:"proxmox,omitempty"`
+	Openshift *OpenshiftCredentialForProjectDto `json:"openshift,omitempty"`
 }
 
 // NewCredentialsForProjectList instantiates a new CredentialsForProjectList object
@@ -412,6 +413,38 @@ func (o *CredentialsForProjectList) SetProxmox(v ProxmoxCredentialsForProjectDto
 	o.Proxmox = &v
 }
 
+// GetOpenshift returns the Openshift field value if set, zero value otherwise.
+func (o *CredentialsForProjectList) GetOpenshift() OpenshiftCredentialForProjectDto {
+	if o == nil || IsNil(o.Openshift) {
+		var ret OpenshiftCredentialForProjectDto
+		return ret
+	}
+	return *o.Openshift
+}
+
+// GetOpenshiftOk returns a tuple with the Openshift field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CredentialsForProjectList) GetOpenshiftOk() (*OpenshiftCredentialForProjectDto, bool) {
+	if o == nil || IsNil(o.Openshift) {
+		return nil, false
+	}
+	return o.Openshift, true
+}
+
+// HasOpenshift returns a boolean if a field has been set.
+func (o *CredentialsForProjectList) HasOpenshift() bool {
+	if o != nil && !IsNil(o.Openshift) {
+		return true
+	}
+
+	return false
+}
+
+// SetOpenshift gets a reference to the given OpenshiftCredentialForProjectDto and assigns it to the Openshift field.
+func (o *CredentialsForProjectList) SetOpenshift(v OpenshiftCredentialForProjectDto) {
+	o.Openshift = &v
+}
+
 func (o CredentialsForProjectList) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -454,6 +487,9 @@ func (o CredentialsForProjectList) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Proxmox) {
 		toSerialize["proxmox"] = o.Proxmox
+	}
+	if !IsNil(o.Openshift) {
+		toSerialize["openshift"] = o.Openshift
 	}
 	return toSerialize, nil
 }

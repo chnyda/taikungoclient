@@ -278,7 +278,7 @@ func (a *PrometheusBillingsApiService) PrometheusbillingsExportCsvExecute(r ApiP
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/octet-stream", "application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)

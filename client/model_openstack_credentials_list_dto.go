@@ -45,6 +45,7 @@ type OpenstackCredentialsListDto struct {
 	CreatedAt NullableString `json:"createdAt,omitempty"`
 	ContinentName NullableString `json:"continentName,omitempty"`
 	IsAdmin *bool `json:"isAdmin,omitempty"`
+	ApplicationCredEnabled *bool `json:"applicationCredEnabled,omitempty"`
 }
 
 // NewOpenstackCredentialsListDto instantiates a new OpenstackCredentialsListDto object
@@ -1035,6 +1036,38 @@ func (o *OpenstackCredentialsListDto) SetIsAdmin(v bool) {
 	o.IsAdmin = &v
 }
 
+// GetApplicationCredEnabled returns the ApplicationCredEnabled field value if set, zero value otherwise.
+func (o *OpenstackCredentialsListDto) GetApplicationCredEnabled() bool {
+	if o == nil || IsNil(o.ApplicationCredEnabled) {
+		var ret bool
+		return ret
+	}
+	return *o.ApplicationCredEnabled
+}
+
+// GetApplicationCredEnabledOk returns a tuple with the ApplicationCredEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OpenstackCredentialsListDto) GetApplicationCredEnabledOk() (*bool, bool) {
+	if o == nil || IsNil(o.ApplicationCredEnabled) {
+		return nil, false
+	}
+	return o.ApplicationCredEnabled, true
+}
+
+// HasApplicationCredEnabled returns a boolean if a field has been set.
+func (o *OpenstackCredentialsListDto) HasApplicationCredEnabled() bool {
+	if o != nil && !IsNil(o.ApplicationCredEnabled) {
+		return true
+	}
+
+	return false
+}
+
+// SetApplicationCredEnabled gets a reference to the given bool and assigns it to the ApplicationCredEnabled field.
+func (o *OpenstackCredentialsListDto) SetApplicationCredEnabled(v bool) {
+	o.ApplicationCredEnabled = &v
+}
+
 func (o OpenstackCredentialsListDto) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -1119,6 +1152,9 @@ func (o OpenstackCredentialsListDto) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.IsAdmin) {
 		toSerialize["isAdmin"] = o.IsAdmin
+	}
+	if !IsNil(o.ApplicationCredEnabled) {
+		toSerialize["applicationCredEnabled"] = o.ApplicationCredEnabled
 	}
 	return toSerialize, nil
 }

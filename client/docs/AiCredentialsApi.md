@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## AiCredentialCreate
 
-> AiCredentialCreate(ctx).CreateAiCredentialCommand(createAiCredentialCommand).Execute()
+> ApiResponse AiCredentialCreate(ctx).CreateAiCredentialCommand(createAiCredentialCommand).Execute()
 
 Create ai credential
 
@@ -33,11 +33,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.AiCredentialsApi.AiCredentialCreate(context.Background()).CreateAiCredentialCommand(createAiCredentialCommand).Execute()
+    resp, r, err := apiClient.AiCredentialsApi.AiCredentialCreate(context.Background()).CreateAiCredentialCommand(createAiCredentialCommand).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AiCredentialsApi.AiCredentialCreate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
+    // response from `AiCredentialCreate`: ApiResponse
+    fmt.Fprintf(os.Stdout, "Response from `AiCredentialsApi.AiCredentialCreate`: %v\n", resp)
 }
 ```
 
@@ -56,7 +58,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
- (empty response body)
+[**ApiResponse**](ApiResponse.md)
 
 ### Authorization
 

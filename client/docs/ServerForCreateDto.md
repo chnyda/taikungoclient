@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **SpotInstance** | Pointer to **bool** |  | [optional] 
 **AutoscalingGroup** | Pointer to **NullableString** |  | [optional] 
 **AvailabilityZone** | Pointer to **NullableString** |  | [optional] 
-**ProxmoxNFSDiskSize** | Pointer to **int32** |  | [optional] 
+**ProxmoxExtraDiskSize** | Pointer to **int32** |  | [optional] 
 **ProxmoxRole** | Pointer to [**ProxmoxRole**](ProxmoxRole.md) |  | [optional] 
 **Hypervisor** | Pointer to **NullableString** |  | [optional] 
 **KubernetesNodeLabels** | Pointer to [**[]KubernetesNodeLabelsDto**](KubernetesNodeLabelsDto.md) |  | [optional] 
@@ -338,30 +338,30 @@ HasAvailabilityZone returns a boolean if a field has been set.
 `func (o *ServerForCreateDto) UnsetAvailabilityZone()`
 
 UnsetAvailabilityZone ensures that no value is present for AvailabilityZone, not even an explicit nil
-### GetProxmoxNFSDiskSize
+### GetProxmoxExtraDiskSize
 
-`func (o *ServerForCreateDto) GetProxmoxNFSDiskSize() int32`
+`func (o *ServerForCreateDto) GetProxmoxExtraDiskSize() int32`
 
-GetProxmoxNFSDiskSize returns the ProxmoxNFSDiskSize field if non-nil, zero value otherwise.
+GetProxmoxExtraDiskSize returns the ProxmoxExtraDiskSize field if non-nil, zero value otherwise.
 
-### GetProxmoxNFSDiskSizeOk
+### GetProxmoxExtraDiskSizeOk
 
-`func (o *ServerForCreateDto) GetProxmoxNFSDiskSizeOk() (*int32, bool)`
+`func (o *ServerForCreateDto) GetProxmoxExtraDiskSizeOk() (*int32, bool)`
 
-GetProxmoxNFSDiskSizeOk returns a tuple with the ProxmoxNFSDiskSize field if it's non-nil, zero value otherwise
+GetProxmoxExtraDiskSizeOk returns a tuple with the ProxmoxExtraDiskSize field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetProxmoxNFSDiskSize
+### SetProxmoxExtraDiskSize
 
-`func (o *ServerForCreateDto) SetProxmoxNFSDiskSize(v int32)`
+`func (o *ServerForCreateDto) SetProxmoxExtraDiskSize(v int32)`
 
-SetProxmoxNFSDiskSize sets ProxmoxNFSDiskSize field to given value.
+SetProxmoxExtraDiskSize sets ProxmoxExtraDiskSize field to given value.
 
-### HasProxmoxNFSDiskSize
+### HasProxmoxExtraDiskSize
 
-`func (o *ServerForCreateDto) HasProxmoxNFSDiskSize() bool`
+`func (o *ServerForCreateDto) HasProxmoxExtraDiskSize() bool`
 
-HasProxmoxNFSDiskSize returns a boolean if a field has been set.
+HasProxmoxExtraDiskSize returns a boolean if a field has been set.
 
 ### GetProxmoxRole
 

@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **Google** | Pointer to [**GoogleCredentialForProjectDto**](GoogleCredentialForProjectDto.md) |  | [optional] 
 **Tanzu** | Pointer to [**TanzuCredentialsForProjectDto**](TanzuCredentialsForProjectDto.md) |  | [optional] 
 **Proxmox** | Pointer to [**ProxmoxCredentialsForProjectDto**](ProxmoxCredentialsForProjectDto.md) |  | [optional] 
+**Openshift** | Pointer to [**OpenshiftCredentialForProjectDto**](OpenshiftCredentialForProjectDto.md) |  | [optional] 
 
 ## Methods
 
@@ -319,6 +320,31 @@ SetProxmox sets Proxmox field to given value.
 `func (o *CredentialsForProjectList) HasProxmox() bool`
 
 HasProxmox returns a boolean if a field has been set.
+
+### GetOpenshift
+
+`func (o *CredentialsForProjectList) GetOpenshift() OpenshiftCredentialForProjectDto`
+
+GetOpenshift returns the Openshift field if non-nil, zero value otherwise.
+
+### GetOpenshiftOk
+
+`func (o *CredentialsForProjectList) GetOpenshiftOk() (*OpenshiftCredentialForProjectDto, bool)`
+
+GetOpenshiftOk returns a tuple with the Openshift field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOpenshift
+
+`func (o *CredentialsForProjectList) SetOpenshift(v OpenshiftCredentialForProjectDto)`
+
+SetOpenshift sets Openshift field to given value.
+
+### HasOpenshift
+
+`func (o *CredentialsForProjectList) HasOpenshift() bool`
+
+HasOpenshift returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -29,6 +29,7 @@ Name | Type | Description | Notes
 **CreatedAt** | Pointer to **NullableString** |  | [optional] 
 **ContinentName** | Pointer to **NullableString** |  | [optional] 
 **IsAdmin** | Pointer to **bool** |  | [optional] 
+**ApplicationCredEnabled** | Pointer to **bool** |  | [optional] 
 
 ## Methods
 
@@ -853,6 +854,31 @@ SetIsAdmin sets IsAdmin field to given value.
 `func (o *OpenstackCredentialsListDto) HasIsAdmin() bool`
 
 HasIsAdmin returns a boolean if a field has been set.
+
+### GetApplicationCredEnabled
+
+`func (o *OpenstackCredentialsListDto) GetApplicationCredEnabled() bool`
+
+GetApplicationCredEnabled returns the ApplicationCredEnabled field if non-nil, zero value otherwise.
+
+### GetApplicationCredEnabledOk
+
+`func (o *OpenstackCredentialsListDto) GetApplicationCredEnabledOk() (*bool, bool)`
+
+GetApplicationCredEnabledOk returns a tuple with the ApplicationCredEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetApplicationCredEnabled
+
+`func (o *OpenstackCredentialsListDto) SetApplicationCredEnabled(v bool)`
+
+SetApplicationCredEnabled sets ApplicationCredEnabled field to given value.
+
+### HasApplicationCredEnabled
+
+`func (o *OpenstackCredentialsListDto) HasApplicationCredEnabled() bool`
+
+HasApplicationCredEnabled returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

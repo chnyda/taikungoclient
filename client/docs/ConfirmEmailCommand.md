@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **NewEmail** | Pointer to **NullableString** |  | [optional] 
-**Mode** | Pointer to **NullableString** |  | [optional] 
+**Mode** | Pointer to [**EmailMode**](EmailMode.md) |  | [optional] 
 
 ## Methods
 
@@ -63,20 +63,20 @@ HasNewEmail returns a boolean if a field has been set.
 UnsetNewEmail ensures that no value is present for NewEmail, not even an explicit nil
 ### GetMode
 
-`func (o *ConfirmEmailCommand) GetMode() string`
+`func (o *ConfirmEmailCommand) GetMode() EmailMode`
 
 GetMode returns the Mode field if non-nil, zero value otherwise.
 
 ### GetModeOk
 
-`func (o *ConfirmEmailCommand) GetModeOk() (*string, bool)`
+`func (o *ConfirmEmailCommand) GetModeOk() (*EmailMode, bool)`
 
 GetModeOk returns a tuple with the Mode field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMode
 
-`func (o *ConfirmEmailCommand) SetMode(v string)`
+`func (o *ConfirmEmailCommand) SetMode(v EmailMode)`
 
 SetMode sets Mode field to given value.
 
@@ -86,16 +86,6 @@ SetMode sets Mode field to given value.
 
 HasMode returns a boolean if a field has been set.
 
-### SetModeNil
-
-`func (o *ConfirmEmailCommand) SetModeNil(b bool)`
-
- SetModeNil sets the value for Mode to be an explicit nil
-
-### UnsetMode
-`func (o *ConfirmEmailCommand) UnsetMode()`
-
-UnsetMode ensures that no value is present for Mode, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

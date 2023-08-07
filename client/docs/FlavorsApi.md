@@ -9,6 +9,7 @@ Method | HTTP request | Description
 [**FlavorsBindToProject**](FlavorsApi.md#FlavorsBindToProject) | **Post** /api/v1/flavors/bind | Bind flavors to project
 [**FlavorsDropdownFlavors**](FlavorsApi.md#FlavorsDropdownFlavors) | **Get** /api/v1/flavors/credentials/dropdown/list | Retrieve cloud credentials dropdown list
 [**FlavorsGoogleMachineTypes**](FlavorsApi.md#FlavorsGoogleMachineTypes) | **Get** /api/v1/flavors/google/{cloudId} | 
+[**FlavorsOpenshiftFlavors**](FlavorsApi.md#FlavorsOpenshiftFlavors) | **Get** /api/v1/flavors/openshift/{cloudId} | Retrieve openshift flavors
 [**FlavorsOpenstackFlavors**](FlavorsApi.md#FlavorsOpenstackFlavors) | **Get** /api/v1/flavors/openstack/{cloudId} | 
 [**FlavorsProxmoxFlavors**](FlavorsApi.md#FlavorsProxmoxFlavors) | **Get** /api/v1/flavors/proxmox/{cloudId} | Retrieve proxmox flavors
 [**FlavorsSelectedFlavorsForProject**](FlavorsApi.md#FlavorsSelectedFlavorsForProject) | **Get** /api/v1/flavors/projects/list | Retrieve selected flavors for project
@@ -390,6 +391,92 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**GoogleFlavorList**](GoogleFlavorList.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## FlavorsOpenshiftFlavors
+
+> OpenshiftFlavorList FlavorsOpenshiftFlavors(ctx, cloudId).Limit(limit).Offset(offset).StartRam(startRam).EndRam(endRam).StartCpu(startCpu).EndCpu(endCpu).Search(search).SortBy(sortBy).SortDirection(sortDirection).Execute()
+
+Retrieve openshift flavors
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/chnyda/taikungoclient"
+)
+
+func main() {
+    cloudId := int32(56) // int32 | 
+    limit := int32(56) // int32 |  (optional)
+    offset := int32(56) // int32 |  (optional)
+    startRam := int64(789) // int64 |  (optional)
+    endRam := int64(789) // int64 |  (optional)
+    startCpu := int32(56) // int32 |  (optional)
+    endCpu := int32(56) // int32 |  (optional)
+    search := "search_example" // string |  (optional)
+    sortBy := "sortBy_example" // string |  (optional)
+    sortDirection := "sortDirection_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.FlavorsApi.FlavorsOpenshiftFlavors(context.Background(), cloudId).Limit(limit).Offset(offset).StartRam(startRam).EndRam(endRam).StartCpu(startCpu).EndCpu(endCpu).Search(search).SortBy(sortBy).SortDirection(sortDirection).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `FlavorsApi.FlavorsOpenshiftFlavors``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `FlavorsOpenshiftFlavors`: OpenshiftFlavorList
+    fmt.Fprintf(os.Stdout, "Response from `FlavorsApi.FlavorsOpenshiftFlavors`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**cloudId** | **int32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiFlavorsOpenshiftFlavorsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **limit** | **int32** |  | 
+ **offset** | **int32** |  | 
+ **startRam** | **int64** |  | 
+ **endRam** | **int64** |  | 
+ **startCpu** | **int32** |  | 
+ **endCpu** | **int32** |  | 
+ **search** | **string** |  | 
+ **sortBy** | **string** |  | 
+ **sortDirection** | **string** |  | 
+
+### Return type
+
+[**OpenshiftFlavorList**](OpenshiftFlavorList.md)
 
 ### Authorization
 

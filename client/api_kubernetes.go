@@ -1707,7 +1707,7 @@ type ApiKubernetesDashboardListRequest struct {
 	projectId int32
 }
 
-func (r ApiKubernetesDashboardListRequest) Execute() (string, *http.Response, error) {
+func (r ApiKubernetesDashboardListRequest) Execute() (*KubernetesDashboardDto, *http.Response, error) {
 	return r.ApiService.KubernetesDashboardListExecute(r)
 }
 
@@ -1727,13 +1727,13 @@ func (a *KubernetesApiService) KubernetesDashboardList(ctx context.Context, proj
 }
 
 // Execute executes the request
-//  @return string
-func (a *KubernetesApiService) KubernetesDashboardListExecute(r ApiKubernetesDashboardListRequest) (string, *http.Response, error) {
+//  @return KubernetesDashboardDto
+func (a *KubernetesApiService) KubernetesDashboardListExecute(r ApiKubernetesDashboardListRequest) (*KubernetesDashboardDto, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  string
+		localVarReturnValue  *KubernetesDashboardDto
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "KubernetesApiService.KubernetesDashboardList")
@@ -1758,7 +1758,7 @@ func (a *KubernetesApiService) KubernetesDashboardListExecute(r ApiKubernetesDas
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -5087,6 +5087,181 @@ func (a *KubernetesApiService) KubernetesDownloadExecute(r ApiKubernetesDownload
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiKubernetesExportRequest struct {
+	ctx context.Context
+	ApiService *KubernetesApiService
+	projectId *int32
+}
+
+func (r ApiKubernetesExportRequest) ProjectId(projectId int32) ApiKubernetesExportRequest {
+	r.projectId = &projectId
+	return r
+}
+
+func (r ApiKubernetesExportRequest) Execute() (*CsvExporter, *http.Response, error) {
+	return r.ApiService.KubernetesExportExecute(r)
+}
+
+/*
+KubernetesExport Export
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiKubernetesExportRequest
+*/
+func (a *KubernetesApiService) KubernetesExport(ctx context.Context) ApiKubernetesExportRequest {
+	return ApiKubernetesExportRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return CsvExporter
+func (a *KubernetesApiService) KubernetesExportExecute(r ApiKubernetesExportRequest) (*CsvExporter, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *CsvExporter
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "KubernetesApiService.KubernetesExport")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/kubernetes/export"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.projectId == nil {
+		return localVarReturnValue, nil, reportError("projectId is required and must be specified")
+	}
+
+	parameterAddToHeaderOrQuery(localVarQueryParams, "ProjectId", r.projectId, "")
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["Bearer"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiKubernetesGetSupportedListRequest struct {
 	ctx context.Context
 	ApiService *KubernetesApiService
@@ -7049,7 +7224,7 @@ func (r ApiKubernetesOverviewRequest) OrganizationId(organizationId int32) ApiKu
 	return r
 }
 
-func (r ApiKubernetesOverviewRequest) Execute() (string, *http.Response, error) {
+func (r ApiKubernetesOverviewRequest) Execute() ([]KubernetesOverviewDto, *http.Response, error) {
 	return r.ApiService.KubernetesOverviewExecute(r)
 }
 
@@ -7067,13 +7242,13 @@ func (a *KubernetesApiService) KubernetesOverview(ctx context.Context) ApiKubern
 }
 
 // Execute executes the request
-//  @return string
-func (a *KubernetesApiService) KubernetesOverviewExecute(r ApiKubernetesOverviewRequest) (string, *http.Response, error) {
+//  @return []KubernetesOverviewDto
+func (a *KubernetesApiService) KubernetesOverviewExecute(r ApiKubernetesOverviewRequest) ([]KubernetesOverviewDto, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  string
+		localVarReturnValue  []KubernetesOverviewDto
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "KubernetesApiService.KubernetesOverview")
@@ -7100,7 +7275,7 @@ func (a *KubernetesApiService) KubernetesOverviewExecute(r ApiKubernetesOverview
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)

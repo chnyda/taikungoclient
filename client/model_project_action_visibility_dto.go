@@ -42,6 +42,8 @@ type ProjectActionVisibilityDto struct {
 	DisableSpotVm *ProjectButtonStatusDto `json:"disableSpotVm,omitempty"`
 	AttachAlertingProfile *ProjectButtonStatusDto `json:"attachAlertingProfile,omitempty"`
 	DetachAlertingProfile *ProjectButtonStatusDto `json:"detachAlertingProfile,omitempty"`
+	EnableAi *ProjectButtonStatusDto `json:"enableAi,omitempty"`
+	DisableAi *ProjectButtonStatusDto `json:"disableAi,omitempty"`
 }
 
 // NewProjectActionVisibilityDto instantiates a new ProjectActionVisibilityDto object
@@ -765,6 +767,70 @@ func (o *ProjectActionVisibilityDto) SetDetachAlertingProfile(v ProjectButtonSta
 	o.DetachAlertingProfile = &v
 }
 
+// GetEnableAi returns the EnableAi field value if set, zero value otherwise.
+func (o *ProjectActionVisibilityDto) GetEnableAi() ProjectButtonStatusDto {
+	if o == nil || IsNil(o.EnableAi) {
+		var ret ProjectButtonStatusDto
+		return ret
+	}
+	return *o.EnableAi
+}
+
+// GetEnableAiOk returns a tuple with the EnableAi field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ProjectActionVisibilityDto) GetEnableAiOk() (*ProjectButtonStatusDto, bool) {
+	if o == nil || IsNil(o.EnableAi) {
+		return nil, false
+	}
+	return o.EnableAi, true
+}
+
+// HasEnableAi returns a boolean if a field has been set.
+func (o *ProjectActionVisibilityDto) HasEnableAi() bool {
+	if o != nil && !IsNil(o.EnableAi) {
+		return true
+	}
+
+	return false
+}
+
+// SetEnableAi gets a reference to the given ProjectButtonStatusDto and assigns it to the EnableAi field.
+func (o *ProjectActionVisibilityDto) SetEnableAi(v ProjectButtonStatusDto) {
+	o.EnableAi = &v
+}
+
+// GetDisableAi returns the DisableAi field value if set, zero value otherwise.
+func (o *ProjectActionVisibilityDto) GetDisableAi() ProjectButtonStatusDto {
+	if o == nil || IsNil(o.DisableAi) {
+		var ret ProjectButtonStatusDto
+		return ret
+	}
+	return *o.DisableAi
+}
+
+// GetDisableAiOk returns a tuple with the DisableAi field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ProjectActionVisibilityDto) GetDisableAiOk() (*ProjectButtonStatusDto, bool) {
+	if o == nil || IsNil(o.DisableAi) {
+		return nil, false
+	}
+	return o.DisableAi, true
+}
+
+// HasDisableAi returns a boolean if a field has been set.
+func (o *ProjectActionVisibilityDto) HasDisableAi() bool {
+	if o != nil && !IsNil(o.DisableAi) {
+		return true
+	}
+
+	return false
+}
+
+// SetDisableAi gets a reference to the given ProjectButtonStatusDto and assigns it to the DisableAi field.
+func (o *ProjectActionVisibilityDto) SetDisableAi(v ProjectButtonStatusDto) {
+	o.DisableAi = &v
+}
+
 func (o ProjectActionVisibilityDto) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -840,6 +906,12 @@ func (o ProjectActionVisibilityDto) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.DetachAlertingProfile) {
 		toSerialize["detachAlertingProfile"] = o.DetachAlertingProfile
+	}
+	if !IsNil(o.EnableAi) {
+		toSerialize["enableAi"] = o.EnableAi
+	}
+	if !IsNil(o.DisableAi) {
+		toSerialize["disableAi"] = o.DisableAi
 	}
 	return toSerialize, nil
 }

@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Id** | Pointer to **int32** |  | [optional] 
 **Projects** | Pointer to [**[]CommonDropdownDto**](CommonDropdownDto.md) |  | [optional] 
 **FullName** | Pointer to **NullableString** |  | [optional] 
-**CloudType** | Pointer to **NullableString** |  | [optional] 
+**CloudType** | Pointer to [**CloudType**](CloudType.md) |  | [optional] 
 **IsDefault** | Pointer to **bool** |  | [optional] 
 
 ## Methods
@@ -126,20 +126,20 @@ HasFullName returns a boolean if a field has been set.
 UnsetFullName ensures that no value is present for FullName, not even an explicit nil
 ### GetCloudType
 
-`func (o *CloudCredentialsForOrganizationEntity) GetCloudType() string`
+`func (o *CloudCredentialsForOrganizationEntity) GetCloudType() CloudType`
 
 GetCloudType returns the CloudType field if non-nil, zero value otherwise.
 
 ### GetCloudTypeOk
 
-`func (o *CloudCredentialsForOrganizationEntity) GetCloudTypeOk() (*string, bool)`
+`func (o *CloudCredentialsForOrganizationEntity) GetCloudTypeOk() (*CloudType, bool)`
 
 GetCloudTypeOk returns a tuple with the CloudType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCloudType
 
-`func (o *CloudCredentialsForOrganizationEntity) SetCloudType(v string)`
+`func (o *CloudCredentialsForOrganizationEntity) SetCloudType(v CloudType)`
 
 SetCloudType sets CloudType field to given value.
 
@@ -149,16 +149,6 @@ SetCloudType sets CloudType field to given value.
 
 HasCloudType returns a boolean if a field has been set.
 
-### SetCloudTypeNil
-
-`func (o *CloudCredentialsForOrganizationEntity) SetCloudTypeNil(b bool)`
-
- SetCloudTypeNil sets the value for CloudType to be an explicit nil
-
-### UnsetCloudType
-`func (o *CloudCredentialsForOrganizationEntity) UnsetCloudType()`
-
-UnsetCloudType ensures that no value is present for CloudType, not even an explicit nil
 ### GetIsDefault
 
 `func (o *CloudCredentialsForOrganizationEntity) GetIsDefault() bool`

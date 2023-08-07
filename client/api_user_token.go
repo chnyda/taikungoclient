@@ -27,24 +27,14 @@ type UserTokenApiService service
 type ApiUsertokenAvailableEndpointsRequest struct {
 	ctx context.Context
 	ApiService *UserTokenApiService
-	isAdd *bool
-	isReadonly *bool
 	limit *int32
 	offset *int32
 	sortBy *string
 	sortDirection *string
 	search *string
 	id *string
-}
-
-func (r ApiUsertokenAvailableEndpointsRequest) IsAdd(isAdd bool) ApiUsertokenAvailableEndpointsRequest {
-	r.isAdd = &isAdd
-	return r
-}
-
-func (r ApiUsertokenAvailableEndpointsRequest) IsReadonly(isReadonly bool) ApiUsertokenAvailableEndpointsRequest {
-	r.isReadonly = &isReadonly
-	return r
+	isAdd *bool
+	isReadonly *bool
 }
 
 func (r ApiUsertokenAvailableEndpointsRequest) Limit(limit int32) ApiUsertokenAvailableEndpointsRequest {
@@ -74,6 +64,16 @@ func (r ApiUsertokenAvailableEndpointsRequest) Search(search string) ApiUsertoke
 
 func (r ApiUsertokenAvailableEndpointsRequest) Id(id string) ApiUsertokenAvailableEndpointsRequest {
 	r.id = &id
+	return r
+}
+
+func (r ApiUsertokenAvailableEndpointsRequest) IsAdd(isAdd bool) ApiUsertokenAvailableEndpointsRequest {
+	r.isAdd = &isAdd
+	return r
+}
+
+func (r ApiUsertokenAvailableEndpointsRequest) IsReadonly(isReadonly bool) ApiUsertokenAvailableEndpointsRequest {
+	r.isReadonly = &isReadonly
 	return r
 }
 
@@ -114,12 +114,6 @@ func (a *UserTokenApiService) UsertokenAvailableEndpointsExecute(r ApiUsertokenA
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.isAdd == nil {
-		return localVarReturnValue, nil, reportError("isAdd is required and must be specified")
-	}
-	if r.isReadonly == nil {
-		return localVarReturnValue, nil, reportError("isReadonly is required and must be specified")
-	}
 
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "Limit", r.limit, "")
@@ -139,8 +133,12 @@ func (a *UserTokenApiService) UsertokenAvailableEndpointsExecute(r ApiUsertokenA
 	if r.id != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "Id", r.id, "")
 	}
-	parameterAddToHeaderOrQuery(localVarQueryParams, "IsAdd", r.isAdd, "")
-	parameterAddToHeaderOrQuery(localVarQueryParams, "IsReadonly", r.isReadonly, "")
+	if r.isAdd != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "IsAdd", r.isAdd, "")
+	}
+	if r.isReadonly != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "IsReadonly", r.isReadonly, "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

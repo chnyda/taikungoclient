@@ -25,6 +25,8 @@ type ProjectChartDto struct {
 	Updating []ProjectCommonRecordDto `json:"updating,omitempty"`
 	TotalCount *int32 `json:"totalCount,omitempty"`
 	Failed []ProjectCommonRecordDto `json:"failed,omitempty"`
+	Purging []ProjectCommonRecordDto `json:"purging,omitempty"`
+	Deleting []ProjectCommonRecordDto `json:"deleting,omitempty"`
 }
 
 // NewProjectChartDto instantiates a new ProjectChartDto object
@@ -208,6 +210,72 @@ func (o *ProjectChartDto) SetFailed(v []ProjectCommonRecordDto) {
 	o.Failed = v
 }
 
+// GetPurging returns the Purging field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProjectChartDto) GetPurging() []ProjectCommonRecordDto {
+	if o == nil {
+		var ret []ProjectCommonRecordDto
+		return ret
+	}
+	return o.Purging
+}
+
+// GetPurgingOk returns a tuple with the Purging field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProjectChartDto) GetPurgingOk() ([]ProjectCommonRecordDto, bool) {
+	if o == nil || IsNil(o.Purging) {
+		return nil, false
+	}
+	return o.Purging, true
+}
+
+// HasPurging returns a boolean if a field has been set.
+func (o *ProjectChartDto) HasPurging() bool {
+	if o != nil && IsNil(o.Purging) {
+		return true
+	}
+
+	return false
+}
+
+// SetPurging gets a reference to the given []ProjectCommonRecordDto and assigns it to the Purging field.
+func (o *ProjectChartDto) SetPurging(v []ProjectCommonRecordDto) {
+	o.Purging = v
+}
+
+// GetDeleting returns the Deleting field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProjectChartDto) GetDeleting() []ProjectCommonRecordDto {
+	if o == nil {
+		var ret []ProjectCommonRecordDto
+		return ret
+	}
+	return o.Deleting
+}
+
+// GetDeletingOk returns a tuple with the Deleting field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProjectChartDto) GetDeletingOk() ([]ProjectCommonRecordDto, bool) {
+	if o == nil || IsNil(o.Deleting) {
+		return nil, false
+	}
+	return o.Deleting, true
+}
+
+// HasDeleting returns a boolean if a field has been set.
+func (o *ProjectChartDto) HasDeleting() bool {
+	if o != nil && IsNil(o.Deleting) {
+		return true
+	}
+
+	return false
+}
+
+// SetDeleting gets a reference to the given []ProjectCommonRecordDto and assigns it to the Deleting field.
+func (o *ProjectChartDto) SetDeleting(v []ProjectCommonRecordDto) {
+	o.Deleting = v
+}
+
 func (o ProjectChartDto) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -232,6 +300,12 @@ func (o ProjectChartDto) ToMap() (map[string]interface{}, error) {
 	}
 	if o.Failed != nil {
 		toSerialize["failed"] = o.Failed
+	}
+	if o.Purging != nil {
+		toSerialize["purging"] = o.Purging
+	}
+	if o.Deleting != nil {
+		toSerialize["deleting"] = o.Deleting
 	}
 	return toSerialize, nil
 }

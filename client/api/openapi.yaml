@@ -1131,6 +1131,12 @@ paths:
               $ref: '#/components/schemas/CreateAiCredentialCommand'
         required: true
       responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: OK
         "400":
           content:
             application/json:
@@ -5520,7 +5526,7 @@ paths:
       responses:
         "200":
           content:
-            application/octet-stream:
+            application/json:
               schema:
                 $ref: '#/components/schemas/CsvExporter'
           description: OK
@@ -9003,6 +9009,49 @@ paths:
       summary: Fetch k8s overview data
       tags:
       - Cron Job Service
+  /api/v1/cronjob/kube-config-cleaner:
+    post:
+      operationId: cronjob-kube-config-cleaner
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/KubeConfigCleanerCommand'
+        required: true
+      responses:
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Internal Server Error
+      summary: Clean kube config
+      tags:
+      - Cron Job Service
   /api/v1/cronjob/alerts:
     post:
       operationId: cronjob-delete-expired-alerts
@@ -10441,6 +10490,127 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Server Error
+      tags:
+      - Flavors
+  /api/v1/flavors/openshift/{cloudId}:
+    get:
+      operationId: flavors-openshift-flavors
+      parameters:
+      - explode: true
+        in: query
+        name: Limit
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: Offset
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - explode: false
+        in: path
+        name: cloudId
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: simple
+      - explode: true
+        in: query
+        name: StartRam
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: EndRam
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: StartCpu
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: EndCpu
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: Search
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: SortBy
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: SortDirection
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OpenshiftFlavorList'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Internal Server Error
+      summary: Retrieve openshift flavors
       tags:
       - Flavors
   /api/v1/flavors/openstack/{cloudId}:
@@ -12966,6 +13136,55 @@ paths:
       summary: Download kube config file for user by project Id
       tags:
       - Kube Config
+  /api/v1/kubeconfig/export:
+    post:
+      operationId: kubeconfig-export
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExportKubeConfigCommand'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CsvExporter'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Internal Server Error
+      summary: Export
+      tags:
+      - Kube Config
   /api/v1/kubeconfig/interactive-shell:
     post:
       operationId: kubeconfig-interactive-shell
@@ -14120,6 +14339,58 @@ paths:
       summary: Download kube config file
       tags:
       - Kubernetes
+  /api/v1/kubernetes/export:
+    get:
+      operationId: kubernetes-export
+      parameters:
+      - explode: true
+        in: query
+        name: ProjectId
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CsvExporter'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Internal Server Error
+      summary: Export
+      tags:
+      - Kubernetes
   /api/v1/kubernetes/{projectId}/configmap:
     get:
       operationId: kubernetes-config-map-list
@@ -14546,9 +14817,9 @@ paths:
       responses:
         "200":
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/KubernetesDashboardDto'
           description: OK
         "400":
           content:
@@ -16205,9 +16476,11 @@ paths:
       responses:
         "200":
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
+                items:
+                  $ref: '#/components/schemas/KubernetesOverviewDto'
+                type: array
           description: OK
         "400":
           content:
@@ -17678,7 +17951,7 @@ paths:
       responses:
         "200":
           content:
-            application/octet-stream:
+            application/json:
               schema:
                 $ref: '#/components/schemas/CsvExporter'
           description: OK
@@ -18571,6 +18844,49 @@ paths:
       summary: Remove Opa profile by Id
       tags:
       - Opa Profiles
+  /api/v1/openshift/create:
+    post:
+      operationId: openshift-create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OpenshiftCreateCommand'
+        required: true
+      responses:
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Internal Server Error
+      summary: Add Openshift cloud credential
+      tags:
+      - Openshift
   /api/v1/openshift/storage-class:
     post:
       operationId: openshift-storage-class
@@ -18621,6 +18937,160 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Server Error
+      tags:
+      - Openshift
+  /api/v1/openshift/validate:
+    post:
+      operationId: openshift-validate
+      requestBody:
+        content:
+          multipart/form-data:
+            encoding:
+              config:
+                style: form
+            schema:
+              $ref: '#/components/schemas/checker_kube_config_request'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: string
+          description: Success
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Server Error
+      tags:
+      - Openshift
+  /api/v1/openshift/list:
+    get:
+      operationId: openshift-list
+      parameters:
+      - explode: true
+        in: query
+        name: Limit
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: Offset
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: OrganizationId
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: SortBy
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: SortDirection
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: Search
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: SearchId
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: Id
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OpenshiftList'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Internal Server Error
+      summary: Retrieve all operation credentials
       tags:
       - Openshift
   /api/v1/openstack/create:
@@ -20059,6 +20529,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/UpdatePaymentIdCommand'
+        required: true
       responses:
         "400":
           content:
@@ -20151,7 +20622,7 @@ paths:
       responses:
         "200":
           content:
-            application/octet-stream:
+            application/json:
               schema:
                 $ref: '#/components/schemas/CsvExporter'
           description: OK
@@ -21324,9 +21795,9 @@ paths:
       summary: Get partners dropdown
       tags:
       - Partners
-  /api/v1/payments/clear:
+  /api/v1/payment/clear:
     post:
-      operationId: payments-clear
+      operationId: payment-clear
       requestBody:
         content:
           application/json:
@@ -21367,9 +21838,9 @@ paths:
       summary: Clear payment
       tags:
       - Payments
-  /api/v1/payments/createcustomer:
+  /api/v1/payment/createcustomer:
     post:
-      operationId: payments-create-customer
+      operationId: payment-create-customer
       requestBody:
         content:
           application/json:
@@ -21409,9 +21880,9 @@ paths:
       summary: Create customer
       tags:
       - Payments
-  /api/v1/payments/finalprice:
+  /api/v1/payment/finalprice:
     post:
-      operationId: payments-final-price
+      operationId: payment-final-price
       requestBody:
         content:
           application/json:
@@ -21458,9 +21929,9 @@ paths:
       summary: Fetch final price
       tags:
       - Payments
-  /api/v1/payments/pay:
+  /api/v1/payment/pay:
     post:
-      operationId: payments-pay
+      operationId: payment-pay
       requestBody:
         content:
           application/json:
@@ -21507,9 +21978,9 @@ paths:
       summary: Pay invoice
       tags:
       - Payments
-  /api/v1/payments/updatecard:
+  /api/v1/payment/updatecard:
     post:
-      operationId: payments-update-card
+      operationId: payment-update-card
       requestBody:
         content:
           application/json:
@@ -21550,9 +22021,9 @@ paths:
       summary: Update payment card
       tags:
       - Payments
-  /api/v1/payments/webhook:
+  /api/v1/payment/webhook:
     post:
-      operationId: payments-webhook
+      operationId: payment-webhook
       requestBody:
         content:
           application/json:
@@ -21593,9 +22064,9 @@ paths:
       summary: Listen to payment webhook
       tags:
       - Payments
-  /api/v1/payments/billing-info:
+  /api/v1/payment/billing-info:
     get:
-      operationId: payments-billing-info
+      operationId: payment-billing-info
       responses:
         "200":
           content:
@@ -21636,9 +22107,9 @@ paths:
       summary: Get billing info for organization
       tags:
       - Payments
-  /api/v1/payments/cardinfo:
+  /api/v1/payment/cardinfo:
     get:
-      operationId: payments-cardinfo
+      operationId: payment-cardinfo
       parameters:
       - explode: true
         in: query
@@ -21688,9 +22159,9 @@ paths:
       summary: Get card information
       tags:
       - Payments
-  /api/v1/payments/stripeinvoices/{subscriptionId}:
+  /api/v1/payment/stripeinvoices/{subscriptionId}:
     get:
-      operationId: payments-get-stripe-invoices
+      operationId: payment-get-stripe-invoices
       parameters:
       - explode: false
         in: path
@@ -25268,7 +25739,7 @@ paths:
       responses:
         "200":
           content:
-            application/octet-stream:
+            application/json:
               schema:
                 $ref: '#/components/schemas/CsvExporter'
           description: OK
@@ -30079,6 +30550,12 @@ paths:
           type: integer
         style: simple
       responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CsvExporter'
+          description: OK
         "400":
           content:
             application/json:
@@ -32842,14 +33319,14 @@ paths:
       - explode: true
         in: query
         name: IsAdd
-        required: true
+        required: false
         schema:
           type: boolean
         style: form
       - explode: true
         in: query
         name: IsReadonly
-        required: true
+        required: false
         schema:
           type: boolean
         style: form
@@ -33577,7 +34054,7 @@ paths:
       responses:
         "200":
           content:
-            application/octet-stream:
+            application/json:
               schema:
                 $ref: '#/components/schemas/CsvExporter'
           description: OK
@@ -38497,7 +38974,7 @@ components:
           id: 0
         - name: name
           id: 0
-        cloudType: cloudType
+        cloudType: null
         fullName: fullName
         id: 0
       properties:
@@ -38513,8 +38990,7 @@ components:
           nullable: true
           type: string
         cloudType:
-          nullable: true
-          type: string
+          $ref: '#/components/schemas/CloudType'
         isDefault:
           type: boolean
       type: object
@@ -38628,6 +39104,7 @@ components:
       - OPENSTACK
       - PROXMOX
       - TANZU
+      - OPENSHIFT
       type: string
     CommitStandAloneVmCommand:
       additionalProperties: false
@@ -38907,15 +39384,14 @@ components:
     ConfirmEmailCommand:
       additionalProperties: false
       example:
-        mode: mode
+        mode: null
         newEmail: newEmail
       properties:
         newEmail:
           nullable: true
           type: string
         mode:
-          nullable: true
-          type: string
+          $ref: '#/components/schemas/EmailMode'
       type: object
     ConsoleScreenshotCommand:
       additionalProperties: false
@@ -40363,11 +40839,13 @@ components:
     CredentialChartDto:
       additionalProperties: false
       example:
+        openshift: 4
         openstack: 7
         google: 9
         aws: 5
         tanzu: 3
-        totalCount: 2
+        totalCount: 7
+        proxmox: 2
         azure: 2
       properties:
         aws:
@@ -40383,6 +40861,12 @@ components:
           format: int32
           type: integer
         tanzu:
+          format: int32
+          type: integer
+        proxmox:
+          format: int32
+          type: integer
+        openshift:
           format: int32
           type: integer
         totalCount:
@@ -40456,6 +40940,7 @@ components:
             id: 0
           - name: name
             id: 0
+          applicationCredEnabled: true
           project: project
           availabilityZone: availabilityZone
           publicNetwork: publicNetwork
@@ -40485,6 +40970,7 @@ components:
             id: 0
           - name: name
             id: 0
+          applicationCredEnabled: true
           project: project
           availabilityZone: availabilityZone
           publicNetwork: publicNetwork
@@ -40754,6 +41240,11 @@ components:
       example:
         cloudType: null
         cloudCredentialRevision: 0
+        openshift:
+          storageClass: storageClass
+          baseDomain: baseDomain
+          kubeConfig: kubeConfig
+          pullSecret: pullSecret
         openstack:
           openStackUrl: openStackUrl
           applicationCredEnabled: true
@@ -40841,6 +41332,8 @@ components:
           $ref: '#/components/schemas/TanzuCredentialsForProjectDto'
         proxmox:
           $ref: '#/components/schemas/ProxmoxCredentialsForProjectDto'
+        openshift:
+          $ref: '#/components/schemas/OpenshiftCredentialForProjectDto'
       type: object
     CronJobCommand:
       additionalProperties: false
@@ -40970,6 +41463,13 @@ components:
           - expiredAt: expiredAt
             name: name
             id: 1
+          deleting:
+          - expiredAt: expiredAt
+            name: name
+            id: 1
+          - expiredAt: expiredAt
+            name: name
+            id: 1
           pending:
           - expiredAt: expiredAt
             name: name
@@ -40992,276 +41492,377 @@ components:
           - expiredAt: expiredAt
             name: name
             id: 1
+          purging:
+          - expiredAt: expiredAt
+            name: name
+            id: 1
+          - expiredAt: expiredAt
+            name: name
+            id: 1
         servers:
-          totalUpdatingCount: 1
-          totalDiskSize: 1
+          totalOpenshiftCount: 3
           waiting:
           - names:
             - names
             - names
             projectName: projectName
-            projectId: 4
+            projectId: 1
           - names:
             - names
             - names
             projectName: projectName
-            projectId: 4
-          totalGoogleCount: 6
-          google:
+            projectId: 1
+          openshift:
           - names:
             - names
             - names
             projectName: projectName
-            projectId: 4
+            projectId: 1
           - names:
             - names
             - names
             projectName: projectName
-            projectId: 4
-          failed:
-          - names:
-            - names
-            - names
-            projectName: projectName
-            projectId: 4
-          - names:
-            - names
-            - names
-            projectName: projectName
-            projectId: 4
+            projectId: 1
+          totalGoogleCount: 9
           tanzu:
           - names:
             - names
             - names
             projectName: projectName
-            projectId: 4
+            projectId: 1
           - names:
             - names
             - names
             projectName: projectName
-            projectId: 4
-          totalCount: 7
-          totalRam: 1
-          totalSucceededCount: 7
-          totalOpenstackCount: 9
-          totalPendingCount: 4
-          usedResources:
-          - diskSize: 6
-            maxRam: 1
-            cpu: 6
-            maxCpu: 2
-            projectName: projectName
-            maxDiskSize: 6
-            projectId: 9
-            ram: 3
-          - diskSize: 6
-            maxRam: 1
-            cpu: 6
-            maxCpu: 2
-            projectName: projectName
-            maxDiskSize: 6
-            projectId: 9
-            ram: 3
+            projectId: 1
+          totalCount: 1
           updating:
           - names:
             - names
             - names
             projectName: projectName
-            projectId: 4
+            projectId: 1
           - names:
             - names
             - names
             projectName: projectName
-            projectId: 4
+            projectId: 1
           totalCpu: 1
-          totalFailedCount: 6
-          totalAzureCount: 9
-          openstack:
+          totalAzureCount: 6
+          proxmox:
           - names:
             - names
             - names
             projectName: projectName
-            projectId: 4
+            projectId: 1
           - names:
             - names
             - names
             projectName: projectName
-            projectId: 4
-          totalAwsCount: 5
-          totalTanzuCount: 8
-          aws:
-          - names:
-            - names
-            - names
-            projectName: projectName
-            projectId: 4
-          - names:
-            - names
-            - names
-            projectName: projectName
-            projectId: 4
+            projectId: 1
           azure:
           - names:
             - names
             - names
             projectName: projectName
-            projectId: 4
+            projectId: 1
           - names:
             - names
             - names
             projectName: projectName
-            projectId: 4
+            projectId: 1
+          totalUpdatingCount: 5
+          totalDiskSize: 7
+          google:
+          - names:
+            - names
+            - names
+            projectName: projectName
+            projectId: 1
+          - names:
+            - names
+            - names
+            projectName: projectName
+            projectId: 1
+          failed:
+          - names:
+            - names
+            - names
+            projectName: projectName
+            projectId: 1
+          - names:
+            - names
+            - names
+            projectName: projectName
+            projectId: 1
+          totalRam: 6
+          totalSucceededCount: 4
+          totalOpenstackCount: 8
+          totalPendingCount: 9
+          usedResources:
+          - diskSize: 2
+            maxRam: 5
+            cpu: 6
+            maxCpu: 6
+            projectName: projectName
+            maxDiskSize: 3
+            projectId: 1
+            ram: 6
+          - diskSize: 2
+            maxRam: 5
+            cpu: 6
+            maxCpu: 6
+            projectName: projectName
+            maxDiskSize: 3
+            projectId: 1
+            ram: 6
+          totalProxmoxCount: 6
+          deleting:
+          - names:
+            - names
+            - names
+            projectName: projectName
+            projectId: 1
+          - names:
+            - names
+            - names
+            projectName: projectName
+            projectId: 1
+          totalFailedCount: 1
+          openstack:
+          - names:
+            - names
+            - names
+            projectName: projectName
+            projectId: 1
+          - names:
+            - names
+            - names
+            projectName: projectName
+            projectId: 1
+          totalAwsCount: 9
+          totalTanzuCount: 6
+          aws:
+          - names:
+            - names
+            - names
+            projectName: projectName
+            projectId: 1
+          - names:
+            - names
+            - names
+            projectName: projectName
+            projectId: 1
           succeeded:
           - names:
             - names
             - names
             projectName: projectName
-            projectId: 4
+            projectId: 1
           - names:
             - names
             - names
             projectName: projectName
-            projectId: 4
+            projectId: 1
+          purging:
+          - names:
+            - names
+            - names
+            projectName: projectName
+            projectId: 1
+          - names:
+            - names
+            - names
+            projectName: projectName
+            projectId: 1
         standAloneVms:
-          totalUpdatingCount: 1
-          totalDiskSize: 1
+          totalOpenshiftCount: 3
           waiting:
           - names:
             - names
             - names
             projectName: projectName
-            projectId: 4
+            projectId: 1
           - names:
             - names
             - names
             projectName: projectName
-            projectId: 4
-          totalGoogleCount: 6
-          google:
+            projectId: 1
+          openshift:
           - names:
             - names
             - names
             projectName: projectName
-            projectId: 4
+            projectId: 1
           - names:
             - names
             - names
             projectName: projectName
-            projectId: 4
-          failed:
-          - names:
-            - names
-            - names
-            projectName: projectName
-            projectId: 4
-          - names:
-            - names
-            - names
-            projectName: projectName
-            projectId: 4
+            projectId: 1
+          totalGoogleCount: 9
           tanzu:
           - names:
             - names
             - names
             projectName: projectName
-            projectId: 4
+            projectId: 1
           - names:
             - names
             - names
             projectName: projectName
-            projectId: 4
-          totalCount: 7
-          totalRam: 1
-          totalSucceededCount: 7
-          totalOpenstackCount: 9
-          totalPendingCount: 4
-          usedResources:
-          - diskSize: 6
-            maxRam: 1
-            cpu: 6
-            maxCpu: 2
-            projectName: projectName
-            maxDiskSize: 6
-            projectId: 9
-            ram: 3
-          - diskSize: 6
-            maxRam: 1
-            cpu: 6
-            maxCpu: 2
-            projectName: projectName
-            maxDiskSize: 6
-            projectId: 9
-            ram: 3
+            projectId: 1
+          totalCount: 1
           updating:
           - names:
             - names
             - names
             projectName: projectName
-            projectId: 4
+            projectId: 1
           - names:
             - names
             - names
             projectName: projectName
-            projectId: 4
+            projectId: 1
           totalCpu: 1
-          totalFailedCount: 6
-          totalAzureCount: 9
-          openstack:
+          totalAzureCount: 6
+          proxmox:
           - names:
             - names
             - names
             projectName: projectName
-            projectId: 4
+            projectId: 1
           - names:
             - names
             - names
             projectName: projectName
-            projectId: 4
-          totalAwsCount: 5
-          totalTanzuCount: 8
-          aws:
-          - names:
-            - names
-            - names
-            projectName: projectName
-            projectId: 4
-          - names:
-            - names
-            - names
-            projectName: projectName
-            projectId: 4
+            projectId: 1
           azure:
           - names:
             - names
             - names
             projectName: projectName
-            projectId: 4
+            projectId: 1
           - names:
             - names
             - names
             projectName: projectName
-            projectId: 4
+            projectId: 1
+          totalUpdatingCount: 5
+          totalDiskSize: 7
+          google:
+          - names:
+            - names
+            - names
+            projectName: projectName
+            projectId: 1
+          - names:
+            - names
+            - names
+            projectName: projectName
+            projectId: 1
+          failed:
+          - names:
+            - names
+            - names
+            projectName: projectName
+            projectId: 1
+          - names:
+            - names
+            - names
+            projectName: projectName
+            projectId: 1
+          totalRam: 6
+          totalSucceededCount: 4
+          totalOpenstackCount: 8
+          totalPendingCount: 9
+          usedResources:
+          - diskSize: 2
+            maxRam: 5
+            cpu: 6
+            maxCpu: 6
+            projectName: projectName
+            maxDiskSize: 3
+            projectId: 1
+            ram: 6
+          - diskSize: 2
+            maxRam: 5
+            cpu: 6
+            maxCpu: 6
+            projectName: projectName
+            maxDiskSize: 3
+            projectId: 1
+            ram: 6
+          totalProxmoxCount: 6
+          deleting:
+          - names:
+            - names
+            - names
+            projectName: projectName
+            projectId: 1
+          - names:
+            - names
+            - names
+            projectName: projectName
+            projectId: 1
+          totalFailedCount: 1
+          openstack:
+          - names:
+            - names
+            - names
+            projectName: projectName
+            projectId: 1
+          - names:
+            - names
+            - names
+            projectName: projectName
+            projectId: 1
+          totalAwsCount: 9
+          totalTanzuCount: 6
+          aws:
+          - names:
+            - names
+            - names
+            projectName: projectName
+            projectId: 1
+          - names:
+            - names
+            - names
+            projectName: projectName
+            projectId: 1
           succeeded:
           - names:
             - names
             - names
             projectName: projectName
-            projectId: 4
+            projectId: 1
           - names:
             - names
             - names
             projectName: projectName
-            projectId: 4
+            projectId: 1
+          purging:
+          - names:
+            - names
+            - names
+            projectName: projectName
+            projectId: 1
+          - names:
+            - names
+            - names
+            projectName: projectName
+            projectId: 1
         organization:
           name: name
           id: 0
           users: 6
         cloudCredentials:
+          openshift: 4
           openstack: 7
           google: 9
           aws: 5
           tanzu: 3
-          totalCount: 2
+          totalCount: 7
+          proxmox: 2
           azure: 2
       properties:
         organization:
@@ -42301,6 +42902,11 @@ components:
           nullable: true
           type: string
       type: object
+    EmailMode:
+      enum:
+      - Confirm
+      - Change
+      type: string
     EnableAiCommand:
       additionalProperties: false
       example:
@@ -42872,6 +43478,19 @@ components:
         data:
           nullable: true
         totalCount:
+          format: int32
+          type: integer
+      type: object
+    ExportKubeConfigCommand:
+      additionalProperties: false
+      example:
+        id: 0
+        projectId: 6
+      properties:
+        id:
+          format: int32
+          type: integer
+        projectId:
           format: int32
           type: integer
       type: object
@@ -44152,6 +44771,9 @@ components:
         enabled:
           type: boolean
       type: object
+    KubeConfigCleanerCommand:
+      additionalProperties: false
+      type: object
     KubeConfigForUserDto:
       additionalProperties: false
       example:
@@ -44506,6 +45128,47 @@ components:
           format: int32
           type: integer
       type: object
+    KubernetesDashboardDto:
+      additionalProperties: false
+      example:
+        nodes:
+        - kubeletDiskPressure: ""
+          kubeletMemory: ""
+          metadataName: ""
+          kubeletReady: ""
+          kubeletSufficient: ""
+        - kubeletDiskPressure: ""
+          kubeletMemory: ""
+          metadataName: ""
+          kubeletReady: ""
+          kubeletSufficient: ""
+        pods:
+        - phase: phase
+          node: node
+          restartCount: 0
+          namespace: namespace
+          metadataName: metadataName
+          age: 2000-01-23T04:56:07.000+00:00
+          status: status
+        - phase: phase
+          node: node
+          restartCount: 0
+          namespace: namespace
+          metadataName: metadataName
+          age: 2000-01-23T04:56:07.000+00:00
+          status: status
+      properties:
+        pods:
+          items:
+            $ref: '#/components/schemas/PodDto'
+          nullable: true
+          type: array
+        nodes:
+          items:
+            $ref: '#/components/schemas/NodeDto'
+          nullable: true
+          type: array
+      type: object
     KubernetesEventCreateDto:
       additionalProperties: false
       example:
@@ -44607,6 +45270,43 @@ components:
           nullable: true
           type: string
         value:
+          nullable: true
+          type: string
+      type: object
+    KubernetesOverviewDto:
+      additionalProperties: false
+      example:
+        unhealthyNodes: 5
+        healthyPods: 6
+        unhealthyPods: 1
+        kubernetesHealth: kubernetesHealth
+        alertsCount: 2
+        healthyNodes: 5
+        projectName: projectName
+        projectId: 0
+      properties:
+        projectId:
+          format: int32
+          type: integer
+        projectName:
+          nullable: true
+          type: string
+        healthyPods:
+          format: int32
+          type: integer
+        unhealthyPods:
+          format: int32
+          type: integer
+        healthyNodes:
+          format: int32
+          type: integer
+        unhealthyNodes:
+          format: int32
+          type: integer
+        alertsCount:
+          format: int32
+          type: integer
+        kubernetesHealth:
           nullable: true
           type: string
       type: object
@@ -45543,6 +46243,26 @@ components:
           nullable: true
           type: string
       type: object
+    NodeDto:
+      additionalProperties: false
+      example:
+        kubeletDiskPressure: ""
+        kubeletMemory: ""
+        metadataName: ""
+        kubeletReady: ""
+        kubeletSufficient: ""
+      properties:
+        metadataName:
+          nullable: true
+        kubeletReady:
+          nullable: true
+        kubeletSufficient:
+          nullable: true
+        kubeletDiskPressure:
+          nullable: true
+        kubeletMemory:
+          nullable: true
+      type: object
     NodeSearchResponseData:
       additionalProperties: false
       example:
@@ -46135,6 +46855,151 @@ components:
           nullable: true
           type: string
       type: object
+    OpenshiftCreateCommand:
+      additionalProperties: false
+      example:
+        organizationId: 0
+        storageClass: storageClass
+        baseDomain: baseDomain
+        name: name
+        kubeConfig: kubeConfig
+        pullSecret: pullSecret
+      properties:
+        name:
+          nullable: true
+          type: string
+        kubeConfig:
+          nullable: true
+          type: string
+        pullSecret:
+          nullable: true
+          type: string
+        storageClass:
+          nullable: true
+          type: string
+        baseDomain:
+          nullable: true
+          type: string
+        organizationId:
+          format: int32
+          nullable: true
+          type: integer
+      type: object
+    OpenshiftCredentialForProjectDto:
+      additionalProperties: false
+      example:
+        storageClass: storageClass
+        baseDomain: baseDomain
+        kubeConfig: kubeConfig
+        pullSecret: pullSecret
+      properties:
+        kubeConfig:
+          nullable: true
+          type: string
+        pullSecret:
+          nullable: true
+          type: string
+        storageClass:
+          nullable: true
+          type: string
+        baseDomain:
+          nullable: true
+          type: string
+      type: object
+    OpenshiftFlavorData:
+      additionalProperties: false
+      example:
+        name: name
+        cpu: 0
+        ram: 6
+      properties:
+        name:
+          nullable: true
+          type: string
+        cpu:
+          format: int32
+          type: integer
+        ram:
+          format: int64
+          type: integer
+      type: object
+    OpenshiftFlavorList:
+      additionalProperties: false
+      example:
+        data:
+        - name: name
+          cpu: 0
+          ram: 6
+        - name: name
+          cpu: 0
+          ram: 6
+        totalCount: 1
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/OpenshiftFlavorData'
+          nullable: true
+          type: array
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    OpenshiftList:
+      additionalProperties: false
+      example:
+        data:
+        - organizationId: 6
+          storageClass: storageClass
+          organizationName: organizationName
+          baseDomain: baseDomain
+          name: name
+          id: 0
+        - organizationId: 6
+          storageClass: storageClass
+          organizationName: organizationName
+          baseDomain: baseDomain
+          name: name
+          id: 0
+        totalCount: 1
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/OpenshiftListDto'
+          nullable: true
+          type: array
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    OpenshiftListDto:
+      additionalProperties: false
+      example:
+        organizationId: 6
+        storageClass: storageClass
+        organizationName: organizationName
+        baseDomain: baseDomain
+        name: name
+        id: 0
+      properties:
+        id:
+          format: int32
+          type: integer
+        name:
+          nullable: true
+          type: string
+        baseDomain:
+          nullable: true
+          type: string
+        storageClass:
+          nullable: true
+          type: string
+        organizationId:
+          format: int32
+          type: integer
+        organizationName:
+          nullable: true
+          type: string
+      type: object
     OpenstackComputeQuotaDto:
       additionalProperties: false
       example:
@@ -46183,6 +47048,7 @@ components:
             id: 0
           - name: name
             id: 0
+          applicationCredEnabled: true
           project: project
           availabilityZone: availabilityZone
           publicNetwork: publicNetwork
@@ -46212,6 +47078,7 @@ components:
             id: 0
           - name: name
             id: 0
+          applicationCredEnabled: true
           project: project
           availabilityZone: availabilityZone
           publicNetwork: publicNetwork
@@ -46310,6 +47177,7 @@ components:
           id: 0
         - name: name
           id: 0
+        applicationCredEnabled: true
         project: project
         availabilityZone: availabilityZone
         publicNetwork: publicNetwork
@@ -46405,6 +47273,8 @@ components:
           nullable: true
           type: string
         isAdmin:
+          type: boolean
+        applicationCredEnabled:
           type: boolean
       type: object
     OpenstackFlavorList:
@@ -47924,6 +48794,40 @@ components:
           format: int32
           type: integer
       type: object
+    PodDto:
+      additionalProperties: false
+      example:
+        phase: phase
+        node: node
+        restartCount: 0
+        namespace: namespace
+        metadataName: metadataName
+        age: 2000-01-23T04:56:07.000+00:00
+        status: status
+      properties:
+        metadataName:
+          nullable: true
+          type: string
+        status:
+          nullable: true
+          type: string
+        restartCount:
+          format: int32
+          type: integer
+        namespace:
+          nullable: true
+          type: string
+        age:
+          format: date-time
+          nullable: true
+          type: string
+        node:
+          nullable: true
+          type: string
+        phase:
+          nullable: true
+          type: string
+      type: object
     PodListDto:
       additionalProperties: false
       example:
@@ -48167,6 +49071,11 @@ components:
           - reasons
           - reasons
           enable: true
+        enableAi:
+          reasons:
+          - reasons
+          - reasons
+          enable: true
         monitoring:
           reasons:
           - reasons
@@ -48178,6 +49087,11 @@ components:
           - reasons
           enable: true
         disableBackup:
+          reasons:
+          - reasons
+          - reasons
+          enable: true
+        disableAi:
           reasons:
           - reasons
           - reasons
@@ -48261,6 +49175,10 @@ components:
         attachAlertingProfile:
           $ref: '#/components/schemas/ProjectButtonStatusDto'
         detachAlertingProfile:
+          $ref: '#/components/schemas/ProjectButtonStatusDto'
+        enableAi:
+          $ref: '#/components/schemas/ProjectButtonStatusDto'
+        disableAi:
           $ref: '#/components/schemas/ProjectButtonStatusDto'
       type: object
     ProjectAppDetailsDto:
@@ -48574,6 +49492,13 @@ components:
         - expiredAt: expiredAt
           name: name
           id: 1
+        deleting:
+        - expiredAt: expiredAt
+          name: name
+          id: 1
+        - expiredAt: expiredAt
+          name: name
+          id: 1
         pending:
         - expiredAt: expiredAt
           name: name
@@ -48590,6 +49515,13 @@ components:
           id: 1
         totalCount: 5
         succeeded:
+        - expiredAt: expiredAt
+          name: name
+          id: 1
+        - expiredAt: expiredAt
+          name: name
+          id: 1
+        purging:
         - expiredAt: expiredAt
           name: name
           id: 1
@@ -48620,6 +49552,16 @@ components:
             $ref: '#/components/schemas/ProjectCommonRecordDto'
           nullable: true
           type: array
+        purging:
+          items:
+            $ref: '#/components/schemas/ProjectCommonRecordDto'
+          nullable: true
+          type: array
+        deleting:
+          items:
+            $ref: '#/components/schemas/ProjectCommonRecordDto'
+          nullable: true
+          type: array
       type: object
     ProjectCommonRecordDto:
       additionalProperties: false
@@ -48646,13 +49588,13 @@ components:
         alertsTotalCount: 3
         isOpaEnabled: true
         projectRevision: 2
-        opaProfileId: 0
+        opaProfileId: 7
         availabilityZones:
         - availabilityZones
         - availabilityZones
         hasAlertingProfile: true
         organizationId: 7
-        diskSize: 8.969578798196912
+        diskSize: 7.740351818741173
         hasNextVersion: true
         usedRam: 9
         cloudType: null
@@ -48660,7 +49602,7 @@ components:
         isLocked: true
         accessProfileName: accessProfileName
         kubernetesProfileId: 3
-        minSize: 0
+        minSize: 4
         bastion: 7
         worker: 4
         usedCpu: 9
@@ -48678,7 +49620,7 @@ components:
         quotaId: 6
         vmUsedCpu: 3
         allowSpotWorkers: true
-        maxSpotPrice: 7.058770351582356
+        maxSpotPrice: 6.519180951018382
         vmRamLimit: 9
         isKubernetesCurrentVersionKubevapEnabled: true
         flavor: flavor
@@ -48693,7 +49635,7 @@ components:
         projectId: 1
         cloudCredentialRevision: 5
         accessProfileId: 6
-        maxSize: 4
+        maxSize: 8
         totalCount: 9
         autoscalingGroupName: autoscalingGroupName
         kubeCurrentVersion: kubeCurrentVersion
@@ -48702,7 +49644,7 @@ components:
         alertingProfileName: alertingProfileName
         hasNfsServer: true
         projectHealth: null
-        totalHourlyCost: 6.519180951018382
+        totalHourlyCost: 0.10263654006109402
         ramLimit: 4
         opaProfileName: opaProfileName
         s3CredentialId: 7
@@ -48710,6 +49652,8 @@ components:
         isAllReady: true
         allowSpotVMs: true
         vmCpuLimit: 8
+        aiCredentialId: 0
+        aiEnabled: true
         isMonitoringEnabled: true
         isAllFailedUpgrade: true
         diskSizeLimit: 5
@@ -48791,6 +49735,8 @@ components:
         isKubernetes:
           type: boolean
         isBackupEnabled:
+          type: boolean
+        aiEnabled:
           type: boolean
         isLocked:
           type: boolean
@@ -48883,6 +49829,10 @@ components:
           nullable: true
           type: integer
         s3CredentialId:
+          format: int32
+          nullable: true
+          type: integer
+        aiCredentialId:
           format: int32
           nullable: true
           type: integer
@@ -52085,6 +53035,7 @@ components:
       enum:
       - NONE
       - NFS
+      - STORAGE
       type: string
     PurgeCommand:
       additionalProperties: false
@@ -53005,135 +53956,181 @@ components:
     ServerChartDto:
       additionalProperties: false
       example:
-        totalUpdatingCount: 1
-        totalDiskSize: 1
+        totalOpenshiftCount: 3
         waiting:
         - names:
           - names
           - names
           projectName: projectName
-          projectId: 4
+          projectId: 1
         - names:
           - names
           - names
           projectName: projectName
-          projectId: 4
-        totalGoogleCount: 6
-        google:
+          projectId: 1
+        openshift:
         - names:
           - names
           - names
           projectName: projectName
-          projectId: 4
+          projectId: 1
         - names:
           - names
           - names
           projectName: projectName
-          projectId: 4
-        failed:
-        - names:
-          - names
-          - names
-          projectName: projectName
-          projectId: 4
-        - names:
-          - names
-          - names
-          projectName: projectName
-          projectId: 4
+          projectId: 1
+        totalGoogleCount: 9
         tanzu:
         - names:
           - names
           - names
           projectName: projectName
-          projectId: 4
+          projectId: 1
         - names:
           - names
           - names
           projectName: projectName
-          projectId: 4
-        totalCount: 7
-        totalRam: 1
-        totalSucceededCount: 7
-        totalOpenstackCount: 9
-        totalPendingCount: 4
-        usedResources:
-        - diskSize: 6
-          maxRam: 1
-          cpu: 6
-          maxCpu: 2
-          projectName: projectName
-          maxDiskSize: 6
-          projectId: 9
-          ram: 3
-        - diskSize: 6
-          maxRam: 1
-          cpu: 6
-          maxCpu: 2
-          projectName: projectName
-          maxDiskSize: 6
-          projectId: 9
-          ram: 3
+          projectId: 1
+        totalCount: 1
         updating:
         - names:
           - names
           - names
           projectName: projectName
-          projectId: 4
+          projectId: 1
         - names:
           - names
           - names
           projectName: projectName
-          projectId: 4
+          projectId: 1
         totalCpu: 1
-        totalFailedCount: 6
-        totalAzureCount: 9
-        openstack:
+        totalAzureCount: 6
+        proxmox:
         - names:
           - names
           - names
           projectName: projectName
-          projectId: 4
+          projectId: 1
         - names:
           - names
           - names
           projectName: projectName
-          projectId: 4
-        totalAwsCount: 5
-        totalTanzuCount: 8
-        aws:
-        - names:
-          - names
-          - names
-          projectName: projectName
-          projectId: 4
-        - names:
-          - names
-          - names
-          projectName: projectName
-          projectId: 4
+          projectId: 1
         azure:
         - names:
           - names
           - names
           projectName: projectName
-          projectId: 4
+          projectId: 1
         - names:
           - names
           - names
           projectName: projectName
-          projectId: 4
+          projectId: 1
+        totalUpdatingCount: 5
+        totalDiskSize: 7
+        google:
+        - names:
+          - names
+          - names
+          projectName: projectName
+          projectId: 1
+        - names:
+          - names
+          - names
+          projectName: projectName
+          projectId: 1
+        failed:
+        - names:
+          - names
+          - names
+          projectName: projectName
+          projectId: 1
+        - names:
+          - names
+          - names
+          projectName: projectName
+          projectId: 1
+        totalRam: 6
+        totalSucceededCount: 4
+        totalOpenstackCount: 8
+        totalPendingCount: 9
+        usedResources:
+        - diskSize: 2
+          maxRam: 5
+          cpu: 6
+          maxCpu: 6
+          projectName: projectName
+          maxDiskSize: 3
+          projectId: 1
+          ram: 6
+        - diskSize: 2
+          maxRam: 5
+          cpu: 6
+          maxCpu: 6
+          projectName: projectName
+          maxDiskSize: 3
+          projectId: 1
+          ram: 6
+        totalProxmoxCount: 6
+        deleting:
+        - names:
+          - names
+          - names
+          projectName: projectName
+          projectId: 1
+        - names:
+          - names
+          - names
+          projectName: projectName
+          projectId: 1
+        totalFailedCount: 1
+        openstack:
+        - names:
+          - names
+          - names
+          projectName: projectName
+          projectId: 1
+        - names:
+          - names
+          - names
+          projectName: projectName
+          projectId: 1
+        totalAwsCount: 9
+        totalTanzuCount: 6
+        aws:
+        - names:
+          - names
+          - names
+          projectName: projectName
+          projectId: 1
+        - names:
+          - names
+          - names
+          projectName: projectName
+          projectId: 1
         succeeded:
         - names:
           - names
           - names
           projectName: projectName
-          projectId: 4
+          projectId: 1
         - names:
           - names
           - names
           projectName: projectName
-          projectId: 4
+          projectId: 1
+        purging:
+        - names:
+          - names
+          - names
+          projectName: projectName
+          projectId: 1
+        - names:
+          - names
+          - names
+          projectName: projectName
+          projectId: 1
       properties:
         aws:
           items:
@@ -53160,6 +54157,16 @@ components:
             $ref: '#/components/schemas/ServerCommonRecordDto'
           nullable: true
           type: array
+        proxmox:
+          items:
+            $ref: '#/components/schemas/ServerCommonRecordDto'
+          nullable: true
+          type: array
+        openshift:
+          items:
+            $ref: '#/components/schemas/ServerCommonRecordDto'
+          nullable: true
+          type: array
         failed:
           items:
             $ref: '#/components/schemas/ServerCommonRecordDto'
@@ -53176,6 +54183,16 @@ components:
           nullable: true
           type: array
         updating:
+          items:
+            $ref: '#/components/schemas/ServerCommonRecordDto'
+          nullable: true
+          type: array
+        deleting:
+          items:
+            $ref: '#/components/schemas/ServerCommonRecordDto'
+          nullable: true
+          type: array
+        purging:
           items:
             $ref: '#/components/schemas/ServerCommonRecordDto'
           nullable: true
@@ -53219,6 +54236,12 @@ components:
         totalTanzuCount:
           format: int32
           type: integer
+        totalOpenshiftCount:
+          format: int32
+          type: integer
+        totalProxmoxCount:
+          format: int32
+          type: integer
         usedResources:
           items:
             $ref: '#/components/schemas/UserResourceChartDto'
@@ -53232,7 +54255,7 @@ components:
         - names
         - names
         projectName: projectName
-        projectId: 4
+        projectId: 1
       properties:
         projectId:
           format: int32
@@ -53249,7 +54272,7 @@ components:
     ServerForCreateDto:
       additionalProperties: false
       example:
-        proxmoxNFSDiskSize: 5
+        proxmoxExtraDiskSize: 5
         role: null
         spotPrice: 5.962133916683182
         count: 1
@@ -53297,7 +54320,7 @@ components:
         availabilityZone:
           nullable: true
           type: string
-        proxmoxNFSDiskSize:
+        proxmoxExtraDiskSize:
           format: int32
           type: integer
         proxmoxRole:
@@ -53315,9 +54338,10 @@ components:
       additionalProperties: false
       example:
         proxmoxFlavor: proxmoxFlavor
-        proxmoxNFSDiskSize: 7
+        proxmoxExtraDiskSize: 7
         role: null
         spotPrice: spotPrice
+        openshiftFlavor: openshiftFlavor
         awsHostName: awsHostName
         actionButtons:
           reboot: true
@@ -53444,6 +54468,9 @@ components:
         awsHostName:
           nullable: true
           type: string
+        openshiftFlavor:
+          nullable: true
+          type: string
         availabilityZone:
           nullable: true
           type: string
@@ -53452,7 +54479,7 @@ components:
           type: string
         proxmoxRole:
           $ref: '#/components/schemas/ProxmoxRole'
-        proxmoxNFSDiskSize:
+        proxmoxExtraDiskSize:
           format: int32
           type: integer
         actionButtons:
@@ -53501,9 +54528,10 @@ components:
       example:
         data:
         - proxmoxFlavor: proxmoxFlavor
-          proxmoxNFSDiskSize: 7
+          proxmoxExtraDiskSize: 7
           role: null
           spotPrice: spotPrice
+          openshiftFlavor: openshiftFlavor
           awsHostName: awsHostName
           actionButtons:
             reboot: true
@@ -53544,9 +54572,10 @@ components:
           projectId: 1
           status: status
         - proxmoxFlavor: proxmoxFlavor
-          proxmoxNFSDiskSize: 7
+          proxmoxExtraDiskSize: 7
           role: null
           spotPrice: spotPrice
+          openshiftFlavor: openshiftFlavor
           awsHostName: awsHostName
           actionButtons:
             reboot: true
@@ -53602,9 +54631,10 @@ components:
       example:
         data:
         - proxmoxFlavor: proxmoxFlavor
-          proxmoxNFSDiskSize: 7
+          proxmoxExtraDiskSize: 7
           role: null
           spotPrice: spotPrice
+          openshiftFlavor: openshiftFlavor
           awsHostName: awsHostName
           actionButtons:
             reboot: true
@@ -53645,9 +54675,10 @@ components:
           projectId: 1
           status: status
         - proxmoxFlavor: proxmoxFlavor
-          proxmoxNFSDiskSize: 7
+          proxmoxExtraDiskSize: 7
           role: null
           spotPrice: spotPrice
+          openshiftFlavor: openshiftFlavor
           awsHostName: awsHostName
           actionButtons:
             reboot: true
@@ -53693,13 +54724,13 @@ components:
           alertsTotalCount: 3
           isOpaEnabled: true
           projectRevision: 2
-          opaProfileId: 0
+          opaProfileId: 7
           availabilityZones:
           - availabilityZones
           - availabilityZones
           hasAlertingProfile: true
           organizationId: 7
-          diskSize: 8.969578798196912
+          diskSize: 7.740351818741173
           hasNextVersion: true
           usedRam: 9
           cloudType: null
@@ -53707,7 +54738,7 @@ components:
           isLocked: true
           accessProfileName: accessProfileName
           kubernetesProfileId: 3
-          minSize: 0
+          minSize: 4
           bastion: 7
           worker: 4
           usedCpu: 9
@@ -53725,7 +54756,7 @@ components:
           quotaId: 6
           vmUsedCpu: 3
           allowSpotWorkers: true
-          maxSpotPrice: 7.058770351582356
+          maxSpotPrice: 6.519180951018382
           vmRamLimit: 9
           isKubernetesCurrentVersionKubevapEnabled: true
           flavor: flavor
@@ -53740,7 +54771,7 @@ components:
           projectId: 1
           cloudCredentialRevision: 5
           accessProfileId: 6
-          maxSize: 4
+          maxSize: 8
           totalCount: 9
           autoscalingGroupName: autoscalingGroupName
           kubeCurrentVersion: kubeCurrentVersion
@@ -53749,7 +54780,7 @@ components:
           alertingProfileName: alertingProfileName
           hasNfsServer: true
           projectHealth: null
-          totalHourlyCost: 6.519180951018382
+          totalHourlyCost: 0.10263654006109402
           ramLimit: 4
           opaProfileName: opaProfileName
           s3CredentialId: 7
@@ -53757,6 +54788,8 @@ components:
           isAllReady: true
           allowSpotVMs: true
           vmCpuLimit: 8
+          aiCredentialId: 0
+          aiEnabled: true
           isMonitoringEnabled: true
           isAllFailedUpgrade: true
           diskSizeLimit: 5
@@ -57414,14 +58447,14 @@ components:
     UserResourceChartDto:
       additionalProperties: false
       example:
-        diskSize: 6
-        maxRam: 1
+        diskSize: 2
+        maxRam: 5
         cpu: 6
-        maxCpu: 2
+        maxCpu: 6
         projectName: projectName
-        maxDiskSize: 6
-        projectId: 9
-        ram: 3
+        maxDiskSize: 3
+        projectId: 1
+        ram: 6
       properties:
         projectName:
           nullable: true
@@ -57685,15 +58718,14 @@ components:
     VerifyEmailCommand:
       additionalProperties: false
       example:
-        mode: mode
+        mode: null
         token: token
       properties:
         token:
           nullable: true
           type: string
         mode:
-          nullable: true
-          type: string
+          $ref: '#/components/schemas/EmailMode'
       type: object
     VerifySlackCredentialsCommand:
       additionalProperties: false

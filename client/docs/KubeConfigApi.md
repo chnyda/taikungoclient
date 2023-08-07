@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**KubeconfigDelete**](KubeConfigApi.md#KubeconfigDelete) | **Post** /api/v1/kubeconfig/delete | Delete kube config
 [**KubeconfigDeleteByProjectId**](KubeConfigApi.md#KubeconfigDeleteByProjectId) | **Post** /api/v1/kubeconfig/delete-by-project-id | Delete kube config by project id
 [**KubeconfigDownload**](KubeConfigApi.md#KubeconfigDownload) | **Post** /api/v1/kubeconfig/download | Download kube config file for user by project Id
+[**KubeconfigExport**](KubeConfigApi.md#KubeconfigExport) | **Post** /api/v1/kubeconfig/export | Export
 [**KubeconfigInteractiveShell**](KubeConfigApi.md#KubeconfigInteractiveShell) | **Post** /api/v1/kubeconfig/interactive-shell | Interactive shell for user kube config
 [**KubeconfigList**](KubeConfigApi.md#KubeconfigList) | **Get** /api/v1/kubeconfig | Retrieve a list of kube configs for project
 
@@ -259,6 +260,70 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: application/json
 - **Accept**: text/plain, application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## KubeconfigExport
+
+> CsvExporter KubeconfigExport(ctx).ExportKubeConfigCommand(exportKubeConfigCommand).Execute()
+
+Export
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/chnyda/taikungoclient"
+)
+
+func main() {
+    exportKubeConfigCommand := *openapiclient.NewExportKubeConfigCommand() // ExportKubeConfigCommand | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.KubeConfigApi.KubeconfigExport(context.Background()).ExportKubeConfigCommand(exportKubeConfigCommand).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `KubeConfigApi.KubeconfigExport``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `KubeconfigExport`: CsvExporter
+    fmt.Fprintf(os.Stdout, "Response from `KubeConfigApi.KubeconfigExport`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiKubeconfigExportRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **exportKubeConfigCommand** | [**ExportKubeConfigCommand**](ExportKubeConfigCommand.md) |  | 
+
+### Return type
+
+[**CsvExporter**](CsvExporter.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

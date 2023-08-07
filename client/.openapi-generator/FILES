@@ -400,6 +400,7 @@ docs/EditProjectAppParamsDto.md
 docs/EditSecurityGroupCommand.md
 docs/EditSshUserCommand.md
 docs/EditTicketCommand.md
+docs/EmailMode.md
 docs/EnableAiCommand.md
 docs/EnableAutoscalingCommand.md
 docs/EnableBackupCommand.md
@@ -408,6 +409,7 @@ docs/EndpointElements.md
 docs/EnumList.md
 docs/EstimatedInfracost.md
 docs/ExceededQuotaList.md
+docs/ExportKubeConfigCommand.md
 docs/Filter.md
 docs/FilteringElementDto.md
 docs/FinalPriceCommand.md
@@ -478,10 +480,12 @@ docs/KubernetesApi.md
 docs/KubernetesCliCommand.md
 docs/KubernetesCronJobDto.md
 docs/KubernetesCronJobsList.md
+docs/KubernetesDashboardDto.md
 docs/KubernetesEventCreateDto.md
 docs/KubernetesJobDto.md
 docs/KubernetesJobList.md
 docs/KubernetesNodeLabelsDto.md
+docs/KubernetesOverviewDto.md
 docs/KubernetesPodLogsCommand.md
 docs/KubernetesProfilesApi.md
 docs/KubernetesProfilesEntity.md
@@ -518,6 +522,7 @@ docs/MonitoringOperationsCommand.md
 docs/NetworkPolicies.md
 docs/NetworkPolicyDto.md
 docs/NodeCommand.md
+docs/NodeDto.md
 docs/NodeSearchResponseData.md
 docs/NodesSearchCommand.md
 docs/NodesSearchList.md
@@ -545,6 +550,12 @@ docs/OpenStackRegionListQuery.md
 docs/OpenStackZoneListQuery.md
 docs/OpenTicketCommand.md
 docs/OpenshiftApi.md
+docs/OpenshiftCreateCommand.md
+docs/OpenshiftCredentialForProjectDto.md
+docs/OpenshiftFlavorData.md
+docs/OpenshiftFlavorList.md
+docs/OpenshiftList.md
+docs/OpenshiftListDto.md
 docs/OpenstackCloudCredentialApi.md
 docs/OpenstackComputeQuotaDto.md
 docs/OpenstackCredentialList.md
@@ -606,6 +617,7 @@ docs/PayInvoiceCommand.md
 docs/PaymentsApi.md
 docs/PodDisruptionDto.md
 docs/PodDisruptions.md
+docs/PodDto.md
 docs/PodListDto.md
 docs/Pods.md
 docs/PodsSearchCommand.md
@@ -1214,6 +1226,7 @@ model_edit_project_app_params_dto.go
 model_edit_security_group_command.go
 model_edit_ssh_user_command.go
 model_edit_ticket_command.go
+model_email_mode.go
 model_enable_ai_command.go
 model_enable_autoscaling_command.go
 model_enable_backup_command.go
@@ -1222,6 +1235,7 @@ model_endpoint_elements.go
 model_enum_list.go
 model_estimated_infracost.go
 model_exceeded_quota_list.go
+model_export_kube_config_command.go
 model_filter.go
 model_filtering_element_dto.go
 model_final_price_command.go
@@ -1284,10 +1298,12 @@ model_kubernetes_alert_list.go
 model_kubernetes_cli_command.go
 model_kubernetes_cron_job_dto.go
 model_kubernetes_cron_jobs_list.go
+model_kubernetes_dashboard_dto.go
 model_kubernetes_event_create_dto.go
 model_kubernetes_job_dto.go
 model_kubernetes_job_list.go
 model_kubernetes_node_labels_dto.go
+model_kubernetes_overview_dto.go
 model_kubernetes_pod_logs_command.go
 model_kubernetes_profiles_entity.go
 model_kubernetes_profiles_lis_for_poller_dto.go
@@ -1322,6 +1338,7 @@ model_monitoring_operations_command.go
 model_network_policies.go
 model_network_policy_dto.go
 model_node_command.go
+model_node_dto.go
 model_node_search_response_data.go
 model_nodes_search_command.go
 model_nodes_search_list.go
@@ -1345,6 +1362,12 @@ model_open_stack_project_list_query.go
 model_open_stack_region_list_query.go
 model_open_stack_zone_list_query.go
 model_open_ticket_command.go
+model_openshift_create_command.go
+model_openshift_credential_for_project_dto.go
+model_openshift_flavor_data.go
+model_openshift_flavor_list.go
+model_openshift_list.go
+model_openshift_list_dto.go
 model_openstack_compute_quota_dto.go
 model_openstack_credential_list.go
 model_openstack_credentials_for_project_dto.go
@@ -1399,6 +1422,7 @@ model_patch_sts_command.go
 model_pay_invoice_command.go
 model_pod_disruption_dto.go
 model_pod_disruptions.go
+model_pod_dto.go
 model_pod_list_dto.go
 model_pods.go
 model_pods_search_command.go

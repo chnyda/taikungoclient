@@ -9,10 +9,14 @@ Name | Type | Description | Notes
 **Openstack** | Pointer to [**[]ServerCommonRecordDto**](ServerCommonRecordDto.md) |  | [optional] 
 **Google** | Pointer to [**[]ServerCommonRecordDto**](ServerCommonRecordDto.md) |  | [optional] 
 **Tanzu** | Pointer to [**[]ServerCommonRecordDto**](ServerCommonRecordDto.md) |  | [optional] 
+**Proxmox** | Pointer to [**[]ServerCommonRecordDto**](ServerCommonRecordDto.md) |  | [optional] 
+**Openshift** | Pointer to [**[]ServerCommonRecordDto**](ServerCommonRecordDto.md) |  | [optional] 
 **Failed** | Pointer to [**[]ServerCommonRecordDto**](ServerCommonRecordDto.md) |  | [optional] 
 **Succeeded** | Pointer to [**[]ServerCommonRecordDto**](ServerCommonRecordDto.md) |  | [optional] 
 **Waiting** | Pointer to [**[]ServerCommonRecordDto**](ServerCommonRecordDto.md) |  | [optional] 
 **Updating** | Pointer to [**[]ServerCommonRecordDto**](ServerCommonRecordDto.md) |  | [optional] 
+**Deleting** | Pointer to [**[]ServerCommonRecordDto**](ServerCommonRecordDto.md) |  | [optional] 
+**Purging** | Pointer to [**[]ServerCommonRecordDto**](ServerCommonRecordDto.md) |  | [optional] 
 **TotalCount** | Pointer to **int32** |  | [optional] 
 **TotalCpu** | Pointer to **int32** |  | [optional] 
 **TotalRam** | Pointer to **int64** |  | [optional] 
@@ -26,6 +30,8 @@ Name | Type | Description | Notes
 **TotalOpenstackCount** | Pointer to **int32** |  | [optional] 
 **TotalGoogleCount** | Pointer to **int32** |  | [optional] 
 **TotalTanzuCount** | Pointer to **int32** |  | [optional] 
+**TotalOpenshiftCount** | Pointer to **int32** |  | [optional] 
+**TotalProxmoxCount** | Pointer to **int32** |  | [optional] 
 **UsedResources** | Pointer to [**[]UserResourceChartDto**](UserResourceChartDto.md) |  | [optional] 
 
 ## Methods
@@ -222,6 +228,76 @@ HasTanzu returns a boolean if a field has been set.
 `func (o *ServerChartDto) UnsetTanzu()`
 
 UnsetTanzu ensures that no value is present for Tanzu, not even an explicit nil
+### GetProxmox
+
+`func (o *ServerChartDto) GetProxmox() []ServerCommonRecordDto`
+
+GetProxmox returns the Proxmox field if non-nil, zero value otherwise.
+
+### GetProxmoxOk
+
+`func (o *ServerChartDto) GetProxmoxOk() (*[]ServerCommonRecordDto, bool)`
+
+GetProxmoxOk returns a tuple with the Proxmox field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProxmox
+
+`func (o *ServerChartDto) SetProxmox(v []ServerCommonRecordDto)`
+
+SetProxmox sets Proxmox field to given value.
+
+### HasProxmox
+
+`func (o *ServerChartDto) HasProxmox() bool`
+
+HasProxmox returns a boolean if a field has been set.
+
+### SetProxmoxNil
+
+`func (o *ServerChartDto) SetProxmoxNil(b bool)`
+
+ SetProxmoxNil sets the value for Proxmox to be an explicit nil
+
+### UnsetProxmox
+`func (o *ServerChartDto) UnsetProxmox()`
+
+UnsetProxmox ensures that no value is present for Proxmox, not even an explicit nil
+### GetOpenshift
+
+`func (o *ServerChartDto) GetOpenshift() []ServerCommonRecordDto`
+
+GetOpenshift returns the Openshift field if non-nil, zero value otherwise.
+
+### GetOpenshiftOk
+
+`func (o *ServerChartDto) GetOpenshiftOk() (*[]ServerCommonRecordDto, bool)`
+
+GetOpenshiftOk returns a tuple with the Openshift field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOpenshift
+
+`func (o *ServerChartDto) SetOpenshift(v []ServerCommonRecordDto)`
+
+SetOpenshift sets Openshift field to given value.
+
+### HasOpenshift
+
+`func (o *ServerChartDto) HasOpenshift() bool`
+
+HasOpenshift returns a boolean if a field has been set.
+
+### SetOpenshiftNil
+
+`func (o *ServerChartDto) SetOpenshiftNil(b bool)`
+
+ SetOpenshiftNil sets the value for Openshift to be an explicit nil
+
+### UnsetOpenshift
+`func (o *ServerChartDto) UnsetOpenshift()`
+
+UnsetOpenshift ensures that no value is present for Openshift, not even an explicit nil
 ### GetFailed
 
 `func (o *ServerChartDto) GetFailed() []ServerCommonRecordDto`
@@ -362,6 +438,76 @@ HasUpdating returns a boolean if a field has been set.
 `func (o *ServerChartDto) UnsetUpdating()`
 
 UnsetUpdating ensures that no value is present for Updating, not even an explicit nil
+### GetDeleting
+
+`func (o *ServerChartDto) GetDeleting() []ServerCommonRecordDto`
+
+GetDeleting returns the Deleting field if non-nil, zero value otherwise.
+
+### GetDeletingOk
+
+`func (o *ServerChartDto) GetDeletingOk() (*[]ServerCommonRecordDto, bool)`
+
+GetDeletingOk returns a tuple with the Deleting field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDeleting
+
+`func (o *ServerChartDto) SetDeleting(v []ServerCommonRecordDto)`
+
+SetDeleting sets Deleting field to given value.
+
+### HasDeleting
+
+`func (o *ServerChartDto) HasDeleting() bool`
+
+HasDeleting returns a boolean if a field has been set.
+
+### SetDeletingNil
+
+`func (o *ServerChartDto) SetDeletingNil(b bool)`
+
+ SetDeletingNil sets the value for Deleting to be an explicit nil
+
+### UnsetDeleting
+`func (o *ServerChartDto) UnsetDeleting()`
+
+UnsetDeleting ensures that no value is present for Deleting, not even an explicit nil
+### GetPurging
+
+`func (o *ServerChartDto) GetPurging() []ServerCommonRecordDto`
+
+GetPurging returns the Purging field if non-nil, zero value otherwise.
+
+### GetPurgingOk
+
+`func (o *ServerChartDto) GetPurgingOk() (*[]ServerCommonRecordDto, bool)`
+
+GetPurgingOk returns a tuple with the Purging field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPurging
+
+`func (o *ServerChartDto) SetPurging(v []ServerCommonRecordDto)`
+
+SetPurging sets Purging field to given value.
+
+### HasPurging
+
+`func (o *ServerChartDto) HasPurging() bool`
+
+HasPurging returns a boolean if a field has been set.
+
+### SetPurgingNil
+
+`func (o *ServerChartDto) SetPurgingNil(b bool)`
+
+ SetPurgingNil sets the value for Purging to be an explicit nil
+
+### UnsetPurging
+`func (o *ServerChartDto) UnsetPurging()`
+
+UnsetPurging ensures that no value is present for Purging, not even an explicit nil
 ### GetTotalCount
 
 `func (o *ServerChartDto) GetTotalCount() int32`
@@ -686,6 +832,56 @@ SetTotalTanzuCount sets TotalTanzuCount field to given value.
 `func (o *ServerChartDto) HasTotalTanzuCount() bool`
 
 HasTotalTanzuCount returns a boolean if a field has been set.
+
+### GetTotalOpenshiftCount
+
+`func (o *ServerChartDto) GetTotalOpenshiftCount() int32`
+
+GetTotalOpenshiftCount returns the TotalOpenshiftCount field if non-nil, zero value otherwise.
+
+### GetTotalOpenshiftCountOk
+
+`func (o *ServerChartDto) GetTotalOpenshiftCountOk() (*int32, bool)`
+
+GetTotalOpenshiftCountOk returns a tuple with the TotalOpenshiftCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTotalOpenshiftCount
+
+`func (o *ServerChartDto) SetTotalOpenshiftCount(v int32)`
+
+SetTotalOpenshiftCount sets TotalOpenshiftCount field to given value.
+
+### HasTotalOpenshiftCount
+
+`func (o *ServerChartDto) HasTotalOpenshiftCount() bool`
+
+HasTotalOpenshiftCount returns a boolean if a field has been set.
+
+### GetTotalProxmoxCount
+
+`func (o *ServerChartDto) GetTotalProxmoxCount() int32`
+
+GetTotalProxmoxCount returns the TotalProxmoxCount field if non-nil, zero value otherwise.
+
+### GetTotalProxmoxCountOk
+
+`func (o *ServerChartDto) GetTotalProxmoxCountOk() (*int32, bool)`
+
+GetTotalProxmoxCountOk returns a tuple with the TotalProxmoxCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTotalProxmoxCount
+
+`func (o *ServerChartDto) SetTotalProxmoxCount(v int32)`
+
+SetTotalProxmoxCount sets TotalProxmoxCount field to given value.
+
+### HasTotalProxmoxCount
+
+`func (o *ServerChartDto) HasTotalProxmoxCount() bool`
+
+HasTotalProxmoxCount returns a boolean if a field has been set.
 
 ### GetUsedResources
 

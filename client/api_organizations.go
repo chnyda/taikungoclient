@@ -912,7 +912,7 @@ func (a *OrganizationsApiService) OrganizationsExportCsvExecute(r ApiOrganizatio
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/octet-stream", "application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1984,6 +1984,9 @@ func (a *OrganizationsApiService) OrganizationsUpdatePaymentExecute(r ApiOrganiz
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.updatePaymentIdCommand == nil {
+		return nil, reportError("updatePaymentIdCommand is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}

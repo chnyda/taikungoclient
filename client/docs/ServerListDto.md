@@ -34,10 +34,11 @@ Name | Type | Description | Notes
 **AutoscalingGroup** | Pointer to **NullableString** |  | [optional] 
 **ProviderID** | Pointer to **NullableString** |  | [optional] 
 **AwsHostName** | Pointer to **NullableString** |  | [optional] 
+**OpenshiftFlavor** | Pointer to **NullableString** |  | [optional] 
 **AvailabilityZone** | Pointer to **NullableString** |  | [optional] 
 **Hypervisor** | Pointer to **NullableString** |  | [optional] 
 **ProxmoxRole** | Pointer to [**ProxmoxRole**](ProxmoxRole.md) |  | [optional] 
-**ProxmoxNFSDiskSize** | Pointer to **int32** |  | [optional] 
+**ProxmoxExtraDiskSize** | Pointer to **int32** |  | [optional] 
 **ActionButtons** | Pointer to [**ServerActionButtonVisibilityDto**](ServerActionButtonVisibilityDto.md) |  | [optional] 
 **KubernetesNodeLabels** | Pointer to [**[]KubernetesNodeLabelsDto**](KubernetesNodeLabelsDto.md) |  | [optional] 
 
@@ -1010,6 +1011,41 @@ HasAwsHostName returns a boolean if a field has been set.
 `func (o *ServerListDto) UnsetAwsHostName()`
 
 UnsetAwsHostName ensures that no value is present for AwsHostName, not even an explicit nil
+### GetOpenshiftFlavor
+
+`func (o *ServerListDto) GetOpenshiftFlavor() string`
+
+GetOpenshiftFlavor returns the OpenshiftFlavor field if non-nil, zero value otherwise.
+
+### GetOpenshiftFlavorOk
+
+`func (o *ServerListDto) GetOpenshiftFlavorOk() (*string, bool)`
+
+GetOpenshiftFlavorOk returns a tuple with the OpenshiftFlavor field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOpenshiftFlavor
+
+`func (o *ServerListDto) SetOpenshiftFlavor(v string)`
+
+SetOpenshiftFlavor sets OpenshiftFlavor field to given value.
+
+### HasOpenshiftFlavor
+
+`func (o *ServerListDto) HasOpenshiftFlavor() bool`
+
+HasOpenshiftFlavor returns a boolean if a field has been set.
+
+### SetOpenshiftFlavorNil
+
+`func (o *ServerListDto) SetOpenshiftFlavorNil(b bool)`
+
+ SetOpenshiftFlavorNil sets the value for OpenshiftFlavor to be an explicit nil
+
+### UnsetOpenshiftFlavor
+`func (o *ServerListDto) UnsetOpenshiftFlavor()`
+
+UnsetOpenshiftFlavor ensures that no value is present for OpenshiftFlavor, not even an explicit nil
 ### GetAvailabilityZone
 
 `func (o *ServerListDto) GetAvailabilityZone() string`
@@ -1105,30 +1141,30 @@ SetProxmoxRole sets ProxmoxRole field to given value.
 
 HasProxmoxRole returns a boolean if a field has been set.
 
-### GetProxmoxNFSDiskSize
+### GetProxmoxExtraDiskSize
 
-`func (o *ServerListDto) GetProxmoxNFSDiskSize() int32`
+`func (o *ServerListDto) GetProxmoxExtraDiskSize() int32`
 
-GetProxmoxNFSDiskSize returns the ProxmoxNFSDiskSize field if non-nil, zero value otherwise.
+GetProxmoxExtraDiskSize returns the ProxmoxExtraDiskSize field if non-nil, zero value otherwise.
 
-### GetProxmoxNFSDiskSizeOk
+### GetProxmoxExtraDiskSizeOk
 
-`func (o *ServerListDto) GetProxmoxNFSDiskSizeOk() (*int32, bool)`
+`func (o *ServerListDto) GetProxmoxExtraDiskSizeOk() (*int32, bool)`
 
-GetProxmoxNFSDiskSizeOk returns a tuple with the ProxmoxNFSDiskSize field if it's non-nil, zero value otherwise
+GetProxmoxExtraDiskSizeOk returns a tuple with the ProxmoxExtraDiskSize field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetProxmoxNFSDiskSize
+### SetProxmoxExtraDiskSize
 
-`func (o *ServerListDto) SetProxmoxNFSDiskSize(v int32)`
+`func (o *ServerListDto) SetProxmoxExtraDiskSize(v int32)`
 
-SetProxmoxNFSDiskSize sets ProxmoxNFSDiskSize field to given value.
+SetProxmoxExtraDiskSize sets ProxmoxExtraDiskSize field to given value.
 
-### HasProxmoxNFSDiskSize
+### HasProxmoxExtraDiskSize
 
-`func (o *ServerListDto) HasProxmoxNFSDiskSize() bool`
+`func (o *ServerListDto) HasProxmoxExtraDiskSize() bool`
 
-HasProxmoxNFSDiskSize returns a boolean if a field has been set.
+HasProxmoxExtraDiskSize returns a boolean if a field has been set.
 
 ### GetActionButtons
 

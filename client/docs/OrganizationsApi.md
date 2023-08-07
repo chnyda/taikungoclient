@@ -389,7 +389,7 @@ Other parameters are passed through a pointer to a apiOrganizationsExportCsvRequ
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/octet-stream, application/json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -745,7 +745,7 @@ import (
 )
 
 func main() {
-    updatePaymentIdCommand := *openapiclient.NewUpdatePaymentIdCommand() // UpdatePaymentIdCommand |  (optional)
+    updatePaymentIdCommand := *openapiclient.NewUpdatePaymentIdCommand() // UpdatePaymentIdCommand | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)

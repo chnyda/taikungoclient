@@ -26,6 +26,8 @@ Name | Type | Description | Notes
 **DisableSpotVm** | Pointer to [**ProjectButtonStatusDto**](ProjectButtonStatusDto.md) |  | [optional] 
 **AttachAlertingProfile** | Pointer to [**ProjectButtonStatusDto**](ProjectButtonStatusDto.md) |  | [optional] 
 **DetachAlertingProfile** | Pointer to [**ProjectButtonStatusDto**](ProjectButtonStatusDto.md) |  | [optional] 
+**EnableAi** | Pointer to [**ProjectButtonStatusDto**](ProjectButtonStatusDto.md) |  | [optional] 
+**DisableAi** | Pointer to [**ProjectButtonStatusDto**](ProjectButtonStatusDto.md) |  | [optional] 
 
 ## Methods
 
@@ -595,6 +597,56 @@ SetDetachAlertingProfile sets DetachAlertingProfile field to given value.
 `func (o *ProjectActionVisibilityDto) HasDetachAlertingProfile() bool`
 
 HasDetachAlertingProfile returns a boolean if a field has been set.
+
+### GetEnableAi
+
+`func (o *ProjectActionVisibilityDto) GetEnableAi() ProjectButtonStatusDto`
+
+GetEnableAi returns the EnableAi field if non-nil, zero value otherwise.
+
+### GetEnableAiOk
+
+`func (o *ProjectActionVisibilityDto) GetEnableAiOk() (*ProjectButtonStatusDto, bool)`
+
+GetEnableAiOk returns a tuple with the EnableAi field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEnableAi
+
+`func (o *ProjectActionVisibilityDto) SetEnableAi(v ProjectButtonStatusDto)`
+
+SetEnableAi sets EnableAi field to given value.
+
+### HasEnableAi
+
+`func (o *ProjectActionVisibilityDto) HasEnableAi() bool`
+
+HasEnableAi returns a boolean if a field has been set.
+
+### GetDisableAi
+
+`func (o *ProjectActionVisibilityDto) GetDisableAi() ProjectButtonStatusDto`
+
+GetDisableAi returns the DisableAi field if non-nil, zero value otherwise.
+
+### GetDisableAiOk
+
+`func (o *ProjectActionVisibilityDto) GetDisableAiOk() (*ProjectButtonStatusDto, bool)`
+
+GetDisableAiOk returns a tuple with the DisableAi field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDisableAi
+
+`func (o *ProjectActionVisibilityDto) SetDisableAi(v ProjectButtonStatusDto)`
+
+SetDisableAi sets DisableAi field to given value.
+
+### HasDisableAi
+
+`func (o *ProjectActionVisibilityDto) HasDisableAi() bool`
+
+HasDisableAi returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

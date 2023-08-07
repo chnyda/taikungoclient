@@ -1260,7 +1260,7 @@ func (a *UsersApiService) UsersExportCsvExecute(r ApiUsersExportCsvRequest) (*Cs
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/octet-stream", "application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)

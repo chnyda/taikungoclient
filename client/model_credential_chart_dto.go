@@ -25,6 +25,8 @@ type CredentialChartDto struct {
 	Openstack *int32 `json:"openstack,omitempty"`
 	Google *int32 `json:"google,omitempty"`
 	Tanzu *int32 `json:"tanzu,omitempty"`
+	Proxmox *int32 `json:"proxmox,omitempty"`
+	Openshift *int32 `json:"openshift,omitempty"`
 	TotalCount *int32 `json:"totalCount,omitempty"`
 }
 
@@ -205,6 +207,70 @@ func (o *CredentialChartDto) SetTanzu(v int32) {
 	o.Tanzu = &v
 }
 
+// GetProxmox returns the Proxmox field value if set, zero value otherwise.
+func (o *CredentialChartDto) GetProxmox() int32 {
+	if o == nil || IsNil(o.Proxmox) {
+		var ret int32
+		return ret
+	}
+	return *o.Proxmox
+}
+
+// GetProxmoxOk returns a tuple with the Proxmox field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CredentialChartDto) GetProxmoxOk() (*int32, bool) {
+	if o == nil || IsNil(o.Proxmox) {
+		return nil, false
+	}
+	return o.Proxmox, true
+}
+
+// HasProxmox returns a boolean if a field has been set.
+func (o *CredentialChartDto) HasProxmox() bool {
+	if o != nil && !IsNil(o.Proxmox) {
+		return true
+	}
+
+	return false
+}
+
+// SetProxmox gets a reference to the given int32 and assigns it to the Proxmox field.
+func (o *CredentialChartDto) SetProxmox(v int32) {
+	o.Proxmox = &v
+}
+
+// GetOpenshift returns the Openshift field value if set, zero value otherwise.
+func (o *CredentialChartDto) GetOpenshift() int32 {
+	if o == nil || IsNil(o.Openshift) {
+		var ret int32
+		return ret
+	}
+	return *o.Openshift
+}
+
+// GetOpenshiftOk returns a tuple with the Openshift field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CredentialChartDto) GetOpenshiftOk() (*int32, bool) {
+	if o == nil || IsNil(o.Openshift) {
+		return nil, false
+	}
+	return o.Openshift, true
+}
+
+// HasOpenshift returns a boolean if a field has been set.
+func (o *CredentialChartDto) HasOpenshift() bool {
+	if o != nil && !IsNil(o.Openshift) {
+		return true
+	}
+
+	return false
+}
+
+// SetOpenshift gets a reference to the given int32 and assigns it to the Openshift field.
+func (o *CredentialChartDto) SetOpenshift(v int32) {
+	o.Openshift = &v
+}
+
 // GetTotalCount returns the TotalCount field value if set, zero value otherwise.
 func (o *CredentialChartDto) GetTotalCount() int32 {
 	if o == nil || IsNil(o.TotalCount) {
@@ -261,6 +327,12 @@ func (o CredentialChartDto) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Tanzu) {
 		toSerialize["tanzu"] = o.Tanzu
+	}
+	if !IsNil(o.Proxmox) {
+		toSerialize["proxmox"] = o.Proxmox
+	}
+	if !IsNil(o.Openshift) {
+		toSerialize["openshift"] = o.Openshift
 	}
 	if !IsNil(o.TotalCount) {
 		toSerialize["totalCount"] = o.TotalCount

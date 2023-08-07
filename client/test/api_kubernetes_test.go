@@ -364,6 +364,18 @@ func Test_taikuncore_KubernetesApiService(t *testing.T) {
 
 	})
 
+	t.Run("Test KubernetesApiService KubernetesExport", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.KubernetesApi.KubernetesExport(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test KubernetesApiService KubernetesGetSupportedList", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

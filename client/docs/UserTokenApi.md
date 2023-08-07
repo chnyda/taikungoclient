@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## UsertokenAvailableEndpoints
 
-> AvailableEndpointsList UsertokenAvailableEndpoints(ctx).IsAdd(isAdd).IsReadonly(isReadonly).Limit(limit).Offset(offset).SortBy(sortBy).SortDirection(sortDirection).Search(search).Id(id).Execute()
+> AvailableEndpointsList UsertokenAvailableEndpoints(ctx).Limit(limit).Offset(offset).SortBy(sortBy).SortDirection(sortDirection).Search(search).Id(id).IsAdd(isAdd).IsReadonly(isReadonly).Execute()
 
 Get available endpoint list
 
@@ -31,18 +31,18 @@ import (
 )
 
 func main() {
-    isAdd := true // bool | 
-    isReadonly := true // bool | 
     limit := int32(56) // int32 |  (optional)
     offset := int32(56) // int32 |  (optional)
     sortBy := "sortBy_example" // string |  (optional)
     sortDirection := "sortDirection_example" // string |  (optional)
     search := "search_example" // string |  (optional)
     id := "id_example" // string |  (optional)
+    isAdd := true // bool |  (optional)
+    isReadonly := true // bool |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.UserTokenApi.UsertokenAvailableEndpoints(context.Background()).IsAdd(isAdd).IsReadonly(isReadonly).Limit(limit).Offset(offset).SortBy(sortBy).SortDirection(sortDirection).Search(search).Id(id).Execute()
+    resp, r, err := apiClient.UserTokenApi.UsertokenAvailableEndpoints(context.Background()).Limit(limit).Offset(offset).SortBy(sortBy).SortDirection(sortDirection).Search(search).Id(id).IsAdd(isAdd).IsReadonly(isReadonly).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UserTokenApi.UsertokenAvailableEndpoints``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -63,14 +63,14 @@ Other parameters are passed through a pointer to a apiUsertokenAvailableEndpoint
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **isAdd** | **bool** |  | 
- **isReadonly** | **bool** |  | 
  **limit** | **int32** |  | 
  **offset** | **int32** |  | 
  **sortBy** | **string** |  | 
  **sortDirection** | **string** |  | 
  **search** | **string** |  | 
  **id** | **string** |  | 
+ **isAdd** | **bool** |  | 
+ **isReadonly** | **bool** |  | 
 
 ### Return type
 

@@ -82,7 +82,7 @@ Name | Type | Description  | Notes
 
 ## StandaloneactionsDownloadRdp
 
-> StandaloneactionsDownloadRdp(ctx, id).Execute()
+> CsvExporter StandaloneactionsDownloadRdp(ctx, id).Execute()
 
 Download RDP file
 
@@ -103,11 +103,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.StandaloneActionsApi.StandaloneactionsDownloadRdp(context.Background(), id).Execute()
+    resp, r, err := apiClient.StandaloneActionsApi.StandaloneactionsDownloadRdp(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `StandaloneActionsApi.StandaloneactionsDownloadRdp``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
+    // response from `StandaloneactionsDownloadRdp`: CsvExporter
+    fmt.Fprintf(os.Stdout, "Response from `StandaloneActionsApi.StandaloneactionsDownloadRdp`: %v\n", resp)
 }
 ```
 
@@ -130,7 +132,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
- (empty response body)
+[**CsvExporter**](CsvExporter.md)
 
 ### Authorization
 

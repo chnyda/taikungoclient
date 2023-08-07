@@ -23,12 +23,14 @@ type ProxmoxRole string
 const (
 	PROXMOXROLE_NONE ProxmoxRole = "NONE"
 	PROXMOXROLE_NFS ProxmoxRole = "NFS"
+	PROXMOXROLE_STORAGE ProxmoxRole = "STORAGE"
 )
 
 // All allowed values of ProxmoxRole enum
 var AllowedProxmoxRoleEnumValues = []ProxmoxRole{
 	"NONE",
 	"NFS",
+	"STORAGE",
 }
 
 func (v *ProxmoxRole) UnmarshalJSON(src []byte) error {

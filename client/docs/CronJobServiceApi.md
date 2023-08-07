@@ -24,6 +24,7 @@ Method | HTTP request | Description
 [**CronjobFetchK8sAlertData**](CronJobServiceApi.md#CronjobFetchK8sAlertData) | **Post** /api/v1/cronjob/fetch-k8s-alert-data | Fetch k8s alert data
 [**CronjobFetchK8sOverviewData**](CronJobServiceApi.md#CronjobFetchK8sOverviewData) | **Post** /api/v1/cronjob/fetch-k8s-overview-data | Fetch k8s overview data
 [**CronjobFetchOrganizationDetails**](CronJobServiceApi.md#CronjobFetchOrganizationDetails) | **Post** /api/v1/cronjob/fetch-organization-details | Fetch organization details
+[**CronjobKubeConfigCleaner**](CronJobServiceApi.md#CronjobKubeConfigCleaner) | **Post** /api/v1/cronjob/kube-config-cleaner | Clean kube config
 [**CronjobPurgeExpiredProjects**](CronJobServiceApi.md#CronjobPurgeExpiredProjects) | **Post** /api/v1/cronjob/purge-expired-projects | Purge expired projects
 [**CronjobRemindUsersByAlertingProfile**](CronJobServiceApi.md#CronjobRemindUsersByAlertingProfile) | **Post** /api/v1/cronjob/remind-users-by-alerting-profile | Remind users by alerting profile
 [**CronjobSyncAppProxy**](CronJobServiceApi.md#CronjobSyncAppProxy) | **Post** /api/v1/cronjob/sync-app-proxy | Sync app proxy command 
@@ -1254,6 +1255,68 @@ func main() {
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiCronjobFetchOrganizationDetailsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | **map[string]interface{}** |  | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CronjobKubeConfigCleaner
+
+> CronjobKubeConfigCleaner(ctx).Body(body).Execute()
+
+Clean kube config
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/chnyda/taikungoclient"
+)
+
+func main() {
+    body := map[string]interface{}{ ... } // map[string]interface{} | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.CronJobServiceApi.CronjobKubeConfigCleaner(context.Background()).Body(body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `CronJobServiceApi.CronjobKubeConfigCleaner``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCronjobKubeConfigCleanerRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

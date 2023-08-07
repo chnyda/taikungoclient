@@ -25,10 +25,14 @@ type ServerChartDto struct {
 	Openstack []ServerCommonRecordDto `json:"openstack,omitempty"`
 	Google []ServerCommonRecordDto `json:"google,omitempty"`
 	Tanzu []ServerCommonRecordDto `json:"tanzu,omitempty"`
+	Proxmox []ServerCommonRecordDto `json:"proxmox,omitempty"`
+	Openshift []ServerCommonRecordDto `json:"openshift,omitempty"`
 	Failed []ServerCommonRecordDto `json:"failed,omitempty"`
 	Succeeded []ServerCommonRecordDto `json:"succeeded,omitempty"`
 	Waiting []ServerCommonRecordDto `json:"waiting,omitempty"`
 	Updating []ServerCommonRecordDto `json:"updating,omitempty"`
+	Deleting []ServerCommonRecordDto `json:"deleting,omitempty"`
+	Purging []ServerCommonRecordDto `json:"purging,omitempty"`
 	TotalCount *int32 `json:"totalCount,omitempty"`
 	TotalCpu *int32 `json:"totalCpu,omitempty"`
 	TotalRam *int64 `json:"totalRam,omitempty"`
@@ -42,6 +46,8 @@ type ServerChartDto struct {
 	TotalOpenstackCount *int32 `json:"totalOpenstackCount,omitempty"`
 	TotalGoogleCount *int32 `json:"totalGoogleCount,omitempty"`
 	TotalTanzuCount *int32 `json:"totalTanzuCount,omitempty"`
+	TotalOpenshiftCount *int32 `json:"totalOpenshiftCount,omitempty"`
+	TotalProxmoxCount *int32 `json:"totalProxmoxCount,omitempty"`
 	UsedResources []UserResourceChartDto `json:"usedResources,omitempty"`
 }
 
@@ -227,6 +233,72 @@ func (o *ServerChartDto) SetTanzu(v []ServerCommonRecordDto) {
 	o.Tanzu = v
 }
 
+// GetProxmox returns the Proxmox field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ServerChartDto) GetProxmox() []ServerCommonRecordDto {
+	if o == nil {
+		var ret []ServerCommonRecordDto
+		return ret
+	}
+	return o.Proxmox
+}
+
+// GetProxmoxOk returns a tuple with the Proxmox field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ServerChartDto) GetProxmoxOk() ([]ServerCommonRecordDto, bool) {
+	if o == nil || IsNil(o.Proxmox) {
+		return nil, false
+	}
+	return o.Proxmox, true
+}
+
+// HasProxmox returns a boolean if a field has been set.
+func (o *ServerChartDto) HasProxmox() bool {
+	if o != nil && IsNil(o.Proxmox) {
+		return true
+	}
+
+	return false
+}
+
+// SetProxmox gets a reference to the given []ServerCommonRecordDto and assigns it to the Proxmox field.
+func (o *ServerChartDto) SetProxmox(v []ServerCommonRecordDto) {
+	o.Proxmox = v
+}
+
+// GetOpenshift returns the Openshift field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ServerChartDto) GetOpenshift() []ServerCommonRecordDto {
+	if o == nil {
+		var ret []ServerCommonRecordDto
+		return ret
+	}
+	return o.Openshift
+}
+
+// GetOpenshiftOk returns a tuple with the Openshift field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ServerChartDto) GetOpenshiftOk() ([]ServerCommonRecordDto, bool) {
+	if o == nil || IsNil(o.Openshift) {
+		return nil, false
+	}
+	return o.Openshift, true
+}
+
+// HasOpenshift returns a boolean if a field has been set.
+func (o *ServerChartDto) HasOpenshift() bool {
+	if o != nil && IsNil(o.Openshift) {
+		return true
+	}
+
+	return false
+}
+
+// SetOpenshift gets a reference to the given []ServerCommonRecordDto and assigns it to the Openshift field.
+func (o *ServerChartDto) SetOpenshift(v []ServerCommonRecordDto) {
+	o.Openshift = v
+}
+
 // GetFailed returns the Failed field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ServerChartDto) GetFailed() []ServerCommonRecordDto {
 	if o == nil {
@@ -357,6 +429,72 @@ func (o *ServerChartDto) HasUpdating() bool {
 // SetUpdating gets a reference to the given []ServerCommonRecordDto and assigns it to the Updating field.
 func (o *ServerChartDto) SetUpdating(v []ServerCommonRecordDto) {
 	o.Updating = v
+}
+
+// GetDeleting returns the Deleting field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ServerChartDto) GetDeleting() []ServerCommonRecordDto {
+	if o == nil {
+		var ret []ServerCommonRecordDto
+		return ret
+	}
+	return o.Deleting
+}
+
+// GetDeletingOk returns a tuple with the Deleting field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ServerChartDto) GetDeletingOk() ([]ServerCommonRecordDto, bool) {
+	if o == nil || IsNil(o.Deleting) {
+		return nil, false
+	}
+	return o.Deleting, true
+}
+
+// HasDeleting returns a boolean if a field has been set.
+func (o *ServerChartDto) HasDeleting() bool {
+	if o != nil && IsNil(o.Deleting) {
+		return true
+	}
+
+	return false
+}
+
+// SetDeleting gets a reference to the given []ServerCommonRecordDto and assigns it to the Deleting field.
+func (o *ServerChartDto) SetDeleting(v []ServerCommonRecordDto) {
+	o.Deleting = v
+}
+
+// GetPurging returns the Purging field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ServerChartDto) GetPurging() []ServerCommonRecordDto {
+	if o == nil {
+		var ret []ServerCommonRecordDto
+		return ret
+	}
+	return o.Purging
+}
+
+// GetPurgingOk returns a tuple with the Purging field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ServerChartDto) GetPurgingOk() ([]ServerCommonRecordDto, bool) {
+	if o == nil || IsNil(o.Purging) {
+		return nil, false
+	}
+	return o.Purging, true
+}
+
+// HasPurging returns a boolean if a field has been set.
+func (o *ServerChartDto) HasPurging() bool {
+	if o != nil && IsNil(o.Purging) {
+		return true
+	}
+
+	return false
+}
+
+// SetPurging gets a reference to the given []ServerCommonRecordDto and assigns it to the Purging field.
+func (o *ServerChartDto) SetPurging(v []ServerCommonRecordDto) {
+	o.Purging = v
 }
 
 // GetTotalCount returns the TotalCount field value if set, zero value otherwise.
@@ -775,6 +913,70 @@ func (o *ServerChartDto) SetTotalTanzuCount(v int32) {
 	o.TotalTanzuCount = &v
 }
 
+// GetTotalOpenshiftCount returns the TotalOpenshiftCount field value if set, zero value otherwise.
+func (o *ServerChartDto) GetTotalOpenshiftCount() int32 {
+	if o == nil || IsNil(o.TotalOpenshiftCount) {
+		var ret int32
+		return ret
+	}
+	return *o.TotalOpenshiftCount
+}
+
+// GetTotalOpenshiftCountOk returns a tuple with the TotalOpenshiftCount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerChartDto) GetTotalOpenshiftCountOk() (*int32, bool) {
+	if o == nil || IsNil(o.TotalOpenshiftCount) {
+		return nil, false
+	}
+	return o.TotalOpenshiftCount, true
+}
+
+// HasTotalOpenshiftCount returns a boolean if a field has been set.
+func (o *ServerChartDto) HasTotalOpenshiftCount() bool {
+	if o != nil && !IsNil(o.TotalOpenshiftCount) {
+		return true
+	}
+
+	return false
+}
+
+// SetTotalOpenshiftCount gets a reference to the given int32 and assigns it to the TotalOpenshiftCount field.
+func (o *ServerChartDto) SetTotalOpenshiftCount(v int32) {
+	o.TotalOpenshiftCount = &v
+}
+
+// GetTotalProxmoxCount returns the TotalProxmoxCount field value if set, zero value otherwise.
+func (o *ServerChartDto) GetTotalProxmoxCount() int32 {
+	if o == nil || IsNil(o.TotalProxmoxCount) {
+		var ret int32
+		return ret
+	}
+	return *o.TotalProxmoxCount
+}
+
+// GetTotalProxmoxCountOk returns a tuple with the TotalProxmoxCount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerChartDto) GetTotalProxmoxCountOk() (*int32, bool) {
+	if o == nil || IsNil(o.TotalProxmoxCount) {
+		return nil, false
+	}
+	return o.TotalProxmoxCount, true
+}
+
+// HasTotalProxmoxCount returns a boolean if a field has been set.
+func (o *ServerChartDto) HasTotalProxmoxCount() bool {
+	if o != nil && !IsNil(o.TotalProxmoxCount) {
+		return true
+	}
+
+	return false
+}
+
+// SetTotalProxmoxCount gets a reference to the given int32 and assigns it to the TotalProxmoxCount field.
+func (o *ServerChartDto) SetTotalProxmoxCount(v int32) {
+	o.TotalProxmoxCount = &v
+}
+
 // GetUsedResources returns the UsedResources field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ServerChartDto) GetUsedResources() []UserResourceChartDto {
 	if o == nil {
@@ -833,6 +1035,12 @@ func (o ServerChartDto) ToMap() (map[string]interface{}, error) {
 	if o.Tanzu != nil {
 		toSerialize["tanzu"] = o.Tanzu
 	}
+	if o.Proxmox != nil {
+		toSerialize["proxmox"] = o.Proxmox
+	}
+	if o.Openshift != nil {
+		toSerialize["openshift"] = o.Openshift
+	}
 	if o.Failed != nil {
 		toSerialize["failed"] = o.Failed
 	}
@@ -844,6 +1052,12 @@ func (o ServerChartDto) ToMap() (map[string]interface{}, error) {
 	}
 	if o.Updating != nil {
 		toSerialize["updating"] = o.Updating
+	}
+	if o.Deleting != nil {
+		toSerialize["deleting"] = o.Deleting
+	}
+	if o.Purging != nil {
+		toSerialize["purging"] = o.Purging
 	}
 	if !IsNil(o.TotalCount) {
 		toSerialize["totalCount"] = o.TotalCount
@@ -883,6 +1097,12 @@ func (o ServerChartDto) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.TotalTanzuCount) {
 		toSerialize["totalTanzuCount"] = o.TotalTanzuCount
+	}
+	if !IsNil(o.TotalOpenshiftCount) {
+		toSerialize["totalOpenshiftCount"] = o.TotalOpenshiftCount
+	}
+	if !IsNil(o.TotalProxmoxCount) {
+		toSerialize["totalProxmoxCount"] = o.TotalProxmoxCount
 	}
 	if o.UsedResources != nil {
 		toSerialize["usedResources"] = o.UsedResources

@@ -242,6 +242,17 @@ func Test_taikuncore_CronJobServiceApiService(t *testing.T) {
 
 	})
 
+	t.Run("Test CronJobServiceApiService CronjobKubeConfigCleaner", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		httpRes, err := apiClient.CronJobServiceApi.CronjobKubeConfigCleaner(context.Background()).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test CronJobServiceApiService CronjobPurgeExpiredProjects", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

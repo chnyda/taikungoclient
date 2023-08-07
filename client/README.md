@@ -254,6 +254,7 @@ Class | Method | HTTP request | Description
 *CronJobServiceApi* | [**CronjobFetchK8sAlertData**](docs/CronJobServiceApi.md#cronjobfetchk8salertdata) | **Post** /api/v1/cronjob/fetch-k8s-alert-data | Fetch k8s alert data
 *CronJobServiceApi* | [**CronjobFetchK8sOverviewData**](docs/CronJobServiceApi.md#cronjobfetchk8soverviewdata) | **Post** /api/v1/cronjob/fetch-k8s-overview-data | Fetch k8s overview data
 *CronJobServiceApi* | [**CronjobFetchOrganizationDetails**](docs/CronJobServiceApi.md#cronjobfetchorganizationdetails) | **Post** /api/v1/cronjob/fetch-organization-details | Fetch organization details
+*CronJobServiceApi* | [**CronjobKubeConfigCleaner**](docs/CronJobServiceApi.md#cronjobkubeconfigcleaner) | **Post** /api/v1/cronjob/kube-config-cleaner | Clean kube config
 *CronJobServiceApi* | [**CronjobPurgeExpiredProjects**](docs/CronJobServiceApi.md#cronjobpurgeexpiredprojects) | **Post** /api/v1/cronjob/purge-expired-projects | Purge expired projects
 *CronJobServiceApi* | [**CronjobRemindUsersByAlertingProfile**](docs/CronJobServiceApi.md#cronjobremindusersbyalertingprofile) | **Post** /api/v1/cronjob/remind-users-by-alerting-profile | Remind users by alerting profile
 *CronJobServiceApi* | [**CronjobSyncAppProxy**](docs/CronJobServiceApi.md#cronjobsyncappproxy) | **Post** /api/v1/cronjob/sync-app-proxy | Sync app proxy command 
@@ -274,6 +275,7 @@ Class | Method | HTTP request | Description
 *FlavorsApi* | [**FlavorsBindToProject**](docs/FlavorsApi.md#flavorsbindtoproject) | **Post** /api/v1/flavors/bind | Bind flavors to project
 *FlavorsApi* | [**FlavorsDropdownFlavors**](docs/FlavorsApi.md#flavorsdropdownflavors) | **Get** /api/v1/flavors/credentials/dropdown/list | Retrieve cloud credentials dropdown list
 *FlavorsApi* | [**FlavorsGoogleMachineTypes**](docs/FlavorsApi.md#flavorsgooglemachinetypes) | **Get** /api/v1/flavors/google/{cloudId} | 
+*FlavorsApi* | [**FlavorsOpenshiftFlavors**](docs/FlavorsApi.md#flavorsopenshiftflavors) | **Get** /api/v1/flavors/openshift/{cloudId} | Retrieve openshift flavors
 *FlavorsApi* | [**FlavorsOpenstackFlavors**](docs/FlavorsApi.md#flavorsopenstackflavors) | **Get** /api/v1/flavors/openstack/{cloudId} | 
 *FlavorsApi* | [**FlavorsProxmoxFlavors**](docs/FlavorsApi.md#flavorsproxmoxflavors) | **Get** /api/v1/flavors/proxmox/{cloudId} | Retrieve proxmox flavors
 *FlavorsApi* | [**FlavorsSelectedFlavorsForProject**](docs/FlavorsApi.md#flavorsselectedflavorsforproject) | **Get** /api/v1/flavors/projects/list | Retrieve selected flavors for project
@@ -311,6 +313,7 @@ Class | Method | HTTP request | Description
 *KubeConfigApi* | [**KubeconfigDelete**](docs/KubeConfigApi.md#kubeconfigdelete) | **Post** /api/v1/kubeconfig/delete | Delete kube config
 *KubeConfigApi* | [**KubeconfigDeleteByProjectId**](docs/KubeConfigApi.md#kubeconfigdeletebyprojectid) | **Post** /api/v1/kubeconfig/delete-by-project-id | Delete kube config by project id
 *KubeConfigApi* | [**KubeconfigDownload**](docs/KubeConfigApi.md#kubeconfigdownload) | **Post** /api/v1/kubeconfig/download | Download kube config file for user by project Id
+*KubeConfigApi* | [**KubeconfigExport**](docs/KubeConfigApi.md#kubeconfigexport) | **Post** /api/v1/kubeconfig/export | Export
 *KubeConfigApi* | [**KubeconfigInteractiveShell**](docs/KubeConfigApi.md#kubeconfiginteractiveshell) | **Post** /api/v1/kubeconfig/interactive-shell | Interactive shell for user kube config
 *KubeConfigApi* | [**KubeconfigList**](docs/KubeConfigApi.md#kubeconfiglist) | **Get** /api/v1/kubeconfig | Retrieve a list of kube configs for project
 *KubeConfigRoleApi* | [**KubeconfigroleList**](docs/KubeConfigRoleApi.md#kubeconfigrolelist) | **Get** /api/v1/kubeconfigrole | Retrieve list of kube config role
@@ -341,6 +344,7 @@ Class | Method | HTTP request | Description
 *KubernetesApi* | [**KubernetesDescribeStorageClass**](docs/KubernetesApi.md#kubernetesdescribestorageclass) | **Post** /api/v1/kubernetes/describe/storageclass | Describe storage class
 *KubernetesApi* | [**KubernetesDescribeSts**](docs/KubernetesApi.md#kubernetesdescribests) | **Post** /api/v1/kubernetes/describe/sts | Describe stateful set
 *KubernetesApi* | [**KubernetesDownload**](docs/KubernetesApi.md#kubernetesdownload) | **Get** /api/v1/kubernetes/{projectId}/download | Download kube config file
+*KubernetesApi* | [**KubernetesExport**](docs/KubernetesApi.md#kubernetesexport) | **Get** /api/v1/kubernetes/export | Export
 *KubernetesApi* | [**KubernetesGetSupportedList**](docs/KubernetesApi.md#kubernetesgetsupportedlist) | **Get** /api/v1/kubernetes/supported/list | Retrieve Taikun supported kubernetes versions
 *KubernetesApi* | [**KubernetesHelmReleaseList**](docs/KubernetesApi.md#kuberneteshelmreleaselist) | **Get** /api/v1/kubernetes/{projectId}/helmreleases | Retrieve a list of k8s helm releases for all namespaces
 *KubernetesApi* | [**KubernetesIngressList**](docs/KubernetesApi.md#kubernetesingresslist) | **Get** /api/v1/kubernetes/{projectId}/ingress | Retrieve a list of k8s ingress for all namespaces
@@ -404,7 +408,10 @@ Class | Method | HTTP request | Description
 *OpaProfilesApi* | [**OpaprofilesMakeDefault**](docs/OpaProfilesApi.md#opaprofilesmakedefault) | **Post** /api/v1/opaprofiles/make-default | Choose default policy profile
 *OpaProfilesApi* | [**OpaprofilesSync**](docs/OpaProfilesApi.md#opaprofilessync) | **Post** /api/v1/opaprofiles/sync | Sync policy profile
 *OpaProfilesApi* | [**OpaprofilesUpdate**](docs/OpaProfilesApi.md#opaprofilesupdate) | **Put** /api/v1/opaprofiles | Update policy profile
+*OpenshiftApi* | [**OpenshiftCreate**](docs/OpenshiftApi.md#openshiftcreate) | **Post** /api/v1/openshift/create | Add Openshift cloud credential
+*OpenshiftApi* | [**OpenshiftList**](docs/OpenshiftApi.md#openshiftlist) | **Get** /api/v1/openshift/list | Retrieve all operation credentials
 *OpenshiftApi* | [**OpenshiftStorageClass**](docs/OpenshiftApi.md#openshiftstorageclass) | **Post** /api/v1/openshift/storage-class | 
+*OpenshiftApi* | [**OpenshiftValidate**](docs/OpenshiftApi.md#openshiftvalidate) | **Post** /api/v1/openshift/validate | 
 *OpenstackCloudCredentialApi* | [**OpenstackCreate**](docs/OpenstackCloudCredentialApi.md#openstackcreate) | **Post** /api/v1/openstack/create | Add Openstack credentials
 *OpenstackCloudCredentialApi* | [**OpenstackList**](docs/OpenstackCloudCredentialApi.md#openstacklist) | **Get** /api/v1/openstack/list | Retrieve list of openstack cloud credentials
 *OpenstackCloudCredentialApi* | [**OpenstackNetworks**](docs/OpenstackCloudCredentialApi.md#openstacknetworks) | **Post** /api/v1/openstack/networks | Openstack network list
@@ -452,15 +459,15 @@ Class | Method | HTTP request | Description
 *PartnersApi* | [**PartnerInfo**](docs/PartnersApi.md#partnerinfo) | **Get** /api/v1/partner/info | Get partner&#39;s registration info
 *PartnersApi* | [**PartnerList**](docs/PartnersApi.md#partnerlist) | **Get** /api/v1/partner | Get partners
 *PartnersApi* | [**PartnerUpdate**](docs/PartnersApi.md#partnerupdate) | **Put** /api/v1/partner/update/{id} | 
-*PaymentsApi* | [**PaymentsBillingInfo**](docs/PaymentsApi.md#paymentsbillinginfo) | **Get** /api/v1/payments/billing-info | Get billing info for organization
-*PaymentsApi* | [**PaymentsCardinfo**](docs/PaymentsApi.md#paymentscardinfo) | **Get** /api/v1/payments/cardinfo | Get card information
-*PaymentsApi* | [**PaymentsClear**](docs/PaymentsApi.md#paymentsclear) | **Post** /api/v1/payments/clear | Clear payment
-*PaymentsApi* | [**PaymentsCreateCustomer**](docs/PaymentsApi.md#paymentscreatecustomer) | **Post** /api/v1/payments/createcustomer | Create customer
-*PaymentsApi* | [**PaymentsFinalPrice**](docs/PaymentsApi.md#paymentsfinalprice) | **Post** /api/v1/payments/finalprice | Fetch final price
-*PaymentsApi* | [**PaymentsGetStripeInvoices**](docs/PaymentsApi.md#paymentsgetstripeinvoices) | **Get** /api/v1/payments/stripeinvoices/{subscriptionId} | 
-*PaymentsApi* | [**PaymentsPay**](docs/PaymentsApi.md#paymentspay) | **Post** /api/v1/payments/pay | Pay invoice
-*PaymentsApi* | [**PaymentsUpdateCard**](docs/PaymentsApi.md#paymentsupdatecard) | **Post** /api/v1/payments/updatecard | Update payment card
-*PaymentsApi* | [**PaymentsWebhook**](docs/PaymentsApi.md#paymentswebhook) | **Post** /api/v1/payments/webhook | Listen to payment webhook
+*PaymentsApi* | [**PaymentBillingInfo**](docs/PaymentsApi.md#paymentbillinginfo) | **Get** /api/v1/payment/billing-info | Get billing info for organization
+*PaymentsApi* | [**PaymentCardinfo**](docs/PaymentsApi.md#paymentcardinfo) | **Get** /api/v1/payment/cardinfo | Get card information
+*PaymentsApi* | [**PaymentClear**](docs/PaymentsApi.md#paymentclear) | **Post** /api/v1/payment/clear | Clear payment
+*PaymentsApi* | [**PaymentCreateCustomer**](docs/PaymentsApi.md#paymentcreatecustomer) | **Post** /api/v1/payment/createcustomer | Create customer
+*PaymentsApi* | [**PaymentFinalPrice**](docs/PaymentsApi.md#paymentfinalprice) | **Post** /api/v1/payment/finalprice | Fetch final price
+*PaymentsApi* | [**PaymentGetStripeInvoices**](docs/PaymentsApi.md#paymentgetstripeinvoices) | **Get** /api/v1/payment/stripeinvoices/{subscriptionId} | 
+*PaymentsApi* | [**PaymentPay**](docs/PaymentsApi.md#paymentpay) | **Post** /api/v1/payment/pay | Pay invoice
+*PaymentsApi* | [**PaymentUpdateCard**](docs/PaymentsApi.md#paymentupdatecard) | **Post** /api/v1/payment/updatecard | Update payment card
+*PaymentsApi* | [**PaymentWebhook**](docs/PaymentsApi.md#paymentwebhook) | **Post** /api/v1/payment/webhook | Listen to payment webhook
 *PreDefinedQueriesApi* | [**PredefinedqueriesCreate**](docs/PreDefinedQueriesApi.md#predefinedqueriescreate) | **Post** /api/v1/predefinedqueries/prometheus/dashboard/create | Create prometheus dashboard pre defined query
 *PreDefinedQueriesApi* | [**PredefinedqueriesDelete**](docs/PreDefinedQueriesApi.md#predefinedqueriesdelete) | **Delete** /api/v1/predefinedqueries/prometheus/dashboard/delete/{id} | Delete prometheus dashboard pre defined query
 *PreDefinedQueriesApi* | [**PredefinedqueriesList**](docs/PreDefinedQueriesApi.md#predefinedquerieslist) | **Get** /api/v1/predefinedqueries/prometheus/dashboard/list/{projectId} | Get list of pre defined organization prometheus dashboard elements
@@ -992,6 +999,7 @@ Class | Method | HTTP request | Description
  - [EditSecurityGroupCommand](docs/EditSecurityGroupCommand.md)
  - [EditSshUserCommand](docs/EditSshUserCommand.md)
  - [EditTicketCommand](docs/EditTicketCommand.md)
+ - [EmailMode](docs/EmailMode.md)
  - [EnableAiCommand](docs/EnableAiCommand.md)
  - [EnableAutoscalingCommand](docs/EnableAutoscalingCommand.md)
  - [EnableBackupCommand](docs/EnableBackupCommand.md)
@@ -1000,6 +1008,7 @@ Class | Method | HTTP request | Description
  - [EnumList](docs/EnumList.md)
  - [EstimatedInfracost](docs/EstimatedInfracost.md)
  - [ExceededQuotaList](docs/ExceededQuotaList.md)
+ - [ExportKubeConfigCommand](docs/ExportKubeConfigCommand.md)
  - [Filter](docs/Filter.md)
  - [FilteringElementDto](docs/FilteringElementDto.md)
  - [FinalPriceCommand](docs/FinalPriceCommand.md)
@@ -1062,10 +1071,12 @@ Class | Method | HTTP request | Description
  - [KubernetesCliCommand](docs/KubernetesCliCommand.md)
  - [KubernetesCronJobDto](docs/KubernetesCronJobDto.md)
  - [KubernetesCronJobsList](docs/KubernetesCronJobsList.md)
+ - [KubernetesDashboardDto](docs/KubernetesDashboardDto.md)
  - [KubernetesEventCreateDto](docs/KubernetesEventCreateDto.md)
  - [KubernetesJobDto](docs/KubernetesJobDto.md)
  - [KubernetesJobList](docs/KubernetesJobList.md)
  - [KubernetesNodeLabelsDto](docs/KubernetesNodeLabelsDto.md)
+ - [KubernetesOverviewDto](docs/KubernetesOverviewDto.md)
  - [KubernetesPodLogsCommand](docs/KubernetesPodLogsCommand.md)
  - [KubernetesProfilesEntity](docs/KubernetesProfilesEntity.md)
  - [KubernetesProfilesLisForPollerDto](docs/KubernetesProfilesLisForPollerDto.md)
@@ -1100,6 +1111,7 @@ Class | Method | HTTP request | Description
  - [NetworkPolicies](docs/NetworkPolicies.md)
  - [NetworkPolicyDto](docs/NetworkPolicyDto.md)
  - [NodeCommand](docs/NodeCommand.md)
+ - [NodeDto](docs/NodeDto.md)
  - [NodeSearchResponseData](docs/NodeSearchResponseData.md)
  - [NodesSearchCommand](docs/NodesSearchCommand.md)
  - [NodesSearchList](docs/NodesSearchList.md)
@@ -1123,6 +1135,12 @@ Class | Method | HTTP request | Description
  - [OpenStackRegionListQuery](docs/OpenStackRegionListQuery.md)
  - [OpenStackZoneListQuery](docs/OpenStackZoneListQuery.md)
  - [OpenTicketCommand](docs/OpenTicketCommand.md)
+ - [OpenshiftCreateCommand](docs/OpenshiftCreateCommand.md)
+ - [OpenshiftCredentialForProjectDto](docs/OpenshiftCredentialForProjectDto.md)
+ - [OpenshiftFlavorData](docs/OpenshiftFlavorData.md)
+ - [OpenshiftFlavorList](docs/OpenshiftFlavorList.md)
+ - [OpenshiftList](docs/OpenshiftList.md)
+ - [OpenshiftListDto](docs/OpenshiftListDto.md)
  - [OpenstackComputeQuotaDto](docs/OpenstackComputeQuotaDto.md)
  - [OpenstackCredentialList](docs/OpenstackCredentialList.md)
  - [OpenstackCredentialsForProjectDto](docs/OpenstackCredentialsForProjectDto.md)
@@ -1177,6 +1195,7 @@ Class | Method | HTTP request | Description
  - [PayInvoiceCommand](docs/PayInvoiceCommand.md)
  - [PodDisruptionDto](docs/PodDisruptionDto.md)
  - [PodDisruptions](docs/PodDisruptions.md)
+ - [PodDto](docs/PodDto.md)
  - [PodListDto](docs/PodListDto.md)
  - [Pods](docs/Pods.md)
  - [PodsSearchCommand](docs/PodsSearchCommand.md)

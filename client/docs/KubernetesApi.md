@@ -31,6 +31,7 @@ Method | HTTP request | Description
 [**KubernetesDescribeStorageClass**](KubernetesApi.md#KubernetesDescribeStorageClass) | **Post** /api/v1/kubernetes/describe/storageclass | Describe storage class
 [**KubernetesDescribeSts**](KubernetesApi.md#KubernetesDescribeSts) | **Post** /api/v1/kubernetes/describe/sts | Describe stateful set
 [**KubernetesDownload**](KubernetesApi.md#KubernetesDownload) | **Get** /api/v1/kubernetes/{projectId}/download | Download kube config file
+[**KubernetesExport**](KubernetesApi.md#KubernetesExport) | **Get** /api/v1/kubernetes/export | Export
 [**KubernetesGetSupportedList**](KubernetesApi.md#KubernetesGetSupportedList) | **Get** /api/v1/kubernetes/supported/list | Retrieve Taikun supported kubernetes versions
 [**KubernetesHelmReleaseList**](KubernetesApi.md#KubernetesHelmReleaseList) | **Get** /api/v1/kubernetes/{projectId}/helmreleases | Retrieve a list of k8s helm releases for all namespaces
 [**KubernetesIngressList**](KubernetesApi.md#KubernetesIngressList) | **Get** /api/v1/kubernetes/{projectId}/ingress | Retrieve a list of k8s ingress for all namespaces
@@ -684,7 +685,7 @@ Name | Type | Description  | Notes
 
 ## KubernetesDashboardList
 
-> string KubernetesDashboardList(ctx, projectId).Execute()
+> KubernetesDashboardDto KubernetesDashboardList(ctx, projectId).Execute()
 
 Retrieve a list of crd
 
@@ -710,7 +711,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `KubernetesApi.KubernetesDashboardList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `KubernetesDashboardList`: string
+    // response from `KubernetesDashboardList`: KubernetesDashboardDto
     fmt.Fprintf(os.Stdout, "Response from `KubernetesApi.KubernetesDashboardList`: %v\n", resp)
 }
 ```
@@ -734,7 +735,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**string**
+[**KubernetesDashboardDto**](KubernetesDashboardDto.md)
 
 ### Authorization
 
@@ -743,7 +744,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: text/plain, application/json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1924,6 +1925,70 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## KubernetesExport
+
+> CsvExporter KubernetesExport(ctx).ProjectId(projectId).Execute()
+
+Export
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/chnyda/taikungoclient"
+)
+
+func main() {
+    projectId := int32(56) // int32 | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.KubernetesApi.KubernetesExport(context.Background()).ProjectId(projectId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `KubernetesApi.KubernetesExport``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `KubernetesExport`: CsvExporter
+    fmt.Fprintf(os.Stdout, "Response from `KubernetesApi.KubernetesExport`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiKubernetesExportRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **projectId** | **int32** |  | 
+
+### Return type
+
+[**CsvExporter**](CsvExporter.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## KubernetesGetSupportedList
 
 > []KubernetesVersionListDto KubernetesGetSupportedList(ctx).Execute()
@@ -2655,7 +2720,7 @@ Name | Type | Description  | Notes
 
 ## KubernetesOverview
 
-> string KubernetesOverview(ctx).OrganizationId(organizationId).Execute()
+> []KubernetesOverviewDto KubernetesOverview(ctx).OrganizationId(organizationId).Execute()
 
 Overview kubernetes nodes and pods by organization id
 
@@ -2681,7 +2746,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `KubernetesApi.KubernetesOverview``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `KubernetesOverview`: string
+    // response from `KubernetesOverview`: []KubernetesOverviewDto
     fmt.Fprintf(os.Stdout, "Response from `KubernetesApi.KubernetesOverview`: %v\n", resp)
 }
 ```
@@ -2701,7 +2766,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**string**
+[**[]KubernetesOverviewDto**](KubernetesOverviewDto.md)
 
 ### Authorization
 
@@ -2710,7 +2775,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: text/plain, application/json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

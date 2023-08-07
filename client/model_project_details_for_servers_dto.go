@@ -43,6 +43,7 @@ type ProjectDetailsForServersDto struct {
 	HasNextVersion NullableBool `json:"hasNextVersion,omitempty"`
 	IsKubernetes *bool `json:"isKubernetes,omitempty"`
 	IsBackupEnabled *bool `json:"isBackupEnabled,omitempty"`
+	AiEnabled *bool `json:"aiEnabled,omitempty"`
 	IsLocked *bool `json:"isLocked,omitempty"`
 	IsAutoUpgrade *bool `json:"isAutoUpgrade,omitempty"`
 	IsMonitoringEnabled *bool `json:"isMonitoringEnabled,omitempty"`
@@ -76,6 +77,7 @@ type ProjectDetailsForServersDto struct {
 	ProjectHealth *ProjectHealth `json:"projectHealth,omitempty"`
 	AlertingProfileId NullableInt32 `json:"alertingProfileId,omitempty"`
 	S3CredentialId NullableInt32 `json:"s3CredentialId,omitempty"`
+	AiCredentialId NullableInt32 `json:"aiCredentialId,omitempty"`
 	QuotaMessage NullableString `json:"quotaMessage,omitempty"`
 	CloudProviderMessage NullableString `json:"cloudProviderMessage,omitempty"`
 	ExpiredAt NullableString `json:"expiredAt,omitempty"`
@@ -926,6 +928,38 @@ func (o *ProjectDetailsForServersDto) HasIsBackupEnabled() bool {
 // SetIsBackupEnabled gets a reference to the given bool and assigns it to the IsBackupEnabled field.
 func (o *ProjectDetailsForServersDto) SetIsBackupEnabled(v bool) {
 	o.IsBackupEnabled = &v
+}
+
+// GetAiEnabled returns the AiEnabled field value if set, zero value otherwise.
+func (o *ProjectDetailsForServersDto) GetAiEnabled() bool {
+	if o == nil || IsNil(o.AiEnabled) {
+		var ret bool
+		return ret
+	}
+	return *o.AiEnabled
+}
+
+// GetAiEnabledOk returns a tuple with the AiEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ProjectDetailsForServersDto) GetAiEnabledOk() (*bool, bool) {
+	if o == nil || IsNil(o.AiEnabled) {
+		return nil, false
+	}
+	return o.AiEnabled, true
+}
+
+// HasAiEnabled returns a boolean if a field has been set.
+func (o *ProjectDetailsForServersDto) HasAiEnabled() bool {
+	if o != nil && !IsNil(o.AiEnabled) {
+		return true
+	}
+
+	return false
+}
+
+// SetAiEnabled gets a reference to the given bool and assigns it to the AiEnabled field.
+func (o *ProjectDetailsForServersDto) SetAiEnabled(v bool) {
+	o.AiEnabled = &v
 }
 
 // GetIsLocked returns the IsLocked field value if set, zero value otherwise.
@@ -2064,6 +2098,48 @@ func (o *ProjectDetailsForServersDto) UnsetS3CredentialId() {
 	o.S3CredentialId.Unset()
 }
 
+// GetAiCredentialId returns the AiCredentialId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProjectDetailsForServersDto) GetAiCredentialId() int32 {
+	if o == nil || IsNil(o.AiCredentialId.Get()) {
+		var ret int32
+		return ret
+	}
+	return *o.AiCredentialId.Get()
+}
+
+// GetAiCredentialIdOk returns a tuple with the AiCredentialId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProjectDetailsForServersDto) GetAiCredentialIdOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.AiCredentialId.Get(), o.AiCredentialId.IsSet()
+}
+
+// HasAiCredentialId returns a boolean if a field has been set.
+func (o *ProjectDetailsForServersDto) HasAiCredentialId() bool {
+	if o != nil && o.AiCredentialId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAiCredentialId gets a reference to the given NullableInt32 and assigns it to the AiCredentialId field.
+func (o *ProjectDetailsForServersDto) SetAiCredentialId(v int32) {
+	o.AiCredentialId.Set(&v)
+}
+// SetAiCredentialIdNil sets the value for AiCredentialId to be an explicit nil
+func (o *ProjectDetailsForServersDto) SetAiCredentialIdNil() {
+	o.AiCredentialId.Set(nil)
+}
+
+// UnsetAiCredentialId ensures that no value is present for AiCredentialId, not even an explicit nil
+func (o *ProjectDetailsForServersDto) UnsetAiCredentialId() {
+	o.AiCredentialId.Unset()
+}
+
 // GetQuotaMessage returns the QuotaMessage field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ProjectDetailsForServersDto) GetQuotaMessage() string {
 	if o == nil || IsNil(o.QuotaMessage.Get()) {
@@ -3159,6 +3235,9 @@ func (o ProjectDetailsForServersDto) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.IsBackupEnabled) {
 		toSerialize["isBackupEnabled"] = o.IsBackupEnabled
 	}
+	if !IsNil(o.AiEnabled) {
+		toSerialize["aiEnabled"] = o.AiEnabled
+	}
 	if !IsNil(o.IsLocked) {
 		toSerialize["isLocked"] = o.IsLocked
 	}
@@ -3257,6 +3336,9 @@ func (o ProjectDetailsForServersDto) ToMap() (map[string]interface{}, error) {
 	}
 	if o.S3CredentialId.IsSet() {
 		toSerialize["s3CredentialId"] = o.S3CredentialId.Get()
+	}
+	if o.AiCredentialId.IsSet() {
+		toSerialize["aiCredentialId"] = o.AiCredentialId.Get()
 	}
 	if o.QuotaMessage.IsSet() {
 		toSerialize["quotaMessage"] = o.QuotaMessage.Get()

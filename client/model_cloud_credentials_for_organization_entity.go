@@ -23,7 +23,7 @@ type CloudCredentialsForOrganizationEntity struct {
 	Id *int32 `json:"id,omitempty"`
 	Projects []CommonDropdownDto `json:"projects,omitempty"`
 	FullName NullableString `json:"fullName,omitempty"`
-	CloudType NullableString `json:"cloudType,omitempty"`
+	CloudType *CloudType `json:"cloudType,omitempty"`
 	IsDefault *bool `json:"isDefault,omitempty"`
 }
 
@@ -151,46 +151,36 @@ func (o *CloudCredentialsForOrganizationEntity) UnsetFullName() {
 	o.FullName.Unset()
 }
 
-// GetCloudType returns the CloudType field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CloudCredentialsForOrganizationEntity) GetCloudType() string {
-	if o == nil || IsNil(o.CloudType.Get()) {
-		var ret string
+// GetCloudType returns the CloudType field value if set, zero value otherwise.
+func (o *CloudCredentialsForOrganizationEntity) GetCloudType() CloudType {
+	if o == nil || IsNil(o.CloudType) {
+		var ret CloudType
 		return ret
 	}
-	return *o.CloudType.Get()
+	return *o.CloudType
 }
 
 // GetCloudTypeOk returns a tuple with the CloudType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CloudCredentialsForOrganizationEntity) GetCloudTypeOk() (*string, bool) {
-	if o == nil {
+func (o *CloudCredentialsForOrganizationEntity) GetCloudTypeOk() (*CloudType, bool) {
+	if o == nil || IsNil(o.CloudType) {
 		return nil, false
 	}
-	return o.CloudType.Get(), o.CloudType.IsSet()
+	return o.CloudType, true
 }
 
 // HasCloudType returns a boolean if a field has been set.
 func (o *CloudCredentialsForOrganizationEntity) HasCloudType() bool {
-	if o != nil && o.CloudType.IsSet() {
+	if o != nil && !IsNil(o.CloudType) {
 		return true
 	}
 
 	return false
 }
 
-// SetCloudType gets a reference to the given NullableString and assigns it to the CloudType field.
-func (o *CloudCredentialsForOrganizationEntity) SetCloudType(v string) {
-	o.CloudType.Set(&v)
-}
-// SetCloudTypeNil sets the value for CloudType to be an explicit nil
-func (o *CloudCredentialsForOrganizationEntity) SetCloudTypeNil() {
-	o.CloudType.Set(nil)
-}
-
-// UnsetCloudType ensures that no value is present for CloudType, not even an explicit nil
-func (o *CloudCredentialsForOrganizationEntity) UnsetCloudType() {
-	o.CloudType.Unset()
+// SetCloudType gets a reference to the given CloudType and assigns it to the CloudType field.
+func (o *CloudCredentialsForOrganizationEntity) SetCloudType(v CloudType) {
+	o.CloudType = &v
 }
 
 // GetIsDefault returns the IsDefault field value if set, zero value otherwise.
@@ -244,8 +234,8 @@ func (o CloudCredentialsForOrganizationEntity) ToMap() (map[string]interface{}, 
 	if o.FullName.IsSet() {
 		toSerialize["fullName"] = o.FullName.Get()
 	}
-	if o.CloudType.IsSet() {
-		toSerialize["cloudType"] = o.CloudType.Get()
+	if !IsNil(o.CloudType) {
+		toSerialize["cloudType"] = o.CloudType
 	}
 	if !IsNil(o.IsDefault) {
 		toSerialize["isDefault"] = o.IsDefault

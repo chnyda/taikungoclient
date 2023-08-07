@@ -50,10 +50,11 @@ type ServerListDto struct {
 	AutoscalingGroup NullableString `json:"autoscalingGroup,omitempty"`
 	ProviderID NullableString `json:"providerID,omitempty"`
 	AwsHostName NullableString `json:"awsHostName,omitempty"`
+	OpenshiftFlavor NullableString `json:"openshiftFlavor,omitempty"`
 	AvailabilityZone NullableString `json:"availabilityZone,omitempty"`
 	Hypervisor NullableString `json:"hypervisor,omitempty"`
 	ProxmoxRole *ProxmoxRole `json:"proxmoxRole,omitempty"`
-	ProxmoxNFSDiskSize *int32 `json:"proxmoxNFSDiskSize,omitempty"`
+	ProxmoxExtraDiskSize *int32 `json:"proxmoxExtraDiskSize,omitempty"`
 	ActionButtons *ServerActionButtonVisibilityDto `json:"actionButtons,omitempty"`
 	KubernetesNodeLabels []KubernetesNodeLabelsDto `json:"kubernetesNodeLabels,omitempty"`
 }
@@ -1235,6 +1236,48 @@ func (o *ServerListDto) UnsetAwsHostName() {
 	o.AwsHostName.Unset()
 }
 
+// GetOpenshiftFlavor returns the OpenshiftFlavor field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ServerListDto) GetOpenshiftFlavor() string {
+	if o == nil || IsNil(o.OpenshiftFlavor.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.OpenshiftFlavor.Get()
+}
+
+// GetOpenshiftFlavorOk returns a tuple with the OpenshiftFlavor field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ServerListDto) GetOpenshiftFlavorOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.OpenshiftFlavor.Get(), o.OpenshiftFlavor.IsSet()
+}
+
+// HasOpenshiftFlavor returns a boolean if a field has been set.
+func (o *ServerListDto) HasOpenshiftFlavor() bool {
+	if o != nil && o.OpenshiftFlavor.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetOpenshiftFlavor gets a reference to the given NullableString and assigns it to the OpenshiftFlavor field.
+func (o *ServerListDto) SetOpenshiftFlavor(v string) {
+	o.OpenshiftFlavor.Set(&v)
+}
+// SetOpenshiftFlavorNil sets the value for OpenshiftFlavor to be an explicit nil
+func (o *ServerListDto) SetOpenshiftFlavorNil() {
+	o.OpenshiftFlavor.Set(nil)
+}
+
+// UnsetOpenshiftFlavor ensures that no value is present for OpenshiftFlavor, not even an explicit nil
+func (o *ServerListDto) UnsetOpenshiftFlavor() {
+	o.OpenshiftFlavor.Unset()
+}
+
 // GetAvailabilityZone returns the AvailabilityZone field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ServerListDto) GetAvailabilityZone() string {
 	if o == nil || IsNil(o.AvailabilityZone.Get()) {
@@ -1351,36 +1394,36 @@ func (o *ServerListDto) SetProxmoxRole(v ProxmoxRole) {
 	o.ProxmoxRole = &v
 }
 
-// GetProxmoxNFSDiskSize returns the ProxmoxNFSDiskSize field value if set, zero value otherwise.
-func (o *ServerListDto) GetProxmoxNFSDiskSize() int32 {
-	if o == nil || IsNil(o.ProxmoxNFSDiskSize) {
+// GetProxmoxExtraDiskSize returns the ProxmoxExtraDiskSize field value if set, zero value otherwise.
+func (o *ServerListDto) GetProxmoxExtraDiskSize() int32 {
+	if o == nil || IsNil(o.ProxmoxExtraDiskSize) {
 		var ret int32
 		return ret
 	}
-	return *o.ProxmoxNFSDiskSize
+	return *o.ProxmoxExtraDiskSize
 }
 
-// GetProxmoxNFSDiskSizeOk returns a tuple with the ProxmoxNFSDiskSize field value if set, nil otherwise
+// GetProxmoxExtraDiskSizeOk returns a tuple with the ProxmoxExtraDiskSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerListDto) GetProxmoxNFSDiskSizeOk() (*int32, bool) {
-	if o == nil || IsNil(o.ProxmoxNFSDiskSize) {
+func (o *ServerListDto) GetProxmoxExtraDiskSizeOk() (*int32, bool) {
+	if o == nil || IsNil(o.ProxmoxExtraDiskSize) {
 		return nil, false
 	}
-	return o.ProxmoxNFSDiskSize, true
+	return o.ProxmoxExtraDiskSize, true
 }
 
-// HasProxmoxNFSDiskSize returns a boolean if a field has been set.
-func (o *ServerListDto) HasProxmoxNFSDiskSize() bool {
-	if o != nil && !IsNil(o.ProxmoxNFSDiskSize) {
+// HasProxmoxExtraDiskSize returns a boolean if a field has been set.
+func (o *ServerListDto) HasProxmoxExtraDiskSize() bool {
+	if o != nil && !IsNil(o.ProxmoxExtraDiskSize) {
 		return true
 	}
 
 	return false
 }
 
-// SetProxmoxNFSDiskSize gets a reference to the given int32 and assigns it to the ProxmoxNFSDiskSize field.
-func (o *ServerListDto) SetProxmoxNFSDiskSize(v int32) {
-	o.ProxmoxNFSDiskSize = &v
+// SetProxmoxExtraDiskSize gets a reference to the given int32 and assigns it to the ProxmoxExtraDiskSize field.
+func (o *ServerListDto) SetProxmoxExtraDiskSize(v int32) {
+	o.ProxmoxExtraDiskSize = &v
 }
 
 // GetActionButtons returns the ActionButtons field value if set, zero value otherwise.
@@ -1548,6 +1591,9 @@ func (o ServerListDto) ToMap() (map[string]interface{}, error) {
 	if o.AwsHostName.IsSet() {
 		toSerialize["awsHostName"] = o.AwsHostName.Get()
 	}
+	if o.OpenshiftFlavor.IsSet() {
+		toSerialize["openshiftFlavor"] = o.OpenshiftFlavor.Get()
+	}
 	if o.AvailabilityZone.IsSet() {
 		toSerialize["availabilityZone"] = o.AvailabilityZone.Get()
 	}
@@ -1557,8 +1603,8 @@ func (o ServerListDto) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ProxmoxRole) {
 		toSerialize["proxmoxRole"] = o.ProxmoxRole
 	}
-	if !IsNil(o.ProxmoxNFSDiskSize) {
-		toSerialize["proxmoxNFSDiskSize"] = o.ProxmoxNFSDiskSize
+	if !IsNil(o.ProxmoxExtraDiskSize) {
+		toSerialize["proxmoxExtraDiskSize"] = o.ProxmoxExtraDiskSize
 	}
 	if !IsNil(o.ActionButtons) {
 		toSerialize["actionButtons"] = o.ActionButtons

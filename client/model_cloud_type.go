@@ -27,6 +27,7 @@ const (
 	CLOUDTYPE_OPENSTACK CloudType = "OPENSTACK"
 	CLOUDTYPE_PROXMOX CloudType = "PROXMOX"
 	CLOUDTYPE_TANZU CloudType = "TANZU"
+	CLOUDTYPE_OPENSHIFT CloudType = "OPENSHIFT"
 )
 
 // All allowed values of CloudType enum
@@ -37,6 +38,7 @@ var AllowedCloudTypeEnumValues = []CloudType{
 	"OPENSTACK",
 	"PROXMOX",
 	"TANZU",
+	"OPENSHIFT",
 }
 
 func (v *CloudType) UnmarshalJSON(src []byte) error {

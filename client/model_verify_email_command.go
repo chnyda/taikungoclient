@@ -21,7 +21,7 @@ var _ MappedNullable = &VerifyEmailCommand{}
 // VerifyEmailCommand struct for VerifyEmailCommand
 type VerifyEmailCommand struct {
 	Token NullableString `json:"token,omitempty"`
-	Mode NullableString `json:"mode,omitempty"`
+	Mode *EmailMode `json:"mode,omitempty"`
 }
 
 // NewVerifyEmailCommand instantiates a new VerifyEmailCommand object
@@ -83,46 +83,36 @@ func (o *VerifyEmailCommand) UnsetToken() {
 	o.Token.Unset()
 }
 
-// GetMode returns the Mode field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *VerifyEmailCommand) GetMode() string {
-	if o == nil || IsNil(o.Mode.Get()) {
-		var ret string
+// GetMode returns the Mode field value if set, zero value otherwise.
+func (o *VerifyEmailCommand) GetMode() EmailMode {
+	if o == nil || IsNil(o.Mode) {
+		var ret EmailMode
 		return ret
 	}
-	return *o.Mode.Get()
+	return *o.Mode
 }
 
 // GetModeOk returns a tuple with the Mode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *VerifyEmailCommand) GetModeOk() (*string, bool) {
-	if o == nil {
+func (o *VerifyEmailCommand) GetModeOk() (*EmailMode, bool) {
+	if o == nil || IsNil(o.Mode) {
 		return nil, false
 	}
-	return o.Mode.Get(), o.Mode.IsSet()
+	return o.Mode, true
 }
 
 // HasMode returns a boolean if a field has been set.
 func (o *VerifyEmailCommand) HasMode() bool {
-	if o != nil && o.Mode.IsSet() {
+	if o != nil && !IsNil(o.Mode) {
 		return true
 	}
 
 	return false
 }
 
-// SetMode gets a reference to the given NullableString and assigns it to the Mode field.
-func (o *VerifyEmailCommand) SetMode(v string) {
-	o.Mode.Set(&v)
-}
-// SetModeNil sets the value for Mode to be an explicit nil
-func (o *VerifyEmailCommand) SetModeNil() {
-	o.Mode.Set(nil)
-}
-
-// UnsetMode ensures that no value is present for Mode, not even an explicit nil
-func (o *VerifyEmailCommand) UnsetMode() {
-	o.Mode.Unset()
+// SetMode gets a reference to the given EmailMode and assigns it to the Mode field.
+func (o *VerifyEmailCommand) SetMode(v EmailMode) {
+	o.Mode = &v
 }
 
 func (o VerifyEmailCommand) MarshalJSON() ([]byte, error) {
@@ -138,8 +128,8 @@ func (o VerifyEmailCommand) ToMap() (map[string]interface{}, error) {
 	if o.Token.IsSet() {
 		toSerialize["token"] = o.Token.Get()
 	}
-	if o.Mode.IsSet() {
-		toSerialize["mode"] = o.Mode.Get()
+	if !IsNil(o.Mode) {
+		toSerialize["mode"] = o.Mode
 	}
 	return toSerialize, nil
 }

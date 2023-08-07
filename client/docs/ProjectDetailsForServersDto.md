@@ -27,6 +27,7 @@ Name | Type | Description | Notes
 **HasNextVersion** | Pointer to **NullableBool** |  | [optional] 
 **IsKubernetes** | Pointer to **bool** |  | [optional] 
 **IsBackupEnabled** | Pointer to **bool** |  | [optional] 
+**AiEnabled** | Pointer to **bool** |  | [optional] 
 **IsLocked** | Pointer to **bool** |  | [optional] 
 **IsAutoUpgrade** | Pointer to **bool** |  | [optional] 
 **IsMonitoringEnabled** | Pointer to **bool** |  | [optional] 
@@ -60,6 +61,7 @@ Name | Type | Description | Notes
 **ProjectHealth** | Pointer to [**ProjectHealth**](ProjectHealth.md) |  | [optional] 
 **AlertingProfileId** | Pointer to **NullableInt32** |  | [optional] 
 **S3CredentialId** | Pointer to **NullableInt32** |  | [optional] 
+**AiCredentialId** | Pointer to **NullableInt32** |  | [optional] 
 **QuotaMessage** | Pointer to **NullableString** |  | [optional] 
 **CloudProviderMessage** | Pointer to **NullableString** |  | [optional] 
 **ExpiredAt** | Pointer to **NullableString** |  | [optional] 
@@ -751,6 +753,31 @@ SetIsBackupEnabled sets IsBackupEnabled field to given value.
 `func (o *ProjectDetailsForServersDto) HasIsBackupEnabled() bool`
 
 HasIsBackupEnabled returns a boolean if a field has been set.
+
+### GetAiEnabled
+
+`func (o *ProjectDetailsForServersDto) GetAiEnabled() bool`
+
+GetAiEnabled returns the AiEnabled field if non-nil, zero value otherwise.
+
+### GetAiEnabledOk
+
+`func (o *ProjectDetailsForServersDto) GetAiEnabledOk() (*bool, bool)`
+
+GetAiEnabledOk returns a tuple with the AiEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAiEnabled
+
+`func (o *ProjectDetailsForServersDto) SetAiEnabled(v bool)`
+
+SetAiEnabled sets AiEnabled field to given value.
+
+### HasAiEnabled
+
+`func (o *ProjectDetailsForServersDto) HasAiEnabled() bool`
+
+HasAiEnabled returns a boolean if a field has been set.
 
 ### GetIsLocked
 
@@ -1657,6 +1684,41 @@ HasS3CredentialId returns a boolean if a field has been set.
 `func (o *ProjectDetailsForServersDto) UnsetS3CredentialId()`
 
 UnsetS3CredentialId ensures that no value is present for S3CredentialId, not even an explicit nil
+### GetAiCredentialId
+
+`func (o *ProjectDetailsForServersDto) GetAiCredentialId() int32`
+
+GetAiCredentialId returns the AiCredentialId field if non-nil, zero value otherwise.
+
+### GetAiCredentialIdOk
+
+`func (o *ProjectDetailsForServersDto) GetAiCredentialIdOk() (*int32, bool)`
+
+GetAiCredentialIdOk returns a tuple with the AiCredentialId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAiCredentialId
+
+`func (o *ProjectDetailsForServersDto) SetAiCredentialId(v int32)`
+
+SetAiCredentialId sets AiCredentialId field to given value.
+
+### HasAiCredentialId
+
+`func (o *ProjectDetailsForServersDto) HasAiCredentialId() bool`
+
+HasAiCredentialId returns a boolean if a field has been set.
+
+### SetAiCredentialIdNil
+
+`func (o *ProjectDetailsForServersDto) SetAiCredentialIdNil(b bool)`
+
+ SetAiCredentialIdNil sets the value for AiCredentialId to be an explicit nil
+
+### UnsetAiCredentialId
+`func (o *ProjectDetailsForServersDto) UnsetAiCredentialId()`
+
+UnsetAiCredentialId ensures that no value is present for AiCredentialId, not even an explicit nil
 ### GetQuotaMessage
 
 `func (o *ProjectDetailsForServersDto) GetQuotaMessage() string`

@@ -9,6 +9,8 @@ Name | Type | Description | Notes
 **Updating** | Pointer to [**[]ProjectCommonRecordDto**](ProjectCommonRecordDto.md) |  | [optional] 
 **TotalCount** | Pointer to **int32** |  | [optional] 
 **Failed** | Pointer to [**[]ProjectCommonRecordDto**](ProjectCommonRecordDto.md) |  | [optional] 
+**Purging** | Pointer to [**[]ProjectCommonRecordDto**](ProjectCommonRecordDto.md) |  | [optional] 
+**Deleting** | Pointer to [**[]ProjectCommonRecordDto**](ProjectCommonRecordDto.md) |  | [optional] 
 
 ## Methods
 
@@ -194,6 +196,76 @@ HasFailed returns a boolean if a field has been set.
 `func (o *ProjectChartDto) UnsetFailed()`
 
 UnsetFailed ensures that no value is present for Failed, not even an explicit nil
+### GetPurging
+
+`func (o *ProjectChartDto) GetPurging() []ProjectCommonRecordDto`
+
+GetPurging returns the Purging field if non-nil, zero value otherwise.
+
+### GetPurgingOk
+
+`func (o *ProjectChartDto) GetPurgingOk() (*[]ProjectCommonRecordDto, bool)`
+
+GetPurgingOk returns a tuple with the Purging field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPurging
+
+`func (o *ProjectChartDto) SetPurging(v []ProjectCommonRecordDto)`
+
+SetPurging sets Purging field to given value.
+
+### HasPurging
+
+`func (o *ProjectChartDto) HasPurging() bool`
+
+HasPurging returns a boolean if a field has been set.
+
+### SetPurgingNil
+
+`func (o *ProjectChartDto) SetPurgingNil(b bool)`
+
+ SetPurgingNil sets the value for Purging to be an explicit nil
+
+### UnsetPurging
+`func (o *ProjectChartDto) UnsetPurging()`
+
+UnsetPurging ensures that no value is present for Purging, not even an explicit nil
+### GetDeleting
+
+`func (o *ProjectChartDto) GetDeleting() []ProjectCommonRecordDto`
+
+GetDeleting returns the Deleting field if non-nil, zero value otherwise.
+
+### GetDeletingOk
+
+`func (o *ProjectChartDto) GetDeletingOk() (*[]ProjectCommonRecordDto, bool)`
+
+GetDeletingOk returns a tuple with the Deleting field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDeleting
+
+`func (o *ProjectChartDto) SetDeleting(v []ProjectCommonRecordDto)`
+
+SetDeleting sets Deleting field to given value.
+
+### HasDeleting
+
+`func (o *ProjectChartDto) HasDeleting() bool`
+
+HasDeleting returns a boolean if a field has been set.
+
+### SetDeletingNil
+
+`func (o *ProjectChartDto) SetDeletingNil(b bool)`
+
+ SetDeletingNil sets the value for Deleting to be an explicit nil
+
+### UnsetDeleting
+`func (o *ProjectChartDto) UnsetDeleting()`
+
+UnsetDeleting ensures that no value is present for Deleting, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
