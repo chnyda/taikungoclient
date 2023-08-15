@@ -1335,6 +1335,52 @@ paths:
       summary: Retrieve all AI credentials
       tags:
       - Ai Credentials
+  /api/v1/ai-credential/{id}:
+    delete:
+      operationId: ai-credential-delete
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: simple
+      responses:
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Internal Server Error
+      summary: Remove ai credential
+      tags:
+      - Ai Credentials
   /api/v1/ai-management/disable:
     post:
       operationId: ai-management-disable
@@ -21246,87 +21292,87 @@ paths:
       parameters:
       - explode: true
         in: query
-        name: name
-        required: false
-        schema:
-          type: string
-        style: form
-      - explode: true
-        in: query
-        name: domain
-        required: false
-        schema:
-          type: string
-        style: form
-      - explode: true
-        in: query
-        name: link
-        required: false
-        schema:
-          type: string
-        style: form
-      - explode: true
-        in: query
-        name: phone
-        required: false
-        schema:
-          type: string
-        style: form
-      - explode: true
-        in: query
-        name: email
-        required: false
-        schema:
-          type: string
-        style: form
-      - explode: true
-        in: query
-        name: country
-        required: false
-        schema:
-          type: string
-        style: form
-      - explode: true
-        in: query
-        name: city
-        required: false
-        schema:
-          type: string
-        style: form
-      - explode: true
-        in: query
-        name: vatNumber
-        required: false
-        schema:
-          type: string
-        style: form
-      - explode: true
-        in: query
-        name: address
-        required: false
-        schema:
-          type: string
-        style: form
-      - explode: true
-        in: query
-        name: allowRegistration
+        name: AllowRegistration
         required: false
         schema:
           type: boolean
         style: form
       - explode: true
         in: query
-        name: requiredUserApproval
+        name: RequiredUserApproval
         required: false
         schema:
           type: boolean
         style: form
       - explode: true
         in: query
-        name: paymentEnabled
+        name: PaymentEnabled
         required: false
         schema:
           type: boolean
+        style: form
+      - explode: true
+        in: query
+        name: Name
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: Domain
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: Link
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: Phone
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: Email
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: Country
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: City
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: VatNumber
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: Address
+        required: false
+        schema:
+          type: string
         style: form
       requestBody:
         content:
@@ -21427,84 +21473,84 @@ paths:
         style: simple
       - explode: true
         in: query
-        name: name
+        name: Name
         required: false
         schema:
           type: string
         style: form
       - explode: true
         in: query
-        name: domain
+        name: Domain
         required: false
         schema:
           type: string
         style: form
       - explode: true
         in: query
-        name: link
+        name: Link
         required: false
         schema:
           type: string
         style: form
       - explode: true
         in: query
-        name: phone
+        name: Phone
         required: false
         schema:
           type: string
         style: form
       - explode: true
         in: query
-        name: email
+        name: Email
         required: false
         schema:
           type: string
         style: form
       - explode: true
         in: query
-        name: country
+        name: Country
         required: false
         schema:
           type: string
         style: form
       - explode: true
         in: query
-        name: city
+        name: City
         required: false
         schema:
           type: string
         style: form
       - explode: true
         in: query
-        name: vatNumber
+        name: VatNumber
         required: false
         schema:
           type: string
         style: form
       - explode: true
         in: query
-        name: address
+        name: Address
         required: false
         schema:
           type: string
         style: form
       - explode: true
         in: query
-        name: allowRegistration
+        name: AllowRegistration
         required: false
         schema:
           type: boolean
         style: form
       - explode: true
         in: query
-        name: requiredUserApproval
+        name: RequiredUserApproval
         required: false
         schema:
           type: boolean
         style: form
       - explode: true
         in: query
-        name: paymentEnabled
+        name: PaymentEnabled
         required: false
         schema:
           type: boolean
@@ -39529,21 +39575,14 @@ components:
       example:
         organizationId: 0
         apiKey: apiKey
-        aiType: null
         name: name
-        url: url
       properties:
-        url:
-          nullable: true
-          type: string
         name:
           nullable: true
           type: string
         apiKey:
           nullable: true
           type: string
-        aiType:
-          $ref: '#/components/schemas/AiType'
         organizationId:
           format: int32
           nullable: true
@@ -49021,12 +49060,57 @@ components:
           - reasons
           - reasons
           enable: true
-        enableAutoscaler:
+        disableSpotVm:
           reasons:
           - reasons
           - reasons
           enable: true
-        disableSpotVm:
+        enableOpa:
+          reasons:
+          - reasons
+          - reasons
+          enable: true
+        commit:
+          reasons:
+          - reasons
+          - reasons
+          enable: true
+        enableSpotVm:
+          reasons:
+          - reasons
+          - reasons
+          enable: true
+        disableBackup:
+          reasons:
+          - reasons
+          - reasons
+          enable: true
+        disableAi:
+          reasons:
+          - reasons
+          - reasons
+          enable: true
+        detachAlertingProfile:
+          reasons:
+          - reasons
+          - reasons
+          enable: true
+        disableOpa:
+          reasons:
+          - reasons
+          - reasons
+          enable: true
+        lock:
+          reasons:
+          - reasons
+          - reasons
+          enable: true
+        disableAutoscaler:
+          reasons:
+          - reasons
+          - reasons
+          enable: true
+        enableAutoscaler:
           reasons:
           - reasons
           - reasons
@@ -49041,7 +49125,7 @@ components:
           - reasons
           - reasons
           enable: true
-        enableOpa:
+        aiAssistant:
           reasons:
           - reasons
           - reasons
@@ -49051,17 +49135,7 @@ components:
           - reasons
           - reasons
           enable: true
-        commit:
-          reasons:
-          - reasons
-          - reasons
-          enable: true
         disableFullSpot:
-          reasons:
-          - reasons
-          - reasons
-          enable: true
-        enableSpotVm:
           reasons:
           - reasons
           - reasons
@@ -49086,37 +49160,7 @@ components:
           - reasons
           - reasons
           enable: true
-        disableBackup:
-          reasons:
-          - reasons
-          - reasons
-          enable: true
-        disableAi:
-          reasons:
-          - reasons
-          - reasons
-          enable: true
         disableSpotWorker:
-          reasons:
-          - reasons
-          - reasons
-          enable: true
-        detachAlertingProfile:
-          reasons:
-          - reasons
-          - reasons
-          enable: true
-        disableOpa:
-          reasons:
-          - reasons
-          - reasons
-          enable: true
-        lock:
-          reasons:
-          - reasons
-          - reasons
-          enable: true
-        disableAutoscaler:
           reasons:
           - reasons
           - reasons
@@ -49179,6 +49223,8 @@ components:
         enableAi:
           $ref: '#/components/schemas/ProjectButtonStatusDto'
         disableAi:
+          $ref: '#/components/schemas/ProjectButtonStatusDto'
+        aiAssistant:
           $ref: '#/components/schemas/ProjectButtonStatusDto'
       type: object
     ProjectAppDetailsDto:
@@ -49585,28 +49631,28 @@ components:
       example:
         isKubevapEnabled: true
         spotEnabled: true
-        alertsTotalCount: 3
+        alertsTotalCount: 2
         isOpaEnabled: true
-        projectRevision: 2
-        opaProfileId: 7
+        projectRevision: 6
+        opaProfileId: 6
         availabilityZones:
         - availabilityZones
         - availabilityZones
         hasAlertingProfile: true
-        organizationId: 7
-        diskSize: 7.740351818741173
+        organizationId: 1
+        diskSize: 3.0205796992916243
         hasNextVersion: true
-        usedRam: 9
+        usedRam: 6
         cloudType: null
-        cloudId: 1
+        cloudId: 6
         isLocked: true
         accessProfileName: accessProfileName
         kubernetesProfileId: 3
-        minSize: 4
-        bastion: 7
-        worker: 4
+        minSize: 8
+        bastion: 1
+        worker: 7
         usedCpu: 9
-        vmVolumeSizeLimit: 6
+        vmVolumeSizeLimit: 3
         isAutoscalingEnabled: true
         isAutoUpgrade: true
         isKubernetes: true
@@ -49615,28 +49661,28 @@ components:
         accessIp: accessIp
         organizationName: organizationName
         hasSelectedFlavors: true
-        cpuLimit: 1
+        cpuLimit: 4
         warningMessage: warningMessage
-        quotaId: 6
-        vmUsedCpu: 3
+        quotaId: 7
+        vmUsedCpu: 6
         allowSpotWorkers: true
-        maxSpotPrice: 6.519180951018382
-        vmRamLimit: 9
+        maxSpotPrice: 0.10263654006109402
+        vmRamLimit: 6
         isKubernetesCurrentVersionKubevapEnabled: true
         flavor: flavor
-        vmUsedRam: 6
-        usedDiskSize: 6
-        vmUsedVolumeSize: 1
+        vmUsedRam: 1
+        usedDiskSize: 8
+        vmUsedVolumeSize: 2
         failureReason: failureReason
         kubernetesCurrentVersion: kubernetesCurrentVersion
         allowFullSpotKubernetes: true
         projectName: projectName
-        projectCloudRevision: 6
+        projectCloudRevision: 5
         projectId: 1
-        cloudCredentialRevision: 5
-        accessProfileId: 6
-        maxSize: 8
-        totalCount: 9
+        cloudCredentialRevision: 6
+        accessProfileId: 3
+        maxSize: 7
+        totalCount: 3
         autoscalingGroupName: autoscalingGroupName
         kubeCurrentVersion: kubeCurrentVersion
         quotaMessage: quotaMessage
@@ -49644,24 +49690,24 @@ components:
         alertingProfileName: alertingProfileName
         hasNfsServer: true
         projectHealth: null
-        totalHourlyCost: 0.10263654006109402
-        ramLimit: 4
+        totalHourlyCost: 4.652396432933246
+        ramLimit: 5
         opaProfileName: opaProfileName
-        s3CredentialId: 7
+        s3CredentialId: 0
         isDeprecated: true
         isAllReady: true
         allowSpotVMs: true
-        vmCpuLimit: 8
-        aiCredentialId: 0
+        vmCpuLimit: 9
+        aiCredentialId: 7
         aiEnabled: true
         isMonitoringEnabled: true
         isAllFailedUpgrade: true
-        diskSizeLimit: 5
+        diskSizeLimit: 9
         masterReady: 1
         hasKubeConfigFile: true
-        master: 2
+        master: 4
         projectStatus: null
-        alertingProfileId: 3
+        alertingProfileId: 7
         deleteOnExpiration: true
         cloudName: cloudName
         accessProfileRevision: 6
@@ -54282,6 +54328,7 @@ components:
         spotInstance: true
         autoscalingGroup: autoscalingGroup
         diskSize: 6
+        replicaCount: 2
         hypervisor: hypervisor
         name: name
         kubernetesNodeLabels:
@@ -54333,6 +54380,10 @@ components:
             $ref: '#/components/schemas/KubernetesNodeLabelsDto'
           nullable: true
           type: array
+        replicaCount:
+          format: int32
+          nullable: true
+          type: integer
       type: object
     ServerListDto:
       additionalProperties: false
@@ -54355,6 +54406,7 @@ components:
         spotInstance: true
         autoscalingGroup: autoscalingGroup
         diskSize: 5
+        replicaCount: 9
         kubernetesHealth: kubernetesHealth
         googleMachineType: googleMachineType
         cloudType: null
@@ -54489,6 +54541,10 @@ components:
             $ref: '#/components/schemas/KubernetesNodeLabelsDto'
           nullable: true
           type: array
+        replicaCount:
+          format: int32
+          nullable: true
+          type: integer
       type: object
     ServerTemplateDto:
       additionalProperties: false
@@ -54545,6 +54601,7 @@ components:
           spotInstance: true
           autoscalingGroup: autoscalingGroup
           diskSize: 5
+          replicaCount: 9
           kubernetesHealth: kubernetesHealth
           googleMachineType: googleMachineType
           cloudType: null
@@ -54589,6 +54646,7 @@ components:
           spotInstance: true
           autoscalingGroup: autoscalingGroup
           diskSize: 5
+          replicaCount: 9
           kubernetesHealth: kubernetesHealth
           googleMachineType: googleMachineType
           cloudType: null
@@ -54648,6 +54706,7 @@ components:
           spotInstance: true
           autoscalingGroup: autoscalingGroup
           diskSize: 5
+          replicaCount: 9
           kubernetesHealth: kubernetesHealth
           googleMachineType: googleMachineType
           cloudType: null
@@ -54692,6 +54751,7 @@ components:
           spotInstance: true
           autoscalingGroup: autoscalingGroup
           diskSize: 5
+          replicaCount: 9
           kubernetesHealth: kubernetesHealth
           googleMachineType: googleMachineType
           cloudType: null
@@ -54721,28 +54781,28 @@ components:
         project:
           isKubevapEnabled: true
           spotEnabled: true
-          alertsTotalCount: 3
+          alertsTotalCount: 2
           isOpaEnabled: true
-          projectRevision: 2
-          opaProfileId: 7
+          projectRevision: 6
+          opaProfileId: 6
           availabilityZones:
           - availabilityZones
           - availabilityZones
           hasAlertingProfile: true
-          organizationId: 7
-          diskSize: 7.740351818741173
+          organizationId: 1
+          diskSize: 3.0205796992916243
           hasNextVersion: true
-          usedRam: 9
+          usedRam: 6
           cloudType: null
-          cloudId: 1
+          cloudId: 6
           isLocked: true
           accessProfileName: accessProfileName
           kubernetesProfileId: 3
-          minSize: 4
-          bastion: 7
-          worker: 4
+          minSize: 8
+          bastion: 1
+          worker: 7
           usedCpu: 9
-          vmVolumeSizeLimit: 6
+          vmVolumeSizeLimit: 3
           isAutoscalingEnabled: true
           isAutoUpgrade: true
           isKubernetes: true
@@ -54751,28 +54811,28 @@ components:
           accessIp: accessIp
           organizationName: organizationName
           hasSelectedFlavors: true
-          cpuLimit: 1
+          cpuLimit: 4
           warningMessage: warningMessage
-          quotaId: 6
-          vmUsedCpu: 3
+          quotaId: 7
+          vmUsedCpu: 6
           allowSpotWorkers: true
-          maxSpotPrice: 6.519180951018382
-          vmRamLimit: 9
+          maxSpotPrice: 0.10263654006109402
+          vmRamLimit: 6
           isKubernetesCurrentVersionKubevapEnabled: true
           flavor: flavor
-          vmUsedRam: 6
-          usedDiskSize: 6
-          vmUsedVolumeSize: 1
+          vmUsedRam: 1
+          usedDiskSize: 8
+          vmUsedVolumeSize: 2
           failureReason: failureReason
           kubernetesCurrentVersion: kubernetesCurrentVersion
           allowFullSpotKubernetes: true
           projectName: projectName
-          projectCloudRevision: 6
+          projectCloudRevision: 5
           projectId: 1
-          cloudCredentialRevision: 5
-          accessProfileId: 6
-          maxSize: 8
-          totalCount: 9
+          cloudCredentialRevision: 6
+          accessProfileId: 3
+          maxSize: 7
+          totalCount: 3
           autoscalingGroupName: autoscalingGroupName
           kubeCurrentVersion: kubeCurrentVersion
           quotaMessage: quotaMessage
@@ -54780,24 +54840,24 @@ components:
           alertingProfileName: alertingProfileName
           hasNfsServer: true
           projectHealth: null
-          totalHourlyCost: 0.10263654006109402
-          ramLimit: 4
+          totalHourlyCost: 4.652396432933246
+          ramLimit: 5
           opaProfileName: opaProfileName
-          s3CredentialId: 7
+          s3CredentialId: 0
           isDeprecated: true
           isAllReady: true
           allowSpotVMs: true
-          vmCpuLimit: 8
-          aiCredentialId: 0
+          vmCpuLimit: 9
+          aiCredentialId: 7
           aiEnabled: true
           isMonitoringEnabled: true
           isAllFailedUpgrade: true
-          diskSizeLimit: 5
+          diskSizeLimit: 9
           masterReady: 1
           hasKubeConfigFile: true
-          master: 2
+          master: 4
           projectStatus: null
-          alertingProfileId: 3
+          alertingProfileId: 7
           deleteOnExpiration: true
           cloudName: cloudName
           accessProfileRevision: 6

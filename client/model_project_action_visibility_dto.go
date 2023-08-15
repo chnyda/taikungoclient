@@ -44,6 +44,7 @@ type ProjectActionVisibilityDto struct {
 	DetachAlertingProfile *ProjectButtonStatusDto `json:"detachAlertingProfile,omitempty"`
 	EnableAi *ProjectButtonStatusDto `json:"enableAi,omitempty"`
 	DisableAi *ProjectButtonStatusDto `json:"disableAi,omitempty"`
+	AiAssistant *ProjectButtonStatusDto `json:"aiAssistant,omitempty"`
 }
 
 // NewProjectActionVisibilityDto instantiates a new ProjectActionVisibilityDto object
@@ -831,6 +832,38 @@ func (o *ProjectActionVisibilityDto) SetDisableAi(v ProjectButtonStatusDto) {
 	o.DisableAi = &v
 }
 
+// GetAiAssistant returns the AiAssistant field value if set, zero value otherwise.
+func (o *ProjectActionVisibilityDto) GetAiAssistant() ProjectButtonStatusDto {
+	if o == nil || IsNil(o.AiAssistant) {
+		var ret ProjectButtonStatusDto
+		return ret
+	}
+	return *o.AiAssistant
+}
+
+// GetAiAssistantOk returns a tuple with the AiAssistant field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ProjectActionVisibilityDto) GetAiAssistantOk() (*ProjectButtonStatusDto, bool) {
+	if o == nil || IsNil(o.AiAssistant) {
+		return nil, false
+	}
+	return o.AiAssistant, true
+}
+
+// HasAiAssistant returns a boolean if a field has been set.
+func (o *ProjectActionVisibilityDto) HasAiAssistant() bool {
+	if o != nil && !IsNil(o.AiAssistant) {
+		return true
+	}
+
+	return false
+}
+
+// SetAiAssistant gets a reference to the given ProjectButtonStatusDto and assigns it to the AiAssistant field.
+func (o *ProjectActionVisibilityDto) SetAiAssistant(v ProjectButtonStatusDto) {
+	o.AiAssistant = &v
+}
+
 func (o ProjectActionVisibilityDto) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -912,6 +945,9 @@ func (o ProjectActionVisibilityDto) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.DisableAi) {
 		toSerialize["disableAi"] = o.DisableAi
+	}
+	if !IsNil(o.AiAssistant) {
+		toSerialize["aiAssistant"] = o.AiAssistant
 	}
 	return toSerialize, nil
 }

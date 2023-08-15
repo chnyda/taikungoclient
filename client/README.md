@@ -108,6 +108,7 @@ Class | Method | HTTP request | Description
 *AdminApi* | [**AdminUpdateUsers**](docs/AdminApi.md#adminupdateusers) | **Post** /api/v1/admin/users/update/email | User email update for admin
 *AdminApi* | [**AdminUsersList**](docs/AdminApi.md#adminuserslist) | **Get** /api/v1/admin/users/list | Users for admin
 *AiCredentialsApi* | [**AiCredentialCreate**](docs/AiCredentialsApi.md#aicredentialcreate) | **Post** /api/v1/ai-credential/create | Create ai credential
+*AiCredentialsApi* | [**AiCredentialDelete**](docs/AiCredentialsApi.md#aicredentialdelete) | **Delete** /api/v1/ai-credential/{id} | Remove ai credential
 *AiCredentialsApi* | [**AiCredentialDropdown**](docs/AiCredentialsApi.md#aicredentialdropdown) | **Get** /api/v1/ai-credential | Retrieve all AI credentials for organization
 *AiCredentialsApi* | [**AiCredentialList**](docs/AiCredentialsApi.md#aicredentiallist) | **Get** /api/v1/ai-credential/list | Retrieve all AI credentials
 *AiManagementApi* | [**AiManagementDisable**](docs/AiManagementApi.md#aimanagementdisable) | **Post** /api/v1/ai-management/disable | Disable ai

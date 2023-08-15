@@ -41,6 +41,7 @@ Name | Type | Description | Notes
 **ProxmoxExtraDiskSize** | Pointer to **int32** |  | [optional] 
 **ActionButtons** | Pointer to [**ServerActionButtonVisibilityDto**](ServerActionButtonVisibilityDto.md) |  | [optional] 
 **KubernetesNodeLabels** | Pointer to [**[]KubernetesNodeLabelsDto**](KubernetesNodeLabelsDto.md) |  | [optional] 
+**ReplicaCount** | Pointer to **NullableInt32** |  | [optional] 
 
 ## Methods
 
@@ -1226,6 +1227,41 @@ HasKubernetesNodeLabels returns a boolean if a field has been set.
 `func (o *ServerListDto) UnsetKubernetesNodeLabels()`
 
 UnsetKubernetesNodeLabels ensures that no value is present for KubernetesNodeLabels, not even an explicit nil
+### GetReplicaCount
+
+`func (o *ServerListDto) GetReplicaCount() int32`
+
+GetReplicaCount returns the ReplicaCount field if non-nil, zero value otherwise.
+
+### GetReplicaCountOk
+
+`func (o *ServerListDto) GetReplicaCountOk() (*int32, bool)`
+
+GetReplicaCountOk returns a tuple with the ReplicaCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetReplicaCount
+
+`func (o *ServerListDto) SetReplicaCount(v int32)`
+
+SetReplicaCount sets ReplicaCount field to given value.
+
+### HasReplicaCount
+
+`func (o *ServerListDto) HasReplicaCount() bool`
+
+HasReplicaCount returns a boolean if a field has been set.
+
+### SetReplicaCountNil
+
+`func (o *ServerListDto) SetReplicaCountNil(b bool)`
+
+ SetReplicaCountNil sets the value for ReplicaCount to be an explicit nil
+
+### UnsetReplicaCount
+`func (o *ServerListDto) UnsetReplicaCount()`
+
+UnsetReplicaCount ensures that no value is present for ReplicaCount, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

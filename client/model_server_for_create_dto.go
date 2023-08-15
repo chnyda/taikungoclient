@@ -34,6 +34,7 @@ type ServerForCreateDto struct {
 	ProxmoxRole *ProxmoxRole `json:"proxmoxRole,omitempty"`
 	Hypervisor NullableString `json:"hypervisor,omitempty"`
 	KubernetesNodeLabels []KubernetesNodeLabelsDto `json:"kubernetesNodeLabels,omitempty"`
+	ReplicaCount NullableInt32 `json:"replicaCount,omitempty"`
 }
 
 // NewServerForCreateDto instantiates a new ServerForCreateDto object
@@ -562,6 +563,48 @@ func (o *ServerForCreateDto) SetKubernetesNodeLabels(v []KubernetesNodeLabelsDto
 	o.KubernetesNodeLabels = v
 }
 
+// GetReplicaCount returns the ReplicaCount field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ServerForCreateDto) GetReplicaCount() int32 {
+	if o == nil || IsNil(o.ReplicaCount.Get()) {
+		var ret int32
+		return ret
+	}
+	return *o.ReplicaCount.Get()
+}
+
+// GetReplicaCountOk returns a tuple with the ReplicaCount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ServerForCreateDto) GetReplicaCountOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ReplicaCount.Get(), o.ReplicaCount.IsSet()
+}
+
+// HasReplicaCount returns a boolean if a field has been set.
+func (o *ServerForCreateDto) HasReplicaCount() bool {
+	if o != nil && o.ReplicaCount.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetReplicaCount gets a reference to the given NullableInt32 and assigns it to the ReplicaCount field.
+func (o *ServerForCreateDto) SetReplicaCount(v int32) {
+	o.ReplicaCount.Set(&v)
+}
+// SetReplicaCountNil sets the value for ReplicaCount to be an explicit nil
+func (o *ServerForCreateDto) SetReplicaCountNil() {
+	o.ReplicaCount.Set(nil)
+}
+
+// UnsetReplicaCount ensures that no value is present for ReplicaCount, not even an explicit nil
+func (o *ServerForCreateDto) UnsetReplicaCount() {
+	o.ReplicaCount.Unset()
+}
+
 func (o ServerForCreateDto) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -613,6 +656,9 @@ func (o ServerForCreateDto) ToMap() (map[string]interface{}, error) {
 	}
 	if o.KubernetesNodeLabels != nil {
 		toSerialize["kubernetesNodeLabels"] = o.KubernetesNodeLabels
+	}
+	if o.ReplicaCount.IsSet() {
+		toSerialize["replicaCount"] = o.ReplicaCount.Get()
 	}
 	return toSerialize, nil
 }

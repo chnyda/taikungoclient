@@ -34,6 +34,19 @@ func Test_taikuncore_AiCredentialsApiService(t *testing.T) {
 
 	})
 
+	t.Run("Test AiCredentialsApiService AiCredentialDelete", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var id int32
+
+		httpRes, err := apiClient.AiCredentialsApi.AiCredentialDelete(context.Background(), id).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test AiCredentialsApiService AiCredentialDropdown", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

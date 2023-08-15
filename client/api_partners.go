@@ -682,6 +682,9 @@ func (a *PartnersApiService) PartnerContactUsExecute(r ApiPartnerContactUsReques
 type ApiPartnerCreateRequest struct {
 	ctx context.Context
 	ApiService *PartnersApiService
+	allowRegistration *bool
+	requiredUserApproval *bool
+	paymentEnabled *bool
 	name *string
 	domain *string
 	link *string
@@ -691,11 +694,23 @@ type ApiPartnerCreateRequest struct {
 	city *string
 	vatNumber *string
 	address *string
-	allowRegistration *bool
-	requiredUserApproval *bool
-	paymentEnabled *bool
 	logo *os.File
 	backgroundImage *os.File
+}
+
+func (r ApiPartnerCreateRequest) AllowRegistration(allowRegistration bool) ApiPartnerCreateRequest {
+	r.allowRegistration = &allowRegistration
+	return r
+}
+
+func (r ApiPartnerCreateRequest) RequiredUserApproval(requiredUserApproval bool) ApiPartnerCreateRequest {
+	r.requiredUserApproval = &requiredUserApproval
+	return r
+}
+
+func (r ApiPartnerCreateRequest) PaymentEnabled(paymentEnabled bool) ApiPartnerCreateRequest {
+	r.paymentEnabled = &paymentEnabled
+	return r
 }
 
 func (r ApiPartnerCreateRequest) Name(name string) ApiPartnerCreateRequest {
@@ -740,21 +755,6 @@ func (r ApiPartnerCreateRequest) VatNumber(vatNumber string) ApiPartnerCreateReq
 
 func (r ApiPartnerCreateRequest) Address(address string) ApiPartnerCreateRequest {
 	r.address = &address
-	return r
-}
-
-func (r ApiPartnerCreateRequest) AllowRegistration(allowRegistration bool) ApiPartnerCreateRequest {
-	r.allowRegistration = &allowRegistration
-	return r
-}
-
-func (r ApiPartnerCreateRequest) RequiredUserApproval(requiredUserApproval bool) ApiPartnerCreateRequest {
-	r.requiredUserApproval = &requiredUserApproval
-	return r
-}
-
-func (r ApiPartnerCreateRequest) PaymentEnabled(paymentEnabled bool) ApiPartnerCreateRequest {
-	r.paymentEnabled = &paymentEnabled
 	return r
 }
 
@@ -804,41 +804,41 @@ func (a *PartnersApiService) PartnerCreateExecute(r ApiPartnerCreateRequest) (*h
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.name != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "")
-	}
-	if r.domain != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "domain", r.domain, "")
-	}
-	if r.link != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "link", r.link, "")
-	}
-	if r.phone != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "phone", r.phone, "")
-	}
-	if r.email != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "email", r.email, "")
-	}
-	if r.country != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "country", r.country, "")
-	}
-	if r.city != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "city", r.city, "")
-	}
-	if r.vatNumber != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "vatNumber", r.vatNumber, "")
-	}
-	if r.address != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "address", r.address, "")
-	}
 	if r.allowRegistration != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "allowRegistration", r.allowRegistration, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "AllowRegistration", r.allowRegistration, "")
 	}
 	if r.requiredUserApproval != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "requiredUserApproval", r.requiredUserApproval, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "RequiredUserApproval", r.requiredUserApproval, "")
 	}
 	if r.paymentEnabled != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "paymentEnabled", r.paymentEnabled, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "PaymentEnabled", r.paymentEnabled, "")
+	}
+	if r.name != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "Name", r.name, "")
+	}
+	if r.domain != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "Domain", r.domain, "")
+	}
+	if r.link != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "Link", r.link, "")
+	}
+	if r.phone != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "Phone", r.phone, "")
+	}
+	if r.email != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "Email", r.email, "")
+	}
+	if r.country != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "Country", r.country, "")
+	}
+	if r.city != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "City", r.city, "")
+	}
+	if r.vatNumber != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "VatNumber", r.vatNumber, "")
+	}
+	if r.address != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "Address", r.address, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"multipart/form-data"}
@@ -2020,40 +2020,40 @@ func (a *PartnersApiService) PartnerUpdateExecute(r ApiPartnerUpdateRequest) (*h
 	localVarFormParams := url.Values{}
 
 	if r.name != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "Name", r.name, "")
 	}
 	if r.domain != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "domain", r.domain, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "Domain", r.domain, "")
 	}
 	if r.link != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "link", r.link, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "Link", r.link, "")
 	}
 	if r.phone != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "phone", r.phone, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "Phone", r.phone, "")
 	}
 	if r.email != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "email", r.email, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "Email", r.email, "")
 	}
 	if r.country != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "country", r.country, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "Country", r.country, "")
 	}
 	if r.city != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "city", r.city, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "City", r.city, "")
 	}
 	if r.vatNumber != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "vatNumber", r.vatNumber, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "VatNumber", r.vatNumber, "")
 	}
 	if r.address != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "address", r.address, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "Address", r.address, "")
 	}
 	if r.allowRegistration != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "allowRegistration", r.allowRegistration, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "AllowRegistration", r.allowRegistration, "")
 	}
 	if r.requiredUserApproval != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "requiredUserApproval", r.requiredUserApproval, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "RequiredUserApproval", r.requiredUserApproval, "")
 	}
 	if r.paymentEnabled != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "paymentEnabled", r.paymentEnabled, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "PaymentEnabled", r.paymentEnabled, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"multipart/form-data"}

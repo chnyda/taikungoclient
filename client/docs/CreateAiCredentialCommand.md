@@ -4,10 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Url** | Pointer to **NullableString** |  | [optional] 
 **Name** | Pointer to **NullableString** |  | [optional] 
 **ApiKey** | Pointer to **NullableString** |  | [optional] 
-**AiType** | Pointer to [**AiType**](AiType.md) |  | [optional] 
 **OrganizationId** | Pointer to **NullableInt32** |  | [optional] 
 
 ## Methods
@@ -29,41 +27,6 @@ NewCreateAiCredentialCommandWithDefaults instantiates a new CreateAiCredentialCo
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetUrl
-
-`func (o *CreateAiCredentialCommand) GetUrl() string`
-
-GetUrl returns the Url field if non-nil, zero value otherwise.
-
-### GetUrlOk
-
-`func (o *CreateAiCredentialCommand) GetUrlOk() (*string, bool)`
-
-GetUrlOk returns a tuple with the Url field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetUrl
-
-`func (o *CreateAiCredentialCommand) SetUrl(v string)`
-
-SetUrl sets Url field to given value.
-
-### HasUrl
-
-`func (o *CreateAiCredentialCommand) HasUrl() bool`
-
-HasUrl returns a boolean if a field has been set.
-
-### SetUrlNil
-
-`func (o *CreateAiCredentialCommand) SetUrlNil(b bool)`
-
- SetUrlNil sets the value for Url to be an explicit nil
-
-### UnsetUrl
-`func (o *CreateAiCredentialCommand) UnsetUrl()`
-
-UnsetUrl ensures that no value is present for Url, not even an explicit nil
 ### GetName
 
 `func (o *CreateAiCredentialCommand) GetName() string`
@@ -134,31 +97,6 @@ HasApiKey returns a boolean if a field has been set.
 `func (o *CreateAiCredentialCommand) UnsetApiKey()`
 
 UnsetApiKey ensures that no value is present for ApiKey, not even an explicit nil
-### GetAiType
-
-`func (o *CreateAiCredentialCommand) GetAiType() AiType`
-
-GetAiType returns the AiType field if non-nil, zero value otherwise.
-
-### GetAiTypeOk
-
-`func (o *CreateAiCredentialCommand) GetAiTypeOk() (*AiType, bool)`
-
-GetAiTypeOk returns a tuple with the AiType field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAiType
-
-`func (o *CreateAiCredentialCommand) SetAiType(v AiType)`
-
-SetAiType sets AiType field to given value.
-
-### HasAiType
-
-`func (o *CreateAiCredentialCommand) HasAiType() bool`
-
-HasAiType returns a boolean if a field has been set.
-
 ### GetOrganizationId
 
 `func (o *CreateAiCredentialCommand) GetOrganizationId() int32`

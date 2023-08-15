@@ -20,10 +20,8 @@ var _ MappedNullable = &CreateAiCredentialCommand{}
 
 // CreateAiCredentialCommand struct for CreateAiCredentialCommand
 type CreateAiCredentialCommand struct {
-	Url NullableString `json:"url,omitempty"`
 	Name NullableString `json:"name,omitempty"`
 	ApiKey NullableString `json:"apiKey,omitempty"`
-	AiType *AiType `json:"aiType,omitempty"`
 	OrganizationId NullableInt32 `json:"organizationId,omitempty"`
 }
 
@@ -42,48 +40,6 @@ func NewCreateAiCredentialCommand() *CreateAiCredentialCommand {
 func NewCreateAiCredentialCommandWithDefaults() *CreateAiCredentialCommand {
 	this := CreateAiCredentialCommand{}
 	return &this
-}
-
-// GetUrl returns the Url field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CreateAiCredentialCommand) GetUrl() string {
-	if o == nil || IsNil(o.Url.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Url.Get()
-}
-
-// GetUrlOk returns a tuple with the Url field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CreateAiCredentialCommand) GetUrlOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Url.Get(), o.Url.IsSet()
-}
-
-// HasUrl returns a boolean if a field has been set.
-func (o *CreateAiCredentialCommand) HasUrl() bool {
-	if o != nil && o.Url.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetUrl gets a reference to the given NullableString and assigns it to the Url field.
-func (o *CreateAiCredentialCommand) SetUrl(v string) {
-	o.Url.Set(&v)
-}
-// SetUrlNil sets the value for Url to be an explicit nil
-func (o *CreateAiCredentialCommand) SetUrlNil() {
-	o.Url.Set(nil)
-}
-
-// UnsetUrl ensures that no value is present for Url, not even an explicit nil
-func (o *CreateAiCredentialCommand) UnsetUrl() {
-	o.Url.Unset()
 }
 
 // GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -170,38 +126,6 @@ func (o *CreateAiCredentialCommand) UnsetApiKey() {
 	o.ApiKey.Unset()
 }
 
-// GetAiType returns the AiType field value if set, zero value otherwise.
-func (o *CreateAiCredentialCommand) GetAiType() AiType {
-	if o == nil || IsNil(o.AiType) {
-		var ret AiType
-		return ret
-	}
-	return *o.AiType
-}
-
-// GetAiTypeOk returns a tuple with the AiType field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateAiCredentialCommand) GetAiTypeOk() (*AiType, bool) {
-	if o == nil || IsNil(o.AiType) {
-		return nil, false
-	}
-	return o.AiType, true
-}
-
-// HasAiType returns a boolean if a field has been set.
-func (o *CreateAiCredentialCommand) HasAiType() bool {
-	if o != nil && !IsNil(o.AiType) {
-		return true
-	}
-
-	return false
-}
-
-// SetAiType gets a reference to the given AiType and assigns it to the AiType field.
-func (o *CreateAiCredentialCommand) SetAiType(v AiType) {
-	o.AiType = &v
-}
-
 // GetOrganizationId returns the OrganizationId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CreateAiCredentialCommand) GetOrganizationId() int32 {
 	if o == nil || IsNil(o.OrganizationId.Get()) {
@@ -254,17 +178,11 @@ func (o CreateAiCredentialCommand) MarshalJSON() ([]byte, error) {
 
 func (o CreateAiCredentialCommand) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Url.IsSet() {
-		toSerialize["url"] = o.Url.Get()
-	}
 	if o.Name.IsSet() {
 		toSerialize["name"] = o.Name.Get()
 	}
 	if o.ApiKey.IsSet() {
 		toSerialize["apiKey"] = o.ApiKey.Get()
-	}
-	if !IsNil(o.AiType) {
-		toSerialize["aiType"] = o.AiType
 	}
 	if o.OrganizationId.IsSet() {
 		toSerialize["organizationId"] = o.OrganizationId.Get()

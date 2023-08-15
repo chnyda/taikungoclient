@@ -28,6 +28,7 @@ Name | Type | Description | Notes
 **DetachAlertingProfile** | Pointer to [**ProjectButtonStatusDto**](ProjectButtonStatusDto.md) |  | [optional] 
 **EnableAi** | Pointer to [**ProjectButtonStatusDto**](ProjectButtonStatusDto.md) |  | [optional] 
 **DisableAi** | Pointer to [**ProjectButtonStatusDto**](ProjectButtonStatusDto.md) |  | [optional] 
+**AiAssistant** | Pointer to [**ProjectButtonStatusDto**](ProjectButtonStatusDto.md) |  | [optional] 
 
 ## Methods
 
@@ -647,6 +648,31 @@ SetDisableAi sets DisableAi field to given value.
 `func (o *ProjectActionVisibilityDto) HasDisableAi() bool`
 
 HasDisableAi returns a boolean if a field has been set.
+
+### GetAiAssistant
+
+`func (o *ProjectActionVisibilityDto) GetAiAssistant() ProjectButtonStatusDto`
+
+GetAiAssistant returns the AiAssistant field if non-nil, zero value otherwise.
+
+### GetAiAssistantOk
+
+`func (o *ProjectActionVisibilityDto) GetAiAssistantOk() (*ProjectButtonStatusDto, bool)`
+
+GetAiAssistantOk returns a tuple with the AiAssistant field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAiAssistant
+
+`func (o *ProjectActionVisibilityDto) SetAiAssistant(v ProjectButtonStatusDto)`
+
+SetAiAssistant sets AiAssistant field to given value.
+
+### HasAiAssistant
+
+`func (o *ProjectActionVisibilityDto) HasAiAssistant() bool`
+
+HasAiAssistant returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -268,7 +268,7 @@ Name | Type | Description  | Notes
 
 ## PartnerCreate
 
-> PartnerCreate(ctx).Name(name).Domain(domain).Link(link).Phone(phone).Email(email).Country(country).City(city).VatNumber(vatNumber).Address(address).AllowRegistration(allowRegistration).RequiredUserApproval(requiredUserApproval).PaymentEnabled(paymentEnabled).Logo(logo).BackgroundImage(backgroundImage).Execute()
+> PartnerCreate(ctx).AllowRegistration(allowRegistration).RequiredUserApproval(requiredUserApproval).PaymentEnabled(paymentEnabled).Name(name).Domain(domain).Link(link).Phone(phone).Email(email).Country(country).City(city).VatNumber(vatNumber).Address(address).Logo(logo).BackgroundImage(backgroundImage).Execute()
 
 
 
@@ -285,6 +285,9 @@ import (
 )
 
 func main() {
+    allowRegistration := true // bool |  (optional)
+    requiredUserApproval := true // bool |  (optional)
+    paymentEnabled := true // bool |  (optional)
     name := "name_example" // string |  (optional)
     domain := "domain_example" // string |  (optional)
     link := "link_example" // string |  (optional)
@@ -294,15 +297,12 @@ func main() {
     city := "city_example" // string |  (optional)
     vatNumber := "vatNumber_example" // string |  (optional)
     address := "address_example" // string |  (optional)
-    allowRegistration := true // bool |  (optional)
-    requiredUserApproval := true // bool |  (optional)
-    paymentEnabled := true // bool |  (optional)
     logo := os.NewFile(1234, "some_file") // *os.File |  (optional)
     backgroundImage := os.NewFile(1234, "some_file") // *os.File |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.PartnersApi.PartnerCreate(context.Background()).Name(name).Domain(domain).Link(link).Phone(phone).Email(email).Country(country).City(city).VatNumber(vatNumber).Address(address).AllowRegistration(allowRegistration).RequiredUserApproval(requiredUserApproval).PaymentEnabled(paymentEnabled).Logo(logo).BackgroundImage(backgroundImage).Execute()
+    r, err := apiClient.PartnersApi.PartnerCreate(context.Background()).AllowRegistration(allowRegistration).RequiredUserApproval(requiredUserApproval).PaymentEnabled(paymentEnabled).Name(name).Domain(domain).Link(link).Phone(phone).Email(email).Country(country).City(city).VatNumber(vatNumber).Address(address).Logo(logo).BackgroundImage(backgroundImage).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PartnersApi.PartnerCreate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -321,6 +321,9 @@ Other parameters are passed through a pointer to a apiPartnerCreateRequest struc
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **allowRegistration** | **bool** |  | 
+ **requiredUserApproval** | **bool** |  | 
+ **paymentEnabled** | **bool** |  | 
  **name** | **string** |  | 
  **domain** | **string** |  | 
  **link** | **string** |  | 
@@ -330,9 +333,6 @@ Name | Type | Description  | Notes
  **city** | **string** |  | 
  **vatNumber** | **string** |  | 
  **address** | **string** |  | 
- **allowRegistration** | **bool** |  | 
- **requiredUserApproval** | **bool** |  | 
- **paymentEnabled** | **bool** |  | 
  **logo** | ***os.File** |  | 
  **backgroundImage** | ***os.File** |  | 
 
