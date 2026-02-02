@@ -14,7 +14,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/itera-io/taikungoclient/client"
+	openapiclient "github.com/chnyda/taikungoclient/client"
 )
 
 func Test_taikuncore_NtpServersAPIService(t *testing.T) {

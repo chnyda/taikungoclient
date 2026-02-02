@@ -15,6 +15,7 @@ rm -rf ./showbackclient
 # Generate client
 java -jar openapi-generator-cli.jar generate -i ./"$FILE_WEB" \
 -g go \
+--global-property disallowAdditionalPropertiesIfNotPresent=false \
 --additional-properties=packageName=taikuncore \
 --additional-properties=enumClassPrefix=true \
 --git-user-id="$GITHUB_USERNAME" \
@@ -37,6 +38,7 @@ sed -i "s/import (/import (\n	\"net\/textproto\"/" ./client/client.go
 # Generate showback client
 java -jar openapi-generator-cli.jar generate -i ./"$FILE_SHOWBACK" \
 -g go \
+--global-property disallowAdditionalPropertiesIfNotPresent=false \
 --additional-properties=packageName=taikunshowback  \
 --additional-properties=enumClassPrefix=true \
 --git-user-id="$GITHUB_USERNAME" \
