@@ -1007,14 +1007,12 @@ func (a *CatalogAppAPIService) CatalogAppListExecute(r ApiCatalogAppListRequest)
 		parameterAddToHeaderOrQuery(localVarQueryParams, "Offset", r.offset, "form", "")
 	} else {
 		var defaultValue int32 = 0
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Offset", defaultValue, "form", "")
 		r.offset = &defaultValue
 	}
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "Limit", r.limit, "form", "")
 	} else {
 		var defaultValue int32 = 50
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Limit", defaultValue, "form", "")
 		r.limit = &defaultValue
 	}
 	// to determine the Content-Type header

@@ -14,8 +14,8 @@ import (
 	"sync"
 	"time"
 
-	taikuncore "github.com/itera-io/taikungoclient/client"             // Main Taikun Web API
-	taikunshowback "github.com/itera-io/taikungoclient/showbackclient" // API for Taikun showback service
+	taikuncore "github.com/chnyda/taikungoclient/client"             // Main Taikun Web API
+	taikunshowback "github.com/chnyda/taikungoclient/showbackclient" // API for Taikun showback service
 )
 
 // Environment variables for configuring authentication.

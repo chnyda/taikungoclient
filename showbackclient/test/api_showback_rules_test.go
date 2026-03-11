@@ -14,7 +14,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/itera-io/taikungoclient/showbackclient"
+	openapiclient "github.com/chnyda/taikungoclient/showbackclient"
 )
 
 func Test_taikunshowback_ShowbackRulesAPIService(t *testing.T) {

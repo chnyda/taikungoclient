@@ -1,4 +1,4 @@
-module github.com/itera-io/taikungoclient
+module github.com/chnyda/taikungoclient
 
 go 1.23
 
