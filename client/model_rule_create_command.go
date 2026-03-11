@@ -25,7 +25,7 @@ type RuleCreateCommand struct {
 	Labels []PrometheusLabelListDto `json:"labels,omitempty"`
 	Type *PrometheusType `json:"type,omitempty"`
 	Price *float64 `json:"price,omitempty"`
-	PartnerId NullableInt32 `json:"partnerId,omitempty"`
+	PartnerId *int32 `json:"partnerId,omitempty"`
 	OperationCredentialId *int32 `json:"operationCredentialId,omitempty"`
 	OrganizationId []int32 `json:"organizationId,omitempty"`
 	RuleDiscountRate NullableInt32 `json:"ruleDiscountRate,omitempty"`
@@ -232,46 +232,36 @@ func (o *RuleCreateCommand) SetPrice(v float64) {
 	o.Price = &v
 }
 
-// GetPartnerId returns the PartnerId field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetPartnerId returns the PartnerId field value if set, zero value otherwise.
 func (o *RuleCreateCommand) GetPartnerId() int32 {
-	if o == nil || IsNil(o.PartnerId.Get()) {
+	if o == nil || IsNil(o.PartnerId) {
 		var ret int32
 		return ret
 	}
-	return *o.PartnerId.Get()
+	return *o.PartnerId
 }
 
 // GetPartnerIdOk returns a tuple with the PartnerId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *RuleCreateCommand) GetPartnerIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.PartnerId) {
 		return nil, false
 	}
-	return o.PartnerId.Get(), o.PartnerId.IsSet()
+	return o.PartnerId, true
 }
 
 // HasPartnerId returns a boolean if a field has been set.
 func (o *RuleCreateCommand) HasPartnerId() bool {
-	if o != nil && o.PartnerId.IsSet() {
+	if o != nil && !IsNil(o.PartnerId) {
 		return true
 	}
 
 	return false
 }
 
-// SetPartnerId gets a reference to the given NullableInt32 and assigns it to the PartnerId field.
+// SetPartnerId gets a reference to the given int32 and assigns it to the PartnerId field.
 func (o *RuleCreateCommand) SetPartnerId(v int32) {
-	o.PartnerId.Set(&v)
-}
-// SetPartnerIdNil sets the value for PartnerId to be an explicit nil
-func (o *RuleCreateCommand) SetPartnerIdNil() {
-	o.PartnerId.Set(nil)
-}
-
-// UnsetPartnerId ensures that no value is present for PartnerId, not even an explicit nil
-func (o *RuleCreateCommand) UnsetPartnerId() {
-	o.PartnerId.Unset()
+	o.PartnerId = &v
 }
 
 // GetOperationCredentialId returns the OperationCredentialId field value if set, zero value otherwise.
@@ -406,8 +396,8 @@ func (o RuleCreateCommand) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Price) {
 		toSerialize["price"] = o.Price
 	}
-	if o.PartnerId.IsSet() {
-		toSerialize["partnerId"] = o.PartnerId.Get()
+	if !IsNil(o.PartnerId) {
+		toSerialize["partnerId"] = o.PartnerId
 	}
 	if !IsNil(o.OperationCredentialId) {
 		toSerialize["operationCredentialId"] = o.OperationCredentialId

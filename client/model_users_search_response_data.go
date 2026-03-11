@@ -22,8 +22,6 @@ var _ MappedNullable = &UsersSearchResponseData{}
 type UsersSearchResponseData struct {
 	Id NullableString `json:"id,omitempty"`
 	Name NullableString `json:"name,omitempty"`
-	OrganizationId NullableInt32 `json:"organizationId,omitempty"`
-	OrganizationName NullableString `json:"organizationName,omitempty"`
 	Email NullableString `json:"email,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -131,90 +129,6 @@ func (o *UsersSearchResponseData) UnsetName() {
 	o.Name.Unset()
 }
 
-// GetOrganizationId returns the OrganizationId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *UsersSearchResponseData) GetOrganizationId() int32 {
-	if o == nil || IsNil(o.OrganizationId.Get()) {
-		var ret int32
-		return ret
-	}
-	return *o.OrganizationId.Get()
-}
-
-// GetOrganizationIdOk returns a tuple with the OrganizationId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *UsersSearchResponseData) GetOrganizationIdOk() (*int32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.OrganizationId.Get(), o.OrganizationId.IsSet()
-}
-
-// HasOrganizationId returns a boolean if a field has been set.
-func (o *UsersSearchResponseData) HasOrganizationId() bool {
-	if o != nil && o.OrganizationId.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetOrganizationId gets a reference to the given NullableInt32 and assigns it to the OrganizationId field.
-func (o *UsersSearchResponseData) SetOrganizationId(v int32) {
-	o.OrganizationId.Set(&v)
-}
-// SetOrganizationIdNil sets the value for OrganizationId to be an explicit nil
-func (o *UsersSearchResponseData) SetOrganizationIdNil() {
-	o.OrganizationId.Set(nil)
-}
-
-// UnsetOrganizationId ensures that no value is present for OrganizationId, not even an explicit nil
-func (o *UsersSearchResponseData) UnsetOrganizationId() {
-	o.OrganizationId.Unset()
-}
-
-// GetOrganizationName returns the OrganizationName field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *UsersSearchResponseData) GetOrganizationName() string {
-	if o == nil || IsNil(o.OrganizationName.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.OrganizationName.Get()
-}
-
-// GetOrganizationNameOk returns a tuple with the OrganizationName field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *UsersSearchResponseData) GetOrganizationNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.OrganizationName.Get(), o.OrganizationName.IsSet()
-}
-
-// HasOrganizationName returns a boolean if a field has been set.
-func (o *UsersSearchResponseData) HasOrganizationName() bool {
-	if o != nil && o.OrganizationName.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetOrganizationName gets a reference to the given NullableString and assigns it to the OrganizationName field.
-func (o *UsersSearchResponseData) SetOrganizationName(v string) {
-	o.OrganizationName.Set(&v)
-}
-// SetOrganizationNameNil sets the value for OrganizationName to be an explicit nil
-func (o *UsersSearchResponseData) SetOrganizationNameNil() {
-	o.OrganizationName.Set(nil)
-}
-
-// UnsetOrganizationName ensures that no value is present for OrganizationName, not even an explicit nil
-func (o *UsersSearchResponseData) UnsetOrganizationName() {
-	o.OrganizationName.Unset()
-}
-
 // GetEmail returns the Email field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsersSearchResponseData) GetEmail() string {
 	if o == nil || IsNil(o.Email.Get()) {
@@ -273,12 +187,6 @@ func (o UsersSearchResponseData) ToMap() (map[string]interface{}, error) {
 	if o.Name.IsSet() {
 		toSerialize["name"] = o.Name.Get()
 	}
-	if o.OrganizationId.IsSet() {
-		toSerialize["organizationId"] = o.OrganizationId.Get()
-	}
-	if o.OrganizationName.IsSet() {
-		toSerialize["organizationName"] = o.OrganizationName.Get()
-	}
 	if o.Email.IsSet() {
 		toSerialize["email"] = o.Email.Get()
 	}
@@ -306,8 +214,6 @@ func (o *UsersSearchResponseData) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "name")
-		delete(additionalProperties, "organizationId")
-		delete(additionalProperties, "organizationName")
 		delete(additionalProperties, "email")
 		o.AdditionalProperties = additionalProperties
 	}

@@ -34,6 +34,18 @@ func Test_taikuncore_InternalAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test InternalAPIService InternalGetUserInfo", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.InternalAPI.InternalGetUserInfo(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test InternalAPIService InternalProjectsList", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

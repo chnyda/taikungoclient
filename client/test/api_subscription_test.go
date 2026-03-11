@@ -57,18 +57,6 @@ func Test_taikuncore_SubscriptionAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test SubscriptionAPIService SubscriptionList", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		resp, httpRes, err := apiClient.SubscriptionAPI.SubscriptionList(context.Background()).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
 	t.Run("Test SubscriptionAPIService SubscriptionPublic", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

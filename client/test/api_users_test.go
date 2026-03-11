@@ -22,19 +22,6 @@ func Test_taikuncore_UsersAPIService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test UsersAPIService UsersAddUserProjects", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var id string
-
-		httpRes, err := apiClient.UsersAPI.UsersAddUserProjects(context.Background(), id).Execute()
-
-		require.Nil(t, err)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
 	t.Run("Test UsersAPIService UsersChangePassword", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -93,24 +80,22 @@ func Test_taikuncore_UsersAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test UsersAPIService UsersDeleteUserProjects", func(t *testing.T) {
+	t.Run("Test UsersAPIService UsersDisable", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id string
-
-		httpRes, err := apiClient.UsersAPI.UsersDeleteUserProjects(context.Background(), id).Execute()
+		httpRes, err := apiClient.UsersAPI.UsersDisable(context.Background()).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test UsersAPIService UsersDisable", func(t *testing.T) {
+	t.Run("Test UsersAPIService UsersDowngradeRole", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.UsersAPI.UsersDisable(context.Background()).Execute()
+		httpRes, err := apiClient.UsersAPI.UsersDowngradeRole(context.Background()).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -164,6 +149,29 @@ func Test_taikuncore_UsersAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test UsersAPIService UsersMeEvents", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.UsersAPI.UsersMeEvents(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test UsersAPIService UsersPromoteRole", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		httpRes, err := apiClient.UsersAPI.UsersPromoteRole(context.Background()).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test UsersAPIService UsersToggleMaintenanceMode", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -180,6 +188,17 @@ func Test_taikuncore_UsersAPIService(t *testing.T) {
 		t.Skip("skip test")  // remove to run test
 
 		httpRes, err := apiClient.UsersAPI.UsersToggleNotificationMode(context.Background()).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test UsersAPIService UsersUnlock2fa", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		httpRes, err := apiClient.UsersAPI.UsersUnlock2fa(context.Background()).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)

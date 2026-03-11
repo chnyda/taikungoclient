@@ -22,13 +22,242 @@ func Test_taikuncore_AccountsAPIService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test AccountsAPIService AccountAddAccountAdmin", func(t *testing.T) {
+	t.Run("Test AccountsAPIService AccountsAccountGroupDetails", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.AccountsAPI.AccountAddAccountAdmin(context.Background()).Execute()
+		var accountId int32
+		var id int32
+
+		resp, httpRes, err := apiClient.AccountsAPI.AccountsAccountGroupDetails(context.Background(), accountId, id).Execute()
 
 		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test AccountsAPIService AccountsAccountGroupsDropdown", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var accountId int32
+
+		resp, httpRes, err := apiClient.AccountsAPI.AccountsAccountGroupsDropdown(context.Background(), accountId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test AccountsAPIService AccountsAccountOrganizationDetails", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var accountId int32
+		var id int32
+
+		resp, httpRes, err := apiClient.AccountsAPI.AccountsAccountOrganizationDetails(context.Background(), accountId, id).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test AccountsAPIService AccountsAccountOrganizationsAvailable", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var accountId int32
+
+		resp, httpRes, err := apiClient.AccountsAPI.AccountsAccountOrganizationsAvailable(context.Background(), accountId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test AccountsAPIService AccountsAccountOrganizationsWithGroup", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var accountId int32
+
+		resp, httpRes, err := apiClient.AccountsAPI.AccountsAccountOrganizationsWithGroup(context.Background(), accountId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test AccountsAPIService AccountsAccountProjectDetails", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var accountId int32
+		var id int32
+
+		resp, httpRes, err := apiClient.AccountsAPI.AccountsAccountProjectDetails(context.Background(), accountId, id).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test AccountsAPIService AccountsAccountProjectsDropdown", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var accountId int32
+
+		resp, httpRes, err := apiClient.AccountsAPI.AccountsAccountProjectsDropdown(context.Background(), accountId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test AccountsAPIService AccountsAccountUserDetails", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var accountId int32
+		var id string
+
+		resp, httpRes, err := apiClient.AccountsAPI.AccountsAccountUserDetails(context.Background(), accountId, id).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test AccountsAPIService AccountsAccountUserDropdown", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var accountId int32
+
+		resp, httpRes, err := apiClient.AccountsAPI.AccountsAccountUserDropdown(context.Background(), accountId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test AccountsAPIService AccountsAccountUsersAvailable", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var accountId int32
+
+		resp, httpRes, err := apiClient.AccountsAPI.AccountsAccountUsersAvailable(context.Background(), accountId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test AccountsAPIService AccountsAddAccountAdmin", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		httpRes, err := apiClient.AccountsAPI.AccountsAddAccountAdmin(context.Background()).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test AccountsAPIService AccountsCheckDuplicateEntity", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		httpRes, err := apiClient.AccountsAPI.AccountsCheckDuplicateEntity(context.Background()).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test AccountsAPIService AccountsCreate", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.AccountsAPI.AccountsCreate(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test AccountsAPIService AccountsDelete", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var id int32
+
+		httpRes, err := apiClient.AccountsAPI.AccountsDelete(context.Background(), id).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test AccountsAPIService AccountsDetails", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var accountId int32
+
+		resp, httpRes, err := apiClient.AccountsAPI.AccountsDetails(context.Background(), accountId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test AccountsAPIService AccountsListAccounts", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.AccountsAPI.AccountsListAccounts(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test AccountsAPIService AccountsTransferOwnership", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		httpRes, err := apiClient.AccountsAPI.AccountsTransferOwnership(context.Background()).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test AccountsAPIService AccountsUpdate", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.AccountsAPI.AccountsUpdate(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})

@@ -779,10 +779,11 @@ func (a *PrometheusRulesAPIService) PrometheusrulesDetailsExecute(r ApiPrometheu
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-
-	if r.organizationId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "OrganizationId", r.organizationId, "form", "")
+	if r.organizationId == nil {
+		return localVarReturnValue, nil, reportError("organizationId is required and must be specified")
 	}
+
+	parameterAddToHeaderOrQuery(localVarQueryParams, "OrganizationId", r.organizationId, "form", "")
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -919,14 +920,24 @@ func (a *PrometheusRulesAPIService) PrometheusrulesDetailsExecute(r ApiPrometheu
 type ApiPrometheusrulesListRequest struct {
 	ctx context.Context
 	ApiService *PrometheusRulesAPIService
+	limit *int32
+	offset *int32
 	partnerId *int32
 	sortBy *string
 	sortDirection *string
 	search *string
 	searchId *string
 	id *int32
-	offset *int32
-	limit *int32
+}
+
+func (r ApiPrometheusrulesListRequest) Limit(limit int32) ApiPrometheusrulesListRequest {
+	r.limit = &limit
+	return r
+}
+
+func (r ApiPrometheusrulesListRequest) Offset(offset int32) ApiPrometheusrulesListRequest {
+	r.offset = &offset
+	return r
 }
 
 func (r ApiPrometheusrulesListRequest) PartnerId(partnerId int32) ApiPrometheusrulesListRequest {
@@ -956,16 +967,6 @@ func (r ApiPrometheusrulesListRequest) SearchId(searchId string) ApiPrometheusru
 
 func (r ApiPrometheusrulesListRequest) Id(id int32) ApiPrometheusrulesListRequest {
 	r.id = &id
-	return r
-}
-
-func (r ApiPrometheusrulesListRequest) Offset(offset int32) ApiPrometheusrulesListRequest {
-	r.offset = &offset
-	return r
-}
-
-func (r ApiPrometheusrulesListRequest) Limit(limit int32) ApiPrometheusrulesListRequest {
-	r.limit = &limit
 	return r
 }
 
@@ -1007,6 +1008,12 @@ func (a *PrometheusRulesAPIService) PrometheusrulesListExecute(r ApiPrometheusru
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "Limit", r.limit, "form", "")
+	}
+	if r.offset != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "Offset", r.offset, "form", "")
+	}
 	if r.partnerId != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "PartnerId", r.partnerId, "form", "")
 	}
@@ -1024,12 +1031,6 @@ func (a *PrometheusRulesAPIService) PrometheusrulesListExecute(r ApiPrometheusru
 	}
 	if r.id != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "Id", r.id, "form", "")
-	}
-	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Offset", r.offset, "form", "")
-	}
-	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Limit", r.limit, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

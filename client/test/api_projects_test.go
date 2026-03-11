@@ -22,19 +22,6 @@ func Test_taikuncore_ProjectsAPIService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test ProjectsAPIService ProjectsAddProjectUsers", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var id int32
-
-		httpRes, err := apiClient.ProjectsAPI.ProjectsAddProjectUsers(context.Background(), id).Execute()
-
-		require.Nil(t, err)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
 	t.Run("Test ProjectsAPIService ProjectsAiAnalyzer", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -124,19 +111,6 @@ func Test_taikuncore_ProjectsAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test ProjectsAPIService ProjectsDeleteProjectUsers", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var id int32
-
-		httpRes, err := apiClient.ProjectsAPI.ProjectsDeleteProjectUsers(context.Background(), id).Execute()
-
-		require.Nil(t, err)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
 	t.Run("Test ProjectsAPIService ProjectsDescribe", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -208,11 +182,11 @@ func Test_taikuncore_ProjectsAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test ProjectsAPIService ProjectsForAlerting", func(t *testing.T) {
+	t.Run("Test ProjectsAPIService ProjectsForBilling", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.ProjectsAPI.ProjectsForAlerting(context.Background()).Execute()
+		resp, httpRes, err := apiClient.ProjectsAPI.ProjectsForBilling(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -220,11 +194,11 @@ func Test_taikuncore_ProjectsAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test ProjectsAPIService ProjectsForBilling", func(t *testing.T) {
+	t.Run("Test ProjectsAPIService ProjectsGetAccessibleUsers", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.ProjectsAPI.ProjectsForBilling(context.Background()).Execute()
+		resp, httpRes, err := apiClient.ProjectsAPI.ProjectsGetAccessibleUsers(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

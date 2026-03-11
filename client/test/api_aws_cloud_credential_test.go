@@ -110,6 +110,18 @@ func Test_taikuncore_AWSCloudCredentialAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test AWSCloudCredentialAPIService AwsSubnetList", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.AWSCloudCredentialAPI.AwsSubnetList(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test AWSCloudCredentialAPIService AwsUpdate", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -128,6 +140,18 @@ func Test_taikuncore_AWSCloudCredentialAPIService(t *testing.T) {
 		httpRes, err := apiClient.AWSCloudCredentialAPI.AwsValidateOwners(context.Background()).Execute()
 
 		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test AWSCloudCredentialAPIService AwsVpcList", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.AWSCloudCredentialAPI.AwsVpcList(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})

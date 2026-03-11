@@ -22,11 +22,11 @@ var _ MappedNullable = &OpenshiftList{}
 // OpenshiftList struct for OpenshiftList
 type OpenshiftList struct {
 	Data []OpenshiftListDto `json:"data"`
-	Offset int32 `json:"offset"`
 	Limit int32 `json:"limit"`
 	HasMore bool `json:"hasMore"`
+	TotalCount int64 `json:"totalCount"`
+	Offset int32 `json:"offset"`
 	NextOffset NullableInt32 `json:"nextOffset,omitempty"`
-	TotalCount int32 `json:"totalCount"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -36,13 +36,13 @@ type _OpenshiftList OpenshiftList
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOpenshiftList(data []OpenshiftListDto, offset int32, limit int32, hasMore bool, totalCount int32) *OpenshiftList {
+func NewOpenshiftList(data []OpenshiftListDto, limit int32, hasMore bool, totalCount int64, offset int32) *OpenshiftList {
 	this := OpenshiftList{}
 	this.Data = data
-	this.Offset = offset
 	this.Limit = limit
 	this.HasMore = hasMore
 	this.TotalCount = totalCount
+	this.Offset = offset
 	return &this
 }
 
@@ -78,30 +78,6 @@ func (o *OpenshiftList) GetDataOk() ([]OpenshiftListDto, bool) {
 // SetData sets field value
 func (o *OpenshiftList) SetData(v []OpenshiftListDto) {
 	o.Data = v
-}
-
-// GetOffset returns the Offset field value
-func (o *OpenshiftList) GetOffset() int32 {
-	if o == nil {
-		var ret int32
-		return ret
-	}
-
-	return o.Offset
-}
-
-// GetOffsetOk returns a tuple with the Offset field value
-// and a boolean to check if the value has been set.
-func (o *OpenshiftList) GetOffsetOk() (*int32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Offset, true
-}
-
-// SetOffset sets field value
-func (o *OpenshiftList) SetOffset(v int32) {
-	o.Offset = v
 }
 
 // GetLimit returns the Limit field value
@@ -152,6 +128,54 @@ func (o *OpenshiftList) SetHasMore(v bool) {
 	o.HasMore = v
 }
 
+// GetTotalCount returns the TotalCount field value
+func (o *OpenshiftList) GetTotalCount() int64 {
+	if o == nil {
+		var ret int64
+		return ret
+	}
+
+	return o.TotalCount
+}
+
+// GetTotalCountOk returns a tuple with the TotalCount field value
+// and a boolean to check if the value has been set.
+func (o *OpenshiftList) GetTotalCountOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TotalCount, true
+}
+
+// SetTotalCount sets field value
+func (o *OpenshiftList) SetTotalCount(v int64) {
+	o.TotalCount = v
+}
+
+// GetOffset returns the Offset field value
+func (o *OpenshiftList) GetOffset() int32 {
+	if o == nil {
+		var ret int32
+		return ret
+	}
+
+	return o.Offset
+}
+
+// GetOffsetOk returns a tuple with the Offset field value
+// and a boolean to check if the value has been set.
+func (o *OpenshiftList) GetOffsetOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Offset, true
+}
+
+// SetOffset sets field value
+func (o *OpenshiftList) SetOffset(v int32) {
+	o.Offset = v
+}
+
 // GetNextOffset returns the NextOffset field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *OpenshiftList) GetNextOffset() int32 {
 	if o == nil || IsNil(o.NextOffset.Get()) {
@@ -194,30 +218,6 @@ func (o *OpenshiftList) UnsetNextOffset() {
 	o.NextOffset.Unset()
 }
 
-// GetTotalCount returns the TotalCount field value
-func (o *OpenshiftList) GetTotalCount() int32 {
-	if o == nil {
-		var ret int32
-		return ret
-	}
-
-	return o.TotalCount
-}
-
-// GetTotalCountOk returns a tuple with the TotalCount field value
-// and a boolean to check if the value has been set.
-func (o *OpenshiftList) GetTotalCountOk() (*int32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.TotalCount, true
-}
-
-// SetTotalCount sets field value
-func (o *OpenshiftList) SetTotalCount(v int32) {
-	o.TotalCount = v
-}
-
 func (o OpenshiftList) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -231,13 +231,13 @@ func (o OpenshiftList) ToMap() (map[string]interface{}, error) {
 	if o.Data != nil {
 		toSerialize["data"] = o.Data
 	}
-	toSerialize["offset"] = o.Offset
 	toSerialize["limit"] = o.Limit
 	toSerialize["hasMore"] = o.HasMore
+	toSerialize["totalCount"] = o.TotalCount
+	toSerialize["offset"] = o.Offset
 	if o.NextOffset.IsSet() {
 		toSerialize["nextOffset"] = o.NextOffset.Get()
 	}
-	toSerialize["totalCount"] = o.TotalCount
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -252,10 +252,10 @@ func (o *OpenshiftList) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"data",
-		"offset",
 		"limit",
 		"hasMore",
 		"totalCount",
+		"offset",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -286,11 +286,11 @@ func (o *OpenshiftList) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "data")
-		delete(additionalProperties, "offset")
 		delete(additionalProperties, "limit")
 		delete(additionalProperties, "hasMore")
-		delete(additionalProperties, "nextOffset")
 		delete(additionalProperties, "totalCount")
+		delete(additionalProperties, "offset")
+		delete(additionalProperties, "nextOffset")
 		o.AdditionalProperties = additionalProperties
 	}
 

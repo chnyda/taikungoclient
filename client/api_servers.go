@@ -602,6 +602,8 @@ func (a *ServersAPIService) ServersDetailsExecute(r ApiServersDetailsRequest) (*
 type ApiServersListRequest struct {
 	ctx context.Context
 	ApiService *ServersAPIService
+	limit *int32
+	offset *int32
 	projectId *int32
 	sortBy *string
 	sortDirection *string
@@ -616,10 +618,17 @@ type ApiServersListRequest struct {
 	id *int32
 	filterBy *string
 	autoscalingGroup *string
-	offset *int32
-	limit *int32
-	startRam2 *float64
-	endRam2 *float64
+	accountId *int32
+}
+
+func (r ApiServersListRequest) Limit(limit int32) ApiServersListRequest {
+	r.limit = &limit
+	return r
+}
+
+func (r ApiServersListRequest) Offset(offset int32) ApiServersListRequest {
+	r.offset = &offset
+	return r
 }
 
 func (r ApiServersListRequest) ProjectId(projectId int32) ApiServersListRequest {
@@ -692,23 +701,8 @@ func (r ApiServersListRequest) AutoscalingGroup(autoscalingGroup string) ApiServ
 	return r
 }
 
-func (r ApiServersListRequest) Offset(offset int32) ApiServersListRequest {
-	r.offset = &offset
-	return r
-}
-
-func (r ApiServersListRequest) Limit(limit int32) ApiServersListRequest {
-	r.limit = &limit
-	return r
-}
-
-func (r ApiServersListRequest) StartRam2(startRam2 float64) ApiServersListRequest {
-	r.startRam2 = &startRam2
-	return r
-}
-
-func (r ApiServersListRequest) EndRam2(endRam2 float64) ApiServersListRequest {
-	r.endRam2 = &endRam2
+func (r ApiServersListRequest) AccountId(accountId int32) ApiServersListRequest {
+	r.accountId = &accountId
 	return r
 }
 
@@ -750,6 +744,12 @@ func (a *ServersAPIService) ServersListExecute(r ApiServersListRequest) (*Server
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "Limit", r.limit, "form", "")
+	}
+	if r.offset != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "Offset", r.offset, "form", "")
+	}
 	if r.projectId != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "ProjectId", r.projectId, "form", "")
 	}
@@ -792,17 +792,8 @@ func (a *ServersAPIService) ServersListExecute(r ApiServersListRequest) (*Server
 	if r.autoscalingGroup != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "AutoscalingGroup", r.autoscalingGroup, "form", "")
 	}
-	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Offset", r.offset, "form", "")
-	}
-	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "Limit", r.limit, "form", "")
-	}
-	if r.startRam2 != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "startRam", r.startRam2, "form", "")
-	}
-	if r.endRam2 != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "endRam", r.endRam2, "form", "")
+	if r.accountId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "AccountId", r.accountId, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

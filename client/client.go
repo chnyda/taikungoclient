@@ -57,8 +57,6 @@ type APIClient struct {
 
 	AccountsAPI *AccountsAPIService
 
-	AdminAPI *AdminAPIService
-
 	AiCredentialsAPI *AiCredentialsAPIService
 
 	AlertingIntegrationsAPI *AlertingIntegrationsAPIService
@@ -93,6 +91,8 @@ type APIClient struct {
 
 	DnsServersAPI *DnsServersAPIService
 
+	DocumentationAPI *DocumentationAPIService
+
 	ExecutorsAPI *ExecutorsAPIService
 
 	FlavorsAPI *FlavorsAPIService
@@ -114,8 +114,6 @@ type APIClient struct {
 	InternalAPI *InternalAPIService
 
 	InvoicesAPI *InvoicesAPIService
-
-	KeycloakAPI *KeycloakAPIService
 
 	KubeConfigAPI *KubeConfigAPIService
 
@@ -171,6 +169,8 @@ type APIClient struct {
 
 	ProxmoxCloudCredentialAPI *ProxmoxCloudCredentialAPIService
 
+	RobotAPI *RobotAPIService
+
 	S3CredentialsAPI *S3CredentialsAPIService
 
 	SearchAPI *SearchAPIService
@@ -197,13 +197,7 @@ type APIClient struct {
 
 	TaikunLBAPI *TaikunLBAPIService
 
-	TicketAPI *TicketAPIService
-
 	TrustedRegistriesAPI *TrustedRegistriesAPIService
-
-	UserProjectsAPI *UserProjectsAPIService
-
-	UserTokenAPI *UserTokenAPIService
 
 	UsersAPI *UsersAPIService
 
@@ -233,7 +227,6 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.AWSCloudCredentialAPI = (*AWSCloudCredentialAPIService)(&c.common)
 	c.AccessProfilesAPI = (*AccessProfilesAPIService)(&c.common)
 	c.AccountsAPI = (*AccountsAPIService)(&c.common)
-	c.AdminAPI = (*AdminAPIService)(&c.common)
 	c.AiCredentialsAPI = (*AiCredentialsAPIService)(&c.common)
 	c.AlertingIntegrationsAPI = (*AlertingIntegrationsAPIService)(&c.common)
 	c.AlertingProfilesAPI = (*AlertingProfilesAPIService)(&c.common)
@@ -251,6 +244,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.CommonAPI = (*CommonAPIService)(&c.common)
 	c.CronJobServiceAPI = (*CronJobServiceAPIService)(&c.common)
 	c.DnsServersAPI = (*DnsServersAPIService)(&c.common)
+	c.DocumentationAPI = (*DocumentationAPIService)(&c.common)
 	c.ExecutorsAPI = (*ExecutorsAPIService)(&c.common)
 	c.FlavorsAPI = (*FlavorsAPIService)(&c.common)
 	c.GenericKubernetesCloudCredentialAPI = (*GenericKubernetesCloudCredentialAPIService)(&c.common)
@@ -262,7 +256,6 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.InfraBillingSummaryAPI = (*InfraBillingSummaryAPIService)(&c.common)
 	c.InternalAPI = (*InternalAPIService)(&c.common)
 	c.InvoicesAPI = (*InvoicesAPIService)(&c.common)
-	c.KeycloakAPI = (*KeycloakAPIService)(&c.common)
 	c.KubeConfigAPI = (*KubeConfigAPIService)(&c.common)
 	c.KubeConfigRoleAPI = (*KubeConfigRoleAPIService)(&c.common)
 	c.KubernetesAPI = (*KubernetesAPIService)(&c.common)
@@ -290,6 +283,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.PrometheusBillingsAPI = (*PrometheusBillingsAPIService)(&c.common)
 	c.PrometheusRulesAPI = (*PrometheusRulesAPIService)(&c.common)
 	c.ProxmoxCloudCredentialAPI = (*ProxmoxCloudCredentialAPIService)(&c.common)
+	c.RobotAPI = (*RobotAPIService)(&c.common)
 	c.S3CredentialsAPI = (*S3CredentialsAPIService)(&c.common)
 	c.SearchAPI = (*SearchAPIService)(&c.common)
 	c.SecurityGroupAPI = (*SecurityGroupAPIService)(&c.common)
@@ -303,10 +297,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.StripeAPI = (*StripeAPIService)(&c.common)
 	c.SubscriptionAPI = (*SubscriptionAPIService)(&c.common)
 	c.TaikunLBAPI = (*TaikunLBAPIService)(&c.common)
-	c.TicketAPI = (*TicketAPIService)(&c.common)
 	c.TrustedRegistriesAPI = (*TrustedRegistriesAPIService)(&c.common)
-	c.UserProjectsAPI = (*UserProjectsAPIService)(&c.common)
-	c.UserTokenAPI = (*UserTokenAPIService)(&c.common)
 	c.UsersAPI = (*UsersAPIService)(&c.common)
 	c.VirtualClusterAPI = (*VirtualClusterAPIService)(&c.common)
 	c.VsphereCloudCredentialAPI = (*VsphereCloudCredentialAPIService)(&c.common)
@@ -666,6 +657,11 @@ func (c *APIClient) prepareRequest(
 		localVarRequest = localVarRequest.WithContext(ctx)
 
 		// Walk through any authentication.
+
+		// Basic HTTP Authentication
+		if auth, ok := ctx.Value(ContextBasicAuth).(BasicAuth); ok {
+			localVarRequest.SetBasicAuth(auth.UserName, auth.Password)
+		}
 
 	}
 
