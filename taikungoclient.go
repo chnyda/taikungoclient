@@ -322,12 +322,12 @@ func NewClientFromToken(token string, apiHost string) *Client {
 
 // NewClientFromCredentials creates a client using email + password authentication.
 // authMode is optional — pass an empty string for the default mode, or a custom
-// mode such as "keycloak", "token", or "autoscaler".
+// mode such as "autoscaler".
 func NewClientFromCredentials(email string, password string, authMode string, apiHost string) *Client {
 	return newClient(apiHost, func(c *Client) {
 		c.email = email
 		c.password = password
-		c.authMode = authMode
+		c.authMode = strings.TrimSpace(authMode)
 	})
 }
 

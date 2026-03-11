@@ -39,19 +39,21 @@ The recognised environment variables are:
 - TAIKUN_API_HOST
   - Chosen endpoint of Taikun API
 - TAIKUN_AUTH_MODE 
-  - Define the authentication mode you wish to use
+  - Define the authentication mode used with **TAIKUN_EMAIL** + **TAIKUN_PASSWORD**
     - **default** (same as empty, use email+pass)
-    - **token** (using user tokens generated from Taikun)
-    - **keycloak**
     - **autoscaler**
 - TAIKUN_EMAIL
   - Used only in **default** authmode
 - TAIKUN_PASSWORD
   - Used only in **default** authmode
 - TAIKUN_ACCESS_KEY
-  - Used in all other authmodes
+  - Robot user credential from Taikun; used with **TAIKUN_SECRET_KEY** for HTTP Basic Auth
 - TAIKUN_SECRET_KEY
-  - Used in all other authmodes
+  - Robot user credential from Taikun; used with **TAIKUN_ACCESS_KEY** for HTTP Basic Auth
+
+Authentication precedence in `NewClient()`:
+- If **TAIKUN_ACCESS_KEY** and **TAIKUN_SECRET_KEY** are set, Basic Auth is used on every request (no JWT login, no refresh token).
+- Otherwise, if **TAIKUN_EMAIL** and **TAIKUN_PASSWORD** are set, user authentication is used and JWT/refresh-token flow applies.
 
 ### Usage
 Import this repository as a go module inside your go project. Use the exported function **NewClient()**
